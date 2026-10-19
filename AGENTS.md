@@ -28,6 +28,6 @@ This check covers local file targets, not fragment identifiers, external website
 
 ## Deployment and Current Content
 
-The site has no build or runtime dependencies. Keep `vercel.json` configured with `framework: null`, `outputDirectory: "public"`, and `cleanUrls: true`. Do not add a catch-all single-page-app rewrite. Vercel Git integration is being configured; verify actual deployment and domain results before reporting them as complete.
+The site has no build or runtime dependencies. Keep `vercel.json` configured with `framework: null`, `outputDirectory: "public"`, and `cleanUrls: true`. Do not add a catch-all single-page-app rewrite. The GitHub repository is connected to the `numeraire` Vercel project in `karadzhyans-projects`; pushes to `main` trigger production deployment. Verify the actual deployment and domain results before reporting a release complete.
 
 At this repository's initial import, The Stock has twelve expanded essays; the Utility edition has 210 completed essays and 102 preparation slots. The first nine expanded volumes and all 26 Collected volumes are complete. Derive revised counts from the actual edition when subsequent work changes them.

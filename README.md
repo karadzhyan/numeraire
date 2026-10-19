@@ -42,3 +42,7 @@ The production destinations are [numeraire.press](https://numeraire.press/) and 
 - `AGENTS.md` — preservation and validation instructions for contributors.
 
 Private recovery records, account data, release receipts, and credentials belong outside this public repository. This repository starts with fresh Git history; earlier working-directory metadata is not part of the site.
+
+## Publishing from Any Account
+
+This public repository is connected to the `numeraire` Vercel project in `karadzhyans-projects`. An authorized push to `main` triggers production deployment; other branches provide previews. Clone this repository to work from another authorized ChatGPT or cloud account. Reading and cloning the source requires no ChatGPT sign-in; writing requires GitHub permission. The initial domain migration is being verified.
