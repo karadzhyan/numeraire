@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Standoff — Numéraire, The Game, Plate ii</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:66rem; --measure:35rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(2.8rem,7vh,5rem) 0 clamp(1.4rem,3.5vh,2.2rem);text-align:center;}
+
+  .crumbs{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 400;
+    font-size:.8rem;letter-spacing:.04em;color:var(--faint);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:center;gap:.55rem;}
+  .crumbs a{text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .2s ease,color .2s ease;}
+  .crumbs a:hover{border-color:var(--num);color:var(--ink);}
+  .crumbs .sep{color:var(--faintest);}
+  .crumbs .here{color:var(--ink);}
+
+  .plate-mark{width:116px;height:116px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:.18rem;line-height:1;}
+  .plate-mark.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pm-vol{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.84rem;letter-spacing:.06em;color:rgba(240,235,225,.62);}
+  .pm-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;
+    font-size:2.5rem;letter-spacing:.02em;text-transform:uppercase;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.1rem,6vw,4rem);line-height:1.03;letter-spacing:-.025em;margin:1rem 0 0;text-wrap:balance;}
+  .status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:42rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .epi{max-width:38rem;margin:clamp(2.2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .epi q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.46;color:var(--ink);quotes:none;display:block;text-wrap:pretty;}
+  .epi .cite{display:block;margin-top:.95rem;font-size:.78rem;color:var(--faintest);letter-spacing:.05em;font-style:normal;}
+  .epi .cite em{font-style:italic;}
+
+  .essay{max-width:52rem;margin:clamp(3rem,7vh,5rem) auto 0;counter-reset:sn;}
+  .essay::after{content:"";display:block;clear:both;}
+  .essay > p,.essay > .pull{max-width:var(--measure);}
+  .essay p{font-size:1.075rem;line-height:1.8;color:var(--ink);margin:0 0 1.4rem;text-wrap:pretty;}
+  .essay em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.72;padding:.08em .14em 0 0;color:var(--ink);}
+
+  .divider{display:flex;justify-content:center;margin:2.4rem 0;}
+  .divider svg{width:96px;height:12px;overflow:visible;}
+  .divider line{stroke:var(--num);stroke-width:1;} .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.5vw,1.74rem);line-height:1.34;color:var(--ink);text-align:center;
+    margin:2.4rem auto;max-width:33rem;text-wrap:balance;}
+
+  .snref{font-family:"Fraunces",serif;font-size:.64em;line-height:0;vertical-align:super;
+    color:var(--soft);counter-increment:sn;margin-left:1px;font-style:normal;}
+  .snref::after{content:counter(sn);}
+  .sn{display:block;max-width:var(--measure);margin:.1rem 0 1.4rem;padding:.15rem 0 .15rem 1.05rem;
+    border-left:1px solid var(--hair);font-size:.84rem;line-height:1.52;color:var(--faint);}
+  .sn::before{content:counter(sn);font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--faintest);margin-right:.5em;font-size:.92em;}
+  .sn em{font-style:italic;}
+
+  @media (min-width:64rem){
+    .sn{float:right;clear:right;width:15rem;margin:.35rem 0 1.3rem;padding:0;border-left:none;}
+    .divider,.pull,.apparatus{clear:both;}
+  }
+
+  .apparatus{max-width:52rem;margin:clamp(3.2rem,7vh,5rem) auto 0;padding-top:2rem;border-top:1px solid var(--hair);clear:both;}
+  .app-h{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;}
+  .app-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.4rem;}
+  .app-list li{border-top:1px solid var(--hair);}
+  .app-list li:first-child,.app-list li:nth-child(2){border-top:none;}
+  .app-list a{display:block;text-decoration:none;padding:.95rem 0;}
+  .app-list a:hover .app-t{color:var(--soft);}
+  .app-rel{display:block;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faintest);margin-bottom:.3rem;}
+  .app-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.12rem;color:var(--ink);transition:color .2s ease;}
+  .app-g{display:block;font-size:.84rem;color:var(--faint);font-style:italic;line-height:1.4;margin-top:.22rem;}
+
+  footer{margin-top:clamp(3.5rem,8vh,6rem);padding:2.2rem 0 4rem;border-top:1px solid var(--hair);}
+  .crumbs.foot{justify-content:flex-start;margin-bottom:1.3rem;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .plate-mark{width:96px;height:96px;}
+    .pm-num{font-size:2.1rem;}
+    .essay p{font-size:1.04rem;line-height:1.74;}
+    .dropcap{font-size:3rem;}
+    .app-list{grid-template-columns:1fr;}
+    .app-list li:nth-child(2){border-top:1px solid var(--hair);}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="crumbs rise d1" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-game.html">The Game &middot; Vol XXV</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate ii</span>
+    </nav>
+    <div class="plate-mark lit rise d2" aria-hidden="true">
+      <span class="pm-vol">Gm</span>
+      <span class="pm-num">ii</span>
+    </div>
+    <h1 class="rise d3">The Standoff</h1>
+    <div class="status rise d3">in print &middot; The Game &middot; plate ii</div>
+    <p class="standfirst rise d4">A game is a tangle of mutual anticipation; an equilibrium is where the tangle comes to rest. It is the configuration of moves at which no player, given what the others do, can do better by moving — a standoff held in place not by agreement but by the absence of any reason to break it. This plate follows the idea Nash gave the science: its proof that such a resting point always exists, its embarrassment that there are usually many, and the recognition that an equilibrium, looking for all the world like a fact, is in truth a verdict.</p>
+  </header>
+
+  <div class="epi rise d5">
+    <q>When the demand price is equal to the supply price, the amount produced has no tendency either to be increased or to be diminished; it is in equilibrium.</q>
+    <span class="cite">Alfred Marshall, <em>Principles of Economics</em> (1890)</span>
+  </div>
+
+  <article class="essay">
+
+    <p class="lede"><span class="dropcap">A</span>n equilibrium is the closest thing a game has to an answer, and it is a strange kind of answer — not a command obeyed, nor a bargain struck, but a standoff that holds itself together. Picture a configuration of moves, one chosen by each player, with this property: that no player, looking at what all the others have done, can find a move of his own that would serve him better. Each is doing the best he can given the rest; none has any reason to stir; and so the whole arrangement sits still, locked in place not by agreement but by the mutual absence of a reason to move. That motionless standoff is what John Nash taught a science to look for, and to call the equilibrium.</p>
+
+    <p>The previous plate left the strategic chooser in a difficulty that seemed bottomless: to choose well he had to anticipate the others, who were anticipating him, in a regress of guessing that climbed without ever reaching a final rung. The equilibrium answers that difficulty — not by halting the regress from outside, but by finding the point at which it closes upon itself.<sup class="snref"></sup> For an equilibrium is a configuration in which every player's expectation of the others is precisely fulfilled: I expect you to play as you do, you expect me to play as I do, and each of us, expecting rightly, is already making his best reply to the other. Nothing is left to revise, because no one has guessed wrong and no one can do better. The endless reflection between the facing mirrors comes to rest — not because a mirror has been covered, but because the image has grown consistent with the thing that casts it. The equilibrium is the strategic situation grown self-confirming, the resting place of mutual anticipation.</p>
+    <aside class="sn">The previous plate left us climbing a ladder without a top — I must guess your move, which depends on your guess of mine, which depends on your guess of my guess, upward without end. The equilibrium is the rung at which the climbing stops, because at it the guesses come true. It is a fixed point: a set of moves and expectations so arranged that each player's anticipation of the others is exactly borne out, and each, anticipating rightly, is already doing his best. The hall of facing mirrors resolves into a single steady image, for the reflection has at last become consistent with the thing reflected.</aside>
+
+    <p>That this resting place can always be found is the achievement most tied to Nash's name, and it has two parts worth separating.<sup class="snref"></sup> The first is a definition, powerful for its generality: an equilibrium is any profile of strategies — one for each player — in which each player's strategy is a best reply to the others', so that none could improve by changing his own move alone. Cournot's two water-sellers, settling where neither would stir, had been an instance of this a century earlier; von Neumann's solution of pure conflict was another; Nash's definition embraced them both and every other game besides. The second part is a proof: that every finite game possesses at least one such equilibrium, provided the players may mix their moves at random. He showed it by a fixed-point theorem — a result of pure mathematics guaranteeing that certain transformations of a space must leave some point exactly where it was. With existence secured, the theory could promise that no strategic situation is without a resting point: every game has, somewhere, an answer.</p>
+    <aside class="sn">Nash gave the science two things. The first was a definition general enough to fit any game whatever: an equilibrium is a profile of strategies, one per player, in which each is a best reply to the others, so that no one can gain by departing alone. This swallowed Cournot's duopoly and von Neumann's pure conflict as special cases of a single idea. The second was a proof that such a point always exists — that every finite game has at least one equilibrium — resting on a fixed-point theorem, a piece of pure mathematics guaranteeing that certain maps of a space into itself must leave some point unmoved. Existence assured, the theory could promise that every game has an answer to give.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>That proviso — that the players may mix their moves at random — is no technicality but a window into the strategic world.<sup class="snref"></sup> Take the simplest of pure conflicts, the game of matching pennies, or the playground's stone, paper, and scissors. Any move I can be relied on to make is one my opponent can prepare to beat, and there is no steady pair of choices at which both can rest: name my play and you defeat it, name yours and I defeat that. The way out is to become unpredictable — to choose each move only with some probability, settling on no single play but on a recipe for mixing them. At the equilibrium in such mixtures something subtle holds: each player is exactly indifferent among the moves he mixes, for were any one of them better he would favor it, and the careful balance would collapse. One randomizes, that is, not from one's own uncertainty but to deny the other a foothold for prediction — the very logic von Neumann had drawn from the bluff, where to be readable is to be beaten.</p>
+    <aside class="sn">Some games have no equilibrium in definite moves. In matching pennies, or the child's game of stone and scissors, any move I will surely make is a move you can surely beat, and the chase has no rest. The escape is to randomize — to choose each move with a certain probability, a mixed strategy, so that no opponent can foresee the particular play. At such an equilibrium a curious thing holds: each player is exactly indifferent among the moves he mixes, for if one were better he would lean to it and the mixture would unravel. One randomizes not from doubt but to keep the other guessing — the logic von Neumann had already glimpsed in the bluff at the poker table.</aside>
+
+    <p>Yet to know that an equilibrium exists is not to know which one will govern, and here the concept meets its sharpest limit.<sup class="snref"></sup> Most games have not a single equilibrium but a whole family of them, and the definition, asking only that no player wish to depart, does nothing to mark one out from the rest. Two drivers must each choose a side of the road; both-left and both-right are equilibria alike, and the bare logic cannot say which a country will keep. A literature of refinements has grown to prune the unreasonable from the credible, and Schelling pointed to focal points — the arrangements that stand out by custom or conspicuousness — as what in fact draws expectations together where the mathematics falls silent. But the multiplicity, in the general case, cannot be reasoned away. And precisely there the argument of these volumes takes its purchase: if the logic does not fix which equilibrium prevails, then something outside the logic must — and that something, the selector among the many, is the hidden contest the price conceals.</p>
+    <aside class="sn">Existence is not uniqueness, and herein lies the concept's great incompleteness. Most games possess not one equilibrium but many, and the bare definition, which only asks that no one wish to deviate, gives no ground for preferring one to another. A whole literature of refinements — extra conditions a credible equilibrium ought to meet — labors to thin the crowd, and Schelling's focal points appeal to a salience the mathematics cannot supply. But in general the multiplicity will not be reasoned away; and just there the argument of these volumes takes hold, for if the logic does not fix which equilibrium prevails, something else must — and that something is the contest the equilibrium conceals.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>We may now see why the equilibrium is the master image of all these volumes have urged.<sup class="snref"></sup> A price is a verdict on a hidden contest, mistaken for a fact of nature — and the equilibrium is that verdict in its most general form, the resting point on which a strategic contest settles. Mark how completely it counterfeits a fact. It persists, for no player will break it; it is impersonal, for no player decreed it; and persistence and impersonality are the very credentials by which we know a fact of the world. Yet the equilibrium is no fact. The price at which a few great rivals come to rest is an equilibrium of the game they play — it endures, none of them set it single-handed, and so it wears the look of a market datum; but a more collusive understanding among them would be an equilibrium too, and a fiercer war another, and each would write a different number on the tag. What presents itself as the level the market has found is one resting point among several the same game permits — held there by nothing sturdier than the mutual expectation of the players, and sure to move if that expectation moves.</p>
+    <aside class="sn">An equilibrium has the two marks of a fact: it persists, since no one will break it, and it is impersonal, since no one decreed it. These are precisely the marks that deceive. The going price between a few rivals is an equilibrium of their pricing game — it endures, and no single firm set it, and so it wears the face of a market datum; yet a more collusive understanding, or a more cutthroat one, would be an equilibrium too, and would yield a wholly different price. What looks like the level the market has found is one resting point among several the same game allows, held where it is by mutual expectation and breakable if that expectation shifts.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>The concept's strongest defenders make a claim that must be weighed with care, for it meets the gravest objection to the whole enterprise.<sup class="snref"></sup> The objection is that the equilibrium asks too much of mortals — that no real person performs the bottomless reasoning the regress demanded. The defense is that none need perform it: let players merely adjust over time — copying what prospers, dropping what fails, learning from one round to the next — and such unthinking processes will, across a wide range of games, drift of their own accord toward an equilibrium, which is, after all, just a state from which the adjusting stops. Evolution does as much, winnowing a population of strategies to the stable ones. The equilibrium, so seen, is less a feat of calculation than the rest-point of a dynamic, reached by trial where it is never reached by thought. The defense is powerful, but its limits must be owned. Not every such process settles; some wander in perpetual cycles, the strategies chasing one another without end. And where a game offers many equilibria, which one the adjusting reaches depends on where it began — so that the resting point is chosen by history rather than by reason. The equilibrium is the best single answer the theory has; it is not always the answer life gives.</p>
+    <aside class="sn">The deepest defense of the equilibrium is that one need not compute it to reach it. Let players merely adjust — imitate what succeeds, abandon what fails, learn from round to round — and such blind processes will, in a wide class of games, converge on an equilibrium all the same; the resting point of the dynamics needs no genius, only repetition. Evolution itself selects equilibria among competing strategies in a population. Yet the rescue is partial. Some dynamics never settle but cycle forever; and where a game has many equilibria, which one the process finds depends on where it began, so that history, not logic, does the choosing. The attractor is real, but it is not always reached, and rarely is it the only one.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>Generalize the lesson, and a great part of the settled economic world turns legible anew.<sup class="snref"></sup> The structure an industry has settled into, the terms a trade treats as standard, the routine a market follows without reflection — each of these, wherever strategy is at work in it, is an equilibrium: a standoff among interested parties that holds because no one of them, alone, has reason to break it. And each, being one equilibrium among the several the situation allows, could in principle give way to another. To pronounce such an arrangement a fact of nature is to mistake its stability for necessity — to suppose that because a thing holds, it must hold, and could not be otherwise. But its holding is the holding of a truce, kept by the continuing reluctance of every party to be first to defect; and a truce is not a law of nature. It is a contest that happens, for now, to be at rest, carrying within it the standing possibility of resuming on other terms.</p>
+    <aside class="sn">Read so, the equilibrium becomes a lens for the whole of settled economic life. The prevailing structure of an industry, the customary terms of a trade, the unwritten rules a market keeps — each, where strategy is in play, is a standoff that holds itself together, and each could in principle give way to another. To call such an arrangement a fact of nature is to mistake its stability for necessity. It is stable, certainly; but it is stable as a truce is stable, by the continuing disinclination of any party to be the first to break it — and a truce is not a law of nature, only a contest currently at rest.</aside>
+
+    <p>This lends the arrangements of economic life a double character the untutored eye cannot hold in view at once.<sup class="snref"></sup> On one side, an equilibrium is as solid as any fact: it persists, it withstands the deviation of any single player, it has every appearance and much of the force of the way things simply are. On the other, it is as contingent as any verdict: it might have come out otherwise, and other equilibria wait in reserve, ready to take its place should the web of expectation that sustains it be disturbed. To see only the solidity is the error these volumes labor to undo — to take the standoff for the landscape, the truce for the terrain, the resting place of a contest for the fixed ground of the world. The settled forms of economic life are at once firmer than a whim and frailer than a fact; and which of the many possible standoffs a society keeps is no accident of nature but the residue of a contest — over what each party could expect, what each could promise, what history or salience made one arrangement leap to the eye — that picked this resting point from the rest.</p>
+    <aside class="sn">Here is the strange double nature the concept lays bare. An equilibrium is as solid as any fact: it holds, it resists the deviation of any single player, it has all the obstinacy of the way things are. And it is as contingent as any verdict: it might have fallen otherwise, and other equilibria stand ready to replace it should the expectations that sustain it move. To see only the first is the error these volumes exist to correct — to take the standoff for the landscape, the truce for the terrain. The arrangements of economic life are firmer than a whim and frailer than a fact, and the equilibrium is the name of exactly that condition.</aside>
+
+    <p class="pull">An equilibrium is firmer than a whim and frailer than a fact — a truce the players keep just so long as none will be the first to break it.</p>
+
+    <p>So the two opening plates of the volume close a single circuit. The first gave us the game — the situation of entangled choice, the tangle of mutual anticipation, the hidden contest a price is the verdict upon. This one has given us the equilibrium — the verdict itself, the resting point at which the anticipations come true together and the contest, for a moment, holds still. The game is the struggle; the equilibrium is its settlement; and the settlement, persisting and impersonal, is forever mistaken for a fixture of the world. A price is a verdict on a hidden contest, mistaken for a fact of nature — and we may now read that sentence in its fullest generality: the contest is a game, the verdict an equilibrium, and the mistake is to see the standoff and call it the ground. What the strategic situation is, the plate before this showed; where it comes to rest, this one has tried to. The argument remains open.</p>
+
+  </article>
+
+  <nav class="apparatus" aria-label="Related reading">
+    <h2 class="app-h">Related</h2>
+    <ul class="app-list">
+      <li><a href="the-move.html"><span class="app-rel">In this volume</span><span class="app-t">The Move</span><span class="app-g">plate i — the previous plate: the game whose resting point this one finds, the contest to this verdict</span></a></li>
+      <li><a href="the-game.html"><span class="app-rel">In this volume</span><span class="app-t">The Coordination</span><span class="app-g">plate iv — when a game has many equilibria, what picks one out: convention, salience, the focal point</span></a></li>
+      <li><a href="the-game.html"><span class="app-rel">In this volume</span><span class="app-t">The Regress</span><span class="app-g">plate xii — the common knowledge of rationality on which the equilibrium quietly rests, and where it cracks</span></a></li>
+      <li><a href="the-price-maker.html"><span class="app-rel">In The Power</span><span class="app-t">The Price-Maker</span><span class="app-g">the price as a move, not a datum: the seller with the power to set it, and the rivals who come to rest at it</span></a></li>
+    </ul>
+  </nav>
+
+  <footer>
+    <nav class="crumbs foot" aria-label="Return">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-game.html">The Game &middot; Vol XXV</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate ii</span>
+    </nav>
+    <p class="colophon">The second plate of Volume XXV, <em>The Game</em> — the Nash equilibrium, the resting point at which a game's mutual anticipations come true together and no player has reason to move; its existence and its multiplicity; and the argument that an equilibrium, persisting and impersonal, is forever mistaken for a fact of nature when it is the verdict of a hidden contest that might have settled elsewhere. Return to <em><a href="the-game.html">The Game</a></em>, or to <a href="numeraire-atlas.html">the complete table of volumes</a>. The epigraph is from Marshall's <em>Principles of Economics</em>; the equilibrium and existence results of Cournot, von Neumann, and Nash, and the refinements of Selten and Schelling, are discussed in the text. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-move.html">← The Move</a><a rel="next" href="the-norm.html">The Norm →</a></nav>
+</body>
+</html>

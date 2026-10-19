@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Measures — Numéraire</title>
+<meta name="description" content="The Measures of Numéraire, A Periodic Table of Economic Life — the contest inside the number. The book has argued that every price is a verdict on a hidden contest; this companion turns that claim on the official statistics economic life actually runs on. Fifteen of the major measures are set out, each with what it claims to measure, how it is in fact built, and the contest hidden inside it: gross domestic product and the unpaid work it cannot see, the inflation index and whose basket it prices, the unemployment rate and who is counted as wanting work, the Gini number and the inequality it conceals, the poverty line that defines the poor rather than discovering them, the social cost of carbon and the future it discounts, the stock index mistaken for the economy, and more. The contest inside each number is hidden by default, so the reader meets the figure first as the news presents it and then pulls back the curtain. Every statistic, like every price, is a verdict, and the deepest verdict of all is what no measure attempts to count.">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem; --measure:40rem;
+    --wash:rgba(28,26,22,.066); --wash2:rgba(28,26,22,.12);
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.62;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  .measure{max-width:var(--measure);margin-left:auto;margin-right:auto;}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- ornaments ---- */
+  .orn{display:flex;justify-content:center;margin:0 auto;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .divider{display:flex;align-items:center;gap:1.1rem;max-width:30rem;margin:clamp(3rem,7vh,5rem) auto;color:var(--num);}
+  .divider .ln{flex:1;height:1px;background:var(--hair);}
+  .divider svg{display:block;width:12px;height:12px;overflow:visible;flex:0 0 auto;}
+  .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* ---- progress + running head ---- */
+  #progress{position:fixed;top:0;left:0;height:2px;width:100%;transform:scaleX(0);transform-origin:0 50%;background:var(--soft);opacity:.45;z-index:10000;}
+  #topbar{position:fixed;top:0;left:0;right:0;z-index:9998;transform:translateY(-100%);transition:transform .5s cubic-bezier(.2,.6,.2,1);
+    background:rgba(240,235,225,.86);-webkit-backdrop-filter:saturate(1.1) blur(8px);backdrop-filter:saturate(1.1) blur(8px);
+    border-bottom:1px solid var(--hair);}
+  #topbar.show{transform:translateY(0);}
+  .tb-in{max-width:var(--frame);margin:0 auto;padding:.62rem clamp(1.4rem,4vw,3.4rem);display:flex;justify-content:space-between;align-items:baseline;gap:1.2rem;}
+  .tb-l{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:.86rem;letter-spacing:.01em;}
+  .tb-l span{color:var(--faintest);font-weight:400;}
+  .tb-r{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);text-align:right;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+
+  /* ---- title page ---- */
+  .vol-title{padding:clamp(3.4rem,11vh,8rem) 0 clamp(1.6rem,5vh,3rem);text-align:center;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.16rem;letter-spacing:.02em;}
+  .vol-no{font-size:.84rem;color:var(--faint);letter-spacing:.16em;text-transform:uppercase;margin-top:.55rem;}
+  h1.vol-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 380;font-weight:380;
+    font-size:clamp(2.9rem,9vw,6rem);line-height:.98;letter-spacing:-.028em;margin:clamp(1.7rem,4.5vh,2.8rem) 0 0;text-wrap:balance;}
+  .vol-sym{width:78px;height:78px;margin:clamp(1.6rem,4vh,2.4rem) auto 0;border:1px solid var(--hair);border-radius:2px;
+    display:flex;align-items:center;justify-content:center;background:var(--ink);}
+  .vol-sym span{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2.3rem;line-height:1;color:var(--paper);letter-spacing:-.01em;}
+  .vol-coords{font-family:"Fraunces",serif;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);margin-top:1.1rem;}
+  .vol-gloss{font-style:italic;color:var(--soft);font-size:1.12rem;margin:.5rem 0 0;}
+  .vol-epigraph{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 400;font-style:italic;
+    font-size:clamp(1.14rem,1.7vw,1.34rem);line-height:1.42;color:var(--soft);max-width:33rem;margin:clamp(1.8rem,4vh,2.6rem) auto 0;text-wrap:pretty;}
+  .vol-epigraph .lead{display:block;font-style:normal;font-variation-settings:"opsz" 24,"wght" 400;
+    font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.7rem;}
+  .vol-status{display:inline-flex;align-items:center;gap:.5rem;margin:clamp(1.8rem,4vh,2.4rem) auto 0;font-size:.84rem;color:var(--soft);}
+  .vol-status::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ink);}
+
+  /* ---- the argument (preface) ---- */
+  .part-head{text-align:center;margin:0 0 clamp(1.6rem,3.5vh,2.3rem);}
+  .part-kicker{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faintest);}
+  .part-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-weight:400;
+    font-size:clamp(1.5rem,3.4vw,2.1rem);letter-spacing:-.012em;margin:.4rem 0 0;}
+  .argument p{font-size:1.05rem;line-height:1.74;margin:0 0 1.15rem;text-wrap:pretty;}
+  .argument p.lede::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 420;
+    float:left;font-size:3.5em;line-height:.78;padding:.05em .1em 0 0;color:var(--ink);}
+  .argument em,.plate-body em,.coda em{font-style:italic;}
+
+  /* ---- contents ---- */
+  .toc{list-style:none;margin:0 auto;padding:0;max-width:43rem;}
+  .toc li{border-top:1px solid var(--hair);}
+  .toc li:last-child{border-bottom:1px solid var(--hair);}
+  .toc a{display:grid;grid-template-columns:2.6rem 1fr;column-gap:1.1rem;align-items:baseline;
+    padding:.82rem .3rem;text-decoration:none;transition:background .2s ease;}
+  .toc a:hover{background:rgba(28,26,22,.035);}
+  .toc-n{font-family:"Fraunces",serif;font-size:.92rem;color:var(--faintest);text-align:right;}
+  .toc-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.06rem;color:var(--ink);line-height:1.16;}
+  .toc-g{grid-column:2;font-size:.85rem;font-style:italic;color:var(--faint);margin-top:.16rem;line-height:1.38;}
+
+  /* ---- plates ---- */
+  .plate{margin:clamp(3.2rem,8vh,6rem) 0 0;padding-top:clamp(2.4rem,5.5vh,3.4rem);border-top:1px solid var(--hair);scroll-margin-top:4rem;}
+  .plate-open{max-width:var(--measure);margin-inline:auto;}
+  .plate-no{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 360;font-size:clamp(2.6rem,7vw,4.1rem);
+    line-height:.9;color:var(--num);letter-spacing:.02em;}
+  .plate-kicker{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faintest);margin:.9rem 0 .2rem;}
+  .plate-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.8rem,4.4vw,2.7rem);line-height:1.04;letter-spacing:-.018em;margin:0;text-wrap:balance;}
+  .plate-gloss{font-style:italic;color:var(--soft);font-size:1.02rem;margin:.55rem 0 0;line-height:1.4;}
+
+  .ask{max-width:var(--measure);margin:clamp(1.5rem,3.5vh,2.2rem) auto clamp(1.8rem,4vh,2.4rem);}
+  .ask .lead{display:block;font-family:"Fraunces",serif;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.55rem;}
+  .ask q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:clamp(1.18rem,1.8vw,1.38rem);line-height:1.36;color:var(--soft);quotes:none;}
+
+  .plate-body{max-width:var(--measure);margin-inline:auto;}
+  .plate-body p{margin:0 0 1.18rem;text-wrap:pretty;}
+  .plate-body > p:first-of-type::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 430;
+    float:left;font-size:3.5em;line-height:.76;padding:.04em .12em 0 0;color:var(--ink);}
+  .plate-body h4{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.76rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faint);margin:2rem 0 .9rem;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 380;font-style:italic;
+    font-size:clamp(1.4rem,2.3vw,1.7rem);line-height:1.32;color:var(--soft);text-align:center;
+    max-width:33rem;margin:clamp(2rem,4.5vh,2.8rem) auto;text-wrap:balance;}
+
+  .edge{max-width:var(--measure);margin:1.7rem auto;padding:.1rem 0 .1rem 1.15rem;border-left:1px solid var(--hair);
+    color:var(--faint);font-size:.92rem;line-height:1.62;}
+  .edge .lead{display:block;font-family:"Fraunces",serif;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.4rem;}
+  .edge em{font-style:italic;color:var(--soft);}
+
+  /* ---- figures (engravings) ---- */
+  .fig{max-width:var(--measure);margin:clamp(2.1rem,4.5vh,2.9rem) auto;}
+  .fig-frame{border:1px solid var(--hair);border-radius:2px;padding:clamp(1rem,2.4vw,1.7rem) clamp(1rem,2.4vw,1.7rem) clamp(.8rem,2vw,1.3rem);background:rgba(255,253,247,.4);}
+  .fig svg{display:block;width:100%;height:auto;}
+  figcaption{margin:.95rem auto 0;max-width:38rem;font-size:.85rem;line-height:1.5;color:var(--faint);text-wrap:pretty;}
+  figcaption .fig-n{font-family:"Fraunces",serif;font-weight:500;letter-spacing:.04em;color:var(--soft);}
+  figcaption em{font-style:italic;}
+  .ax{stroke:var(--soft);stroke-width:1.1;fill:none;}
+  .tick{stroke:var(--soft);stroke-width:1;}
+  .curve{stroke:var(--ink);stroke-width:1.5;fill:none;stroke-linecap:round;}
+  .curve2{stroke:var(--ink);stroke-width:1.3;fill:none;stroke-linecap:round;}
+  .guide{stroke:var(--faintest);stroke-width:1;fill:none;stroke-dasharray:3 3.5;}
+  .core{stroke:var(--ink);stroke-width:3;fill:none;stroke-linecap:round;}
+  .fill-cs{fill:var(--wash);}
+  .fill-dwl{fill:var(--wash2);}
+  .fill-wedge{fill:var(--wash);}
+  .fill-lens{fill:var(--wash);}
+  .hatch-line{stroke:var(--faintest);stroke-width:.8;}
+  .lbl{font-family:"Fraunces",serif;font-size:11.5px;fill:var(--faint);font-variation-settings:"opsz" 24,"wght" 400;}
+  .lbl-i{font-family:"Newsreader",serif;font-style:italic;font-size:11px;fill:var(--soft);}
+  .lbl-sm{font-family:"Fraunces",serif;font-size:9.6px;fill:var(--faintest);letter-spacing:.02em;}
+  .lbl-ax{font-family:"Fraunces",serif;font-size:9.4px;fill:var(--faintest);letter-spacing:.12em;}
+
+  /* ---- coda + colophon ---- */
+  .coda{max-width:var(--measure);margin:clamp(3rem,7vh,5rem) auto 0;}
+  .coda p{margin:0 0 1.18rem;text-wrap:pretty;}
+  .coda p.lede::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 430;
+    float:left;font-size:3.5em;line-height:.76;padding:.04em .12em 0 0;color:var(--ink);}
+  footer{margin-top:clamp(3.6rem,8vh,6rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.4rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .colophon{font-size:.85rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+
+  /* ---- motion / reveal ---- */
+  @media (prefers-reduced-motion: no-preference){
+    html.js .reveal{opacity:0;transform:translateY(14px);}
+    html.js .reveal.in{opacity:1;transform:none;}
+    .reveal{transition:opacity .9s cubic-bezier(.2,.6,.2,1),transform .9s cubic-bezier(.2,.6,.2,1);}
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.18s}.rise.d3{animation-delay:.32s}.rise.d4{animation-delay:.46s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  /* ---- responsive ---- */
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .argument p,.plate-body p,.coda p{font-size:1.01rem;}
+    .plate-body > p:first-of-type::first-letter,.argument p.lede::first-letter,.coda p.lede::first-letter{font-size:3em;}
+    .f-bar{flex-direction:column;gap:.5rem;}
+    .toc a{grid-template-columns:2rem 1fr;column-gap:.8rem;}
+    figcaption{font-size:.82rem;}
+  }
+
+  /* ---- print: a volume, in print ---- */
+  @media print{
+    html,body{background:#fff;color:#000;}
+    body{font-size:11.5pt;line-height:1.5;}
+    body::before,#progress,#topbar{display:none !important;}
+    .frame{max-width:none;padding:0;}
+    .measure,.plate-open,.plate-body,.ask,.edge,.coda{max-width:34rem;}
+    a{text-decoration:none;}
+    .plate{break-before:page;border-top:none;padding-top:0;}
+    .fig,figure{break-inside:avoid;}
+    .plate-no{color:#bbb;}
+    .reveal{opacity:1 !important;transform:none !important;}
+  }
+
+  /* ---- the measures ---- */
+  .ms-intro{max-width:var(--measure);margin-inline:auto;}
+  .ms-intro p{font-size:1.05rem;line-height:1.74;margin:0 0 1.15rem;text-wrap:pretty;}
+  .ms-intro p.lede::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 420;float:left;font-size:3.5em;line-height:.78;padding:.05em .1em 0 0;color:var(--ink);}
+  .ms-controls{max-width:42rem;margin:1.7rem auto 0;display:flex;justify-content:center;}
+  .ms-toggle{font-family:"Fraunces",serif;font-size:.8rem;letter-spacing:.01em;color:var(--soft);background:transparent;border:1px solid var(--hair);border-radius:2px;padding:.45rem .9rem;cursor:pointer;transition:border-color .15s,color .15s,background .15s;}
+  .ms-toggle:hover{border-color:var(--faintest);color:var(--ink);}
+  .ms-toggle.armed{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .ms-list{max-width:42rem;margin:2.1rem auto 0;}
+  .ms{border:1px solid var(--hair);border-radius:3px;padding:1.35rem 1.5rem;margin:0 0 1rem;background:var(--paper);transition:border-color .2s;}
+  .ms.open{border-color:var(--faintest);}
+  .ms-head{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:.7rem;}
+  .ms-kicker{font-family:"Fraunces",serif;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faintest);order:2;}
+  .ms-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 440;font-size:1.4rem;line-height:1.12;color:var(--ink);margin:0;order:1;}
+  .ms-line{font-size:.97rem;line-height:1.6;color:var(--soft);margin:0 0 .55rem;text-wrap:pretty;}
+  .ms-lbl{font-family:"Fraunces",serif;font-size:.62rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.1rem;}
+  .ms-reveal{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--soft);background:transparent;border:0;border-top:1px solid var(--hair);width:100%;text-align:left;padding:.7rem 0 0;margin-top:.5rem;cursor:pointer;display:flex;align-items:center;gap:.5rem;transition:color .15s;}
+  .ms-reveal:hover{color:var(--ink);}
+  .ms-caret{display:inline-block;transition:transform .2s;color:var(--faintest);font-size:.8rem;}
+  .ms.open .ms-caret{transform:rotate(90deg);}
+  .ms-contest{display:none;margin-top:.85rem;padding:.95rem 1.1rem;background:var(--wash);border-left:2px solid var(--faintest);border-radius:0 2px 2px 0;}
+  .ms.open .ms-contest,.ms-list.all-open .ms-contest{display:block;}
+  .ms-list.all-open .ms-caret{transform:rotate(90deg);}
+  .ms-clabel{font-family:"Fraunces",serif;font-size:.62rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);margin:0 0 .45rem;}
+  .ms-contest p{font-size:.98rem;line-height:1.66;color:var(--ink);margin:0 0 .6rem;text-wrap:pretty;}
+  .ms-links{font-size:.82rem;color:var(--faint)!important;margin:.7rem 0 0!important;line-height:1.5!important;}
+  .ms-links a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--faintest);text-underline-offset:2px;font-style:italic;}
+  @media (max-width:680px){
+    .ms{padding:1.15rem 1.15rem;}
+    .ms-name{font-size:1.24rem;}
+    .ms-head{gap:.3rem;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#ne-contents">Complete contents</a><a href="../essays/numeraire-atlas-updated.html">Essay atlas</a><a href="../editions.html#ne-companions">Companions</a></div></nav>
+<div id="progress" aria-hidden="true"></div>
+<div id="topbar" aria-hidden="true"><div class="tb-in">
+  <span class="tb-l">Numéraire <span>· The Measures</span></span>
+  <span class="tb-r" id="tb-plate">The Contest Inside the Number</span>
+</div></div>
+
+<div class="frame">
+
+  <header class="vol-title">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="11" x2="130" y2="11"/><line x1="6" y1="11" x2="6" y2="4"/><line x1="29" y1="11" x2="29" y2="6"/><line x1="52" y1="11" x2="52" y2="2"/><line x1="75" y1="11" x2="75" y2="6"/><line x1="98" y1="11" x2="98" y2="6"/><line x1="121" y1="11" x2="121" y2="4"/></svg>
+    </div>
+    <div class="rise d1">
+      <span class="imprint">Numéraire</span>
+      <div class="vol-no">A Companion to the Atlas</div>
+    </div>
+    <h1 class="vol-name rise d2">The Measures</h1>
+    <div class="vol-coords rise d3">the contest inside the number</div>
+    <p class="vol-gloss rise d3">the book has said that every price is a verdict on a hidden contest; here the same is shown of every official statistic &mdash; the figures economic life actually runs on</p>
+    <p class="vol-epigraph rise d4">
+      <span class="lead">Why the numbers are here</span>
+      Every other companion argues about concepts. But economics runs on numbers &mdash; GDP, inflation, unemployment, inequality &mdash; presented as the most neutral facts there are. Each is in truth built, and the building hides a choice, and behind the choice is a contest. The figure is hidden here at first, as the news presents it. Reveal the contest inside.
+    </p>
+    <div class="vol-status rise d4">fifteen measures &middot; what each claims, how each is built, and the contest each conceals</div>
+  </header>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <section class="ms-intro reveal" aria-labelledby="ms-h">
+    <div class="part-head">
+      <div class="part-kicker">On the numbers we trust</div>
+      <h2 class="part-title" id="ms-h">Every Statistic a Verdict</h2>
+    </div>
+    <p class="lede">The book has made one argument, over and over, in twenty-six forms: that an economic quantity is never a simple fact of nature, but a construction that conceals a contest. It has made that argument about concepts &mdash; the wage, the rate, the share. It has not yet made it about the place the argument matters most: the official numbers. GDP, the inflation rate, the unemployment figure, the measure of inequality &mdash; these are the statistics that move markets, set pensions, decide elections, and define who counts as poor. They are reported in the flat, authoritative voice of arithmetic, as though they were simply read off the world. They are not. They are built, and every choice in the building has a winner and a loser.</p>
+    <p>Consider what it takes to make one. To measure inflation you must first choose a basket of goods, and a basket is a guess about whose life is typical. To count the unemployed you must first decide who counts as looking for work. To put a price on a ton of carbon you must first decide how much a harm to the unborn is worth today. None of these is a measurement; each is a judgment that the measurement then hides. The number that emerges carries the judgment silently into every decision that consults it &mdash; which is the quiet genius, and the quiet danger, of a statistic: it settles an argument without anyone noticing the argument was had.</p>
+    <p>Below are fifteen of the measures economic life runs on, each with what it claims to measure, how it is in fact built, and the contest hidden inside it. The contest is folded away at first, so that each number appears as it does in the news &mdash; clean, settled, beyond dispute. Open them one at a time, or reveal them all at once. The point of the exercise is not to discredit the figures, which are indispensable, but to learn to read them: to see, in each one, both the quantity it reports and the verdict it encodes.</p>
+  </section>
+
+  <div class="ms-controls reveal">
+    <button class="ms-toggle" id="ms-toggle" type="button" aria-pressed="false">Reveal the contest inside every number</button>
+  </div>
+
+  <div class="ms-list reveal" id="ms-list">
+  <article class="ms">
+    <div class="ms-head"><h3 class="ms-name">Gross Domestic Product</h3><span class="ms-kicker">the size of the economy</span></div>
+    <p class="ms-line"><span class="ms-lbl">Claims to measure</span>the total market value of all the final goods and services a nation produces in a year.</p>
+    <p class="ms-line"><span class="ms-lbl">How it is built</span>by adding up consumption, investment, government spending, and net exports &mdash; everything bought and sold, valued at its market price.</p>
+    <button class="ms-reveal" type="button"><span class="ms-caret">&#9656;</span> The contest inside</button>
+    <div class="ms-contest"><p class="ms-clabel">The contest inside the number</p><p>It counts only what carries a price. The unpaid work that holds a society together &mdash; the childcare, the eldercare, the cooking, the labor done overwhelmingly by women at home &mdash; is worth nothing to GDP, and becomes valuable only the instant it is sold. It treats destruction as production: an oil spill raises GDP through the cleanup, and the felling of a forest counts as income while the loss of the forest counts as nothing. It cannot tell a dollar of weapons from a dollar of vaccines. What a nation agrees to call &ldquo;the economy&rdquo; is the decision of what labor will be seen and what will be made invisible.</p>
+    <p class="ms-line ms-links">Bears on: <a href="the-growth.html">the growth</a> &middot; <a href="the-level.html">the level</a> &middot; <a href="the-surplus.html">the surplus</a></p></div>
+  </article>
+  <article class="ms">
+    <div class="ms-head"><h3 class="ms-name">The Consumer Price Index</h3><span class="ms-kicker">the cost of living</span></div>
+    <p class="ms-line"><span class="ms-lbl">Claims to measure</span>how much the prices faced by a typical household rise from one year to the next.</p>
+    <p class="ms-line"><span class="ms-lbl">How it is built</span>by pricing a fixed basket of goods, weighted by average spending, and adjusting for changes in quality and for shoppers switching to cheaper substitutes.</p>
+    <button class="ms-reveal" type="button"><span class="ms-caret">&#9656;</span> The contest inside</button>
+    <div class="ms-contest"><p class="ms-clabel">The contest inside the number</p><p>There is no typical household. The poor spend far more of what they have on rent, food, and energy &mdash; the very things that often rise fastest &mdash; so a single index understates inflation for those least able to bear it. And the technical adjustments, for quality and for substitution, almost all push the measured number downward; since pensions, the minimum wage, tax brackets, and benefits are all tied to that number, a lower reading means quietly smaller raises for millions. The choice of basket is a choice about whose cost of living counts.</p>
+    <p class="ms-line ms-links">Bears on: <a href="the-level.html">the level</a></p></div>
+  </article>
+  <article class="ms">
+    <div class="ms-head"><h3 class="ms-name">The Unemployment Rate</h3><span class="ms-kicker">who is out of work</span></div>
+    <p class="ms-line"><span class="ms-lbl">Claims to measure</span>the share of people who want a job and cannot find one.</p>
+    <p class="ms-line"><span class="ms-lbl">How it is built</span>from a household survey that counts you as unemployed only if you are out of work and have actively looked within the past four weeks.</p>
+    <button class="ms-reveal" type="button"><span class="ms-caret">&#9656;</span> The contest inside</button>
+    <div class="ms-contest"><p class="ms-clabel">The contest inside the number</p><p>The four-week rule decides who exists. Those who have given up looking &mdash; the discouraged &mdash; vanish from the count, along with those working part-time who want full-time, and those who have dropped out of the labor force altogether. The headline rate can fall not because anyone found work but because more people stopped searching for it. Where the boundary of &ldquo;the labor force&rdquo; is drawn decides who is even permitted to count as wanting a job.</p>
+    <p class="ms-line ms-links">Bears on: <a href="the-cycle.html">the cycle</a> &middot; <a href="the-wage.html">the wage</a></p></div>
+  </article>
+  <article class="ms">
+    <div class="ms-head"><h3 class="ms-name">The Average Wage</h3><span class="ms-kicker">what work pays</span></div>
+    <p class="ms-line"><span class="ms-lbl">Claims to measure</span>the earnings of a typical worker.</p>
+    <p class="ms-line"><span class="ms-lbl">How it is built</span>usually as the mean &mdash; total wages divided by the number of workers &mdash; or sometimes the median, the pay of the worker exactly in the middle.</p>
+    <button class="ms-reveal" type="button"><span class="ms-caret">&#9656;</span> The contest inside</button>
+    <div class="ms-contest"><p class="ms-clabel">The contest inside the number</p><p>The mean and the median tell opposite stories. The mean is dragged upward by a handful of enormous incomes, so &ldquo;average pay&rdquo; can rise for years while the worker in the middle gains nothing at all. Worse, the average can climb for perverse reasons: when low-wage workers lose their jobs in a downturn, the average of those who remain goes up, and the figures report a raise that no one received. The choice between mean and median is the choice between flattering the economy and describing most of the lives inside it.</p>
+    <p class="ms-line ms-links">Bears on: <a href="the-wage.html">the wage</a> &middot; <a href="the-share.html">the share</a></p></div>
+  </article>
+  <article class="ms">
+    <div class="ms-head"><h3 class="ms-name">The Gini Coefficient</h3><span class="ms-kicker">how unequal</span></div>
+    <p class="ms-line"><span class="ms-lbl">Claims to measure</span>inequality in a single number, from zero, where everyone is equal, to one, where one person has everything.</p>
+    <p class="ms-line"><span class="ms-lbl">How it is built</span>from the gap between the actual distribution of income and a line of perfect equality.</p>
+    <button class="ms-reveal" type="button"><span class="ms-caret">&#9656;</span> The contest inside</button>
+    <div class="ms-contest"><p class="ms-clabel">The contest inside the number</p><p>One number cannot hold a distribution. A society where the top one percent seizes everything and one where the upper-middle merely pulls away can share the same Gini; the measure is least sensitive precisely at the extremes &mdash; the very rich, the very poor &mdash; that matter most. And the answer changes entirely with the fine print: income before tax or after, individuals or households, wages alone or wages plus benefits. A single figure of inequality conceals which inequality is meant.</p>
+    <p class="ms-line ms-links">Bears on: <a href="the-share.html">the share</a></p></div>
+  </article>
+  <article class="ms">
+    <div class="ms-head"><h3 class="ms-name">The Poverty Line</h3><span class="ms-kicker">who is poor</span></div>
+    <p class="ms-line"><span class="ms-lbl">Claims to measure</span>the income below which a household cannot afford the necessities of life.</p>
+    <p class="ms-line"><span class="ms-lbl">How it is built</span>in the United States, from a calculation of the 1960s &mdash; three times the cost of a minimum food budget &mdash; updated only for inflation in every year since.</p>
+    <button class="ms-reveal" type="button"><span class="ms-caret">&#9656;</span> The contest inside</button>
+    <div class="ms-contest"><p class="ms-clabel">The contest inside the number</p><p>It is a political decision wearing the clothes of a measurement. Poverty is relative and many-sided, but the line is a single absolute number frozen in an old assumption; draw it a dollar higher or lower and millions move into or out of &ldquo;poverty,&rdquo; and with them the right to assistance. The line does not discover the poor. It defines them &mdash; and it decides how many a society is willing to see.</p>
+    <p class="ms-line ms-links">Bears on: <a href="the-share.html">the share</a> &middot; <a href="the-wage.html">the wage</a></p></div>
+  </article>
+  <article class="ms">
+    <div class="ms-head"><h3 class="ms-name">Productivity</h3><span class="ms-kicker">output per hour</span></div>
+    <p class="ms-line"><span class="ms-lbl">Claims to measure</span>how efficiently an economy turns labor into goods.</p>
+    <p class="ms-line"><span class="ms-lbl">How it is built</span>by dividing output, a slice of GDP, by the hours of work it took to produce.</p>
+    <button class="ms-reveal" type="button"><span class="ms-caret">&#9656;</span> The contest inside</button>
+    <div class="ms-contest"><p class="ms-clabel">The contest inside the number</p><p>It inherits every blind spot of GDP, and adds one of its own: it credits labor for gains that often belong to the machine, the technology, or simply to people being worked harder. &ldquo;Rising labor productivity&rdquo; can mean the worker is more exhausted, not better off &mdash; and for decades productivity has climbed steeply while the typical wage has flattened, severing the very link to living standards the measure is forever invoked to prove.</p>
+    <p class="ms-line ms-links">Bears on: <a href="the-growth.html">the growth</a> &middot; <a href="the-wage.html">the wage</a> &middot; <a href="the-share.html">the share</a></p></div>
+  </article>
+  <article class="ms">
+    <div class="ms-head"><h3 class="ms-name">The Interest Rate</h3><span class="ms-kicker">the price of time</span></div>
+    <p class="ms-line"><span class="ms-lbl">Claims to measure</span>the cost of borrowing money.</p>
+    <p class="ms-line"><span class="ms-lbl">How it is built</span>as a single headline figure &mdash; the rate a central bank sets, or a benchmark a government pays.</p>
+    <button class="ms-reveal" type="button"><span class="ms-caret">&#9656;</span> The contest inside</button>
+    <div class="ms-contest"><p class="ms-clabel">The contest inside the number</p><p>There is no such thing as the interest rate. The rate a central bank announces, the rate a blue-chip firm pays, and the rate a payday borrower is charged differ by orders of magnitude; to speak of &ldquo;the&rdquo; rate is to hide that the price of credit is steeply tiered by power, collateral, and risk &mdash; cheap for those who least need it, ruinous for those who most do. And a rate means nothing until it is set against inflation: five percent while prices climb six is a loss dressed up as a gain.</p>
+    <p class="ms-line ms-links">Bears on: <a href="the-rate.html">the rate</a> &middot; <a href="the-spread.html">the spread</a></p></div>
+  </article>
+  <article class="ms">
+    <div class="ms-head"><h3 class="ms-name">The Volatility Index</h3><span class="ms-kicker">the price of fear</span></div>
+    <p class="ms-line"><span class="ms-lbl">Claims to measure</span>how much turbulence the market expects &mdash; the figure often called the fear gauge.</p>
+    <p class="ms-line"><span class="ms-lbl">How it is built</span>from the prices investors pay for options that protect against swings in a stock index.</p>
+    <button class="ms-reveal" type="button"><span class="ms-caret">&#9656;</span> The contest inside</button>
+    <div class="ms-contest"><p class="ms-clabel">The contest inside the number</p><p>It measures not danger but the expectation of danger, and only as priced by those wealthy enough to be in the options market. It is lowest exactly when complacency is greatest, and it spikes only once the fear has already arrived &mdash; so it tends to confirm a panic rather than to warn of one. A number sold as a measure of risk is really a measure of a particular crowd&rsquo;s nerves.</p>
+    <p class="ms-line ms-links">Bears on: <a href="the-premium.html">the premium</a> &middot; <a href="the-stock.html">the stock</a></p></div>
+  </article>
+  <article class="ms">
+    <div class="ms-head"><h3 class="ms-name">Money Supply</h3><span class="ms-kicker">how much money exists</span></div>
+    <p class="ms-line"><span class="ms-lbl">Claims to measure</span>the total quantity of money in the economy.</p>
+    <p class="ms-line"><span class="ms-lbl">How it is built</span>as a series of tallies &mdash; M1, M2, and others &mdash; that add up cash, then checking accounts, then savings and money-market funds.</p>
+    <button class="ms-reveal" type="button"><span class="ms-caret">&#9656;</span> The contest inside</button>
+    <div class="ms-contest"><p class="ms-clabel">The contest inside the number</p><p>Money has no natural edge. Cash shades into deposits, deposits into savings, savings into instruments that are almost-but-not-quite money, and the measures simply draw lines across that continuum &mdash; lines so arbitrary that central banks add them, redefine them, and abandon them. What counts as money is a definitional choice, and the choice alone can make the money supply appear to explode or to hold perfectly still.</p>
+    <p class="ms-line ms-links">Bears on: <a href="the-money.html">the money</a></p></div>
+  </article>
+  <article class="ms">
+    <div class="ms-head"><h3 class="ms-name">The Effective Tax Rate</h3><span class="ms-kicker">what is actually paid</span></div>
+    <p class="ms-line"><span class="ms-lbl">Claims to measure</span>the share of income a person or a company actually pays in tax.</p>
+    <p class="ms-line"><span class="ms-lbl">How it is built</span>as tax paid divided by income &mdash; to be sharply distinguished from the statutory rate written into the law.</p>
+    <button class="ms-reveal" type="button"><span class="ms-caret">&#9656;</span> The contest inside</button>
+    <div class="ms-contest"><p class="ms-clabel">The contest inside the number</p><p>The gap between the statutory rate and the effective rate is where power lives. Headline rates are set in public and debated loudly; the deductions, credits, shelters, and definitions that lower the rate actually paid are written quietly, and they bend most for those who can hire the lawyers to find them. Which income even counts is itself contested &mdash; realized or accrued, wages or capital gains &mdash; so the wealthiest can face a lower effective rate than the salaried worker. The number you are shown is rarely the number that is paid.</p>
+    <p class="ms-line ms-links">Bears on: <a href="the-tax.html">the tax</a></p></div>
+  </article>
+  <article class="ms">
+    <div class="ms-head"><h3 class="ms-name">The Stock Market Index</h3><span class="ms-kicker">the fortunes of capital</span></div>
+    <p class="ms-line"><span class="ms-lbl">Claims to measure</span>routinely treated, in the news, as a barometer of the whole economy.</p>
+    <p class="ms-line"><span class="ms-lbl">How it is built</span>by tracking the combined share prices of a set of large corporations.</p>
+    <button class="ms-reveal" type="button"><span class="ms-caret">&#9656;</span> The contest inside</button>
+    <div class="ms-contest"><p class="ms-clabel">The contest inside the number</p><p>It measures the wealth of shareholders, who are overwhelmingly the richest households &mdash; the top tenth owns the vast majority of all stock &mdash; so it is a gauge of capital&rsquo;s fortunes, not of wages, of jobs, or of the economy at large. The index can soar in the very year that real pay falls and joblessness rises. To report the market as though it were the economy is to define the economy, quietly, as the interests of those who own it.</p>
+    <p class="ms-line ms-links">Bears on: <a href="the-stock.html">the stock</a> &middot; <a href="the-share.html">the share</a></p></div>
+  </article>
+  <article class="ms">
+    <div class="ms-head"><h3 class="ms-name">Market Concentration</h3><span class="ms-kicker">how much power</span></div>
+    <p class="ms-line"><span class="ms-lbl">Claims to measure</span>how competitive a market is, often summarized in a single index of concentration.</p>
+    <p class="ms-line"><span class="ms-lbl">How it is built</span>by squaring and summing the market shares of the firms in an industry &mdash; the higher the figure, the fewer the hands.</p>
+    <button class="ms-reveal" type="button"><span class="ms-caret">&#9656;</span> The contest inside</button>
+    <div class="ms-contest"><p class="ms-clabel">The contest inside the number</p><p>The measure depends entirely on how the market is drawn. Define it narrowly and a firm looks dominant; define it broadly and the same firm looks small &mdash; and the drawing of that boundary, fought over in every antitrust case, decides whether power is seen or denied. A single concentration figure also says nothing of the power that runs along a supply chain, or the grip a platform holds over the sellers who depend on it. What we call competition often depends on where we agree to stop looking.</p>
+    <p class="ms-line ms-links">Bears on: <a href="the-power.html">the power</a></p></div>
+  </article>
+  <article class="ms">
+    <div class="ms-head"><h3 class="ms-name">The Social Cost of Carbon</h3><span class="ms-kicker">the price of a harm</span></div>
+    <p class="ms-line"><span class="ms-lbl">Claims to measure</span>the dollar damage done by emitting one more ton of carbon dioxide.</p>
+    <p class="ms-line"><span class="ms-lbl">How it is built</span>by modeling the future harm from warming &mdash; to crops, coasts, health, and productivity &mdash; and translating it into money today.</p>
+    <button class="ms-reveal" type="button"><span class="ms-caret">&#9656;</span> The contest inside</button>
+    <div class="ms-contest"><p class="ms-clabel">The contest inside the number</p><p>Almost every number that matters in it is a choice. The discount rate &mdash; how much a harm to the unborn is worth to us now &mdash; can swing the figure many times over on a single assumption, turning a catastrophe into a rounding error and back again. Whose suffering counts, and at what rate a life in one country is traded against a life in another, are decisions made inside the model and hidden by its output. A measure built to price an externality cannot escape being a verdict on how much the future, and the distant, are worth.</p>
+    <p class="ms-line ms-links">Bears on: <a href="the-externality.html">the externality</a></p></div>
+  </article>
+  <article class="ms">
+    <div class="ms-head"><h3 class="ms-name">Consumer Confidence</h3><span class="ms-kicker">the economy&rsquo;s mood</span></div>
+    <p class="ms-line"><span class="ms-lbl">Claims to measure</span>how optimistic households feel about the economy, and so how they are likely to spend.</p>
+    <p class="ms-line"><span class="ms-lbl">How it is built</span>from surveys that ask people to judge their finances and their prospects, distilled into an index.</p>
+    <button class="ms-reveal" type="button"><span class="ms-caret">&#9656;</span> The contest inside</button>
+    <div class="ms-contest"><p class="ms-clabel">The contest inside the number</p><p>It measures a feeling, and feelings are made &mdash; shaped by the headlines, by the political weather, and by the very figures above as they are reported. The mood it captures can diverge sharply from any material fact: people may feel poor in a boom or secure on the eve of a bust. Treated as a leading indicator, it often does no more than reflect the story the other numbers have already told &mdash; a measure of sentiment mistaken for a measure of the world.</p>
+    <p class="ms-line ms-links">Bears on: <a href="the-bias.html">the bias</a> &middot; <a href="the-cycle.html">the cycle</a></p></div>
+  </article>
+  </div>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <section class="ms-intro reveal" aria-labelledby="un-h">
+    <div class="part-head">
+      <div class="part-kicker">After the numbers</div>
+      <h2 class="part-title" id="un-h">What Goes Uncounted</h2>
+    </div>
+    <p class="lede">Run through these and a single lesson repeats: not one of these numbers is found. Each is built, and the building embeds a choice &mdash; which basket, which boundary, which discount rate, the mean or the median, before tax or after &mdash; and behind each choice is a contest with winners and losers. The figures that move markets, set benefits, and decide elections are verdicts, every one, handed down in the voice of arithmetic.</p>
+    <p>But the sharper lesson is in what has no measure at all. There is no official statistic for the value of unpaid care, for the worth of a stable climate, for the depth of a person&rsquo;s wants, for the health of a commons, for the trust that lets a market work, or for power itself except where an antitrust case drags a number into being. The quantities this book has cared about most are, again and again, precisely the ones no ledger attempts. That is not an oversight. We manage what we measure and we measure what we can price, so the unpriced and the unmeasured fall out of every decision that consults the figures &mdash; which is to say, out of nearly every decision that gets made. The absence of a measure is itself a verdict, and the quietest one of all.</p>
+    <p>None of this is a case against measurement. A modern economy cannot be seen, let alone governed, without its statistics; the answer to a bad number is a better number and an honest account of its limits, not a retreat into impressions &mdash; that way lies the trap of consumer confidence, sentiment mistaken for knowledge. The measures are indispensable, and they are constructions, and the two facts have to be held at once. To read a statistic well is to see both the quantity it reports and the contest it encodes &mdash; to remember that the figure in the headline is the end of an argument, not a fact of nature.</p>
+    <p>It is the book&rsquo;s oldest claim, arrived at last at the level of the data. Every price is a verdict on a hidden contest; so is every statistic built from prices. The number is never the end of the inquiry. It is the place the inquiry has been told to stop. The argument &mdash; over what to count, and over all that the counting leaves out &mdash; remains open.</p>
+    <p>Return to the <a href="numeraire-atlas.html">atlas</a> for the table these numbers measure, the <a href="numeraire-preface.html">preface</a> for the argument they carry into the world, the <a href="numeraire-constellation.html">constellation</a> for the bonds among them, the <a href="numeraire-properties.html">properties</a> to weigh them by trait, the <a href="numeraire-compounds.html">compounds</a> for what they form together, the <a href="numeraire-diagonals.html">diagonals</a> to read one idea across the table, the <a href="numeraire-objections.html">objections</a> to hear the case against the book, the <a href="numeraire-chronology.html">chronology</a> for the order in which it was all found, the <a href="numeraire-laboratory.html">laboratory</a> to set the models moving, the <a href="numeraire-tour.html">guided tour</a> for a path through the whole, the <a href="numeraire-index.html">index</a> to find any term by name, the <a href="numeraire-cases.html">cases</a> to see the table at work on real questions, the <a href="numeraire-priceless.html">priceless</a> for what should not be priced at all, the <a href="numeraire-gaps.html">gaps</a> for what is not on the table, the <a href="numeraire-firstperson.html">first person</a> for the life behind the numbers, the <a href="numeraire-schools.html">schools</a> for how each tradition reads them, the <a href="numeraire-sources.html">sources</a> for the studies behind the numbers, or the <a href="numeraire-unsettled.html">unsettled</a> for the contests of our moment. The quantities are everywhere; the contests inside them are the book.</p>
+  </section>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref">The Measures &middot; The Contest Inside the Number</span>
+    </div>
+    <p class="colophon">The Measures of Numéraire, A Periodic Table of Economic Life — the contest inside the number. Fifteen of the official statistics economic life runs on — gross domestic product, the price index, the unemployment rate, the average wage, the Gini coefficient, the poverty line, productivity, the interest rate, the volatility index, the money supply, the effective tax rate, the stock index, market concentration, the social cost of carbon, and consumer confidence — each set out with what it claims to measure, how it is in fact built, and the contest hidden inside it, the contest concealed by default so that each figure is met first as the news presents it. The empirical face of the work: every price is a verdict, and so is every statistic built from prices, and the deepest verdict of all is what no measure attempts to count. A companion to the atlas, its preface, its guided tour, its index, its laboratory, its constellation, its properties, its compounds, its diagonals, its objections, its chronology, its cases, its priceless, its gaps, its first person, its schools, its sources, and its unsettled — the twelfth face of one connected work. Built in plain HTML and JavaScript; set in Fraunces and Newsreader. The argument, over what to count and what the counting leaves out, remains open.</p>
+  </footer>
+
+</div>
+<script>
+(function(){
+  var LIST=document.getElementById('ms-list'), TOG=document.getElementById('ms-toggle');
+  if(LIST){
+    LIST.addEventListener('click',function(e){
+      var b=e.target.closest('.ms-reveal'); if(!b) return;
+      var card=b.closest('.ms'); if(card) card.classList.toggle('open');
+    });
+  }
+  if(TOG && LIST){
+    TOG.addEventListener('click',function(){
+      var on=LIST.classList.toggle('all-open');
+      TOG.classList.toggle('armed', on);
+      TOG.setAttribute('aria-pressed', on?'true':'false');
+      TOG.textContent = on ? 'Hide every contest again' : 'Reveal the contest inside every number';
+      if(!on){ var cs=LIST.querySelectorAll('.ms.open'); for(var i=0;i<cs.length;i++) cs[i].classList.remove('open'); }
+    });
+  }
+  // ---- page chrome ----
+  document.documentElement.classList.add('js');
+  var bar=document.getElementById('progress'), topbar=document.getElementById('topbar'), title=document.querySelector('.vol-title');
+  function onScroll(){ var doc=document.documentElement, hh=doc.scrollHeight-window.innerHeight; var pr=hh>0?Math.min(1,Math.max(0,window.scrollY/hh)):0;
+    if(bar) bar.style.transform='scaleX('+pr.toFixed(4)+')';
+    if(topbar){ var th=(title?title.offsetHeight:420)*0.72; if(window.scrollY>th) topbar.classList.add('show'); else topbar.classList.remove('show'); } }
+  window.addEventListener('scroll',onScroll,{passive:true}); window.addEventListener('resize',onScroll,{passive:true}); onScroll();
+  if('IntersectionObserver' in window){
+    var rev=new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); rev.unobserve(en.target);} }); },{rootMargin:'0px 0px -8% 0px',threshold:0.04});
+    document.querySelectorAll('.reveal').forEach(function(el){ rev.observe(el); });
+  } else { document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); }); }
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="numeraire-chronology.html">← The Chronology</a><a rel="next" href="numeraire-cases.html">The Cases →</a></nav>
+</body>
+</html>

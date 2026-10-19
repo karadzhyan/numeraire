@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Trap — The Growth, Plate i · Numéraire</title>
+<meta name="description" content="Malthus; the trap in which, for all of history, every gain in production was eaten by more mouths — and growth is the escape no one foresaw.">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- reading-progress hairline ---- */
+  .progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--ink);z-index:10000;}
+
+  /* ---- masthead ---- */
+  .masthead{padding:clamp(2.8rem,8vh,5.6rem) 0 clamp(1.6rem,4vh,2.6rem);text-align:center;}
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;}
+  .edition{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+  .edition b{font-family:"Fraunces",serif;font-weight:500;font-style:normal;color:var(--soft);letter-spacing:.04em;}
+
+  .symbox{width:84px;height:84px;border:1px solid var(--ink);border-radius:2px;background:var(--ink);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;margin:clamp(1.4rem,3.4vh,2.2rem) auto 0;}
+  .symbox .sb-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2rem;line-height:1;color:var(--paper);letter-spacing:-.01em;}
+  .symbox .sb-num{font-family:"Fraunces",serif;font-size:.66rem;color:rgba(240,235,225,.58);margin-top:.28rem;letter-spacing:.04em;}
+
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-top:1.15rem;}
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.5rem,7vw,5rem);line-height:1.0;letter-spacing:-.028em;margin:.55rem 0 0;text-wrap:balance;}
+  .subtitle{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.05rem,1.7vw,1.32rem);color:var(--faint);margin:.5rem 0 0;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.64;color:var(--soft);
+    max-width:43rem;margin:clamp(1.3rem,3vh,1.9rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+  .status{font-size:.84rem;color:var(--soft);margin:clamp(1.2rem,2.6vh,1.7rem) auto 0;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .backrow{margin-top:clamp(1.3rem,3vh,1.9rem);padding-top:1.5rem;border-top:1px solid var(--hair);max-width:50rem;margin-left:auto;margin-right:auto;}
+  .backlink{display:inline-block;font-size:.82rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .backlink:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- generic block furniture ---- */
+  main{padding:0;}
+  .eyebrow{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.2rem;}
+
+  .block-argument{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .argument{max-width:40rem;margin:0 auto;}
+  .argument p{font-size:1.08rem;line-height:1.74;color:var(--ink);margin:0 0 1.2rem;text-wrap:pretty;}
+  .argument p:last-child{margin-bottom:0;}
+  .argument .closer{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 400;font-style:italic;color:var(--soft);font-size:1.06rem;}
+
+  /* ---- table of plates ---- */
+  .block-toc{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .toc ol{list-style:none;margin:0;padding:0;max-width:44rem;}
+  .toc li{display:grid;grid-template-columns:2.5rem 1fr;column-gap:1rem;align-items:baseline;
+    padding:.85rem 0;border-top:1px solid var(--hair);}
+  .toc li:first-child{border-top:none;}
+  .t-num{font-family:"Fraunces",serif;font-size:.92rem;color:var(--faintest);text-align:right;}
+  .t-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.08rem;color:var(--ink);line-height:1.15;text-decoration:none;}
+  a.t-title{border-bottom:1px solid var(--num);padding-bottom:1px;}
+  a.t-title:hover{border-bottom-color:var(--ink);}
+  .t-gloss{grid-column:2;font-size:.85rem;color:var(--faint);font-style:italic;margin-top:.22rem;line-height:1.4;}
+  .t-q{grid-column:2;font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:.95rem;color:var(--soft);margin-top:.42rem;line-height:1.36;}
+  .t-q .lead{font-family:"Fraunces",serif;font-style:normal;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-right:.5rem;}
+  .t-tag{display:inline-block;margin-left:.6rem;font-family:"Newsreader",serif;font-size:.64rem;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--paper);background:var(--ink);border-radius:2px;padding:.12em .5em;vertical-align:.14em;}
+  .t-read{grid-column:2;margin-top:.42rem;}
+  .t-read a{font-size:.8rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .t-read a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- the plates (essays) ---- */
+  .plates-open{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.8rem,6vh,4rem);}
+  .plates-open .eyebrow{text-align:center;}
+  .plate{max-width:54rem;margin:clamp(2.8rem,6.5vh,4.4rem) auto 0;padding-top:clamp(2.2rem,4.6vh,3rem);
+    border-top:1px solid var(--hair);position:relative;scroll-margin-top:1.4rem;}
+  .plate:first-of-type{border-top:none;margin-top:clamp(1.6rem,3.5vh,2.4rem);padding-top:0;}
+  .plate-head{margin:0 0 1.7rem;}
+  .plate-kicker{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .plate-kicker .pk-tag{margin-left:.6rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .plate-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.8rem,4.2vw,2.7rem);line-height:1.03;letter-spacing:-.02em;margin:.32rem 0 .42rem;}
+  .plate-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.02rem;color:var(--faint);max-width:36rem;line-height:1.45;}
+
+  .epigraph{max-width:34rem;margin:1.4rem 0 1.9rem;padding-left:1.1rem;border-left:1px solid var(--num);}
+  .epigraph p{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:1.04rem;line-height:1.42;color:var(--soft);margin:0;}
+  .epigraph cite{display:block;font-style:normal;font-family:"Newsreader",serif;font-size:.78rem;
+    letter-spacing:.03em;color:var(--faintest);margin-top:.55rem;}
+
+  .plate-body{max-width:37rem;}
+  .plate-body p{font-size:1.05rem;line-height:1.75;color:var(--ink);margin:0 0 1.18rem;text-wrap:pretty;}
+  .plate-body p:last-child{margin-bottom:0;}
+  .plate-body em{font-style:italic;}
+  .plate-body .lead-para::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 500;
+    float:left;font-size:3.5rem;line-height:.78;padding:.08em .14em 0 0;color:var(--ink);}
+  .plate-body h4{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);margin:1.9rem 0 .9rem;}
+
+  .break{display:flex;justify-content:center;margin:1.9rem 0;}
+  .break span{font-family:"Fraunces",serif;font-size:1.05rem;letter-spacing:.4em;color:var(--faintest);padding-left:.4em;}
+
+  /* sidenotes — inline by default, true margin notes on wide screens */
+  .sn-ref{font-family:"Fraunces",serif;font-size:.64rem;vertical-align:super;line-height:0;color:var(--soft);margin-left:.06em;}
+  .sidenote{font-family:"Newsreader",serif;font-size:.82rem;line-height:1.52;color:var(--faint);
+    border-left:2px solid var(--hair);padding-left:.9rem;margin:.7rem 0 1.05rem;}
+  .sidenote .sn-num{font-family:"Fraunces",serif;color:var(--faintest);font-size:.7rem;margin-right:.38rem;}
+  .sidenote em{font-style:italic;}
+  @media (min-width:1040px){
+    .sidenote{float:right;clear:right;width:14.5rem;margin:.25rem -17.5rem 1.15rem 0;
+      border-left:none;border-top:1px solid var(--hair);padding:.42rem 0 0;}
+  }
+
+  /* ---- coda ---- */
+  .coda{max-width:40rem;margin:clamp(2.8rem,6vh,4rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);}
+  .coda p{font-size:1.06rem;line-height:1.74;color:var(--ink);margin:0 0 1.15rem;text-wrap:pretty;}
+  .coda p:last-child{margin-bottom:0;}
+  .coda .q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .f-ref a{text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .f-ref a:hover{border-bottom-color:var(--soft);}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .progress{transition:width .08s linear;}
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}.rise.d4{animation-delay:.4s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    h1{font-size:clamp(2.2rem,11vw,3rem);}
+    .symbox{width:72px;height:72px;}
+    .symbox .sb-sym{font-size:1.7rem;}
+    .plate-body .lead-para::first-letter{font-size:3rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+
+  /* ---- standalone plate (leaf) ---- */
+  .leaf-head{max-width:54rem;margin:0 auto;padding:clamp(2.2rem,6.5vh,4.4rem) 0 0;text-align:center;}
+  .leaf-loc{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.08em;color:var(--faintest);margin-bottom:1.7rem;}
+  .leaf-loc a{text-decoration:none;color:var(--faint);border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .leaf-loc a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+  .leaf-loc .sep{margin:0 .5rem;color:var(--num);}
+  .leaf-kicker{font-family:"Fraunces",serif;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .leaf-kicker .pk-tag{margin-left:.55rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .leaf-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.2rem,5.6vw,3.7rem);line-height:1.02;letter-spacing:-.024em;margin:.42rem 0 0;text-wrap:balance;}
+  .leaf-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.06rem;color:var(--faint);
+    max-width:34rem;margin:.72rem auto 0;line-height:1.5;text-wrap:pretty;}
+  .epigraph.leaf-epigraph{margin:1.95rem auto 1.4rem;text-align:left;}
+  .leaf-body-wrap{max-width:54rem;margin:clamp(1.8rem,4vh,2.8rem) auto 0;}
+
+  .leaf-nav{max-width:54rem;margin:clamp(3rem,7vh,5.2rem) auto 0;padding-top:clamp(1.8rem,4vh,2.6rem);
+    border-top:1px solid var(--hair);display:grid;grid-template-columns:1fr auto 1fr;gap:1.3rem;align-items:start;}
+  .ln-cell{text-decoration:none;display:block;}
+  .ln-cell .lab{display:block;font-family:"Fraunces",serif;font-size:.64rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--faintest);margin-bottom:.36rem;}
+  .ln-cell .ttl{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1rem;
+    color:var(--soft);line-height:1.22;}
+  a.ln-cell:hover .ttl{color:var(--ink);}
+  .ln-prev{text-align:left;} .ln-home{text-align:center;} .ln-next{text-align:right;}
+
+  @media (max-width:600px){
+    .leaf-nav{grid-template-columns:1fr;gap:1.4rem;}
+    .ln-prev,.ln-home,.ln-next{text-align:center;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#ne-contents">Complete contents</a><a href="../editions.html#volume-growth">The Growth · both editions</a><a href="../volumes/the-growth.html">Collected volume</a></div></nav>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="frame">
+
+  <header class="leaf-head">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="leaf-loc rise d1" aria-label="Location in the series"><a href="numeraire-atlas-updated.html">Numéraire</a><span class="sep">·</span><a href="numeraire-xx-the-growth.html">Volume XX · The Growth</a></nav>
+    <div class="leaf-kicker rise d2">Plate i <span class="pk-tag">in print</span></div>
+    <h1 class="leaf-title rise d2">The Trap</h1>
+    <div class="leaf-gloss rise d3">Malthus; the trap in which, for all of history, every gain in production was eaten by more mouths — and growth is the escape no one foresaw.</div>
+    <div class="epigraph leaf-epigraph rise d3">
+      <p>Let the means of subsistence increase, and population increases with them, until the press of numbers has eaten up the gain — so that the fruit of every improvement is, in the end, not a richer people but a more numerous one, living as close to the edge as before.</p>
+      <cite>— the argument of this plate, after Thomas Malthus, 1798</cite>
+    </div>
+  </header>
+
+  <main class="leaf-body-wrap">
+    <article class="plate">
+      <div class="plate-body">
+<p class="lead-para">The aggregates are the great motions of the economy taken whole — not the price of a single good or the wage of a single worker, but the rise and fall of output across a nation and across generations. The first and grandest of these motions is growth: the long climb by which a people comes to produce, and consume, vastly more than its ancestors did. And the first thing to understand about growth is that it is strange — so strange that the right place to begin is not with its presence but with its long absence. For nearly the whole of human history, there was no growth in the standard of living at all. The task of a theory of growth is, before all else, to explain why; and the explanation begins with the trap that Thomas Malthus described, the trap in which humanity lived for all the millennia before the day before yesterday.</p>
+
+<p>Malthus's argument was simple and, for the world he knew, almost ironclad. Suppose some improvement raises the food a society can produce — a better plow, a new crop, peace after a long war. Living standards rise, for a moment. But a people better fed marries earlier, bears more children, and buries fewer of them; population grows. And as the extra mouths multiply, they eat up the surplus, dividing the larger harvest among more people, until the standard of living is pressed back down to where it began — the bare level at which people can just sustain and replace themselves, and no more. The gain is real but temporary; its lasting effect is not a richer people but a more numerous one, living as close to the edge of subsistence as before. This is the Malthusian trap: the iron tendency of population to expand to consume any improvement, so that the long-run standard of living is fixed at subsistence, whatever the state of technology.<sup class="sn-ref">1</sup></p>
+<div class="sidenote"><span class="sn-num">1.</span> The Malthusian logic (Malthus, 1798): an improvement (better plow, new crop, peace) raises living standards briefly; but a better-fed people marries earlier and bears more surviving children, so population grows until the surplus is eaten up and living standards fall back to subsistence — the level at which people just replace themselves. The lasting effect of any gain is a more numerous people, not a richer one. The trap: population expands to consume any improvement, fixing the long-run standard of living at subsistence.</div>
+
+<p>The startling thing is how well this describes nearly all of history. From the dawn of agriculture to about 1800 — ten thousand years — the standard of living of the ordinary person barely moved. There was technological progress: the wheel, the plow, the watermill, crop rotation, the printing press. But its fruit was not a rising standard of living; it was a rising population. The world held perhaps a few million people at the dawn of farming and most of a billion by 1800, a vast multiplication — and yet the peasant of 1800 lived little better than the peasant of five thousand years before, on the same monotonous diet, in the same precarious nearness to famine. Technology, over this immense span, bought numbers, not prosperity. The laborer on the eve of the Industrial Revolution was, by some measures, no better fed than his ancestor of the Stone Age. The trap held: every advance was converted, by the multiplication of people, into more mouths at the same table rather than more food on each plate.<sup class="sn-ref">2</sup></p>
+<div class="sidenote"><span class="sn-num">2.</span> The evidence: from the dawn of agriculture to ~1800 — ten millennia — the ordinary person's living standard barely moved, despite real technological progress (wheel, plow, watermill, printing). The fruit of progress was a rising population (a few million at farming's dawn to nearly a billion by 1800), not a rising standard of living. The peasant of 1800 lived little better than one of 5,000 years earlier. Technology bought numbers, not prosperity; the trap converted every advance into more mouths, not more food per plate.</div>
+
+<div class="break"><span>⁂</span></div>
+
+<p>The trap has corollaries that offend every modern intuition, which is part of why it is worth stating starkly. In the Malthusian world, the things we count as catastrophes were, perversely, the only sources of higher living standards — for anything that reduced the population, by raising the death rate, raised the living standard of the survivors. A plague, by killing a third of the people, left the rest with more land and higher wages; a war or a famine, by thinning the numbers, fattened those who remained. The Black Death, which killed a great share of Europe, was followed by a golden age for the surviving laborer, whose wages rose as his scarcity grew. Conversely, the things we count as blessings — peace, good harvests, public health, the saving of infant lives — by allowing the population to grow, pressed living standards back toward subsistence. In the trap, virtue was punished and disaster rewarded, not by any moral law but by the arithmetic of mouths and land. This is the strange moral logic of a world without growth, and it is the logic humanity escaped.<sup class="sn-ref">3</sup></p>
+<div class="sidenote"><span class="sn-num">3.</span> The trap's cruel corollaries: anything reducing population (raising the death rate) raised survivors' living standards. A plague — the Black Death — left the rest with more land and higher wages, a golden age for the surviving laborer. Conversely, blessings (peace, good harvests, public health, saved infant lives), by growing the population, pressed living standards back to subsistence. In the Malthusian world, disaster was rewarded and virtue punished — not by moral law but by the arithmetic of mouths and land. This is the logic humanity escaped.</div>
+
+<p>And then, around 1800, in one corner of the world, the trap broke. For the first time in history, the growth of production outran the growth of population — output per person began to rise, and kept rising, decade after decade, in a sustained climb that has now lifted the living standards of much of the world to heights the peasant of 1800 could not have imagined. This escape — the transition from the Malthusian world, where living standards were fixed at subsistence, to the modern world, where they grow without apparent limit — is the single most important event in economic history, and arguably in human history. It is the event a theory of growth exists to explain. Why did it happen? Why then, around 1800, after ten thousand years of stagnation? Why there, in Britain and northwestern Europe, rather than in China or India, which had been at least as advanced? And why has it spread to some places and not others, so that the great escape, two centuries on, remains spectacularly incomplete? These are the questions of the volume, and they all descend from the fact that growth is not the natural condition but the great exception.<sup class="sn-ref">4</sup></p>
+<div class="sidenote"><span class="sn-num">4.</span> The escape: around 1800, in one corner of the world, output per person began to rise and kept rising — production outran population for the first time. This transition, from the Malthusian world (living standards fixed at subsistence) to the modern world (they grow without apparent limit), is the most important event in economic history. A theory of growth exists to explain it: why then (after ten millennia)? why there (Britain, not China or India)? and why has it spread to some places and not others? Growth is the great exception, not the natural condition.</div>
+
+<p>What broke the trap was a change in the relative speed of two things: technological progress and population growth. In the Malthusian world, technology improved slowly, and population could always catch up and consume the gain. The escape came when technological progress accelerated so much — when the production of new methods and machines became so rapid and so sustained — that population could no longer keep pace; the surplus grew faster than the mouths to eat it, and living standards, for the first time, rose and stayed risen. And, in time, a second change reinforced the first: as societies grew rich, they began to have fewer children, not more — the demographic transition reversed the old Malthusian response, so that prosperity no longer called forth the population growth that had always erased it. The trap was broken from both sides: technology sped up beyond population's reach, and population, contrary to all prior history, stopped chasing prosperity. But the prime mover was the acceleration of technology — the sudden, sustained, compounding production of new ideas about how to produce. And that acceleration is what the rest of the volume must explain. The next plate begins with the first and simplest account of it: accumulation.<sup class="sn-ref">5</sup></p>
+<div class="sidenote"><span class="sn-num">5.</span> What broke the trap: a change in the relative speed of technological progress and population growth. The escape came when technology accelerated so much that population could no longer catch up — the surplus grew faster than the mouths. A second change reinforced it: as societies grew rich, they began having fewer children (the demographic transition), so prosperity no longer called forth the population growth that had erased it. The trap broke from both sides, but the prime mover was the acceleration of technology — the sustained, compounding production of new ideas, which the rest of the volume must explain.</div>
+
+<p>Growth is the great exception. For all of history before about 1800, humanity lived in the Malthusian trap, where every improvement in production was swallowed by an increase in population, so that the standard of living stood still at subsistence across ten thousand years and the only thing that ever raised it was the catastrophe that thinned the numbers. Then, around 1800, in one place, the trap broke: technology accelerated beyond population's power to consume it, output per person began its long climb, and the modern world of compounding prosperity began. To explain growth is to explain this escape — why the acceleration came, why then and there, and why it has reached some peoples and not others. The classical economists, Malthus among them, could not imagine the escape; they wrote of a world they expected to remain trapped, and the trap is the world they correctly described. The volume's task is to explain the world they could not foresee. The next plate takes up the first answer, the accumulation of capital, and discovers its limits.</p>
+      </div>
+    </article>
+  </main>
+
+  <nav class="leaf-nav" aria-label="Plate navigation">
+    <span class="ln-cell ln-prev"></span>
+    <a class="ln-cell ln-home" href="numeraire-xx-the-growth.html"><span class="lab">The volume</span><span class="ttl">The Growth · contents</span></a>
+    <a class="ln-cell ln-next" href="numeraire-xx-iii-the-steady-state.html"><span class="lab">Next plate →</span><span class="ttl">Plate iii · The Steady State</span></a>
+  </nav>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref"><a href="numeraire-xx-the-growth.html">The Growth</a> · <a href="numeraire-atlas-updated.html">the table</a></span>
+    </div>
+    <p class="colophon">Plate i of <em>The Growth</em>, Volume the Twentieth of <em>Numéraire</em> — a periodic table of economic life. This leaf may be read on its own or as part of the volume. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<script>
+(function(){
+  var bar=document.getElementById('progress');
+  function onScroll(){
+    var h=document.documentElement;
+    var max=(h.scrollHeight-h.clientHeight);
+    var p=max>0?(h.scrollTop||document.body.scrollTop)/max:0;
+    bar.style.width=(p*100).toFixed(2)+'%';
+  }
+  document.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="numeraire-xx-the-growth.html">← The Growth</a><a rel="next" href="numeraire-xx-iii-the-steady-state.html">The Steady State →</a></nav>
+</body>
+</html>

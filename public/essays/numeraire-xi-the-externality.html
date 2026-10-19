@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Externality — Numéraire, Volume XI</title>
+<meta name="description" content="Numéraire, Volume XI: The Externality — costs that escape the price. The economics of spillovers: Pigou's corrective tax against Coase's bargain, the divergence of private and social cost, cap-and-trade, and the discovery that what the price omits is set by where property is drawn.">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- reading-progress hairline ---- */
+  .progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--ink);z-index:10000;}
+
+  /* ---- masthead ---- */
+  .masthead{padding:clamp(2.8rem,8vh,5.6rem) 0 clamp(1.6rem,4vh,2.6rem);text-align:center;}
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;}
+  .edition{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+  .edition b{font-family:"Fraunces",serif;font-weight:500;font-style:normal;color:var(--soft);letter-spacing:.04em;}
+
+  .symbox{width:84px;height:84px;border:1px solid var(--ink);border-radius:2px;background:var(--ink);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;margin:clamp(1.4rem,3.4vh,2.2rem) auto 0;}
+  .symbox .sb-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2rem;line-height:1;color:var(--paper);letter-spacing:-.01em;}
+  .symbox .sb-num{font-family:"Fraunces",serif;font-size:.66rem;color:rgba(240,235,225,.58);margin-top:.28rem;letter-spacing:.04em;}
+
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-top:1.15rem;}
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.5rem,7vw,5rem);line-height:1.0;letter-spacing:-.028em;margin:.55rem 0 0;text-wrap:balance;}
+  .subtitle{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.05rem,1.7vw,1.32rem);color:var(--faint);margin:.5rem 0 0;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.64;color:var(--soft);
+    max-width:43rem;margin:clamp(1.3rem,3vh,1.9rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+  .status{font-size:.84rem;color:var(--soft);margin:clamp(1.2rem,2.6vh,1.7rem) auto 0;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .backrow{margin-top:clamp(1.3rem,3vh,1.9rem);padding-top:1.5rem;border-top:1px solid var(--hair);max-width:50rem;margin-left:auto;margin-right:auto;}
+  .backlink{display:inline-block;font-size:.82rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .backlink:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- generic block furniture ---- */
+  main{padding:0;}
+  .eyebrow{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.2rem;}
+
+  .block-argument{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .argument{max-width:40rem;margin:0 auto;}
+  .argument p{font-size:1.08rem;line-height:1.74;color:var(--ink);margin:0 0 1.2rem;text-wrap:pretty;}
+  .argument p:last-child{margin-bottom:0;}
+  .argument .closer{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 400;font-style:italic;color:var(--soft);font-size:1.06rem;}
+
+  /* ---- table of plates ---- */
+  .block-toc{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .toc ol{list-style:none;margin:0;padding:0;max-width:44rem;}
+  .toc li{display:grid;grid-template-columns:2.5rem 1fr;column-gap:1rem;align-items:baseline;
+    padding:.85rem 0;border-top:1px solid var(--hair);}
+  .toc li:first-child{border-top:none;}
+  .t-num{font-family:"Fraunces",serif;font-size:.92rem;color:var(--faintest);text-align:right;}
+  .t-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.08rem;color:var(--ink);line-height:1.15;text-decoration:none;}
+  a.t-title{border-bottom:1px solid var(--num);padding-bottom:1px;}
+  a.t-title:hover{border-bottom-color:var(--ink);}
+  .t-gloss{grid-column:2;font-size:.85rem;color:var(--faint);font-style:italic;margin-top:.22rem;line-height:1.4;}
+  .t-q{grid-column:2;font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:.95rem;color:var(--soft);margin-top:.42rem;line-height:1.36;}
+  .t-q .lead{font-family:"Fraunces",serif;font-style:normal;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-right:.5rem;}
+  .t-tag{display:inline-block;margin-left:.6rem;font-family:"Newsreader",serif;font-size:.64rem;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--paper);background:var(--ink);border-radius:2px;padding:.12em .5em;vertical-align:.14em;}
+  .t-read{grid-column:2;margin-top:.42rem;}
+  .t-read a{font-size:.8rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .t-read a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- the plates (essays) ---- */
+  .plates-open{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.8rem,6vh,4rem);}
+  .plates-open .eyebrow{text-align:center;}
+  .plate{max-width:54rem;margin:clamp(2.8rem,6.5vh,4.4rem) auto 0;padding-top:clamp(2.2rem,4.6vh,3rem);
+    border-top:1px solid var(--hair);position:relative;scroll-margin-top:1.4rem;}
+  .plate:first-of-type{border-top:none;margin-top:clamp(1.6rem,3.5vh,2.4rem);padding-top:0;}
+  .plate-head{margin:0 0 1.7rem;}
+  .plate-kicker{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .plate-kicker .pk-tag{margin-left:.6rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .plate-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.8rem,4.2vw,2.7rem);line-height:1.03;letter-spacing:-.02em;margin:.32rem 0 .42rem;}
+  .plate-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.02rem;color:var(--faint);max-width:36rem;line-height:1.45;}
+
+  .epigraph{max-width:34rem;margin:1.4rem 0 1.9rem;padding-left:1.1rem;border-left:1px solid var(--num);}
+  .epigraph p{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:1.04rem;line-height:1.42;color:var(--soft);margin:0;}
+  .epigraph cite{display:block;font-style:normal;font-family:"Newsreader",serif;font-size:.78rem;
+    letter-spacing:.03em;color:var(--faintest);margin-top:.55rem;}
+
+  .plate-body{max-width:37rem;}
+  .plate-body p{font-size:1.05rem;line-height:1.75;color:var(--ink);margin:0 0 1.18rem;text-wrap:pretty;}
+  .plate-body p:last-child{margin-bottom:0;}
+  .plate-body em{font-style:italic;}
+  .plate-body .lead-para::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 500;
+    float:left;font-size:3.5rem;line-height:.78;padding:.08em .14em 0 0;color:var(--ink);}
+  .plate-body h4{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);margin:1.9rem 0 .9rem;}
+
+  .break{display:flex;justify-content:center;margin:1.9rem 0;}
+  .break span{font-family:"Fraunces",serif;font-size:1.05rem;letter-spacing:.4em;color:var(--faintest);padding-left:.4em;}
+
+  /* sidenotes — inline by default, true margin notes on wide screens */
+  .sn-ref{font-family:"Fraunces",serif;font-size:.64rem;vertical-align:super;line-height:0;color:var(--soft);margin-left:.06em;}
+  .sidenote{font-family:"Newsreader",serif;font-size:.82rem;line-height:1.52;color:var(--faint);
+    border-left:2px solid var(--hair);padding-left:.9rem;margin:.7rem 0 1.05rem;}
+  .sidenote .sn-num{font-family:"Fraunces",serif;color:var(--faintest);font-size:.7rem;margin-right:.38rem;}
+  .sidenote em{font-style:italic;}
+  @media (min-width:1040px){
+    .sidenote{float:right;clear:right;width:14.5rem;margin:.25rem -17.5rem 1.15rem 0;
+      border-left:none;border-top:1px solid var(--hair);padding:.42rem 0 0;}
+  }
+
+  /* ---- coda ---- */
+  .coda{max-width:40rem;margin:clamp(2.8rem,6vh,4rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);}
+  .coda p{font-size:1.06rem;line-height:1.74;color:var(--ink);margin:0 0 1.15rem;text-wrap:pretty;}
+  .coda p:last-child{margin-bottom:0;}
+  .coda .q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .f-ref a{text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .f-ref a:hover{border-bottom-color:var(--soft);}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .progress{transition:width .08s linear;}
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}.rise.d4{animation-delay:.4s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    h1{font-size:clamp(2.2rem,11vw,3rem);}
+    .symbox{width:72px;height:72px;}
+    .symbox .sb-sym{font-size:1.7rem;}
+    .plate-body .lead-para::first-letter{font-size:3rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#ne-contents">Complete contents</a><a href="../editions.html#volume-externality">The Externality · both editions</a><a href="../volumes/the-externality.html">Collected volume</a></div></nav>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="rise d1">
+      <span class="imprint">Numéraire</span>
+      <div class="edition"><b>Volume the Eleventh</b> &middot; of the table of twenty-six</div>
+    </div>
+    <div class="symbox rise d2" aria-hidden="true"><span class="sb-sym">Ex</span><span class="sb-num">11</span></div>
+    <div class="d-family rise d2">The Failures &middot; Group III &middot; № 11 &middot; Ex</div>
+    <h1 class="rise d2">The Externality</h1>
+    <div class="subtitle rise d3">costs that escape the price</div>
+    <p class="standfirst rise d3">The externality is the second of the failures, and the one that lives outside the bargain rather than within it. Its subject is the cost or the benefit that falls on a stranger to the trade — the factory's smoke in a neighbor's lungs, the noise across the fence, the protection a stranger's vaccine confers — and that the price of the goods, accounting only for what the two parties bear, leaves out. Where the asymmetry showed the price unable to convey what one side hides, the externality shows it unable to count what falls on a third; and its question is the plainest in the family: who pays for the smoke, when the price of the goods does not? Its twelve plates follow the answer from the simple diagnosis — that a cost outside the price is a cost the market ignores, so that the world makes too much of every harm and too little of every good — through the two great remedies that have contended for a century, Pigou's tax that makes the price tell the cost and Coase's bargain that needs no tax at all, to a final discovery about the ledger itself: that what the price leaves out is not what cannot be priced, but only what no one yet owns.</p>
+    <div class="status rise d3">in print &middot; № XI &middot; 6 of 12 plates</div>
+    <div class="backrow rise d4">
+      <a class="backlink" href="numeraire-atlas-updated.html">← The complete table of volumes</a>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="block-argument">
+      <div class="argument">
+        <p class="eyebrow">The argument of the volume</p>
+        <p>A price, the first family insisted, is never the innocent measure it appears; but it is at least, we assume, a measure of the thing's whole cost — pay it, and you have paid for everything the thing took to make. The externality is the discovery that this is false. The price a factory charges covers what the factory pays — its labor, its materials, its fuel — but not what its smoke costs the households downwind, who pay in soot and sickness and were never asked. That cost is real, but it falls outside the transaction, on parties who are not party to it, and so enters no one's reckoning: not the factory's, which does not bear it, nor the buyer's, who is not charged for it. The price is silent about it, and because the price is silent, the market behaves as though the cost did not exist — and makes more of the smoking thing than, all costs counted, it should.</p>
+        <p>The point is perfectly general, and runs in both directions. Wherever an action visits a cost on a bystander — the smoke, the noise, the congestion, the carbon — the actor, bearing only his private share, does too much of it, for the part of the cost that falls on others does not stay his hand. And wherever an action confers a benefit on a bystander — the vaccine that protects the unvaccinated, the orchard that feeds the neighbor's bees, the research whose fruit the whole world reaps — the actor, capturing only his private share, does too little of it, for the part of the benefit that flows to others does not fill his purse. In each case the divergence between what the act costs or yields the actor and what it costs or yields society is the measure of the failure, and the market, steering by private reckoning alone, steers wide of the social optimum: too much of what harms, too little of what helps, and a price that, either way, does not tell the truth about the whole.</p>
+        <p>That a price can be wrong in this way invites the question of how to make it right, and a century of argument has turned on two answers. The first, Pigou's, is to mend the price by force of law: tax the harm by exactly its cost to others, subsidize the good by exactly its worth to them, and the corrected price will at last carry the whole social cost, leading the market, by its own logic, to the right amount. The second, Coase's, is more unsettling, for it denies that the harm has a culprit at all: the smoke harms the laundry only because the two are neighbors, and the harm is the joint product of both their activities; assign a clear right to one or the other, Coase showed, and — could they but bargain freely — they will reach the same efficient outcome whichever way the right was assigned, with no tax required. Between the tax that prices the harm and the bargain that trades it lies the whole modern science of the externality, and beneath both lies the deeper discovery this volume builds toward: that the very line between what the price counts and what it omits is not fixed by nature but drawn by property, and moves as the law moves it.</p>
+        <p class="closer">The argument remains open. What follows is an attempt to fix its exact edges.</p>
+      </div>
+    </section>
+
+    <section class="block-toc toc">
+      <p class="eyebrow">The twelve plates of this volume</p>
+      <ol>
+        <li>
+          <span class="t-num">i</span>
+          <a class="t-title" href="numeraire-xi-i-the-smoke.html">The Smoke<span class="t-tag">in print</span></a>
+          <span class="t-gloss">the factory whose smoke dirties a stranger's wash: the cost that falls outside the bargain, the gap between private and social cost, and the too-much of every harm the price ignores.</span>
+          <span class="t-read"><a href="numeraire-xi-i-the-smoke.html">Read the plate →</a></span>
+        </li>
+        <li>
+          <span class="t-num">ii</span>
+          <span class="t-title">The Vaccine</span>
+          <span class="t-gloss">positive externalities and the good the market makes too little of; herd immunity, the subsidy, and the spillovers of knowledge and health.</span>
+          <span class="t-q"><span class="lead">would ask</span>if my health protects you, why am I left to pay for it alone?</span>
+        </li>
+        <li>
+          <span class="t-num">iii</span>
+          <a class="t-title" href="numeraire-xi-iii-the-levy.html">The Levy<span class="t-tag">in print</span></a>
+          <span class="t-gloss">Pigou's remedy: a tax set equal to the harm, a subsidy equal to the good, so that the price at last tells the whole cost and the market, corrected, wants the right amount.</span>
+          <span class="t-read"><a href="numeraire-xi-iii-the-levy.html">Read the plate →</a></span>
+        </li>
+        <li>
+          <span class="t-num">iv</span>
+          <a class="t-title" href="numeraire-xi-iv-the-neighbor.html">The Neighbor<span class="t-tag">in print</span></a>
+          <span class="t-gloss">Coase's reply: that the harm is reciprocal and has no villain, and that neighbors with clear rights and a way to bargain will reach the same efficient end whoever the law first favors.</span>
+          <span class="t-read"><a href="numeraire-xi-iv-the-neighbor.html">Read the plate →</a></span>
+        </li>
+        <li>
+          <span class="t-num">v</span>
+          <a class="t-title" href="numeraire-xi-v-the-permit.html">The Permit<span class="t-tag">in print</span></a>
+          <span class="t-gloss">the missing market made: property in the right to pollute, a cap, and a price found by trading it — the externality internalized not by the state's tax but by a market in the harm itself.</span>
+          <span class="t-read"><a href="numeraire-xi-v-the-permit.html">Read the plate →</a></span>
+        </li>
+        <li>
+          <span class="t-num">vi</span>
+          <span class="t-title">The Holdout</span>
+          <span class="t-gloss">the limits of the bargain; transaction costs, holdouts, and the free rider, and why the multitude that a harm touches can rarely negotiate at all.</span>
+          <span class="t-q"><span class="lead">would ask</span>if the harmed are a multitude, what is their bargain worth?</span>
+        </li>
+        <li>
+          <span class="t-num">vii</span>
+          <span class="t-title">The Highway</span>
+          <span class="t-gloss">congestion as an externality; the road, the bridge, the crowded network, and the toll that Vickrey would set to price the delay each adds to all.</span>
+          <span class="t-q"><span class="lead">would ask</span>why does one more car cost everyone but its driver?</span>
+        </li>
+        <li>
+          <span class="t-num">viii</span>
+          <a class="t-title" href="numeraire-xi-viii-the-boundary.html">The Boundary<span class="t-tag">in print</span></a>
+          <span class="t-gloss">the deepest turn: that what counts as 'external' is set by where the law draws property, a line that moves as it becomes worth moving — so the price omits not what cannot be priced, but only what no one yet owns.</span>
+          <span class="t-read"><a href="numeraire-xi-viii-the-boundary.html">Read the plate →</a></span>
+        </li>
+        <li>
+          <span class="t-num">ix</span>
+          <span class="t-title">The Patent</span>
+          <span class="t-gloss">the spillover of ideas, and the patent that fences them; the appropriability problem, and the trade between the spur to invent and the freedom to use.</span>
+          <span class="t-q"><span class="lead">would ask</span>how do you sell an idea that, once told, everyone has?</span>
+        </li>
+        <li>
+          <span class="t-num">x</span>
+          <a class="t-title" href="numeraire-xi-x-the-network.html">The Network<span class="t-tag">in print</span></a>
+          <span class="t-gloss">Arthur; increasing returns to adoption, the paths history selects, and the alternatives a network can close off.</span>
+          <span class="t-read"><a href="numeraire-xi-x-the-network.html">Read the plate →</a></span>
+        </li>
+        <li>
+          <span class="t-num">xi</span>
+          <span class="t-title">The Contagion</span>
+          <span class="t-gloss">systemic externalities; the risk one firm's gamble visits on the whole, financial contagion, and the case for taxing fragility.</span>
+          <span class="t-q"><span class="lead">would ask</span>when one bank's gamble can topple the rest, who should pay to make it safe?</span>
+        </li>
+        <li>
+          <span class="t-num">xii</span>
+          <span class="t-title">The Atmosphere</span>
+          <span class="t-gloss">the great externality: a harm spread across every border and every generation, the global commons, and the boundary no single nation can draw.</span>
+          <span class="t-q"><span class="lead">would ask</span>what is the price of a harm spread across every nation and every age?</span>
+        </li>
+      </ol>
+    </section>
+
+    <section class="coda">
+      <p class="eyebrow">In closing</p>
+      <p>This volume took up the second way a market fails: not in the gap between what one party knows and another cannot, but in the gap between what a transaction costs its parties and what it costs the world. The externality is the cost or benefit that escapes the price by falling on a stranger to the deal — and because it escapes the price, the market, which steers by price alone, ignores it, making too much of every uncounted harm and too little of every uncounted good.</p>
+      <p>The diagnosis, the volume showed, is the divergence of private from social cost: the factory weighs the smoke's cost to itself, which is nothing, not its cost to the neighbors, which is real, and so it smokes too much. Against this the age has set two remedies. Pigou would have the state mend the price directly — a tax equal to the harm, a subsidy equal to the good — so that the private reckoning is forced to carry the social cost, and the market, its arithmetic corrected, chooses the right amount of its own accord. Coase replied that the harm has no villain, being the joint creation of both neighbors, and that where rights are clear and bargaining is cheap the parties will trade their way to the efficient outcome with no tax at all — so that the externality is less a wrong to be punished than a sign of a missing market, and the cure may be to supply the market, by defining the right and letting it be traded, as the permit schemes do for pollution.</p>
+      <p>And then the volume turned on the ledger itself, and found the deepest thing there. We speak of costs that 'escape' the price, as though the price were a net with holes; but Coase's and Demsetz's turn is that the price has no holes — it counts, exactly and only, what is owned, and is silent about exactly and only what is not. What we call an externality is simply the world that lies outside the current boundary of property; and that boundary is not given by nature but drawn by law, and redrawn whenever the gain from drawing it at last exceeds the cost. The smoke is an externality only because no one owns the air; grant someone the right to it, and the smoke acquires a price like any other. So the question of who pays for the smoke has, at bottom, a legal answer and not a natural one: the smoke is paid for by whoever the law has declined to give the right — and that, the volume's subject reveals, is a choice, not a fact. The first family found that a price conceals a contest over who gets what. The failures family finds that the price is partial as well as unfair: the asymmetry showed it cannot convey what is hidden; the externality shows it cannot count what is unowned; and the commons, the family's last, will show it cannot defend what is shared. The price, for all its genius, keeps only one ledger — the ledger of the owned — and the world it leaves out is exactly as large as the world we have declined to enclose.</p>
+      <p class="q">If the price omits not what cannot be priced but only what no one yet owns, then every externality is a question the law has left unanswered — and the choice of what to leave outside the price is the choice of who shall bear it. Who, then, should own the smoke?</p>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref"><a href="numeraire-atlas-updated.html">The table of volumes</a></span>
+    </div>
+    <p class="colophon">Volume the Eleventh of <em>Numéraire</em>, a periodic table of economic life: twenty-six primitives gathered in six families, each turned inside out at the seam where the seminar and the essay usually part — with the rigor of the one and the grace of the other — and each scrupulous about the exact edge of what can be known. <em>The Externality</em> is in print; six of its twelve plates are published, and the eighth, <em>The Boundary</em>, stands as the flagship of the volume. It is the second of the failures, set beside the asymmetry in the third family — the price that cannot count what falls outside the bargain, as the asymmetry was the price that cannot convey what one side hides. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var bar=document.getElementById('progress');
+  function onScroll(){
+    var h=document.documentElement;
+    var max=(h.scrollHeight-h.clientHeight);
+    var p=max>0?(h.scrollTop||document.body.scrollTop)/max:0;
+    bar.style.width=(p*100).toFixed(2)+'%';
+  }
+  document.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="numeraire-x-ix-the-gale.html">← The Gale</a><a rel="next" href="numeraire-xi-i-the-smoke.html">The Smoke →</a></nav>
+</body>
+</html>

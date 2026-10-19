@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Paradox — Numéraire, The Margin, Plate i</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:66rem; --measure:35rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- ornament ---- */
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* ---- masthead ---- */
+  .masthead{padding:clamp(2.8rem,7vh,5rem) 0 clamp(1.4rem,3.5vh,2.2rem);text-align:center;}
+
+  /* breadcrumb */
+  .crumbs{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 400;
+    font-size:.8rem;letter-spacing:.04em;color:var(--faint);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:center;gap:.55rem;}
+  .crumbs a{text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .2s ease,color .2s ease;}
+  .crumbs a:hover{border-color:var(--num);color:var(--ink);}
+  .crumbs .sep{color:var(--faintest);}
+  .crumbs .here{color:var(--ink);}
+
+  /* plate cartouche: Mg over the plate numeral */
+  .plate-mark{width:116px;height:116px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:.18rem;line-height:1;}
+  .plate-mark.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pm-vol{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.84rem;letter-spacing:.06em;color:rgba(240,235,225,.62);}
+  .pm-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;
+    font-size:2.5rem;letter-spacing:.02em;text-transform:uppercase;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.3rem,6.5vw,4.4rem);line-height:1.02;letter-spacing:-.025em;margin:1rem 0 0;text-wrap:balance;}
+  .status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:42rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  /* ---- epigraph ---- */
+  .epi{max-width:38rem;margin:clamp(2.2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .epi q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.46;color:var(--ink);quotes:none;display:block;text-wrap:pretty;}
+  .epi .cite{display:block;margin-top:.95rem;font-size:.78rem;color:var(--faintest);letter-spacing:.05em;font-style:normal;}
+  .epi .cite em{font-style:italic;}
+
+  /* ---- the essay (with margin apparatus) ---- */
+  .essay{max-width:52rem;margin:clamp(3rem,7vh,5rem) auto 0;counter-reset:sn;}
+  .essay::after{content:"";display:block;clear:both;}
+  .essay > p,.essay > .pull{max-width:var(--measure);}
+  .essay p{font-size:1.075rem;line-height:1.8;color:var(--ink);margin:0 0 1.4rem;text-wrap:pretty;}
+  .essay em{font-style:italic;}
+  .essay .lede::first-letter{ }
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.72;padding:.08em .14em 0 0;color:var(--ink);}
+
+  /* movement divider */
+  .divider{display:flex;justify-content:center;margin:2.4rem 0;}
+  .divider svg{width:96px;height:12px;overflow:visible;}
+  .divider line{stroke:var(--num);stroke-width:1;} .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* pull quote */
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.5vw,1.74rem);line-height:1.34;color:var(--ink);text-align:center;
+    margin:2.4rem auto;max-width:33rem;text-wrap:balance;}
+
+  /* margin notes — inline by default, gutter on wide screens */
+  .snref{font-family:"Fraunces",serif;font-size:.64em;line-height:0;vertical-align:super;
+    color:var(--soft);counter-increment:sn;margin-left:1px;font-style:normal;}
+  .snref::after{content:counter(sn);}
+  .sn{display:block;max-width:var(--measure);margin:.1rem 0 1.4rem;padding:.15rem 0 .15rem 1.05rem;
+    border-left:1px solid var(--hair);font-size:.84rem;line-height:1.52;color:var(--faint);}
+  .sn::before{content:counter(sn);font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--faintest);margin-right:.5em;font-size:.92em;}
+  .sn em{font-style:italic;}
+
+  @media (min-width:64rem){
+    .sn{float:right;clear:right;width:15rem;margin:.35rem 0 1.3rem;padding:0;border-left:none;}
+    .divider,.pull,.apparatus{clear:both;}
+  }
+
+  /* ---- apparatus (related reading) ---- */
+  .apparatus{max-width:52rem;margin:clamp(3.2rem,7vh,5rem) auto 0;padding-top:2rem;border-top:1px solid var(--hair);clear:both;}
+  .app-h{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;}
+  .app-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.4rem;}
+  .app-list li{border-top:1px solid var(--hair);}
+  .app-list li:first-child,.app-list li:nth-child(2){border-top:none;}
+  .app-list a{display:block;text-decoration:none;padding:.95rem 0;}
+  .app-list a:hover .app-t{color:var(--soft);}
+  .app-rel{display:block;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faintest);margin-bottom:.3rem;}
+  .app-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.12rem;color:var(--ink);transition:color .2s ease;}
+  .app-g{display:block;font-size:.84rem;color:var(--faint);font-style:italic;line-height:1.4;margin-top:.22rem;}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(3.5rem,8vh,6rem);padding:2.2rem 0 4rem;border-top:1px solid var(--hair);}
+  .crumbs.foot{justify-content:flex-start;margin-bottom:1.3rem;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .plate-mark{width:96px;height:96px;}
+    .pm-num{font-size:2.1rem;}
+    .essay p{font-size:1.04rem;line-height:1.74;}
+    .dropcap{font-size:3rem;}
+    .app-list{grid-template-columns:1fr;}
+    .app-list li:nth-child(2){border-top:1px solid var(--hair);}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="crumbs rise d1" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-margin.html">The Margin &middot; Vol VI</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate i</span>
+    </nav>
+    <div class="plate-mark lit rise d2" aria-hidden="true">
+      <span class="pm-vol">Mg</span>
+      <span class="pm-num">i</span>
+    </div>
+    <h1 class="rise d3">The Paradox</h1>
+    <div class="status rise d3">in print &middot; The Margin &middot; plate i</div>
+    <p class="standfirst rise d4">Adam Smith set the science its first riddle and could not answer it: why the water that saves a life is very nearly free, and the diamond that saves no one commands a fortune. For a hundred years the labor theory of value broke upon the question. This plate follows the riddle to its dissolution — which was not an answer but the discovery that the question itself was malformed — and to the quiet price its solving exacted.</p>
+  </header>
+
+  <div class="epi rise d5">
+    <q>Nothing is more useful than water: but it will purchase scarce any thing. A diamond, on the contrary, has scarce any value in use; but a very great quantity of other goods may frequently be had in exchange for it.</q>
+    <span class="cite">Adam Smith, <em>An Inquiry into the Nature and Causes of the Wealth of Nations</em>, 1776</span>
+  </div>
+
+  <article class="essay">
+
+    <p class="lede"><span class="dropcap">A</span> glass of water will save your life; a diamond will not. The old economics, and a good deal of ordinary sense, expects the water therefore to cost the more — and is wrong, has always been wrong, and was wrong in a way that took a hundred years to name. The mistake is to treat worth as a property a thing carries about with it, like its weight or its colour, fixed once and read off at need. It is no such thing. Worth is a relation, struck freshly at the instant of choosing, between a person, the stock of a thing already held, and exactly one more unit of it. Do not ask what water is worth, for the question has no answer; ask what one more glass is worth to a man who already owns a thousand, and the paradox keeps no secrets.</p>
+
+    <p>That the worth of a thing splits in two was the first matter Adam Smith made his readers see. Laying the foundations of the science in 1776, he distinguished the good a thing does you — its <em>value in use</em> — from what it will fetch in a trade — its <em>value in exchange</em> — and remarked, almost in passing, on a fact that ought to have stopped him where he stood: the two not only fail to keep step but, at the extremes, run exactly contrary. Nothing is more useful than water, and water is all but free. Nothing is less useful than a diamond, which you can neither drink nor eat nor shelter beneath, and a diamond will buy a house.<sup class="snref"></sup></p>
+    <aside class="sn">The contrast was not even Smith's to claim. Aristotle had already separated the use of a thing from its use in exchange — the sandal worn against the sandal traded; and the Neapolitan Ferdinando Galiani, in 1751, had named both terms of the answer outright, <em>utilità</em> and <em>rarità</em>, utility and scarcity, while John Law had drawn the water-and-diamond comparison decades before. Smith inherited a question to which others had come nearer than he, and by binding worth to labor he arguably set the inquiry back.</aside>
+
+    <p>Smith stated the puzzle with great clarity and, having stated it, walked past it. He did not answer it; he set it down as a curiosity and turned to build his theory of exchange value on quite other ground — the ground of labor and cost. The riddle he abandoned acquired, over the following century, a name out of all proportion to its real difficulty: the <em>paradox of value</em>, the scandal at the threshold of the subject, which the discipline could state in a single sentence and not dissolve in a hundred years.<sup class="snref"></sup></p>
+    <aside class="sn">The phrase itself is later than Smith; what endured was the difficulty, which survived as the standard opening trouble of economics precisely because the framework that posed it could not close it. A paradox is very often only a question put in the wrong terms — and so, in the end, this one proved to be.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>The answer Smith reached for instead — and that the classical economists hardened into the central doctrine of the age — was that the worth of a thing is the labor it costs. In the early and rude state of society, Smith wrote, before land was owned and stock accumulated, if it takes twice the labor to kill a beaver as a deer, then one beaver will exchange for two deer: the proportion of toil is the proportion of value.<sup class="snref"></sup> David Ricardo, writing in 1817, sharpened this into a system of formidable rigor — the relative values of commodities are governed, in the main, by the relative quantities of labor required to produce them. Karl Marx, half a century on, made it the foundation of an entire reckoning of capitalism, in which exchange value is congealed labor — <em>socially necessary labor time</em> — and profit the portion of it left unpaid.</p>
+    <aside class="sn">Smith confined the pure labor theory to a pre-commercial age. For a developed economy he wavered between labor <em>embodied</em> in a good and labor it could <em>command</em> in the market, and settled at last on an "adding-up" account in which price resolves into wages, profit, and rent — three costs, not one toil. The doctrine was never as plain as its summary.</aside>
+
+    <p>The labor theory had every virtue but correctness. It was objective: it lodged worth in something one could in principle count — the hours of labor — rather than in the shifting weather of desire. It was moral: it made value the wage of effort, and let one read, in the price of a thing, the work of the hands that had made it. It was, across a wide range of ordinary manufactured goods, roughly true — cloth that takes more labor than corn does tend to cost more. And it was, against the single case that had launched the whole inquiry, perfectly helpless. For no rearrangement of labor hours will ever explain why the water that keeps a man alive is cheaper than the stone that merely adorns him.</p>
+
+    <p>Here the rigor of the matter demands a concession the marginalists were not always generous enough to grant.<sup class="snref"></sup> The classical economists were not fools, and they did not fail to notice that diamonds are scarce. Ricardo opens his <em>Principles</em> by dividing all commodities in two. There are those whose quantity human industry can increase more or less without limit — corn, cloth, iron — and these, he holds, take their value from the labor of producing them. And there are those that no labor can multiply — rare statues and pictures, scarce books, wines of a peculiar soil — whose value, he writes, "is wholly independent of the quantity of labour originally necessary to produce them, and varies with the varying wealth and inclinations of those who are desirous to possess them." Of this second kind, value is governed by scarcity alone. The labor theory, in the hands of its most careful exponent, never pretended to price the diamond. It quarantined the diamond as an exception and moved on.</p>
+    <aside class="sn">Ricardo, <em>On the Principles of Political Economy and Taxation</em> (1817), Chapter I. He grants at the outset that goods which "no labour can increase" derive their worth from scarcity. The classics knew the diamond lay outside their law; what they did not suspect was that the exception was the rule, and the law the exception.</aside>
+
+    <p>And that quarantine is the whole of the matter, though it would take another fifty years to see as much. The classical economists treated scarcity as the rare affliction of a few luxury goods and labor as the ordinary health of the economy. The marginal revolution would reverse the diagnosis. Scarcity is not the exception. Scarcity — of everything, measured against the wants pressing upon it — is the general condition, and the law that prices the diamond is the very same law that prices the water and the corn and the cloth. There was never a wall to build between two kinds of value. There was only one principle, mistaken for two.</p>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>The dissolution, when it finally came, did not answer Smith's question. It dismantled it. To ask what water is worth is already to presume that water has <em>a</em> worth — one figure, carried about inside it, the same for the caravan dying in the Sahara and the householder hosing down his step. It has none.</p>
+
+    <p class="pull">There is no value of water — only the value of this glass, to this thirst, set against that stock.</p>
+
+    <p>And the worth of one more falls as the units accumulate. The first glass, to a man with none, is worth everything he owns; it is his life. The second is worth a great deal; the tenth, kept back for cooking, less; the hundredth, for washing, less again; the thousandth, sluiced across a doorstep, almost nothing at all — for by then almost nothing hangs upon it.<sup class="snref"></sup> It is that last glass, the marginal one, the one whose loss would be felt least, that fixes the price of every glass before it: where water is plentiful, no one will pay for any unit more than the final unit is worth, and the final unit is worth next to nothing. Water is cheap not in spite of being vital but because it is abundant. There is always one more glass, and that glass prices the ocean behind it.</p>
+    <aside class="sn">That the worth of successive units declines is <em>Gossen's first law</em>, after Hermann Heinrich Gossen, who set it down in 1854. It is the engine of the whole resolution, and it is given its own full anatomy in the third plate of this volume, <em>The Last Unit</em>.</aside>
+
+    <p>The diamond obeys the identical law and arrives at the opposite price. Its total usefulness is slight — the whole world's diamonds together do less good than one clear spring — but diamonds are desperately few, and so one never travels far down the slope of failing desire. The last diamond is still keenly wanted; there is no thousandth diamond to drag the worth of the rest toward zero. Scarcity holds the margin high. Smith had ranged the total usefulness of water against the total usefulness of diamonds and found the market's verdict absurd. But the market had never consulted the total. It consulted the margin — and at the margin, abundant water is worth little and scarce diamond much, with not a grain of paradox left anywhere in the comparison.<sup class="snref"></sup></p>
+    <aside class="sn">Put exactly: the <em>total</em> utility of one's water is immense and of one's diamonds slight; the <em>marginal</em> utility — the worth of the last unit — is slight for abundant water and high for scarce diamonds. Smith compared totals, and was quite right that water's is the greater. He erred only in supposing that price follows the total. It follows the margin, always and everywhere.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>If the answer is so clean, why did it take from 1776 to 1871 — from Smith's death-grip on labor to the year three men in three countries at last let go? The delay is itself instructive, for it marks the two habits of mind the classical economists could not break.</p>
+
+    <p>The first was to think of value as a property rather than a relation — as something a good <em>has</em>, intrinsically and objectively, rather than something that <em>happens</em> between a good and a chooser. A property may be sought in the thing itself: in its substance, its labor, its cost. A relation cannot be; it lives only in the act of valuing, in a particular person weighing a particular increment against the alternatives before him. To find value at the margin, one had first to stop looking inside the object and begin looking at the choosing mind — the subjective turn that the labor theorists, with their honorable hunger for something solid and countable, were temperamentally unwilling to take.<sup class="snref"></sup></p>
+    <aside class="sn">William Forster Lloyd at Oxford and Mountifort Longfield at Dublin had each stated the marginal principle in lectures of the 1830s; Jules Dupuit, a French engineer of public works, had drawn marginal utility and consumer surplus out of the demand curve in 1844; Gossen had systematized the whole of it in 1854. None of it took hold. The idea was discovered and mislaid again and again — evidence less of its difficulty than of the grip of the reigning theory.</aside>
+
+    <p>The second was to think in totals and averages rather than in margins. To see that the <em>last</em> unit governs the price, one needs the habit of the increment — of asking what changes when there is one more, or one fewer — which is to say one needs, if not the calculus itself, then its cast of mind. The classical economists asked what whole stocks were worth, and what labor a thing contained on average; they did not ask, as a matter of course, after the worth of the marginal unit, because nothing in their framework so much as hinted that the margin was where the answer lay.</p>
+
+    <p>It is worth saying, against any picture of a single heroic stroke, that the idea was glimpsed and lost repeatedly before it held. A retired Prussian official laid out the whole of it in 1854, sold almost no copies, and died believing he had failed; a French engineer had extracted it from a demand curve a decade earlier; obscure lecturers at Oxford and Dublin had stated it in the 1830s to no effect whatever. The marginal idea was never hard to have. It was hard to keep — hard to make the discipline hold still long enough to listen. That story, of the same truth arriving three times at once in 1871 and finally staying, belongs to the plate that follows this one.</p>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>The paradox of value is the first thing taught in economics and, taught well, very nearly the last thing one needs in order to understand it, for almost the whole of the science lies latent in its solution. The lesson is not really about diamonds, or water, or even about price. It is about the danger of a well-formed question. "What is a thing worth?" sounds like the soundest question one could ask, and it is malformed at the root: the worth it inquires after does not exist; only the worth of one more, to someone, holding what they hold, exists at all. To do economics is, in great part, to learn to stop asking the natural question and start asking the marginal one.</p>
+
+    <p>But the dissolution exacts a price of its own, and honesty about this plate requires that the price be named, even here at the beginning.<sup class="snref"></sup> In making worth a matter of what one more unit is worth to a chooser, the marginalists had quietly to settle on a measuring rod, and the rod they chose was willingness to pay. The value of the marginal glass is what someone will give for it; the value of the marginal diamond, likewise. This is exact, and it is powerful, and it travels with a passenger. For what a person will give depends not only on how badly he wants the thing but on how much he has to give. The diamond is dear in part because those who covet diamonds can pay; the water is cheap in part because, being plentiful, even the poor may have it, so the last buyer's purse is thin. The marginal principle answers "why is water cheap?" with "because it is abundant relative to want" — which is true — and in the same breath makes <em>want backed by money</em> the measure of all worth, so that it can rank a rich man's whim above a poor man's need and pronounce the sum efficient. That this is so, and what is to be made of it, is the long argument of the volume, taken up in earnest at its far edge.</p>
+    <aside class="sn">That willingness to pay weights desire by the purse — pricing a whim with money above a need without it — is the moral crux of the marginal turn. It is not pressed here; it is the matter of this volume's twelfth plate, <em>The Edge</em>, and it bears directly on the question that opens <em>The Wage</em>: whether a price measures a thing's worth, or merely the means of those who want it to insist.</aside>
+
+    <p>For now it is enough to have dissolved the paradox and to see what the dissolution lays bare. The price of a diamond was never a fact about diamonds, fixed in the stone like its hardness. It was never even a fact about usefulness — or the answer to the riddle of use and exchange would run the other way. It is a verdict: struck at the margin, upon the scarcity of the thing, the intensity of the wanting, and the distribution of the means to bid — and mistaken, because it arrives as a plain number on a plain tag, for a plain fact of nature. The water is cheap and the diamond is dear, and neither price was ever written into the world. The argument remains open.</p>
+
+  </article>
+
+  <nav class="apparatus" aria-label="Related reading">
+    <h2 class="app-h">Related</h2>
+    <ul class="app-list">
+      <li><a href="the-revolution.html"><span class="app-rel">In this volume</span><span class="app-t">The Revolution</span><span class="app-g">plate ii — the same correction, found three times over in 1871</span></a></li>
+      <li><a href="the-margin.html"><span class="app-rel">In this volume</span><span class="app-t">The Last Unit</span><span class="app-g">plate iii — diminishing marginal utility, the engine of the answer</span></a></li>
+      <li><a href="numeraire-atlas.html"><span class="app-rel">In the table</span><span class="app-t">The Utility</span><span class="app-g">volume VIII — the want the margin measures, and never quite sees</span></a></li>
+      <li><a href="the-surplus.html"><span class="app-rel">In the table</span><span class="app-t">The Surplus</span><span class="app-g">volume VII — the value an exchange creates beyond its price</span></a></li>
+    </ul>
+  </nav>
+
+  <footer>
+    <nav class="crumbs foot" aria-label="Return">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-margin.html">The Margin &middot; Vol VI</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate i</span>
+    </nav>
+    <p class="colophon">The first plate of Volume VI, <em>The Margin</em> — the diamond and the water, the oldest riddle in the science, and the reframing that dissolved it. Return to <a href="the-margin.html">the volume</a>, or to <a href="numeraire-atlas.html">the complete table of volumes</a>. Passages from Smith and Ricardo are given from the public-domain texts of 1776 and 1817. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-margin.html">← The Margin</a><a rel="next" href="the-revolution.html">The Revolution →</a></nav>
+</body>
+</html>

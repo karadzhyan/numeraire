@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Tax — Numéraire, Volume XVII</title>
+<meta name="description" content="The Tax — Volume XVII of Numéraire, A Periodic Table of Economic Life. The price of public life: who really bears a tax once the law has named its payer, what it costs beyond its revenue, and what the state may justly claim of the citizen.">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem; --measure:40rem;
+    --wash:rgba(28,26,22,.066); --wash2:rgba(28,26,22,.12);
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.62;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  .measure{max-width:var(--measure);margin-left:auto;margin-right:auto;}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- ornaments ---- */
+  .orn{display:flex;justify-content:center;margin:0 auto;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .divider{display:flex;align-items:center;gap:1.1rem;max-width:30rem;margin:clamp(3rem,7vh,5rem) auto;color:var(--num);}
+  .divider .ln{flex:1;height:1px;background:var(--hair);}
+  .divider svg{display:block;width:12px;height:12px;overflow:visible;flex:0 0 auto;}
+  .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* ---- progress + running head ---- */
+  #progress{position:fixed;top:0;left:0;height:2px;width:100%;transform:scaleX(0);transform-origin:0 50%;background:var(--soft);opacity:.45;z-index:10000;}
+  #topbar{position:fixed;top:0;left:0;right:0;z-index:9998;transform:translateY(-100%);transition:transform .5s cubic-bezier(.2,.6,.2,1);
+    background:rgba(240,235,225,.86);-webkit-backdrop-filter:saturate(1.1) blur(8px);backdrop-filter:saturate(1.1) blur(8px);
+    border-bottom:1px solid var(--hair);}
+  #topbar.show{transform:translateY(0);}
+  .tb-in{max-width:var(--frame);margin:0 auto;padding:.62rem clamp(1.4rem,4vw,3.4rem);display:flex;justify-content:space-between;align-items:baseline;gap:1.2rem;}
+  .tb-l{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:.86rem;letter-spacing:.01em;}
+  .tb-l span{color:var(--faintest);font-weight:400;}
+  .tb-r{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);text-align:right;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+
+  /* ---- title page ---- */
+  .vol-title{padding:clamp(3.4rem,11vh,8rem) 0 clamp(1.6rem,5vh,3rem);text-align:center;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.16rem;letter-spacing:.02em;}
+  .vol-no{font-size:.84rem;color:var(--faint);letter-spacing:.16em;text-transform:uppercase;margin-top:.55rem;}
+  h1.vol-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 380;font-weight:380;
+    font-size:clamp(2.9rem,9vw,6rem);line-height:.98;letter-spacing:-.028em;margin:clamp(1.7rem,4.5vh,2.8rem) 0 0;text-wrap:balance;}
+  .vol-sym{width:78px;height:78px;margin:clamp(1.6rem,4vh,2.4rem) auto 0;border:1px solid var(--hair);border-radius:2px;
+    display:flex;align-items:center;justify-content:center;background:var(--ink);}
+  .vol-sym span{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2.3rem;line-height:1;color:var(--paper);letter-spacing:-.01em;}
+  .vol-coords{font-family:"Fraunces",serif;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);margin-top:1.1rem;}
+  .vol-gloss{font-style:italic;color:var(--soft);font-size:1.12rem;margin:.5rem 0 0;}
+  .vol-epigraph{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 400;font-style:italic;
+    font-size:clamp(1.14rem,1.7vw,1.34rem);line-height:1.42;color:var(--soft);max-width:33rem;margin:clamp(1.8rem,4vh,2.6rem) auto 0;text-wrap:pretty;}
+  .vol-epigraph .lead{display:block;font-style:normal;font-variation-settings:"opsz" 24,"wght" 400;
+    font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.7rem;}
+  .vol-status{display:inline-flex;align-items:center;gap:.5rem;margin:clamp(1.8rem,4vh,2.4rem) auto 0;font-size:.84rem;color:var(--soft);}
+  .vol-status::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ink);}
+
+  /* ---- the argument (preface) ---- */
+  .part-head{text-align:center;margin:0 0 clamp(1.6rem,3.5vh,2.3rem);}
+  .part-kicker{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faintest);}
+  .part-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-weight:400;
+    font-size:clamp(1.5rem,3.4vw,2.1rem);letter-spacing:-.012em;margin:.4rem 0 0;}
+  .argument p{font-size:1.05rem;line-height:1.74;margin:0 0 1.15rem;text-wrap:pretty;}
+  .argument p.lede::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 420;
+    float:left;font-size:3.5em;line-height:.78;padding:.05em .1em 0 0;color:var(--ink);}
+  .argument em,.plate-body em,.coda em{font-style:italic;}
+
+  /* ---- contents ---- */
+  .toc{list-style:none;margin:0 auto;padding:0;max-width:43rem;}
+  .toc li{border-top:1px solid var(--hair);}
+  .toc li:last-child{border-bottom:1px solid var(--hair);}
+  .toc a{display:grid;grid-template-columns:2.6rem 1fr;column-gap:1.1rem;align-items:baseline;
+    padding:.82rem .3rem;text-decoration:none;transition:background .2s ease;}
+  .toc a:hover{background:rgba(28,26,22,.035);}
+  .toc-n{font-family:"Fraunces",serif;font-size:.92rem;color:var(--faintest);text-align:right;}
+  .toc-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.06rem;color:var(--ink);line-height:1.16;}
+  .toc-g{grid-column:2;font-size:.85rem;font-style:italic;color:var(--faint);margin-top:.16rem;line-height:1.38;}
+
+  /* ---- plates ---- */
+  .plate{margin:clamp(3.2rem,8vh,6rem) 0 0;padding-top:clamp(2.4rem,5.5vh,3.4rem);border-top:1px solid var(--hair);scroll-margin-top:4rem;}
+  .plate-open{max-width:var(--measure);margin-inline:auto;}
+  .plate-no{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 360;font-size:clamp(2.6rem,7vw,4.1rem);
+    line-height:.9;color:var(--num);letter-spacing:.02em;}
+  .plate-kicker{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faintest);margin:.9rem 0 .2rem;}
+  .plate-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.8rem,4.4vw,2.7rem);line-height:1.04;letter-spacing:-.018em;margin:0;text-wrap:balance;}
+  .plate-gloss{font-style:italic;color:var(--soft);font-size:1.02rem;margin:.55rem 0 0;line-height:1.4;}
+
+  .ask{max-width:var(--measure);margin:clamp(1.5rem,3.5vh,2.2rem) auto clamp(1.8rem,4vh,2.4rem);}
+  .ask .lead{display:block;font-family:"Fraunces",serif;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.55rem;}
+  .ask q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:clamp(1.18rem,1.8vw,1.38rem);line-height:1.36;color:var(--soft);quotes:none;}
+
+  .plate-body{max-width:var(--measure);margin-inline:auto;}
+  .plate-body p{margin:0 0 1.18rem;text-wrap:pretty;}
+  .plate-body > p:first-of-type::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 430;
+    float:left;font-size:3.5em;line-height:.76;padding:.04em .12em 0 0;color:var(--ink);}
+  .plate-body h4{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.76rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faint);margin:2rem 0 .9rem;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 380;font-style:italic;
+    font-size:clamp(1.4rem,2.3vw,1.7rem);line-height:1.32;color:var(--soft);text-align:center;
+    max-width:33rem;margin:clamp(2rem,4.5vh,2.8rem) auto;text-wrap:balance;}
+
+  .edge{max-width:var(--measure);margin:1.7rem auto;padding:.1rem 0 .1rem 1.15rem;border-left:1px solid var(--hair);
+    color:var(--faint);font-size:.92rem;line-height:1.62;}
+  .edge .lead{display:block;font-family:"Fraunces",serif;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.4rem;}
+  .edge em{font-style:italic;color:var(--soft);}
+
+  /* ---- figures (engravings) ---- */
+  .fig{max-width:var(--measure);margin:clamp(2.1rem,4.5vh,2.9rem) auto;}
+  .fig-frame{border:1px solid var(--hair);border-radius:2px;padding:clamp(1rem,2.4vw,1.7rem) clamp(1rem,2.4vw,1.7rem) clamp(.8rem,2vw,1.3rem);background:rgba(255,253,247,.4);}
+  .fig svg{display:block;width:100%;height:auto;}
+  figcaption{margin:.95rem auto 0;max-width:38rem;font-size:.85rem;line-height:1.5;color:var(--faint);text-wrap:pretty;}
+  figcaption .fig-n{font-family:"Fraunces",serif;font-weight:500;letter-spacing:.04em;color:var(--soft);}
+  figcaption em{font-style:italic;}
+  .ax{stroke:var(--soft);stroke-width:1.1;fill:none;}
+  .tick{stroke:var(--soft);stroke-width:1;}
+  .curve{stroke:var(--ink);stroke-width:1.5;fill:none;stroke-linecap:round;}
+  .curve2{stroke:var(--ink);stroke-width:1.3;fill:none;stroke-linecap:round;}
+  .guide{stroke:var(--faintest);stroke-width:1;fill:none;stroke-dasharray:3 3.5;}
+  .core{stroke:var(--ink);stroke-width:3;fill:none;stroke-linecap:round;}
+  .fill-cs{fill:var(--wash);}
+  .fill-dwl{fill:var(--wash2);}
+  .fill-wedge{fill:var(--wash);}
+  .fill-lens{fill:var(--wash);}
+  .hatch-line{stroke:var(--faintest);stroke-width:.8;}
+  .lbl{font-family:"Fraunces",serif;font-size:11.5px;fill:var(--faint);font-variation-settings:"opsz" 24,"wght" 400;}
+  .lbl-i{font-family:"Newsreader",serif;font-style:italic;font-size:11px;fill:var(--soft);}
+  .lbl-sm{font-family:"Fraunces",serif;font-size:9.6px;fill:var(--faintest);letter-spacing:.02em;}
+  .lbl-ax{font-family:"Fraunces",serif;font-size:9.4px;fill:var(--faintest);letter-spacing:.12em;}
+
+  /* ---- coda + colophon ---- */
+  .coda{max-width:var(--measure);margin:clamp(3rem,7vh,5rem) auto 0;}
+  .coda p{margin:0 0 1.18rem;text-wrap:pretty;}
+  .coda p.lede::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 430;
+    float:left;font-size:3.5em;line-height:.76;padding:.04em .12em 0 0;color:var(--ink);}
+  footer{margin-top:clamp(3.6rem,8vh,6rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.4rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .colophon{font-size:.85rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+
+  /* ---- motion / reveal ---- */
+  @media (prefers-reduced-motion: no-preference){
+    html.js .reveal{opacity:0;transform:translateY(14px);}
+    html.js .reveal.in{opacity:1;transform:none;}
+    .reveal{transition:opacity .9s cubic-bezier(.2,.6,.2,1),transform .9s cubic-bezier(.2,.6,.2,1);}
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.18s}.rise.d3{animation-delay:.32s}.rise.d4{animation-delay:.46s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  /* ---- responsive ---- */
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .argument p,.plate-body p,.coda p{font-size:1.01rem;}
+    .plate-body > p:first-of-type::first-letter,.argument p.lede::first-letter,.coda p.lede::first-letter{font-size:3em;}
+    .f-bar{flex-direction:column;gap:.5rem;}
+    .toc a{grid-template-columns:2rem 1fr;column-gap:.8rem;}
+    figcaption{font-size:.82rem;}
+  }
+
+  /* ---- print: a volume, in print ---- */
+  @media print{
+    html,body{background:#fff;color:#000;}
+    body{font-size:11.5pt;line-height:1.5;}
+    body::before,#progress,#topbar{display:none !important;}
+    .frame{max-width:none;padding:0;}
+    .measure,.plate-open,.plate-body,.ask,.edge,.coda{max-width:34rem;}
+    a{text-decoration:none;}
+    .plate{break-before:page;border-top:none;padding-top:0;}
+    .fig,figure{break-inside:avoid;}
+    .plate-no{color:#bbb;}
+    .reveal{opacity:1 !important;transform:none !important;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#ne-contents">Complete contents</a><a href="../editions.html#volume-tax">The Tax · both editions</a><a href="../essays/numeraire-xvii-the-tax.html">Expanded essays</a></div></nav>
+<div id="progress" aria-hidden="true"></div>
+<div id="topbar" aria-hidden="true"><div class="tb-in">
+  <span class="tb-l">Numéraire <span>· The Tax</span></span>
+  <span class="tb-r" id="tb-plate">Volume XVII</span>
+</div></div>
+
+<div class="frame">
+
+  <header class="vol-title">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="rise d1">
+      <span class="imprint">Numéraire</span>
+      <div class="vol-no">Volume XVII &middot; № XVII</div>
+    </div>
+    <h1 class="vol-name rise d2">The Tax</h1>
+    <div class="vol-sym rise d3" aria-hidden="true"><span>Tx</span></div>
+    <div class="vol-coords rise d3">Group IV &middot; The Institutions</div>
+    <p class="vol-gloss rise d3">who really pays</p>
+    <p class="vol-epigraph rise d4">
+      <span class="lead">The question of the volume</span>
+      The law names who pays a tax; the market decides — who really does?
+    </p>
+    <div class="vol-status rise d4">in print &middot; twelve plates</div>
+  </header>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <section class="argument reveal" aria-labelledby="arg-h">
+    <div class="part-head">
+      <div class="part-kicker">Numéraire &middot; Volume XVII</div>
+      <h2 class="part-title" id="arg-h">The Argument</h2>
+    </div>
+    <p class="lede">A tax is the price of public life. It is what the citizen pays for the state — for the defense and the justice and the roads, and for the very enforcement of the property and contracts on which every market in this table depends — and Oliver Wendell Holmes called it, justly, the price we pay for civilized society. But it is a price of a peculiar kind, for it is not freely paid in exchange but compelled by power: one may decline to buy bread, but not to pay the tax. With this volume the table passes from the institution of money to the institution that money makes collectable, and that makes the state itself sustainable — for a state is, before all else, its capacity to tax, and the history of states is in large part the history of how they have raised their revenue. Taxation is where the coercive power of the collective meets the private wealth of the individual, and the whole volume is an inquiry into the contest at that meeting point.</p>
+    <p>The volume's title-question is narrower and sharper than that grand theme, and it is the question the gloss poses: who really pays? For the deepest and most counterintuitive fact about a tax is that the party the law names as payer is rarely the party that ends up bearing the burden. The law may command that a tax be remitted by the seller, or the employer, or the corporation; but the law cannot command who shall finally bear it, for the burden, once imposed, slides through prices to settle wherever the market sends it — and the market sends it to whichever side can least escape. This is the economics of incidence, and it is the widest gap in all of policy between intention and effect. A tax on the employer is paid, in the end, largely by the worker, in wages that do not rise; a tax on the corporation is borne by some shifting mixture of its shareholders, its workers, and its customers, in proportions economists still dispute; a tariff laid on the foreign exporter is paid at the domestic till. The law names the payer; the market names the bearer; and the two are seldom the same.</p>
+    <aside class="pull">The law can say who writes the check. It cannot say who bears the burden. That, the market decides — and it decides against whoever can least escape.</aside>
+    <p>Why incidence falls where it does is the first thing the volume must establish, and the answer is elasticity. A tax drives a wedge between the price the buyer pays and the price the seller receives, and the burden divides between them in inverse proportion to their power to walk away: the side that can most easily alter its behavior to avoid the tax — the more elastic side — shifts the burden onto the side that cannot. Labor that cannot withhold itself bears the tax on labor; land that cannot flee bears the tax on land; the consumer who must have the necessity bears the tax upon it. The corollary is bracing: a government cannot choose who bears a tax merely by choosing who remits it, for the remittance is a legal formality and the incidence an economic fact. To learn who really pays, one must look past the statute to the elasticities — to who can escape, and who cannot.</p>
+    <p>But the revenue and its incidence are not the whole cost of a tax, for a tax also distorts. By discouraging the activity it falls upon, it shrinks that activity below its efficient level and destroys a sliver of value that reaches no one — neither the taxpayer nor the treasury — the deadweight loss, the excess burden of taxation. This loss, the volume will show, rises with the square of the rate, so that small taxes are nearly free and high ones ruinously dear, and it is the larger the more the taxed party can respond. From this single fact flows much of the art of taxation: tax the things that cannot flee, for they distort little and bear the burden anyway; tax broadly and lightly rather than narrowly and heavily; and prize above all the rare taxes that distort nothing — the tax on land that <em>The Rent</em> praised, which falls on a fixed thing and so causes no loss, and the tax on pollution that <em>The Power</em> invoked, which falls on a harmful thing and so improves the world by shrinking it.</p>
+    <p>Beyond efficiency lies equity, and here taxation becomes most nakedly political. How progressive should the burden be — how much more, in proportion, should the rich pay than the poor? The question has no answer in economics alone, for it turns on a judgment of fairness that economics cannot supply; the optimal-tax theorists, from Ramsey to Mirrlees, can map the tradeoff between equity and efficiency, showing what a given measure of redistribution costs in distortion, but they cannot say how much redistribution is right. And the contest is fought on a shifting field, for the taxed do not stand still to be taxed: they avoid, by every legal device; they evade, by illegal ones; and the mobile among them — capital, and the rich who own it — flee to havens and set states against one another in a race to the bottom that has driven the taxes on the most mobile things steadily down, shifting the burden, once again, onto the things and the people that cannot move.</p>
+    <p>Beneath the mechanics lies the deepest question of all: what is taxation for? It raises revenue, the obvious purpose; it redistributes, taking more from the rich to furnish, in services and transfers, the wants of the poor; it reprices, taxing the harmful and sparing the good; and — the chartalist insight of <em>The Money</em> — it drives the very currency, creating a demand for the state's money by requiring that taxes be paid in it. But its oldest function is none of these. Taxation built the state, and the state's hunger for taxes built representation, for the price of the subject's money was, again and again in history, the subject's voice: no taxation without representation. Taxation is the fiscal foundation of the commonwealth, and the bargain struck over it is the bargain that constitutes the political community itself.</p>
+    <p>The thesis, for the plates to earn, may be stated plainly. A tax is the price of public life, and like every price in this table it is a verdict on a contest — over who shall bear it, what it is worth distorting, what fairness demands, and what the collective may justly claim of the individual. The law writes the rate, but the market settles the incidence, and the politics settles the rest; and the question of who really pays — and how much, and for what — has no answer in nature, only the answer a society fights its way to and writes, provisionally, into law. To read a tax as a simple transfer from the named payer to the state is to miss all that matters: that it slides to rest on those who cannot escape, that it costs more than it raises, and that it is, in the end, the instrument by which a people decides what it owes itself.</p>
+  </section>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <section class="contents reveal" aria-labelledby="toc-h">
+    <div class="part-head">
+      <div class="part-kicker">The twelve plates of this volume</div>
+      <h2 class="part-title" id="toc-h">The Plates</h2>
+    </div>
+    <ol class="toc">
+      <li><a href="#plate-i"><span class="toc-n">i</span><span class="toc-t">The Levy</span><span class="toc-g">what a tax is; the price of civilization; the foundation of the state</span></a></li>
+      <li><a href="#plate-ii"><span class="toc-n">ii</span><span class="toc-t">The Burden</span><span class="toc-g">incidence; who really bears a tax; statutory versus economic</span></a></li>
+      <li><a href="#plate-iii"><span class="toc-n">iii</span><span class="toc-t">The Distortion</span><span class="toc-g">deadweight loss; the excess burden; the cost beyond the revenue</span></a></li>
+      <li><a href="#plate-iv"><span class="toc-n">iv</span><span class="toc-t">The Painless</span><span class="toc-g">the land tax and the Pigouvian tax; the levies without excess burden</span></a></li>
+      <li><a href="#plate-v"><span class="toc-n">v</span><span class="toc-t">The Base</span><span class="toc-g">what to tax; income, consumption, and wealth</span></a></li>
+      <li><a href="#plate-vi"><span class="toc-n">vi</span><span class="toc-t">The Schedule</span><span class="toc-g">progressivity; average and marginal rates; who bears the system</span></a></li>
+      <li><a href="#plate-vii"><span class="toc-n">vii</span><span class="toc-t">The Peak</span><span class="toc-g">the Laffer curve; the revenue-maximizing rate; the optimal top rate</span></a></li>
+      <li><a href="#plate-viii"><span class="toc-n">viii</span><span class="toc-t">The Optimum</span><span class="toc-g">optimal taxation; the equity-efficiency tradeoff; Ramsey and Mirrlees</span></a></li>
+      <li><a href="#plate-ix"><span class="toc-n">ix</span><span class="toc-t">The Escape</span><span class="toc-g">avoidance, evasion, and havens; the race to the bottom</span></a></li>
+      <li><a href="#plate-x"><span class="toc-n">x</span><span class="toc-t">The Ends</span><span class="toc-g">what taxation is for; revenue, redistribution, repricing, representation</span></a></li>
+      <li><a href="#plate-xi"><span class="toc-n">xi</span><span class="toc-t">The Consent</span><span class="toc-g">taxation and the state; representation, legitimacy, the fiscal contract</span></a></li>
+      <li><a href="#plate-xii"><span class="toc-n">xii</span><span class="toc-t">The Commonwealth</span><span class="toc-g">the price of public life; the tax as the substance of the common realm</span></a></li>
+    </ol>
+  </section>
+
+  <main class="plates" id="plates">
+
+    <!-- ===================== PLATE I ===================== -->
+    <section class="plate reveal" id="plate-i" data-label="Plate i · The Levy">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">i</div>
+        <p class="plate-kicker">Plate the First &middot; The Institutions &middot; № XVII</p>
+        <h3 class="plate-title">The Levy</h3>
+        <p class="plate-gloss">what a tax is; the price of civilization; the foundation of the state</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what kind of price is a tax — and what does a society buy with it?</q></div>
+      <div class="plate-body">
+        <p>A tax is a price, but a price of a singular kind. The prices of the earlier volumes were struck in exchange, each party free to walk away; a tax is compelled, levied by the state's authority and backed by its power to punish, and one cannot decline to pay it as one declines to buy. Yet for all its coercion it purchases something real, and something on which all the rest depends. With its revenue the state mounts the defense, keeps the courts, builds the roads, schools the children — and, less visibly but more fundamentally, enforces the very property and contracts that every market in this table presupposes. The market that seems to stand prior to the state in fact rests upon it, and the state rests upon the tax. Oliver Wendell Holmes put it with a judge's economy: taxes are what we pay for civilized society. The tax is the price of the civilization within which all the other prices are struck.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ft1t ft1d">
+              <title id="ft1t">The rise of the tax state</title>
+              <desc id="ft1d">Government revenue as a share of output rising from about a tenth in the nineteenth century to two-fifths today, ratcheting upward at the World Wars.</desc>
+              <line class="ax" x1="60" y1="252" x2="404" y2="252"/>
+              <line class="ax" x1="60" y1="252" x2="60" y2="44"/>
+              <polyline class="curve" fill="none" points="60,212 129,200 161,196 175,156 210,152 232,92 250,116 289,100 358,80 404,78"/>
+              <text class="lbl-i" x="95" y="206">revenue ÷ GDP</text>
+              <text class="lbl-sm" x="177" y="146" text-anchor="middle">WWI</text>
+              <text class="lbl-sm" x="236" y="84" text-anchor="middle">WWII</text>
+              <text class="lbl-sm" x="60" y="267" text-anchor="start">1870</text>
+              <text class="lbl-sm" x="232" y="267" text-anchor="middle">1945</text>
+              <text class="lbl-sm" x="404" y="267" text-anchor="end">2020</text>
+              <text class="lbl-ax" transform="rotate(-90 28 150)" x="28" y="150" text-anchor="middle">% OF GDP</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 1.</span> The rise of the tax state. Government took perhaps a tenth of output in the nineteenth century and takes two-fifths today, and it climbed not smoothly but in ratchets — the World Wars driving the share up and never letting it fully fall, a displacement that the welfare state then carried higher. A state is, before all else, its capacity to tax; the growth of that capacity is among the great facts of modern history, and the precondition of everything the modern state attempts.</figcaption>
+        </figure>
+        <p>For a state is, before all else, its capacity to tax. Joseph Schumpeter wrote of the tax state and its crises, seeing in the fiscal history of a nation the key to its whole development; and the historians of the state have found that the machinery of taxation and the machinery of government grew up together, the one paying for the other, war above all forcing the pace. The figure traces the result: government's claim on output, a tenth or less in the laissez-faire nineteenth century, climbed in the twentieth to two-fifths and beyond, ratcheting upward at each great war and never quite retreating, then carried higher by the welfare state. The modern state is a vast engine for taxing and spending, and its rise is inseparable from the rise of the capacity to levy. Without the tax there is no state; without the state, as <em>The Power</em> argued, there is no enforced property and no reliable contract; and without those, there is no market. The coercive levy is the foundation beneath the voluntary exchange.</p>
+        <aside class="pull">A tax is the one price you cannot decline to pay — and the price of the civilization in which all the other prices are struck.</aside>
+        <p>This dependence sets up the tension that runs through the whole volume. The tax funds the public goods and the legal order that make private wealth possible at all, so that it is less a deduction from some pre-existing private fortune than a contribution to the very conditions of fortune. And yet it is felt, always, as a taking — a burden imposed, a portion seized, an imposition to be minimized or escaped. Both things are true: the tax is the price of civilization, and the tax is a coercion. Which of these a person feels more keenly shapes their whole politics of taxation, and the plates that follow will examine, in turn, who really bears this burden, what it costs beyond the revenue it raises, how it might be made fair, and what, in the end, it is for.</p>
+        <aside class="edge"><span class="lead">the edge</span> There is a question prior to all the economics of taxation, and it is moral rather than technical: by what right does the state take? The libertarian answers, with Robert Nozick, that the taxation of earnings is on a par with forced labor — a seizure of the fruits of one's work, justified, if at all, only for the minimal state that guards rights. The opposing tradition answers that there is no pre-tax entitlement to defend, because the income one would shield was earned within, and made possible by, the legal and social order that taxation sustains — that property is a creature of law, as <em>The Rent</em> and <em>The Power</em> insisted, and that to speak of the state taking one's pre-tax income is to imagine a baseline that never existed. On this view the question is not whether the state may take what is rightfully yours, but how the joint product of a cooperating society shall be divided, of which the tax is merely one term. The volume cannot settle this quarrel, which is finally about the nature of property and desert; but it observes that one's whole sense of taxation — as theft to be minimized or as contribution to be apportioned — turns on which baseline one unconsciously assumes, and that much political disagreement about tax is, at bottom, disagreement about that.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE II ===================== -->
+    <section class="plate reveal" id="plate-ii" data-label="Plate ii · The Burden">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">ii</div>
+        <p class="plate-kicker">Plate the Second &middot; The Institutions &middot; № XVII</p>
+        <h3 class="plate-title">The Burden</h3>
+        <p class="plate-gloss">incidence; who really bears a tax; statutory versus economic</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>the law commands the seller to remit the tax — so why does the buyer end up paying it?</q></div>
+      <div class="plate-body">
+        <p>Here is the volume's central and most counterintuitive truth, the one the gloss demands. The law names a payer — the seller, the employer, the corporation — and the named payer remits the tax to the treasury. But remitting a tax and bearing it are not the same. The burden, once imposed, does not stay where the law puts it; it slides through prices to settle elsewhere, and where it settles the law does not control. Economists mark the difference with two terms: the statutory incidence, which is who must legally pay, and the economic incidence, which is whose real income actually falls — and the two are usually different. The figure shows the mechanism. A tax opens a wedge between the price the buyer pays and the price the seller receives; the buyer pays more than before, the seller keeps less, and the burden divides between them — not as the law dictates, but as the market does.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ft2t ft2d">
+              <title id="ft2t">The incidence of a tax</title>
+              <desc id="ft2d">Supply and demand crossing, with a tax wedge driving the buyer's price up and the seller's price down; the burden splits according to relative elasticity.</desc>
+              <line class="ax" x1="60" y1="252" x2="404" y2="252"/>
+              <line class="ax" x1="60" y1="252" x2="60" y2="44"/>
+              <line class="curve2" x1="70" y1="80" x2="350" y2="232"/>
+              <line class="curve" x1="70" y1="232" x2="350" y2="80"/>
+              <line class="guide" x1="60" y1="129" x2="160" y2="129"/>
+              <line class="guide" x1="60" y1="156" x2="210" y2="156"/>
+              <line class="guide" x1="60" y1="183" x2="160" y2="183"/>
+              <line class="guide" x1="160" y1="252" x2="160" y2="183"/>
+              <line class="guide" x1="210" y1="252" x2="210" y2="156"/>
+              <line x1="160" y1="129" x2="160" y2="183" stroke="var(--ink)" stroke-width="1.8"/>
+              <text class="lbl" x="356" y="234">D</text>
+              <text class="lbl" x="356" y="78">S</text>
+              <text class="lbl" x="54" y="132" text-anchor="end">P_b</text>
+              <text class="lbl" x="54" y="159" text-anchor="end">P₀</text>
+              <text class="lbl" x="54" y="186" text-anchor="end">P_s</text>
+              <text class="lbl" x="160" y="266" text-anchor="middle">Q₁</text>
+              <text class="lbl" x="210" y="266" text-anchor="middle">Q₀</text>
+              <text class="lbl-sm" x="147" y="150" text-anchor="end">tax</text>
+              <text class="lbl-sm" x="168" y="140" text-anchor="start">buyers</text>
+              <text class="lbl-sm" x="168" y="177" text-anchor="start">sellers</text>
+              <text class="lbl-ax" x="356" y="284" text-anchor="middle">QUANTITY</text>
+              <text class="lbl-ax" transform="rotate(-90 28 150)" x="28" y="150" text-anchor="middle">PRICE</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 2.</span> The incidence of a tax. The wedge between the buyer's price and the seller's price is the tax; the buyer bears the rise from the old price up to his, the seller the fall from the old price down to his. How the wedge divides depends not on who remits the tax but on elasticity — on which side can less easily walk away. A tax levied on the seller and a tax of equal size levied on the buyer produce this identical figure: the law's choice of payer changes the paperwork and nothing real.</figcaption>
+        </figure>
+        <p>The deepest result is one of invariance. A tax of a given size produces exactly the same wedge, the same fall in quantity, and the same division of the burden whether the law levies it on the seller or on the buyer; the two cases are indistinguishable in their economic effect. The legal assignment is a formality. A government cannot make the burden lighter for one party by naming the other as payer, for the named payer simply shifts what it can through the price. What, then, determines the split? Elasticity — the power to walk away. The side better able to change its behavior in response to the tax, to buy less or sell less, escapes the more of it, forcing the price to move in its favor; the side that is stuck, that cannot reduce its quantity, absorbs the rest. The burden falls most heavily on the inelastic. Where demand is inelastic — a necessity, an addiction — the buyer bears nearly all of it; where supply is inelastic — land, which cannot flee — the seller bears nearly all, as the next plates will use; and where one factor is mobile and the other captive, the captive one pays.</p>
+        <aside class="pull">Tax the seller or tax the buyer — the law's choice changes the paperwork and nothing else. The burden settles on whoever cannot walk away.</aside>
+        <p>The great real cases follow from this, and each confounds the political rhetoric around it. The payroll tax, levied half on the employer and half on the worker, is in economic truth borne almost wholly by the worker, for labor is the inelastic side, and the employer's nominal half is shifted onto the worker in wages that never rise to pay it — the apparent sharing a fiction, as <em>The Wage</em> would predict. The corporate income tax, the hardest case in all of public finance, is remitted by the company but borne by some contested mixture of its shareholders, its workers, and its customers — and the more mobile capital becomes, fleeing high-tax jurisdictions as <em>The Escape</em> will describe, the more of the burden shifts from shareholders onto the immobile workers left behind, so that a tax meant for the rich may fall in good part on the employed. And a tariff, levied on the foreign exporter and sold to the public as a charge upon foreigners, is paid overwhelmingly at the domestic till, a tax upon one's own consumers wearing the costume of a tax upon strangers. In each case the question the volume poses — who really pays? — has an answer the statute conceals: not the named payer, but whoever cannot escape.</p>
+        <aside class="edge"><span class="lead">the edge</span> The doctrine of incidence is among the most secure in economics and among the least known to the public, and the gap between the two is itself a political fact of consequence. That a tax's burden is independent of who remits it, and settles on the inelastic side, is textbook and nearly uncontested in its logic; yet public debate proceeds almost entirely as though the named payer were the bearer — as though taxing corporations spared workers, or tariffs punished foreigners, or splitting the payroll tax halved its weight. This ignorance is not wholly accidental, for the divergence between statutory and economic incidence is precisely what lets a government tax the many while appearing to tax the few, hiding the true burden behind a convenient legal payer. The hard cases, moreover, are genuinely hard: the incidence of the corporate tax remains contested after a century of study, because it turns on the mobility of capital and the substitutability of factors, quantities that shift with globalization and resist measurement. So incidence is at once the most certain of principles and the most uncertain of applications — certain that the burden moves, uncertain, in the hardest cases, exactly where it comes to rest — and the volume's question, who really pays, admits a confident answer in form and a contested one in detail.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE III ===================== -->
+    <section class="plate reveal" id="plate-iii" data-label="Plate iii · The Distortion">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">iii</div>
+        <p class="plate-kicker">Plate the Third &middot; The Institutions &middot; № XVII</p>
+        <h3 class="plate-title">The Distortion</h3>
+        <p class="plate-gloss">deadweight loss; the excess burden; the cost beyond the revenue</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if a tax merely moves money from the citizen to the state, why is anyone the poorer for it overall?</q></div>
+      <div class="plate-body">
+        <p>A tax looks, at first, like a simple transfer: a sum leaves the citizen and arrives at the treasury, and what one loses the other gains, the books balancing. But the books do not balance, for a tax does more than transfer — it distorts. By raising the price of the taxed activity, or lowering its reward, the tax discourages it; people work a little less, save a little less, trade a little less, buy a little less of the taxed thing. The quantity falls below what it would have been, and with it fall transactions that would have happened — trades in which the buyer valued the good above the seller's cost, mutually beneficial exchanges now not made. The gains those vanished trades would have yielded are lost, and lost to everyone: the citizen did not enjoy them, and the state collected no tax on transactions that never occurred. This is the deadweight loss, the excess burden of taxation — value destroyed in the taking, above and beyond the revenue transferred. It is the deeper cost of <em>The Surplus</em>'s wedge, and it is why a tax leaves a society poorer by more than it enriches the state.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ft3t ft3d">
+              <title id="ft3t">Deadweight loss and the tax rate</title>
+              <desc id="ft3d">A convex rising curve showing the deadweight loss growing with the square of the tax rate — negligible at low rates, steep at high.</desc>
+              <line class="ax" x1="60" y1="252" x2="404" y2="252"/>
+              <line class="ax" x1="60" y1="252" x2="60" y2="44"/>
+              <polyline class="curve" fill="none" points="60,252 124,244 188,222 220,204 252,184 284,159 316,130 348,98 380,62"/>
+              <text class="lbl-i" x="110" y="196">loss ∝ rate²</text>
+              <text class="lbl-sm" x="92" y="240" text-anchor="start">small tax → little loss</text>
+              <text class="lbl-sm" x="300" y="100" text-anchor="end">high tax → loss explodes</text>
+              <text class="lbl-ax" x="356" y="269" text-anchor="middle">TAX RATE →</text>
+              <text class="lbl-ax" transform="rotate(-90 28 150)" x="28" y="150" text-anchor="middle">DEADWEIGHT LOSS</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 3.</span> The square-law of deadweight loss. The loss grows not with the tax rate but with its square, for the triangle of lost trades widens in both base and height as the rate climbs. So the first small tax is nearly free, its loss vanishingly second-order, while a high tax is ruinously dear, the loss mounting far faster than the rate. From this one curve descends the central maxim of tax design: a broad base and a low rate, spreading revenue thinly rather than piling it steeply, for distortion punishes height far more than breadth.</figcaption>
+        </figure>
+        <p>The shape of that loss is the most useful fact in the design of taxes, and the figure draws it. The deadweight loss rises not in proportion to the tax rate but with its square: double the rate and the loss quadruples, treble it and the loss grows ninefold. The reason is geometric — the triangle of destroyed trades widens in both its base, the fall in quantity, and its height, the wedge, so its area swells as the rate squared. Two consequences follow, and they govern all of tax policy. The first is that a small tax is very nearly free: the first sliver of revenue is raised at almost no cost in distortion, the loss being negligible at low rates. The second is that a high tax is very costly: the loss explodes as the rate climbs, so each additional point of rate destroys more than the last. Together they yield the central maxim of tax design — a broad base and a low rate. To raise a given sum, it is far cheaper in lost welfare to tax many things lightly than a few things heavily, since the convex curve punishes height savagely and breadth hardly at all. And because the loss is larger the more freely the taxed party can respond, the maxim has a corollary the next plate will exploit: tax, by preference, the things that cannot flee.</p>
+        <aside class="pull">A tax does not merely move wealth from the citizen to the state; it destroys a little wealth in the moving — and at high rates, not a little but a great deal.</aside>
+        <p>The deadweight loss is thus the price of the revenue, paid not to the state but to no one — the efficiency cost that a tax system imposes in exchange for what it raises and redistributes. To minimize it, for a given revenue and a given fairness, is the whole efficiency problem of taxation, and the later plates on optimal design return to it. But efficiency is not the only end, and the loss must be weighed, not merely minimized; the plate that follows finds the rare taxes that escape it altogether, and the plates beyond weigh it against the fairness that a more distorting tax may buy.</p>
+        <aside class="edge"><span class="lead">the edge</span> The deadweight loss is the economist's central indictment of taxation, and it is both real and easily overstated. It is real: the trades a tax prevents are genuine losses, value no one captures, and the square-law makes the loss from high rates severe enough to bound what any government can sensibly raise. But it is easily overstated, in two ways. First, it is measured against the benchmark of the untaxed market, which the earlier volumes showed to be no paragon — riddled with the monopoly of <em>The Power</em>, the externalities of pollution, the failures a tax might correct rather than cause; against a flawed market, a well-aimed tax may reduce distortion, not add to it, as the next plate's corrective taxes do. Second, the loss counts only efficiency and is silent on equity, so a tax with a large deadweight loss may yet be worth levying if it buys enough fairness — the square-law tells the price of redistribution in efficiency, not whether the price is worth paying. The deadweight loss is the true and important cost of taxation; it is not, by itself, an argument against taxing, only an argument for taxing wisely — broadly, lightly, and where behavior responds least.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE IV ===================== -->
+    <section class="plate reveal" id="plate-iv" data-label="Plate iv · The Painless">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">iv</div>
+        <p class="plate-kicker">Plate the Fourth &middot; The Institutions &middot; № XVII</p>
+        <h3 class="plate-title">The Painless</h3>
+        <p class="plate-gloss">the land tax and the Pigouvian tax; the levies without excess burden</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>is there a tax that takes without distorting — or even a tax that, by taking, heals?</q></div>
+      <div class="plate-body">
+        <p>If most taxes destroy a little value in the taking, two kinds do not, and they are the economists' darlings. The first is the tax on land. <em>The Rent</em> established that land is the fixed factor — its supply cannot grow when the price rises or shrink when a tax is laid on it, for the earth abides — and the figure draws the consequence. A tax on the value of land cannot distort, because distortion works through quantity, and the quantity of land does not move. No trades are destroyed, no activity discouraged, no deadweight triangle opened; the quantity stays exactly where it was, and the only effect of the tax is to transfer rent from the landowner to the state. The entire burden falls on the owner — the incidence result of the second plate, for perfectly inelastic supply means the seller bears all — and the price the user pays for the land is unchanged. Henry George built a movement on this in 1879: since the rent of land is unearned, accruing to owners by the mere fact of holding a scarce site, a tax upon it is both perfectly efficient, distorting nothing, and perfectly just, taking only what was never earned. He proposed a single tax on land to replace all others, and though the single tax was never adopted, the land-value tax remains, from Milton Friedman who called it the least bad tax to the radicals who would expropriate the landlord, the one levy on which economists of every persuasion agree.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ft4t ft4d">
+              <title id="ft4t">A tax on land</title>
+              <desc id="ft4d">A vertical supply curve for land met by a downward demand; a tax lowers the owner's net rent but leaves the quantity and the user's price unchanged, with no deadweight loss.</desc>
+              <line class="ax" x1="60" y1="252" x2="404" y2="252"/>
+              <line class="ax" x1="60" y1="252" x2="60" y2="44"/>
+              <line class="curve" x1="220" y1="252" x2="220" y2="60"/>
+              <line class="curve2" x1="80" y1="90" x2="360" y2="230"/>
+              <line class="guide" x1="60" y1="160" x2="220" y2="160"/>
+              <line class="guide" x1="60" y1="200" x2="220" y2="200"/>
+              <line x1="232" y1="160" x2="232" y2="200" stroke="var(--soft)" stroke-width="1.1"/>
+              <path d="M232,160 l-4,9 l8,0 z" fill="var(--soft)"/>
+              <path d="M232,200 l-4,-9 l8,0 z" fill="var(--soft)"/>
+              <text class="lbl" x="224" y="74" text-anchor="start">S — land (fixed)</text>
+              <text class="lbl" x="366" y="232">D</text>
+              <text class="lbl" x="54" y="163" text-anchor="end">P₀</text>
+              <text class="lbl" x="54" y="203" text-anchor="end">owner</text>
+              <text class="lbl-sm" x="238" y="183" text-anchor="start">tax</text>
+              <text class="lbl-i" x="330" y="120" text-anchor="middle">no deadweight loss</text>
+              <text class="lbl" x="220" y="266" text-anchor="middle">Q*</text>
+              <text class="lbl-ax" x="356" y="284" text-anchor="middle">QUANTITY OF LAND</text>
+              <text class="lbl-ax" transform="rotate(-90 28 150)" x="28" y="150" text-anchor="middle">RENT</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 4.</span> The tax on land. Because supply is vertical — the earth cannot multiply or withdraw — the tax cannot shift the quantity, and so destroys no trades and opens no deadweight triangle. The user's price holds at the old level; only the owner's net rent falls, by the full amount of the tax. The whole burden rests on the landowner, which is exactly why the tax is just: the rent it takes was never earned. Efficient and fair at once, it is the closest thing economics knows to a perfect tax.</figcaption>
+        </figure>
+        <p>The second painless tax does more than avoid harm — it heals. <em>The Power</em> described the externality, the cost a producer imposes on others and ignores in his own reckoning: the pollution, the carbon, the congestion that the market overproduces because no one pays for the damage. Arthur Pigou saw that a tax set equal to that external damage would make the producer feel the true social cost of his activity, and so shrink it from its bloated market level to the level that is genuinely efficient. Such a tax does not create a distortion; it cancels one. Its deadweight loss is negative — it improves welfare by curbing a harm that was being overdone — and it yields what economists call a double dividend, raising revenue and bettering the world in a single stroke. The carbon tax is its great modern instance, the textbook remedy for the gravest externality of the age, pricing each ton of emissions at the harm it does; the congestion charge, the tobacco duty, the levy on pollution are its lesser kin. Where the land tax takes a surplus that will not shrink, the Pigouvian tax shrinks a harm that should — the one painless, the other curative, and both falling, like every efficient tax, on something that does not or ought not respond.</p>
+        <aside class="pull">The land tax takes a surplus that will not shrink; the carbon tax shrinks a harm that should. The one is painless, the other heals — and governments lean on neither.</aside>
+        <p>Here lies a puzzle the volume cannot pass over: that the taxes economists most admire are the taxes governments least use. Income, payroll, and sales taxes — distorting, all of them — carry the public revenue, while the land tax stays a curiosity and the carbon tax a thin and embattled thing. The reason is not economic but political, and the plates ahead on the politics of taxation will return to it. For now it is enough to mark the irony: that the perfect taxes, efficient and often just, are the ones the world has found it hardest to levy.</p>
+        <aside class="edge"><span class="lead">the edge</span> The painless taxes are the economists' consensus and the politicians' orphans, and the gap is instructive. On the merits the case is about as strong as economics offers: the land tax is efficient and just at once, falling on an unearned surplus that cannot flee; the carbon tax corrects the gravest externality of the age while raising revenue. Yet land taxes stay rare and carbon taxes thin, for reasons not economic but political, and double. The first is power, in the sense of <em>The Power</em>: landowners and fossil-fuel interests are concentrated, wealthy, and organized, while the gains from these taxes are diffuse and future, so the contest of pressure runs against the efficient tax. The second is visibility, in the sense of the second plate: the painless taxes are painfully visible, their incidence falling plainly and wholly on identifiable losers — the landowner, the driver, the heating bill — where the taxes governments prefer hide their incidence behind a corporate or embedded payer. The taxes economists love are transparent and concentrated; the taxes governments levy are opaque and diffuse; and a democracy, it seems, will often bear a larger hidden burden sooner than a smaller visible one. The painless tax is painless in efficiency and painful in politics, and the second pain has so far prevailed.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE V ===================== -->
+    <section class="plate reveal" id="plate-v" data-label="Plate v · The Base">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">v</div>
+        <p class="plate-kicker">Plate the Fifth &middot; The Institutions &middot; № XVII</p>
+        <h3 class="plate-title">The Base</h3>
+        <p class="plate-gloss">what to tax; income, consumption, and wealth</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>of all the things a state might tax — what you earn, what you spend, what you own — which should it choose, and why?</q></div>
+      <div class="plate-body">
+        <p>Before a state sets a rate it must choose a base — the thing the rate is laid upon — and the choice is among three great candidates, each a different slice of economic life. It may tax income, what a person earns; consumption, what a person spends; or wealth, what a person owns. The choice looks technical and is in fact a choice among rival theories of what one owes, for each base measures the obligation differently, and each carries its own incidence, its own distortion, and its own idea of fairness. The income tax is the modern workhorse, taxing the yearly flow of earnings from labor and capital alike, and its appeal is that income is a broad measure of the ability to pay and is readily made progressive. But it carries a hidden bias against thrift: a man taxed on his wages and then taxed again on the interest his saved wages earn is taxed twice for the act of saving, once on the seed and once on the harvest, and the double burden discourages the saving on which tomorrow's capital depends.</p>
+        <p>The consumption tax answers that bias. By taxing only what is spent — through a sales tax or value-added tax, or an expenditure tax that exempts what is saved — it leaves saving untouched until the day it is consumed, and so removes the distortion of the save-or-spend choice that the income tax introduces. A strand of the optimal-tax literature, descending from the theorem of Atkinson and Stiglitz, presses the point to a startling conclusion: that under certain conditions capital income ought not be taxed at all, only labor income or consumption, since taxing the return to saving distorts without redistributing better than a direct tax on earnings could. Yet the consumption tax has a vice that mirrors its virtue. It is regressive, for the poor spend nearly all they earn while the rich save much, so a flat tax on spending takes a larger share of a small income than of a great one — sparing precisely the wealth the income tax would reach. The base that is kindest to efficiency is harshest to equity, and the base that is fairest to the saver is unfairest to the poor.</p>
+        <aside class="pull">Tax what a man earns, and you tax his saving twice; tax what he spends, and you spare the rich who save; tax what he owns, and watch it take wing. There is no faultless base.</aside>
+        <p>The third base, wealth, taxes not the flow but the stock — the net worth a person holds, levied year upon year. Its champion in our time is Thomas Piketty, who argued that wealth, left alone, concentrates without limit as its return outpaces the growth of the economy, and who proposed a tax upon the stock of it as the remedy. A wealth tax aims directly at the concentration the other bases reach only obliquely; it captures the fortunes that escape the income tax through unrealized gains and dynastic holding; and it is steeply progressive, for only the very rich hold much net worth. But it has proven the hardest base of all to make stick. Wealth must be valued every year, and much of it — private firms, art, land — resists valuation; wealth and the wealthy are mobile, and flee the jurisdictions that tax them; and a tax on holdings can force the sale of the very assets that bear it. The record is sobering: most of the European wealth taxes were repealed, having raised little and driven out much, leaving the wealth tax more a live proposal than a working institution. Each base, in the end, is imperfect — income distorts saving, consumption burdens the poor, wealth takes flight — and so every real tax system is a mixture of all three, a compromise among efficiency, fairness, and the merely possible, and the proportions of the mixture are themselves a contested verdict.</p>
+        <aside class="edge"><span class="lead">the edge</span> The choice among bases looks like a technical question and is in truth a moral one in technical dress, for each base quietly encodes a different answer to what a person owes. To tax income is to say that what you draw from the economy each year, by labor or by capital, measures your obligation — fair on its face, yet penalizing the saver taxed first on the earning and again on its fruits. To tax consumption is to say that what you take out of the common pool for your own enjoyment, not what you contribute or set by, is the right measure — efficient, sparing the saving that builds the future, but tender toward the rich, who consume a smaller share of vast incomes and so escape the more. To tax wealth is to say that accumulated holdings are themselves a fit object, a stock of power and security to be shared — the most redistributive base and the most fugitive, fleeing valuation and jurisdiction alike. Economics can price each choice in efficiency and trace each one's incidence; it cannot say which theory of obligation is correct, for that is a question about desert and community beyond its competence. The endless real-world compromise — a little of each, none pure — is less a failure of nerve than an honest admission that no single measure of what we owe commands assent, and that a tax system, like the society it funds, must be built from incompatible intuitions about fairness that none of us can fully reconcile.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE VI ===================== -->
+    <section class="plate reveal" id="plate-vi" data-label="Plate vi · The Schedule">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">vi</div>
+        <p class="plate-kicker">Plate the Sixth &middot; The Institutions &middot; № XVII</p>
+        <h3 class="plate-title">The Schedule</h3>
+        <p class="plate-gloss">progressivity; average and marginal rates; who bears the system</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>granted that the rich should pay more — how much more, and is paying more the same as paying a higher rate?</q></div>
+      <div class="plate-body">
+        <p>With a base chosen, the schedule sets the rates, and its central question is progressivity — how the rate varies as the base grows. A tax is progressive if its rate rises with income, so that the rich pay a larger fraction; proportional, or flat, if the rate holds constant; regressive if the rate falls, so that the poor pay the larger share. But to speak of the rate is already to invite a confusion that muddies all debate, for there are two rates, and they differ. The figure draws both. The marginal rate is the rate on the next dollar earned — the rate of one's top bracket — and under a bracketed system it rises in steps, each higher slice of income taxed more steeply than the last. The average rate is the total tax divided by the total income — the fraction of all one earns that goes to the state — and it lies always below the marginal rate, pulled down by the lower-taxed brackets beneath, rising more gently toward the top rate it never quite reaches.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ft5t ft5d">
+              <title id="ft5t">Marginal and average tax rates</title>
+              <desc id="ft5d">A rising staircase of marginal rates and, below it, a smoothly rising curve of average rates, both increasing with income.</desc>
+              <line class="ax" x1="60" y1="252" x2="404" y2="252"/>
+              <line class="ax" x1="60" y1="252" x2="60" y2="44"/>
+              <polyline class="curve" fill="none" points="60,230 120,230 120,195 200,195 200,150 290,150 290,110 380,110"/>
+              <polyline class="curve2" fill="none" points="60,250 120,234 200,198 290,168 380,142"/>
+              <text class="lbl" x="335" y="102" text-anchor="middle">marginal</text>
+              <text class="lbl" x="258" y="192" text-anchor="start">average</text>
+              <text class="lbl-ax" x="356" y="269" text-anchor="middle">INCOME →</text>
+              <text class="lbl-ax" transform="rotate(-90 28 150)" x="28" y="150" text-anchor="middle">TAX RATE</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 5.</span> The two rates. The marginal rate climbs in a staircase, each bracket steeper than the last; the average rate trails below it, rising smoothly as the higher brackets come to weigh more in the whole. Progressivity is a fact about the average rate — that the rich pay a larger share — not the marginal. The marginal rate governs the incentive to earn the next dollar, and so the distortion of the next plate; the average rate governs the burden, and so the fairness. To confuse them, as public debate perpetually does, is to mistake the disincentive for the burden.</figcaption>
+        </figure>
+        <p>The distinction is not pedantic; it is the source of most error about tax. Progressivity is a property of the average rate — a system is progressive when the share of income paid rises with income — and a tax can be progressive even with a single flat marginal rate, provided it exempts a first slice of income, since the untaxed allowance makes the average rate climb. The two rates do different work: the marginal rate governs the incentive to earn the next dollar, and so the distortion the next plate measures; the average rate governs how much of one's income is taken, and so the fairness. From confusing them springs the stubborn myth that a raise into a higher bracket can leave one poorer — it cannot, for the higher rate falls only on the dollars within the higher bracket, never on all. And the confusion is convenient: high marginal rates make a system look more progressive than its average rates deliver, while the dread of the brackets makes voters resist rates that would never touch them. Behind the arithmetic stand the two principles of equity that progressivity is meant to serve — vertical equity, that those who can pay more should, which a dollar's diminishing worth to the rich seems to support, though the comparison of one person's sacrifice to another's rests on judgments economics cannot make; and horizontal equity, that those equally able should pay equally, which the loopholes and the favoring of some incomes over others perpetually betray.</p>
+        <aside class="pull">Progressivity is a question economics can frame and cannot answer. How much more the rich should pay than the poor is a verdict on fairness — and economics has no fairness in it.</aside>
+        <p>And here the volume's own question returns, enlarged. The progressivity of the income tax is not the progressivity of the system, for a tax system is many taxes, and the others pull against the income tax's slope. The payroll tax is capped, and so bears most heavily below the cap; the consumption taxes are regressive, as the last plate showed; the favored low rates on capital gains spare the income of the rich. Fold them all together, and the effective burden across the income distribution is far flatter than the headline rates suggest — in many countries only mildly progressive, roughly proportional through the broad middle — and at the very summit it may even invert, the billionaire whose income is capital gains and whose affairs are arranged by the devices of the ninth plate paying a smaller share than the wage-earner beneath him. This is the incidence of the second plate written across the whole society: the statutory schedule performs a progressivity the system does not deliver, and the question of who really bears the tax burden is answered, once again, not by the rates the law proclaims but by who can route income through the lower-taxed and the unseen.</p>
+        <aside class="edge"><span class="lead">the edge</span> Progressivity confounds the public and the policy debate alike, in ways that serve those who grasp it. The confusion of marginal with average rates is endemic — the belief that a raise can leave one worse off, or that the top marginal rate is the rate the rich actually pay — and it is seldom corrected, because it cuts in convenient directions: the high marginal rates make a system look more progressive than its average rates achieve, while the fear of the brackets makes voters resist rates that would never apply to them. Beneath this lies a deeper confusion: that the headline progressivity of the income tax is the progressivity of the system, when the system folds in the regressive payroll and consumption taxes and the favored treatment of capital, so that the effective burden is far flatter than the statutory rates pretend, and at the very top may invert. Whether that inversion is an outrage or merely arithmetic depends on a judgment economics cannot supply; what economics can say is only that the divergence between apparent and real incidence is the same divergence the second plate exposed, now drawn across the whole distribution — and that how progressive a system ought to be is, finally, not a question it can answer, for there is no fairness in its equations, only the efficiency cost of whatever fairness a society resolves to buy.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE VII ===================== -->
+    <section class="plate reveal" id="plate-vii" data-label="Plate vii · The Peak">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">vii</div>
+        <p class="plate-kicker">Plate the Seventh &middot; The Institutions &middot; № XVII</p>
+        <h3 class="plate-title">The Peak</h3>
+        <p class="plate-gloss">the Laffer curve; the revenue-maximizing rate; the optimal top rate</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if a higher rate takes a larger slice, can it ever yield a smaller sum?</q></div>
+      <div class="plate-body">
+        <p>It can, and the proof lies at the two ends of the rate. A tax rate of zero plainly raises nothing. But a rate of one hundred percent raises nothing either, for if the state takes all, no one will trouble to earn what it would take, and the base on which the rate is laid simply vanishes. Revenue is zero at both extremes, and positive between them — so as the rate climbs from zero, revenue must first rise, reach a peak, and then fall back to nothing, tracing the inverted arch the figure draws. Beyond the peak lies a prohibitive range in which raising the rate lowers the yield, the higher rate shrinking the taxed activity by more than it gathers. Arthur Laffer made the curve famous on a napkin in the 1970s, though the insight is ancient, glimpsed by Ibn Khaldun six centuries before; and its logic, at the endpoints, no economist disputes.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ft6t ft6d">
+              <title id="ft6t">The Laffer curve</title>
+              <desc id="ft6d">Revenue as an inverted-U function of the tax rate, zero at both zero and one hundred percent, peaking at an intermediate revenue-maximizing rate.</desc>
+              <line class="ax" x1="60" y1="252" x2="404" y2="252"/>
+              <line class="ax" x1="60" y1="252" x2="60" y2="44"/>
+              <line class="guide" x1="266" y1="80" x2="266" y2="252"/>
+              <polyline class="curve" fill="none" points="60,252 110,180 160,128 210,98 266,80 320,108 366,165 404,252"/>
+              <text class="lbl-i" x="266" y="72" text-anchor="middle">revenue</text>
+              <text class="lbl-sm" x="140" y="212" text-anchor="middle">more rate → more revenue</text>
+              <text class="lbl-sm" x="348" y="212" text-anchor="middle">more rate → less revenue</text>
+              <text class="lbl" x="266" y="266" text-anchor="middle">t*</text>
+              <text class="lbl-ax" x="356" y="284" text-anchor="middle">TAX RATE</text>
+              <text class="lbl-ax" transform="rotate(-90 28 150)" x="28" y="150" text-anchor="middle">REVENUE</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 6.</span> The Laffer curve. Revenue climbs the rising slope, where each point of rate gathers more than it loses, to a peak at the revenue-maximizing rate t*, and then descends the prohibitive slope, where each point of rate costs more base than it earns. That the curve bends is certain, forced by its two zeros; where it bends is the entire question. And the location of t* is no constant of nature: it depends on how readily the taxed can escape, and so on how many avenues of escape the tax code leaves open.</figcaption>
+        </figure>
+        <p>What is disputed, and fiercely, is where the peak lies — for the shape of the curve is certain while its summit is not, and everything turns on the summit. The supply-side movement that seized on Laffer's napkin leapt from the certainty that a peak exists to the assertion that prevailing rates lay beyond it, so that cutting taxes would raise revenue and a tax cut would pay for itself. For ordinary rates this was simply false: most rates sit on the rising slope, where cuts lose revenue and rises gain it, and the great tax cuts sold on the promise of self-financing lost the revenue they were said to recover. Only for the top rate, levied on the most mobile and elastic taxpayers, does the peak come within reach. And here the modern estimates are striking: Peter Diamond and Emmanuel Saez, reckoning with the behavioral response, placed the revenue-maximizing top marginal rate near seventy percent, well above the top rates most rich countries impose — implying that top rates could rise considerably before the peak is passed. The position of t* hangs on the elasticity of taxable income, the rate at which the taxed base shrinks as the rate climbs; and that elasticity is partly real response and partly the avoidance and evasion of the next plate.</p>
+        <aside class="pull">That the curve bends is certain — a hundred-percent tax raises nothing, for it leaves nothing to tax. Where it bends is the whole question, and the answer depends on how easily the taxed can flee.</aside>
+        <p>This is the plate's deepest point, and it inverts the supply-side moral. The elasticity that fixes the peak is not given by nature; it is made by the tax code. Every loophole and every lax enforcement raises the elasticity, letting the taxed shrink their declared base by shifting income to favored forms, deferring it, or hiding it — and a higher elasticity pulls the peak down, so that the rich seem to hit the Laffer limit at a lower rate. Close the loopholes, broaden the base, tighten enforcement, and the elasticity falls, the peak rises, and the rich can be taxed more without loss of revenue. So the route to taxing the rich more heavily is not to surrender at an imagined Laffer ceiling but to lift the ceiling, by shutting the avenues of escape. And the elasticity that governs the peak is the same power to flee that governed incidence in the second plate: the more easily the taxed escape, the lower the rate that can be collected from them, and the more the burden shifts to those who cannot — the Laffer curve and the question of who really pays being two views of one elasticity.</p>
+        <aside class="edge"><span class="lead">the edge</span> The Laffer curve is at once an indisputable truth and the most abused proposition in fiscal politics, and the abuse trades on the truth. Indisputable: a rate of zero raises nothing, a rate of one hundred percent raises nothing once the base it would tax has fled, and so somewhere between lies a peak beyond which more rate means less revenue. The abuse lies in the leap from shape to location — from the certainty that a peak exists to the claim that current rates lie beyond it, so that cuts pay for themselves. For ordinary rates this is false, and the great cuts sold on the promise lost the revenue they were said to recover; most rates sit on the rising slope. Only for the top rate on the most mobile taxpayers does the peak draw near, and even there its place is contested, because the elasticity that fixes it is no constant but a creature of the code — inflated by every loophole, deflated by every base-broadening. The deep lesson is thus the reverse of the supply-side moral: the way to tax the rich more is not to despair at the Laffer limit but to move it, by closing the routes of avoidance the next plate describes, so that the elasticity falls, the peak rises, and the rich can be made, after all, to pay.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE VIII ===================== -->
+    <section class="plate reveal" id="plate-viii" data-label="Plate viii · The Optimum">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">viii</div>
+        <p class="plate-kicker">Plate the Eighth &middot; The Institutions &middot; № XVII</p>
+        <h3 class="plate-title">The Optimum</h3>
+        <p class="plate-gloss">optimal taxation; the equity-efficiency tradeoff; Ramsey and Mirrlees</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if every tax distorts and every rate has its limit, what does the best possible tax system look like?</q></div>
+      <div class="plate-body">
+        <p>The plates so far have laid out a set of tensions — between revenue and distortion, between efficiency and equity, between the rate that raises most and the rate that is fairest — and the formal study of how best to resolve them is the theory of optimal taxation. Its founding problem was Frank Ramsey's, posed in 1927: if a government must raise a fixed sum through taxes on goods, and cannot redistribute by other means, how should it set the rates to lose the least welfare? His answer, the inverse-elasticity rule, follows from the square-law of the third plate — tax goods in inverse proportion to their elasticity, laying the heaviest rates on the most inelastic goods, because those distort the least. The Ramsey rule is the pure prescription of efficiency, and it has an uncomfortable corollary: since the most inelastic goods are often necessities, it counsels taxing necessities most heavily, which is steeply regressive. Ramsey had assumed identical consumers and so could ignore equity; once unequal consumers are admitted, the rule must be tempered, the case for taxing a necessity lightly on grounds of fairness pulling against the case for taxing it heavily on grounds of efficiency. The inverse-elasticity rule is thus the efficiency benchmark from which equity forces a departure.</p>
+        <p>The deeper problem was James Mirrlees's, and it won him the Nobel. A government wishes to redistribute from the more able to the less, but it cannot see ability — it sees only income, and income is the joint product of ability and effort. If it taxes income to redistribute, it discourages effort, and worse, it tempts the able to earn less and pass for unable. The optimal income tax must therefore be incentive-compatible, redistributing as much as possible without making the able prefer to mimic the unable — an information problem of the kind <em>The Asymmetry</em> anatomizes, the hidden type defeating the planner's wish. Mirrlees's findings surprised even their author. The optimal schedule is not simply as progressive as can be; under his assumptions the marginal rate on the very highest earner should fall to zero, since taxing the last dollar of the topmost taxpayer distorts that taxpayer's effort while raising revenue from no one above — a fragile and much-qualified result, but a warning against the naive identification of optimal with maximal. The robust lesson is that the best schedule balances, at every income, the redistributive gain of a higher rate against the effort it deters, and its shape depends on the spread of ability and the elasticity of work — the same elasticity that fixed the Laffer peak.</p>
+        <p>From this theory, and from the practical reviews that have distilled it, a handful of design principles emerge that command wide assent. Tax broadly and lightly, for the square-law punishes high rates and narrow bases. Tax neutrally, treating like activities alike, lest the code distort choices and breed the loopholes that horizontal equity and efficiency both abhor. Tax inelastic bases by preference — the land of the fourth plate above all. And separate the instruments of efficiency from those of equity: raise revenue with the least distorting taxes and achieve redistribution through the rate schedule and the transfer system, rather than bending every tax toward fairness and so distorting all of them — a broad consumption tax paired with a progressive income tax and generous transfers, for instance, rather than a consumption tax riddled with exemptions meant to spare the poor. These principles are the hard-won consensus of the field, and they are genuinely useful. But they presuppose the very thing they cannot supply.</p>
+        <aside class="pull">Optimal-tax theory can tell you the price of fairness in efficiency, to the decimal. It cannot tell you whether to pay it. That choice it hands back, every time, to politics.</aside>
+        <p>For every optimal-tax result is optimal only relative to an objective — a social welfare function specifying how much a society values a dollar in the hands of the poor against a dollar in the hands of the rich — and that objective the theory takes as given, because it cannot be derived. Tell the theory how much you care for the poor, and it will compute the best tax system to the decimal; it will not tell you how much to care. So the rigor, real as it is, is conditional all the way down, and the central question of the whole volume — how much equity to buy at what price in efficiency, and whose claims to favor — falls outside the equations, into the domain of judgment and value. The optimum is a theorem about means; the end it serves is a verdict. Economics can price the tradeoff between fairness and efficiency with great exactness and still must hand the weighing back, every time, to the political community that alone can perform it.</p>
+        <aside class="edge"><span class="lead">the edge</span> Optimal tax theory is a triumph of rigor that arrives, by an honest road, at the threshold of a question it cannot cross. It formalizes the tradeoff between equity and efficiency with great precision — Ramsey deriving how to tax goods at least cost, Mirrlees how to redistribute through income without destroying the will to earn, their heirs mapping the optimal top rate to the elasticity and the shape of the distribution — and so it disciplines the debate, ruling out the careless claims of both sides: that redistribution is free, and that it is ruinous. But the theory's deepest honesty lies in what it declines to decide. Each result is optimal only with respect to a social welfare function it does not derive, because that function rests on a judgment about fairness and desert that no equation contains. The optimum is therefore conditional to its core: name your concern for the poor, and the theory yields the best system; it will not name the concern. The rigor is real and the humility is real, and together they mark the boundary of the subject — that economics can illuminate every consequence of a tax and price every tradeoff it entails, and still must surrender the final weighing, of equity against efficiency and of one citizen's claim against another's, to the political community that alone can make it.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE IX ===================== -->
+    <section class="plate reveal" id="plate-ix" data-label="Plate ix · The Escape">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">ix</div>
+        <p class="plate-kicker">Plate the Ninth &middot; The Institutions &middot; № XVII</p>
+        <h3 class="plate-title">The Escape</h3>
+        <p class="plate-gloss">avoidance, evasion, and havens; the race to the bottom</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>the law sets the rate — but what if the taxed simply leave, or hide, or melt into the shadows?</q></div>
+      <div class="plate-body">
+        <p>The law sets a rate, but to collect it is another matter, for the taxed do not stand still to be taxed. They escape, by three roads. The first is avoidance, legal and respectable: the arranging of one's affairs to pay the least the law allows — taking every deduction, deferring every realization, recasting ordinary income as lightly taxed capital gains, routing earnings through the right entity in the right place. The second is evasion, illegal and common: the hiding of income, the underreporting, the cash unrecorded, the labor off the books, all the activity that swells the shadow economy and the tax gap between what is owed and what is paid. Denis Healey is said to have remarked that the difference between avoidance and evasion is the thickness of a prison wall; in their economic effect, and in who practices them, the two shade into one. For both are the province of the advised — of those who can afford the accountants and the lawyers, or who deal in the cash the state cannot see — and so the escape is regressive at its root, shifting the burden from those equipped to flee it onto those who are not.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ft7t ft7d">
+              <title id="ft7t">The decline of top tax rates</title>
+              <desc id="ft7d">Top marginal income and top corporate tax rates both falling across the decades from 1960 to 2020.</desc>
+              <line class="ax" x1="60" y1="252" x2="404" y2="252"/>
+              <line class="ax" x1="60" y1="252" x2="60" y2="44"/>
+              <polyline class="curve" fill="none" points="60,70 117,112 175,112 221,196 289,172 404,178"/>
+              <polyline class="curve2" fill="none" points="60,148 175,160 289,182 404,210"/>
+              <text class="lbl" x="105" y="88" text-anchor="start">income</text>
+              <text class="lbl" x="105" y="140" text-anchor="start">corporate</text>
+              <text class="lbl-i" x="260" y="232" text-anchor="middle">the race to the bottom</text>
+              <text class="lbl-sm" x="60" y="267" text-anchor="start">1960</text>
+              <text class="lbl-sm" x="232" y="267" text-anchor="middle">1990</text>
+              <text class="lbl-sm" x="404" y="267" text-anchor="end">2020</text>
+              <text class="lbl-ax" transform="rotate(-90 28 150)" x="28" y="150" text-anchor="middle">TOP RATE %</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 7.</span> The race to the bottom. The top marginal income rate, near ninety percent at mid-century, and the top corporate rate, above half, have fallen across the decades to a fraction of their old heights. No one decided that capital should pay less; each state cut its rates for fear of being undercut by the next, and the rates on the most mobile bases fell by the logic of competition. The burden did not vanish — it migrated, from the mobile that could threaten to leave to the immobile that could not.</figcaption>
+        </figure>
+        <p>The grandest escape is across borders, and it belongs to capital and to the rich who own it, for they are mobile as labor and land are not. Multinational firms book their profits where the rate is lowest, shifting them by the alchemy of transfer pricing and the licensing of intellectual property and the placement of debt, so that profit earned in a high-tax country is taxed in a haven that the real activity never touched; a large share of all multinational profit is lodged in such havens, and the revenue lost to the countries where the value was made runs to hundreds of billions. The wealthy do likewise with their fortunes, hiding wealth offshore beyond the sight of the tax authorities — Gabriel Zucman reckons a tenth of the world's household wealth sits in havens, much of it undeclared. And because capital can threaten to leave, states compete to keep it, each cutting its taxes on the mobile bases to lure or hold investment. The figure traces the result: across the decades the top rates on income and on corporate profit have tumbled, not because any electorate resolved that capital should pay less, but because each state feared to be undercut by the next — a race to the bottom that is a collective-action failure of exactly the kind <em>The Power</em> described, every state cutting in its own interest and all ending poorer in revenue from the things that can move.</p>
+        <aside class="pull">Capital is a tourist; labor is a resident. The tourist shops for the lowest rate, and the resident is left to pay the bill.</aside>
+        <p>The deep consequence is a slow inversion of the burden, and it is the volume's question answered at the largest scale. The factors that can cross borders or change form — capital, corporate profit, the wealth of the very rich — face, in effect, a rate they choose, shopping among jurisdictions and instruments for the lowest; the factors rooted in place — labor, land, the domestic consumer, the salaried professional whose income is reported to the state before she sees a penny of it — face the rate the law sets, with no recourse. So the burden migrates from the mobile to the immobile by default, not by any decision but by the working of the escape, and the incidence of the second plate is written across the world economy: the tourist shops, and the resident pays. The only remedy is coordination — the destinations agreeing not to receive the fugitive untaxed — and the first serious attempt is the global minimum tax on corporate profit that some hundred and forty countries agreed in 2021, a floor of fifteen percent beneath which profit-shifting can no longer sink, the home country topping up what the haven forgoes. Whether it will hold, against holdouts and erosion and the lowness of the floor, is unsettled; but the principle it embodies is the only one the escape admits, that a tax on the mobile can be collected only where the places they might flee to agree not to take them in.</p>
+        <aside class="edge"><span class="lead">the edge</span> The escape exposes the deepest asymmetry in modern taxation — that mobility is the master variable, distributed with brutal unevenness. Those who can move or change form face a rate they largely choose; those rooted in place face the rate the law imposes. The result is the inversion the figure traces: the taxes on the mobile have fallen and fallen, not by anyone's judgment that capital should pay less but by each state's fear of being undercut, and the burden has slid onto the immobile by default. The remedy is coordination, and coordination is hard, asking each state to forgo the advantage of undercutting its neighbors — the collective-action problem of <em>The Power</em>, soluble only by agreements difficult to reach and easy to defect from. The global minimum tax is the first real attempt, and its fate is unsettled; but its principle is the only answer the escape admits — that in a world where capital is a tourist and labor a resident, only a treaty among the destinations can keep the tourist paying his share. Until such treaties hold, the question of who really pays has a blunt answer: whoever cannot board the plane.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE X ===================== -->
+    <section class="plate reveal" id="plate-x" data-label="Plate x · The Ends">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">x</div>
+        <p class="plate-kicker">Plate the Tenth &middot; The Institutions &middot; № XVII</p>
+        <h3 class="plate-title">The Ends</h3>
+        <p class="plate-gloss">what taxation is for; revenue, redistribution, repricing, representation</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>set aside how a tax works and ask what it is for — and why the answer is not one thing but four?</q></div>
+      <div class="plate-body">
+        <p>The plates so far have asked how a tax works — who bears it, what it costs, how to design it, how it is escaped. Set all that aside and ask instead what a tax is for, and the answer proves to be not one purpose but four, often gathered under four words that begin with the same letter. The first is revenue: the obvious purpose, the funding of the state and all it does. Most taxes exist chiefly for this, and a tax that raised nothing would seem, on this view, to have failed. The second is redistribution: the shifting of resources from the rich toward the poor, through progressive rates and the transfers that taxes fund, by which the modern state softens the inequality of market incomes that <em>The Share</em> measured. The third is repricing: the correction of the externalities of <em>The Power</em>, taxing the harmful — the carbon, the pollution, the tobacco — to make its price tell the truth about its cost, a purpose served, as the fourth plate showed, even when the tax raises little, for it succeeds by shrinking the harm. To these three is added a fourth function, less obvious and more profound.</p>
+        <p>The fourth is representation, and it is the oldest bond between the tax and the state. For taxation did not merely fund the state; it made the state answerable. The need to tax, above all to pay for war, forced rulers to bargain with the taxed, and out of that bargaining grew the assemblies and parliaments that granted the revenue and, in granting it, claimed a voice — no taxation without representation, the demand that made the tax the seed of representative government. The relation runs deep and runs both ways: a state funded by the taxes of its citizens is accountable to them, while a state funded otherwise — by the oil beneath its sand, or the aid of foreign powers — need not answer to a people it does not depend on, which is why the resource-rich are so often the liberty-poor. Taxation is, in this light, constitutive of citizenship itself, the fiscal thread that ties the ruled to the rulers, and the next plate takes up the bond at length. To these four ends two more may be joined: the management of the cycle, taxes rising and falling with the economy to steady demand, which <em>The Cycle</em> will pursue; and the function <em>The Money</em> disclosed, that the state's demand for taxes paid in its own money is what gives that money its worth, so that taxation does not merely spend the currency but creates the very demand that sustains it.</p>
+        <aside class="pull">A tax can fund the state, level the rich, price the harm, and bind the ruler to the ruled — but seldom all at once, and never without choosing which to serve.</aside>
+        <p>The purposes are distinct, and they conflict. A tax good for revenue, broad and laid on inelastic bases, is apt to be regressive and so poor for redistribution; a tax good for repricing, falling on carbon, burdens the poor who spend the most on fuel and raises least when it works best; a tax good for redistribution, steep upon the rich, courts the escape of the ninth plate and the distortion of the third. No single tax serves all four ends, and so a tax system is a portfolio of compromises, each tax leaning toward one purpose and judged, properly, against that one. Much of the confusion in tax debate comes precisely from forgetting this — from judging a tax by a purpose it was never meant to serve. The deep point is that taxation is a single instrument bent to several incompatible ends, and what any tax is for, and which ends a society shall pursue and how it shall weigh them, is not a fact economics can supply but a verdict a political community must reach — the same verdict, on the claims of the collective against the individual and of one citizen against another, that has shadowed every plate of this volume.</p>
+        <aside class="edge"><span class="lead">the edge</span> The four purposes of taxation are routinely confused, and the confusion is not innocent, for conflating them lets each side of a debate judge a tax by the purpose on which it shows worst. A carbon tax meant to reprice a harm is attacked for its regressive incidence, as though redistribution were its aim; a wealth tax meant to redistribute is attacked for raising little, as though revenue were its point; a broad consumption tax meant for revenue is attacked for sparing the rich, as though equity were its function. Each attack borrows its standard from a purpose the tax was not built to serve. The honest practice is to ask first what a tax is for, then judge it against that end while accounting for its costs on the others — granting that a corrective tax may be regressive and pairing it with a rebate, that a redistributive tax may raise little and valuing it for what it levels. But the deeper difficulty is that the purposes themselves rest on values a society must weigh and economics cannot rank: how much to fund, how much to level, how much to reprice, how much to bind the state to its citizens. The four ends are four answers to four questions about what a community owes itself and demands of itself, and a tax system is the uneasy resolution of all four — which is why a tax is never merely a technical device but always a statement, however garbled, of what a people is for.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE XI ===================== -->
+    <section class="plate reveal" id="plate-xi" data-label="Plate xi · The Consent">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">xi</div>
+        <p class="plate-kicker">Plate the Eleventh &middot; The Institutions &middot; № XVII</p>
+        <h3 class="plate-title">The Consent</h3>
+        <p class="plate-gloss">taxation and the state; representation, legitimacy, the fiscal contract</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>why has the power to tax, of all powers, so often been the one that wrung liberty from kings?</q></div>
+      <div class="plate-body">
+        <p>The fourth of the ends — representation — deserves a plate of its own, for in it the tax reveals itself as something more than an economic transfer: as the constitutive bargain of political life. The modern state was forged in no small part by the demands of war finance, and war is dear. A ruler who needed revenue beyond what his own domains could yield had two choices, to seize or to bargain, and seizure had narrow limits; so again and again he was driven to the bargaining table, to ask the taxed for their money — and the taxed, holding what he needed, exacted a price. The price was a voice. Out of the recurring need to grant taxes grew the assemblies that granted them, and the bodies that controlled the purse came to control much else: the English Parliament's power over taxation hardened, through Magna Carta and the Petition of Right and the settlement of 1688, into the principle that the crown could not tax without consent, and the cry that kindled a revolution in America — no taxation without representation — objected not to the weight of the tax but to its imposition without the colonists' voice. The need to tax wrung liberty from kings.</p>
+        <p>The bond runs deep, and it runs both ways. A state that depends on its citizens' taxes must answer to them, for it cannot raise what it needs without their acquiescence, and the habit of asking becomes the habit of accounting. But a state funded otherwise — by the oil beneath its sand, the minerals in its hills, the aid of foreign patrons — need not ask, and so need not answer; the rentier state, sustained without taxing its people, is freed from the discipline that taxation imposes, and tends, the political economists find, toward the unaccountable and the authoritarian. There is no representation without taxation, the dark mirror of the revolutionary slogan: the resource that seems a blessing curses liberty, because it severs the state's dependence on its citizens, while the burden that seems a curse schools a people in freedom, because it forces the bargain from which rights are won. The fiscal thread that ties the ruled to the rulers is woven of taxes, and where it is cut, accountability frays.</p>
+        <aside class="pull">The need to tax wrung liberty from kings; the lack of it leaves tyrants free. There was little liberty in history that did not begin in some bargain over the purse.</aside>
+        <p>And the bond is fragile, for the collection of taxes rests far less on force than is supposed. No state can audit everyone; the revenue comes in chiefly because most people pay most of what they owe most of the time, even when they might quietly evade. What sustains this quasi-voluntary compliance, in Margaret Levi's phrase — voluntary in that few are compelled, quasi in that the threat of enforcement against the cheating few assures the honest many they are not played for fools — is tax morale: the belief that the system is fair, that the state is legitimate and spends the money tolerably well, that one's neighbors are paying their share. Let that belief erode — let the rich be seen to escape through the ninth plate's devices, or the state to squander, or the burden to fall unjustly — and morale erodes with it, compliance frays toward evasion, and the whole arrangement begins to fail. Taxation is therefore not only the price of civilization but a test of it: a people that can tax itself fairly, by consent, has achieved something rare; a people that cannot has lost, or never won, the trust on which the arrangement depends. The fiscal contract is the social contract rendered in money, and like the social contract it holds only so long as it is believed to be just.</p>
+        <aside class="edge"><span class="lead">the edge</span> The bond between taxation and consent is among the most consequential and least appreciated facts of political development, and it cuts against intuition in both directions. We are apt to see the tax as pure imposition, liberty's enemy, the state's hand in the citizen's pocket; yet historically the need to tax was liberty's unlikely friend, for the ruler's hunger for revenue forced him to bargain, and the price the taxed exacted for their money was the voice and the right and the limit on the crown that became constitutional government. The states that never had to tax their people — sustained by oil or tribute or aid — are precisely those that never had to answer to them, so that the resource which seems a blessing proves a curse to liberty, and the burden which seems a curse proves a school of freedom. And the bond is fragile, resting on a reciprocity that can fail: compliance is largely voluntary, upheld by a belief that the system is fair and the state legitimate and one's neighbors honest, and when that belief decays — when the rich escape, the state squanders, the burden falls unjustly — the morale that makes taxation possible decays with it, toward evasion and revolt. Taxation is thus a test of a civilization as much as its price: a society that can tax itself fairly, by consent, has won something precious and precarious, which it can also lose.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE XII ===================== -->
+    <section class="plate reveal" id="plate-xii" data-label="Plate xii · The Commonwealth">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">xii</div>
+        <p class="plate-kicker">Plate the Twelfth &middot; The Institutions &middot; № XVII</p>
+        <h3 class="plate-title">The Commonwealth</h3>
+        <p class="plate-gloss">the price of public life; the tax as the substance of the common realm</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if a tax is the price of public life, what does the question of who really pays finally answer — and what does a people buy by asking it?</q></div>
+      <div class="plate-body">
+        <p>The volume may now gather what its plates have found. A tax is the price of public life — the compelled claim by which a society funds itself, levels its inequalities, reprices its harms, and constitutes the very state that levies it. Its central question, the one the gloss demanded, has an answer at once confident in form and humbling in substance. Who really pays? Not the payer the law names, for the law commands only the remittance and not the burden; the burden slides through prices to settle on whoever cannot escape — the inelastic, who cannot reduce the taxed activity; the immobile, who cannot flee the taxing jurisdiction; the captive, who cannot route their income through the lower-taxed and the unseen. Across a single market this is the incidence of the second plate; across the whole tax system it is the flattened, sometimes inverted burden of the sixth; across the world economy it is the race to the bottom of the ninth, the mobile escaping and the rooted left to pay. The law names the payer; the market, through elasticity and mobility, names the bearer; and the two are seldom the same.</p>
+        <p>Around that answer the volume has arranged the rest. A tax costs more than it raises, destroying in the deadweight loss of the third plate a value that reaches no one — save the painless taxes of the fourth, which fall on the fixed land that cannot shrink and the harmful act that should. Its base, its schedule, and its rate each embody contested judgments of fairness against efficiency, judgments the optimal-tax theory of the eighth plate can price to the decimal but cannot make, for they rest on values its equations do not contain. The taxed escape, by every legal and illegal road, shifting the burden onto the captive, unless the state can coordinate against the flight and command the consent that makes collection possible at all. And so the question of who really pays, fully generalized, becomes the question of who, across all of society and all of time, bears the cost of the collective's life — a cost that may be shifted not only to another party and another jurisdiction but to another generation, through the debt that taxes the unborn. The burden of the commonwealth falls, in the end, on whoever cannot shift it onward; and whether it falls justly is the question politics exists to answer.</p>
+        <aside class="pull">Who really pays? Whoever cannot pass the burden on — to another party, another country, or another generation. The tax comes to rest on the captive, unless a people decides, deliberately, that it shall not.</aside>
+        <p>This completes the argument the series has pressed from the first volume: that every price is a verdict on a contest, not a fact of nature. The tax is the purest case of a price set by power — the state's coercive claim upon private wealth — and every one of its features is the outcome of a contest. Its incidence is settled by the contest of elasticities and of mobility, of who can escape against who cannot. Its level is settled by the contest between the revenue the state requires and the distortion the economy will bear. Its fairness is settled by the contest of values, over how much the fortunate owe the rest. And its very legitimacy is settled by the contest of political philosophy, over what the collective may justly claim of the individual — the quarrel of the first plate's edge, between the baseline that calls all taxation theft and the baseline that calls it the apportionment of a common product. The right level of tax is therefore no economic fact awaiting discovery but a political settlement awaiting agreement, reached not in the market but in the polity, and perpetually re-fought. Economics can illuminate every consequence of a tax — trace its incidence, measure its loss, price its tradeoffs — and still must hand the verdict back to the political community, which alone can decide how much, upon whom, and for what.</p>
+        <p>The tax is thus the point where the whole table converges, the instrument by which the collective reaches into the market to claim a share of every price the earlier volumes examined and to redistribute it. It taxes the rent that <em>The Rent</em> showed to be unearned, and to <em>The Rent</em> it returns the full theory of why a tax on land, falling on a surplus that cannot flee, is the most just and efficient of all. It taxes the surplus whose wedge <em>The Surplus</em> first drew, and hands that volume back the deadweight loss the wedge conceals. It reaches the profit and the externality of <em>The Power</em>, the corporate burden that mobility shifts onto labor and the Pigouvian remedy that makes the polluter pay, and to <em>The Power</em> it returns the state as the counterweight that taxation funds. It draws the inflation tax and the chartalist demand of <em>The Money</em>, its near neighbor in this group, to which it hands the levy that need never be voted. And it hands forward to its fellow institutions the questions it has opened: to <em>The Rule</em>, the governance of the budget and the discipline of the fiscal accounts; to <em>The Contract</em>, the fiscal bargain that is the social contract rendered in money; and to <em>The Share</em>, the redistribution by which a society remakes the distribution that the market first decreed.</p>
+        <p>It remains to name what the tax finally is, and the old word for it is commonwealth — the common weal, the common wealth, the things a people holds and does together. A tax is the price of the commonwealth, and the question of who really pays is the question of who bears the cost of what we hold in common. The deepest answer the volume can give is that a commonwealth is sustained by what its members are willing to contribute to the common life, and that the tax is at once the measure and the instrument of that willingness — a verdict, reached through the contest of politics, on what we owe one another and what we shall hold together. To read a tax as a mere deduction from private wealth is to miss its nature, for it is the very substance of the common wealth, the material of the public realm, the means by which a people decides what it will be and do as one. And the argument remains open, as the series has insisted throughout, because the question beneath the tax — what we owe one another, and who shall bear the cost of what we share — is never finally settled. It is re-fought in every budget, every reform, every revolt: the perpetual labor of a people deciding, and deciding again, what it owes itself. The law writes the rate; the market settles the incidence; and the politics, which is to say the people, settles the rest — provisionally, contestably, and forever anew.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref">Volume XVII &middot; The Tax</span>
+    </div>
+    <p class="colophon">Volume XVII of <em>Numéraire, A Periodic Table of Economic Life</em> — <em>The Tax</em>, the seventeenth of twenty-six and the second of The Institutions. Twelve plates and seven engravings carry the question of who really pays from the nature of the levy and the rise of the tax state, through the incidence that settles the burden on whoever cannot escape and the deadweight loss that costs more than the revenue, the painless taxes on land and harm, the choice of base and the schedule of rates, the Laffer peak and the optimal design, the escape of the mobile and the four ends taxation serves, to the consent on which collection finally rests — and at last to the verdict that a tax is the price of the commonwealth, struck not in the market but in the polity, on what a people owes itself. It hands on to <em>The Rent</em>, <em>The Surplus</em>, <em>The Power</em>, <em>The Money</em>, <em>The Rule</em>, <em>The Contract</em>, and <em>The Share</em>. The figures stand after the rise of the tax state, the incidence wedge, the square-law of deadweight loss, the tax on land, the schedule of rates, the Laffer curve, and the race to the bottom. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var root=document.documentElement; root.classList.add('js');
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var bar=document.getElementById('progress');
+  var topbar=document.getElementById('topbar');
+  var title=document.querySelector('.vol-title');
+  var label=document.getElementById('tb-plate');
+  function onScroll(){
+    var doc=document.documentElement;
+    var h=doc.scrollHeight-window.innerHeight;
+    var p=h>0?Math.min(1,Math.max(0,window.scrollY/h)):0;
+    if(bar) bar.style.transform='scaleX('+p.toFixed(4)+')';
+    if(topbar){
+      var threshold=(title?title.offsetHeight:420)*0.72;
+      if(window.scrollY>threshold) topbar.classList.add('show'); else topbar.classList.remove('show');
+    }
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+  if('IntersectionObserver' in window){
+    var rev=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); rev.unobserve(e.target); } });
+    },{rootMargin:'0px 0px -10% 0px',threshold:0.06});
+    document.querySelectorAll('.reveal').forEach(function(el){ rev.observe(el); });
+    if(label){
+      var cur=new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting){ var t=e.target.getAttribute('data-label'); if(t) label.textContent=t; } });
+      },{rootMargin:'-44% 0px -50% 0px',threshold:0});
+      document.querySelectorAll('.plate[data-label]').forEach(function(el){ cur.observe(el); });
+    }
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-money.html">← The Money</a><a rel="next" href="the-rule.html">The Rule →</a></nav>
+</body>
+</html>

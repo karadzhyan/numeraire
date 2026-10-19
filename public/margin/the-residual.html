@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Residual — Numéraire, The Growth, Plate ii</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:66rem; --measure:35rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(2.8rem,7vh,5rem) 0 clamp(1.4rem,3.5vh,2.2rem);text-align:center;}
+
+  .crumbs{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 400;
+    font-size:.8rem;letter-spacing:.04em;color:var(--faint);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:center;gap:.55rem;}
+  .crumbs a{text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .2s ease,color .2s ease;}
+  .crumbs a:hover{border-color:var(--num);color:var(--ink);}
+  .crumbs .sep{color:var(--faintest);}
+  .crumbs .here{color:var(--ink);}
+
+  .plate-mark{width:116px;height:116px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:.18rem;line-height:1;}
+  .plate-mark.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pm-vol{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.84rem;letter-spacing:.06em;color:rgba(240,235,225,.62);}
+  .pm-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;
+    font-size:2.5rem;letter-spacing:.02em;text-transform:uppercase;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.1rem,6vw,4rem);line-height:1.03;letter-spacing:-.025em;margin:1rem 0 0;text-wrap:balance;}
+  .status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:42rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .epi{max-width:38rem;margin:clamp(2.2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .epi q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.46;color:var(--ink);quotes:none;display:block;text-wrap:pretty;}
+  .epi .cite{display:block;margin-top:.95rem;font-size:.78rem;color:var(--faintest);letter-spacing:.05em;font-style:normal;}
+  .epi .cite em{font-style:italic;}
+
+  .essay{max-width:52rem;margin:clamp(3rem,7vh,5rem) auto 0;counter-reset:sn;}
+  .essay::after{content:"";display:block;clear:both;}
+  .essay > p,.essay > .pull{max-width:var(--measure);}
+  .essay p{font-size:1.075rem;line-height:1.8;color:var(--ink);margin:0 0 1.4rem;text-wrap:pretty;}
+  .essay em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.72;padding:.08em .14em 0 0;color:var(--ink);}
+
+  .divider{display:flex;justify-content:center;margin:2.4rem 0;}
+  .divider svg{width:96px;height:12px;overflow:visible;}
+  .divider line{stroke:var(--num);stroke-width:1;} .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.5vw,1.74rem);line-height:1.34;color:var(--ink);text-align:center;
+    margin:2.4rem auto;max-width:33rem;text-wrap:balance;}
+
+  .snref{font-family:"Fraunces",serif;font-size:.64em;line-height:0;vertical-align:super;
+    color:var(--soft);counter-increment:sn;margin-left:1px;font-style:normal;}
+  .snref::after{content:counter(sn);}
+  .sn{display:block;max-width:var(--measure);margin:.1rem 0 1.4rem;padding:.15rem 0 .15rem 1.05rem;
+    border-left:1px solid var(--hair);font-size:.84rem;line-height:1.52;color:var(--faint);}
+  .sn::before{content:counter(sn);font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--faintest);margin-right:.5em;font-size:.92em;}
+  .sn em{font-style:italic;}
+
+  @media (min-width:64rem){
+    .sn{float:right;clear:right;width:15rem;margin:.35rem 0 1.3rem;padding:0;border-left:none;}
+    .divider,.pull,.apparatus{clear:both;}
+  }
+
+  .apparatus{max-width:52rem;margin:clamp(3.2rem,7vh,5rem) auto 0;padding-top:2rem;border-top:1px solid var(--hair);clear:both;}
+  .app-h{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;}
+  .app-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.4rem;}
+  .app-list li{border-top:1px solid var(--hair);}
+  .app-list li:first-child,.app-list li:nth-child(2){border-top:none;}
+  .app-list a{display:block;text-decoration:none;padding:.95rem 0;}
+  .app-list a:hover .app-t{color:var(--soft);}
+  .app-rel{display:block;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faintest);margin-bottom:.3rem;}
+  .app-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.12rem;color:var(--ink);transition:color .2s ease;}
+  .app-g{display:block;font-size:.84rem;color:var(--faint);font-style:italic;line-height:1.4;margin-top:.22rem;}
+
+  footer{margin-top:clamp(3.5rem,8vh,6rem);padding:2.2rem 0 4rem;border-top:1px solid var(--hair);}
+  .crumbs.foot{justify-content:flex-start;margin-bottom:1.3rem;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .plate-mark{width:96px;height:96px;}
+    .pm-num{font-size:2.1rem;}
+    .essay p{font-size:1.04rem;line-height:1.74;}
+    .dropcap{font-size:3rem;}
+    .app-list{grid-template-columns:1fr;}
+    .app-list li:nth-child(2){border-top:1px solid var(--hair);}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="crumbs rise d1" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-growth.html">The Growth &middot; Vol XX</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate ii</span>
+    </nav>
+    <div class="plate-mark lit rise d2" aria-hidden="true">
+      <span class="pm-vol">Gr</span>
+      <span class="pm-num">ii</span>
+    </div>
+    <h1 class="rise d3">The Residual</h1>
+    <div class="status rise d3">in print &middot; The Growth &middot; plate ii</div>
+    <p class="standfirst rise d4">Where does the great enrichment come from? The natural answer is accumulation — more capital, more hands. The accounting says otherwise: the larger part of growth is a remainder the inputs cannot explain, a rise in productivity that Solow's model proved must be the engine and could not itself account for. This plate follows that residual — what it is, why accumulation cannot replace it, and why the wealth of nations turns out to rest not on what a people has, but on what it makes.</p>
+  </header>
+
+  <div class="epi rise d5">
+    <q>Labour is the Father and active principle of Wealth, as Lands are the Mother.</q>
+    <span class="cite">Sir William Petty, <em>A Treatise of Taxes and Contributions</em> (1662)</span>
+  </div>
+
+  <article class="essay">
+
+    <p class="lede"><span class="dropcap">I</span>t is a peculiar thing to build a science around a residual — around, that is, the part of the answer that is left over when everything one can measure has been subtracted out. Yet that is very nearly what the study of growth has had to do. Add up the contribution of all the extra machines and all the extra workers to the rising output of a wealthy nation, and you find that they account for less than half of it; the larger share is a remainder, a quantity with no name of its own but the one the economists gave it in their chagrin — the residual, or, more honestly, the measure of our ignorance. The whole engine of modern prosperity sits inside that word, and the word is a confession.</p>
+
+    <p>The confession was wrung from the soberest kind of arithmetic.<sup class="snref"></sup> Faced with the great enrichment, economists wanted to know what had produced it, and they went at the question as accountants would, by sources. The rise in a nation's output, they reasoned, must come from some mix of more capital — tools, machines, buildings, roads — and more labor, more hands at work; so let us measure how fast each has grown, weight each by the share of the national income it commands, and add the two together to see how much of the growth they explain. The exercise is called growth accounting, and when Robert Solow first performed it with care, for the United States across the first half of the twentieth century, the result was startling. Capital and labor together accounted for only a small fraction of the rise in output per worker. The overwhelming majority of it — by his reckoning, some seven-eighths — was a remainder no one had expected and no one could, at first, explain.</p>
+    <aside class="sn">The method is called growth accounting, and its logic is plain bookkeeping. Take the rise in a nation's output over some span; ask how much of it the growth of capital can account for, and how much the growth of the labor force, weighting each by the share of income it earns; add the two contributions; and subtract them from the whole. Whatever is left — the part of the growth that more machines and more workers do not explain — is the residual. When Solow first did the sum for the United States, the residual came out staggeringly large: the lion's share of the rise in output per worker was not bought by capital at all, but came from somewhere the inputs could not reach.</aside>
+
+    <p>To feel the force of the finding, one must see what it overturned.<sup class="snref"></sup> The natural assumption — of common sense, and of most economics before — was that a nation grows rich by accumulation: by saving and investing, piling up capital, equipping each worker with ever more to work with. On that view, wealth is stored-up thrift, and the richest nation is the one that has accumulated the most. The residual says otherwise. The bulk of the enrichment came not from working with more but from working better — from the rising efficiency with which the same labor and the same capital are turned into output, the quantity economists named total factor productivity. And productivity is a different sort of thing from a machine or a worker: not a stock one can count, but a ratio, a measure of how much comes out for what goes in. The engine of growth, the accounting said, was not the quantity of the inputs but the efficiency of their use — and that efficiency was the residual.</p>
+    <aside class="sn">The shock lay in what was expected. Surely, one thinks, a nation grows rich by accumulating — by building more factories, laying more rail, putting more tools in more hands. Some of that is real. But the accounting says it is the lesser part: most of the enrichment came not from working with more but from working better, from the rising efficiency with which the same inputs are turned into output. Economists call that efficiency total factor productivity, a precise-sounding name for an imprecise thing — not a quantity one can point to, like a machine or a worker, but a ratio, a measure of how much a society gets out for what it puts in.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>Behind the empirical surprise lay a theoretical reason why it nearly had to be so.<sup class="snref"></sup> Capital, like everything in economics, is subject to diminishing returns: the more of it a worker already commands, the less an added unit gives. Hand a man without tools his first spade, and you transform his output; hand a man who already runs a fleet of machines one more, and you change almost nothing. From this single fact the Solow model drew a stark conclusion. A society that grows only by accumulating will find each new tranche of saving buying less than the last, while the capital it holds wears out and the workers it keeps adding must themselves be equipped. Sooner or later, all that the society saves goes merely to maintaining and extending what it has, and capital per worker stops rising. It has reached a steady state, and there its growth in output per head must halt. Thrift can lift the plateau a nation stands on; it cannot keep the ground rising beneath its feet.</p>
+    <aside class="sn">Why can accumulation not be the engine? Because capital, like land or labor or anything else, has diminishing returns. The first machines in a workshop transform it; the thousandth adds little. So as a society piles up capital per worker, each new increment buys less extra output, while the existing stock wears out and the growing workforce must be equipped afresh. A point comes where all that a society saves goes merely to replacing and re-equipping — and capital per worker, and output per worker with it, stops rising. This is the steady state. More thrift can raise the plateau a society reaches, but it cannot make the climbing go on forever.</aside>
+
+    <p>What, then, keeps the ground rising? In the Solow model the answer was technological progress — and here the theory made a strange and honest move.<sup class="snref"></sup> It did not explain the progress; it assumed it, writing into the equations a steady rate at which productivity improves and leaving wide open the question of where that rate comes from. Economists have called it manna from heaven, and the name is exact: an indispensable blessing descending on the model from outside, sustaining the growth that accumulation could not. The result is a structure of remarkable candor. The model proves, with full rigor, that lasting growth must come from the residual — from rising productivity, not from piling up capital — and then, the proof complete, falls silent on what the residual actually is. The deepest term in the whole theory of wealth was left, on purpose, a blank: an IOU drawn against the future of the science.</p>
+    <aside class="sn">In Solow's own model the engine of long-run growth was technological progress — and it entered the equations from outside, as a given rate at which productivity improved, with no account of where it came from. Economists have called it, not quite in jest, manna from heaven: a blessing that falls on the model from above, indispensable and unexplained. The structure is remarkable. The model proves, with rigor, that sustained growth must come from the residual; and then, having proved it, falls silent about what the residual is. The deepest term in the theory of wealth was left a blank to be filled — the task the next generation of growth theory set itself.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>Set the two accounts of wealth side by side, and the argument of these volumes steps forward.<sup class="snref"></sup> On the first, a nation's wealth flows from its stock — from the capital it has piled up and the resources it holds, the endowment it possesses and enlarges by saving; this is wealth as a natural accumulation, the slow reward of a frugal and well-favored people, and on it a nation's riches are very nearly a fact of what it has. On the second, the account the residual forces, the wealth flows instead from productivity — from ideas, from technique, from the organization of work, and from the institutions that summon all of these into being. A price is a verdict on a hidden contest, mistaken for a fact of nature — and so, the residual reveals, is the wealth of nations: not the natural yield of an endowment, but the made fruit of productivity, and productivity is made only where the long contests over the rules have settled in the ways that reward making. What drives the enrichment is not what a nation has, but what it makes — and making is never a gift of nature.</p>
+    <aside class="sn">Picture the two pictures of where wealth comes from. In the first, it comes from the stock — capital piled up, resources possessed, the endowment a nation has and adds to by thrift; and on this picture growth is a kind of natural accumulation, the patient saving of a frugal people. In the second, it comes from the residual — from productivity, which is ideas, technique, organization, and the rules that call them forth; and on this picture growth is a made thing, and made only where the contests over the rules have gone a certain way. The accounting decides between them, and it decides for the second. What drives the enrichment is not mainly what a nation has, but what it makes.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>The case for accumulation must be given its due, for it is not empty.<sup class="snref"></sup> Capital deepening is real and necessary; the residual is most of growth, not all, and no nation grew rich on no investment whatever. The growth miracles of East Asia, moreover, were on one celebrated reckoning driven more by sheer accumulation — prodigious saving, surging schooling, more of the people drawn into work — than by any rise in productivity: a triumph, it was said, of perspiration over inspiration. And a measurement worry cuts deep: the residual, being a leftover, silently absorbs every error in the measuring of capital and labor, so that what we credit to productivity may be, in part, our own mismeasurement. Each point has weight. But the Solow logic stands — accumulation-led growth exhausts itself in the end, as the Soviet Union's long stagnation after furious investment made plain — and beneath every adjustment a stubborn fact survives: nations with ample labor and capital do not on that account grow rich, or the poor world, with its teeming workers, would be wealthy. Whatever its exact size, the residual is where the wealth of nations has hidden itself. One scruple must be added, though: to call the residual "productivity," or "technology," is to name the box and not to open it — and a name passes too easily for an explanation it has not earned.</p>
+    <aside class="sn">The accumulationist has a case. Capital deepening is not nothing; the residual is most of growth, not all. And the great Asian miracles, on one famous reckoning, were powered more by sheer accumulation — ferocious saving, rising schooling, more hands at work — than by any rise in productivity: perspiration, it was said, more than inspiration. There is even a measurement worry: the residual is a leftover, and so it swallows every error made in measuring capital and labor, and may be smaller than it looks. All true. But the Solow logic holds — accumulation-led growth runs down, as the Soviet experiment showed — and the deep fact survives: poor nations with ample labor and capital do not thereby grow rich, so the inputs cannot be the answer.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>Notice, last, the quiet confession folded into the word itself.<sup class="snref"></sup> To call productivity the residual is to cast it as the leftover — what remains once the real factors, capital and labor, have been counted and credited. But the leftover is the main event and the counted factors the supporting cast; the accounting has the order of importance exactly inverted. We lavish our measurement on the things that look like solid facts of a nation's endowment — its stock of capital, its supply of hands — and consign to an unexplained balance the made and contested thing that does the actual work of enrichment. The frame itself enacts the error these volumes were written to expose. A price is a verdict on a hidden contest, mistaken for a fact of nature — and growth accounting, for all its rigor, makes the same mistake in reverse: it treats the natural-seeming stock as the substance and the made thing as the remainder, when the made thing is the substance and the stock the self-limiting remainder. The residual is misnamed; it is not what is left over, but what matters most.</p>
+    <aside class="sn">There is a deep irony in the very word. To call productivity a residual is to treat it as the leftover — the remainder after the real factors, capital and labor, have been counted. But the remainder is the main event, and the counted factors the sideshow; the accounting has it exactly backward. We measure the things that look like solid facts of a nation's endowment, and consign to a mysterious balance the made thing that actually drives the growth. The frame itself commits the error these volumes exist to expose: it makes the natural-seeming stock primary and the made, contested thing residual, when in truth the made thing is primary and the stock self-limiting and secondary.</aside>
+
+    <p>This redeems, and deepens, the phrase the residual was given at its christening.<sup class="snref"></sup> It was called the measure of our ignorance, and so it is — but the ignorance is one we have manufactured. Growth is not in itself a mystery beyond the reach of explanation; we have made it mysterious by the shape of our reckoning — by building that reckoning around the inputs that wear the look of natural fact, capital and labor and land, and banishing to a nameless remainder the ideas and institutions that are the real engine. Having mistaken a nation's endowment for the cause of its wealth, we are left with no choice but to call the true cause a riddle. The residual is the exact measure of that mistake — the size of what escapes us when we hunt the wealth of nations in what they happen to hold, rather than in the contests, won and lost, that settled the rules under which they think and build.</p>
+    <aside class="sn">The residual was christened the measure of our ignorance, and the phrase is truer than its author meant. It measures our ignorance — but the ignorance is of our own making. Growth is not inherently a mystery; we have made it one by building our reckoning around the inputs that wear the look of natural fact, capital and labor and land, and shoving into an unexplained remainder the ideas and institutions that are the actual engine. Having mistaken the endowment for the cause, we are left to call the cause a riddle. The residual is the exact size of what we get wrong when we hunt the wealth of nations in what they possess instead of in the contests that settled their rules.</aside>
+
+    <p class="pull">The residual is misnamed: not the leftover after the real causes are counted, but the cause itself — left over because we counted the wrong things.</p>
+
+    <p>So the volume's two opening plates divide the work of beginning. The first set down the fact — that the modern world is, against all the prior history of the species, astonishingly and recently rich. This one has asked where that wealth comes from, and returned an answer that points beyond itself: not the stock a nation accumulates, which diminishing returns must exhaust, but the residual — the rising productivity that is the made and inexhaustible thing. And to ask what the residual is — what lies inside that confessing word — is to be handed the rest of the volume: the ideas productivity is built from, the institutions that decide whether it is built at all, the divergence between the nations that found the engine and those still seeking it. The enrichment of the modern world is not the yield of what its fortunate nations have. It is the fruit of what they have made, under rules that let them make it. The argument remains open.</p>
+
+  </article>
+
+  <nav class="apparatus" aria-label="Related reading">
+    <h2 class="app-h">Related</h2>
+    <ul class="app-list">
+      <li><a href="the-ascent.html"><span class="app-rel">In this volume</span><span class="app-t">The Ascent</span><span class="app-g">plate i — the previous plate: the great enrichment this one sets out to explain, the fact behind the analysis</span></a></li>
+      <li><a href="the-growth.html"><span class="app-rel">In this volume</span><span class="app-t">The Accumulation</span><span class="app-g">plate iii — why saving alone cannot sustain the climb: the Solow steady state, and the Soviet experiment that proved it</span></a></li>
+      <li><a href="the-growth.html"><span class="app-rel">In this volume</span><span class="app-t">The Idea</span><span class="app-g">plate iv — what lies inside the residual: the nonrival ideas, in Romer's account, that productivity is built from</span></a></li>
+      <li><a href="the-revolution.html"><span class="app-rel">In The Margin</span><span class="app-t">The Revolution</span><span class="app-g">the marginal principle the whole argument leans on: diminishing returns, and the weighting of each factor by what it earns</span></a></li>
+    </ul>
+  </nav>
+
+  <footer>
+    <nav class="crumbs foot" aria-label="Return">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-growth.html">The Growth &middot; Vol XX</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate ii</span>
+    </nav>
+    <p class="colophon">The second plate of Volume XX, <em>The Growth</em> — the residual, and the central finding of modern growth economics: that the great enrichment came not chiefly from accumulating capital, which diminishing returns must exhaust, but from rising productivity — the total-factor-productivity "residual" that growth accounting reveals to be the larger part of growth, and that Solow's model proved must be the engine even as it left the residual itself unexplained; and the argument that the wealth of nations is driven not by the endowment a people possesses but by the made and contested thing — ideas, technique, and the institutions that summon them — which the accounting, misnaming it a mere remainder, all but hides. Return to <em><a href="the-growth.html">The Growth</a></em>, or to <a href="numeraire-atlas.html">the complete table of volumes</a>. The epigraph is from Petty's <em>A Treatise of Taxes and Contributions</em>; the growth accounting of Solow and Abramovitz, and the accumulation debate of Young and Krugman, are discussed in the text. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-ascent.html">← The Ascent</a><a rel="next" href="the-choice.html">The Choice →</a></nav>
+</body>
+</html>

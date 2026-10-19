@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Tribute — Numéraire, The Spread, Plate ii</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:66rem; --measure:35rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(2.8rem,7vh,5rem) 0 clamp(1.4rem,3.5vh,2.2rem);text-align:center;}
+
+  .crumbs{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 400;
+    font-size:.8rem;letter-spacing:.04em;color:var(--faint);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:center;gap:.55rem;}
+  .crumbs a{text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .2s ease,color .2s ease;}
+  .crumbs a:hover{border-color:var(--num);color:var(--ink);}
+  .crumbs .sep{color:var(--faintest);}
+  .crumbs .here{color:var(--ink);}
+
+  .plate-mark{width:116px;height:116px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:.18rem;line-height:1;}
+  .plate-mark.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pm-vol{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.84rem;letter-spacing:.06em;color:rgba(240,235,225,.62);}
+  .pm-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;
+    font-size:2.5rem;letter-spacing:.02em;text-transform:uppercase;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.1rem,6vw,4rem);line-height:1.03;letter-spacing:-.025em;margin:1rem 0 0;text-wrap:balance;}
+  .status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:42rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .epi{max-width:38rem;margin:clamp(2.2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .epi q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.46;color:var(--ink);quotes:none;display:block;text-wrap:pretty;}
+  .epi .cite{display:block;margin-top:.95rem;font-size:.78rem;color:var(--faintest);letter-spacing:.05em;font-style:normal;}
+  .epi .cite em{font-style:italic;}
+
+  .essay{max-width:52rem;margin:clamp(3rem,7vh,5rem) auto 0;counter-reset:sn;}
+  .essay::after{content:"";display:block;clear:both;}
+  .essay > p,.essay > .pull{max-width:var(--measure);}
+  .essay p{font-size:1.075rem;line-height:1.8;color:var(--ink);margin:0 0 1.4rem;text-wrap:pretty;}
+  .essay em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.72;padding:.08em .14em 0 0;color:var(--ink);}
+
+  .divider{display:flex;justify-content:center;margin:2.4rem 0;}
+  .divider svg{width:96px;height:12px;overflow:visible;}
+  .divider line{stroke:var(--num);stroke-width:1;} .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.5vw,1.74rem);line-height:1.34;color:var(--ink);text-align:center;
+    margin:2.4rem auto;max-width:33rem;text-wrap:balance;}
+
+  .snref{font-family:"Fraunces",serif;font-size:.64em;line-height:0;vertical-align:super;
+    color:var(--soft);counter-increment:sn;margin-left:1px;font-style:normal;}
+  .snref::after{content:counter(sn);}
+  .sn{display:block;max-width:var(--measure);margin:.1rem 0 1.4rem;padding:.15rem 0 .15rem 1.05rem;
+    border-left:1px solid var(--hair);font-size:.84rem;line-height:1.52;color:var(--faint);}
+  .sn::before{content:counter(sn);font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--faintest);margin-right:.5em;font-size:.92em;}
+  .sn em{font-style:italic;}
+
+  @media (min-width:64rem){
+    .sn{float:right;clear:right;width:15rem;margin:.35rem 0 1.3rem;padding:0;border-left:none;}
+    .divider,.pull,.apparatus{clear:both;}
+  }
+
+  .apparatus{max-width:52rem;margin:clamp(3.2rem,7vh,5rem) auto 0;padding-top:2rem;border-top:1px solid var(--hair);clear:both;}
+  .app-h{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;}
+  .app-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.4rem;}
+  .app-list li{border-top:1px solid var(--hair);}
+  .app-list li:first-child,.app-list li:nth-child(2){border-top:none;}
+  .app-list a{display:block;text-decoration:none;padding:.95rem 0;}
+  .app-list a:hover .app-t{color:var(--soft);}
+  .app-rel{display:block;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faintest);margin-bottom:.3rem;}
+  .app-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.12rem;color:var(--ink);transition:color .2s ease;}
+  .app-g{display:block;font-size:.84rem;color:var(--faint);font-style:italic;line-height:1.4;margin-top:.22rem;}
+
+  footer{margin-top:clamp(3.5rem,8vh,6rem);padding:2.2rem 0 4rem;border-top:1px solid var(--hair);}
+  .crumbs.foot{justify-content:flex-start;margin-bottom:1.3rem;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .plate-mark{width:96px;height:96px;}
+    .pm-num{font-size:2.1rem;}
+    .essay p{font-size:1.04rem;line-height:1.74;}
+    .dropcap{font-size:3rem;}
+    .app-list{grid-template-columns:1fr;}
+    .app-list li:nth-child(2){border-top:1px solid var(--hair);}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="crumbs rise d1" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-spread.html">The Spread &middot; Vol V</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate ii</span>
+    </nav>
+    <div class="plate-mark lit rise d2" aria-hidden="true">
+      <span class="pm-vol">Sp</span>
+      <span class="pm-num">ii</span>
+    </div>
+    <h1 class="rise d3">The Tribute</h1>
+    <div class="status rise d3">in print &middot; The Spread &middot; plate ii</div>
+    <p class="standfirst rise d4">If the spread is the price of a service, the deepest question is whether the service explains it. This second plate of the volume gives The Spread its thesis. A service has a cost; a cut can run far above it; and what fixes the gap is often not the value the middleman adds but the power he holds over the passage between the parties. The plate draws the line — never quite where either side claims it lies — between the fee earned for something done and the toll levied for being let past, and argues that the share of any spread which is toll rather than fee measures not the middleman's service but his grip on the gate.</p>
+  </header>
+
+  <div class="epi rise d5">
+    <q>Those owners constitute a class whom the natural course of things progressively enriches, consistently with complete passiveness on their own part: they grow richer, as it were in their sleep, without working, risking, or economising.</q>
+    <span class="cite">John Stuart Mill, <em>Principles of Political Economy</em>, 1848</span>
+  </div>
+
+  <article class="essay">
+
+    <p class="lede"><span class="dropcap">T</span>he middleman would have us believe his cut is the price of his service, and sometimes it is. But a service has a cost, and a cut can run far above it; and what fixes the difference is not the value he adds but the power he holds over the passage between the parties. The broker who can keep buyer and seller from ever meeting, the platform all must use because all use it, the dealer who is the only one quoting a price — each can charge not what his work is worth but what his position commands, and the two are seldom the same. This is the difference between a fee and a toll: a fee is paid for something done, a toll for being let past, to one who has placed himself across the road. The spread the middleman takes is always some of each, and the share that is toll rather than fee measures not his service but his grip on the gate.</p>
+
+    <p>The distinction this plate turns on is older than markets, and plainer. A fee is the price of a thing done — a service rendered, with a cost to render it — and where others may render the same service, competition pulls the fee down toward that cost. A toll is something else. A toll is the price of passage, charged by one who has placed himself where you must go, and it bears no relation to the cost of letting you by; it is fixed instead by how badly you need to pass, and how little choice you have. The keeper of the only bridge across the only river does not price his toll by the upkeep of the bridge — a few coins would cover that — but by the worth of the crossing to those who cannot swim. The spread the middleman takes is always some fee and some toll, and the prior plate fixed the lower of the two bounds: the cost of his service sets a floor, the least he could charge and still appear. What this plate asks is what lifts the spread above that floor — and the answer, again and again, is not a better service but a stronger position.<sup class="snref"></sup></p>
+    <aside class="sn">The medieval lord who held a stretch of river or a mountain pass grew rich not by improving it but by sitting astride it, exacting a duty on every cargo that came through; the multiplication of such tolls strangled European trade for centuries, precisely because each was set by the necessity of passage rather than the cost of the road. The toll is the oldest way of growing rich from a position rather than an exertion, and the middleman's spread is its lineal descendant.</aside>
+
+    <p>Economics has a name for the price of a position: it is rent. David Ricardo gave the idea its classic form in the theory of land. The rent of a field, he saw, is not what makes its corn dear; the dearness of corn is what makes the field command a rent. The owner of the better-placed or more fertile land contributes nothing to its advantage — he did not enrich the soil or make the site central — yet because others need what his position commands, a share of what they produce upon it flows to him, by virtue of ownership alone. Henry George pressed the point into a moral: that the holder of a natural opportunity collects from those who must use it a toll he has done nothing to earn, growing richer as the community's need for his position grows. The middleman's toll is a rent of exactly this kind. He is the landlord of the passage between buyer and seller, and the part of his spread that is toll is the rent his position commands — set, like all rent, not by what he has done but by how much the parties need to get past him.<sup class="snref"></sup></p>
+    <aside class="sn">Ricardo's deepest point was that rent is price-determined, not price-determining: it does not enter into the cost of bringing a good to market but is the residue left once that cost is met, captured by whoever controls the scarce advantage. So with the toll. It adds nothing to the value of the trade; it is the share of the trade's existing value that the middleman's position lets him take — which is why removing it would not raise the cost of the exchange, only redistribute its gains.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>What, then, gives a middleman power over the passage? The forms are several, and the age has multiplied them. The oldest is the chokepoint: control of an essential facility through which all must go — the only port, the only exchange, the pipeline, the rail. The subtlest is the informational position: the broker who knows what neither party knows, who can keep the buyer and the seller from ever finding each other, and so make himself the only road between them. The most modern, and now the most powerful, is the network. A platform grows more valuable to each user as more users join, so that the buyers gather where the sellers are and the sellers where the buyers are, until the platform that began as one option among many becomes the marketplace itself — a private toll-gate on a public square it does not own but commands. Jean Tirole and the theorists of two-sided markets showed how this dynamic tends toward a single winner, and how the winner, once inescapable, can set a take rate answerable to no competitor, only to the limits of what its captive sides will bear.<sup class="snref"></sup> Each of these is a position, not a service; and each lets its holder charge what his place commands rather than what his work costs.</p>
+    <aside class="sn">Network effects are reinforced by switching costs — the contacts, the histories, the reputations a user would forfeit by leaving — so that even a platform whose service has stagnated can hold its users by the mere cost of going elsewhere. The moat around the toll-gate is built not only of the value within but of the difficulty of departure; and the middleman who can no longer improve his service can still widen his toll by deepening that difficulty.</aside>
+
+    <p>Here the middleman's incentives divide in two, though his books record them as one. He may invest in his service — in matching better, vouching more credibly, clearing faster — and such investment enlarges the gains from trade: more deals are done, at lower cost, and the fee he earns is the wage of a real improvement. Or he may invest in his position — in raising the cost of going around him, in keeping the parties from meeting, in binding them more tightly to his platform, in absorbing or starving any rival who might open a second road. This second kind of spending creates nothing; it merely makes the toll collectable, and larger. Adam Smith observed long ago that men of the same trade seldom gather but the talk turns to some contrivance against the public, some scheme to raise prices; the contrivance is toll-seeking, the deliberate manufacture of necessity. The trouble is that the two investments look alike from outside — both cost the middleman money, both lift his spread — and only their effects betray them: the one widens the channel of trade, the other narrows it to a gate the middleman holds.<sup class="snref"></sup></p>
+    <aside class="sn">The asymmetry is exact. Spending on service enlarges the surplus to be divided; spending on position merely enlarges the middleman's slice of it — and usually shrinks the whole, since a higher toll deters the trades at the margin that would have come off at a lower one. A sum spent making oneself useful and a sum spent making oneself unavoidable are, on the middleman's ledger, both investments in the spread; to everyone else they are opposites.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+    <p>So the spread, that single number, is the meeting-point of two utterly different things. A price is a verdict on a hidden contest, mistaken for a fact of nature; and the spread is the verdict of a contest between the middleman and the two he joins — over how much of the gains from their trade his position will let him claim. The fee in it is the wage of his service, bounded by the cost of providing it; the toll in it is the rent of his position, bounded only by the parties' need to pass. They arrive fused, in one figure, with nothing to mark where the one ends and the other begins — and that fusion is not an accident the middleman regrets but a cover he depends upon. For both parts are paid willingly: the parties hand over the toll as readily as the fee, because the toll is still cheaper than the bypass, and their willingness is then read, by the middleman and his defenders, as proof that the whole sum is earned. The voluntariness that justifies the service launders the extraction. The middleman would have his grip on the gate pass for the value of his work, and the undivided spread is what lets the substitution go unseen.<sup class="snref"></sup></p>
+    <aside class="sn">The laundering works because the only comparison the parties ever make is between the spread and the alternative of doing without — and against that alternative the spread, toll and all, comes out ahead. They never weigh it against what the service alone would cost under competition, because that figure is nowhere shown. So the toll borrows the moral license of the fee: it too was paid by a free hand, and a free hand is taken to mean a fair price.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>The strongest reply on the middleman's behalf is not that he holds no position but that he earned it. The platform that now commands the market was built through years of loss, subsidizing both sides until the network caught; the broker's indispensability is the residue of a career spent building the name that makes him trusted; the dealer's dominance is the prize for having been first and surest. Joseph Schumpeter built a whole defense of monopoly on this ground: that the prospect of a monopoly's rents is what lures men into the costly, uncertain labor of creating something new, and that to forbid the rent is to forbid the creation — no one builds the gate if he may not charge at it. On this view the toll is not extraction but deferred payment, the fee for building the passage, collected after the fact and justified by the value the passage created. And it is held to be self-limiting: charge too dear, and the bypass becomes worth attempting, entry is invited, the position erodes. The mere possibility of being gone around is said to discipline the toll even where no rival yet exists, so that a position, like a price, cannot be pushed past what the threat of competition will allow.<sup class="snref"></sup></p>
+    <aside class="sn">The Schumpeterian case has real force where two conditions hold: that the position is genuinely contestable, so the toll is checked by a live threat of bypass, and that the rent is the recovery of a risky investment rather than a perpetual levy. The question the next paragraph presses is whether those conditions survive the very network effects that create the position — for the forces that make a platform valuable enough to build are often the same that make it impossible to go around.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>The defense proves too little. It proves that the toll was once a fee — the reward that drew the builder to build — but not that it remains one. A bridge raised a century ago, its cost recovered many times over, can go on taking its toll forever; a platform whose network was dear to assemble can extract long after the outlay is repaid. Schumpeter's argument justifies a return of the investment, with a premium for the risk; it does not justify an unbounded return on the position in perpetuity, for the reward need not be eternal to have lured the builder. The toll outlives its own justification. And contestability disciplines the toll only where the bypass is cheap. Where network effects, switching costs, and the control of an essential facility have made going around prohibitive — and they have, in the largest cases, precisely because the position is so valuable — the threat of a rival is empty, and the toll climbs to whatever the captive parties will bear. The deepest point survives even a wholly earned position: to have created a valuable passage is one thing, and to hold a power over the division of every future trade that crosses it is another. The middleman who built the gate made something real. But the share of each crossing's gains his gate now lets him claim is fixed by how badly the travelers need to pass — and that is a verdict of relative power, not a measure of what he adds.<sup class="snref"></sup></p>
+    <aside class="sn">To create value and to capture it are distinct, and the gap between them is where the toll lives. A platform may have brought into being a marketplace worth a great deal, and still take, through its position, a share of the gains far larger than the value it adds at the margin — for the toll is set not by its marginal contribution but by the parties' need to pass, a need its very success has only sharpened.</aside>
+
+    <p>This is why the plainest number in the market is the most deceptive. A price is a verdict on a hidden contest, mistaken for a fact of nature; and the spread is the standing verdict of the contest between the middleman and the two he stands between. The fee in it is the wage of his service; the toll in it is the rent of his position; and the share that is toll measures not what he has done for the parties but his grip on the gate between them — the larger, the more necessary he has contrived to become. To read the spread rightly is to refuse the middleman's claim that all of it is fee — to see the same coin paying at once for a service and for a power, and to know that the second part swells exactly as the first becomes harder to do without him. He is no parasite; the populist who would abolish him mistakes the fee for the whole. But neither is the spread, in its entirety, the price of his service. It is, in its other part, the tribute exacted for being let past.<sup class="snref"></sup></p>
+    <aside class="sn">The practical difficulty follows directly. A society that wishes to curb the toll — through the antitrust suit against the platform, the regulation of the exchange, the public road laid beside the private one — must somehow strike the rent of position without striking the wage of service, and the two are nowhere separately shown. Every such remedy risks cutting the fee along with the toll; the art of it, which the last plate of the volume takes up, lies in opening the passage without discouraging those who would build a better one.</aside>
+
+    <p class="pull">A toll is a fee that has outlived its service — payment, exacted forever, for a passage that was opened once.</p>
+
+    <p>With this the volume's two opening plates are complete: the one set out the price of standing between, the other the contest folded inside it. The plates that follow take the middleman's functions and positions one by one — The Match and The Dealer, the finding and the immediacy; The Hub, the platform whose toll is its network; The Escrow, the trust that can itself become a toll; The Chain and The Merchant, the layered margins of distribution; The Banker, the spread of finance; The Arbitrage, the profit of a gap that may be closed or contrived; The Bypass, the recurring attempt to escape the toll; and The Passage, which asks what a society should do about the gate. The toll is a rent, and so this plate borders the rent and its question of the unearned; it is a power over the passage, and so it borders the power and the price-maker who sets a price because he holds the road; and it is a claim on the gains from trade, and so it borders the surplus and the contest over how those gains divide. The Middleman asked what the spread pays for; this plate has answered that it pays, in part, for nothing the middleman does. What a society should do about a toll it cannot see, the last plate of the volume will take up. The argument remains open.</p>
+
+  </article>
+
+  <nav class="apparatus" aria-label="Related plates">
+    <p class="app-h">Related</p>
+    <ul class="app-list">
+      <li><a href="the-middleman.html"><span class="app-rel">The Spread &middot; Plate i</span><span class="app-t">The Middleman</span><span class="app-g">the companion this plate answers: the price of standing between, and the four services a spread is meant to pay for</span></a></li>
+      <li><a href="the-unearned.html"><span class="app-rel">The Rent &middot; Plate ii</span><span class="app-t">The Unearned</span><span class="app-g">the toll is a rent — the return to a position one controls rather than to anything one does, set by others' need to use it</span></a></li>
+      <li><a href="the-price-maker.html"><span class="app-rel">The Power &middot; Plate i</span><span class="app-t">The Price-Maker</span><span class="app-g">the chokepoint as market power: the one who sets a price because he controls the road, not because he competes on it</span></a></li>
+      <li><a href="the-divide.html"><span class="app-rel">The Surplus &middot; Plate ii</span><span class="app-t">The Divide</span><span class="app-g">the division of the gains from trade — the surplus the toll claims a share of, by virtue of standing in the way</span></a></li>
+    </ul>
+  </nav>
+
+  <footer>
+    <nav class="crumbs foot" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-spread.html">The Spread &middot; Vol V</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate ii &middot; The Tribute</span>
+    </nav>
+    <p class="colophon">Plate ii of <em>The Spread</em>, the thesis on which the volume turns, companion to <a href="the-middleman.html">The Middleman</a>, which set out the price of standing between before this plate asks what, in that price, the middleman's service can actually explain. The argument runs through the economics of position: David Ricardo on rent as the price-determined return to a scarce advantage, Henry George on the unearned toll the holder of a natural opportunity levies on those who must use it, Adam Smith on the merchants whose contrivances against the public raise prices, and Joseph Schumpeter on the monopoly rent that lures men to build what would not otherwise be built — all discussed in the text. The thesis is that the spread is always part fee and part toll: the fee bounded by the cost of the service, the toll bounded only by the parties' need to pass; that the toll is a rent on the middleman's position, swelling as he makes himself harder to do without; and that the share of any spread which is toll rather than fee measures not what the middleman does but his grip on the gate. With it the volume's two advertised plates stand complete, and the prices stand complete with them. Read the volume at <a href="the-spread.html">The Spread</a>, or return to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-middleman.html">← The Middleman</a><a rel="next" href="the-margin.html">The Margin →</a></nav>
+</body>
+</html>

@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Sources — The Wage, the folio · Numéraire</title>
+<meta name="description" content="The sources of The Wage, read against one another: the five literatures that divide the wage between them, the contested seams the folio could not resolve, an annotated register, and the apparatus's own silences.">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1;
+    --paper-2:#eae3d6;
+    --ink:#1c1a16;
+    --soft:#534e45;
+    --faint:#6e685d;
+    --faintest:#9a9384;
+    --num:#b9b1a0;
+    --hair:#ddd6c7;
+    --hair-2:#cdc5b3;
+    --rubric:#963626;        /* aged iron-oxide red — the colour of the manuscripts */
+    --rubric-soft:#b5705c;
+    --sel:rgba(120,94,52,.16);
+    --frame:74rem;
+    --read:39rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.62;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .plate{
+    position:fixed;inset:clamp(.7rem,1.5vw,1.5rem);z-index:1;pointer-events:none;
+    border:1px solid rgba(28,26,22,.10);border-radius:2px;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.16),inset 0 1px 30px rgba(28,26,22,.045);
+  }
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.6rem,4vw,4rem);}
+  p{margin:0;}
+  i,em{font-style:italic;}
+  a{color:inherit;}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:4px;border-radius:1px;}
+  .fr{font-family:"Fraunces",Georgia,serif;font-feature-settings:"liga" 1,"dlig" 0;}
+
+  /* ---- masthead + hero ---- */
+  .hero{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:space-between;}
+  .bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.5rem;
+    padding:2.5rem 0 1.1rem;border-bottom:1px solid var(--hair);}
+  .mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.3rem;letter-spacing:-.01em;}
+  .edition{font-size:.9rem;color:var(--faint);letter-spacing:.06em;}
+  .hero-foot{padding-bottom:clamp(3.5rem,8vh,7rem);text-align:center;}
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(3rem,9vw,8.2rem);line-height:.98;letter-spacing:-.028em;margin:0;text-wrap:balance;}
+  h1 .j{font-style:italic;}
+  .standfirst{font-size:clamp(1.13rem,1.45vw,1.32rem);line-height:1.56;color:var(--soft);
+    margin:clamp(1.6rem,3vh,2.4rem) auto 0;max-width:46rem;text-wrap:pretty;}
+
+  /* ---- prose sections ---- */
+  .section{max-width:var(--read);margin:clamp(4rem,9vh,7rem) auto 0;}
+  .sec-head{margin:0 0 1.7rem;}
+  .sec-num{display:block;font-family:"Fraunces",serif;font-variation-settings:"opsz" 32,"wght" 500;
+    color:var(--rubric);font-size:1rem;letter-spacing:.16em;margin-bottom:.5rem;}
+  .sec-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 80,"wght" 400;
+    font-size:clamp(1.8rem,3.4vw,2.5rem);line-height:1.04;letter-spacing:-.02em;display:block;text-wrap:balance;}
+  .section p{margin:0;}
+  .section p + p{text-indent:1.4em;}
+  .lead{text-indent:0;}
+  .lead::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    float:left;font-size:3.95em;line-height:.78;padding:.06em .09em 0 0;color:var(--ink);}
+  .lead::first-line{font-variant:small-caps;letter-spacing:.02em;}
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-style:italic;
+    font-size:clamp(1.35rem,2.4vw,1.78rem);line-height:1.3;color:var(--ink);
+    margin:2.2rem 0;padding-left:1.25rem;border-left:2px solid var(--rubric);text-wrap:pretty;}
+  .pull + p{text-indent:0;}
+
+  /* margin sidenotes */
+  .sidenote{font-size:.82rem;line-height:1.5;color:var(--faint);
+    margin:1.1rem 0;padding-left:.85rem;border-left:1px solid var(--hair-2);}
+  .sidenote .sn{font-family:"Fraunces",serif;font-variation-settings:"opsz" 24,"wght" 500;
+    color:var(--rubric);font-size:.72rem;letter-spacing:.04em;display:block;margin-bottom:.2rem;}
+  .sidenote + p{text-indent:0;}
+  @media (min-width:74rem){
+    .sidenote{float:right;clear:right;width:11.75rem;margin:.3rem -13.5rem 1.1rem 1.4rem;
+      padding-left:0;border-left:0;text-align:left;}
+    .sidenote::before{content:"";display:block;width:1.6rem;height:1px;background:var(--rubric-soft);margin-bottom:.55rem;}
+  }
+
+  /* ---- the contested seams ---- */
+  .seam{max-width:var(--read);margin:0 auto;padding:1.7rem 0;border-top:1px solid var(--hair);}
+  .seam:first-of-type{border-top:0;padding-top:.2rem;}
+  .seam-head{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin-bottom:.7rem;}
+  .seam-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;
+    font-size:1.16rem;line-height:1.15;letter-spacing:-.01em;text-wrap:balance;}
+  .seam-ref{font-family:"Fraunces",serif;font-variation-settings:"opsz" 24,"wght" 500;
+    color:var(--rubric);font-size:.82rem;letter-spacing:.08em;white-space:nowrap;}
+  .seam p{font-size:.97rem;line-height:1.56;color:var(--soft);text-wrap:pretty;}
+  .seam .verdict{font-style:italic;color:var(--ink);}
+
+  /* ---- the register ---- */
+  .register-head{text-align:center;margin:clamp(4.5rem,9vh,7rem) 0 1.4rem;}
+  .sec-label{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.92rem;letter-spacing:.32em;text-transform:uppercase;color:var(--rubric);}
+  .device{display:block;width:min(54%,13rem);height:auto;margin:1.3rem auto 0;}
+  .dev-rule{stroke:var(--hair-2);stroke-width:1;vector-effect:non-scaling-stroke;}
+  .dev-mark{fill:var(--rubric);}
+  .reg-intro{max-width:43rem;margin:0 auto clamp(2.2rem,4vh,3rem);text-align:center;
+    font-size:.95rem;line-height:1.55;color:var(--faint);text-wrap:pretty;}
+  .reg-intro .ct{color:var(--rubric);}
+
+  .bib{max-width:45rem;margin:0 auto;}
+  .bib-group{margin:0 0 2.5rem;}
+  .bib-group:last-of-type{margin-bottom:0;}
+  .bib-head{display:flex;align-items:baseline;gap:.7rem;padding-bottom:.6rem;
+    border-bottom:1px solid var(--hair);}
+  .bib-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--rubric);font-size:1rem;letter-spacing:.05em;min-width:2.1rem;}
+  .bib-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 400;
+    font-size:1.3rem;line-height:1.12;letter-spacing:-.012em;color:var(--ink);}
+  .bib-lede{font-style:italic;color:var(--faint);font-size:.92rem;line-height:1.5;
+    margin:.85rem 0 1rem;text-wrap:pretty;}
+  .bib-lede .ct{font-style:normal;color:var(--rubric);}
+  .bib-list{list-style:none;margin:0;padding:0;}
+  .bib-item{position:relative;padding-left:1.4rem;margin:0 0 .62rem;
+    font-size:.94rem;line-height:1.5;color:var(--soft);text-wrap:pretty;}
+  .bib-item:last-child{margin-bottom:0;}
+  .bib-item::before{content:"";position:absolute;left:.25rem;top:.62em;width:.32rem;height:.32rem;
+    background:var(--rubric-soft);transform:rotate(45deg);}
+  .bib-item i{font-style:italic;color:var(--ink);}
+  .ct{font-family:"Fraunces",serif;color:var(--rubric);font-size:.82em;
+    vertical-align:.32em;padding-left:.12em;font-style:normal;}
+  .bib-note{padding-left:1.4rem;font-size:.94rem;line-height:1.5;color:var(--faint);font-style:italic;text-wrap:pretty;}
+
+  /* coda */
+  .coda{max-width:44rem;margin:clamp(5rem,10vh,8rem) auto 0;text-align:center;}
+  .coda p{font-family:"Fraunces",serif;font-variation-settings:"opsz" 120,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.3vw,1.78rem);line-height:1.36;color:var(--soft);margin:0;text-wrap:balance;}
+  .coda-rule{width:min(100%,20rem);height:1px;margin:clamp(1.9rem,3.6vh,2.7rem) auto 0;
+    background:linear-gradient(90deg,var(--hair-2) 0%,var(--hair-2) 42%,rgba(205,197,179,0) 100%);}
+
+  footer{margin-top:clamp(5rem,11vh,8rem);padding:2.6rem 0 4.5rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.5rem;margin-bottom:1.8rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.1rem;}
+  .f-ref{font-size:.82rem;color:var(--faintest);letter-spacing:.18em;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:70ch;}
+  .colophon .ct{color:var(--rubric);}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .r{opacity:0;transform:translateY(12px);animation:rise 1.1s cubic-bezier(.2,.6,.2,1) both;}
+    .r1{animation-delay:.06s}.r2{animation-delay:.2s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  /* ---- narrow ---- */
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .lead::first-letter{font-size:3.4em;}
+    .seam-head{flex-direction:column;gap:.15rem;}
+    .bib-head{gap:.5rem;}
+    .bib-num{min-width:1.9rem;font-size:.95rem;}
+    .bib-title{font-size:1.18rem;}
+    .bib-item,.bib-note,.bib-lede{font-size:.9rem;}
+    .f-bar{flex-direction:column;gap:.7rem;}
+  }
+
+  /* ---- print ---- */
+  @media print{
+    body{background:#fff;color:#000;font-size:10.5pt;overflow:visible;}
+    body::before,.plate{display:none;}
+    .hero{min-height:auto;}
+    .hero-foot{padding-bottom:2rem;}
+    .r{opacity:1;transform:none;animation:none;}
+    @media (min-width:74rem){.sidenote{float:none;width:auto;margin:1rem 0;padding-left:.85rem;border-left:1px solid #ccc;}.sidenote::before{display:none;}}
+    .section,.seam,.bib-group,.coda{break-inside:avoid;}
+    .bib-item::before,.ct,.sec-num{color:#963626;}
+    .bib-item::before{background:#963626;}
+    a{text-decoration:none;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-wage-folio">The Wage — Sixteen-Plate Folio · contents</a><a href="the-wage-frontispiece.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="plate" aria-hidden="true"></div>
+<div class="frame">
+
+  <section class="hero">
+    <div class="bar r r1">
+      <span class="mark">Numéraire</span>
+      <span class="edition">the folio · sources</span>
+    </div>
+    <div class="hero-foot r r2">
+      <h1>The <span class="j">Sources</span></h1>
+      <p class="standfirst">A bibliography is usually a list of where the writer has been. This one attempts something harder: to read the literature it cites — to show that the wage is studied not by one science but by five that scarcely speak to one another; to mark the half-dozen places where the authorities meet and contradict; and to name what the whole shelf leaves out. The works are gathered, as in the margins, in the order of the plates — but they are gathered under the conviction that governed the folio: that the wage is larger than any single account of it, this one not excepted.</p>
+    </div>
+  </section>
+
+  <!-- ===================== I ===================== -->
+  <section class="section">
+    <div class="sec-head"><span class="sec-num fr">I</span><span class="sec-title">The Unmet Canons</span></div>
+    <p class="lead">Lay the folio&rsquo;s authorities side by side and the first thing to notice is stranger than disagreement. Aquinas does not answer Spence. Federici does not answer Becker. The natural-law theologian and the natural-experiment econometrician are not on opposite sides of an argument; they are not in the same argument at all. This is not a failure of citation. It is the signature of the subject. The wage is not one object examined by several disciplines but several objects that happen to share a word, and a number, and a line on a cheque.</p>
+    <p class="sidenote"><span class="sn">boundary object</span>This is the folio&rsquo;s governing idea, after Star and Griesemer (1989): an object robust enough to be held in common by communities that understand it differently — coherent enough to travel between them, plastic enough to mean something distinct in each. The wage is its purest economic instance.</p>
+    <p>Why the disciplines should divide <i>here</i>, and into just these parts, is not arbitrary; it follows from what the wage is. The wage is the price of a person&rsquo;s time, and a person is the one thing the moral tradition has held to be <i>without</i> a price — to have, in Kant&rsquo;s sharp formulation, a <i>dignity</i> rather than a price, which is exactly what admits no equivalent and cannot be weighed against a sum. The wage is therefore a contradiction worn as a number: a dignity-bearer rendered as a price, the incommensurable made to clear a market. Every literature that has taken the wage seriously is, at bottom, a way of living with that contradiction — and there are only so many ways to live with it. One may assimilate the wage to dignity and ask what such a being is owed. One may assimilate it to price and ask what, in equilibrium, it equals. One may decline to choose and instead theorise the relation between the two — either as it stands, which is a theory of value, or as it came to be, which is a history. Or one may refuse the adjudication altogether and merely measure the magnitude that results. These are not five tastes in a buffet of methods; they are the five exits from a single room, and the literature on the wage has taken all of them.</p>
+    <p class="sidenote"><span class="sn">price and dignity</span>The distinction is Kant&rsquo;s, in the <i>Groundwork</i> (1785): what has a price can be replaced by an equivalent; what is raised above all price, admitting no equivalent, has a dignity. The wage is the standing attempt to set a price on the bearer of the second kind of worth.</p>
+    <p>The first takes the dignity exit. It makes the wage a <i>moral magnitude</i> and asks what is owed — from Aristotle&rsquo;s reciprocity through Aquinas&rsquo;s just price and the common estimation of the Salamancans to the natural-law floor of <i>Rerum Novarum</i>. Its instrument is the <i>ought</i>, and its constitutive limit is exact: it can fix bounds but never values. No quantity of natural-law reasoning yields a number. The moral tradition legislates the edges of the permissible — a floor below which the wage is unjust, a ceiling above which it is rapacious — and falls silent in the wide interior between.</p>
+    <p>The second takes the price exit. It makes the wage an <i>optimization outcome</i> and asks what it equals under a specified market structure. This is the modern apparatus of labour economics, and its first peculiarity is that it is not a theory but a family: the competitive baseline, in which the wage equals marginal product; Robinson&rsquo;s monopsony, in which the employer&rsquo;s wage-setting power breaks that result; the efficiency-wage models, in which the wage is held above market-clearing to buy effort; the insider&ndash;outsider, implicit-contract, human-capital, and signaling models, each switched on by a different friction. Its second peculiarity is that it is <i>positive</i>, not normative — it brackets what the wage ought to be and asks only what it will be. It does not contradict the moral tradition. It has changed the subject, and mostly does not notice that it has.</p>
+    <p>The third and fourth decline to choose, and theorise the relation between dignity and price — the third as it stands, the fourth as it came to be. The third is the <i>theory of value</i>, and it is best read as the place where the dignity&ndash;price question was fought out inside economics itself. Classical political economy, from Smith through Ricardo to Marx, made the wage a window onto a <i>structure</i> — subsistence, surplus, the division of the social product — so that the price still disclosed something of the order that set it. The marginalist revolution shut that window: it made the wage a pure price, the marginal product of labour, disclosing nothing but a production function. The same word now named two incompatible things — in the first reading a <i>symptom</i> of how the surplus is divided, in the second a <i>solution</i> to a constrained maximisation — and the discipline never reunited around it. The fourth is <i>history</i>, the diachronic twin of the third: where the theory of value asks how dignity and price relate in principle, history asks how the one was converted into the other in fact. It runs through Thompson on the disciplining of time, the historians of enclosure and of the Master and Servant Acts, Polanyi on the fictitious commodity, and Federici and Waring on the boundary the wage draws around what counts as work. Its constitutive gesture is denial: against every account that treats the wage as a natural fact — the marginalist equilibrium above all — it insists the wage is a made thing, with force in its history and a politics in its boundaries.</p>
+    <p>The fifth takes the last exit and refuses the adjudication. It makes the wage a <i>measured quantity</i> and asks only what the numbers say — Card and Krueger and the credibility revolution; the International Labour Organization and the national accounts measuring the unwaged and the labour share; Nordhaus recovering the true fall in the price of light; the forecasters of automation&rsquo;s reach. Its method is identification, the disciplined extraction of a causal magnitude from data in preference to deduction from theory, and its arrival did not settle the old quarrels so much as decline to settle them by argument. Its constitutive limit is the mirror of the moral tradition&rsquo;s: it establishes, with rising precision, what <i>is</i>, and says nothing of what <i>ought to be</i>.</p>
+    <p>Set out this way, the five are not rival answers to one question but five disciplines that have divided the wage&rsquo;s double nature between them — each seizing the portion its method can hold and, having seized it, ceasing to correspond with the rest. The moral tradition holds the dignity and not the price; the micro-apparatus holds the price and brackets the dignity; the theory of value holds their relation and broke in two over it; history holds their conversion and denies it was natural; measurement holds the magnitude and declines the argument. None is mistaken within its portion. The single error — the one this folio was built to refuse — is to mistake a portion for the whole: to take the marginalist equilibrium for the <i>nature</i> of the wage, or the moral floor for its <i>determination</i>, or a measured elasticity for its <i>meaning</i>.</p>
+    <p class="pull">The wage&rsquo;s unity survives only in the word, and the number on the cheque; beneath them the literatures fracture — and the fracture is the truest thing the scholarship records about its object.</p>
+    <p>A folio that wished to hold the wage whole could not therefore adopt a canon; it had to convene them, and to leave them, as they are left here, unreconciled in a single room. The register that follows is not a reading list assembled by one discipline. It is the five exits, gathered back into the room they were taken from.</p>
+  </section>
+
+  <!-- ===================== II ===================== -->
+  <section class="section">
+    <div class="sec-head"><span class="sec-num fr">II</span><span class="sec-title">The Contested Seams</span></div>
+    <p class="lead">The previous section concerned authorities that fail to meet. This one concerns the rarer and sharper case: authorities that meet head-on — that take up the same question, on the same terms, and return opposing answers. At these seams the folio could not synthesize; it could only report the dispute, and refuse to dress a contested claim as a settled one. Marking them is the apparatus&rsquo;s first obligation, for a falsehood stated plainly does less harm than a controversy presented as fact. Six seams bore weight.</p>
+    <p>These disputes are not the residue of careless work, to be cleared away by the next study; they share a root, and the root is in the wage&rsquo;s nature as a <i>number</i>. The wage is a scalar — one figure, on one cheque — and it is the joint equilibrium of many forces at once: productivity and power, scarcity and custom, the worker&rsquo;s outside options and the firm&rsquo;s, the value of the work and the cost of replacing the one who does it. A single number that many causes produce cannot, in general, be run backwards to recover the causes that produced it. The wage is thus <i>overdetermined as a magnitude and underdetermined as an explanation</i>: we know to the penny what it is, and cannot read off, from the penny, why it is that and not otherwise. Every seam below is a place where the missing thing is exactly such a counterfactual — what employment would have been without the floor, what the worker would have earned without the degree, what the parish would have become without the allowance, why Ford raised the wage, whether the donor would have given for nothing. The cheque is precise; its causes are not recoverable from it; and where causes are not recoverable, authorities of equal seriousness can read the same number to opposite conclusions, indefinitely.</p>
+    <p>This also tells us which seams can ever close. The credibility revolution&rsquo;s whole achievement was to <i>manufacture the missing counterfactual</i> — to find, in a policy that fell on one side of a state line and not the other, the comparison that observation alone withholds. Where the unobserved thing is a counterfactual <i>quantity</i>, the method bites and the dispute narrows toward a number: this is why the minimum-wage seam, though unsettled, grows <i>less</i> unsettled each decade. Where the counterfactual is only partly recoverable — what one particular worker&rsquo;s productivity would have been without his schooling — it bites less, and the seam holds open over <i>proportions</i>, as the diploma&rsquo;s does. Where the missing thing is not a quantity at all but a <i>motive</i>, a <i>vanished historical particular</i>, or a <i>choice of theoretical primitive</i>, no experiment can be run, and the seam closes, if ever, by archive or by abandonment rather than by measurement. The seams differ not in how stubborn their disputants are but in what <i>kind</i> of thing is missing — and that, not temperament, decides whether better evidence can end them.</p>
+    <p class="sidenote"><span class="sn">the credibility revolution</span>The turn, from the 1990s, toward identifying causal effects from natural and quasi-experiments rather than from theory-laden regression — Card and Krueger&rsquo;s minimum-wage work a founding instance. It is why the fifth literature can decline the old arguments: it offers to measure what they disputed.</p>
+
+    <div class="seam">
+      <div class="seam-head"><span class="seam-title">The disemployment effect of the minimum wage</span><span class="seam-ref fr">v · vii</span></div>
+      <p>Does a moderate rise in the minimum wage destroy jobs? The competitive model, descending from Clark, requires that it must: price labour above its marginal product and some labour goes unbought. Card and Krueger&rsquo;s New Jersey study (1994) found no such effect, and a generation of natural-experiment work has largely confirmed small-to-negligible losses for the increases actually legislated — most influentially Cengiz, Dube, and co-authors (2019), whose binned-wage method locates the job changes tightly around the new minimum and finds little net loss. Neumark and Wascher, across decades, contest the result on specification and data, and the quarrel over the right estimator and the threat of publication bias is live. What makes a null or even positive effect <i>intelligible</i> rather than anomalous is monopsony — Robinson&rsquo;s old insight that an employer with wage-setting power hires too few, so that a higher floor can raise employment by undoing the underhiring; several recent studies read their positive estimates exactly so. <span class="verdict">The honest state: unsettled at the level of magnitude, but no longer supportive of the strong competitive prediction of large losses from moderate increases.</span> The folio&rsquo;s stake is that this is not a gap in the evidence awaiting closure, but the empirical signature of plate v&rsquo;s thesis — that the wage&rsquo;s amount is indeterminate within a range fixed by power, and so the data cannot resolve what the power relation leaves open.</p>
+    </div>
+
+    <div class="seam">
+      <div class="seam-head"><span class="seam-title">What the diploma buys</span><span class="seam-ref fr">xv</span></div>
+      <p>Does education raise a worker&rsquo;s productivity or merely reveal it? Becker, Mincer, and Schultz built the human-capital account, in which schooling is investment and the premium its return; Spence, Arrow, and Stiglitz built the signaling and screening account, in which the premium can persist even if school teaches nothing, because the degree sorts the able from the rest. Caplan presses the signaling reading to roughly four-fifths of the return. <span class="verdict">The honest state is a hybrid:</span> both forces plainly operate, human capital substantially among them; the sheepskin effect — the outsize jump in earnings at the credential year rather than smoothly with each year of study — is real and consistent with a signaling component, but does not establish Caplan&rsquo;s share, and ability bias clouds the premium estimate, which critics put at a quarter to nearly a half. The dispute is over <i>proportions</i>, not existence, and the wage data underdetermine the proportions. The folio presents the question as open because it is, and declines the satisfaction of a verdict the evidence will not license.</p>
+    </div>
+
+    <div class="seam">
+      <div class="seam-head"><span class="seam-title">Speenhamland</span><span class="seam-ref fr">iv</span></div>
+      <p>Did the practice of topping up wages from the poor rate, in the English counties around 1800, pauperize rural labour and prove a self-regulating labour market impossible without protection? Polanyi (1944) made Speenhamland exactly that — the load-bearing parable of <i>The Great Transformation</i>. The revisionists, led by Mark Blaug (1963, 1964), challenged the empirics beneath it: how widely the bread-scale was ever applied, whether it truly depressed wages and productivity, and whether the 1834 Poor Law Report on which Polanyi leaned was evidence or motivated advocacy, assembled to justify a reform already decided. <span class="verdict">The honest state:</span> Polanyi&rsquo;s larger thesis about the disembedding of labour is not refuted by the local dispute, and able defenders (Block and Somers) maintain it; but his <i>Speenhamland</i> empirics are genuinely contested, and the episode endures as a lesson in how a powerful reading can outrun its evidence. The folio uses it, and marks that it leans here on an interpretation rather than a fact.</p>
+    </div>
+
+    <div class="seam">
+      <div class="seam-head"><span class="seam-title">The motive of the five-dollar day</span><span class="seam-ref fr">xiii</span></div>
+      <p>Why did Ford double his wage in 1914? The durable story — that he paid his workers enough to buy his cars, an underconsumptionist morality tale — is a myth. The documented motive was ruinous turnover, on the order of three hundred and seventy percent in 1913, and the efficiency-wage logic of curing it, which the high wage did. This seam differs from the others: among economic historians it is effectively <i>settled</i>; what persists is the myth, in popular memory and the occasional textbook. <span class="verdict">The folio corrects it</span> — itself a service — and notes that the true mechanism, an efficiency wage rather than a demand subsidy, belongs to plate xiii&rsquo;s argument rather than upsetting it.</p>
+    </div>
+
+    <div class="seam">
+      <div class="seam-head"><span class="seam-title">Titmuss&rsquo;s blood</span><span class="seam-ref fr">xii</span></div>
+      <p>Does paying for blood crowd out the voluntary donor and shrink the supply? Titmuss (1970) argued so, and the claim became the founding anecdote of motivation crowding. Here the seam is subtle. The <i>general</i> mechanism — that extrinsic payment can corrode intrinsic motivation — has solid experimental support, from Deci to Gneezy and Rustichini to Frey and Jegen. Titmuss&rsquo;s <i>specific</i> blood claim is weaker than its fame: the most pointed test, Mellström and Johannesson&rsquo;s field experiment (2008), found the crowding-out among women but not men, and found it vanish entirely once donors could give the payment to charity. <span class="verdict">The folio relies on the mechanism, which is well established, while flagging that its most famous illustration rests on contested ground</span> — a true idea propped on a shaky example. It is the grading&rsquo;s subtlest species: not a counterfactual that cannot be observed, but one that <i>was</i> observed and refused to generalise, so that identification yields here a clean answer that does not travel.</p>
+    </div>
+
+    <div class="seam">
+      <div class="seam-head"><span class="seam-title">The labour theory of value</span><span class="seam-ref fr">viii · spine</span></div>
+      <p>This seam is not a contest of evidence but a displacement of paradigms. The classical reading made labour the <i>source</i> of value — Smith&rsquo;s &lsquo;real measure,&rsquo; carried through Ricardo to Marx; the marginalist settlement kept labour as a <i>measure</i> of value and discarded it as the source, deriving value instead from utility at the margin. <span class="verdict">The honest state:</span> marginalism won the discipline, and the labour theory survives chiefly in heterodox and Marxian economics, defended now less as a theory of price than as a theory of exploitation. The folio&rsquo;s stake is unusually direct, because plate viii&rsquo;s central device — labour as the <i>numéraire</i>, the standard against which every price resolves into a quantity of hours — is precisely the marginalist settlement. In choosing the measure-reading, the folio takes a side in a quarrel the profession considers closed and a minority does not, and it should say so.</p>
+    </div>
+  </section>
+
+  <!-- ===================== III — the register ===================== -->
+  <div class="register-head">
+    <span class="sec-label">III · The Register</span>
+    <svg class="device" viewBox="0 0 220 16" aria-hidden="true">
+      <line class="dev-rule" x1="8" y1="8" x2="92" y2="8"/>
+      <rect class="dev-mark" x="106" y="2.5" width="8" height="8" transform="rotate(45 110 8)"/>
+      <line class="dev-rule" x1="128" y1="8" x2="212" y2="8"/>
+    </svg>
+  </div>
+  <p class="reg-intro">The folio&rsquo;s full apparatus, in the order of the plates. Each group opens with a note on which of the five literatures the plate convenes, and where it stands; a dagger&thinsp;<span class="ct">†</span>&thinsp;marks an authority that sits on one of the contested seams above.</p>
+
+  <div class="bib">
+
+    <div class="bib-group">
+      <div class="bib-head"><span class="bib-num fr">i</span><span class="bib-title">The Just Wage</span></div>
+      <p class="bib-lede">The moral tradition in pure form — the question of what is owed — from Aristotle&rsquo;s reciprocity to a natural-law floor and its statutory echo. No source here yields a number; each fixes a bound.</p>
+      <ul class="bib-list">
+        <li class="bib-item">Aristotle, <i>Nicomachean Ethics</i>, Book V — on reciprocity and justice in exchange.</li>
+        <li class="bib-item">Thomas Aquinas, <i>Summa Theologiae</i>, II&ndash;II, q. 77, a. 1 — on the just price.</li>
+        <li class="bib-item">The School of Salamanca — the late-Scholastic doctrine of the just price as <i>communis aestimatio</i>, the common estimation of the market (Vitoria, Molina, and others).</li>
+        <li class="bib-item">Adam Smith, <i>An Inquiry into the Nature and Causes of the Wealth of Nations</i> (1776) — natural and market price.</li>
+        <li class="bib-item">Pope Leo XIII, <i>Rerum Novarum</i> (1891), &sect;45.</li>
+        <li class="bib-item">Fair Labor Standards Act of 1938, &sect;2(a).</li>
+      </ul>
+    </div>
+
+    <div class="bib-group">
+      <div class="bib-head"><span class="bib-num fr">ii</span><span class="bib-title">The Price of Time</span></div>
+      <p class="bib-lede">The historical-institutional tradition, with the documents: how the clock made the hour sellable and the day&rsquo;s length a political object.</p>
+      <ul class="bib-list">
+        <li class="bib-item">E. P. Thompson, &lsquo;Time, Work-Discipline, and Industrial Capitalism,&rsquo; <i>Past &amp; Present</i> (1967).</li>
+        <li class="bib-item">Lewis Mumford, <i>Technics and Civilization</i> (1934).</li>
+        <li class="bib-item">Benjamin Franklin, &lsquo;Advice to a Young Tradesman&rsquo; (1748).</li>
+        <li class="bib-item">Robert Owen — the demand for &lsquo;eight hours&rsquo; labour&rsquo; (1817).</li>
+        <li class="bib-item">Fair Labor Standards Act of 1938 — the overtime premium.</li>
+        <li class="bib-item">France, the right to disconnect (<i>droit à la déconnexion</i>), Law No. 2016&ndash;1088 (2016).</li>
+      </ul>
+    </div>
+
+    <div class="bib-group">
+      <div class="bib-head"><span class="bib-num fr">iii</span><span class="bib-title">The Wager</span></div>
+      <p class="bib-lede">Etymology and law in place of theory — the wage read as a pledge and a debt, the worker as the firm&rsquo;s unsecured creditor.</p>
+      <ul class="bib-list">
+        <li class="bib-item">The etymology of <i>wage</i> — via Old North French <i>wage</i>&thinsp;/&thinsp;<i>gage</i>, from Frankish <i>*wadi</i>, a pledge; a doublet of <i>gage</i>, and kin to <i>mortgage</i>, the &lsquo;dead pledge.&rsquo;</li>
+        <li class="bib-item">The Truck Act 1831 (United Kingdom).</li>
+        <li class="bib-item">Economic Policy Institute — estimates of the scale of wage theft.</li>
+      </ul>
+    </div>
+
+    <div class="bib-group">
+      <div class="bib-head"><span class="bib-num fr">iv</span><span class="bib-title">The Commons</span></div>
+      <p class="bib-lede">The historical tradition at its most polemical, and at its most contested — resting, at Speenhamland&thinsp;<span class="ct">†</span>, on a reading later historians have disputed.</p>
+      <ul class="bib-list">
+        <li class="bib-item">Thomas More, <i>Utopia</i> (1516).</li>
+        <li class="bib-item">The English parliamentary enclosures.</li>
+        <li class="bib-item">The Speenhamland system (1795) — and its long controversy.<span class="ct">†</span></li>
+        <li class="bib-item">Karl Polanyi, <i>The Great Transformation</i> (1944) — the &lsquo;fictitious commodities&rsquo; and the &lsquo;double movement.&rsquo;</li>
+        <li class="bib-item">Mark Blaug, &lsquo;The Myth of the Old Poor Law and the Making of the New&rsquo; (1963) and &lsquo;The Poor Law Report Reexamined&rsquo; (1964) — the revisionist case against the 1834 Report and Polanyi&rsquo;s reading.<span class="ct">†</span></li>
+        <li class="bib-item">Karl Marx, <i>Capital</i>, Vol. I — &lsquo;so-called primitive accumulation&rsquo; and labour &lsquo;free in a double sense.&rsquo;</li>
+        <li class="bib-item">Thomas Paine, <i>Agrarian Justice</i> (1797).</li>
+      </ul>
+    </div>
+
+    <div class="bib-group">
+      <div class="bib-head"><span class="bib-num fr">v</span><span class="bib-title">The Range</span></div>
+      <p class="bib-lede">The sharpest convergence and the sharpest unresolved seam: value theory (Smith, Clark) against the micro-apparatus (Robinson&rsquo;s monopsony) against the measurement program (Card&ndash;Krueger&thinsp;<span class="ct">†</span>, Cengiz&ndash;Dube&thinsp;<span class="ct">†</span>).</p>
+      <ul class="bib-list">
+        <li class="bib-item">Francis Y. Edgeworth, <i>Mathematical Psychics</i> (1881) — the indeterminacy of contract.</li>
+        <li class="bib-item">Adam Smith, <i>The Wealth of Nations</i> (1776), Book I, ch. 8 — on the masters&rsquo; advantage in the bargain.</li>
+        <li class="bib-item">John Bates Clark, <i>The Distribution of Wealth</i> (1899) — the marginal-productivity theory, and the competitive tradition after it (George Stigler and others).</li>
+        <li class="bib-item">Joan Robinson, <i>The Economics of Imperfect Competition</i> (1933) — monopsony.</li>
+        <li class="bib-item">David Card &amp; Alan B. Krueger — the New Jersey minimum-wage study (1994) and <i>Myth and Measurement</i> (1995); with the rejoinder of David Neumark &amp; William Wascher.<span class="ct">†</span></li>
+        <li class="bib-item">Doruk Cengiz, Arindrajit Dube, Attila Lindner &amp; Ben Zipperer, &lsquo;The Effect of Minimum Wages on Low-Wage Jobs&rsquo; (2019) — the bunching estimator, and the monopsony reading of its results.<span class="ct">†</span></li>
+      </ul>
+    </div>
+
+    <div class="bib-group">
+      <div class="bib-head"><span class="bib-num fr">vi</span><span class="bib-title">The Unwaged</span></div>
+      <p class="bib-lede">The historical tradition meeting the measurement tradition at the production boundary — what the wage refuses to count, and the attempts to count it anyway.</p>
+      <ul class="bib-list">
+        <li class="bib-item">The International Wages for Housework Campaign (Padua, 1972).</li>
+        <li class="bib-item">Silvia Federici, &lsquo;Wages Against Housework&rsquo; (1975).</li>
+        <li class="bib-item">The System of National Accounts and its &lsquo;production boundary.&rsquo;</li>
+        <li class="bib-item">A. C. Pigou, <i>The Economics of Welfare</i> (1920).</li>
+        <li class="bib-item">International Labour Organization, <i>Care Work and Care Jobs for the Future of Decent Work</i> (2018).</li>
+        <li class="bib-item">Marilyn Waring, <i>If Women Counted</i> (1988).</li>
+      </ul>
+    </div>
+
+    <div class="bib-group">
+      <div class="bib-head"><span class="bib-num fr">vii</span><span class="bib-title">The Ratchet</span></div>
+      <p class="bib-lede">The micro-apparatus accounting for a fact the competitive baseline cannot — why the one price won&rsquo;t fall — through morale, fairness, efficiency wages, and insiders.</p>
+      <ul class="bib-list">
+        <li class="bib-item">The evidence on downward nominal wage rigidity — the &lsquo;spike at zero.&rsquo;</li>
+        <li class="bib-item">John Maynard Keynes, <i>The General Theory of Employment, Interest and Money</i> (1936).</li>
+        <li class="bib-item">Truman F. Bewley, <i>Why Wages Don&rsquo;t Fall During a Recession</i> (1999) — on morale.</li>
+        <li class="bib-item">Daniel Kahneman, Jack L. Knetsch &amp; Richard Thaler, &lsquo;Fairness as a Constraint on Profit Seeking&rsquo; (1986).</li>
+        <li class="bib-item">James Tobin (1972) — inflation to &lsquo;grease the wheels&rsquo; of the labour market.</li>
+        <li class="bib-item">The efficiency-wage theories of Carl Shapiro &amp; Joseph Stiglitz (1984) and George Akerlof (1982).</li>
+        <li class="bib-item">Assar Lindbeck &amp; Dennis Snower — the insider&ndash;outsider theory (1988).</li>
+      </ul>
+    </div>
+
+    <div class="bib-group">
+      <div class="bib-head"><span class="bib-num fr">viii</span><span class="bib-title">The Measure</span></div>
+      <p class="bib-lede">Classical value theory at the hinge of its displacement&thinsp;<span class="ct">†</span>: the measure kept, the source discarded; the modern instruments (Nordhaus, Walras) supplied.</p>
+      <ul class="bib-list">
+        <li class="bib-item">Adam Smith, <i>The Wealth of Nations</i> (1776), Book I, ch. 5 — labour as &lsquo;the real measure of the exchangeable value of all commodities.&rsquo;<span class="ct">†</span></li>
+        <li class="bib-item">The marginalist revolution (Jevons, Menger, Walras) — labour re-cast as the <i>measure</i>, not the source, of value.<span class="ct">†</span></li>
+        <li class="bib-item">William D. Nordhaus, &lsquo;Do Real-Output and Real-Wage Measures Capture Reality? The History of Lighting Suggests Not&rsquo; (1996).</li>
+        <li class="bib-item">William J. Baumol — the cost disease.</li>
+        <li class="bib-item">Léon Walras, <i>Éléments d&rsquo;économie politique pure</i> (1874) — the <i>numéraire</i>.</li>
+      </ul>
+    </div>
+
+    <div class="bib-group">
+      <div class="bib-head"><span class="bib-num fr">ix</span><span class="bib-title">The Master</span></div>
+      <p class="bib-lede">Legal history and the theory of the firm together — the wage as the price of authority, and the firm as the island of command Coase named.</p>
+      <ul class="bib-list">
+        <li class="bib-item">The Master and Servant Acts; the Statute of Artificers (1562); their repeal by the Employers and Workmen Act (1875).</li>
+        <li class="bib-item">Ronald H. Coase, &lsquo;The Nature of the Firm&rsquo; (1937) — &lsquo;islands of conscious power.&rsquo;</li>
+        <li class="bib-item">Herbert A. Simon, &lsquo;A Formal Theory of the Employment Relationship&rsquo; (1951) — the &lsquo;zone of acceptance.&rsquo;</li>
+        <li class="bib-item">Armen A. Alchian &amp; Harold Demsetz, &lsquo;Production, Information Costs, and Economic Organization&rsquo; (1972).</li>
+        <li class="bib-item">Oliver Williamson; Oliver Hart — the property-rights theory of the firm and residual control.</li>
+      </ul>
+    </div>
+
+    <div class="bib-group">
+      <div class="bib-head"><span class="bib-num fr">x</span><span class="bib-title">The Insurance</span></div>
+      <p class="bib-lede">The micro-apparatus in its risk-bearing mode — the wage as the senior, insured claim; profit as the residual the venturesome accept.</p>
+      <ul class="bib-list">
+        <li class="bib-item">Frank H. Knight, <i>Risk, Uncertainty and Profit</i> (1921) — profit as the residual, and risk against uncertainty.</li>
+        <li class="bib-item">Implicit-contract theory: Martin N. Baily (1974) and Costas Azariadis (1975).</li>
+        <li class="bib-item">Richard Kihlstrom &amp; Jean-Jacques Laffont — risk-aversion and the choice to be an employee (1979).</li>
+      </ul>
+    </div>
+
+    <div class="bib-group">
+      <div class="bib-head"><span class="bib-num fr">xi</span><span class="bib-title">The Machine</span></div>
+      <p class="bib-lede">History, classical theory, and the measurement tradition on one question — the wage&rsquo;s oldest rival — from the Luddites and Ricardo&rsquo;s reversal to the modern forecasters.</p>
+      <ul class="bib-list">
+        <li class="bib-item">The Luddite risings (1811&ndash;13).</li>
+        <li class="bib-item">David Ricardo, <i>On the Principles of Political Economy and Taxation</i>, 3rd ed. (1821), ch. 31, &lsquo;On Machinery.&rsquo;</li>
+        <li class="bib-item">John Maynard Keynes, &lsquo;Economic Possibilities for our Grandchildren&rsquo; (1930) — coining &lsquo;technological unemployment&rsquo;; and &lsquo;in the long run we are all dead,&rsquo; from <i>A Tract on Monetary Reform</i> (1923).</li>
+        <li class="bib-item">The long decline of agricultural employment (from near half the U.S. workforce in 1870 to about one in a hundred today).</li>
+        <li class="bib-item">Daron Acemoglu &amp; Pascual Restrepo — displacement and reinstatement (2019).</li>
+        <li class="bib-item">David Autor &amp; David Dorn — job polarization (2013).</li>
+        <li class="bib-item">Carl B. Frey &amp; Michael A. Osborne (2017) and Tyna Eloundou et al. (2023) — on exposure to automation and to artificial intelligence.</li>
+      </ul>
+    </div>
+
+    <div class="bib-group">
+      <div class="bib-head"><span class="bib-num fr">xii</span><span class="bib-title">The Calling</span></div>
+      <p class="bib-lede">The micro-apparatus and its critics on meaning and motive — compensating differentials, and the crowding-out whose famous illustration (Titmuss&thinsp;<span class="ct">†</span>) is shakier than its fame.</p>
+      <ul class="bib-list">
+        <li class="bib-item">Max Weber, <i>The Protestant Ethic and the Spirit of Capitalism</i> (1905) — the calling, the <i>Beruf</i>.</li>
+        <li class="bib-item">Adam Smith, <i>The Wealth of Nations</i> (1776), Book I, ch. 10 — the theory of compensating differentials.</li>
+        <li class="bib-item">Uri Gneezy &amp; Aldo Rustichini, &lsquo;A Fine is a Price&rsquo; (2000) — the Haifa day-care experiment.</li>
+        <li class="bib-item">Edward L. Deci (1971); Bruno S. Frey &amp; Reto Jegen — the theory of motivation crowding.</li>
+        <li class="bib-item">Richard M. Titmuss, <i>The Gift Relationship</i> (1970) — the founding, and empirically contested, blood-donation claim.<span class="ct">†</span></li>
+        <li class="bib-item">Carl Mellström &amp; Magnus Johannesson, &lsquo;Crowding Out in Blood Donation: Was Titmuss Right?&rsquo; (2008) — the field test, with gendered and context-dependent results.<span class="ct">†</span></li>
+        <li class="bib-item">Miya Tokumitsu, &lsquo;In the Name of Love,&rsquo; <i>Jacobin</i> (2014).</li>
+      </ul>
+    </div>
+
+    <div class="bib-group">
+      <div class="bib-head"><span class="bib-num fr">xiii</span><span class="bib-title">The Demand</span></div>
+      <p class="bib-lede">Macroeconomics against intuition — the wage as cost up close and income in aggregate — with a famous myth (Ford&thinsp;<span class="ct">†</span>) corrected.</p>
+      <ul class="bib-list">
+        <li class="bib-item">The fallacy of composition; the paradox of thrift.</li>
+        <li class="bib-item">John Maynard Keynes, <i>The General Theory</i> (1936), ch. 19 — on money-wages and the wage cut.</li>
+        <li class="bib-item">Jean-Baptiste Say — the law of markets (&lsquo;supply creates its own demand,&rsquo; in its Keynesian rendering).</li>
+        <li class="bib-item">Henry Ford&rsquo;s five-dollar day (1914) — and the myth of its motive; the turnover it was meant to cure.<span class="ct">†</span></li>
+        <li class="bib-item">The national-accounts shares of consumption and of labour compensation.</li>
+      </ul>
+    </div>
+
+    <div class="bib-group">
+      <div class="bib-head"><span class="bib-num fr">xiv</span><span class="bib-title">The Leisure</span></div>
+      <p class="bib-lede">Labour-supply theory and a failed prediction — the hour as the price of a life, and the leisure Keynes foretold that did not come.</p>
+      <ul class="bib-list">
+        <li class="bib-item">The backward-bending labour-supply curve — the substitution effect against the income effect.</li>
+        <li class="bib-item">William Stanley Jevons, <i>The Theory of Political Economy</i> (1871) — the disutility of labour.</li>
+        <li class="bib-item">John Maynard Keynes, &lsquo;Economic Possibilities for our Grandchildren&rsquo; (1930) — the fifteen-hour week foretold.</li>
+        <li class="bib-item">Thorstein Veblen, <i>The Theory of the Leisure Class</i> (1899) — conspicuous leisure.</li>
+      </ul>
+    </div>
+
+    <div class="bib-group">
+      <div class="bib-head"><span class="bib-num fr">xv</span><span class="bib-title">The Diploma</span></div>
+      <p class="bib-lede">The micro-apparatus divided against itself — human capital against signaling, pressed to its edge by Caplan&thinsp;<span class="ct">†</span> — over proportions the wage data cannot settle.</p>
+      <ul class="bib-list">
+        <li class="bib-item">The measured college wage premium.</li>
+        <li class="bib-item">Human-capital theory: Gary S. Becker, <i>Human Capital</i> (1964); Jacob Mincer; Theodore W. Schultz.</li>
+        <li class="bib-item">Signaling and screening: A. Michael Spence, &lsquo;Job Market Signaling&rsquo; (1973); Kenneth J. Arrow, &lsquo;Higher Education as a Filter&rsquo; (1973); Joseph E. Stiglitz, &lsquo;The Theory of &ldquo;Screening,&rdquo; Education, and the Distribution of Income&rsquo; (1975).</li>
+        <li class="bib-item">The sheepskin effect — the disproportionate return to the credential year.</li>
+        <li class="bib-item">Bryan Caplan, <i>The Case Against Education</i> (2018).<span class="ct">†</span></li>
+      </ul>
+    </div>
+
+    <div class="bib-group">
+      <div class="bib-head"><span class="bib-num fr">xvi</span><span class="bib-title">The Sum</span></div>
+      <p class="bib-lede">The binding leaf — no new authorities; the argument that no single reading, and so no single literature, can close.</p>
+      <p class="bib-note">The binding leaf calls no new authorities. It gathers the fifteen readings above, returning in particular to Polanyi&rsquo;s &lsquo;fictitious commodity&rsquo; (plate iv) — the life that is sold on markets though it was never made to be sold — and to the thesis that the wage&rsquo;s unity is a property of the word and the number, not of the thing the literatures describe beneath them.</p>
+    </div>
+
+  </div>
+
+  <!-- ===================== IV ===================== -->
+  <section class="section">
+    <div class="sec-head"><span class="sec-num fr">IV</span><span class="sec-title">The Silences</span></div>
+    <p class="lead">An apparatus that only displayed its authorities would flatter them, and itself. The harder task, and the more useful, is to mark what the shelf does not hold — the blind spots of the bibliography, which are to a real degree the blind spots of the folio. Four are worth naming.</p>
+    <p>First, the recurring hands. Two figures stand behind almost half the folio. Smith is the authority of the just price, the bargaining range, the measure, and the calling; Keynes of the ratchet, the machine, the demand, and the leisure foretold. The concentration is partly earned — they are foundational, and a serious treatment cannot route around them — but it should be named rather than hidden: the folio&rsquo;s map of the wage is, to a degree it does not correct, drawn in two men&rsquo;s hands, and a different pair of cartographers would have drawn different coasts.</p>
+    <p>Second, the missing vantage. The canon is written almost entirely from above — by the theorist who models the wage and the master who pays it, seldom by the worker who earns it. The experience of being priced — the texture of the arrears, the felt weight of the floor, what it is to sell the hour — enters here only at a slant, through Thompson&rsquo;s reconstructions and the movement texts. A bibliography of the wage assembled from the earner&rsquo;s side would be a different document, and the folio, for all its sympathy, is not that document and should not be mistaken for it.</p>
+    <p>Third, the narrow world. The technical apparatus is overwhelmingly Anglo-American and Western European, overwhelmingly male, and clustered in a handful of institutions and a few mid-century decades; the moral tradition, older, is no wider in origin. The wage is a global and ancient thing, and this is a provincial sample of the thought about it — provincial along precisely the axes, of gender and geography and language, that are not incidental to a subject in which who earns, where, and in what tongue the bargain is struck all bear on the price.</p>
+    <p>Fourth, the tilted discipline. For all the folio&rsquo;s insistence on convening five literatures, the convening is not even-handed: economics supplies the spine, and the rest supplement it. The sociology and anthropology of work, the legal-realist literature on the employment contract beyond the statutes named, the ethnography of money and exchange — these are thin here. The folio is, in its sources, an economics-led anatomy with philosophical and historical supplements: a defensible architecture, but a chosen one, and the choice quietly shaped what the wage was permitted to look like.</p>
+    <p>These four are not independent omissions; they are four views of one fact. The wage became a <i>theoretical object</i> — a thing about which treatises are written and chairs endowed — at the moment and in the place where it became the dominant way of getting a living <i>and</i> where a literate, surplus-funded class stood positioned to observe it from outside: the industrialising North Atlantic of the long nineteenth and twentieth centuries. The recurring hands, the view from above, the narrow world, the economics-led shelf are each a shadow cast by that single circumstance. The literature is concentrated exactly where and when the wage-form was being universalised and contested, and it is written, overwhelmingly, by the heirs of that universalisation rather than its objects. To read this canon is therefore to inherit not merely a reading list but a <i>standpoint</i>: the view from the society that has already converted living into wage-earning and half-forgotten that it was ever otherwise — the view, in the folio&rsquo;s own terms, from the far side of the enclosure that plate iv describes. The silences are where that standpoint becomes visible as a standpoint, and stops passing for the world.</p>
+    <p>These are not confessions offered to soften criticism. They are the folio&rsquo;s own method, turned for once upon itself. The work&rsquo;s single claim was that the wage exceeds any one discipline&rsquo;s account of it; the same suspicion, aimed at the work&rsquo;s own shelf, finds the wage exceeding this account too.</p>
+    <p class="pull">The sources are where the folio&rsquo;s argument is strongest and where its limits are most legible; an honest apparatus owes the reader both.</p>
+  </section>
+
+  <div class="coda">
+    <p>A bibliography is usually a record of where a writer has been. This one has tried to be a map of a subject too large for any of its sciences — five literatures that divide the wage&rsquo;s double nature between them, six seams where a single number cannot be made to yield its own causes, and a shelf whose silences mark the standpoint from which the whole was written. The folio rests its case not on the certainty of these works but on their honest arrangement.</p>
+    <div class="coda-rule" aria-hidden="true"></div>
+  </div>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref">The Wage · the sources</span>
+    </div>
+    <p class="colophon">The sources of <i>The Wage</i>, gathered from the margins of the sixteen plates and read against one another. Where a plate turns on a particular phrase — Smith&rsquo;s real measure, Leo&rsquo;s natural justice, Coase&rsquo;s islands of conscious power, Knight&rsquo;s venturesome few — the words were taken from the works named here and checked before they were set; where a plate turns on a contested point — the minimum wage&rsquo;s bite, the diploma&rsquo;s content, Speenhamland&rsquo;s lesson — the dispute is reported rather than resolved, and marked in the register with a dagger&thinsp;<span class="ct">†</span>. Composed in Fraunces and Newsreader, the section numerals and the daggers in rubric, after the manner of the old printed page. The account is rendered, and the witnesses do not agree.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-wage-the-sum.html">← The Sum</a><a rel="next" href="the-wage-reading-copy.html">The Wage →</a></nav>
+</body>
+</html>

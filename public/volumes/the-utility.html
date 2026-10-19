@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Utility — Numéraire, Volume VIII</title>
+<meta name="description" content="The Utility — Volume VIII of Numéraire, A Periodic Table of Economic Life, and the third of The Quantities. The economist concept of value: the satisfaction behind choice — Bentham calculus and cardinal utility, the ordinal turn to preference and the indifference map, the axioms of rational choice and the representation theorem, revealed preference, the St. Petersburg wager and expected utility, risk aversion as the concavity of the utility curve, the Allais and Ellsberg anomalies, the impossibility of interpersonal comparison, Arrow impossibility theorem, and the wedge between decision utility and experienced utility — what we choose against what we feel.">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem; --measure:40rem;
+    --wash:rgba(28,26,22,.066); --wash2:rgba(28,26,22,.12);
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.62;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  .measure{max-width:var(--measure);margin-left:auto;margin-right:auto;}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- ornaments ---- */
+  .orn{display:flex;justify-content:center;margin:0 auto;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .divider{display:flex;align-items:center;gap:1.1rem;max-width:30rem;margin:clamp(3rem,7vh,5rem) auto;color:var(--num);}
+  .divider .ln{flex:1;height:1px;background:var(--hair);}
+  .divider svg{display:block;width:12px;height:12px;overflow:visible;flex:0 0 auto;}
+  .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* ---- progress + running head ---- */
+  #progress{position:fixed;top:0;left:0;height:2px;width:100%;transform:scaleX(0);transform-origin:0 50%;background:var(--soft);opacity:.45;z-index:10000;}
+  #topbar{position:fixed;top:0;left:0;right:0;z-index:9998;transform:translateY(-100%);transition:transform .5s cubic-bezier(.2,.6,.2,1);
+    background:rgba(240,235,225,.86);-webkit-backdrop-filter:saturate(1.1) blur(8px);backdrop-filter:saturate(1.1) blur(8px);
+    border-bottom:1px solid var(--hair);}
+  #topbar.show{transform:translateY(0);}
+  .tb-in{max-width:var(--frame);margin:0 auto;padding:.62rem clamp(1.4rem,4vw,3.4rem);display:flex;justify-content:space-between;align-items:baseline;gap:1.2rem;}
+  .tb-l{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:.86rem;letter-spacing:.01em;}
+  .tb-l span{color:var(--faintest);font-weight:400;}
+  .tb-r{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);text-align:right;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+
+  /* ---- title page ---- */
+  .vol-title{padding:clamp(3.4rem,11vh,8rem) 0 clamp(1.6rem,5vh,3rem);text-align:center;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.16rem;letter-spacing:.02em;}
+  .vol-no{font-size:.84rem;color:var(--faint);letter-spacing:.16em;text-transform:uppercase;margin-top:.55rem;}
+  h1.vol-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 380;font-weight:380;
+    font-size:clamp(2.9rem,9vw,6rem);line-height:.98;letter-spacing:-.028em;margin:clamp(1.7rem,4.5vh,2.8rem) 0 0;text-wrap:balance;}
+  .vol-sym{width:78px;height:78px;margin:clamp(1.6rem,4vh,2.4rem) auto 0;border:1px solid var(--hair);border-radius:2px;
+    display:flex;align-items:center;justify-content:center;background:var(--ink);}
+  .vol-sym span{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2.3rem;line-height:1;color:var(--paper);letter-spacing:-.01em;}
+  .vol-coords{font-family:"Fraunces",serif;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);margin-top:1.1rem;}
+  .vol-gloss{font-style:italic;color:var(--soft);font-size:1.12rem;margin:.5rem 0 0;}
+  .vol-epigraph{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 400;font-style:italic;
+    font-size:clamp(1.14rem,1.7vw,1.34rem);line-height:1.42;color:var(--soft);max-width:33rem;margin:clamp(1.8rem,4vh,2.6rem) auto 0;text-wrap:pretty;}
+  .vol-epigraph .lead{display:block;font-style:normal;font-variation-settings:"opsz" 24,"wght" 400;
+    font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.7rem;}
+  .vol-status{display:inline-flex;align-items:center;gap:.5rem;margin:clamp(1.8rem,4vh,2.4rem) auto 0;font-size:.84rem;color:var(--soft);}
+  .vol-status::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ink);}
+
+  /* ---- the argument (preface) ---- */
+  .part-head{text-align:center;margin:0 0 clamp(1.6rem,3.5vh,2.3rem);}
+  .part-kicker{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faintest);}
+  .part-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-weight:400;
+    font-size:clamp(1.5rem,3.4vw,2.1rem);letter-spacing:-.012em;margin:.4rem 0 0;}
+  .argument p{font-size:1.05rem;line-height:1.74;margin:0 0 1.15rem;text-wrap:pretty;}
+  .argument p.lede::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 420;
+    float:left;font-size:3.5em;line-height:.78;padding:.05em .1em 0 0;color:var(--ink);}
+  .argument em,.plate-body em,.coda em{font-style:italic;}
+
+  /* ---- contents ---- */
+  .toc{list-style:none;margin:0 auto;padding:0;max-width:43rem;}
+  .toc li{border-top:1px solid var(--hair);}
+  .toc li:last-child{border-bottom:1px solid var(--hair);}
+  .toc a{display:grid;grid-template-columns:2.6rem 1fr;column-gap:1.1rem;align-items:baseline;
+    padding:.82rem .3rem;text-decoration:none;transition:background .2s ease;}
+  .toc a:hover{background:rgba(28,26,22,.035);}
+  .toc-n{font-family:"Fraunces",serif;font-size:.92rem;color:var(--faintest);text-align:right;}
+  .toc-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.06rem;color:var(--ink);line-height:1.16;}
+  .toc-g{grid-column:2;font-size:.85rem;font-style:italic;color:var(--faint);margin-top:.16rem;line-height:1.38;}
+
+  /* ---- plates ---- */
+  .plate{margin:clamp(3.2rem,8vh,6rem) 0 0;padding-top:clamp(2.4rem,5.5vh,3.4rem);border-top:1px solid var(--hair);scroll-margin-top:4rem;}
+  .plate-open{max-width:var(--measure);margin-inline:auto;}
+  .plate-no{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 360;font-size:clamp(2.6rem,7vw,4.1rem);
+    line-height:.9;color:var(--num);letter-spacing:.02em;}
+  .plate-kicker{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faintest);margin:.9rem 0 .2rem;}
+  .plate-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.8rem,4.4vw,2.7rem);line-height:1.04;letter-spacing:-.018em;margin:0;text-wrap:balance;}
+  .plate-gloss{font-style:italic;color:var(--soft);font-size:1.02rem;margin:.55rem 0 0;line-height:1.4;}
+
+  .ask{max-width:var(--measure);margin:clamp(1.5rem,3.5vh,2.2rem) auto clamp(1.8rem,4vh,2.4rem);}
+  .ask .lead{display:block;font-family:"Fraunces",serif;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.55rem;}
+  .ask q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:clamp(1.18rem,1.8vw,1.38rem);line-height:1.36;color:var(--soft);quotes:none;}
+
+  .plate-body{max-width:var(--measure);margin-inline:auto;}
+  .plate-body p{margin:0 0 1.18rem;text-wrap:pretty;}
+  .plate-body > p:first-of-type::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 430;
+    float:left;font-size:3.5em;line-height:.76;padding:.04em .12em 0 0;color:var(--ink);}
+  .plate-body h4{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.76rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faint);margin:2rem 0 .9rem;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 380;font-style:italic;
+    font-size:clamp(1.4rem,2.3vw,1.7rem);line-height:1.32;color:var(--soft);text-align:center;
+    max-width:33rem;margin:clamp(2rem,4.5vh,2.8rem) auto;text-wrap:balance;}
+
+  .edge{max-width:var(--measure);margin:1.7rem auto;padding:.1rem 0 .1rem 1.15rem;border-left:1px solid var(--hair);
+    color:var(--faint);font-size:.92rem;line-height:1.62;}
+  .edge .lead{display:block;font-family:"Fraunces",serif;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.4rem;}
+  .edge em{font-style:italic;color:var(--soft);}
+
+  /* ---- figures (engravings) ---- */
+  .fig{max-width:var(--measure);margin:clamp(2.1rem,4.5vh,2.9rem) auto;}
+  .fig-frame{border:1px solid var(--hair);border-radius:2px;padding:clamp(1rem,2.4vw,1.7rem) clamp(1rem,2.4vw,1.7rem) clamp(.8rem,2vw,1.3rem);background:rgba(255,253,247,.4);}
+  .fig svg{display:block;width:100%;height:auto;}
+  figcaption{margin:.95rem auto 0;max-width:38rem;font-size:.85rem;line-height:1.5;color:var(--faint);text-wrap:pretty;}
+  figcaption .fig-n{font-family:"Fraunces",serif;font-weight:500;letter-spacing:.04em;color:var(--soft);}
+  figcaption em{font-style:italic;}
+  .ax{stroke:var(--soft);stroke-width:1.1;fill:none;}
+  .tick{stroke:var(--soft);stroke-width:1;}
+  .curve{stroke:var(--ink);stroke-width:1.5;fill:none;stroke-linecap:round;}
+  .curve2{stroke:var(--ink);stroke-width:1.3;fill:none;stroke-linecap:round;}
+  .guide{stroke:var(--faintest);stroke-width:1;fill:none;stroke-dasharray:3 3.5;}
+  .core{stroke:var(--ink);stroke-width:3;fill:none;stroke-linecap:round;}
+  .fill-cs{fill:var(--wash);}
+  .fill-dwl{fill:var(--wash2);}
+  .fill-wedge{fill:var(--wash);}
+  .fill-lens{fill:var(--wash);}
+  .hatch-line{stroke:var(--faintest);stroke-width:.8;}
+  .lbl{font-family:"Fraunces",serif;font-size:11.5px;fill:var(--faint);font-variation-settings:"opsz" 24,"wght" 400;}
+  .lbl-i{font-family:"Newsreader",serif;font-style:italic;font-size:11px;fill:var(--soft);}
+  .lbl-sm{font-family:"Fraunces",serif;font-size:9.6px;fill:var(--faintest);letter-spacing:.02em;}
+  .lbl-ax{font-family:"Fraunces",serif;font-size:9.4px;fill:var(--faintest);letter-spacing:.12em;}
+
+  /* ---- coda + colophon ---- */
+  .coda{max-width:var(--measure);margin:clamp(3rem,7vh,5rem) auto 0;}
+  .coda p{margin:0 0 1.18rem;text-wrap:pretty;}
+  .coda p.lede::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 430;
+    float:left;font-size:3.5em;line-height:.76;padding:.04em .12em 0 0;color:var(--ink);}
+  footer{margin-top:clamp(3.6rem,8vh,6rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.4rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .colophon{font-size:.85rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+
+  /* ---- motion / reveal ---- */
+  @media (prefers-reduced-motion: no-preference){
+    html.js .reveal{opacity:0;transform:translateY(14px);}
+    html.js .reveal.in{opacity:1;transform:none;}
+    .reveal{transition:opacity .9s cubic-bezier(.2,.6,.2,1),transform .9s cubic-bezier(.2,.6,.2,1);}
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.18s}.rise.d3{animation-delay:.32s}.rise.d4{animation-delay:.46s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  /* ---- responsive ---- */
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .argument p,.plate-body p,.coda p{font-size:1.01rem;}
+    .plate-body > p:first-of-type::first-letter,.argument p.lede::first-letter,.coda p.lede::first-letter{font-size:3em;}
+    .f-bar{flex-direction:column;gap:.5rem;}
+    .toc a{grid-template-columns:2rem 1fr;column-gap:.8rem;}
+    figcaption{font-size:.82rem;}
+  }
+
+  /* ---- print: a volume, in print ---- */
+  @media print{
+    html,body{background:#fff;color:#000;}
+    body{font-size:11.5pt;line-height:1.5;}
+    body::before,#progress,#topbar{display:none !important;}
+    .frame{max-width:none;padding:0;}
+    .measure,.plate-open,.plate-body,.ask,.edge,.coda{max-width:34rem;}
+    a{text-decoration:none;}
+    .plate{break-before:page;border-top:none;padding-top:0;}
+    .fig,figure{break-inside:avoid;}
+    .plate-no{color:#bbb;}
+    .reveal{opacity:1 !important;transform:none !important;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#ne-contents">Complete contents</a><a href="../editions.html#volume-utility">The Utility · both editions</a><a href="../essays/numeraire-viii-the-utility.html">Expanded essays</a></div></nav>
+<div id="progress" aria-hidden="true"></div>
+<div id="topbar" aria-hidden="true"><div class="tb-in">
+  <span class="tb-l">Numéraire <span>· The Utility</span></span>
+  <span class="tb-r" id="tb-plate">Volume VIII</span>
+</div></div>
+
+<div class="frame">
+
+  <header class="vol-title">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="rise d1">
+      <span class="imprint">Numéraire</span>
+      <div class="vol-no">Volume VIII &middot; № VIII</div>
+    </div>
+    <h1 class="vol-name rise d2">The Utility</h1>
+    <div class="vol-sym rise d3" aria-hidden="true"><span>Ut</span></div>
+    <div class="vol-coords rise d3">Group II &middot; The Quantities</div>
+    <p class="vol-gloss rise d3">the satisfaction behind choice — value, preference, and the limits of measuring well-being</p>
+    <p class="vol-epigraph rise d4">
+      <span class="lead">The question of the volume</span>
+      Can satisfaction be measured — and if your choices reveal what you want, do they reveal what is good for you?
+    </p>
+    <div class="vol-status rise d4">in print &middot; twelve plates</div>
+  </header>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <section class="argument measure reveal" aria-labelledby="arg-h">
+    <div class="part-head">
+      <div class="part-kicker">Numéraire &middot; Volume VIII</div>
+      <h2 class="part-title" id="arg-h">The Argument</h2>
+    </div>
+    <p class="lede">Behind every price stands a quantity the price is meant to measure, and this volume is about that quantity: utility — the economist's name for the satisfaction, the want-fulfillment, the well-being that choice is supposed to pursue. Jeremy Bentham gave it its grand ambition, imagining a felicific calculus that would weigh pleasure against pain and add the happiness of a society as one adds its wealth. The ambition has never died, and it has never been fulfilled, for utility has a peculiar and unsettling character: it is the thing everything in economics is built to track, and no instrument can read it. It cannot be seen, weighed, or directly measured; it can only be inferred from the choices it supposedly drives. The strange subject of the present volume is this ghost in the machine — what it is, whether it can be measured, whether it can be compared across persons, and whether the choices that reveal what we want also reveal what is good for us.</p>
+    <p>The first marginalists spoke of utility as though it could be measured outright — so many units of satisfaction, diminishing with each additional unit of a good, summed and weighed like quantities of any other kind. But the unit was never found, nor the instrument that might read it, and the foundation grew embarrassing. The ordinal revolution, the work of Vilfredo Pareto and later John Hicks, rescued the theory by demanding far less. Utility, they showed, need only be <em>ranked</em>, not measured: a consumer need only say which bundle is preferred to which, never by how much, and from that ranking alone — drawn as a map of indifference curves — the whole of demand can be rebuilt. The utility function survived, but demoted, no longer a measurement of feeling but a mere bookkeeping device for a preference ordering, with any rescaling that preserves the ranking as good as any other.</p>
+    <p>If utility is only a representation of preference, what makes a preference fit to be represented? The answer is a set of axioms — that the chooser can compare any two options, and that the comparisons do not run in circles — from which a theorem guarantees that a utility function exists. And one could go further still, as Paul Samuelson did, and purge the psychology altogether: revealed preference takes the choices as the primitive and the utility as nothing but their summary, a way of describing behavior that is consistent, with no claim whatever about any feeling behind it. Utility, on this austere view, is not a mental state at all but a name for the orderliness of choice — whatever a person reliably picks, that is what they are said to prefer, and there is nothing more to say.</p>
+    <p>The austerity is tested most sharply by choice under risk. Daniel Bernoulli, confronting the St. Petersburg paradox — a wager of infinite expected value that no sane person would pay much to enter — saw that people maximize not expected money but expected <em>utility</em>, and that the diminishing marginal utility of wealth tames the infinite. John von Neumann and Oskar Morgenstern later set this on axiomatic foundations, and in doing so brought a kind of cardinal utility back through a side door: when choices among gambles obey their axioms, a utility function exists that is unique up to its scale and zero, like temperature, and the very shape of it — its concavity — measures a person's aversion to risk. The flat utility of great wealth, set beside the steep utility of the first dollars, is why a sure thing is preferred to a fair gamble, and why we insure.</p>
+    <p>Yet expected utility, for all its elegance, is descriptively false: Maurice Allais and Daniel Ellsberg exhibited simple choices that nearly everyone makes and that no expected-utility function can accommodate, and the behavioral volumes will trace the systematic departures. And a deeper trouble shadows the whole construction. Bentham's dream required adding one person's utility to another's, but if utility is merely an ordinal ranking, private to each mind, there is no common scale on which to add — no way to say whether your satisfaction exceeds mine. Lionel Robbins pressed this point until economics largely renounced the interpersonal comparison, and with it the utilitarian summing of happiness; and Kenneth Arrow proved that even the humbler task of combining individual rankings into a coherent social ranking cannot, in general, be done. The quantity that was to be the measure of all value turns out to resist both measurement and addition.</p>
+    <p>One wedge remains, and it is the sharpest. The whole apparatus assumes that what we choose is what is good for us — that decision utility, revealed in choice, is the same as the well-being it is meant to serve. Daniel Kahneman drove the two apart, distinguishing the utility we experience moment to moment from the utility we remember and act on, and showing that the remembering self, which makes our choices, systematically misjudges the experiencing self, which lives our life. People reliably choose what they will misremember, and pursue what will not, in the event, make them as well off as they expect. The thesis of the volume is that utility is the indispensable and irreducible center of economics — the value behind every price, the end every choice is supposed to serve — and at the same time a quantity felt but not measured, inferred but not observed, ranked but not compared, chosen but not certainly good for the chooser. The quantity, here as everywhere in the atlas, is a verdict on a hidden contest: between value as felt and value as chosen, between the cardinal and the ordinal, between what we want and what is good for us, between the single mind that ranks and the many minds that cannot be summed. The argument remains open.</p>
+  </section>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <section class="contents reveal" aria-labelledby="toc-h">
+    <div class="part-head">
+      <div class="part-kicker">The twelve plates of this volume</div>
+      <h2 class="part-title" id="toc-h">The Plates</h2>
+    </div>
+    <ol class="toc">
+      <li><a href="#plate-i"><span class="toc-n">i</span><span class="toc-t">The Want</span><span class="toc-g">utility — the economist's name for the satisfaction behind value; Bentham's calculus of pleasure and pain</span></a></li>
+      <li><a href="#plate-ii"><span class="toc-n">ii</span><span class="toc-t">The Scale</span><span class="toc-g">cardinal utility — the ambition to put satisfaction on a scale, and diminishing marginal utility — Jevons, Marshall</span></a></li>
+      <li><a href="#plate-iii"><span class="toc-n">iii</span><span class="toc-t">The Ranking</span><span class="toc-g">the ordinal turn — utility as the mere ranking of bundles, and the indifference map — Pareto</span></a></li>
+      <li><a href="#plate-iv"><span class="toc-n">iv</span><span class="toc-t">The Axioms</span><span class="toc-g">rational preference — completeness and transitivity, and the theorem that a utility function represents them</span></a></li>
+      <li><a href="#plate-v"><span class="toc-n">v</span><span class="toc-t">The Revealed</span><span class="toc-g">revealed preference — utility inferred from choice alone, with the psychology purged — Samuelson</span></a></li>
+      <li><a href="#plate-vi"><span class="toc-n">vi</span><span class="toc-t">The Wager</span><span class="toc-g">the St. Petersburg wager — why expected value fails, and the birth of expected utility — Bernoulli</span></a></li>
+      <li><a href="#plate-vii"><span class="toc-n">vii</span><span class="toc-t">The Expected</span><span class="toc-g">expected utility — choice under risk, and risk aversion as the concavity of the utility curve — von Neumann, Morgenstern</span></a></li>
+      <li><a href="#plate-viii"><span class="toc-n">viii</span><span class="toc-t">The Anomaly</span><span class="toc-g">the violations — Allais and Ellsberg, ambiguity, and the descriptive failure of expected utility</span></a></li>
+      <li><a href="#plate-ix"><span class="toc-n">ix</span><span class="toc-t">The Incomparable</span><span class="toc-g">interpersonal comparison — whether one person's satisfaction can be weighed against another's — Robbins</span></a></li>
+      <li><a href="#plate-x"><span class="toc-n">x</span><span class="toc-t">The Impossibility</span><span class="toc-g">social choice — aggregating preferences into a social judgment, and Arrow's impossibility theorem — Arrow</span></a></li>
+      <li><a href="#plate-xi"><span class="toc-n">xi</span><span class="toc-t">The Experienced</span><span class="toc-g">decision versus experienced utility — what we choose against what we feel; the remembering self — Kahneman</span></a></li>
+      <li><a href="#plate-xii"><span class="toc-n">xii</span><span class="toc-t">The Good</span><span class="toc-g">utility made whole — value as felt, chosen, and inferred, toward The Surplus, The Stock, The Share</span></a></li>
+    </ol>
+  </section>
+
+  <main class="plates" id="plates">
+
+    <section class="plate reveal" id="plate-i" data-label="Plate i · The Want">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">i</div>
+        <p class="plate-kicker">Plate the First &middot; The Quantities &middot; № VIII</p>
+        <h3 class="plate-title">The Want</h3>
+        <p class="plate-gloss">utility — the economist's name for the satisfaction behind value; Bentham's calculus of pleasure and pain</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what is the thing that price is supposed to measure?</q></div>
+      <div class="plate-body">
+        <p>Every price is a measurement, and behind every measurement lies a thing measured. Behind price lies utility — the economist's name for the satisfaction, the want-fulfillment, the well-being that a thing affords the person who has it. It is not the price itself, which is only the measure, but the underlying value-to-the-person that the price is meant to register: the worth a thing has in the wanting, not in the market. The marginal revolution of an earlier volume made this subjective value the wellspring of all price, and so made utility the quantity at the center of the subject. Demand is its shadow; price is its trace; choice is its pursuit. Whatever else economics studies, it studies, at bottom, the getting of utility.</p>
+        <p>The concept was given its grand ambition by Jeremy Bentham, who held that nature had placed mankind under two sovereign masters, pleasure and pain, and who dreamed of a felicific calculus that would weigh the one against the other and add the happiness of a whole society as one adds its wealth. On this vision, utility is the currency of well-being, common to every pleasure and every pain, and the right action — for a person or a government — is the one that yields the greatest sum of it: the greatest happiness of the greatest number. The dream founded a moral philosophy, utilitarianism, and it lent economics its deepest aspiration — to make happiness a quantity that could be measured, compared, and maximized, the foundation alike of private choice and public policy.</p>
+        <aside class="pull">Utility is the want that price is built to measure — the value behind the value, the satisfaction a choice is meant to serve.</aside>
+        <p>But the quantity has a peculiar and unsettling character, and the whole volume turns on it. Utility is the thing everything in economics is built to track, and no instrument can read it. You cannot see satisfaction, weigh it, or measure it directly; there is no thermometer of pleasure, no scale of contentment. It can be approached only obliquely, inferred from the choices it supposedly drives — we say a person wanted the thing they chose, and wanted it more than what they passed over. This is the ghost in the machine: the quantity that the entire apparatus presupposes and that no observation can capture. The plates that follow are the successive attempts to pin it down — to measure it, to demote it to a mere ranking, to read it off from choice, to extend it to risk, to compare it across persons, to ask whether it is even the same as the well-being it was meant to name — and the characteristic way each attempt, however ingenious, falls short.</p>
+        <aside class="edge"><span class="lead">the edge</span> Beneath the whole inquiry lies a question never quite settled: whether utility names something real — a felt state, a pleasure or satisfaction genuinely undergone — or is merely a useful fiction, a compact way of summarizing choice with no commitment to any feeling. Bentham meant something real and felt; much of the modern theory means only the fiction, utility as a name for the orderliness of behavior. The two readings — utility as experienced hedonic state and utility as a representation of preference — run in tension through every plate of this volume. And "well-being" itself is contested terrain: is it pleasure, the satisfaction of preference, or the attainment of some objective list of goods? Economics mostly sidesteps the philosophy by identifying well-being with preference-satisfaction — an identification the final plates will find it cannot, in the end, sustain.</aside>
+      </div>
+    </section>
+
+    <section class="plate reveal" id="plate-ii" data-label="Plate ii · The Scale">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">ii</div>
+        <p class="plate-kicker">Plate the Second &middot; The Quantities &middot; № VIII</p>
+        <h3 class="plate-title">The Scale</h3>
+        <p class="plate-gloss">cardinal utility — the ambition to put satisfaction on a scale, and diminishing marginal utility — Jevons, Marshall</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>can satisfaction be put on a scale, like weight or temperature?</q></div>
+      <div class="plate-body">
+        <p>The first marginalists took Bentham at his word and treated utility as a magnitude that could be measured. William Stanley Jevons and Alfred Marshall wrote as though satisfaction came in units — units later named, half in earnest and half in jest, "utils" — so that one might say not merely that a person preferred the first loaf to the second, but that the first yielded twice the utility of the second, or seven units against three. This is cardinal utility: utility as a quantity like length or weight or temperature, possessed of magnitudes and ratios, addable and divisible, in principle as measurable as anything else the sciences weigh. The ambition was nothing less than to make happiness numerical.</p>
+        <p>On this view the utility a person draws from a good has a definite shape as the quantity grows. Total utility rises with each additional unit, but at a diminishing rate — for the marginal utility of each successive unit is less than the last, the diminishing marginal utility of an earlier volume. The figure draws the consequence: the total-utility curve climbs and flattens, concave to the quantity axis, its slope — the marginal utility — falling toward zero as satiation approaches. This concavity is the cardinal expression of a basic fact about wants, that they are sated; and it is no idle shape, for it grounds the downward slope of demand, as the volume on the margin showed, and it will ground, in a later plate, the aversion to risk. The bend in the curve does real work.</p>
+        <aside class="pull">Cardinal utility promised to make satisfaction a magnitude like weight — measurable, addable, comparable — if only the unit could be found.</aside>
+        <p>The trouble was that the unit was never found. Temperature has its thermometer and weight its balance; utility had no instrument, no agreed zero, no scale on which two people's readings — or even one person's, across two goods — could be set side by side. Worse, the cardinal magnitudes appeared to do no work that mere ranking could not do as well: to derive the demand curve one needs only that marginal utility falls, never by exactly how much. A measurement that no instrument can take and that changes no prediction began to look like a metaphysical extravagance — an unmeasured measurement, a number with no observable consequence. The suspicion hardened into a program, the subject of the next plate, which asked how much of the cardinal apparatus could simply be discarded.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="f1t f1d">
+              <title id="f1t">Total utility and diminishing marginal utility</title>
+              <desc id="f1d">A total-utility curve rising with quantity but flattening — concave to the quantity axis. Its slope, the marginal utility, falls as quantity grows, so each additional unit adds less than the one before.</desc>
+              <line x1="64" y1="250" x2="414" y2="250" class="ax"/>
+              <polygon points="414,250 406,246 406,254" fill="var(--soft)"/>
+              <line x1="64" y1="250" x2="64" y2="40" class="ax"/>
+              <polygon points="64,40 60,48 68,48" fill="var(--soft)"/>
+              <text x="180" y="278" class="lbl-sm">quantity &#8594;</text>
+              <text x="26" y="150" class="lbl-ax" text-anchor="middle" transform="rotate(-90 26 150)">utility</text>
+              <polyline points="64,230 120,180 180,144 250,114 330,96 404,88" class="curve"/>
+              <text x="250" y="90" class="lbl-sm">total utility</text>
+              <text x="180" y="214" class="lbl-sm">marginal utility falls</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 1.</span> The shape of cardinal utility. Total utility rises with quantity but ever more slowly: the curve is concave, flattening toward satiation. Its slope at each point is the marginal utility, and that slope diminishes — each further unit adds less than the last. The same concavity that grounds the downward demand curve will, in a later plate, become the measure of aversion to risk. The shape carries content; the unit in which it is drawn could never be found.</figcaption>
+        </figure>
+        <aside class="edge"><span class="lead">the edge</span> Cardinal utility is not quite dead, and the verdict is subtler than the ordinalists' triumph suggests. For ordinary riskless choice, ranking is enough and the magnitudes are idle — there the critics were right. But for choice under risk, as a later plate shows, a kind of cardinal utility returns with genuine and measurable content, pinned down by choices among gambles; and for judgments of social welfare some comparison of magnitudes seems unavoidable. The question whether utility is cardinal or ordinal has no single answer: it depends entirely on what one asks the concept to do. Cardinality is idle for the choice between bread and wine and indispensable for the choice between a gamble and a sure thing — a distinction it took economics decades to draw cleanly.</aside>
+      </div>
+    </section>
+
+    <section class="plate reveal" id="plate-iii" data-label="Plate iii · The Ranking">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">iii</div>
+        <p class="plate-kicker">Plate the Third &middot; The Quantities &middot; № VIII</p>
+        <h3 class="plate-title">The Ranking</h3>
+        <p class="plate-gloss">the ordinal turn — utility as the mere ranking of bundles, and the indifference map — Pareto</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>how little do we need to assume about satisfaction to build a theory of choice?</q></div>
+      <div class="plate-body">
+        <p>The answer, Vilfredo Pareto saw, and John Hicks and Eugen Slutsky made exact, is: almost nothing. To build a theory of demand one does not need to measure utility at all — one needs only to rank. It is enough that a person can say which of two bundles they prefer, or that they are indifferent between them; the magnitudes the cardinalists chased are never used. Utility, on this account, is purely ordinal: only the order of the bundles matters, not the spacing between them, and any renumbering that preserves the order — any increasing transformation of the utility function — yields exactly the same theory. The numbers lose their meaning as quantities and keep only their meaning as a sequence.</p>
+        <p>The instrument of this austerity is the indifference curve and the map it belongs to. An indifference curve joins all the bundles among which a person is indifferent — equally preferred, equally good in their eyes. A whole family of such curves, the indifference map, represents the entire preference ordering, as the figure shows: each curve is a level of satisfaction, and the curves further from the origin are the more preferred, that ranking being the only thing the map asserts. No numbers are written on the curves; were one to label them, any increasing labels would serve. From this map alone — together with a budget line — the consumer's choice follows, at the tangency where the marginal rate of substitution meets the price ratio, exactly as the volume on the margin established. The whole of riskless demand is rebuilt on the bare ranking of bundles.</p>
+        <aside class="pull">A theory of demand needs not the measure of satisfaction but only its order — which bundle is preferred, never by how much.</aside>
+        <p>Utility itself is not abolished but demoted. It survives as a representation — a function that assigns higher numbers to more-preferred bundles — but the numbers are now mere labels, like the ordinals on a list of finishers in a race, which record who came first and second and third and say nothing of the margins between them. One may speak of a utility function still, for convenience, but it is understood to be one of infinitely many that would do as well, all agreeing on the order and differing in everything else. Preference is the primitive; utility is its shadow. The subject has traded a measurement it could never make for a ranking it can, and lost nothing in the theory of demand by the trade.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="f2t f2d">
+              <title id="f2t">The indifference map</title>
+              <desc id="f2d">A family of nested indifference curves, convex to the origin. Each curve joins bundles among which the consumer is indifferent; curves farther from the origin are more preferred. Only the order of the curves carries meaning, not any number attached to them.</desc>
+              <line x1="64" y1="250" x2="414" y2="250" class="ax"/>
+              <polygon points="414,250 406,246 406,254" fill="var(--soft)"/>
+              <line x1="64" y1="250" x2="64" y2="40" class="ax"/>
+              <polygon points="64,40 60,48 68,48" fill="var(--soft)"/>
+              <text x="180" y="278" class="lbl-sm">good X &#8594;</text>
+              <text x="26" y="150" class="lbl-ax" text-anchor="middle" transform="rotate(-90 26 150)">good Y</text>
+              <polyline points="96,170 150,196 220,216 300,230 372,240" class="curve"/>
+              <polyline points="120,134 178,162 250,184 330,202 404,214" class="curve"/>
+              <polyline points="150,100 212,130 292,156 372,176 412,186" class="curve"/>
+              <text x="80" y="76" class="lbl-sm">indifference curves</text>
+              <line x1="250" y1="92" x2="318" y2="70" class="guide"/>
+              <polygon points="318,70 309,71 314,79" fill="var(--soft)"/>
+              <text x="240" y="104" class="lbl-sm">more preferred</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 2.</span> Preference as a map. Each curve joins bundles the consumer ranks as equal; the curves farther from the origin are preferred to those nearer it, and that order is the whole of what the map says. No magnitude attaches to any curve — any increasing relabeling would serve as well. From this ranking alone, with a budget line, demand follows. The cardinalist's measured satisfaction has been replaced by the ordinalist's bare order, and demand has lost nothing.</figcaption>
+        </figure>
+        <aside class="edge"><span class="lead">the edge</span> The ordinal turn was a genuine gain in rigor — it grounded demand on rankings one might observe rather than on a feeling no one could measure — but it was also a renunciation whose costs two later plates collect. In insisting that utility is purely ordinal and wholly private to each mind, it made interpersonal comparison meaningless, for one cannot compare ranks across people who each carry a different and unanchored scale; and it severed economics from the utilitarian summing of happiness that had been its ethical engine. The ordinalists bought their rigor with a currency of silence: about how much anyone enjoys anything, and about whether anyone enjoys anything more than anyone else. Whether that silence is hard-won wisdom or convenient evasion is a question the volume on the share will reopen and cannot close.</aside>
+      </div>
+    </section>
+
+    <section class="plate reveal" id="plate-iv" data-label="Plate iv · The Axioms">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">iv</div>
+        <p class="plate-kicker">Plate the Fourth &middot; The Quantities &middot; № VIII</p>
+        <h3 class="plate-title">The Axioms</h3>
+        <p class="plate-gloss">rational preference — completeness and transitivity, and the theorem that a utility function represents them</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what must a preference be like for a utility number to describe it?</q></div>
+      <div class="plate-body">
+        <p>If utility is merely a representation of preference, the natural question is what a preference must be like for such a representation to exist — for a utility function to assign its numbers consistently with the ranking. The answer is a small set of conditions on the preference relation, the axioms of rational choice, together with a theorem that ties them to a utility function. The axioms are few and look modest, and on them the entire formal edifice of choice is balanced.</p>
+        <p>Two are central. The first is completeness: for any two bundles, the chooser has a view — prefers the one, prefers the other, or is indifferent — with no gaps, no pair on which preference simply runs out. The second is transitivity: if a person prefers A to B and B to C, then they prefer A to C; preferences do not run in circles. With a technical condition of continuity added, these axioms yield the representation theorem — the guarantee that a utility function exists assigning higher numbers to more-preferred bundles. And they define what the economist means by rationality, which is a remarkably spare thing: to be rational is only to have a complete and transitive ranking, a coherent and circle-free ordering of the options. It is not to choose wisely, nor to want good things; it is only to choose consistently.</p>
+        <aside class="pull">To be rational, in this spare sense, is only to rank everything and never in a circle — not to choose well, only to choose consistently.</aside>
+        <p>The thinness is the point, and it is also the vulnerability. The axioms say nothing about the content of preference — what a person ranks above what. One may prefer to ruin one's health, to act against one's own interest, to want what is trivial or self-destructive, and still be perfectly rational in this sense, so long as the wanting is complete and transitive; a coherent utility function will describe the choices of the consistent fool as faithfully as those of the sage. Rationality here governs the form of preference, its coherence, not its wisdom — a deliberate restraint that lets economics describe any consistent chooser without presuming to judge their ends. But it is also the doorway to every later critique, for the representation stands or falls with the axioms: where they are violated, no utility function exists to represent the preference, and the whole apparatus that rests on it gives way.</p>
+        <aside class="edge"><span class="lead">the edge</span> Completeness and transitivity look self-evident and are both, on inspection, doubtful. Completeness demands a settled preference between every pair of options, however strange or incommensurable — yet people often cannot say whether they prefer a career to a calling, or one whole way of life to another, and not from ignorance but because the options resist being placed on a single scale. Transitivity is violated in well-documented patterns, preferences that cycle, especially when the options differ along several dimensions at once and attention shifts from one to another. The axioms are best read not as discoveries about how people are but as the definition of a particular idealization, the rational agent, whose distance from actual human beings is the whole subject of the volumes on behavior. They are the load-bearing assumptions of the theory, and they are precisely the ones most often false.</aside>
+      </div>
+    </section>
+
+    <section class="plate reveal" id="plate-v" data-label="Plate v · The Revealed">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">v</div>
+        <p class="plate-kicker">Plate the Fifth &middot; The Quantities &middot; № VIII</p>
+        <h3 class="plate-title">The Revealed</h3>
+        <p class="plate-gloss">revealed preference — utility inferred from choice alone, with the psychology purged — Samuelson</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if utility cannot be seen, can it at least be read off from what people choose?</q></div>
+      <div class="plate-body">
+        <p>The ordinal theory had demoted utility to a representation of preference, but it still spoke of preference as a mental fact lying behind choice. Paul Samuelson proposed to go one step further and purge even that — to make choice itself the primitive, and preference merely its summary. Instead of beginning with preferences and deducing what a person will choose, begin with what they are observed to choose and infer the preferences. If a person selects bundle A when bundle B was equally within their means, they have revealed a preference for A over B; and this revealed relation, assembled from actual choices, is all that the theory needs or is entitled to claim. Preference is no longer the cause we posit behind choice but the pattern we read off from it.</p>
+        <p>The figure shows the elementary inference. A budget line marks what the person can afford; they choose the bundle A upon it; and there is another bundle, B, that lay within the budget and was passed over. The selection of A while B was affordable reveals A preferred to B — no feeling consulted, only a choice observed and a conclusion drawn. For such inferences to cohere into anything resembling a utility ordering, the choices must be consistent, and the requirement has a precise form, the weak axiom of revealed preference: if A is ever revealed preferred to B, then B must never, in any other budget, be revealed preferred to A. From this consistency, suitably strengthened, an entire preference ordering can be reconstructed — and behind it a utility function — built up from choices alone, with no mental state ever named.</p>
+        <aside class="pull">Choose A when B was affordable, and you have revealed a preference — no feeling invoked, only a choice observed and an inference drawn.</aside>
+        <p>This is operationalism brought into economics — the doctrine that a concept means no more than the observations that would test it. Utility, on this austere reading, is not a hidden satisfaction that choice reveals; it is nothing whatever but a compact description of consistent choosing, carrying no surplus meaning about any feeling. The appeal is rigor and observability: every statement about utility now redeems itself in choices one could, in principle, sit and watch. The theory becomes, in effect, behaviorist — an account of what people do, scrupulously silent about what they feel. It is the high-water mark of utility-as-fiction, the concept stripped of all psychology and surviving only as the shadow that behavior casts.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="f3t f3d">
+              <title id="f3t">Revealed preference</title>
+              <desc id="f3d">A budget line with a chosen bundle A upon it and an affordable but unchosen bundle B below it. Choosing A while B was affordable reveals a preference for A over B; the triangle of affordable bundles is the set to which A is revealed preferred.</desc>
+              <line x1="64" y1="250" x2="414" y2="250" class="ax"/>
+              <polygon points="414,250 406,246 406,254" fill="var(--soft)"/>
+              <line x1="64" y1="250" x2="64" y2="40" class="ax"/>
+              <polygon points="64,40 60,48 68,48" fill="var(--soft)"/>
+              <text x="180" y="278" class="lbl-sm">good X &#8594;</text>
+              <text x="26" y="150" class="lbl-ax" text-anchor="middle" transform="rotate(-90 26 150)">good Y</text>
+              <line x1="88" y1="92" x2="360" y2="236" class="guide"/>
+              <text x="100" y="90" class="lbl-sm">budget line</text>
+              <circle cx="190" cy="146" r="3.2" fill="var(--ink)"/>
+              <text x="198" y="140" class="lbl-sm">A: chosen</text>
+              <circle cx="150" cy="200" r="3.2" fill="var(--ink)"/>
+              <text x="158" y="204" class="lbl-sm">B: affordable</text>
+              <text x="100" y="225" class="lbl-sm">affordable set</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 3.</span> Preference read from choice. The chooser could afford anything on or below the budget line; they picked A. Since B was affordable and passed over, A is revealed preferred to B — indeed to every bundle in the affordable triangle. Require only that such revealed preferences never contradict each other across budgets, and an entire ordering, and a utility function, can be rebuilt from choices alone. No feeling is named; the inference runs from what was done.</figcaption>
+        </figure>
+        <aside class="edge"><span class="lead">the edge</span> Revealed preference is rigorous, but it quietly assumes the very thing the last plate questioned — that choices are consistent, that they obey the axioms — and where they are not, the reconstruction collapses exactly as the representation did. More deeply, it purchases its observability by abandoning the question that made utility worth having. By identifying what a person prefers with what they choose, it cannot distinguish what they choose from what is good for them: if utility simply is revealed choice, then a person maximizes their utility by definition, in the very act of choosing, and the claim becomes empty — a tautology that can never say of anyone that they chose badly. The same austerity that makes the concept rigorous makes it unable to criticize a single decision, a limit the final plates of the volume will press until it breaks.</aside>
+      </div>
+    </section>
+
+    <section class="plate reveal" id="plate-vi" data-label="Plate vi · The Wager">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">vi</div>
+        <p class="plate-kicker">Plate the Sixth &middot; The Quantities &middot; № VIII</p>
+        <h3 class="plate-title">The Wager</h3>
+        <p class="plate-gloss">the St. Petersburg wager — why expected value fails, and the birth of expected utility — Bernoulli</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>how much would you pay to play a game worth, on average, an infinite amount?</q></div>
+      <div class="plate-body">
+        <p>Consider a wager. A fair coin is tossed until it first falls heads; if the first head appears on the nth toss, the prize is two raised to the nth power — two ducats, or four, or eight, doubling with each toss the head is delayed. What is this game worth? Its expected value is the sum, over every possible round, of that round's probability times its prize — and since each round contributes one half times two, a constant, and the rounds are infinite in number, the sum grows without bound. The game is worth, on average, an infinite amount. Yet set it before anyone and ask what they would pay to play, and the answer is a small sum — a few ducats, no more. Here is the St. Petersburg paradox, which baffled the early students of probability: if people chose by expected value, they would surrender any fortune for this game, and not one of them will.</p>
+        <p>Daniel Bernoulli found the resolution, and it is the seed of the whole modern theory. People weigh not the expected money but the expected utility, and the utility of money diminishes at the margin, along the concave curve of an earlier plate. A prize twice as large is not twice as good; the thousandth ducat adds far less than the first. So the doubling prizes — two, four, eight, growing without limit — translate into utilities that grow ever more slowly, and the expected utility of the game, unlike its expected value, is finite. The figure sets the two against each other: round upon round, the expected value climbs forever, while the expected utility bends and settles toward a finite ceiling. That finite ceiling is what a person will pay. Measure the game in utility rather than in money, and the paradox simply dissolves.</p>
+        <aside class="pull">The St. Petersburg game is worth an infinite amount on average and a pittance to play — because what we weigh is not the money but the diminishing utility of it.</aside>
+        <p>Bernoulli's insight founded the theory of choice under risk. When outcomes are uncertain, rank the options not by expected value but by expected utility — the probability-weighted average of the utilities of the possible outcomes. This is the principle that governs the whole of economics where chance enters: the buying of insurance, the holding of risky assets, the premium demanded for bearing uncertainty, the subject of the volume on the premium. And it restores to the cardinal utility of the second plate a genuine and indispensable role — for to take an average of utilities, one must have utilities that are magnitudes and not merely an order; an expected value cannot be taken over a ranking. Risk is the arena in which cardinal utility, idle for riskless choice, earns its keep. The next plate sets the principle on firm axiomatic ground.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="f4t f4d">
+              <title id="f4t">St. Petersburg: expected value against expected utility</title>
+              <desc id="f4d">Two curves against the number of rounds included. The expected value of the game rises without bound; the expected utility, because the utility of money diminishes, bends and converges to a finite limit. The finite limit is what a person will pay to play.</desc>
+              <line x1="64" y1="250" x2="414" y2="250" class="ax"/>
+              <polygon points="414,250 406,246 406,254" fill="var(--soft)"/>
+              <line x1="64" y1="250" x2="64" y2="40" class="ax"/>
+              <polygon points="64,40 60,48 68,48" fill="var(--soft)"/>
+              <text x="96" y="278" class="lbl-sm">rounds of the game &#8594;</text>
+              <text x="26" y="150" class="lbl-ax" text-anchor="middle" transform="rotate(-90 26 150)">value</text>
+              <polyline points="64,230 150,191 236,152 320,114 404,78" class="curve"/>
+              <text x="398" y="72" class="lbl-sm" text-anchor="end">expected value</text>
+              <polyline points="64,224 120,198 180,182 250,170 330,164 404,161" class="curve2"/>
+              <text x="398" y="168" class="lbl-sm" text-anchor="end">expected utility</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 4.</span> Why infinite worth fetches a pittance. As more rounds are counted, the expected value of the wager climbs without bound — its prizes double faster than their probabilities fall. But because the utility of money diminishes, the expected utility of the same prizes grows ever more slowly and converges to a finite limit. A person pays for utility, not for money, and so pays only the finite amount the lower curve approaches. The paradox was an artifact of measuring the game in the wrong units.</figcaption>
+        </figure>
+        <aside class="edge"><span class="lead">the edge</span> Bernoulli's particular proposal — that utility is the logarithm of wealth — was a guess, and the logarithm works no magic: one can build a super-St.-Petersburg game whose prizes grow fast enough to defeat even logarithmic utility and revive the infinite expectation. The deep resolution is not any specific utility function but the principle that utility is bounded, or that people behave as though it were. And the expected-utility framework itself, for all that it tames this paradox, is only an approximation to how people actually choose under risk — a far better approximation than expected value, but one that, as the very next pages and the anomaly plate will show, breaks down in its own characteristic and systematic ways. The cure for one paradox is the patient for the next.</aside>
+      </div>
+    </section>
+
+    <section class="plate reveal" id="plate-vii" data-label="Plate vii · The Expected">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">vii</div>
+        <p class="plate-kicker">Plate the Seventh &middot; The Quantities &middot; № VIII</p>
+        <h3 class="plate-title">The Expected</h3>
+        <p class="plate-gloss">expected utility — choice under risk, and risk aversion as the concavity of the utility curve — von Neumann, Morgenstern</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>why do we prefer a sure thing to a fair gamble, and pay to insure?</q></div>
+      <div class="plate-body">
+        <p>Bernoulli's rule was an insight; John von Neumann and Oskar Morgenstern made it a theorem. They laid down axioms not on preferences over bundles but on preferences over gambles — completeness and transitivity once more, a continuity condition, and a decisive independence axiom, which says that a preference between two gambles should be unchanged if each is combined, in the same way, with some third gamble. From these they proved that a chooser who obeys them behaves exactly as if maximizing the expected value of some utility function, and that this function is unique up to its scale and its zero. The cardinal utility the ordinalists had banished returns here with real content: in the domain of risk, the magnitudes of utility are fixed — up to the choice of scale, as temperature is — by the pattern of choices among gambles.</p>
+        <p>The shape of that utility function encodes a person's attitude to risk, and the figure draws the central case. Let the utility of wealth be concave — bending as marginal utility diminishes — and take a fair gamble between a lower and a higher wealth. The expected utility of the gamble lies on the chord joining the two outcomes; the utility of the gamble's expected value lies on the curve above it; and because the curve bends away from the chord, the second exceeds the first. The person therefore prefers the sure expected value to the gamble — this is risk aversion. The sure wealth that would yield the same utility as the gamble, the certainty equivalent, falls short of the expected wealth, and the gap between them is the risk premium: the amount of expected wealth a person will sacrifice to be quit of the risk. Aversion to risk is nothing other than the concavity of the curve, made visible as the distance between a chord and an arc.</p>
+        <aside class="pull">Risk aversion is the concavity of the utility curve: because the curve bends, the average of the utilities falls short of the utility of the average, and we prefer the sure thing.</aside>
+        <p>From this single bend a great deal follows. It explains why we insure — why a person will pay a premium above the expected loss to convert the small chance of a large loss into the certainty of a small one, because the utility rescued in the bad state outweighs the utility spent on the premium. It explains the premium that risky assets must offer to be held at all, the subject of the volume on the premium: a higher expected return is the price of persuading a risk-averse holder to bear the variance. It explains diversification, the hunger for safety, the willingness to pay for the certain over the merely probable. The one fact that the utility of wealth bends — that the first dollars matter more than the last — organizes the entire economics of risk, as diminishing marginal utility organizes the whole of demand. Concavity is to risk what satiation is to wanting: the curvature that explains the conduct.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="f5t f5d">
+              <title id="f5t">Risk aversion as concavity</title>
+              <desc id="f5d">A concave utility-of-wealth curve. For a fair gamble between two wealth levels, the expected utility lies on the chord, below the utility of the expected wealth on the curve. The certainty equivalent falls short of the expected wealth, and the gap is the risk premium.</desc>
+              <line x1="64" y1="250" x2="414" y2="250" class="ax"/>
+              <polygon points="414,250 406,246 406,254" fill="var(--soft)"/>
+              <line x1="64" y1="250" x2="64" y2="40" class="ax"/>
+              <polygon points="64,40 60,48 68,48" fill="var(--soft)"/>
+              <text x="180" y="278" class="lbl-sm">wealth &#8594;</text>
+              <text x="26" y="150" class="lbl-ax" text-anchor="middle" transform="rotate(-90 26 150)">utility</text>
+              <polyline points="64,232 130,176 210,138 300,112 404,92" class="curve"/>
+              <text x="250" y="96" class="lbl-sm">utility of wealth</text>
+              <line x1="130" y1="176" x2="340" y2="104" class="guide"/>
+              <circle cx="130" cy="176" r="3.2" fill="var(--ink)"/>
+              <circle cx="340" cy="104" r="3.2" fill="var(--ink)"/>
+              <circle cx="235" cy="131" r="3.2" fill="var(--ink)"/>
+              <circle cx="235" cy="140" r="3.2" fill="var(--ink)"/>
+              <line x1="235" y1="131" x2="235" y2="250" class="guide"/>
+              <line x1="206" y1="140" x2="206" y2="250" class="guide"/>
+              <line x1="206" y1="140" x2="235" y2="140" class="guide"/>
+              <text x="236" y="264" class="lbl-sm" text-anchor="middle">E[W]</text>
+              <text x="204" y="264" class="lbl-sm" text-anchor="middle">CE</text>
+              <text x="242" y="136" class="lbl-sm">lost to risk</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 5.</span> The bend that makes us cautious. The two dots on the curve are the gamble's outcomes; the chord between them gives its expected utility, which sits below the curve's value at the expected wealth — the vertical gap is the utility lost to bearing risk. Reading that lower utility back to the curve gives the certainty equivalent CE, less than the expected wealth E[W]; their difference is the risk premium. The whole of risk aversion is the curve bending above its own chord.</figcaption>
+        </figure>
+        <aside class="edge"><span class="lead">the edge</span> The von Neumann-Morgenstern utility is cardinal, but in a special and bounded sense — unique only up to scale and zero, like temperature, so that it still cannot be compared across persons, and its cardinality is a feature of choice under risk, not a measurement of felt satisfaction. The independence axiom, which does the theorem's heavy lifting, is exactly the one the anomalies of the next plate violate. And the reduction of risk attitude to the concavity of a utility-of-wealth curve, standard though it is, fuses two things that behavioral economics later prises apart — the diminishing marginal utility of wealth and a distinct psychological aversion to loss and to risk as such — so that the elegant identification of caution with curvature is, like much in this volume, a powerful simplification the actual mind overflows.</aside>
+      </div>
+    </section>
+
+    <section class="plate reveal" id="plate-viii" data-label="Plate viii · The Anomaly">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">viii</div>
+        <p class="plate-kicker">Plate the Eighth &middot; The Quantities &middot; № VIII</p>
+        <h3 class="plate-title">The Anomaly</h3>
+        <p class="plate-gloss">the violations — Allais and Ellsberg, ambiguity, and the descriptive failure of expected utility</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what if the axioms of rational choice are the very ones people break?</q></div>
+      <div class="plate-body">
+        <p>Maurice Allais built his objection out of the theory's own materials. He set down two pairs of gambles and showed that most people — including expert decision theorists who knew the axioms by heart — choose in a pattern that no expected-utility function can rationalize, a pattern that violates the independence axiom. The mechanism is the pull of certainty: when one option offers a sure outcome, people cling to it in a way that, when the same prizes are offered with that certainty removed, reverses. The choices are deliberate, stable, and all but universal — and flatly inconsistent with the rule that descends from Bernoulli and von Neumann and Morgenstern. As a description of how people actually choose under risk, expected utility is false, and false not at the margins but at the center.</p>
+        <p>Daniel Ellsberg exhibited a second violation, about uncertainty rather than risk. People sharply distinguish risk, where the odds are known — a coin one knows to be fair — from ambiguity, where the odds are unknown — an urn of wholly unknown composition — and they shun the ambiguous. Offered a bet on the known-fair coin and an equivalent bet on the unknown urn, most prefer the known, and prefer it in a way that proves mutually inconsistent across a set of such bets. Expected utility, and the subjective-probability extension of it that Leonard Savage had built to cover unknown odds, requires that a person assign some definite probability to every event and act upon it. Ambiguity aversion is the refusal to do so — the treatment of "I have no basis for a probability" as itself a reason to avoid the bet, worse than any particular odds one could name. The world's uncertainty, people insist by their choices, is not always a probability.</p>
+        <aside class="pull">People reliably break the axioms — clinging to certainty, shunning the unknown — and they break them not from confusion but from something the axioms leave out.</aside>
+        <p>These were not isolated curiosities but the leading edge of a wave. Daniel Kahneman and Amos Tversky gathered the violations into prospect theory, which sets aside expected utility and describes instead how people in fact choose: they read outcomes as gains and losses from a reference point rather than as levels of final wealth; they feel a loss more keenly than an equal gain, the asymmetry of loss aversion; they overweight the small probabilities and underweight the large; and they are moved by the mere framing of a choice, preferring or rejecting the same prospect according to how it is described. Prospect theory is descriptively far superior to expected utility and deliberately silent on what is rational — it reports how people do choose, not how they ought to. The gap between the two, between the rational ideal and the actual mind, is the whole subject of the volumes on behavior, to which this plate is the threshold.</p>
+        <aside class="edge"><span class="lead">the edge</span> The anomalies pose a sharp question this plate can only frame and the behavioral volumes must answer: whether expected utility fails as a normative theory, a standard of how one ought to choose, or only as a descriptive one, an account of how one does. Many hold that the axioms keep their force as ideals — that a person shown how their Allais choices violate independence will, on reflection, wish to revise the choices rather than the axiom — so that expected utility survives as a norm even as it dies as a description. Others doubt even the norm. And prospect theory, for all its descriptive power, is a patchwork fitted to the anomalies rather than derived from deeper principle, carrying its own free parameters and its own unexplained edges. The mind has outrun the theory; what ought to replace it is unsettled.</aside>
+      </div>
+    </section>
+
+    <section class="plate reveal" id="plate-ix" data-label="Plate ix · The Incomparable">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">ix</div>
+        <p class="plate-kicker">Plate the Ninth &middot; The Quantities &middot; № VIII</p>
+        <h3 class="plate-title">The Incomparable</h3>
+        <p class="plate-gloss">interpersonal comparison — whether one person's satisfaction can be weighed against another's — Robbins</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>can your satisfaction be weighed against mine?</q></div>
+      <div class="plate-body">
+        <p>Bentham's project required adding utility across people. The greatest happiness of the greatest number is a sum — my pleasure joined to yours, pooled into a social total to be made as large as possible — and classical welfare economics inherited the arithmetic. The standard case for redistribution rested on it: a dollar yields more utility to a poor person than to a rich one, by diminishing marginal utility, so moving it from rich to poor raises the total, and the transfer is justified by the sum it increases. Every such argument presupposes that utilities are comparable across persons — that there exists a common scale on which my satisfaction and yours can be laid side by side and the one judged greater or less than the other.</p>
+        <p>The ordinal revolution destroyed the common scale. If a person's utility is merely their own private ranking of bundles, with no magnitudes and no anchored unit, then there is simply no fact of the matter as to whether my utility exceeds yours. The question is not difficult but meaningless — as empty as asking whether my ordering of the colors is numerically higher than yours. Lionel Robbins pressed exactly this in the nineteen-thirties, and pressed it with positivist severity: interpersonal comparisons of utility, he argued, are not propositions that evidence could settle but value judgments wearing the dress of science, and an economics that means to be a science must put them aside. The argument was widely accepted, and its acceptance cut economics off from the utilitarian summing of happiness that had been, since Bentham, its ethical engine.</p>
+        <aside class="pull">If each mind has its own private scale, the question whether your satisfaction exceeds mine is not hard but meaningless — and the utilitarian sum has nothing to add.</aside>
+        <p>Economics learned to say a surprising amount without ever comparing utilities, chiefly through the criterion Pareto had supplied: one outcome is better than another if it makes at least one person better off and no one worse off. This ranks outcomes without ever weighing one person's gain against another's loss — but it ranks very few, for almost every policy that matters helps some and hurts others, and on all of those the criterion is silent. The renunciation of interpersonal comparison purchased scientific respectability at the price of ethical muteness: an economics that can certify a free lunch, where someone gains and no one loses, but cannot pronounce on a trade-off, where one gains and another loses — which is to say, on nearly every question a society actually faces. Whether this restraint is rigor or abdication, and whether some comparison must quietly be let back in for economics to say anything useful about distribution at all, is the burden of the volume on the share.</p>
+        <aside class="edge"><span class="lead">the edge</span> The impossibility of interpersonal comparison is a methodological stance, not quite a demonstrated fact, and it has been resisted from the first. In ordinary life we compare welfare across people constantly and without embarrassment — we judge that a starving person needs bread more than a sated one wants a delicacy, and the judgment seems not meaningless but obvious. Amartya Sen, foremost among the dissenters, has argued that economics' refusal to compare is a self-imposed and excessive austerity, that partial comparisons of well-being are both possible and indispensable, and that the retreat into pure ordinalism discarded far too much. The matter is unsettled: the science gains its rigor by declining to compare and loses, in the same motion, its grip on justice, and exactly where to stand between the two remains among the most contested questions in the subject.</aside>
+      </div>
+    </section>
+
+    <section class="plate reveal" id="plate-x" data-label="Plate x · The Impossibility">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">x</div>
+        <p class="plate-kicker">Plate the Tenth &middot; The Quantities &middot; № VIII</p>
+        <h3 class="plate-title">The Impossibility</h3>
+        <p class="plate-gloss">social choice — aggregating preferences into a social judgment, and Arrow's impossibility theorem — Arrow</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>can many people's preferences be combined into one coherent social choice?</q></div>
+      <div class="plate-body">
+        <p>Grant the renunciation of the last plate; suppose we will not compare the magnitudes of anyone's satisfaction, and have before us only each person's ordinal ranking of the options. Can we at least combine those individual rankings into a single, coherent social ranking — a fair and consistent statement of what the group prefers? This is the problem of social choice, and democratic voting is its everyday instance: given everyone's preferences over the candidates, produce the choice of society. One asks for a rule of aggregation that is fair, sensible, and yields a coherent ordering for the whole.</p>
+        <p>The trouble surfaces at once, in a paradox known to Condorcet two centuries ago. Let three voters rank three options in rotated orders — the first preferring A then B then C, the second B then C then A, the third C then A then B. Then a majority prefers A to B, a different majority prefers B to C, and a third majority prefers C to A: the social preference runs in a circle, with no option that beats all others, as the figure shows. Majority rule, faced with more than two options, can manufacture a society that prefers A to B to C and back to A — an incoherent ordering, and one open to manipulation by whoever sets the order in which the votes are taken. The simplest and most natural rule of aggregation fails to deliver a coherent social preference at all.</p>
+        <aside class="pull">A majority can prefer A to B, B to C, and C to A all at once — society's preference running in a circle that no individual's does.</aside>
+        <p>Kenneth Arrow asked whether some cleverer rule might escape the trap — might turn every possible profile of individual rankings into a coherent social ranking while meeting a few minimal demands of fairness and sense. The demands are mild: unanimity, that if everyone prefers A to B then so does society; independence of irrelevant alternatives, that society's ranking of A against B depend only on how individuals rank A against B, and not on their views of some third option; and non-dictatorship, that no single person's preference always prevail regardless of everyone else's. Arrow proved that no rule can satisfy all of these at once — that the only rules guaranteeing a coherent social ordering over all profiles are dictatorships. This is his impossibility theorem, among the deepest results in all the social sciences: the aggregation of individual preferences into a fair and coherent social preference is, in general, not merely difficult but impossible.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="f6t f6d">
+              <title id="f6t">The Condorcet cycle</title>
+              <desc id="f6d">Three options A, B, and C arranged in a triangle, with arrows showing that a majority prefers A to B, a majority prefers B to C, and a majority prefers C to A. The social preference cycles, with no option that defeats all the others.</desc>
+              <text x="235" y="60" class="lbl-sm" text-anchor="middle">A</text>
+              <text x="108" y="212" class="lbl-sm" text-anchor="middle">B</text>
+              <text x="362" y="212" class="lbl-sm" text-anchor="middle">C</text>
+              <line x1="222" y1="80" x2="136" y2="192" class="curve"/>
+              <polygon points="136,192 147,186 139,179" fill="var(--ink)"/>
+              <line x1="140" y1="210" x2="330" y2="210" class="curve"/>
+              <polygon points="330,210 320,205 320,215" fill="var(--ink)"/>
+              <line x1="336" y1="192" x2="250" y2="80" class="curve"/>
+              <polygon points="250,80 261,86 253,92" fill="var(--ink)"/>
+              <text x="235" y="160" class="lbl-sm" text-anchor="middle">no winner</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 6.</span> Society's preference, running in a circle. With three voters ranking three options in rotated orders, a majority prefers A to B, another B to C, another C to A — the arrows chase one another around the triangle and no option defeats all the rest. The cycle that no individual exhibits emerges from their aggregation. Condorcet found the paradox in majority rule; Arrow proved that no aggregation rule whatever escapes such incoherence while remaining fair.</figcaption>
+        </figure>
+        <aside class="edge"><span class="lead">the edge</span> Arrow's theorem is a theorem, but its meaning is contested and less nihilistic than it first sounds. Its conditions can be challenged — independence of irrelevant alternatives above all — and relaxing them opens room for workable rules; admitting some interpersonal comparison of the intensities of preference, which the theorem forbids by working with bare rankings, also escapes it, which is one measure of how much the renunciation of the last plate cost. The theorem does not say that democracy is worthless or that all voting rules are equally bad. It says that none is perfect — that every rule of aggregation must violate one reasonable principle or another — and that "the will of the people," conceived as a single coherent thing waiting to be found, may simply not exist. It is a permanent caution, not a counsel of despair.</aside>
+      </div>
+    </section>
+
+    <section class="plate reveal" id="plate-xi" data-label="Plate xi · The Experienced">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">xi</div>
+        <p class="plate-kicker">Plate the Eleventh &middot; The Quantities &middot; № VIII</p>
+        <h3 class="plate-title">The Experienced</h3>
+        <p class="plate-gloss">decision versus experienced utility — what we choose against what we feel; the remembering self — Kahneman</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>do we choose what makes us happy?</q></div>
+      <div class="plate-body">
+        <p>The whole apparatus has assumed, silently, that what we choose is what is good for us — that the decision utility revealed in choice is the same as the well-being it is meant to serve. Daniel Kahneman drove the two apart. He revived Bentham's older and more literal notion of utility as felt experience, the pleasure and pain actually undergone, and set it against the decision utility that governs choice. Experienced utility is the quality of life as it is lived, moment to moment; decision utility is the weight an outcome carries when one chooses among prospects. Standard theory simply equates them — the thing we pursue and the thing we feel. Kahneman asked whether they are in fact the same, and found, in study after study, that they are not.</p>
+        <p>The wedge is driven through memory. We do not choose on the basis of experience directly, for experience is gone the moment it occurs; we choose on the basis of our memory of experience, and memory is a poor and systematically biased recorder. The figure shows the central finding. The remembered quality of an episode is governed not by the sum of the experience over its duration but by two moments alone — its peak and its end, the peak-end rule — and is strikingly insensitive to how long it lasted. An ordeal twice as long but otherwise identical is remembered as no worse; an episode that ends well is remembered fondly though most of it was wretched. The experiencing self lives through every moment in equal measure; the remembering self, keeping only the peak and the close, is the self that does the choosing — and it routinely overrules the self that actually lived the life.</p>
+        <aside class="pull">We do not choose by what we live but by what we remember — and memory keeps the peak and the end, discarding the duration that was most of the experience.</aside>
+        <p>The consequence is unsettling. If the remembering self systematically misjudges the experiencing self, then our choices, made by the rememberer, do not reliably maximize our experienced well-being. We choose the holiday that will photograph well over the one we will enjoy; we prolong an experience for the sake of an ending we will misremember; we pursue what decision utility rates highly and experienced utility fails to deliver. This drives a wedge into the very foundation of welfare economics. If utility-as-choice and utility-as-experience come apart, then revealed preference does not track well-being, and the identification of what people want with what is good for them — the assumption beneath the entire subject, the one the revealed-preference plate had already strained — fails outright. Which utility, then, should policy serve: the choices people make, or the lives they actually experience? The question is open, and it reaches back to the volume on growth, where the same gap haunts the broken link between rising income and reported happiness.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="f7t f7d">
+              <title id="f7t">Experienced utility over time, and the peak-end rule</title>
+              <desc id="f7d">A curve of moment-to-moment utility across an episode, dipping to a worst point — the peak of the experience — and recovering somewhat by the end. The remembered quality of the episode tracks the average of the peak and the end, not the area under the whole curve, and ignores duration.</desc>
+              <line x1="64" y1="250" x2="414" y2="250" class="ax"/>
+              <polygon points="414,250 406,246 406,254" fill="var(--soft)"/>
+              <line x1="64" y1="250" x2="64" y2="40" class="ax"/>
+              <polygon points="64,40 60,48 68,48" fill="var(--soft)"/>
+              <text x="180" y="278" class="lbl-sm">time &#8594;</text>
+              <text x="26" y="150" class="lbl-ax" text-anchor="middle" transform="rotate(-90 26 150)">utility</text>
+              <polyline points="64,150 110,178 160,205 215,224 280,196 340,172 404,164" class="curve"/>
+              <text x="90" y="138" class="lbl-sm">moment utility</text>
+              <circle cx="215" cy="224" r="3.2" fill="var(--ink)"/>
+              <text x="192" y="240" class="lbl-sm">the peak</text>
+              <circle cx="404" cy="164" r="3.2" fill="var(--ink)"/>
+              <text x="398" y="156" class="lbl-sm" text-anchor="end">the end</text>
+              <line x1="215" y1="194" x2="404" y2="194" class="guide"/>
+              <text x="222" y="188" class="lbl-sm">remembered level</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 7.</span> The life lived against the life remembered. The curve is utility moment by moment through an episode; the experiencing self undergoes all of it, the area beneath the whole. But the remembering self keeps only the peak and the end, and rates the episode at roughly their average — the dashed level — regardless of how long the experience lasted. Since the rememberer makes the choices, we choose for peaks and endings, not for the duration that was most of what we felt.</figcaption>
+        </figure>
+        <aside class="edge"><span class="lead">the edge</span> The experienced-utility program is powerful but faces its own deep difficulties. Measuring momentary experience is hard, for even a report given seconds later is already a memory; and aggregating fleeting pleasures and pains into a verdict on how well a life goes reintroduces the very philosophical questions — is well-being merely the sum of momentary feeling? — that preference-satisfaction was meant to sidestep. There is, moreover, a respectable view that the remembering self is not simply mistaken: that we have a genuine stake in the story of our lives, in how things end and what they come to mean, and not only in the moment-by-moment hedonic stream, so that choosing for memory over experience may express a real value rather than an error. Whether the experiencing self or the remembering self is the proper object of our concern is not a finding but a question — perhaps the deepest question in the whole theory of well-being.</aside>
+      </div>
+    </section>
+
+    <section class="plate reveal" id="plate-xii" data-label="Plate xii · The Good">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">xii</div>
+        <p class="plate-kicker">Plate the Twelfth &middot; The Quantities &middot; № VIII</p>
+        <h3 class="plate-title">The Good</h3>
+        <p class="plate-gloss">utility made whole — value as felt, chosen, and inferred, toward The Surplus, The Stock, The Share</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what, in the end, is utility — and can it bear the weight economics puts on it?</q></div>
+      <div class="plate-body">
+        <p>Utility is the want behind value, the end that choice is meant to serve, the quantity that the whole subject tracks and no instrument can read. Across eleven plates the inquiry has circled it: the want and the scale; the ranking and the axioms; the preference read from choice; the wager and the expected and the anomaly; the incomparable, the impossible, the experienced. It remains to ask what the concept is, taken whole, and whether it can carry the weight that an entire science has laid upon it.</p>
+        <p>Can it be measured? The question has no single answer, and the volume's first arc was the discovery of why. For riskless choice, mere ranking suffices and the cardinal magnitudes are idle — the ordinal turn was right that one need never measure the satisfaction of a loaf to derive the demand for it. But where risk enters, a cardinal utility returns with genuine content, its magnitudes pinned down by choices among gambles and its concavity the very measure of aversion to risk. Utility is ordinal where order is all that is asked of it and cardinal where magnitudes do work; the answer depends entirely on the question, and the long confusion was the failure to see that it must.</p>
+        <p>Is it something felt, or only something inferred? Here the volume found a standing contest. Bentham meant a felt state, a pleasure or pain genuinely undergone; revealed preference meant only a summary of consistent choice, with no feeling behind it. The operational view bought its rigor by identifying utility with choice — and in the same stroke lost the power to say that anyone had ever chosen badly, for one maximizes one's utility by definition in the act of choosing. The hedonic view restored the felt state, and with it the possibility of error, but at the cost of the measurability the operationalists had prized. Utility hangs suspended between the two: felt but inferred, real but reachable only through the behavior that casts its shadow.</p>
+        <p>Is it the same as well-being? The subject's foundation is the quiet identification of what we choose with what is good for us, and the experienced-utility plate drove the two apart. The remembering self, which makes our choices, systematically misjudges the experiencing self, which lives our life; we choose for peaks and endings and misremember the rest. If choice and welfare diverge, then revealed preference does not track well-being, and the whole edifice rests upon an assumption that its own findings unsettle. The most basic premise of welfare economics — that the satisfied preference is the served interest — turns out to be not a truth but a hope.</p>
+        <p>Can it be shared? Bentham's sum required comparing utilities across persons; the ordinal turn made the comparison meaningless; Robbins made the renunciation orthodox; and Arrow proved that even the bare rankings that remain cannot, in general, be coherently aggregated into a social judgment at all. Economics can certify a free lunch, where one gains and none lose, but it cannot adjudicate a trade-off, where one gains and another loses — and the questions of justice that require the weighing of one life against another are precisely the ones it has disqualified itself from answering. The quantity invented to be the measure of all value resists both measurement and addition.</p>
+        <p>What, then, is known? A great deal, and securely: a rigorous theory of choice — preference, representation, expected utility — that organizes demand, risk, insurance, and the pricing of assets, built upon observable choice and freed of an unmeasurable feeling. And what is not known shadows each achievement. The axioms on which the theory stands are systematically violated, as the anomalies show; the concept cannot be compared across persons or aggregated without contradiction, as the impossibilities show; and it may not even track the well-being it was invented to capture, as the experienced wedge shows. The most fundamental quantity in all of economics is the one the subject holds least securely in its hand.</p>
+        <p>The Utility is the third of The Quantities, and the deepest of them — the value that the others presuppose. It stands beneath The Margin, whose marginal utility is utility at the edge and whose ordinal turn this volume carried to its end; beneath The Surplus, which measures in money the utility a market delivers to those who trade in it; beneath The Stock, where utility is spread across time and discounting weighs the present want against the future. And it reaches throughout the atlas — to The Premium, where the concavity of utility prices the bearing of risk; to The Choice and The Bias, where the axioms break and prospect theory takes the field; to The Share, where the impossibility of comparison disarms every judgment of distribution. Utility is the concept on which the subjective theory of value finally rests, and the one it can least securely hold.</p>
+        <p>What is utility? The want that price is built to measure — and a quantity that resists, at every turn, the weight the subject puts upon it: felt but unmeasured, inferred but unobserved, ranked but incomparable, chosen but not certainly good for the chooser, summed only at the cost of contradiction. It is at once indispensable and a ghost. The marginal revolution made value subjective, and this volume has been the reckoning with what that meant — that the foundation of the entire subject is a quantity lodged in a single mind, available to no instrument and to no other mind, which we approach only through the choices it leaves behind like footprints in snow. The quantity, like every quantity this atlas weighs, is a verdict on a hidden contest: between value as felt and value as chosen, between the cardinal and the ordinal, between what we want and what is good for us, between the single mind that ranks and the many minds that cannot be summed. The argument remains open.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref">Volume VIII &middot; The Utility</span>
+    </div>
+    <p class="colophon">Volume VIII of <em>Numéraire, A Periodic Table of Economic Life</em> — <em>The Utility</em>, the eighth of twenty-six and the third of <em>The Quantities</em>. Twelve plates and seven engravings, each worked at the seam where the seminar and the essay usually part, with the rigor of the one and the grace of the other, and each scrupulous about the exact edge of what can be known. Utility is the want that price is built to measure, and the volume is the reckoning with its elusiveness: Bentham's calculus of pleasure and pain; the cardinal scale that no instrument could read, and the diminishing marginal utility it drew; the ordinal turn to preference and the indifference map; the axioms of rational choice and the theorem they prove; revealed preference, and utility purged of all feeling; the St. Petersburg wager and the birth of expected utility; risk aversion as the concavity of the utility curve; the Allais and Ellsberg anomalies that break the axioms; the impossibility of weighing one person's satisfaction against another's; Arrow's proof that preferences cannot be coherently aggregated; and the wedge between the utility we choose and the utility we live. It hands the inquiry onward to <em>The Surplus</em>, <em>The Stock</em>, and <em>The Share</em>. The figures stand after Bentham; Jevons and Marshall; Pareto, Hicks, and Slutsky; Samuelson; Bernoulli; von Neumann and Morgenstern; Savage; Allais and Ellsberg; Robbins; Arrow and Sen; and Kahneman and Tversky. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<script>
+(function(){
+  var root=document.documentElement; root.classList.add('js');
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var bar=document.getElementById('progress');
+  var topbar=document.getElementById('topbar');
+  var title=document.querySelector('.vol-title');
+  var label=document.getElementById('tb-plate');
+  function onScroll(){
+    var doc=document.documentElement;
+    var h=doc.scrollHeight-window.innerHeight;
+    var p=h>0?Math.min(1,Math.max(0,window.scrollY/h)):0;
+    if(bar) bar.style.transform='scaleX('+p.toFixed(4)+')';
+    if(topbar){
+      var threshold=(title?title.offsetHeight:420)*0.72;
+      if(window.scrollY>threshold) topbar.classList.add('show'); else topbar.classList.remove('show');
+    }
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+  if('IntersectionObserver' in window){
+    var rev=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); rev.unobserve(e.target); } });
+    },{rootMargin:'0px 0px -10% 0px',threshold:0.06});
+    document.querySelectorAll('.reveal').forEach(function(el){ rev.observe(el); });
+    if(label){
+      var cur=new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting){ var t=e.target.getAttribute('data-label'); if(t) label.textContent=t; } });
+      },{rootMargin:'-44% 0px -50% 0px',threshold:0});
+      document.querySelectorAll('.plate[data-label]').forEach(function(el){ cur.observe(el); });
+    }
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-surplus.html">← The Surplus</a><a rel="next" href="the-stock.html">The Stock →</a></nav>
+</body>
+</html>

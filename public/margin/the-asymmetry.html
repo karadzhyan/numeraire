@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Asymmetry — Numéraire, Volume XII</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem; --measure:40rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.9rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(3rem,8vh,6rem) 0 clamp(1.6rem,4vh,2.6rem);text-align:center;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;text-decoration:none;}
+  .imprint:hover{color:var(--soft);}
+  .vol-dateline{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+
+  .vol-sym{width:114px;height:114px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;align-items:center;justify-content:center;
+    font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 500;font-size:3.1rem;line-height:1;letter-spacing:-.01em;}
+  .vol-sym.lit{background:var(--ink);color:var(--paper);}
+  .vol-elnum{font-family:"Fraunces",serif;font-size:.74rem;color:var(--faintest);letter-spacing:.18em;text-transform:uppercase;margin-top:1rem;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.3rem,6.5vw,4.6rem);line-height:1.02;letter-spacing:-.025em;margin:.7rem 0 0;text-wrap:balance;}
+  .vol-status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .vol-status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:44rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .vol-q{max-width:46rem;margin:clamp(2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .vol-q .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.7rem;}
+  .vol-q q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.3rem,2.4vw,1.72rem);line-height:1.32;color:var(--ink);quotes:none;text-wrap:balance;}
+
+  .front{margin:clamp(3rem,7vh,5rem) auto 0;max-width:var(--measure);}
+  .front-eyebrow{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);text-align:center;
+    display:flex;align-items:center;gap:.9rem;justify-content:center;margin:0 0 2.1rem;}
+  .front-eyebrow::before,.front-eyebrow::after{content:"";height:1px;width:2.4rem;background:var(--hair);}
+  .front p{font-size:1.07rem;line-height:1.76;color:var(--ink);margin:0 0 1.35rem;text-wrap:pretty;}
+  .front p:last-child{margin-bottom:0;}
+  .front em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.74;padding:.1em .12em 0 0;color:var(--ink);}
+  .front-orn{display:flex;justify-content:center;margin:2rem 0;}
+  .front-orn svg{width:96px;height:12px;overflow:visible;}
+  .front-orn line{stroke:var(--num);stroke-width:1;} .front-orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  main{padding:clamp(3rem,7vh,5rem) 0 0;}
+  .plates-head{display:flex;align-items:baseline;gap:.9rem;margin:0 0 1.6rem;}
+  .plates-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-size:.86rem;color:var(--faintest);letter-spacing:.04em;flex:0 0 auto;}
+  .plates-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);flex:0 0 auto;}
+  .plates-rule{flex:1;height:1px;background:var(--hair);position:relative;top:-2px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:13px;}
+
+  .el{appearance:none;-webkit-appearance:none;background:var(--paper);border:1px solid var(--hair);border-radius:2px;
+    padding:14px 15px 16px;text-align:left;cursor:pointer;position:relative;min-height:152px;
+    display:flex;flex-direction:column;color:inherit;font-family:inherit;
+    transition:border-color .22s ease,background .22s ease,transform .22s ease,box-shadow .22s ease;}
+  .el:hover{border-color:var(--faintest);transform:translateY(-2px);}
+  .el-rn{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-size:.78rem;color:var(--faintest);letter-spacing:.18em;text-transform:uppercase;}
+  .pl-hero{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 500;font-size:1.34rem;line-height:1.06;margin-top:.5rem;letter-spacing:-.012em;}
+  .el-gloss{font-size:.79rem;color:var(--faint);line-height:1.36;margin-top:.5rem;font-style:italic;}
+  .pl-flag{margin-top:auto;padding-top:.7rem;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--faintest);}
+  .el.lit{background:var(--ink);border-color:var(--ink);}
+  .el.lit .pl-hero{color:var(--paper);}
+  .el.lit .el-rn{color:rgba(240,235,225,.5);}
+  .el.lit .el-gloss{color:rgba(240,235,225,.62);}
+  .el.lit .pl-flag{color:rgba(240,235,225,.7);}
+  .el.sel{box-shadow:inset 0 0 0 1.5px var(--ink);border-color:var(--ink);}
+  .el.lit.sel{box-shadow:inset 0 0 0 1.5px var(--paper);}
+
+  .detail{margin:clamp(2.4rem,5vh,3.6rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);scroll-margin-top:1.4rem;}
+  .d-head{display:flex;gap:1.3rem;align-items:flex-start;}
+  .d-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 500;font-size:1.5rem;line-height:1;
+    color:var(--ink);flex:0 0 auto;border:1px solid var(--hair);border-radius:2px;letter-spacing:.04em;
+    width:86px;height:86px;display:flex;align-items:center;justify-content:center;text-transform:uppercase;}
+  .d-sym.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .d-titles{min-width:0;}
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);}
+  .d-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.7rem,3.6vw,2.5rem);margin:.22rem 0 .35rem;line-height:1.04;letter-spacing:-.016em;}
+  .d-status{font-size:.84rem;color:var(--faint);font-style:italic;}
+  .d-status.print{color:var(--soft);font-style:normal;}
+  .d-status.print::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .d-desc{font-size:1.05rem;line-height:1.72;color:var(--ink);max-width:42rem;margin:1.3rem 0 0;text-wrap:pretty;}
+
+  .d-openq{margin:1.6rem 0 0;max-width:40rem;}
+  .d-openq .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.5rem;}
+  .d-openq q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);quotes:none;}
+
+  .d-excerpt{margin:1.8rem 0 0;max-width:42rem;border-left:1px solid var(--hair);padding:.2rem 0 .2rem 1.5rem;}
+  .d-excerpt .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.8rem;}
+  .d-excerpt p{font-size:1.04rem;line-height:1.74;color:var(--ink);margin:0;text-wrap:pretty;}
+  .d-excerpt .x-cap{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 500;font-size:1.15rem;}
+  .d-readplate{margin:1.6rem 0 0;}
+  .d-readplate a{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:.94rem;
+    letter-spacing:.01em;text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:2px;transition:border-color .2s ease,color .2s ease;}
+  .d-readplate a:hover{color:var(--soft);border-color:var(--soft);}
+  .d-readplate .arr{margin-left:.4rem;}
+
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;text-decoration:none;}
+  .f-mark:hover{color:var(--soft);}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;}
+    .el{min-height:138px;padding:12px 12px 14px;}
+    .pl-hero{font-size:1.18rem;}
+    .el-gloss{font-size:.74rem;}
+    .vol-sym{width:92px;height:92px;font-size:2.5rem;}
+    .d-head{gap:1rem;}
+    .d-sym{width:64px;height:64px;font-size:1.25rem;}
+    .front p{font-size:1.04rem;}
+    .dropcap{font-size:3rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="rise d1">
+      <a class="imprint" href="numeraire-atlas.html">Numéraire</a>
+      <div class="vol-dateline">The Twelfth Volume &middot; The Failures</div>
+    </div>
+    <div class="vol-sym lit rise d2" aria-hidden="true">As</div>
+    <div class="vol-elnum rise d2">Element 12 &middot; Group III</div>
+    <h1 class="rise d3">The Asymmetry</h1>
+    <div class="vol-status rise d3">in print &middot; № XII &middot; 2 of 12 plates</div>
+    <p class="standfirst rise d4">In every bargain one party tends to know more than the other — the seller more than the buyer, the borrower more than the lender, the expert more than the layman — and that simple inequality is enough to bend a market, and sometimes to break it. This volume is about asymmetry: the market for lemons and the signal that answers it, the screen and the hazard and the incentive, the seal and the mandate, and the contest, beneath every price struck in unequal knowledge, over who knows, who hides, and who pays.</p>
+    <div class="vol-q rise d5">
+      <span class="lead">The question of the volume</span>
+      <q>when buyer and seller know different things, the market's outcome wears the look of the natural price of quality and risk — but is it more than the frozen advantage of whoever knows the more?</q>
+    </div>
+  </header>
+
+  <section class="front" aria-label="The argument of the volume">
+    <div class="front-eyebrow">The argument</div>
+
+    <p><span class="dropcap">I</span>n every exchange there is a chance that one party knows more than the other. The seller of a used car knows whether it is sound; the buyer does not. The applicant for insurance knows his own health and habits better than the company that must price his risk. The borrower knows what he means to do with the loan; the lender can only guess. The worker knows his own diligence, the physician his own care, the expert in every field more than the layman who must hire him. This inequality of knowledge — that the two sides of a bargain do not see the same things — is so ordinary that we scarcely remark it; and yet it is enough, on its own, to bend the outcome of a market, to distort its prices, and at the limit to unravel the trade altogether. This volume is about that inequality, which the economists call asymmetric information, and about the surprising amount of economic life that turns out to be organized, one way or another, around the fact that we do not all know the same things.</p>
+
+    <p>The founding insight is the youngest in this work, and among the most consequential economics has produced. In 1970 George Akerlof asked what becomes of a market in which sellers know the quality of what they sell and buyers do not — the market, in his example, for used cars, where a seller knows whether his is sound or a lemon. A buyer who cannot tell them apart will pay only what the average is worth; but at that price the owners of the best cars withdraw, unwilling to sell a good car for an average price, so that the average quality falls, and the price with it, and the next-best cars withdraw in turn. The market threatens to unravel toward the worst — the bad driving out the good — not through fraud or scarcity but through the mere fact that quality is hidden. Akerlof named the mechanism adverse selection, and his demonstration that a market could fail from asymmetry alone, with no monopolist and no spillover in sight, opened a new continent of economics and, three decades on, won a Nobel Prize.</p>
+
+    <p>If a market can be wrecked because quality is hidden, it can be saved by making quality visible — and much of the machinery of real markets exists to do exactly that. The informed party can signal, in Michael Spence's term: take some action that only the genuine article would find worthwhile, a thing too costly for the false type to imitate, and so reveal by deed what words cannot establish — the unconditional warranty only a sound product can afford, the education that vouches for a worker's quality, the brand built at an expense only a firm expecting to last would bear. The uninformed party, for its part, can screen, in the manner Joseph Stiglitz analyzed: offer a menu of terms designed so that the different types sort themselves, as the insurer's choice between full coverage at a high price and a large deductible at a low one leads the reckless and the careful to declare themselves by their choosing. Signaling and screening, certification and reputation: the market does not suffer its asymmetry passively but grows elaborate institutions to fight it.</p>
+
+    <p>Hidden quality is only half the trouble; there is also hidden action. A man insured against fire takes less care with his candles; a manager spending shareholders' money may chase empire rather than profit; a borrower may gamble with funds he would never risk were they his own. Wherever one party bears the consequences of another's unobserved choices, the incentive to take care is quietly corroded — a condition the insurers named moral hazard, and which reappears in every relation where someone must act on another's behalf without being fully watched. Adverse selection concerns what the other party is; moral hazard, what the other party does; and together they map the two ways unequal information can distort a dealing. Both, moreover, share a deeper feature, which is the true subject of this volume.</p>
+
+    <div class="front-orn" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>For the outcome of a market shaped by asymmetry wears, like every outcome in this work, a false face of necessity. A price is a verdict on a hidden contest, mistaken for a fact of nature — and the prices struck in unequal knowledge are verdicts of just this kind. The high cost of the insurance, the low price of the used car, the wage premium a credential commands, the rate of interest a borrower of unknown risk must pay: each looks like the natural price of a quality or a risk, set by the impersonal meeting of supply and demand. But each is in truth the product of a particular distribution of knowledge — of who knows what, of what can be concealed and what revealed — and of the institutions that happen to exist for bridging the gap. Change the information, or the signals and screens and certifications that govern it, and the price changes; it was never the dictate of nature it appeared to be, but the residue of an arrangement that could have been otherwise.</p>
+
+    <p>And beneath that arrangement, as always, lies a contest. A price is a verdict on a hidden contest, mistaken for a fact of nature; in the markets of this volume the contest is over information itself — its concealment and its disclosure, its possession and its proof. The better-informed party strives to turn its advantage to profit: the seller to hide the defect, the borrower to mask the risk, the expert to find more need than there is. The worse-informed strives to protect itself: to extract the signal, to design the screen, to compel the disclosure. The market's outcome — who captures the gain of the hidden knowledge, who bears the loss of the hidden risk — is the frozen result of that struggle, not a fact of the world. Information, in these markets, is not a given but a stake: fought over, withheld, signaled, certified, mandated, and never simply there. To read the resulting price as the natural price of quality is to mistake the spoils of an informational contest for the order of nature.</p>
+
+    <p>With this volume the family of failures is complete. Economics has long recognized a handful of ways in which the market's central promise — that voluntary exchange leaves all parties better off — can break down: the monopolist who throttles supply, anatomized in the volume on power; the polluter whose costs fall on others, the subject of the volume on externality; the unowned resource that all may use and none will tend, the matter of the volume on the commons; and now the asymmetry of information, the fourth of the classic failures, in which the market falters not from too much power, nor from uncosted harm, nor from absent ownership, but from unequal knowledge. The four are the canonical breakdowns of the market, and they share a single moral, which is the moral of this entire work: that each apparent law of the market — its prices, its allocations, and its failures most of all — is on inspection not a fact of nature but a contingent product of institutions; and the volume on skill has already shown one of these informational forces, the signal, at work within the wage itself.</p>
+
+    <p>The twelve plates follow the asymmetry through its forms and its remedies. They set out the lemon and the signal that answers it, the screen by which the uninformed sort the types and the hazard of the action that cannot be watched; the incentive contract that strains to align an agent with his principal and the warranty that binds a seller to his word; the seal by which a third party vouches and the pool in which insurance gathers and unravels; the mandate by which the law compels disclosure and the credence good whose quality the buyer can never check; the herd that forms when each reads the crowd for the knowledge he lacks; and, at the last, the curtain — whether the gap between the knowing and the unknowing can ever be drawn back, or whether some asymmetry is the irreducible condition of a world in which knowledge is unequally shared, so that the verdict of an unequal market can never be read as a simple fact. The market does not abolish its asymmetry; it manages it, and the managing is much of what markets do. The argument remains open.</p>
+  </section>
+
+  <main>
+    <div class="plates-head">
+      <span class="plates-num fr">№ XII</span>
+      <span class="plates-name">The twelve plates</span>
+      <span class="plates-rule"></span>
+    </div>
+    <div class="grid" id="grid">
+      <button class="el lit" data-id="lemon" aria-label="Plate i — The Lemon — in print"><span class="el-rn">Plate i</span><span class="pl-hero">The Lemon</span><span class="el-gloss">the market for lemons: how hidden quality drives out the good and unravels the trade (Akerlof)</span><span class="pl-flag">in print</span></button>
+      <button class="el lit" data-id="signal" aria-label="Plate ii — The Signal — in print"><span class="el-rn">Plate ii</span><span class="pl-hero">The Signal</span><span class="el-gloss">the costly credible sign — the degree, the warranty, the brand — by which the informed reveal what they know (Spence)</span><span class="pl-flag">in print</span></button>
+      <button class="el" data-id="screen" aria-label="Plate iii — The Screen"><span class="el-rn">Plate iii</span><span class="pl-hero">The Screen</span><span class="el-gloss">the menu that makes the types sort themselves: the deductible, the loan term, the test the uninformed set (Stiglitz)</span></button>
+      <button class="el" data-id="hazard" aria-label="Plate iv — The Hazard"><span class="el-rn">Plate iv</span><span class="pl-hero">The Hazard</span><span class="el-gloss">moral hazard: how the insured, the manager, the borrower change their conduct once the risk is another's</span></button>
+      <button class="el" data-id="incentive" aria-label="Plate v — The Incentive"><span class="el-rn">Plate v</span><span class="pl-hero">The Incentive</span><span class="el-gloss">the incentive contract for the unwatched agent: tying reward to result, and the costly tension between incentive and insurance</span></button>
+      <button class="el" data-id="warranty" aria-label="Plate vi — The Warranty"><span class="el-rn">Plate vi</span><span class="pl-hero">The Warranty</span><span class="el-gloss">the credible commitment — guarantee, bond, collateral — that puts the seller's money behind the buyer's doubt</span></button>
+      <button class="el" data-id="seal" aria-label="Plate vii — The Seal"><span class="el-rn">Plate vii</span><span class="pl-hero">The Seal</span><span class="el-gloss">certification and the third party: the brand, the license, the rating that vouches where neither party can</span></button>
+      <button class="el" data-id="pool" aria-label="Plate viii — The Pool"><span class="el-rn">Plate viii</span><span class="pl-hero">The Pool</span><span class="el-gloss">the insurance pool and its unraveling: pooling, separating, and the death spiral of adverse selection</span></button>
+      <button class="el" data-id="mandate" aria-label="Plate ix — The Mandate"><span class="el-rn">Plate ix</span><span class="pl-hero">The Mandate</span><span class="el-gloss">the law that forces disclosure: lemon laws, truth in lending, the label that drags the hidden into the open</span></button>
+      <button class="el" data-id="credence" aria-label="Plate x — The Credence"><span class="el-rn">Plate x</span><span class="pl-hero">The Credence</span><span class="el-gloss">the credence good, whose quality the buyer can never verify: the diagnosis, the repair, the expert's word</span></button>
+      <button class="el" data-id="herd" aria-label="Plate xi — The Herd"><span class="el-rn">Plate xi</span><span class="pl-hero">The Herd</span><span class="el-gloss">the informational cascade: how we read the crowd, ignore our own knowledge, and stampede into bubbles and fashions</span></button>
+      <button class="el" data-id="curtain" aria-label="Plate xii — The Curtain"><span class="el-rn">Plate xii</span><span class="pl-hero">The Curtain</span><span class="el-gloss">can the gap ever close? Arrow's paradox, irreducible asymmetry, and the limits of a market in knowledge</span></button>
+    </div>
+  </main>
+
+  <section class="detail" id="detail" aria-live="polite"></section>
+
+  <footer>
+    <div class="f-bar">
+      <a class="f-mark" href="numeraire-atlas.html">Numéraire</a>
+      <span class="f-ref">Volume XII &middot; The Failures</span>
+    </div>
+    <p class="colophon">Volume XII, <em>The Asymmetry</em>, opens with two plates in print — <em>The Lemon</em> and <em>The Signal</em>, the market that hidden quality unravels and the costly sign that answers it. The twelfth element of the table, and the sixteenth of its volumes to appear; with it the failures are complete, the first of the table's six families to be fully drawn. It joins <a href="the-power.html">The Power</a>, <a href="the-externality.html">The Externality</a>, and <a href="the-commons.html">The Commons</a> — monopoly, the spillover, and the ruin of the unowned — as the fourth of the classic ways a market breaks down: the failure of the unequally informed. Where those anatomized the failures of throttled supply, of uncosted harm, and of the missing owner, this one anatomizes the failure of unequal knowledge — the lemon and the signal, the screen and the seal, that a market grows to fight its own asymmetry; and the volume on skill has already found one such force, the signal, hidden in the wage. Return to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+
+<script>
+const PLATES = {
+  lemon:{rn:"i",title:"The Lemon",family:"in print",lit:true,url:"the-lemon.html",
+    desc:`George Akerlof's 1970 paper on the market for used cars founded a field and, in time, won a Nobel Prize, by showing that a market can be wrecked by nothing more than an inequality of knowledge. Suppose sellers know whether their car is sound or a lemon and buyers do not. A buyer, unable to tell the two apart, will pay only a price reflecting the average quality; but at that price the owners of the best cars, knowing their worth, withdraw, leaving a worse average; the price falls, and again the best of what remains withdraws, until the market threatens to collapse to the lemons alone. This is adverse selection: the bad driving out the good, not through any villainy but through the simple fact that quality is hidden. The lesson was startling — that a market might fail not from monopoly, not from a spillover, but from asymmetry alone — and this plate sets it out as the founding case of the volume.`,
+    excerpt:`<span class="x-cap">Y</span>ou are buying a used car, and the seller knows something you do not: whether it is sound, or a lemon. He will not tell you — or rather, he will tell you it is sound whether it is or not, so his word is worth nothing. Unable to tell the good car from the bad, you offer a price somewhere in the middle, fair, you think, for the average. But the man with the genuinely good car will not sell it at a price meant for the average, and withdraws; and now the average is worse, and your fair price falls, and the next-best car withdraws in turn. The market, left to itself, threatens to unwind to the worst car on the lot — undone not by greed or scarcity, but by a single fact: that one of you knows, and the other does not.`},
+  signal:{rn:"ii",title:"The Signal",family:"in print",lit:true,url:"the-signal.html",
+    desc:`If the market for lemons can collapse because quality is hidden, the obvious remedy is to make it visible — and Michael Spence's theory of signaling, the work for which he shared Akerlof's prize, showed how the informed party can do exactly that. The trick is to take an action that only the good type would find worthwhile: a costly action whose cost is lower for the high-quality than the low, so that undertaking it credibly conveys what mere words cannot. Spence's original example was education, understood not as a means of acquiring skill but as a signal of a productivity the employer cannot directly observe — worth the candle to the able, too dear for the rest, and therefore believed. The same logic explains the unconditional warranty, which only a sound product can afford; the lavish advertisement, which only a firm expecting repeat custom would fund; the costly display of every kind. This plate sets out the signal: the credible sign by which hidden quality reveals itself, and the curious fact that the cost is the point.`,
+    excerpt:`<span class="x-cap">A</span> word means nothing when everyone has an interest in saying it. The good worker and the bad both claim to be diligent; the sound firm and the shaky both call their product reliable; and because the claim costs nothing and serves everyone, it persuades no one. What the listener trusts instead is the thing that would be too expensive to fake — the action only the genuine article would find worth taking. This is a signal: not a statement of one's quality but a demonstration of it, made credible precisely by its cost. The diploma, the warranty, the unhedged guarantee, the willingness to be held to one's word — each works not by what it says but by what only the real thing could afford to do.`},
+  screen:{rn:"iii",title:"The Screen",family:"in preparation",lit:false,
+    desc:`Signaling is the informed party's move; screening is the uninformed party's reply. Where the seller of quality acts to reveal what he knows, the buyer who cannot see quality can instead arrange matters so that the seller reveals it despite himself — by offering not one contract but a menu, designed so that different types find it in their interest to choose differently, and so sort themselves. The classic case, worked out by Joseph Stiglitz with Michael Rothschild, is insurance: a company that cannot tell the careful from the reckless offers two policies — one with a high premium and full coverage, one with a low premium and a large deductible — knowing that the reckless, who expect to claim, will pay for full coverage, while the careful, who do not, will take the deductible and the discount. The menu does the company's sorting for it. This plate examines screening — the design of choices that makes the hidden type declare itself — and the self-selection on which it turns.`,
+    openq:`if the uninformed cannot see the type they face, can they yet design the terms so that each type, choosing freely, reveals itself?`},
+  hazard:{rn:"iv",title:"The Hazard",family:"in preparation",lit:false,
+    desc:`Adverse selection turns on hidden information — what the other party is. Moral hazard turns on hidden action — what the other party does. The term comes from insurance, where it was long observed that a man insured against fire grew less careful with candles, and a thing insured against theft less likely to be locked away: not from fraud, but because insurance, by shifting the consequences of carelessness onto the insurer, quietly weakens the incentive to take care. The same structure appears wherever one party bears the results of another's unobserved choices — the employer who cannot watch the worker, the shareholder who cannot monitor the manager, the lender who cannot see what the borrower does with the loan. Each faces a counterpart whose effort or prudence he cannot observe, and who therefore has room to shirk, or to gamble with money that is not his. This plate sets out moral hazard, the asymmetry of action, and the perverse incentives it breeds wherever risk and responsibility are split apart.`,
+    openq:`when one party cannot observe what another does, and bears the cost of it, what is left to keep the unwatched careful or honest?`},
+  incentive:{rn:"v",title:"The Incentive",family:"in preparation",lit:false,
+    desc:`Hidden action breeds a problem; the incentive contract is the response. When a principal cannot observe what an agent does — the effort of the worker, the prudence of the manager, the diligence of the doctor — he cannot simply pay for the action he wants, for he cannot see it; he can only tie the agent's reward to something he can see, the outcome, and hope the prospect of gain calls forth the effort he cannot compel. This is the incentive contract: the bonus, the commission, the profit share, the fee that rises with results. But it is a blunt and costly instrument, for outcomes depend on luck as well as effort, so that to reward the outcome is to load risk onto the agent, and the sharper the incentive the heavier the gamble — a tension, between providing incentive and providing insurance, that no contract can fully resolve. This plate sets out the incentive contract and the principal-agent problem it answers: the attempt to make an unwatched agent want what his principal wants, and the irreducible cost of the attempt.`,
+    openq:`if you can see only what an agent achieves and not what he does, how do you pay for effort without making him bear the weight of mere luck?`},
+  warranty:{rn:"vi",title:"The Warranty",family:"in preparation",lit:false,
+    desc:`When words will not do, deeds may: a seller who cannot simply be believed can instead make a binding commitment, putting something of value at risk on the truth of his claim. The warranty is the type case — a promise to bear the cost of failure that only a seller confident of his quality could afford to make, and that therefore tells the buyer what the seller's assurances cannot. So too the bond posted against non-performance, the collateral pledged against default, the money-back guarantee, the hostage given to fortune: each is a credible commitment, costly to its maker if his claim proves false, and persuasive for exactly that reason. Such devices shade into signals, but their logic is its own — they work not merely by revealing what the seller knows but by changing what he stands to lose, aligning his interest with the buyer's by the simple expedient of making him pay for disappointing it. This plate examines the credible commitment: the guarantee, the bond, the pledge, and the trust that is bought by putting one's own money at stake.`,
+    openq:`if a promise is cheap and a bond is dear, what assurance can a seller give but to make his own claim costly to betray?`},
+  seal:{rn:"vii",title:"The Seal",family:"in preparation",lit:false,
+    desc:`Where neither party can close the gap alone, a third may. Much of the machinery that makes modern markets navigable consists of institutions whose business is to certify — to vouch, to a stranger, for what the stranger cannot check: the brand that stakes a reputation on consistent quality, the professional license that attests to competence, the inspector's grade, the auditor's opinion, the ratings agency's letter, the diploma from a known school. Each interposes a trusted name between buyer and seller, lending its accumulated credibility to a single transaction, and each earns its keep only so long as that credibility is preserved — which is why the certifier's independence is so precious, and its capture or corruption so damaging, as the world relearned when the agencies that rated mortgage securities proved to be paid by the firms whose paper they graded. This plate examines certification and the third party — the brand, the license, the seal of approval — and the fragile trust on which the whole apparatus of vouching depends.`,
+    openq:`if buyer and seller cannot bridge the gap between them, who shall vouch for the truth — and who shall vouch for the voucher?`},
+  pool:{rn:"viii",title:"The Pool",family:"in preparation",lit:false,
+    desc:`Insurance is the purest theater of adverse selection, and its mechanics deserve a plate of their own. An insurer offering a single policy at a single price draws a pool of the insured; but if buyers know their own risks better than the insurer can, the policy is a bargain for the high-risk and a poor deal for the low, so the low-risk decline, the pool worsens, the price must rise, and more of the better risks depart — the famous death spiral, in which a market for those who most need cover unravels toward those who need it least. The insurer's defenses are to separate the pool by screening, to price on whatever risk markers it can observe, or to make participation compulsory so the good risks cannot flee; and the social stakes are large, for the choice between pooling everyone at a common rate and sorting each into his own is, at bottom, a choice about whether the lucky shall subsidize the unlucky. This plate examines the risk pool — pooling and separating, community rating and the spiral — where the abstractions of asymmetry become a question of who can be insured at all.`,
+    openq:`if the insured know their risks and the insurer does not, can any pool hold together — and who should bear the cost when it cannot?`},
+  mandate:{rn:"ix",title:"The Mandate",family:"in preparation",lit:false,
+    desc:`The market grows its own remedies for asymmetry, but they are not always enough, and where they fail the law steps in — most often by compelling disclosure, dragging into the open what one party would prefer to keep hidden. The lemon laws that force a used-car dealer to reveal a vehicle's history; the truth-in-lending rules that make a lender state the true rate of interest; the securities laws that require a company selling stock to publish its accounts; the mandates to label the calories, the side effects, the country of origin: each rests on the judgment that some information is too important, and too easily concealed, to be left to the parties' own devices. Mandatory disclosure is the gentlest form of regulation, correcting the market's information failure while leaving the choice in the buyer's hands; yet it has limits of its own — disclosures unread, fine print unparsed, warnings so numerous they cease to warn — and a deeper question of what a society may compel one party to tell another. This plate examines the disclosure mandate, the law as the enemy of the hidden, and the limits of curing ignorance by decree.`,
+    openq:`if the parties will not reveal what each most needs to know, how much may the law compel them to tell — and does the telling, unread, suffice?`},
+  credence:{rn:"x",title:"The Credence",family:"in preparation",lit:false,
+    desc:`Some goods reveal their quality on inspection, before purchase; others reveal it in use, after; but a third kind never reveals it at all. These are the credence goods, named for the faith they require: the medical treatment whose necessity the patient cannot judge even once it is done, the car repair he cannot tell was needed, the legal strategy, the financial advice, the consultant's report — services bought from an expert precisely because the buyer lacks the knowledge to evaluate them, and therefore lacks the knowledge to know whether he was served well, ill, or cheated. Here the asymmetry is not a friction to be reduced but a permanent condition, for the very ignorance that sends the buyer to the expert prevents him from checking the expert's work; and the expert, who both diagnoses the need and supplies the remedy, faces a standing temptation to find more need than there is. This plate examines the credence good and the expert who sells it — the doctor, the mechanic, the adviser — and the trust, the regulation, and the reputation that must stand where verification cannot.`,
+    openq:`if the buyer cannot judge the service even after he has bought it, what shall protect him from the expert he had no choice but to trust?`},
+  herd:{rn:"xi",title:"The Herd",family:"in preparation",lit:false,
+    desc:`Information is hidden in another sense too: it is scattered, each person knowing a little and no one knowing much, and one of the ways a society pools its fragments is by watching what others do. A diner chooses the crowded restaurant over the empty one, reasoning that the crowd knows something; an investor buys what others are buying; and in this each treats the actions of others as evidence. The trouble is that the inference can run away with itself: if the first few, by chance, choose one way, those who follow may rationally ignore their own private information and copy the crowd, and those after them copy in turn, until a whole population has stampeded on the basis of almost no information at all — an informational cascade, in which the herd conveys far less knowledge than its size suggests, and can wheel as one in the wrong direction. This is how bubbles inflate, fashions spread, bank runs feed themselves, and conventional wisdom hardens on a foundation of air. This plate examines the cascade and the herd — the aggregation of dispersed knowledge through observed action, and the spectacular ways it fails.`,
+    openq:`if each of us rationally reads the crowd for the knowledge we lack, what keeps the crowd from leading us all, reasonably, over the cliff?`},
+  curtain:{rn:"xii",title:"The Curtain",family:"in preparation",lit:false,
+    desc:`The volume ends at the question its whole argument has circled: whether the curtain between what one party knows and another does not can ever, in principle, be drawn fully back — or whether some asymmetry is the irreducible condition of a world in which knowledge is unequally spread. There is reason to think the gap permanent. Information is a strange commodity, as Kenneth Arrow observed: to know its value you must already possess it, so it cannot be inspected before purchase like a bushel of wheat, and a market in information is forever shadowed by the paradox that the buyer cannot judge what he is buying until he has it, after which he need not pay. And some knowledge is unequal by its nature — the physician will always know more medicine than the patient, the insider more than the outsider — so that the most one can hope for is not to abolish the asymmetry but to manage it, with the signals and screens and seals and mandates that narrow it where they can and contain it where they cannot. This final plate asks what becomes of the market's promise where information is fundamentally unequal, and whether the verdict of an asymmetric market can ever be trusted as a fact rather than read as the residue of a contest over who knew what.`,
+    openq:`if some who deal will always know more than others, can the price they strike ever be more than the measure of that advantage — and what, then, can a market in knowledge be?`}
+};
+
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+function render(id){
+  var tile=document.querySelector('.el[data-id="'+id+'"]');
+  var d=PLATES[id]; if(!d||!tile) return;
+  var h='';
+  h+='<div class="d-head">';
+  h+='<div class="d-sym'+(d.lit?' lit':'')+'">'+esc(d.rn)+'</div>';
+  h+='<div class="d-titles">';
+  h+='<div class="d-family">The Asymmetry &middot; Plate '+esc(d.rn)+' &middot; '+esc(d.family)+'</div>';
+  h+='<h2 class="d-name">'+esc(d.title)+'</h2>';
+  h+='<div class="d-status'+(d.lit?' print':'')+'">'+esc(d.family)+'</div>';
+  h+='</div></div>';
+  h+='<p class="d-desc">'+esc(d.desc)+'</p>';
+  if(d.lit && d.excerpt){
+    h+='<div class="d-excerpt"><span class="lead">From the opening</span><p>'+d.excerpt+'</p></div>';
+  }
+  if(d.url){h+='<p class="d-readplate"><a href="'+d.url+'">Read the plate<span class="arr" aria-hidden="true">&#8594;</span></a></p>';}
+  if(!d.lit && d.openq){
+    h+='<p class="d-openq"><span class="lead">This plate will ask</span><q>'+esc(d.openq)+'</q></p>';
+  }
+  document.getElementById('detail').innerHTML=h;
+  var prev=document.querySelector('.el.sel'); if(prev) prev.classList.remove('sel');
+  tile.classList.add('sel');
+}
+
+(function(){
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.el').forEach(function(b){
+    b.addEventListener('click',function(){
+      render(b.dataset.id);
+      document.getElementById('detail').scrollIntoView({behavior:reduce?'auto':'smooth',block:'nearest'});
+    });
+  });
+  render('lemon');
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-theorem.html">← The Theorem</a><a rel="next" href="the-lemon.html">The Lemon →</a></nav>
+</body>
+</html>

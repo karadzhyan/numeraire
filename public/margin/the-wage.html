@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Wage — Numéraire, Volume I</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem; --measure:40rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- ornament ---- */
+  .orn{display:flex;justify-content:center;margin:0 auto 1.9rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* ---- masthead / volume front ---- */
+  .masthead{padding:clamp(3rem,8vh,6rem) 0 clamp(1.6rem,4vh,2.6rem);text-align:center;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;text-decoration:none;}
+  .imprint:hover{color:var(--soft);}
+  .vol-dateline{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+
+  .vol-sym{width:114px;height:114px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;align-items:center;justify-content:center;
+    font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 500;font-size:3.1rem;line-height:1;letter-spacing:-.01em;}
+  .vol-sym.lit{background:var(--ink);color:var(--paper);}
+  .vol-elnum{font-family:"Fraunces",serif;font-size:.74rem;color:var(--faintest);letter-spacing:.18em;text-transform:uppercase;margin-top:1rem;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.3rem,6.5vw,4.6rem);line-height:1.02;letter-spacing:-.025em;margin:.7rem 0 0;text-wrap:balance;}
+  .vol-status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .vol-status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:44rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  /* ---- the volume question ---- */
+  .vol-q{max-width:46rem;margin:clamp(2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .vol-q .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.7rem;}
+  .vol-q q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.3rem,2.4vw,1.72rem);line-height:1.32;color:var(--ink);quotes:none;text-wrap:balance;}
+
+  /* ---- frontispiece (the argument) ---- */
+  .front{margin:clamp(3rem,7vh,5rem) auto 0;max-width:var(--measure);}
+  .front-eyebrow{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);text-align:center;
+    display:flex;align-items:center;gap:.9rem;justify-content:center;margin:0 0 2.1rem;}
+  .front-eyebrow::before,.front-eyebrow::after{content:"";height:1px;width:2.4rem;background:var(--hair);}
+  .front p{font-size:1.07rem;line-height:1.76;color:var(--ink);margin:0 0 1.35rem;text-wrap:pretty;}
+  .front p:last-child{margin-bottom:0;}
+  .front em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.74;padding:.1em .12em 0 0;color:var(--ink);}
+  .front-orn{display:flex;justify-content:center;margin:2rem 0;}
+  .front-orn svg{width:96px;height:12px;overflow:visible;}
+  .front-orn line{stroke:var(--num);stroke-width:1;} .front-orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* ---- the plates (a table within the table) ---- */
+  main{padding:clamp(3rem,7vh,5rem) 0 0;}
+  .plates-head{display:flex;align-items:baseline;gap:.9rem;margin:0 0 1.6rem;}
+  .plates-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-size:.86rem;color:var(--faintest);letter-spacing:.04em;flex:0 0 auto;}
+  .plates-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);flex:0 0 auto;}
+  .plates-rule{flex:1;height:1px;background:var(--hair);position:relative;top:-2px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:13px;}
+
+  .el{appearance:none;-webkit-appearance:none;background:var(--paper);border:1px solid var(--hair);border-radius:2px;
+    padding:14px 15px 16px;text-align:left;cursor:pointer;position:relative;min-height:152px;
+    display:flex;flex-direction:column;color:inherit;font-family:inherit;
+    transition:border-color .22s ease,background .22s ease,transform .22s ease,box-shadow .22s ease;}
+  .el:hover{border-color:var(--faintest);transform:translateY(-2px);}
+  .el-rn{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-size:.78rem;color:var(--faintest);letter-spacing:.18em;text-transform:uppercase;}
+  .pl-hero{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 500;font-size:1.34rem;line-height:1.06;margin-top:.5rem;letter-spacing:-.012em;}
+  .el-gloss{font-size:.79rem;color:var(--faint);line-height:1.36;margin-top:.5rem;font-style:italic;}
+  .pl-flag{margin-top:auto;padding-top:.7rem;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--faintest);}
+  .el.lit{background:var(--ink);border-color:var(--ink);}
+  .el.lit .pl-hero{color:var(--paper);}
+  .el.lit .el-rn{color:rgba(240,235,225,.5);}
+  .el.lit .el-gloss{color:rgba(240,235,225,.62);}
+  .el.lit .pl-flag{color:rgba(240,235,225,.7);}
+  .el.sel{box-shadow:inset 0 0 0 1.5px var(--ink);border-color:var(--ink);}
+  .el.lit.sel{box-shadow:inset 0 0 0 1.5px var(--paper);}
+
+  /* ---- detail panel (the plate, opened) ---- */
+  .detail{margin:clamp(2.4rem,5vh,3.6rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);scroll-margin-top:1.4rem;}
+  .d-head{display:flex;gap:1.3rem;align-items:flex-start;}
+  .d-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 500;font-size:1.5rem;line-height:1;
+    color:var(--ink);flex:0 0 auto;border:1px solid var(--hair);border-radius:2px;letter-spacing:.04em;
+    width:86px;height:86px;display:flex;align-items:center;justify-content:center;text-transform:uppercase;}
+  .d-sym.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .d-titles{min-width:0;}
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);}
+  .d-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.7rem,3.6vw,2.5rem);margin:.22rem 0 .35rem;line-height:1.04;letter-spacing:-.016em;}
+  .d-status{font-size:.84rem;color:var(--faint);font-style:italic;}
+  .d-status.print{color:var(--soft);font-style:normal;}
+  .d-status.print::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .d-desc{font-size:1.05rem;line-height:1.72;color:var(--ink);max-width:42rem;margin:1.3rem 0 0;text-wrap:pretty;}
+
+  .d-openq{margin:1.6rem 0 0;max-width:40rem;}
+  .d-openq .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.5rem;}
+  .d-openq q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);quotes:none;}
+
+  .d-excerpt{margin:1.8rem 0 0;max-width:42rem;border-left:1px solid var(--hair);padding:.2rem 0 .2rem 1.5rem;}
+  .d-excerpt .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.8rem;}
+  .d-excerpt p{font-size:1.04rem;line-height:1.74;color:var(--ink);margin:0;text-wrap:pretty;}
+  .d-excerpt .x-cap{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 500;font-size:1.15rem;}
+  .d-readplate{margin:1.6rem 0 0;}
+  .d-readplate a{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:.94rem;
+    letter-spacing:.01em;text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:2px;transition:border-color .2s ease,color .2s ease;}
+  .d-readplate a:hover{color:var(--soft);border-color:var(--soft);}
+  .d-readplate .arr{margin-left:.4rem;}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;text-decoration:none;}
+  .f-mark:hover{color:var(--soft);}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;}
+    .el{min-height:138px;padding:12px 12px 14px;}
+    .pl-hero{font-size:1.18rem;}
+    .el-gloss{font-size:.74rem;}
+    .vol-sym{width:92px;height:92px;font-size:2.5rem;}
+    .d-head{gap:1rem;}
+    .d-sym{width:64px;height:64px;font-size:1.25rem;}
+    .front p{font-size:1.04rem;}
+    .dropcap{font-size:3rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="rise d1">
+      <a class="imprint" href="numeraire-atlas.html">Numéraire</a>
+      <div class="vol-dateline">The First Volume &middot; The Prices</div>
+    </div>
+    <div class="vol-sym lit rise d2" aria-hidden="true">Wg</div>
+    <div class="vol-elnum rise d2">Element 01 &middot; Group I</div>
+    <h1 class="rise d3">The Wage</h1>
+    <div class="vol-status rise d3">in print &middot; № I &middot; 5 of 12 plates</div>
+    <p class="standfirst rise d4">The wage is the price of the thing most people have to sell — their labor — and so the figure on which most lives turn. The orthodox account makes it the measure of a worker's worth: each is paid the value of what the last hour adds. This volume follows that account to its limits and past them — through the bargain struck between unequals, through the single employer's power to pay less than the work is worth, to the modern and unsettled question of how much of any wage measures contribution, and how much measures leverage.</p>
+    <div class="vol-q rise d5">
+      <span class="lead">The question of the volume</span>
+      <q>is the wage what your work is worth — or what you can be made to accept?</q>
+    </div>
+  </header>
+
+  <section class="front" aria-label="The argument of the volume">
+    <div class="front-eyebrow">The argument</div>
+
+    <p><span class="dropcap">T</span>he wage is the most personal of prices, and for most people the only one that finally matters, because it is the price of the one thing they have to sell. Rent, interest, the cost of bread — these a person pays; the wage is what a person <em>is paid</em>, the figure that sets the shape of a life, deciding where one can live, what one can eat, whether the children are schooled, how one is spoken to across a counter and how one sleeps at night. And over that figure hangs a question the science has never managed to leave alone, because so much rides on the answer. Is the wage what your work is worth — or is it merely what you can be made to accept?</p>
+
+    <p>The reigning answer, taught first and held longest, is the former. Where many employers compete for the same hands, no firm can pay a worker less than the value he adds, for a rival would bid him away; and none will pay more, for that is to throw money off. So the wage settles at the value of the worker's <em>marginal product</em> — the worth of what the last hour of his labor adds to what the firm makes. John Bates Clark drew the thought out to its end in 1899: each factor of production, labor no less than land or capital, is paid exactly the value of its margin, and the division of the nation's income is therefore neither theft nor charity but a kind of natural justice — each paid what it contributes. This is the wage as <em>worth</em>, and its appeal runs deeper than its economics, for it promises that the market, left to itself, rewards a person in proportion to what he brings; that pay is the measure of usefulness; that the world of work is, at bottom, fair. It is the doctrine of this volume's second plate — and the labor-bound case of a claim argued in full in <em>The Margin</em>, the sixth volume of this table.</p>
+
+    <p>Everything in that answer hangs on a word easy to read past: <em>compete</em>. It holds only where employers are many and interchangeable, where a worker can cross from one to the next at no cost, where both sides know what labor is worth and neither can outwait the other. Loosen any of these and the wage slips its mooring to the marginal product and drifts toward something else — toward the balance of power between the two parties to the bargain. The point is not new; it is as old as the discipline. Adam Smith, too often read as the prophet of markets left alone, saw it with perfect clarity in 1776. Masters and workers do not meet as equals: the masters are fewer and combine more easily, the law has often licensed their combinations and forbidden the workers', and, above all, a master can hold out longer. "It is not difficult to foresee," Smith wrote, "which of the two parties must, upon all ordinary occasions, have the advantage in the dispute, and force the other into a compliance with their terms." A merchant can live a year upon his stock; a laborer with hungry children cannot live a week. The wage, on this older and sharper view, is struck in a contest the worker enters already behind. This is the volume's first plate, <em>The Bargain</em>.</p>
+
+    <p>Push the contest to its limit and you reach the case that turns the orthodoxy inside out. Suppose there is not a crowd of employers but, in effect, one — the single mill in a company town, or, far more often, a market so thick with frictions that to quit is costly enough to bind a worker nearly as fast as if there were. Joan Robinson, in 1933, gave the case its name: <em>monopsony</em>, the mirror of monopoly — a single <em>buyer</em> where monopoly is a single seller. A monopsonist, facing by himself the whole upward-sloping supply of labor, knows that to take on one more worker he must lift the wage of all, and so he holds hiring back and pays every worker <em>less</em> than the value of the marginal product. The gap between the two is the exact measure of his power. And from it follows the most startling result in all of labor economics, the one that overturns the first thing a student is ever taught about price floors: under monopsony a minimum wage, or a union, set with judgment, can raise wages <em>and</em> employment at once — by stripping the employer of the very restraint that made him hire too few. The competitive model swears a wage floor must cost jobs. Where the employer has power, it need not, and may do the reverse. These are the volume's plates on <em>The Floor</em>, <em>The Monopsony</em>, and <em>The Union</em>.</p>
+
+    <div class="front-orn" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>For a long time monopsony was kept as a textbook curiosity — the company town, the isolated mine — a special case safely shelved. The last thirty years have moved it toward the center. When David Card and Alan Krueger examined, in 1994, what actually became of employment after New Jersey raised its minimum wage, they found no fall in jobs, and by some measures a rise — a result that scandalized the profession and is most easily explained if employers held a power the competitive model denied them. A large literature has since argued that such power is not the exception but a pervasive condition of labor markets: that concentration among employers, the cost and the dread of switching, the clauses that forbid a worker to carry his skills to a rival, and the plain difficulty of finding the next job all hand the employer a portion of the wage-setting power the older theory had given to no one. How large that portion is, and in which markets, is genuinely unsettled, and the honest position is that real labor markets lie somewhere between the textbook poles of pure competition and pure monopsony. But the burden of proof has shifted, and the wage can no longer be assumed a simple readout of a worker's product.</p>
+
+    <p>So the question the volume opened with resolves not into a single answer but into a proportion, and a hard one to take: how much of any given wage is <em>worth</em> — the value of what the worker adds — and how much is <em>power</em> — the slack the employer's position lets him keep? Both are always present, in shares that shift from one job and one market to the next, and that no clean instrument can separate. The remaining plates fill in the rest of the field. <em>The Subsistence</em> asks whether there is a floor beneath every wage that the body, or the bare renewal of the worker, sets. <em>The Skill</em> weighs how much of the gulf between high and low pay buys real productivity built by schooling, and how much merely sorts and signals. <em>The Difference</em> presses why unpleasant work is not reliably paid more, as the theory of compensating differentials promises it must be. <em>The Discrimination</em> takes up the wage paid not for what a worker makes but for who he is. <em>The Insurance</em> turns to the lowest wage a person will take rather than keep searching, and to what a safety net does to it. <em>The Machine</em> asks what becomes of the wage when the work can be done without the worker. And <em>The Share</em> lifts the whole question from the single pay packet to the entire economy, where the fraction of the nation's income going to labor has fallen for forty years and pay long ago stopped keeping pace with what is produced — the macroeconomic echo of this same doubt, argued out in its own volume.</p>
+
+    <p>This is the line the volume walks, and it is the line from which the whole table takes its name. A wage arrives in the world as a fact: a number on a contract, an offer to take or leave, a figure as flat and final as a temperature. It is nothing of the kind. It is a verdict — on what the worker can do, yes, but also on what else he might be doing, on how many others would take his place, on whether he stands alone or with a union at his back, on what the law fixes beneath him and what custom and prejudice arrange around him. To read a wage as the measure of a person's worth is to mistake the outcome of a contest for a law of nature — to read the verdict and miss the trial. The twelve plates that follow are the trial: the hidden contest beneath the most personal of all prices, brought up into the light where it can be seen and, perhaps, judged. The argument remains open.</p>
+  </section>
+
+  <main>
+    <div class="plates-head">
+      <span class="plates-num fr">№ I</span>
+      <span class="plates-name">The twelve plates</span>
+      <span class="plates-rule"></span>
+    </div>
+    <div class="grid" id="grid">
+      <button class="el lit" data-id="bargain" aria-label="Plate i — The Bargain — in print"><span class="el-rn">Plate i</span><span class="pl-hero">The Bargain</span><span class="el-gloss">the wage as a bargain between unequals; Smith's asymmetry</span><span class="pl-flag">in print</span></button>
+      <button class="el lit" data-id="prodmargin" aria-label="Plate ii — The Margin — in print"><span class="el-rn">Plate ii</span><span class="pl-hero">The Margin</span><span class="el-gloss">the orthodoxy: each paid the value of the last hour</span><span class="pl-flag">in print</span></button>
+      <button class="el" data-id="subsistence" aria-label="Plate iii — The Subsistence"><span class="el-rn">Plate iii</span><span class="pl-hero">The Subsistence</span><span class="el-gloss">the iron law, and Marx's value of labor-power</span></button>
+      <button class="el lit" data-id="skill" aria-label="Plate iv — The Skill — in print"><span class="el-rn">Plate iv</span><span class="pl-hero">The Skill</span><span class="el-gloss">human capital, signaling, and the return to schooling</span><span class="pl-flag">in print</span></button>
+      <button class="el" data-id="difference" aria-label="Plate v — The Difference"><span class="el-rn">Plate v</span><span class="pl-hero">The Difference</span><span class="el-gloss">compensating differentials, and why bad jobs pay badly</span></button>
+      <button class="el" data-id="discrimination" aria-label="Plate vi — The Discrimination"><span class="el-rn">Plate vi</span><span class="pl-hero">The Discrimination</span><span class="el-gloss">taste-based versus statistical, and which competition punishes</span></button>
+      <button class="el" data-id="floor" aria-label="Plate vii — The Floor"><span class="el-rn">Plate vii</span><span class="pl-hero">The Floor</span><span class="el-gloss">the minimum wage as the competitive model fears it</span></button>
+      <button class="el lit" data-id="monopsony" aria-label="Plate viii — The Monopsony — in print"><span class="el-rn">Plate viii</span><span class="pl-hero">The Monopsony</span><span class="el-gloss">the single buyer, and the inversion of the floor</span><span class="pl-flag">in print</span></button>
+      <button class="el lit" data-id="union" aria-label="Plate ix — The Union — in print"><span class="el-rn">Plate ix</span><span class="pl-hero">The Union</span><span class="el-gloss">combination, and Galbraith's countervailing power</span><span class="pl-flag">in print</span></button>
+      <button class="el" data-id="insurance" aria-label="Plate x — The Insurance"><span class="el-rn">Plate x</span><span class="pl-hero">The Insurance</span><span class="el-gloss">search, the reservation wage, and the net beneath it</span></button>
+      <button class="el" data-id="machine" aria-label="Plate xi — The Machine"><span class="el-rn">Plate xi</span><span class="pl-hero">The Machine</span><span class="el-gloss">automation, and where the displaced wage comes to rest</span></button>
+      <button class="el" data-id="lshare" aria-label="Plate xii — The Share"><span class="el-rn">Plate xii</span><span class="pl-hero">The Share</span><span class="el-gloss">labor's falling share, and the great divergence</span></button>
+    </div>
+  </main>
+
+  <section class="detail" id="detail" aria-live="polite"></section>
+
+  <footer>
+    <div class="f-bar">
+      <a class="f-mark" href="numeraire-atlas.html">Numéraire</a>
+      <span class="f-ref">Volume I &middot; The Prices</span>
+    </div>
+    <p class="colophon">Volume I, <em>The Wage</em> — the first element of the table, and the first into print — opens five of its twelve plates: <em>The Bargain</em>, <em>The Margin</em>, <em>The Skill</em>, <em>The Monopsony</em>, and <em>The Union</em>; its eighth, <em>The Monopsony</em>, is published in full. The second plate, <em>The Margin</em>, holds the labor-bound case of the distribution argued across <a href="numeraire-atlas.html">The Margin</a>, the sixth volume; the twelfth, <em>The Share</em>, opens onto the twenty-second. Return to <a href="numeraire-atlas.html">the complete table of volumes</a>. Quotations from Smith are given from the public-domain text of 1776. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+
+<script>
+const PLATES = {
+  bargain:{rn:"i",title:"The Bargain",family:"in print",lit:true,url:"the-bargain.html",
+    desc:`The wage as a price struck in a negotiation between parties who do not meet as equals. Adam Smith's clear-eyed account of why the master holds the advantage in almost every ordinary dispute — fewer in number, abler to combine, and above all able to wait — and the case that the wage bears the mark of that asymmetry long before it bears the mark of the worker's product.`,
+    excerpt:`<span class="x-cap">A</span> wage is a price, and like every price it is settled in a bargain; but it is a bargain struck between parties who do not stand on level ground. On one side is a man who must eat this week, and whose children must eat beside him; on the other, an employer who can leave the post unfilled a month and be merely inconvenienced. Adam Smith, too often read as the prophet of the market left alone, saw this with perfect clarity in 1776: it is not difficult, he wrote, to foresee which of the two parties must, on ordinary occasions, force the other to its terms. The worker enters the negotiation already behind, and the wage he carries out of it is shaped, before anything else, by how far behind he began.`},
+  prodmargin:{rn:"ii",title:"The Margin",family:"in print",lit:true,url:"the-wage-margin.html",
+    desc:`The dominant theory of the wage, and the most reassuring: that in a competitive market a worker is paid the value of his marginal product — the worth of what the last hour adds — so that pay tracks contribution and the labor market, left alone, is fair. The single competitive assumption on which the whole of it balances, and its standing as the labor-bound special case of the distribution argued across The Margin, the sixth volume of this table.`,
+    excerpt:`<span class="x-cap">T</span>he comforting answer, and the one the textbooks reach for first, is that you are paid exactly what you are worth. Where many employers compete for the same hands, the argument runs, none can pay a worker less than the value his last hour adds — a rival would outbid them — and none will pay more, for that is money thrown away; and so the wage comes to rest at the value of the marginal product, no higher and no lower. John Bates Clark, in 1899, drew from this a whole theory of justice: each factor paid its margin, the division of income neither robbery nor charity but arithmetic. It is a beautiful claim, and it rests entirely upon a single word — <em>compete</em> — which the world honors only sometimes, and never completely.`},
+  subsistence:{rn:"iii",title:"The Subsistence",family:"in preparation",lit:false,
+    desc:`The oldest theory of the wage, and the darkest: that pay gravitates, over the long run, to whatever it costs to keep a worker alive and able to raise the next generation of workers. The classical "iron law" of Ricardo and Malthus, Marx's reworking of it as the value of labor-power, and the question — never quite closed — of whether anything sets a true floor beneath the wage, or whether the floor is only what the worker can be brought to endure.`,
+    openq:`is there a floor beneath the wage that no market can fall through — and is it fixed by what the body needs, or only by what the worker will bear?`},
+  skill:{rn:"iv",title:"The Skill",family:"in print",lit:true,url:"the-skill.html",
+    desc:`Why the schooled and the trained are paid more, and what that premium actually buys. Gary Becker's and Jacob Mincer's human capital — schooling as an investment that raises a worker's product — set against Michael Spence's signaling, in which the diploma may certify a productivity it did nothing to create, and the hard, still-open problem of telling the two apart in a number that looks the same either way.`,
+    excerpt:`<span class="x-cap">T</span>he single most reliable fact about wages is that the schooled earn more than the unschooled — steadily, almost everywhere, and by a margin that has mostly widened. The orthodox reading is the hopeful one: schooling and training are an <em>investment</em>, building into a person a stock of productive capacity, human capital in Gary Becker's phrase, on which the market afterward pays a return exactly as it pays a return on a machine. But there is a colder reading, owed to Michael Spence, in which much of what the diploma earns is owed not to anything it taught but to what it <em>signals</em> — that its holder was, all along, the sort of person able to obtain it. The two wages look identical. The distance between them is the distance between a thing made and a thing merely revealed, and it has defeated every attempt to measure it cleanly.`},
+  difference:{rn:"v",title:"The Difference",family:"in preparation",lit:false,
+    desc:`Adam Smith's theory of compensating differentials: that the wage must rise to coax workers into jobs that are dirty, dangerous, insecure, or despised, and may fall for work that is safe, clean, and pleasant — so that, all things weighed, no job is truly better than another. The elegant prediction, and the awkward fact that the world's worst jobs are so often its worst-paid as well.`,
+    openq:`if the market must pay more to tempt a worker into a dreadful job, why are the dirtiest and most dangerous so often the poorest-paid of all?`},
+  discrimination:{rn:"vi",title:"The Discrimination",family:"in preparation",lit:false,
+    desc:`The wage paid not for what a worker produces but for who he is. Gary Becker's taste-based discrimination — prejudice as a preference an employer pays to indulge, which competition ought in theory to erode — set against the statistical kind, in which an employer judges the individual by the average of a group, a practice competition does nothing to punish and may even reward. Why the first might fade and the second persist, and what each does to a wage.`,
+    openq:`when two workers of equal product are paid unequally for who they are, is the cause a prejudice that competition will punish — or a cold inference that it will not?`},
+  floor:{rn:"vii",title:"The Floor",family:"in preparation",lit:false,
+    desc:`The minimum wage as the competitive model sees it: a price floor set above the market-clearing wage, which must, on that model's own logic, throw the least-skilled out of work by pricing them above their product. The clean theory, the policy it has long been used to resist, and its collision with an evidence base that has stubbornly declined to find the predicted losses — a collision the next plate, The Monopsony, exists to explain.`,
+    openq:`does a wage floor price the least-skilled out of work, exactly as the competitive model insists — and why does the evidence so often refuse to agree?`},
+  monopsony:{rn:"viii",title:"The Monopsony",family:"in print",lit:true,url:"the-monopsony.html",
+    desc:`Employer power, and the inversion of everything the competitive model teaches. When labor has, in effect, one buyer — the company town, or any market whose frictions bind a worker to his employer — the firm can pay below the value of the marginal product, and the gap is the measure of its power. Joan Robinson's 1933 coinage, the startling result that a minimum wage or a union can then raise pay and employment together, and the modern evidence that this case is not a curiosity but close to the rule.`,
+    excerpt:`<span class="x-cap">T</span>he competitive market has many employers, and its discipline is the rival always ready to bid a worker away. Remove the rival — leave one mill in the town, or bind the worker to his post with frictions costly enough that to leave is its own punishment — and the discipline vanishes, and with it the guarantee that pay tracks product. A single buyer of labor, a <em>monopsonist</em>, knows that to hire one more hand is to raise the wage of every hand; and so he hires too few, and pays them all less than the last is worth to him. The shortfall is not a market imperfection to be apologized for. It is the shape of his power, written into the wage — and once it is there, the oldest certainty in the book inverts: a floor set under the wage, with judgment, can lift pay and jobs at once.`},
+  union:{rn:"ix",title:"The Union",family:"in print",lit:true,url:"the-union.html",
+    desc:`The worker's reply to the master's advantage: combination. The union as the institution by which workers do what Smith said the masters had always quietly done — combine to set the terms — and John Kenneth Galbraith's "countervailing power" as the theory of why concentrated strength on one side of a market summons it on the other. The wage premium unions win, the contested question of what that premium costs in jobs and efficiency, and the long argument over whether collective bargaining corrects the contest or merely restages it.`,
+    excerpt:`<span class="x-cap">S</span>mith noticed, and did not trouble much to hide, that the masters were <em>always</em> combined — quietly, tacitly, by the mere fact of being few and like-minded — while it was the workers' combinations the law saw fit to forbid. The union is the correction of that asymmetry: the many, who are weak singly, acting as one, so that the worker who cannot afford to outwait a single employer can, with his fellows, afford to. John Kenneth Galbraith called the principle <em>countervailing power</em> — strength on one side of a market calling up strength on the other to meet it. Whether this restores a fair balance to the bargain or merely stages the contest on new ground is among the most argued questions in the subject; what is not in doubt is that the wage emerging from a bargain between organized equals is a different figure from the one a lone worker carries away.`},
+  insurance:{rn:"x",title:"The Insurance",family:"in preparation",lit:false,
+    desc:`The wage seen through the economics of search: that finding work takes time and effort, that a worker turns down offers below a threshold — the reservation wage — in hope of a better one, and that some unemployment is simply the time spent looking. How a safety net lifts that threshold, the trade-off between the security it gives and the search it may prolong, and the question of what insurance against a bad wage is worth.`,
+    openq:`what is the lowest wage a person will take rather than keep looking — and what happens to it when there is a net beneath the search?`},
+  machine:{rn:"xi",title:"The Machine",family:"in preparation",lit:false,
+    desc:`The oldest fear about the wage, and the newest: that the machine will do the work, and the worker's pay fall to the cost of the machine, or to nothing. From the Luddites, through the long reassurance that mechanization always made more jobs than it destroyed, to the harder modern case in which the machine substitutes for the worker rather than merely assisting him — and the question of where, this time, the displaced wage comes to rest.`,
+    openq:`when the machine can do the work, does the wage of the worker it replaces fall to the price of the machine — or to nothing at all?`},
+  lshare:{rn:"xii",title:"The Share",family:"in preparation",lit:false,
+    desc:`The question lifted from the single pay packet to the whole economy: of every pound the nation produces, how much is paid out as wages, and how much kept as profit? Labor's share, once thought a constant of nature, has fallen across four decades; pay and productivity, which once climbed together, came apart around 1973. The macroeconomic echo of this volume's doubt — argued in full in The Share, the table's twenty-second volume — and the same fork in the road: productivity, or power?`,
+    openq:`why has the share of the nation's income paid out as wages been falling for forty years, and why did pay stop tracking what workers produce?`}
+};
+
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+function render(id){
+  var tile=document.querySelector('.el[data-id="'+id+'"]');
+  var d=PLATES[id]; if(!d||!tile) return;
+  var h='';
+  h+='<div class="d-head">';
+  h+='<div class="d-sym'+(d.lit?' lit':'')+'">'+esc(d.rn)+'</div>';
+  h+='<div class="d-titles">';
+  h+='<div class="d-family">The Wage &middot; Plate '+esc(d.rn)+' &middot; '+esc(d.family)+'</div>';
+  h+='<h2 class="d-name">'+esc(d.title)+'</h2>';
+  h+='<div class="d-status'+(d.lit?' print':'')+'">'+esc(d.family)+'</div>';
+  h+='</div></div>';
+  h+='<p class="d-desc">'+esc(d.desc)+'</p>';
+  if(d.lit && d.excerpt){
+    h+='<div class="d-excerpt"><span class="lead">From the opening</span><p>'+d.excerpt+'</p></div>';
+  }
+  if(d.url){h+='<p class="d-readplate"><a href="'+d.url+'">Read the plate<span class="arr" aria-hidden="true">&#8594;</span></a></p>';}
+  if(!d.lit && d.openq){
+    h+='<p class="d-openq"><span class="lead">This plate will ask</span><q>'+esc(d.openq)+'</q></p>';
+  }
+  document.getElementById('detail').innerHTML=h;
+  var prev=document.querySelector('.el.sel'); if(prev) prev.classList.remove('sel');
+  tile.classList.add('sel');
+}
+
+(function(){
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.el').forEach(function(b){
+    b.addEventListener('click',function(){
+      render(b.dataset.id);
+      document.getElementById('detail').scrollIntoView({behavior:reduce?'auto':'smooth',block:'nearest'});
+    });
+  });
+  render('bargain');
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="numeraire-atlas.html">← Numéraire</a><a rel="next" href="the-bargain.html">The Bargain →</a></nav>
+</body>
+</html>

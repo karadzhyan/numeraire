@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Numéraire — The Behaviors — Group VI</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+
+  /* ---- masthead ---- */
+  .masthead{padding:clamp(3rem,8vh,6rem) 0 clamp(2rem,5vh,3.4rem);text-align:center;}
+  .orn{display:flex;justify-content:center;margin:0 auto 1.9rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;}
+  .edition{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+  .kicker{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;
+    font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--faintest);
+    margin:clamp(1.6rem,4vh,2.6rem) 0 0;}
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.3rem,6.5vw,4.6rem);line-height:1.02;letter-spacing:-.025em;margin:.5rem 0 0;text-wrap:balance;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:43rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  /* ---- legend ---- */
+  .legend{display:flex;flex-wrap:wrap;justify-content:center;gap:1.4rem 2.2rem;align-items:center;
+    margin:clamp(1.8rem,4vh,2.6rem) auto 0;padding-top:1.8rem;border-top:1px solid var(--hair);max-width:50rem;}
+  .legend-item{display:flex;align-items:center;gap:.55rem;font-size:.82rem;color:var(--faint);}
+  .legend-swatch{width:20px;height:20px;border:1px solid var(--hair);border-radius:2px;flex:0 0 auto;}
+  .legend-swatch.lit{background:var(--ink);border-color:var(--ink);}
+  .legend-anatomy{font-size:.82rem;color:var(--faint);}
+  .legend-anatomy b{font-family:"Fraunces",serif;font-weight:500;color:var(--soft);}
+  .legend-anatomy em{font-style:italic;}
+
+  /* ---- the argument of the group ---- */
+  .argument{max-width:46rem;margin:clamp(2.2rem,5vh,3.2rem) auto 0;padding-top:clamp(2rem,4vh,2.6rem);
+    border-top:1px solid var(--hair);}
+  .arg-lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--faintest);display:block;margin:0 0 1.2rem;}
+  .argument p{font-size:clamp(1rem,1.25vw,1.1rem);line-height:1.74;color:var(--soft);margin:0 0 1.05rem;text-wrap:pretty;}
+  .argument p:last-child{margin-bottom:0;}
+  .argument em{font-style:italic;}
+  .argument .lede{text-indent:0;}
+  .argument .lede::first-letter{
+    font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    float:left;font-size:3.1rem;line-height:.82;padding:.06em .12em 0 0;color:var(--ink);}
+
+  /* ---- the table ---- */
+  main{padding:clamp(2.6rem,6vh,4.4rem) 0 0;}
+  .group{margin:0 0 clamp(2.4rem,5vh,3.6rem);}
+  .group-head{display:flex;align-items:baseline;gap:.9rem;margin:0 0 1.25rem;}
+  .group-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-size:.86rem;color:var(--faintest);letter-spacing:.04em;flex:0 0 auto;}
+  .group-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);flex:0 0 auto;}
+  .group-rule{flex:1;height:1px;background:var(--hair);position:relative;top:-2px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(176px,1fr));gap:13px;}
+
+  .el{appearance:none;-webkit-appearance:none;background:var(--paper);border:1px solid var(--hair);border-radius:2px;
+    padding:15px 15px 17px;text-align:left;cursor:pointer;position:relative;min-height:150px;
+    display:flex;flex-direction:column;color:inherit;font-family:inherit;
+    transition:border-color .22s ease,background .22s ease,transform .22s ease,box-shadow .22s ease;}
+  .el:hover{border-color:var(--faintest);transform:translateY(-2px);}
+  .el-num{position:absolute;top:11px;right:13px;font-family:"Fraunces",serif;font-size:.72rem;color:var(--faintest);letter-spacing:.03em;}
+  .el-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2.15rem;line-height:1;margin-top:.5rem;letter-spacing:-.012em;}
+  .el-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1rem;margin-top:.55rem;line-height:1.12;}
+  .el-gloss{font-size:.77rem;color:var(--faint);line-height:1.34;margin-top:.3rem;}
+  .el-plates{margin-top:auto;padding-top:.7rem;font-family:"Fraunces",serif;font-size:.68rem;letter-spacing:.05em;color:var(--faintest);}
+  .el.lit{background:var(--ink);border-color:var(--ink);}
+  .el.lit .el-sym,.el.lit .el-name{color:var(--paper);}
+  .el.lit .el-num{color:rgba(240,235,225,.55);}
+  .el.lit .el-gloss{color:rgba(240,235,225,.66);}
+  .el.sel{box-shadow:inset 0 0 0 1.5px var(--ink);border-color:var(--ink);}
+  .el.lit.sel{box-shadow:inset 0 0 0 1.5px var(--paper);}
+
+  /* ---- detail panel ---- */
+  .detail{margin:clamp(2.4rem,5vh,3.6rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);scroll-margin-top:1.4rem;}
+  .d-head{display:flex;gap:1.3rem;align-items:flex-start;}
+  .d-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 500;font-size:2.7rem;line-height:1;
+    color:var(--ink);flex:0 0 auto;border:1px solid var(--hair);border-radius:2px;
+    width:86px;height:86px;display:flex;align-items:center;justify-content:center;}
+  .d-sym.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .d-titles{min-width:0;}
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);}
+  .d-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.7rem,3.6vw,2.5rem);margin:.22rem 0 .35rem;line-height:1.04;letter-spacing:-.016em;}
+  .d-status{font-size:.84rem;color:var(--faint);font-style:italic;}
+  .d-status.print{color:var(--soft);font-style:normal;}
+  .d-status.print::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .d-desc{font-size:1.05rem;line-height:1.72;color:var(--ink);max-width:42rem;margin:1.3rem 0 0;text-wrap:pretty;}
+  .d-openq{margin:1.5rem 0 0;max-width:40rem;}
+  .d-openq .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.5rem;}
+  .d-openq q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);quotes:none;}
+
+  .d-plates{margin:2.2rem 0 0;}
+  .d-plates h3{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.76rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faint);margin:0 0 1.3rem;}
+  .plate-list{list-style:none;margin:0;padding:0;max-width:42rem;}
+  .plate-list li{display:grid;grid-template-columns:2.3rem 1fr;column-gap:1rem;align-items:baseline;
+    padding:.72rem 0;border-top:1px solid var(--hair);}
+  .plate-list li:first-child{border-top:none;}
+  .pl-num{font-family:"Fraunces",serif;font-size:.9rem;color:var(--faintest);text-align:right;}
+  .pl-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.04rem;color:var(--ink);line-height:1.15;}
+  .pl-gloss{grid-column:2;font-size:.84rem;color:var(--faint);font-style:italic;margin-top:.18rem;line-height:1.36;}
+  .pl-tag{display:inline-block;margin-left:.6rem;font-family:"Newsreader",serif;font-style:normal;
+    font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--paper);background:var(--ink);
+    border-radius:2px;padding:.12em .5em;vertical-align:.12em;}
+  .pl-bridge{grid-column:2;font-size:.78rem;color:var(--faintest);margin-top:.3rem;}
+  .pl-bridge b{font-family:"Fraunces",serif;font-weight:500;font-style:normal;color:var(--faint);}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:62ch;}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}.rise.d4{animation-delay:.42s}
+    .group{opacity:0;transform:translateY(14px);animation:rise .9s cubic-bezier(.2,.6,.2,1) both;animation-delay:.56s;}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;}
+    .el{min-height:138px;padding:12px 12px 14px;}
+    .el-sym{font-size:1.9rem;}
+    .el-name{font-size:.92rem;}
+    .el-gloss{font-size:.72rem;}
+    .el-plates{font-size:.64rem;}
+    .d-head{gap:1rem;}
+    .d-sym{width:64px;height:64px;font-size:2rem;}
+    .argument .lede::first-letter{font-size:2.6rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-quantities">The Quantities edition · contents</a><a href="numeraire-the-table.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="rise d1">
+      <span class="imprint">Numéraire</span>
+      <div class="edition">Group VI of <a href="numeraire-the-table.html" style="color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px;text-decoration-color:var(--faintest)">the table of twenty-six</a></div>
+    </div>
+    <div class="kicker rise d2">The Sixth Group · Four Volumes</div>
+    <h1 class="rise d2">The Behaviors</h1>
+    <p class="standfirst rise d3">The assumption beneath all the rest — that the chooser is rational — brought at last under the lamp. The will and its logic, the mind and its errors, the strategy of others, and the unwritten rules that bind. <em>The table turns, in its last group, to examine its own foundation.</em></p>
+    <div class="legend rise d3">
+      <span class="legend-item"><span class="legend-swatch lit"></span>in print</span>
+      <span class="legend-item"><span class="legend-swatch"></span>in preparation</span>
+      <span class="legend-anatomy">Each tile is a <b>volume</b>; select one to open its <b>twelve plates</b>. None is yet in print — Volume I, <em>The Wage</em>, holds that distinction — but each is now set.</span>
+    </div>
+  </header>
+
+  <section class="argument rise d4" aria-label="The argument of the group">
+    <span class="arg-lead">The argument of the group</span>
+    <p class="lede">Every volume so far has rested on a single assumption it rarely paused to examine: that the human being at the centre of it all is rational — that people know what they want, rank it without contradiction, and choose what serves them best. The prices were verdicts such agents reached; the quantities were what they optimized; the failures were the traps that caught them; the institutions were the structures they raised; the aggregates were their sum. This last group is where the assumption itself is finally brought under the lamp — and where economics, having built so much upon a stylised human being, turns to meet the actual one.</p>
+    <p>The four volumes are the four faces of that reckoning. <em>The Choice</em> states the assumption and tests it at its own joints — the slender axioms of rational preference, and the seams, from uncertainty to bounded cognition to the social self, where they begin to give. <em>The Bias</em> falsifies it, setting down the systematic, predictable, repeatable ways the real mind departs from the model: the anchor that drags, the loss that looms too large, the present that swells out of proportion. <em>The Game</em> makes it interactive, asking what "rational" can even mean once your best move depends on everyone else's, and how, against the cold logic of the lone optimizer, cooperation ever holds. And <em>The Norm</em> transcends it, naming what binds every market together that no price sets and no contract writes.</p>
+    <p>The honest finding that orders the group is a paradox the discipline has learned to live inside: the rational-actor model is at once the most powerful instrument in all of social science and plainly false as a portrait of any living person. It earns its keep by predicting, not by being true. And the deepest of these unwritten rules — the one the final volume ends upon, and the one this whole table was named to seek — is honesty itself: the quiet expectation, beneath every exchange, that others will by and large tell the truth and keep their word. A <em>numéraire</em> of honesty is not, in the end, a unit of measure at all. It is the oldest and least written of the norms — the one that makes a market, an argument, and a table such as this one, possible at all.</p>
+  </section>
+
+  <main>
+    <section class="group">
+      <div class="group-head"><span class="group-num fr">Group VI</span><span class="group-name">The Behaviors</span><span class="group-rule"></span></div>
+      <div class="grid">
+        <button class="el" data-id="choice" aria-label="The Choice — preference and its logic — twelve plates"><span class="el-num">23</span><span class="el-sym">Ch</span><span class="el-name">The Choice</span><span class="el-gloss">preference and its logic</span><span class="el-plates">XII plates · in prep.</span></button>
+        <button class="el" data-id="bias" aria-label="The Bias — the systematic errors — twelve plates"><span class="el-num">24</span><span class="el-sym">Bi</span><span class="el-name">The Bias</span><span class="el-gloss">the systematic errors</span><span class="el-plates">XII plates · in prep.</span></button>
+        <button class="el" data-id="game" aria-label="The Game — strategy and equilibrium — twelve plates"><span class="el-num">25</span><span class="el-sym">Gm</span><span class="el-name">The Game</span><span class="el-gloss">strategy and equilibrium</span><span class="el-plates">XII plates · in prep.</span></button>
+        <button class="el" data-id="norm" aria-label="The Norm — the unwritten rules — twelve plates"><span class="el-num">26</span><span class="el-sym">Nm</span><span class="el-name">The Norm</span><span class="el-gloss">the unwritten rules</span><span class="el-plates">XII plates · in prep.</span></button>
+      </div>
+    </section>
+  </main>
+
+  <section class="detail" id="detail" aria-live="polite"></section>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref">Group VI · The Behaviors</span>
+    </div>
+    <p class="colophon">The sixth group — the behavioral foundations, brought from sketch to structure. <em>The Choice</em>, <em>The Bias</em>, <em>The Game</em>, <em>The Norm</em> — each now set in twelve plates, none yet in print; Volume I, <em>The Wage</em>, still holds that distinction. Together they turn the discipline's scrutiny upon its own first assumption — that the chooser is rational — and end, in the final plate, where the whole project began: with honesty itself, the least written of all the rules, named at last as the very <em>numéraire</em> the table set out to find. Of the six families, one now remains unbuilt — <em>The Prices</em>, where the table opened and where <em>The Wage</em> already stands; with it, the circle closes. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+
+<script>
+const DATA = {
+  choice:{group:"The Behaviors",gi:"VI",status:"in preparation · № XXIII · twelve plates set",
+    desc:"The assumption beneath the entire edifice — that people choose what is best for them — and the elegant, powerful theory built upon it, examined honestly at exactly the seams where it begins to strain against how anyone actually decides.",
+    openq:"people are assumed to choose what is best for them — where does that break?",
+    plates:[
+      {n:"i",title:"The Maximizer",gloss:"homo economicus; the agent who, from wants taken as given, unfailingly takes the best"},
+      {n:"ii",title:"The Coherent",gloss:"completeness and transitivity; rationality defined all the way down to mere consistency"},
+      {n:"iii",title:"The Money Pump",gloss:"why a will with a single cycle in it can be drained, penny by patient penny"},
+      {n:"iv",title:"The Revealed",gloss:"Samuelson; the preference read backward from the act, and the unobservable banished",bridge:"The Utility"},
+      {n:"v",title:"The Risk",gloss:"choice among gambles; von Neumann and Morgenstern, and the rule for the known unknown",bridge:"The Premium"},
+      {n:"vi",title:"The Uncertainty",gloss:"Knight, 1921; the gulf between a risk one can price and an ignorance one cannot",bridge:"The Cycle"},
+      {n:"vii",title:"The Subjective",gloss:"Savage; probability itself rebuilt from the coherent choices of a single mind"},
+      {n:"viii",title:"The Ellsberg",gloss:"the urn a coherent mind still will not bet on, and the ambiguity it flees",bridge:"The Bias"},
+      {n:"ix",title:"The Bounded",gloss:"Simon; the chooser who, unable to optimize, settles instead for merely good enough",bridge:"The Bias"},
+      {n:"x",title:"The Rational Fool",gloss:"Sen; the creature of pure self-interest, who turns out, on inspection, to be a social moron",bridge:"The Norm"},
+      {n:"xi",title:"The Constructed",gloss:"whether a preference is discovered in the mind, or built on the spot in the act of choosing",bridge:"The Bias"},
+      {n:"xii",title:"The Wager",gloss:"Friedman; the model need not be true, only predict — and the methodological bet that holds it up"}
+    ]},
+  bias:{group:"The Behaviors",gi:"VI",status:"in preparation · № XXIV · twelve plates set",
+    desc:"The systematic, predictable ways real choosers depart from the model — the anchor that drags, the loss that looms larger than the matching gain, the present moment that swells out of all proportion. Economics, at last, meeting the actual mind.",
+    openq:"the mind departs from the model in regular ways — which, and at what cost?",
+    plates:[
+      {n:"i",title:"The Heuristics",gloss:"Kahneman and Tversky, 1974; the mental shortcuts, and the errors they reliably breed"},
+      {n:"ii",title:"The Anchor",gloss:"the irrelevant number, once seen, that drags every estimate toward itself"},
+      {n:"iii",title:"The Availability",gloss:"the risk misjudged by nothing more than how easily an instance comes to mind"},
+      {n:"iv",title:"The Representative",gloss:"the story that feels right, and the base rate it quietly persuades us to forget"},
+      {n:"v",title:"The Prospect",gloss:"Kahneman and Tversky, 1979; value reckoned from a reference point, and the curve kinked at it",bridge:"The Utility"},
+      {n:"vi",title:"The Loss",gloss:"why a loss cuts about twice as deep as the very same gain delights",bridge:"The Premium"},
+      {n:"vii",title:"The Endowment",gloss:"the mug you happen to own, abruptly dearer than the mug you might have bought",bridge:"The Externality"},
+      {n:"viii",title:"The Framing",gloss:"the same choice, differently worded, drawing out the opposite decision"},
+      {n:"ix",title:"The Mental Account",gloss:"Thaler; money kept in separate jars the market insists are one and the same",bridge:"The Money"},
+      {n:"x",title:"The Present",gloss:"hyperbolic discounting; the future self forever betrayed by the impatient present one",bridge:"The Rate"},
+      {n:"xi",title:"The Nudge",gloss:"Thaler and Sunstein; the architecture of choice, and the gentle hand laid on the default",bridge:"The Rule"},
+      {n:"xii",title:"The Replication",gloss:"the reckoning; which of the celebrated effects survived the scrutiny, and which did not"}
+    ]},
+  game:{group:"The Behaviors",gi:"VI",status:"in preparation · № XXV · twelve plates set",
+    desc:"What happens when each person's best move depends on everyone else's — strategy, equilibrium, and the fragile arithmetic by which cooperation among self-interested parties either holds together or quietly comes apart.",
+    openq:"when each best move depends on every other, how does cooperation hold?",
+    plates:[
+      {n:"i",title:"The Interdependence",gloss:"the move whose whole value hangs on the moves that others are themselves choosing"},
+      {n:"ii",title:"The Minimax",gloss:"von Neumann, 1928; the saddle point, and the clean solution of pure opposition"},
+      {n:"iii",title:"The Equilibrium",gloss:"Nash, 1950; no player able to do better alone, and the idea that remade a discipline"},
+      {n:"iv",title:"The Dilemma",gloss:"the two prisoners, and the ruin that two perfectly rational parties choose together",bridge:"The Commons"},
+      {n:"v",title:"The Coordination",gloss:"the games with many equilibria, where the trouble is not conflict but which",bridge:"The Money"},
+      {n:"vi",title:"The Focal Point",gloss:"Schelling; the meeting place chosen without a word, by shared imagination alone",bridge:"The Norm"},
+      {n:"vii",title:"The Mixed Strategy",gloss:"the rational randomization, and the unpredictability that is itself the plan"},
+      {n:"viii",title:"The Credible Threat",gloss:"Schelling and Selten; why a threat or a promise is worthless unless it truly binds",bridge:"The Contract"},
+      {n:"ix",title:"The Repeated Game",gloss:"the shadow of the future, and the cooperation that only a tomorrow makes possible"},
+      {n:"x",title:"The Tournament",gloss:"Axelrod; tit-for-tat, and the spare, forgiving strategy that bested all the clever ones"},
+      {n:"xi",title:"The Evolutionary",gloss:"Maynard Smith; strategy without a strategist, equilibrium arrived at by selection",bridge:"The Norm"},
+      {n:"xii",title:"The Common Knowledge",gloss:"Aumann; what each knows the other knows, and the fragile tower it all stands upon",bridge:"The Choice"}
+    ]},
+  norm:{group:"The Behaviors",gi:"VI",status:"in preparation · № XXVI · twelve plates set",
+    desc:"The unwritten rules — trust, reciprocity, the done thing — that no contract specifies and every functioning market silently requires. Institutions understood not as laws on a page but as shared expectations held quietly in common.",
+    openq:"which of the market's rules are written, and which merely understood?",
+    plates:[
+      {n:"i",title:"The Unwritten",gloss:"the rules no statute names, that every functioning market silently takes for granted",bridge:"The Rule"},
+      {n:"ii",title:"The Convention",gloss:"Lewis and Sugden; the equilibrium that, once settled upon, everyone simply keeps to",bridge:"The Game"},
+      {n:"iii",title:"The Trust",gloss:"Arrow; the lubricant of every transaction, and the one thing that cannot be bought",bridge:"The Contract"},
+      {n:"iv",title:"The Social Capital",gloss:"Coleman and Putnam; the wealth held in relationships, and the bowling done alone",bridge:"The Stock"},
+      {n:"v",title:"The Gift",gloss:"Mauss and Akerlof; the exchange that is not priced, and the wage half-given as a gift",bridge:"The Wage"},
+      {n:"vi",title:"The Reciprocity",gloss:"the deep human reflex to repay in kind — the good for good, and the bad for bad",bridge:"The Game"},
+      {n:"vii",title:"The Ultimatum",gloss:"Güth's experiment; the unfair offer refused from spite, and the homo economicus it broke",bridge:"The Choice"},
+      {n:"viii",title:"The Punisher",gloss:"Fehr and Gächter; the stranger who pays, from his own pocket, to see a cheat brought low",bridge:"The Commons"},
+      {n:"ix",title:"The Fairness",gloss:"the price the market could charge and will not, because the custom plainly forbids it",bridge:"The Power"},
+      {n:"x",title:"The Culture",gloss:"Weber to Greif; the deep, inherited beliefs that decide whether strangers may trade at all",bridge:"The Growth"},
+      {n:"xi",title:"The Embedded",gloss:"Polanyi and Granovetter; the market not floating above society but woven all through it",bridge:"The Rule"},
+      {n:"xii",title:"The Numéraire of Honesty",gloss:"the last and least written of the rules; the trust beneath all exchange, and the very standard this table set out to find",bridge:"The Wage"}
+    ]}
+};
+
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+function render(id){
+  var tile=document.querySelector('.el[data-id="'+id+'"]');
+  var d=DATA[id]; if(!d||!tile) return;
+  var sym=tile.querySelector('.el-sym').textContent;
+  var name=tile.querySelector('.el-name').textContent;
+  var num=tile.querySelector('.el-num').textContent;
+  var lit=tile.classList.contains('lit');
+  var h='';
+  h+='<div class="d-head">';
+  h+='<div class="d-sym'+(lit?' lit':'')+'">'+esc(sym)+'</div>';
+  h+='<div class="d-titles">';
+  h+='<div class="d-family">'+esc(d.group)+' &middot; Group '+d.gi+' &middot; '+esc(num)+'</div>';
+  h+='<h2 class="d-name">'+esc(name)+'</h2>';
+  h+='<div class="d-status'+(d.print?' print':'')+'">'+esc(d.status)+'</div>';
+  h+='</div></div>';
+  h+='<p class="d-desc">'+esc(d.desc)+'</p>';
+  if(d.openq){
+    var lead=d.plates ? 'Its opening question' : 'The first plate would ask';
+    h+='<p class="d-openq"><span class="lead">'+lead+'</span><q>'+esc(d.openq)+'</q></p>';
+  }
+  if(d.plates){
+    h+='<div class="d-plates"><h3>The twelve plates, as set</h3><ol class="plate-list">';
+    d.plates.forEach(function(p){
+      h+='<li'+(p.inprint?' class="inprint"':'')+'>';
+      h+='<span class="pl-num">'+p.n+'</span>';
+      h+='<span class="pl-title">'+esc(p.title)+(p.inprint?'<span class="pl-tag">in print</span>':'')+'</span>';
+      h+='<span class="pl-gloss">'+esc(p.gloss)+'</span>';
+      if(p.bridge){h+='<span class="pl-bridge">a bridge to <b>'+esc(p.bridge)+'</b></span>';}
+      h+='</li>';
+    });
+    h+='</ol></div>';
+  }
+  document.getElementById('detail').innerHTML=h;
+  var prev=document.querySelector('.el.sel'); if(prev) prev.classList.remove('sel');
+  tile.classList.add('sel');
+}
+
+(function(){
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.el').forEach(function(b){
+    b.addEventListener('click',function(){
+      render(b.dataset.id);
+      document.getElementById('detail').scrollIntoView({behavior:reduce?'auto':'smooth',block:'nearest'});
+    });
+  });
+  var __h=(location.hash||'').replace(/^#/,'');
+  render(DATA[__h]?__h:'choice');
+  if(__h&&DATA[__h]){document.getElementById('detail').scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});}
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="numeraire-the-aggregates.html">← Numéraire</a><a rel="next" href="numeraire-plate-the-bargain.html">Numéraire →</a></nav>
+</body>
+</html>

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Norm — Numéraire, Volume XXVI</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem; --measure:40rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.9rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(3rem,8vh,6rem) 0 clamp(1.6rem,4vh,2.6rem);text-align:center;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;text-decoration:none;}
+  .imprint:hover{color:var(--soft);}
+  .vol-dateline{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+
+  .vol-sym{width:114px;height:114px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;align-items:center;justify-content:center;
+    font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 500;font-size:3.1rem;line-height:1;letter-spacing:-.01em;}
+  .vol-sym.lit{background:var(--ink);color:var(--paper);}
+  .vol-elnum{font-family:"Fraunces",serif;font-size:.74rem;color:var(--faintest);letter-spacing:.18em;text-transform:uppercase;margin-top:1rem;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.3rem,6.5vw,4.6rem);line-height:1.02;letter-spacing:-.025em;margin:.7rem 0 0;text-wrap:balance;}
+  .vol-status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .vol-status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:44rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .vol-q{max-width:46rem;margin:clamp(2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .vol-q .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.7rem;}
+  .vol-q q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.3rem,2.4vw,1.72rem);line-height:1.32;color:var(--ink);quotes:none;text-wrap:balance;}
+
+  .front{margin:clamp(3rem,7vh,5rem) auto 0;max-width:var(--measure);}
+  .front-eyebrow{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);text-align:center;
+    display:flex;align-items:center;gap:.9rem;justify-content:center;margin:0 0 2.1rem;}
+  .front-eyebrow::before,.front-eyebrow::after{content:"";height:1px;width:2.4rem;background:var(--hair);}
+  .front p{font-size:1.07rem;line-height:1.76;color:var(--ink);margin:0 0 1.35rem;text-wrap:pretty;}
+  .front p:last-child{margin-bottom:0;}
+  .front em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.74;padding:.1em .12em 0 0;color:var(--ink);}
+  .front-orn{display:flex;justify-content:center;margin:2rem 0;}
+  .front-orn svg{width:96px;height:12px;overflow:visible;}
+  .front-orn line{stroke:var(--num);stroke-width:1;} .front-orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  main{padding:clamp(3rem,7vh,5rem) 0 0;}
+  .plates-head{display:flex;align-items:baseline;gap:.9rem;margin:0 0 1.6rem;}
+  .plates-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-size:.86rem;color:var(--faintest);letter-spacing:.04em;flex:0 0 auto;}
+  .plates-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);flex:0 0 auto;}
+  .plates-rule{flex:1;height:1px;background:var(--hair);position:relative;top:-2px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:13px;}
+
+  .el{appearance:none;-webkit-appearance:none;background:var(--paper);border:1px solid var(--hair);border-radius:2px;
+    padding:14px 15px 16px;text-align:left;cursor:pointer;position:relative;min-height:152px;
+    display:flex;flex-direction:column;color:inherit;font-family:inherit;
+    transition:border-color .22s ease,background .22s ease,transform .22s ease,box-shadow .22s ease;}
+  .el:hover{border-color:var(--faintest);transform:translateY(-2px);}
+  .el-rn{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-size:.78rem;color:var(--faintest);letter-spacing:.18em;text-transform:uppercase;}
+  .pl-hero{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 500;font-size:1.34rem;line-height:1.06;margin-top:.5rem;letter-spacing:-.012em;}
+  .el-gloss{font-size:.79rem;color:var(--faint);line-height:1.36;margin-top:.5rem;font-style:italic;}
+  .pl-flag{margin-top:auto;padding-top:.7rem;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--faintest);}
+  .el.lit{background:var(--ink);border-color:var(--ink);}
+  .el.lit .pl-hero{color:var(--paper);}
+  .el.lit .el-rn{color:rgba(240,235,225,.5);}
+  .el.lit .el-gloss{color:rgba(240,235,225,.62);}
+  .el.lit .pl-flag{color:rgba(240,235,225,.7);}
+  .el.sel{box-shadow:inset 0 0 0 1.5px var(--ink);border-color:var(--ink);}
+  .el.lit.sel{box-shadow:inset 0 0 0 1.5px var(--paper);}
+
+  .detail{margin:clamp(2.4rem,5vh,3.6rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);scroll-margin-top:1.4rem;}
+  .d-head{display:flex;gap:1.3rem;align-items:flex-start;}
+  .d-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 500;font-size:1.5rem;line-height:1;
+    color:var(--ink);flex:0 0 auto;border:1px solid var(--hair);border-radius:2px;letter-spacing:.04em;
+    width:86px;height:86px;display:flex;align-items:center;justify-content:center;text-transform:uppercase;}
+  .d-sym.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .d-titles{min-width:0;}
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);}
+  .d-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.7rem,3.6vw,2.5rem);margin:.22rem 0 .35rem;line-height:1.04;letter-spacing:-.016em;}
+  .d-status{font-size:.84rem;color:var(--faint);font-style:italic;}
+  .d-status.print{color:var(--soft);font-style:normal;}
+  .d-status.print::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .d-desc{font-size:1.05rem;line-height:1.72;color:var(--ink);max-width:42rem;margin:1.3rem 0 0;text-wrap:pretty;}
+
+  .d-openq{margin:1.6rem 0 0;max-width:40rem;}
+  .d-openq .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.5rem;}
+  .d-openq q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);quotes:none;}
+
+  .d-excerpt{margin:1.8rem 0 0;max-width:42rem;border-left:1px solid var(--hair);padding:.2rem 0 .2rem 1.5rem;}
+  .d-excerpt .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.8rem;}
+  .d-excerpt p{font-size:1.04rem;line-height:1.74;color:var(--ink);margin:0;text-wrap:pretty;}
+  .d-excerpt .x-cap{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 500;font-size:1.15rem;}
+  .d-readplate{margin:1.6rem 0 0;}
+  .d-readplate a{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:.94rem;
+    letter-spacing:.01em;text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:2px;transition:border-color .2s ease,color .2s ease;}
+  .d-readplate a:hover{color:var(--soft);border-color:var(--soft);}
+  .d-readplate .arr{margin-left:.4rem;}
+
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;text-decoration:none;}
+  .f-mark:hover{color:var(--soft);}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;}
+    .el{min-height:138px;padding:12px 12px 14px;}
+    .pl-hero{font-size:1.18rem;}
+    .el-gloss{font-size:.74rem;}
+    .vol-sym{width:92px;height:92px;font-size:2.5rem;}
+    .d-head{gap:1rem;}
+    .d-sym{width:64px;height:64px;font-size:1.25rem;}
+    .front p{font-size:1.04rem;}
+    .dropcap{font-size:3rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="rise d1">
+      <a class="imprint" href="numeraire-atlas.html">Numéraire</a>
+      <div class="vol-dateline">The Twenty-Sixth Volume &middot; The Behaviors</div>
+    </div>
+    <div class="vol-sym lit rise d2" aria-hidden="true">Nm</div>
+    <div class="vol-elnum rise d2">Element 26 &middot; Group VI</div>
+    <h1 class="rise d3">The Norm</h1>
+    <div class="vol-status rise d3">in print &middot; № XXVI &middot; 2 of 12 plates</div>
+    <p class="standfirst rise d4">No law tells us where to stand, whom to thank, what to find shameful, or which promises bind in honor though not in court. Yet these unwritten rules govern conduct as firmly as any statute — and feel not like rules at all, but like the way things simply are. This volume is about the norm: the convention that masquerades as nature, the custom mistaken for morality, and the quiet contest, beneath every done thing, over whose way of life shall count as the way.</p>
+    <div class="vol-q rise d5">
+      <span class="lead">The question of the volume</span>
+      <q>the unwritten rules of conduct feel like the dictates of nature, or of morality itself — but are they more than conventions, kept because they are kept, that we have mistaken for necessities?</q>
+    </div>
+  </header>
+
+  <section class="front" aria-label="The argument of the volume">
+    <div class="front-eyebrow">The argument</div>
+
+    <p><span class="dropcap">T</span>here is a vast body of law that no one ever wrote down. It tells you how close to stand when you speak to a stranger; whom to thank, and how; what to wear to a wedding and what to a funeral; when to arrive and when to leave; which promises bind you in honor though no court would hear them; and a thousand things besides, governing nearly every moment of your dealings with others. No legislature passed this law, no police enforce it, and most of it you could not recite if asked — yet you obey it almost without exception, and the rare soul who breaks it is marked at once as strange, or rude, or worse. This is the realm of the norm: the unwritten rule of conduct, conformed to and expected and quietly enforced, that does more to order social and economic life than all the statutes in the books. This volume is about how such rules work, where they come from, and why the most powerful of them are precisely the ones we have stopped seeing as rules at all.</p>
+
+    <p>Begin with the simplest kind, the convention. Why do we drive on the right — or, in much of the world, the left? Not because one is safer; whichever all adopt is safe, and whichever a lone driver defies is lethal. We keep to our side for one reason only: that everyone else does, and we would rather coordinate than collide. David Hume caught the essence of it two centuries before the theory existed: two men row a boat in perfect time by a convention, though they never exchanged a promise; the modern study of games gave the idea its rigor, showing such conventions to be equilibria — points of rest from which no one, so long as the others hold their course, has reason to stray. A convention is thus arbitrary in origin, for it could have settled otherwise, and adamant in its hold, for once in place each of us is pinned by the expectations of all the rest. And conventions are everywhere: in the words we greet with, the units we measure by, the side of the page we begin on. Much of what we call custom is convention of this kind — a solution to the problem of doing together what none can do alone.</p>
+
+    <p>It would be an error to think such rules a mere social lubricant, an etiquette atop the real business of law and market. They are load-bearing. Norms coordinate, settling the countless questions on which collective life depends and to which reason returns no answer. They sustain cooperation, the norm of reciprocity turning the one-shot encounter, in which betrayal pays, into an ongoing relation, in which it does not, and so underwriting the trust without which exchange would grind to a halt. They economize on enforcement, sparing us a contract and a constable for every dealing, since most people keep their word from habit and conscience rather than fear. The economists who study institutions count norms among them — the informal institutions, in North's phrase, that stand beside the formal ones of law and state and often do the heavier share of the work; and the students of the commons found, with Ostrom, that communities which govern their shared resources without ruin do so largely by norms of their own slow making. Strip the norms away and no law could fill the gap, for the law itself rests upon them.</p>
+
+    <p>But now the feature that makes the norm the deepest of the orders, and the proper subject of these volumes. A price announces itself as a number, a law as a command; both wear their made and human character on their face, and may be haggled or repealed. A norm does something stranger: at the height of its power it ceases to present itself as a rule at all. We do not experience the distance we keep from a stranger, or the gift we feel bound to answer, as conventions we are following; we experience them as facts — about what is natural, what is decent, what a reasonable person simply knows. The norm, doing its work most perfectly, vanishes into the furniture of the world, and what is merely customary comes to feel necessary, even moral, and so passes beyond question. Sumner, who gave the study of such things its early vocabulary, put it starkly: the folkways, he said, can make anything seem right.</p>
+
+    <div class="front-orn" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>And here the norm yields the argument of the whole work in its most intimate form. A price is a verdict on a hidden contest, mistaken for a fact of nature — and a norm is the same verdict, rendered in custom and pressed deeper into us. For a norm is a convention: one of many arrangements that might have served, selected by history and accident and the weight of mutual expectation, kept in being for no reason but that it is kept. Nothing in nature decrees the code a given people lives by; another, across a border or a century, lives by another, and neither is the dictate of the world. Yet the norm presents its contingent commands as the necessary order of things — the way decent people behave, the way things are done — so that the local is taken for the universal, the arbitrary for the right, and the made for the given. The way things are done is mistaken for the way they must be; and that mistake, worked not upon a price or a law but upon the very sense of what is proper, is the master mistake at its most thorough — pressed into the conscience of the one who makes it.</p>
+
+    <p>Nor, behind that naturalized command, is there only innocent coordination. A price is a verdict on a hidden contest, mistaken for a fact of nature; and beneath the norm too lies a contest — over which of the many possible conventions shall prevail, and, more consequentially, over whose interests it shall serve. For norms do not merely coordinate; they also rank and subordinate, and their genius for seeming natural is a genius for making subordination feel like propriety. The conventions that kept the woman from the ballot, that fixed each caste in its appointed place, that bent the servant's eyes down and taught him to feel the bending as fitting — these ruled not by the policeman but by everyone's settled sense of how things ought to be, the dominated enforcing on themselves the rules that bound them. A domination written into custom is the most secure of all: it needs no enforcement and permits no argument, being simply the way of the world. To see that the norm is made is therefore no idle correction but the first stir of freedom — the recovery of a question, who decreed this and whom does it serve, that the naturalized norm exists to suppress.</p>
+
+    <p>This sets the norm in its place among the orders these volumes have anatomized. The volume on the rule examined the written institutions — property, contract, the law, enforced by the power of the state; this one examines their unwritten twin, the conventions enforced by nothing but each other's expectation; the two together frame every price. But the norm is the more insidious of the pair, exactly because it is the less visible. A law can be read, debated, and struck down; one knows it for a human imposition even while obeying it. A norm felt as nature is obeyed without the awareness that one is obeying — and a rule that has captured the very faculty by which we might question it is a rule almost beyond reach. That is why the labor of denaturalizing a custom — of seeing the merely done as merely done — is so slow, and why it is, again and again, the precondition of every reform that follows.</p>
+
+    <p>The twelve plates anatomize the norm in this light. They set out the convention and the naturalization that hides it; the focal point by which one rule is chosen from many, and the favor by which reciprocity sustains it; the shame that enforces from without and the conscience from within; the yoke of the norms that entrench power; the cascade by which a norm thought eternal collapses in a generation; the unwritten code beside the written law; the handshake of trust on which the economy silently runs; the taboo that fences off what may not be sold; and, at the last, the compass — whether, if every ought is a convention, anything remains of morality, or some standpoint survives from which the customs might be judged. The norm is where the master thesis reaches into the self. For of all the made things mistaken for natural, none is mistaken so intimately as the norm, which we obey not because we are commanded but because we have made its commands our own — and to recognize it as a thing we made is to begin, however slightly, to be free of it. The argument remains open.</p>
+  </section>
+
+  <main>
+    <div class="plates-head">
+      <span class="plates-num fr">№ XXVI</span>
+      <span class="plates-name">The twelve plates</span>
+      <span class="plates-rule"></span>
+    </div>
+    <div class="grid" id="grid">
+      <button class="el lit" data-id="convention" aria-label="Plate i — The Convention — in print"><span class="el-rn">Plate i</span><span class="pl-hero">The Convention</span><span class="el-gloss">the self-enforcing rule kept because it is kept: arbitrary in origin, iron in grip</span><span class="pl-flag">in print</span></button>
+      <button class="el lit" data-id="given" aria-label="Plate ii — The Given — in print"><span class="el-rn">Plate ii</span><span class="pl-hero">The Given</span><span class="el-gloss">the convention naturalized — custom mistaken for nature, the done thing for the necessary thing</span><span class="pl-flag">in print</span></button>
+      <button class="el" data-id="cue" aria-label="Plate iii — The Cue"><span class="el-rn">Plate iii</span><span class="pl-hero">The Cue</span><span class="el-gloss">focal points and coordination without words: how strangers settle on one rule among many</span></button>
+      <button class="el" data-id="favor" aria-label="Plate iv — The Favor"><span class="el-rn">Plate iv</span><span class="pl-hero">The Favor</span><span class="el-gloss">reciprocity, the returned good and the returned ill, by which cooperation outlasts a single dealing</span></button>
+      <button class="el" data-id="shame" aria-label="Plate v — The Shame"><span class="el-rn">Plate v</span><span class="pl-hero">The Shame</span><span class="el-gloss">the informal sanction — disapproval, gossip, exclusion — by which a community enforces its unwritten rules</span></button>
+      <button class="el" data-id="conscience" aria-label="Plate vi — The Conscience"><span class="el-rn">Plate vi</span><span class="pl-hero">The Conscience</span><span class="el-gloss">internalization: how the outer rule becomes the inner voice, and the norm is felt as morality</span></button>
+      <button class="el" data-id="yoke" aria-label="Plate vii — The Yoke"><span class="el-rn">Plate vii</span><span class="pl-hero">The Yoke</span><span class="el-gloss">the norms that entrench power, dressing subordination as propriety: deference, caste, the place of the sexes</span></button>
+      <button class="el" data-id="cascade" aria-label="Plate viii — The Cascade"><span class="el-rn">Plate viii</span><span class="pl-hero">The Cascade</span><span class="el-gloss">how norms fall: the sudden tipping by which dueling, foot-binding, the acceptable cigarette collapse</span></button>
+      <button class="el" data-id="unwritten" aria-label="Plate ix — The Unwritten"><span class="el-rn">Plate ix</span><span class="pl-hero">The Unwritten</span><span class="el-gloss">the unwritten rules beside the written: where norm and law align, clash, and stand in for each other</span></button>
+      <button class="el" data-id="handshake" aria-label="Plate x — The Handshake"><span class="el-rn">Plate x</span><span class="pl-hero">The Handshake</span><span class="el-gloss">trust as the invisible infrastructure: the deal that needs no contract, and the high-trust society's edge</span></button>
+      <button class="el" data-id="taboo" aria-label="Plate xi — The Taboo"><span class="el-rn">Plate xi</span><span class="pl-hero">The Taboo</span><span class="el-gloss">the unthinkable, not merely the forbidden: the things money may not buy, and the norms that bound the market</span></button>
+      <button class="el" data-id="compass" aria-label="Plate xii — The Compass"><span class="el-rn">Plate xii</span><span class="pl-hero">The Compass</span><span class="el-gloss">if every ought is a convention, what is left of morality? the standpoint, if any, from which to judge norms</span></button>
+    </div>
+  </main>
+
+  <section class="detail" id="detail" aria-live="polite"></section>
+
+  <footer>
+    <div class="f-bar">
+      <a class="f-mark" href="numeraire-atlas.html">Numéraire</a>
+      <span class="f-ref">Volume XXVI &middot; The Behaviors</span>
+    </div>
+    <p class="colophon">Volume XXVI, <em>The Norm</em>, opens with two plates in print — <em>The Convention</em> and <em>The Given</em>, the self-enforcing rule and the naturalization that hides it. The twenty-sixth and last element of the table, and the fifteenth of its volumes to appear; it joins <a href="the-choice.html">The Choice</a> and <a href="the-game.html">The Game</a> among the behaviors — the third of that family, and the one that turns from the single mind and the strategic pair to the unwritten code that binds the whole group: the conventions, kept because they are kept, by which a society coordinates, cooperates, and quietly enforces a shared way of life. Where <em>The Rule</em> anatomized the written institutions, backed by the power of the state, this volume anatomizes the unwritten ones, backed by nothing but each other's expectation. Return to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+
+<script>
+const PLATES = {
+  convention:{rn:"i",title:"The Convention",family:"in print",lit:true,url:"the-convention.html",
+    desc:`The simplest and most revealing kind of norm is the convention: a rule we keep for no reason but that everyone else keeps it. We drive on one side of the road, measure in one set of units, answer the telephone with one customary word — and in each case the rule binds not because it is wise or right but because it is shared, so that to break it is not wicked but merely foolish, a failure to coordinate. David Hume saw the essence of it: that two men row a boat in time by a convention, though they never promised to; and the modern theory of games has shown that such conventions are equilibria — arrangements from which no one, given that the others hold still, has any reason to depart. A convention is arbitrary in its origin, for it could have been otherwise, and iron in its grip, for once it is in place each of us is held by all the rest. This plate sets out the convention as the atom of the normative — and the first hint that what feels like necessity may be only agreement.`,
+    excerpt:`<span class="x-cap">W</span>hy do we drive on the right? Not because the right is better than the left — half the world does the opposite, and fares no worse — but because everyone else does, and to do otherwise is to die. This is a convention: a rule that binds not because it is wise or just or natural, but simply because it is kept. Each of us follows it because all the others do, and all the others follow it for the same reason, so that the whole vast coordination hangs in the air, supported by nothing but the mutual expectation that it will go on. A convention is arbitrary in its origin and iron in its grip — and once we see how much of social life runs on conventions, we will not look at custom the same way again.`},
+  given:{rn:"ii",title:"The Given",family:"in print",lit:true,url:"the-given.html",
+    desc:`The deepest norms are invisible. We notice a rule when we are told it, or fined for breaking it; but the most powerful conventions are never told and never enforced from outside, because they have been so completely absorbed that they no longer feel like rules at all. They feel like facts — about what is natural, what is decent, what any reasonable person simply knows. No statute sets the distance at which we stand from a stranger, or decrees that a gift must be answered with a gift, or that certain words are unsayable; custom does all of it, and custom, when it is doing its work most perfectly, vanishes into the furniture of the world. This is the master mistake at the level of conduct: the merely customary taken for the necessary, the local for the universal, the arbitrary for the right. This plate is the hinge of the volume — the argument that a norm reaches its full power precisely when it ceases to be seen as a norm, and that to denaturalize a custom is the first and hardest step toward judging it.`,
+    excerpt:`<span class="x-cap">T</span>he most powerful norms are the ones we never notice — not the rules we are told, but the ones we mistake for the way things simply are. No law commands a man to wear trousers rather than a robe, or to keep a certain distance when he speaks to a stranger, or to feel that a debt of honor must be paid; and yet these bind more surely than many a law, precisely because they are not experienced as rules at all but as facts — of nature, of decency, of common sense. A norm reaches its full power at the moment it disappears as a norm, when the merely customary has been so thoroughly mistaken for the necessary that to question it seems not rebellion but madness.`},
+  cue:{rn:"iii",title:"The Cue",family:"in preparation",lit:false,
+    desc:`If a convention is one equilibrium among many, how does a society ever settle on which one? Thomas Schelling posed the puzzle in its purest form: two strangers, told to meet in a great city on a given day with no way to communicate and no prior arrangement, must each guess where the other will go — and, remarkably, they often succeed, converging on a place that somehow stands out, a focal point made salient by prominence or precedent or sheer conspicuousness. The same silent coordination, Schelling saw, selects our conventions: of the many rules that could have served, the one that becomes the rule is the one that catches the eye, that history has made obvious, that everyone expects everyone to expect. This plate examines how conventions are chosen without a chooser — and why the rule that prevails is so often not the best imaginable but the most salient.`,
+    openq:`if many rules would serve equally well, what makes a people fix upon one — and is the rule that wins the wisest, or merely the most conspicuous?`},
+  favor:{rn:"iv",title:"The Favor",family:"in preparation",lit:false,
+    desc:`Coordination is the easy case, for there no one is tempted to cheat: once we all drive on the right, no one gains by swerving left. The hard case is cooperation, where the tempting move is to take and not give — and here the norm that does the work is reciprocity, the deep human disposition to return good for good and ill for ill. The favor repaid, the gift answered, the kindness remembered and the injury too: these knit isolated dealings into ongoing relationships, and convert the one-shot encounter, in which betrayal pays, into a repeated one, in which it does not. Reciprocity is older than money and wider than law; the anthropologists found it at the root of the gift economies, and the game theorists found that a strategy as simple as returning like for like can sustain cooperation indefinitely among those who expect to meet again. This plate traces the norm of reciprocity — how the shadow of the future, cast through the rule of return, makes cooperation rational among people who would otherwise prey upon one another.`,
+    openq:`if betrayal pays in any single dealing, what but the expectation of return — the favor remembered, the injury repaid — could make honesty the better bet?`},
+  shame:{rn:"v",title:"The Shame",family:"in preparation",lit:false,
+    desc:`A norm without a sanction is a wish, and the characteristic sanction of the norm is not the fine or the prison but shame — the disapproval of others, expressed in the cold look, the lowered reputation, the gossip that travels, the invitation withheld, and at the limit the expulsion from the group. These informal punishments cost the punished dearly, for we are social animals to whom the regard of our fellows is nearly as vital as bread; and they cost the punisher little, a frown being cheap to give. Yet a puzzle remains, the puzzle of the second order: to punish the violator is itself a small service to the community, and the one who looks away spares himself even the frown's small cost — so why does anyone trouble to enforce a rule that is everyone's business and no one's in particular? This plate examines the machinery of informal sanction, and the layered expectations — that we will punish, and punish those who fail to punish — by which a community polices its own.`,
+    openq:`if enforcing a norm costs the enforcer something and benefits all alike, what sustains the punishment on which every norm depends?`},
+  conscience:{rn:"vi",title:"The Conscience",family:"in preparation",lit:false,
+    desc:`The most efficient enforcement is the kind that needs no enforcer, and norms achieve it by migrating inward. What begins as a rule imposed from without — do not lie, do not take more than your share, honor your word — is, in the course of a life, absorbed into the self, until it is obeyed not from fear of being caught but from the wish to be, and to think oneself, a certain kind of person. This is internalization, and its instrument is conscience: the inner voice that punishes the transgression no one saw with the private lash of guilt, and rewards the unwitnessed good deed with the quiet warmth of self-respect. A norm internalized is a norm made nearly unbreakable, for the violator can no longer escape the one witness he cannot flee. This plate considers how the outer rule becomes the inner law — how custom, having shaped what we do, comes to shape what we want and who we are — and why the norm felt from within as morality is the hardest of all to recognize as convention.`,
+    openq:`when the rule has become the inner voice, and obedience the very shape of the self, how is one even to see the convention one has become?`},
+  yoke:{rn:"vii",title:"The Yoke",family:"in preparation",lit:false,
+    desc:`Norms are not neutral, and their power to seem natural is also a power to oppress. For every convention that merely coordinates, there is another that ranks, subordinates, and confines — and dresses the ranking in the garb of propriety, so that the subjection feels not like injustice but like the order of things. The norms that kept the woman from the vote and the ledger, that fixed each caste in its inherited place, that taught the servant to lower his eyes and the master to expect it: these governed not by the policeman but by everyone's settled sense of what was fitting, the dominated often enforcing on themselves the very rules that bound them. Here the naturalizing power of the norm shows its darkest face, for a domination written into custom needs no enforcement and brooks no argument — it is simply how things are. This plate examines the norm as an instrument of power, the velvet glove over the iron hand, and the long, hard labor by which what was once unquestionable propriety is at last seen as the injustice it was.`,
+    openq:`if the deepest subjections are the ones enforced by the subjected, who feel them as mere propriety, what will it take to see a yoke that everyone mistakes for the shape of the world?`},
+  cascade:{rn:"viii",title:"The Cascade",family:"in preparation",lit:false,
+    desc:`Norms can seem eternal, and then collapse in a generation. The duel, for centuries the inescapable obligation of a gentleman insulted, passed within a lifetime from sacred duty to absurd anachronism; foot-binding, practiced for a thousand years, vanished in a few decades; the cigarette, once the badge of glamour, became the mark of the fool. How does so heavy a thing fall so fast? The answer lies in the peculiar structure of the norm, which each obeys partly because the others do: when enough begin to defect, the reason to conform evaporates, and the rule that looked like bedrock proves to have been a consensus all along — and consensuses can cascade. Much of the apparent solidity, it turns out, rested on a shared misreading: each privately doubting but conforming for fear that the others believed, until some shock reveals the doubt to be general and the whole edifice gives way. This plate traces the sudden death of norms — the tipping point, the cascade, and the work of the few who defy a rule first and make it safe for the many to follow.`,
+    openq:`if a norm stands only because each expects the rest to keep it, what hidden doubts is it concealing — and what small shock might bring the whole of it down?`},
+  unwritten:{rn:"ix",title:"The Unwritten",family:"in preparation",lit:false,
+    desc:`The volume on the rule anatomized the written institutions — the law, enforced by the state; this plate sets the unwritten beside the written, and asks how the two great codes of conduct interact. Sometimes they reinforce: the law against theft rests on a near-universal norm against stealing, and would be unenforceable without it. Sometimes they substitute: where the law is silent, absent, or distrusted, norms govern alone, as among the diamond merchants and the cattle ranchers who settle by handshake and reputation what no court is ever asked to hear. And sometimes they collide: a law may command what custom forbids, or forbid what custom commands, and then the question is which will yield — whether the law will slowly reshape the norm, as it did with the seatbelt and the segregated counter, or the norm defeat the law, as it did with Prohibition. This plate examines the traffic between the written rule and the unwritten one, and the limits of each where the other will not follow.`,
+    openq:`when the written law and the unwritten norm command different things, which gives way — and can a statute remake what a people, in their settled habits, believe?`},
+  handshake:{rn:"x",title:"The Handshake",family:"in preparation",lit:false,
+    desc:`Beneath every contract lies something no contract can supply: the expectation that the other party will, by and large, deal honestly. Trust — the norm of keeping one's word even when breaking it would pay, of not cheating merely because one can — is the invisible infrastructure on which exchange runs, and its presence or absence may matter more to the wealth of a society than any law. Where trust is high, business is done on a handshake, strangers extend credit, and the vast machinery of contracts and lawyers and collateral can be kept light; where it is low, every dealing must be armored against betrayal, and the cost of that armor is a tax on all of economic life. Economists have come to call this stock of trust and reciprocity social capital, and to suspect that it explains some of what resources and formal institutions cannot. This plate examines trust as a norm and as an asset — how it is built and squandered, why some societies have so much more of it than others, and what the economy owes to the simple, fragile expectation that a promise will be kept.`,
+    openq:`if trust is the cheapest and most productive of economic arrangements, why can no one simply decree it — and how does a society come to have much of it, or little?`},
+  taboo:{rn:"xi",title:"The Taboo",family:"in preparation",lit:false,
+    desc:`Some things are not forbidden but unthinkable — set outside the realm of choice and price not by a weighing of costs but by a barrier that the weighing itself feels like a violation to cross. These are the taboos, the strongest of norms, and many of them mark the boundaries of the market itself: the sale of children, of votes, of verdicts, of persons, of organs, of intimacy — transactions that may be perfectly feasible, and even by some narrow logic efficient, yet strike almost everyone as repugnant, as things that simply must not be bought and sold. The taboo is the norm at its most absolute, admitting no exchange rate; and the line it draws around the market — between what may be priced and what may not — is among the most consequential a society draws, contested at its edges and shifting over time, as the once-unsellable becomes merchandise and the once-marketable becomes forbidden. This plate examines the things money may not buy, the repugnance that fences them off, and what the placing of that fence reveals about the limits a society sets to the logic of exchange.`,
+    openq:`if the line between what may be sold and what may not is drawn by repugnance rather than reason, what governs where it falls — and what is lost, or guarded, when it moves?`},
+  compass:{rn:"xii",title:"The Compass",family:"in preparation",lit:false,
+    desc:`The volume ends at the abyss its own argument opens. If a norm is a convention, one equilibrium among many, kept because it is kept and mistaken for a moral fact — then what becomes of morality itself? Is the conviction that cruelty is wrong, that promises bind, that persons deserve respect, merely the most deeply entrenched of our conventions, no truer than driving on the right, and binding only so long as we happen to keep it? The specter is relativism: the fear that to see through our norms is to see that there is nothing behind them, no standpoint outside custom from which any way of life could be judged better than another. And yet we do judge — we hold that the norms which bound the slave and silenced the woman were not merely different but wrong, that their overthrow was not mere change but progress — and that judgment seems to point beyond convention to something firmer. This last plate does not slay the specter; it marks it. For having shown that norms are made, the volume must ask whether anything is given — whether the compass by which we would correct our customs has a true north, or only the heading that custom has happened to light upon.`,
+    openq:`if every ought we know is a convention, is morality only the firmest of our customs — or is there, somewhere beyond what is merely done, a standard by which the doing itself can be judged?`}
+};
+
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+function render(id){
+  var tile=document.querySelector('.el[data-id="'+id+'"]');
+  var d=PLATES[id]; if(!d||!tile) return;
+  var h='';
+  h+='<div class="d-head">';
+  h+='<div class="d-sym'+(d.lit?' lit':'')+'">'+esc(d.rn)+'</div>';
+  h+='<div class="d-titles">';
+  h+='<div class="d-family">The Norm &middot; Plate '+esc(d.rn)+' &middot; '+esc(d.family)+'</div>';
+  h+='<h2 class="d-name">'+esc(d.title)+'</h2>';
+  h+='<div class="d-status'+(d.lit?' print':'')+'">'+esc(d.family)+'</div>';
+  h+='</div></div>';
+  h+='<p class="d-desc">'+esc(d.desc)+'</p>';
+  if(d.lit && d.excerpt){
+    h+='<div class="d-excerpt"><span class="lead">From the opening</span><p>'+d.excerpt+'</p></div>';
+  }
+  if(d.url){h+='<p class="d-readplate"><a href="'+d.url+'">Read the plate<span class="arr" aria-hidden="true">&#8594;</span></a></p>';}
+  if(!d.lit && d.openq){
+    h+='<p class="d-openq"><span class="lead">This plate will ask</span><q>'+esc(d.openq)+'</q></p>';
+  }
+  document.getElementById('detail').innerHTML=h;
+  var prev=document.querySelector('.el.sel'); if(prev) prev.classList.remove('sel');
+  tile.classList.add('sel');
+}
+
+(function(){
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.el').forEach(function(b){
+    b.addEventListener('click',function(){
+      render(b.dataset.id);
+      document.getElementById('detail').scrollIntoView({behavior:reduce?'auto':'smooth',block:'nearest'});
+    });
+  });
+  render('convention');
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-standoff.html">← The Standoff</a><a rel="next" href="the-convention.html">The Convention →</a></nav>
+</body>
+</html>

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Stock — Numéraire, Volume IX</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem; --measure:40rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.9rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(3rem,8vh,6rem) 0 clamp(1.6rem,4vh,2.6rem);text-align:center;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;text-decoration:none;}
+  .imprint:hover{color:var(--soft);}
+  .vol-dateline{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+
+  .vol-sym{width:114px;height:114px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;align-items:center;justify-content:center;
+    font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 500;font-size:3.1rem;line-height:1;letter-spacing:-.01em;}
+  .vol-sym.lit{background:var(--ink);color:var(--paper);}
+  .vol-elnum{font-family:"Fraunces",serif;font-size:.74rem;color:var(--faintest);letter-spacing:.18em;text-transform:uppercase;margin-top:1rem;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.3rem,6.5vw,4.6rem);line-height:1.02;letter-spacing:-.025em;margin:.7rem 0 0;text-wrap:balance;}
+  .vol-status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .vol-status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:44rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .vol-q{max-width:46rem;margin:clamp(2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .vol-q .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.7rem;}
+  .vol-q q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.3rem,2.4vw,1.72rem);line-height:1.32;color:var(--ink);quotes:none;text-wrap:balance;}
+
+  .front{margin:clamp(3rem,7vh,5rem) auto 0;max-width:var(--measure);}
+  .front-eyebrow{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);text-align:center;
+    display:flex;align-items:center;gap:.9rem;justify-content:center;margin:0 0 2.1rem;}
+  .front-eyebrow::before,.front-eyebrow::after{content:"";height:1px;width:2.4rem;background:var(--hair);}
+  .front p{font-size:1.07rem;line-height:1.76;color:var(--ink);margin:0 0 1.35rem;text-wrap:pretty;}
+  .front p:last-child{margin-bottom:0;}
+  .front em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.74;padding:.1em .12em 0 0;color:var(--ink);}
+  .front-orn{display:flex;justify-content:center;margin:2rem 0;}
+  .front-orn svg{width:96px;height:12px;overflow:visible;}
+  .front-orn line{stroke:var(--num);stroke-width:1;} .front-orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  main{padding:clamp(3rem,7vh,5rem) 0 0;}
+  .plates-head{display:flex;align-items:baseline;gap:.9rem;margin:0 0 1.6rem;}
+  .plates-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-size:.86rem;color:var(--faintest);letter-spacing:.04em;flex:0 0 auto;}
+  .plates-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);flex:0 0 auto;}
+  .plates-rule{flex:1;height:1px;background:var(--hair);position:relative;top:-2px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:13px;}
+
+  .el{appearance:none;-webkit-appearance:none;background:var(--paper);border:1px solid var(--hair);border-radius:2px;
+    padding:14px 15px 16px;text-align:left;cursor:pointer;position:relative;min-height:152px;
+    display:flex;flex-direction:column;color:inherit;font-family:inherit;
+    transition:border-color .22s ease,background .22s ease,transform .22s ease,box-shadow .22s ease;}
+  .el:hover{border-color:var(--faintest);transform:translateY(-2px);}
+  .el-rn{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-size:.78rem;color:var(--faintest);letter-spacing:.18em;text-transform:uppercase;}
+  .pl-hero{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 500;font-size:1.34rem;line-height:1.06;margin-top:.5rem;letter-spacing:-.012em;}
+  .el-gloss{font-size:.79rem;color:var(--faint);line-height:1.36;margin-top:.5rem;font-style:italic;}
+  .pl-flag{margin-top:auto;padding-top:.7rem;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--faintest);}
+  .el.lit{background:var(--ink);border-color:var(--ink);}
+  .el.lit .pl-hero{color:var(--paper);}
+  .el.lit .el-rn{color:rgba(240,235,225,.5);}
+  .el.lit .el-gloss{color:rgba(240,235,225,.62);}
+  .el.lit .pl-flag{color:rgba(240,235,225,.7);}
+  .el.sel{box-shadow:inset 0 0 0 1.5px var(--ink);border-color:var(--ink);}
+  .el.lit.sel{box-shadow:inset 0 0 0 1.5px var(--paper);}
+
+  .detail{margin:clamp(2.4rem,5vh,3.6rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);scroll-margin-top:1.4rem;}
+  .d-head{display:flex;gap:1.3rem;align-items:flex-start;}
+  .d-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 500;font-size:1.5rem;line-height:1;
+    color:var(--ink);flex:0 0 auto;border:1px solid var(--hair);border-radius:2px;letter-spacing:.04em;
+    width:86px;height:86px;display:flex;align-items:center;justify-content:center;text-transform:uppercase;}
+  .d-sym.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .d-titles{min-width:0;}
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);}
+  .d-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.7rem,3.6vw,2.5rem);margin:.22rem 0 .35rem;line-height:1.04;letter-spacing:-.016em;}
+  .d-status{font-size:.84rem;color:var(--faint);font-style:italic;}
+  .d-status.print{color:var(--soft);font-style:normal;}
+  .d-status.print::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .d-desc{font-size:1.05rem;line-height:1.72;color:var(--ink);max-width:42rem;margin:1.3rem 0 0;text-wrap:pretty;}
+
+  .d-openq{margin:1.6rem 0 0;max-width:40rem;}
+  .d-openq .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.5rem;}
+  .d-openq q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);quotes:none;}
+
+  .d-excerpt{margin:1.8rem 0 0;max-width:42rem;border-left:1px solid var(--hair);padding:.2rem 0 .2rem 1.5rem;}
+  .d-excerpt .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.8rem;}
+  .d-excerpt p{font-size:1.04rem;line-height:1.74;color:var(--ink);margin:0;text-wrap:pretty;}
+  .d-excerpt .x-cap{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 500;font-size:1.15rem;}
+  .d-readplate{margin:1.6rem 0 0;}
+  .d-readplate a{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:.94rem;
+    letter-spacing:.01em;text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:2px;transition:border-color .2s ease,color .2s ease;}
+  .d-readplate a:hover{color:var(--soft);border-color:var(--soft);}
+  .d-readplate .arr{margin-left:.4rem;}
+
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;text-decoration:none;}
+  .f-mark:hover{color:var(--soft);}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;}
+    .el{min-height:138px;padding:12px 12px 14px;}
+    .pl-hero{font-size:1.18rem;}
+    .el-gloss{font-size:.74rem;}
+    .vol-sym{width:92px;height:92px;font-size:2.5rem;}
+    .d-head{gap:1rem;}
+    .d-sym{width:64px;height:64px;font-size:1.25rem;}
+    .front p{font-size:1.04rem;}
+    .dropcap{font-size:3rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="rise d1">
+      <a class="imprint" href="numeraire-atlas.html">Numéraire</a>
+      <div class="vol-dateline">The Ninth Volume &middot; The Quantities</div>
+    </div>
+    <div class="vol-sym lit rise d2" aria-hidden="true">Sk</div>
+    <div class="vol-elnum rise d2">Element 09 &middot; Group II</div>
+    <h1 class="rise d3">The Stock</h1>
+    <div class="vol-status rise d3">in print &middot; № IX &middot; 2 of 12 plates</div>
+    <p class="standfirst rise d4">A fortune and an income are not the same kind of thing, and much confused argument about who has what begins by forgetting it. This volume is about the stock — wealth held rather than earned: the distinction between a stock and a flow, the capitalization that binds them, the great fortune that ceases to reward work and becomes a position, and the contest, beneath the calm figure of a net worth, over who holds a claim on what others produce.</p>
+    <div class="vol-q rise d5">
+      <span class="lead">The question of the volume</span>
+      <q>a great fortune wears the look of the stored reward of work, saved and earned and deserved — but past a certain magnitude, is it more than a standing claim on the labor of others, a position that the language of earning merely dignifies?</q>
+    </div>
+  </header>
+
+  <section class="front" aria-label="The argument of the volume">
+    <div class="front-eyebrow">The argument</div>
+
+    <p><span class="dropcap">T</span>here is a difference between what a person earns and what a person owns, and almost every confused argument about money loses sight of it. What one earns is a flow — a stream arriving over time, so much a week or a year — the wage of labor, the yield of property. What one owns is a stock — the whole accumulated mass of one's possessions at a single moment, that simply stands there, neither arriving nor departing but held. Irving Fisher, who did more than anyone to make the distinction exact, likened the two to the water in a reservoir and the streams that feed and drain it: the stock is the level at an instant, the flow the movement across an interval, the one measured in dollars and the other in dollars per year. They differ in kind, as a lake differs from a river, and cannot be directly compared. This volume is about the stock — about wealth as a thing held rather than a thing earned — and about how much follows, in economics and politics alike, from keeping the difference clear, or letting it blur.</p>
+
+    <p>The two are different, but not unrelated, for they are bound together by the operation that converts each into the other. A flow of income, capitalized — divided by the rate of return that prevailing conditions allow — yields the stock of wealth that would generate it: an asset paying a hundred a year, where capital earns five percent, is worth two thousand — the price at which its income changes hands. Conversely a stock, multiplied by that rate, yields its flow. This is how fortune and income shade into each other, and a thing owned becomes a source of things earned. But the conversion carries a quiet lesson the rest of the volume will draw out: the value of the stock is not a primitive fact but a derived one, the capitalized worth of an expected flow, depending at every point on the rate of return — so that the size of a fortune moves when the rate moves, though not a brick of it has changed. Wealth, measured in money, is the shadow that a stream of future income casts in the present.</p>
+
+    <p>With the distinction in hand, an old and consequential asymmetry appears: the difference between living by what one earns and by what one owns. The worker's income is a flow with no stock behind it — or only the small stock of his savings — and it ceases when he does. The owner's income is the flow his stock throws off, and continues whether he works or not, for it is the property, not the person, that earns it. Between these two ways of getting a living lies much of the moral weight wealth has always carried. The first is plainly tied to effort and desert; the wage is the price of labor, and stops with it. The second is tied to effort only at its origin, if at all, and not at all in its continuance: the rent of land, the interest on a bond, the dividend on a share accrue to their owner while he sleeps, and accrued, in the older world of inherited estates, before he was born. The stock, once assembled, earns on its own account.</p>
+
+    <p>And it is here that the stock reveals the character this volume means to examine. A modest stock of wealth is transparently the stored residue of a flow: the savings of a working life, plainly earned, set by against the future. But a great stock is a different creature. It is too large to have been saved from any plausible stream of earnings, and is sustained and swelled not by its owner's exertions but by the returns it commands and the inheritances that pass it on; it has become, in a word, a position — a standing claim on the income that the rest of society produces, exercised through ownership and maintained without work. The same word, wealth, covers both the householder's nest egg and the dynastic fortune that is a power in the land, and the failure to distinguish them — treating all wealth as the first kind, the simple reward of thrift — is among the most useful confusions in political economy. Both, moreover, share a deeper feature, which is the true subject of the volume.</p>
+
+    <div class="front-orn" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>For the income that a great fortune yields wears the same disguise as every other return in this work. A price is a verdict on a hidden contest, mistaken for a fact of nature — and the return to wealth, the flow that the stock throws off, is a verdict of just this kind. It presents itself as the natural reward of capital, the yield saved-up resources earn by their productivity, as deserved and as given as the wage labor draws. But the return to a great fortune is, in the main, not the wage of any present labor and not, on inspection, the reward of any past abstinence either, since the fortune was rarely saved into being; it is the income of a position, the share of the social product that ownership commands, its rate set not by nature but by the long contest over how that product is divided between those who work and those who own. To read the rentier's income as the natural fruit of his capital is to mistake the spoils of a distributional contest for a law of the economic world.</p>
+
+    <p>And the position, once seen for what it is, behaves quite differently from a reward. A reward for work is bounded by the work; a position compounds. A price is a verdict on a hidden contest, mistaken for a fact of nature; and the contest the stock records is one the stock itself tends to win more decisively over time, for where the return on wealth exceeds the growth of the economy — as Thomas Piketty has argued it usually has — fortunes gain on earned incomes, the past gains on the present, and wealth grows more concentrated than the flow from which the older theory imagined it to spring. Great wealth is, moreover, never merely a claim on goods: it is security where others have none, freedom where others are bound, influence in the councils where the rules are written — a standing in the order of things the bare figure of a net worth does not begin to convey. The stock that looks like stored-up earning is, at the top, a structure of power, transmitted by inheritance and enlarged by return, whose connection to the labor of its holder may be remote, ancient, or none.</p>
+
+    <p>The stock earns its place among the quantities as the one whose confusion with a flow does the most public mischief. The arguments that fill the newspapers — that the rich already pay most of the income tax, that a billionaire "made" so many dollars in a year when his shares rose — turn, again and again, on treating a stock as a flow or a flow as a stock, and the muddle is rarely innocent, for each confusion tends to serve a side. The volume on the surplus has already traced the residual that ownership claims over the wages of labor; the volume on the margin, the productivity theory by which the claim is dignified as a reward; and the stock is where the residual, accumulated and capitalized, hardens into a permanent position. To insist on the difference between stock and flow is not pedantry but the precondition of thinking clearly about who, in a society, has what — and why. None of which denies that much wealth is honestly earned and prudently saved, or that the security a stock affords is a good worth spreading; the point is only that the return to the stock is no fact of nature, and the stock no simple ledger of desert.</p>
+
+    <p>The twelve plates follow wealth from the accounting that defines it to the power that it becomes. They set out the reservoir that distinguishes the stock from the flow and the claim that a great stock becomes; the multiple by which a flow is capitalized into a fortune and the ledger on which a fortune is reckoned; the windfall of the capital gain and the patrimony that passes the stock undiminished to the next generation; the levy by which a society might tax the stock rather than the flow and the coupon by which the owner lives on the flow his stock throws off; the concentration that gathers wealth into few hands and the buffer it provides against a hostile world; the saving that is supposed to build the stock, and seldom does at the heights where it matters most; and, at the last, the estate — whether a great fortune is the reward of contribution or a position in society, and what the accumulation of such positions does to a commonwealth of equals. The stock looks like earning, stored. It is, at the top, a place in the world. The argument remains open.</p>
+  </section>
+
+  <main>
+    <div class="plates-head">
+      <span class="plates-num fr">№ IX</span>
+      <span class="plates-name">The twelve plates</span>
+      <span class="plates-rule"></span>
+    </div>
+
+    <div class="grid" id="grid">
+      <button class="el lit" data-id="reservoir" aria-label="Plate i — The Reservoir — in print"><span class="el-rn">Plate i</span><span class="pl-hero">The Reservoir</span><span class="el-gloss">the stock and the flow: wealth is what one owns at a moment, income what one earns over time, and the two cannot be compared (Fisher)</span><span class="pl-flag">in print</span></button>
+      <button class="el lit" data-id="claim" aria-label="Plate ii — The Claim — in print"><span class="el-rn">Plate ii</span><span class="pl-hero">The Claim</span><span class="el-gloss">when a fortune stops rewarding work and becomes a claim: the great stock as a standing claim on what others produce</span><span class="pl-flag">in print</span></button>
+      <button class="el" data-id="multiple" aria-label="Plate iii — The Multiple"><span class="el-rn">Plate iii</span><span class="pl-hero">The Multiple</span><span class="el-gloss">capitalization: a stock is the discounted value of a flow, a fortune some multiple of its income — so its size depends on the rate of return</span></button>
+      <button class="el" data-id="ledger" aria-label="Plate iv — The Ledger"><span class="el-rn">Plate iv</span><span class="pl-hero">The Ledger</span><span class="el-gloss">the measurement of wealth: net worth as assets minus liabilities, and the trouble with valuing what is rarely sold</span></button>
+      <button class="el" data-id="windfall" aria-label="Plate v — The Windfall"><span class="el-rn">Plate v</span><span class="pl-hero">The Windfall</span><span class="el-gloss">the capital gain: wealth that grows by revaluation rather than earning, and the puzzle of taxing what was never income</span></button>
+      <button class="el" data-id="patrimony" aria-label="Plate vi — The Patrimony"><span class="el-rn">Plate vi</span><span class="pl-hero">The Patrimony</span><span class="el-gloss">wealth transmitted, not earned: the inherited fortune, r greater than g, and the past's growing claim on the present (Piketty)</span></button>
+      <button class="el" data-id="levy" aria-label="Plate vii — The Levy"><span class="el-rn">Plate vii</span><span class="pl-hero">The Levy</span><span class="el-gloss">taxing the stock instead of the flow: the wealth tax against the income tax, and why the stock is so much harder to reach</span></button>
+      <button class="el" data-id="coupon" aria-label="Plate viii — The Coupon"><span class="el-rn">Plate viii</span><span class="pl-hero">The Coupon</span><span class="el-gloss">the income of ownership: the rentier who lives by the flow his stock throws off, and Keynes's hope for his passing</span></button>
+      <button class="el" data-id="concentration" aria-label="Plate ix — The Concentration"><span class="el-rn">Plate ix</span><span class="pl-hero">The Concentration</span><span class="el-gloss">why wealth gathers in few hands: the stock far more concentrated than the flow, and the forces that compound the gathering</span></button>
+      <button class="el" data-id="buffer" aria-label="Plate x — The Buffer"><span class="el-rn">Plate x</span><span class="pl-hero">The Buffer</span><span class="el-gloss">what wealth does beyond income: security, freedom, resilience — and why a gap in the stock is graver than a gap in the flow</span></button>
+      <button class="el" data-id="saving" aria-label="Plate xi — The Saving"><span class="el-rn">Plate xi</span><span class="pl-hero">The Saving</span><span class="el-gloss">the stock is supposed to be built by saving — but at the top, gains and inheritance build it, and saving explains little</span></button>
+      <button class="el" data-id="estate" aria-label="Plate xii — The Estate"><span class="el-rn">Plate xii</span><span class="pl-hero">The Estate</span><span class="el-gloss">is a great fortune the reward of contribution or a position in society — and what does its accumulation do to a commonwealth of equals?</span></button>
+    </div>
+  </main>
+
+  <section class="detail" id="detail" aria-live="polite"></section>
+
+  <footer>
+    <div class="f-bar">
+      <a class="f-mark" href="numeraire-atlas.html">Numéraire</a>
+      <span class="f-ref">Volume IX &middot; The Quantities</span>
+    </div>
+    <p class="colophon">Volume IX, <em>The Stock</em>, opens with two plates in print — <em>The Reservoir</em> and <em>The Claim</em>, the distinction between a stock and a flow and the point at which a fortune ceases to reward work and becomes a position. The ninth element of the table, and the seventeenth of its volumes to appear; it joins <a href="the-margin.html">The Margin</a> and <a href="the-surplus.html">The Surplus</a> among the quantities — the marginal increment that guides a decision, the residual surplus that remains over cost, and now the accumulated stock that is held rather than earned, the most treacherous of the great quantities, for it alone has no natural unit and can be counted only in value. Where those anatomized the increment at the edge of a choice and the surplus that ownership claims, this one anatomizes the stock into which that surplus, accumulated and capitalized, hardens — and finds the return to a great fortune to be less the reward of thrift than the income of a position. Return to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+
+<script>
+const PLATES = {
+  reservoir:{rn:"i",title:"The Reservoir",family:"in print",lit:true,url:"the-reservoir.html",
+    desc:`The volume's foundation is the distinction between a stock and a flow — between what a person owns at a given instant and what comes to him across a stretch of time. Wealth is the first: the whole standing mass of one's possessions, measured in dollars. Income is the second: the stream that arrives over a year, measured in dollars per year. Irving Fisher, who made the distinction precise in his work on capital and income, compared them to the water in a reservoir and the streams that feed and drain it — the level at an instant against the movement across an interval — and warned that the two can no more be added or compared directly than a lake can be added to a river. This plate sets out the distinction and the cost of forgetting it: how the treatment of a stock as a flow, or a flow as a stock, underlies a remarkable share of the confused public argument about wealth, poverty, taxation, and desert.`,
+    excerpt:`<span class="x-cap">A</span> man's wealth and his income are not the same kind of thing, and most confusion about who has what begins by forgetting it. Wealth is a stock: the whole of what a person owns at a given moment, a quantity that simply is, like the water standing in a reservoir. Income is a flow: what comes to him over a stretch of time, like the stream that runs into the reservoir or out of it. The one is measured in dollars, the other in dollars per year, and they can no more be added or compared directly than a lake can be added to a river. Yet they are confused constantly — the fortune treated as though it were an income, the income mistaken for the whole of a position — and from the confusion springs a great deal of muddled argument about wealth and poverty, fairness and desert.`},
+  claim:{rn:"ii",title:"The Claim",family:"in print",lit:true,url:"the-claim.html",
+    desc:`A small fortune is the stored reward of a working life; a great one is something else, and this plate is about the difference. The savings a person accumulates from his earnings are a stock built visibly out of a flow, plainly the fruit of the labor that earned them. But past a certain magnitude a fortune is too large to have been saved from any wage, and it sustains and enlarges itself not through its owner's exertions but through the returns it commands and the inheritances that carry it forward; it has become a standing claim — upon the income that the rest of society produces, exercised through ownership, maintained without effort, and handed on at death. The plate asks the volume's central question: where, and how, the reward of work becomes a permanent claim upon the work of others — at what point the wage of labor, stored up, turns into a position of power, and a sum of money becomes a stake in the social product itself.`,
+    excerpt:`<span class="x-cap">P</span>ast a certain magnitude, a fortune ceases to be the stored reward of work and becomes a standing claim. The savings a person lays by from a lifetime's earning are a stock built visibly out of a flow — wages not spent, accumulated against age and accident, plainly the fruit of the labor that earned them. But a great fortune is no longer chiefly the residue of its owner's exertions. It is a claim: upon the income that the rest of society produces, drawn as rent and interest and profit, maintained without effort, enlarged by the mere passage of time, and handed on at death to heirs who did nothing to make it. The question this plate asks is where, and how, the one becomes the other — at what point a sum of money stops being the wage of work stored up, and starts being a permanent claim upon the labor of others.`},
+  multiple:{rn:"iii",title:"The Multiple",family:"in preparation",lit:false,
+    desc:`Stock and flow are different in kind, but a single operation binds them: capitalization, by which a flow of income is converted into the stock of wealth that would yield it, and a stock into the flow it throws off. An asset paying a fixed income each year is worth, as a stock, that income divided by the prevailing rate of return — a multiple of its earnings — which is the price at which the right to the income changes hands; and a fortune, conversely, yields a flow equal to itself times that rate. This plate sets out the bridge between the two: the arithmetic of present value, the earnings multiple by which a stream is valued as a stock, and the unsettling consequence that the size of a fortune is not a primitive fact but a derived one — the capitalized worth of an expected flow, which rises and falls with the rate of return though the underlying assets do not change. Wealth in money is the present shadow of a future stream, and the shadow lengthens and shortens as the rate moves.`,
+    openq:`if a fortune is only the capitalized value of a future flow, dependent on the rate of return, in what sense is its size a fact about the world at all?`},
+  ledger:{rn:"iv",title:"The Ledger",family:"in preparation",lit:false,
+    desc:`To speak of how much wealth a person has is to invoke a balance sheet: the sum of what he owns — house, shares, business, savings — less the sum of what he owes, the remainder being his net worth. The accounting is old and, in principle, simple, but it conceals real difficulties. The value of an asset that is not being sold can only be estimated, and the estimate may be wide of any price the asset would actually fetch; illiquid holdings, private businesses, and unique properties resist valuation; and the figure for a great fortune held mostly in the shares of a single company can swing by billions on the market's daily mood, recording changes in wealth that correspond to no event in the world. This plate examines the reckoning of the stock: the logic of the balance sheet, what is counted as wealth and what is left out, and the gap between the tidy number of a net worth and the messy, contingent, often unrealizable values it claims to sum.`,
+    openq:`if the worth of a thing unsold is only an estimate, and a fortune's value can swing by billions on a day's trading, what exactly does a figure for someone's wealth measure?`},
+  windfall:{rn:"v",title:"The Windfall",family:"in preparation",lit:false,
+    desc:`Much of the growth of great fortunes comes not from income earned and saved but from capital gains — the rise in the market value of assets already held. A share bought for a dollar and worth a hundred has made its owner richer by ninety-nine, though he has done nothing, sold nothing, and received no income; the gain is a revaluation of his stock, not an addition to his flow. This plate examines the capital gain as a distinct route to wealth: its character as a change in the price of what is owned rather than a payment for anything done; the difference between gains realized in a sale and the far larger sums of unrealized gains that accumulate untouched and, in many systems, untaxed; and the deep difficulty that gains pose for a tax code built to tax income, since a gain is wealth that was never income, accruing silently to those who already own, and forming one of the principal engines by which the stock at the top enlarges itself without passing through the flow at all.`,
+    openq:`if a fortune can swell by the mere revaluation of what it already holds, never appearing as income at all, how is such a gain to be reckoned, or taxed, or even called earned?`},
+  patrimony:{rn:"vi",title:"The Patrimony",family:"in preparation",lit:false,
+    desc:`The purest case of wealth as a position rather than a reward is the fortune that is inherited — received, not made, and conferring on its heir a standing he did nothing to earn. Inheritance is the mechanism by which a stock outlives the person who assembled it and becomes the property of a lineage, and it has been, across most of history, the principal way that great wealth is acquired. This plate examines the transmitted stock: the patrimonial society in which one's position is fixed at birth by the wealth one stands to inherit; the analysis by which Thomas Piketty argued that whenever the return on capital exceeds the growth of the economy, inherited wealth tends to dominate wealth that is earned, and the past to tighten its grip on the present; and the peculiar challenge that inheritance poses to any society professing to reward merit and effort, since the largest single determinant of where a person ends in the distribution of wealth may be the accident of who their parents were.`,
+    openq:`if the surest route to a great fortune is to inherit one, what becomes of the claim that wealth is the reward of effort — and what may a society do about the dead hand of the past?`},
+  levy:{rn:"vii",title:"The Levy",family:"in preparation",lit:false,
+    desc:`Almost all modern taxation falls on flows — on income as it is earned, on transactions as they occur — and very little on the standing stock of wealth itself. This plate examines the difference and the long argument over it: the case for taxing the stock, pressed by those who note that great fortunes can generate vast security and power while showing little taxable income, the capital gains that swell them going unrealized for decades; and the formidable difficulties of doing so, from the valuation of assets that are not sold, to the mobility of wealth that can flee a jurisdiction, to the liquidity problem of a tax due in cash on holdings that yield none. The wealth tax, the estate tax, the property tax, and the taxation of gains are the instruments by which societies have tried, with uneven success, to reach the stock rather than merely the flow; and the persistent political truth is that the flow is easy to tax and the stock is hard, so that those whose wealth is mostly stock are, by the very structure of the system, lightly touched.`,
+    openq:`if a fortune can throw off security and power while showing little income to tax, should a society tax the stock itself — and can it, when the stock will not hold still to be valued or reached?`},
+  coupon:{rn:"viii",title:"The Coupon",family:"in preparation",lit:false,
+    desc:`The figure who lives entirely on the flow that his stock provides — drawing rent, interest, and dividends without labor — has been an object of economic attention, and disapproval, since the classical economists first distinguished the income of property from the wage of work. This plate examines the income of ownership: the way a sufficient stock frees its holder from the necessity of earning, converting him from a participant in production into a claimant upon it; the classical and Ricardian suspicion of the landlord whose rent rose with no effort of his own; and John Maynard Keynes's striking forecast, and hope, of a gradual euthanasia of the rentier, as the accumulation of capital drove its return toward zero and the scarcity-value of mere ownership withered away — a prophecy that the subsequent persistence, and resurgence, of high returns to wealth has conspicuously failed to fulfill. The coupon clipped from a bond is the emblem of the volume's thesis: income detached from work, the pure return of a position.`,
+    openq:`if a great enough stock lets its owner live without working, drawing the flow that others produce, is that income earned in any sense — and was Keynes right to expect the rentier to fade?`},
+  concentration:{rn:"ix",title:"The Concentration",family:"in preparation",lit:false,
+    desc:`Wealth is everywhere far more concentrated than income: in most societies the richest tenth own a majority of the wealth while earning a much smaller share of the income, and the very top holds a portion of the stock that dwarfs its portion of the flow. This plate examines why the stock concentrates more than the flow, and tends to concentrate further over time. The reasons compound one another: high incomes permit high saving, which builds wealth; wealth yields returns that are themselves reinvested, so that fortunes grow geometrically; the largest fortunes often earn the highest returns, having access to opportunities the small saver does not; capital gains and inheritance, the great engines of accumulation, bypass the flow of earnings entirely; and the whole process runs faster than the growth of the wages against which it is measured. The plate sets out the dynamics of concentration — the mathematics by which a stock, left to compound, gathers into ever fewer hands — and the question of whether such gathering is a passing phase or the natural tendency of wealth left to itself.`,
+    openq:`if wealth concentrates more than income, and the forces that gather it compound over time, is the spreading of fortunes the exception and their gathering the rule?`},
+  buffer:{rn:"x",title:"The Buffer",family:"in preparation",lit:false,
+    desc:`Wealth matters not only for the income it yields but for what its mere possession provides, and this plate examines the stock as a buffer — a reserve that stands between its holder and the hazards of life. A household with wealth can absorb a lost job, a medical emergency, a failed venture, a year of study, or a risky move, where a household with none, however good its current income, cannot; the stock confers security, the freedom to take chances, the capacity to wait, and a kind of standing that no flow alone supplies. From this follows a point often missed in debates that fixate on income: that a gap in wealth is graver than a gap in earnings, since it is a gap in security and possibility as much as in consumption — which is why disparities in accumulated wealth, including those inherited from a history of exclusion from its accumulation, can persist and matter long after disparities in income have narrowed. The plate sets out the functions of the stock beyond the flow it earns: wealth as cushion, as freedom, and as the quiet foundation of a life that can plan.`,
+    openq:`if wealth buys not only goods but security, freedom, and the power to wait, is a gap in what people own a deeper inequality than a gap in what they earn?`},
+  saving:{rn:"xi",title:"The Saving",family:"in preparation",lit:false,
+    desc:`The orthodox account of how wealth arises is simple: a person saves, setting aside part of his income flow rather than consuming it, and the accumulated savings become his stock. This plate examines that account and its limits. At modest scales it largely holds — ordinary wealth really is, for the most part, savings accumulated over a working life, and the rate at which a household saves does much to determine the modest fortune it ends with. But at the heights where wealth becomes a position, the account breaks down, for the greatest fortunes are not, and could not have been, saved out of any earnings; they are built by capital gains on assets already held and by inheritance from those who held them before, routes that bypass the flow of income and the act of thrift entirely. The plate sets out the saving that builds the stock and the reasons it explains so much less than the orthodox story supposes — chiefly that, past a point, wealth begets wealth without the owner saving anything at all, and the virtue of thrift becomes nearly irrelevant to the size of the greatest fortunes.`,
+    openq:`if great fortunes are built not by saving from income but by gains and inheritance that bypass it, what remains of the idea that wealth is the reward of thrift?`},
+  estate:{rn:"xii",title:"The Estate",family:"in preparation",lit:false,
+    desc:`The volume ends at the question its argument has approached throughout: whether a great fortune is to be understood as the stored reward of contribution, or as an estate — a standing position in society, a rank, a stake in the order of things, transmitted across generations and exercised as power. The case for the first reading is real and must be granted: wealth often does begin in genuine creation, in enterprise and risk and the meeting of others' wants, and the security a stock affords is a good that a decent society would extend rather than destroy. But the case for the second has been the burden of the volume: that great wealth is mostly not saved into being but accumulated by return and inheritance, that its income is the flow of a position rather than the wage of work, that it concentrates and compounds and confers a security and an influence the bare ledger does not show, and that its connection to the desert of its holder is, at the top, frequently remote or none. This final plate asks what a society of nominal equals is to make of the great estate in its midst — whether the concentration of wealth as a position of power is compatible with the equality a republic professes, and whether the stock, in the end, is a reward to be honored or a power to be checked.`,
+    openq:`when a great fortune is less the reward of work than a transmitted position of power, what is a commonwealth of equals to make of it — to honor it as earned, or to check it as a rank?`}
+};
+
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+function render(id){
+  var tile=document.querySelector('.el[data-id="'+id+'"]');
+  var d=PLATES[id]; if(!d||!tile) return;
+  var h='';
+  h+='<div class="d-head">';
+  h+='<div class="d-sym'+(d.lit?' lit':'')+'">'+esc(d.rn)+'</div>';
+  h+='<div class="d-titles">';
+  h+='<div class="d-family">The Stock &middot; Plate '+esc(d.rn)+' &middot; '+esc(d.family)+'</div>';
+  h+='<h2 class="d-name">'+esc(d.title)+'</h2>';
+  h+='<div class="d-status'+(d.lit?' print':'')+'">'+esc(d.family)+'</div>';
+  h+='</div></div>';
+  h+='<p class="d-desc">'+esc(d.desc)+'</p>';
+  if(d.lit && d.excerpt){
+    h+='<div class="d-excerpt"><span class="lead">From the opening</span><p>'+d.excerpt+'</p></div>';
+  }
+  if(d.url){h+='<p class="d-readplate"><a href="'+d.url+'">Read the plate<span class="arr" aria-hidden="true">&#8594;</span></a></p>';}
+  if(!d.lit && d.openq){
+    h+='<p class="d-openq"><span class="lead">This plate will ask</span><q>'+esc(d.openq)+'</q></p>';
+  }
+  document.getElementById('detail').innerHTML=h;
+  var prev=document.querySelector('.el.sel'); if(prev) prev.classList.remove('sel');
+  tile.classList.add('sel');
+}
+
+(function(){
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.el').forEach(function(b){
+    b.addEventListener('click',function(){
+      render(b.dataset.id);
+      document.getElementById('detail').scrollIntoView({behavior:reduce?'auto':'smooth',block:'nearest'});
+    });
+  });
+  render('reservoir');
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-ghost.html">← The Ghost</a><a rel="next" href="the-reservoir.html">The Reservoir →</a></nav>
+</body>
+</html>

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Game — Numéraire, Volume XXV</title>
+<meta name="description" content="Numéraire, Volume XXV: The Game — strategy among the self-interested, the second of the behaviors. The prisoner's dilemma and the Nash equilibrium, where each player reasoning faultlessly ends worse off than cooperation would have left him (Nash); the games of pure opposition and the minimax theorem, where a rational value always exists, secured by playing unpredictably (von Neumann); the strategy of conflict, and the paradox that binding one's own hands can be a source of power (Schelling); subgame perfection and backward induction, and why a threat no one would carry out fails to bind (Selten); the evolutionarily stable strategy, equilibrium reached by survival rather than reason (Maynard Smith); and the capstone, that played again and again the dilemma yields to cooperation, held among the self-interested by no altruism or authority but by the long shadow of the future (Axelrod). The question the author set it: when each best move depends on every other, how does cooperation hold?">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- reading-progress hairline ---- */
+  .progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--ink);z-index:10000;}
+
+  /* ---- masthead ---- */
+  .masthead{padding:clamp(2.8rem,8vh,5.6rem) 0 clamp(1.6rem,4vh,2.6rem);text-align:center;}
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;}
+  .edition{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+  .edition b{font-family:"Fraunces",serif;font-weight:500;font-style:normal;color:var(--soft);letter-spacing:.04em;}
+
+  .symbox{width:84px;height:84px;border:1px solid var(--ink);border-radius:2px;background:var(--ink);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;margin:clamp(1.4rem,3.4vh,2.2rem) auto 0;}
+  .symbox .sb-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2rem;line-height:1;color:var(--paper);letter-spacing:-.01em;}
+  .symbox .sb-num{font-family:"Fraunces",serif;font-size:.66rem;color:rgba(240,235,225,.58);margin-top:.28rem;letter-spacing:.04em;}
+
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-top:1.15rem;}
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.5rem,7vw,5rem);line-height:1.0;letter-spacing:-.028em;margin:.55rem 0 0;text-wrap:balance;}
+  .subtitle{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.05rem,1.7vw,1.32rem);color:var(--faint);margin:.5rem 0 0;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.64;color:var(--soft);
+    max-width:43rem;margin:clamp(1.3rem,3vh,1.9rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+  .status{font-size:.84rem;color:var(--soft);margin:clamp(1.2rem,2.6vh,1.7rem) auto 0;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .backrow{margin-top:clamp(1.3rem,3vh,1.9rem);padding-top:1.5rem;border-top:1px solid var(--hair);max-width:50rem;margin-left:auto;margin-right:auto;}
+  .backlink{display:inline-block;font-size:.82rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .backlink:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- generic block furniture ---- */
+  main{padding:0;}
+  .eyebrow{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.2rem;}
+
+  .block-argument{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .argument{max-width:40rem;margin:0 auto;}
+  .argument p{font-size:1.08rem;line-height:1.74;color:var(--ink);margin:0 0 1.2rem;text-wrap:pretty;}
+  .argument p:last-child{margin-bottom:0;}
+  .argument .closer{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 400;font-style:italic;color:var(--soft);font-size:1.06rem;}
+
+  /* ---- table of plates ---- */
+  .block-toc{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .toc ol{list-style:none;margin:0;padding:0;max-width:44rem;}
+  .toc li{display:grid;grid-template-columns:2.5rem 1fr;column-gap:1rem;align-items:baseline;
+    padding:.85rem 0;border-top:1px solid var(--hair);}
+  .toc li:first-child{border-top:none;}
+  .t-num{font-family:"Fraunces",serif;font-size:.92rem;color:var(--faintest);text-align:right;}
+  .t-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.08rem;color:var(--ink);line-height:1.15;text-decoration:none;}
+  a.t-title{border-bottom:1px solid var(--num);padding-bottom:1px;}
+  a.t-title:hover{border-bottom-color:var(--ink);}
+  .t-gloss{grid-column:2;font-size:.85rem;color:var(--faint);font-style:italic;margin-top:.22rem;line-height:1.4;}
+  .t-q{grid-column:2;font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:.95rem;color:var(--soft);margin-top:.42rem;line-height:1.36;}
+  .t-q .lead{font-family:"Fraunces",serif;font-style:normal;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-right:.5rem;}
+  .t-tag{display:inline-block;margin-left:.6rem;font-family:"Newsreader",serif;font-size:.64rem;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--paper);background:var(--ink);border-radius:2px;padding:.12em .5em;vertical-align:.14em;}
+  .t-read{grid-column:2;margin-top:.42rem;}
+  .t-read a{font-size:.8rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .t-read a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- the plates (essays) ---- */
+  .plates-open{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.8rem,6vh,4rem);}
+  .plates-open .eyebrow{text-align:center;}
+  .plate{max-width:54rem;margin:clamp(2.8rem,6.5vh,4.4rem) auto 0;padding-top:clamp(2.2rem,4.6vh,3rem);
+    border-top:1px solid var(--hair);position:relative;scroll-margin-top:1.4rem;}
+  .plate:first-of-type{border-top:none;margin-top:clamp(1.6rem,3.5vh,2.4rem);padding-top:0;}
+  .plate-head{margin:0 0 1.7rem;}
+  .plate-kicker{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .plate-kicker .pk-tag{margin-left:.6rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .plate-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.8rem,4.2vw,2.7rem);line-height:1.03;letter-spacing:-.02em;margin:.32rem 0 .42rem;}
+  .plate-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.02rem;color:var(--faint);max-width:36rem;line-height:1.45;}
+
+  .epigraph{max-width:34rem;margin:1.4rem 0 1.9rem;padding-left:1.1rem;border-left:1px solid var(--num);}
+  .epigraph p{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:1.04rem;line-height:1.42;color:var(--soft);margin:0;}
+  .epigraph cite{display:block;font-style:normal;font-family:"Newsreader",serif;font-size:.78rem;
+    letter-spacing:.03em;color:var(--faintest);margin-top:.55rem;}
+
+  .plate-body{max-width:37rem;}
+  .plate-body p{font-size:1.05rem;line-height:1.75;color:var(--ink);margin:0 0 1.18rem;text-wrap:pretty;}
+  .plate-body p:last-child{margin-bottom:0;}
+  .plate-body em{font-style:italic;}
+  .plate-body .lead-para::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 500;
+    float:left;font-size:3.5rem;line-height:.78;padding:.08em .14em 0 0;color:var(--ink);}
+  .plate-body h4{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);margin:1.9rem 0 .9rem;}
+
+  .break{display:flex;justify-content:center;margin:1.9rem 0;}
+  .break span{font-family:"Fraunces",serif;font-size:1.05rem;letter-spacing:.4em;color:var(--faintest);padding-left:.4em;}
+
+  /* sidenotes — inline by default, true margin notes on wide screens */
+  .sn-ref{font-family:"Fraunces",serif;font-size:.64rem;vertical-align:super;line-height:0;color:var(--soft);margin-left:.06em;}
+  .sidenote{font-family:"Newsreader",serif;font-size:.82rem;line-height:1.52;color:var(--faint);
+    border-left:2px solid var(--hair);padding-left:.9rem;margin:.7rem 0 1.05rem;}
+  .sidenote .sn-num{font-family:"Fraunces",serif;color:var(--faintest);font-size:.7rem;margin-right:.38rem;}
+  .sidenote em{font-style:italic;}
+  @media (min-width:1040px){
+    .sidenote{float:right;clear:right;width:14.5rem;margin:.25rem -17.5rem 1.15rem 0;
+      border-left:none;border-top:1px solid var(--hair);padding:.42rem 0 0;}
+  }
+
+  /* ---- coda ---- */
+  .coda{max-width:40rem;margin:clamp(2.8rem,6vh,4rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);}
+  .coda p{font-size:1.06rem;line-height:1.74;color:var(--ink);margin:0 0 1.15rem;text-wrap:pretty;}
+  .coda p:last-child{margin-bottom:0;}
+  .coda .q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .f-ref a{text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .f-ref a:hover{border-bottom-color:var(--soft);}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .progress{transition:width .08s linear;}
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}.rise.d4{animation-delay:.4s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    h1{font-size:clamp(2.2rem,11vw,3rem);}
+    .symbox{width:72px;height:72px;}
+    .symbox .sb-sym{font-size:1.7rem;}
+    .plate-body .lead-para::first-letter{font-size:3rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#ne-contents">Complete contents</a><a href="../editions.html#volume-game">The Game · both editions</a><a href="../volumes/the-game.html">Collected volume</a></div></nav>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="rise d1">
+      <span class="imprint">Numéraire</span>
+      <div class="edition"><b>Volume the Twenty-fifth</b> &middot; of the table of twenty-six</div>
+    </div>
+    <div class="symbox rise d2" aria-hidden="true"><span class="sb-sym">Gm</span><span class="sb-num">25</span></div>
+    <div class="d-family rise d2">The Behaviors &middot; Group VI &middot; № 25 &middot; Gm</div>
+    <h1 class="rise d2">The Game</h1>
+    <div class="subtitle rise d3">strategy among the self-interested</div>
+    <p class="standfirst rise d3">The game is the second of the behaviors, and it concerns the most intricate of them: what happens when each person's best move depends on what everyone else does, so that no one can simply choose well in isolation. Choice studied the single mind weighing its options; the game studies minds entangled, each reasoning about the others who are reasoning about it. The volume opens with the predicament in its starkest form — the prisoner's dilemma, where two parties, each acting with flawless self-interest, reach an outcome worse for both than cooperation would have been, and where the resting point of their strategy, the Nash equilibrium, is mutual betrayal. That very equilibrium was the widening of an older and narrower one, for the games of pure opposition — where one player's gain is exactly another's loss — John von Neumann had already proved to hold a rational value, won if need be by playing unpredictably, the theorem with which the whole subject began. That dilemma poses the question the volume must answer, the question the author set it: when each best move depends on every other, how does cooperation hold among the self-interested? The plates trace the routes out. One may change the game by binding one's own hands, for the power to commit can be a source of strength (Schelling); one must then ask which threats and promises are credible, which a clear-eyed opponent should believe (Selten); one may let strategies compete not by reason but by survival, across a whole population over time (Maynard Smith). And the flagship gives the deepest answer: that when the dilemma is played not once but again and again, between parties who expect to meet in the future, cooperation can hold among the purely self-interested — sustained by no altruism and no authority, but by the long shadow that tomorrow casts back upon today (Axelrod). The game is the connective tissue of the whole table, the strategic logic that runs beneath markets and firms and contracts and the commons; and it shows that the self-interested, meeting again and again, can build out of the dilemma itself a working peace.</p>
+    <div class="status rise d3">in print &middot; № XXV &middot; 6 of 12 plates</div>
+    <div class="backrow rise d4">
+      <a class="backlink" href="numeraire-atlas-updated.html">← The complete table of volumes</a>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="block-argument">
+      <div class="argument">
+        <p class="eyebrow">The argument of the volume</p>
+        <p>Begin where the volume begins, with the predicament itself. A game, in the technical sense, is any situation in which each player's payoff depends on the choices of all the others, so that no one can choose well without reasoning about how the rest will choose; and John Nash gave such situations their organizing idea, the equilibrium — a combination of strategies from which no player can do better by deviating alone — proving that every finite game has one. This widened a result John von Neumann had reached two decades earlier for the special case of pure opposition — the zero-sum games, in which one player's gain is exactly the other's loss — where a rational value, and an optimal way of securing it, always exist; Nash's achievement was to show that an equilibrium persists even when the players' interests are not perfectly opposed. But the most consequential game, the prisoner's dilemma, delivers a hard verdict: when betrayal is each player's dominant strategy, both betray, and the unique equilibrium of their flawless self-interest is the outcome that leaves them both worse off than cooperation would have. This is the invisible hand's dark mirror, individual rationality producing collective ruin, and it recurs wherever private incentive points away from the common good — in price wars, arms races, and the tragedy of the commons. The first route out, Thomas Schelling showed, is to change the game by binding oneself: in a contest of strategy, surrendering one's options can be a source of power, for by committing irrevocably to a course of action — burning the bridge, tying the bargainer's hands — one alters what the other expects, and so what the other does. A threat or a promise works only when it is believed, and commitment is what makes it believable.</p>
+        <p>But a commitment must be credible, and Reinhard Selten asked which threats deserve belief. A Nash equilibrium, in a game played out over time, can rest on a threat so hollow that no clear-eyed opponent should fear it — the incumbent who vows a ruinous price war against any entrant, though waging it would ruin him too. Selten's subgame-perfect equilibrium strips such empty menaces away, by demanding that each player act optimally not merely at the start of the game but at every point within it, so that an equilibrium survives only if its every threat is one the player would actually choose to keep; and the method that finds it, backward induction, solves the game from its last move toward its first, each step fixed by the rational play to follow. Then John Maynard Smith, a biologist, dispensed with rational players altogether. Reinterpret a game in the terms of evolution — strategies as inherited programs, players as organisms, payoffs as reproductive fitness — and equilibrium still appears, reached not by calculation but by selection: the evolutionarily stable strategy, one that, once common, no rare mutant can invade. The hawk-dove game shows such an equilibrium to be a stable mixture of aggression and restraint, and explains why real conflict is so often ritualized rather than lethal. Equilibrium, it turns out, has two roots — reason and survival — and the deeper of them needs no mind at all.</p>
+        <p>The flagship gives the volume its answer. Robert Axelrod set the prisoner's dilemma to be played not once but again and again, between parties who expect to meet in the future, and found that this single change transforms it. When the game repeats, the present acquires a shadow, for what I do to you now will shape what you do to me later; defection's one-time gain is dwarfed by the retaliation it invites, and cooperation's small cost is repaid by the cooperation it earns. In computer tournaments Axelrod found the winning strategy to be the simplest, tit-for-tat — cooperate first, then answer like with like, and forgive — and from it drew the deep result: that cooperation among the self-interested requires neither altruism, nor a central authority, nor even rationality, but only repetition, memory, and a long enough horizon. The achievement is fragile, resting on an open horizon and modest stakes, and the folk theorem warns that repetition makes cooperation possible without making it unique; but it is real. And with it the volume reveals that the whole table has been playing games all along — the commons a many-player dilemma, oligopoly a repeated game, the relational contract a reciprocity, the central bank's credibility a subgame-perfect discipline, the wage a bargain — so that strategy is the connective tissue of economic life, and trust is self-interest that has learned to count the future.</p>
+        <p class="closer">The argument remains open. What follows is an attempt to fix its exact edges.</p>
+      </div>
+    </section>
+
+    <section class="block-toc toc">
+      <p class="eyebrow">The twelve plates of this volume</p>
+      <ol>
+        <li>
+          <span class="t-num">i</span>
+          <a class="t-title" href="numeraire-xxv-i-the-dilemma.html">The Dilemma<span class="t-tag">in print</span></a>
+          <span class="t-gloss">Nash; the prisoner's dilemma and the equilibrium of mutual betrayal, where each player, reasoning faultlessly, ends worse off than cooperation would have left him.</span>
+          <span class="t-read"><a href="numeraire-xxv-i-the-dilemma.html">Read the plate →</a></span>
+        </li>
+        <li>
+          <span class="t-num">ii</span>
+          <a class="t-title" href="numeraire-xxv-ii-the-minimax.html">The Minimax<span class="t-tag">in print</span></a>
+          <span class="t-gloss">von Neumann; the games of pure opposition, the saddle point, and the minimax theorem with which game theory was founded.</span>
+          <span class="t-read"><a href="numeraire-xxv-ii-the-minimax.html">Read the plate →</a></span>
+        </li>
+        <li>
+          <span class="t-num">iii</span>
+          <a class="t-title" href="numeraire-xxv-iii-the-commitment.html">The Commitment<span class="t-tag">in print</span></a>
+          <span class="t-gloss">Schelling; the strategy of conflict, and the paradox that binding one's own hands — burning the bridge, throwing away the choice — can be a source of power.</span>
+          <span class="t-read"><a href="numeraire-xxv-iii-the-commitment.html">Read the plate →</a></span>
+        </li>
+        <li>
+          <span class="t-num">iv</span>
+          <a class="t-title" href="numeraire-xxv-iv-the-credibility.html">The Credibility<span class="t-tag">in print</span></a>
+          <span class="t-gloss">Selten; subgame perfection and backward induction, and why a threat the threatener would never carry out fails to bind at all.</span>
+          <span class="t-read"><a href="numeraire-xxv-iv-the-credibility.html">Read the plate →</a></span>
+        </li>
+        <li>
+          <span class="t-num">v</span>
+          <a class="t-title" href="numeraire-xxv-v-the-population.html">The Population<span class="t-tag">in print</span></a>
+          <span class="t-gloss">Maynard Smith; the evolutionarily stable strategy, where equilibrium is reached not by reason but by survival, and conflict proves self-limiting.</span>
+          <span class="t-read"><a href="numeraire-xxv-v-the-population.html">Read the plate →</a></span>
+        </li>
+        <li>
+          <span class="t-num">vi</span>
+          <span class="t-title">The Coordination</span>
+          <span class="t-gloss">coordination games and focal points; when several outcomes would suit everyone, how players settle, without a word, on the same one.</span>
+          <span class="t-q"><span class="lead">would ask</span>when several outcomes would suit everyone, how do we settle on the same one?</span>
+        </li>
+        <li>
+          <span class="t-num">vii</span>
+          <span class="t-title">The Fog</span>
+          <span class="t-gloss">incomplete information; Harsanyi's games of types, and how one plays against an opponent whose very aims cannot be seen.</span>
+          <span class="t-q"><span class="lead">would ask</span>how do you play against an opponent whose very aims you cannot see?</span>
+        </li>
+        <li>
+          <span class="t-num">viii</span>
+          <a class="t-title" href="numeraire-xxv-viii-the-reciprocity.html">The Reciprocity<span class="t-tag">in print</span></a>
+          <span class="t-gloss">the capstone: played again and again, the dilemma yields to cooperation — held among the self-interested by no altruism or authority, but by the long shadow of the future.</span>
+          <span class="t-read"><a href="numeraire-xxv-viii-the-reciprocity.html">Read the plate →</a></span>
+        </li>
+        <li>
+          <span class="t-num">ix</span>
+          <span class="t-title">The Brink</span>
+          <span class="t-gloss">brinkmanship and deterrence; the threat that leaves the outcome partly to chance, and how one makes credible a threat one would never wish to carry out.</span>
+          <span class="t-q"><span class="lead">would ask</span>how do you make a threat you would never wish to carry out believable?</span>
+        </li>
+        <li>
+          <span class="t-num">x</span>
+          <span class="t-title">The Design</span>
+          <span class="t-gloss">mechanism design and the revelation principle; whether the rules of a game can be built so that honesty becomes each player's best move.</span>
+          <span class="t-q"><span class="lead">would ask</span>can the rules of a game be built so that honesty is each player's best move?</span>
+        </li>
+        <li>
+          <span class="t-num">xi</span>
+          <span class="t-title">The Coalition</span>
+          <span class="t-gloss">cooperative game theory, the core and the Shapley value; which alliances hold together when cooperation pays, and how its gains are divided.</span>
+          <span class="t-q"><span class="lead">would ask</span>when cooperation pays, which groupings hold together, and how are the gains divided?</span>
+        </li>
+        <li>
+          <span class="t-num">xii</span>
+          <span class="t-title">The Hunt</span>
+          <span class="t-gloss">the stag hunt and the assurance game; the great prize that needs every hand, and the mutual trust required before anyone dares reach for it.</span>
+          <span class="t-q"><span class="lead">would ask</span>when the great prize needs every hand, what makes us dare to reach for it together?</span>
+        </li>
+      </ol>
+    </section>
+
+    <section class="coda">
+      <p class="eyebrow">In closing</p>
+      <p>This volume took up the game, the second of the behaviors and the most intricate of them — the situation in which each player's best move depends on what every other player does, so that strategy must reason about strategy. Its subject was game theory: the equilibrium and the prisoner's dilemma, commitment and credibility, the strategies that survive, and above all the question of how cooperation holds among self-interested parties. And the question the author set it was this: when each best move depends on every other, how does cooperation hold?</p>
+      <p>The volume traced the routes from the dilemma to its answer. John Nash gave strategy its organizing idea, the equilibrium from which no player can profitably deviate, and the prisoner's dilemma gave the hard case, where that equilibrium is mutual betrayal and individual rationality yields collective ruin. Behind that idea stood an older one: John von Neumann, founding the subject, had shown that the games of pure opposition — where one side's gain is the other's loss — always possess a rational value, won if need be by playing unpredictably; Nash's equilibrium widened von Neumann's to the games where interest and opposition mix. Thomas Schelling found the first way out, the paradox that committing oneself — throwing away one's own options — can be a source of power, since it changes what the other expects and so what he does. Reinhard Selten sharpened it into a discipline of credibility, his subgame-perfect equilibrium ruling out the threats a player would never trouble to carry out, found by reasoning backward from the game's last move. And John Maynard Smith dispensed with reason entirely, showing that equilibrium can be reached by survival rather than calculation — the evolutionarily stable strategy that no rare mutant can invade, with conflict proving self-limiting, as in the contest of hawk and dove.</p>
+      <p>The flagship gave the answer. Robert Axelrod set the dilemma to be played again and again, between parties who expect to meet in the future, and found that repetition transforms it: with a long enough shadow of the future, cooperation holds among the purely self-interested, sustained by no altruism and no authority but by the simple fact that today's betrayal invites tomorrow's revenge. The plain strategy of tit-for-tat — open with trust, answer like with like, and forgive — calls cooperation forth and keeps it, though the achievement is fragile, and the folk theorem warns that repetition opens many doors and not the cooperative one alone. So the question is answered: cooperation among the self-interested needs neither virtue nor a sovereign, only repetition, memory, and a horizon long enough that the future can discipline the present. And with the game the volume reveals that the whole table has been playing games throughout — the commons a many-player dilemma, oligopoly a repeated game, the relational contract a reciprocity, the central bank's credibility a subgame-perfect discipline, the wage a Nash bargain — so that strategy is the connective tissue of economic life. The behaviors, of which the game is the deepest, are the foundation on which the rest of the table stands; and with the game joining the choice in print, the family of the behaviors is begun, and the table nears its close.</p>
+      <p class="q">Cooperation among the self-interested is not, in the end, a miracle or a sentiment but an equilibrium — fragile, conditional, and hard-won. Played once, the game of self-interest ends in mutual defection; played again and again, between parties who expect to meet tomorrow, it can yield a stable peace, for the shadow of the future reaches back to make today's cooperation today's best move. Trust, then, is self-interest that has learned to count the future, and the institutions that lengthen that future — lasting communities, enduring firms and reputations, the expectation of a shared tomorrow — are the quiet machinery of human cooperation. So the question the game leaves open is not whether the self-interested can cooperate, for they can, but how long a shadow their meeting casts: when each best move depends on every other, cooperation holds exactly so far as the future is allowed to matter.</p>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref"><a href="numeraire-atlas-updated.html">The table of volumes</a></span>
+    </div>
+    <p class="colophon">Volume the Twenty-fifth of <em>Numéraire</em>, a periodic table of economic life: twenty-six primitives gathered in six families, each turned inside out at the seam where the seminar and the essay usually part — with the rigor of the one and the grace of the other — and each scrupulous about the exact edge of what can be known. <em>The Game</em> is in print, the second of the sixth family, the behaviors — the springs of conduct beneath the prices and the quantities — joining <em>The Choice</em>, which opened the family. Six of its twelve plates are published, and the eighth, <em>The Reciprocity</em>, stands as the flagship of the volume: that when the prisoner's dilemma is played again and again, cooperation holds among the self-interested with neither altruism nor authority, sustained only by the long shadow of the future. The game is the connective tissue of the whole table — the strategic logic that runs beneath markets, firms, contracts, money, and the commons alike — and it shows that trust is self-interest that has learned to count the future. With the behaviors now two volumes deep, the table nears its close. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var bar=document.getElementById('progress');
+  function onScroll(){
+    var h=document.documentElement;
+    var max=(h.scrollHeight-h.clientHeight);
+    var p=max>0?(h.scrollTop||document.body.scrollTop)/max:0;
+    bar.style.width=(p*100).toFixed(2)+'%';
+  }
+  document.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="numeraire-xxiv-viii-the-ecology.html">← The Ecology</a><a rel="next" href="numeraire-xxv-i-the-dilemma.html">The Dilemma →</a></nav>
+</body>
+</html>

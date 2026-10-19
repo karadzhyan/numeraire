@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Contract — Numéraire, Volume XV</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem; --measure:40rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.9rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(3rem,8vh,6rem) 0 clamp(1.6rem,4vh,2.6rem);text-align:center;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;text-decoration:none;}
+  .imprint:hover{color:var(--soft);}
+  .vol-dateline{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+
+  .vol-sym{width:114px;height:114px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;align-items:center;justify-content:center;
+    font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 500;font-size:3.1rem;line-height:1;letter-spacing:-.01em;}
+  .vol-sym.lit{background:var(--ink);color:var(--paper);}
+  .vol-elnum{font-family:"Fraunces",serif;font-size:.74rem;color:var(--faintest);letter-spacing:.18em;text-transform:uppercase;margin-top:1rem;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.3rem,6.5vw,4.6rem);line-height:1.02;letter-spacing:-.025em;margin:.7rem 0 0;text-wrap:balance;}
+  .vol-status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .vol-status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:44rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .vol-q{max-width:46rem;margin:clamp(2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .vol-q .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.7rem;}
+  .vol-q q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.3rem,2.4vw,1.72rem);line-height:1.32;color:var(--ink);quotes:none;text-wrap:balance;}
+
+  .front{margin:clamp(3rem,7vh,5rem) auto 0;max-width:var(--measure);}
+  .front-eyebrow{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);text-align:center;
+    display:flex;align-items:center;gap:.9rem;justify-content:center;margin:0 0 2.1rem;}
+  .front-eyebrow::before,.front-eyebrow::after{content:"";height:1px;width:2.4rem;background:var(--hair);}
+  .front p{font-size:1.07rem;line-height:1.76;color:var(--ink);margin:0 0 1.35rem;text-wrap:pretty;}
+  .front p:last-child{margin-bottom:0;}
+  .front em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.74;padding:.1em .12em 0 0;color:var(--ink);}
+  .front-orn{display:flex;justify-content:center;margin:2rem 0;}
+  .front-orn svg{width:96px;height:12px;overflow:visible;}
+  .front-orn line{stroke:var(--num);stroke-width:1;} .front-orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  main{padding:clamp(3rem,7vh,5rem) 0 0;}
+  .plates-head{display:flex;align-items:baseline;gap:.9rem;margin:0 0 1.6rem;}
+  .plates-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-size:.86rem;color:var(--faintest);letter-spacing:.04em;flex:0 0 auto;}
+  .plates-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);flex:0 0 auto;}
+  .plates-rule{flex:1;height:1px;background:var(--hair);position:relative;top:-2px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:13px;}
+
+  .el{appearance:none;-webkit-appearance:none;background:var(--paper);border:1px solid var(--hair);border-radius:2px;
+    padding:14px 15px 16px;text-align:left;cursor:pointer;position:relative;min-height:152px;
+    display:flex;flex-direction:column;color:inherit;font-family:inherit;
+    transition:border-color .22s ease,background .22s ease,transform .22s ease,box-shadow .22s ease;}
+  .el:hover{border-color:var(--faintest);transform:translateY(-2px);}
+  .el-rn{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-size:.78rem;color:var(--faintest);letter-spacing:.18em;text-transform:uppercase;}
+  .pl-hero{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 500;font-size:1.34rem;line-height:1.06;margin-top:.5rem;letter-spacing:-.012em;}
+  .el-gloss{font-size:.79rem;color:var(--faint);line-height:1.36;margin-top:.5rem;font-style:italic;}
+  .pl-flag{margin-top:auto;padding-top:.7rem;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--faintest);}
+  .el.lit{background:var(--ink);border-color:var(--ink);}
+  .el.lit .pl-hero{color:var(--paper);}
+  .el.lit .el-rn{color:rgba(240,235,225,.5);}
+  .el.lit .el-gloss{color:rgba(240,235,225,.62);}
+  .el.lit .pl-flag{color:rgba(240,235,225,.7);}
+  .el.sel{box-shadow:inset 0 0 0 1.5px var(--ink);border-color:var(--ink);}
+  .el.lit.sel{box-shadow:inset 0 0 0 1.5px var(--paper);}
+
+  .detail{margin:clamp(2.4rem,5vh,3.6rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);scroll-margin-top:1.4rem;}
+  .d-head{display:flex;gap:1.3rem;align-items:flex-start;}
+  .d-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 500;font-size:1.5rem;line-height:1;
+    color:var(--ink);flex:0 0 auto;border:1px solid var(--hair);border-radius:2px;letter-spacing:.04em;
+    width:86px;height:86px;display:flex;align-items:center;justify-content:center;text-transform:uppercase;}
+  .d-sym.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .d-titles{min-width:0;}
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);}
+  .d-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.7rem,3.6vw,2.5rem);margin:.22rem 0 .35rem;line-height:1.04;letter-spacing:-.016em;}
+  .d-status{font-size:.84rem;color:var(--faint);font-style:italic;}
+  .d-status.print{color:var(--soft);font-style:normal;}
+  .d-status.print::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .d-desc{font-size:1.05rem;line-height:1.72;color:var(--ink);max-width:42rem;margin:1.3rem 0 0;text-wrap:pretty;}
+
+  .d-openq{margin:1.6rem 0 0;max-width:40rem;}
+  .d-openq .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.5rem;}
+  .d-openq q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);quotes:none;}
+
+  .d-excerpt{margin:1.8rem 0 0;max-width:42rem;border-left:1px solid var(--hair);padding:.2rem 0 .2rem 1.5rem;}
+  .d-excerpt .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.8rem;}
+  .d-excerpt p{font-size:1.04rem;line-height:1.74;color:var(--ink);margin:0;text-wrap:pretty;}
+  .d-excerpt .x-cap{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 500;font-size:1.15rem;}
+  .d-readplate{margin:1.6rem 0 0;}
+  .d-readplate a{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:.94rem;
+    letter-spacing:.01em;text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:2px;transition:border-color .2s ease,color .2s ease;}
+  .d-readplate a:hover{color:var(--soft);border-color:var(--soft);}
+  .d-readplate .arr{margin-left:.4rem;}
+
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;text-decoration:none;}
+  .f-mark:hover{color:var(--soft);}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;}
+    .el{min-height:138px;padding:12px 12px 14px;}
+    .pl-hero{font-size:1.18rem;}
+    .el-gloss{font-size:.74rem;}
+    .vol-sym{width:92px;height:92px;font-size:2.5rem;}
+    .d-head{gap:1rem;}
+    .d-sym{width:64px;height:64px;font-size:1.25rem;}
+    .front p{font-size:1.04rem;}
+    .dropcap{font-size:3rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="rise d1">
+      <a class="imprint" href="numeraire-atlas.html">Numéraire</a>
+      <div class="vol-dateline">The Fifteenth Volume &middot; The Institutions</div>
+    </div>
+    <div class="vol-sym lit rise d2" aria-hidden="true">Ct</div>
+    <div class="vol-elnum rise d2">Element 15 &middot; Group IV</div>
+    <h1 class="rise d3">The Contract</h1>
+    <div class="vol-status rise d3">in print &middot; № XV &middot; 2 of 12 plates</div>
+    <p class="standfirst rise d4">A contract is how a promise becomes an obligation — how strangers convert a hope into a claim a court will honor. But no contract can foresee everything, and so every contract is incomplete, riddled with gaps where the unforeseen will fall. This volume anatomizes the deal and its unfinished nature: the gaps no clause can close, the residual power that fills them, the agent and the principal, and the trust, reputation, and discretion that hold a relationship together where the written word runs out.</p>
+    <div class="vol-q rise d5">
+      <span class="lead">The question of the volume</span>
+      <q>no contract can foresee everything, and so every agreement is unfinished — but if the words always run out before the world does, what governs a relationship in the gaps they leave: the terms the parties wrote, or the power that fills the silence between them?</q>
+    </div>
+  </header>
+
+  <section class="front" aria-label="The argument of the volume">
+    <div class="front-eyebrow">The argument</div>
+
+    <p><span class="dropcap">A</span> contract is a promise the law will keep for you. It is the instrument by which two parties who may not trust each other, and may never meet again, can nonetheless cooperate: each binds himself to do his part, and the binding is enforceable, so that a hope becomes an obligation and a handshake a claim a court will honor. Without it, exchange across time would be impossible — no one would deliver today against a promise to pay tomorrow, no one would build to another's order or lend against another's word — and so the contract is among the deepest of economic institutions, the one that lets a market reach beyond the simultaneous swap of goods in hand into the vast web of deferred and conditional dealings on which a modern economy runs. It is, in a phrase, the institution of the deal: the device that turns the future into something one can buy and sell.</p>
+
+    <p>But the contract carries a flaw in its very nature, and the flaw is the subject of this volume. A contract must be written before the future it governs has arrived, and the future is more various than any drafter can foresee. The contingencies that might bear on a deal are without number; language is too coarse to capture them all; and the human mind, as Herbert Simon insisted against the fiction of perfect rationality, is boundedly rational — able to attend to only a few of the possibilities the world holds in store. Even were foresight perfect, the cost of writing every contingency into the text, and of haggling over each, would swallow the gains the deal was struck to capture. So no contract specifies everything. Every contract, however long and however lawyered, is shot through with gaps — silences where the unforeseen will one day fall, and the words simply run out.</p>
+
+    <p>These gaps are not the mark of careless drafting; they are the permanent and inescapable condition of agreement. The complete contract — the document that anticipates every state of the world and assigns to each its precise obligation — is an economist's fiction, useful for a theorem and impossible in life. Every real contract is a sketch, setting down the main lines of the bargain and trusting to something outside the text to fill the rest. Ronald Coase built the modern theory of the firm on the recognition that contracting is costly — that the very expense of writing and enforcing market agreements is what drives activity inside the firm, where direction replaces negotiation — and Oliver Williamson made a science of the matter, showing how the hazards of incomplete contracts, where parties have sunk investments specific to a relationship, shape the institutions of governance that grow up around the deal. The gap, in short, is where the economics of organization begins: the complete contract would need no firm, no court, no trust, and no governance at all.</p>
+
+    <p>What, then, fills the gap? When the unforeseen arrives and the contract is silent, someone must decide what is to be done — and the party who holds the right to decide what the contract did not specify holds the real power in the relationship. Economists call this residual control, and Oliver Hart, with Sanford Grossman and John Moore, built upon it a theory of ownership itself: to own an asset, in their account, is precisely to hold the residual right to determine its use in all the circumstances the contract left open. The owner of the factory decides what the agreement with the supplier did not; the employer directs the worker in all the particulars the wage contract could not name. Possession of the residual right is possession of the power to fill the silences to one's own advantage, case by unforeseen case — and so the allocation of that right, far more than the explicit terms, decides who will fare well when the world does something the contract did not foresee.</p>
+
+    <div class="front-orn" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>And here the contract reveals what it shares with every figure this work has examined. The written agreement presents itself as complete and settled: the terms are fixed, the price is named, the deal is done, and the parties have, in the law's old phrase, a meeting of minds. But beneath the written terms lies the unwritten remainder, and the remainder is governed not by agreement but by power — by who holds the residual control, who has the better outside option, who can walk away from the relationship and who cannot. A price is a verdict on a hidden contest, mistaken for a fact of nature; and the price a contract names is a verdict of exactly that kind, the visible settlement of a bargain whose unwritten remainder is contested still. What looks like a complete specification of the parties' obligations is a sketch over a silence, and the silence is filled by the distribution of power between them.</p>
+
+    <p>The point goes deeper than drafting. The written contract is the visible tip of the relationship; the submerged mass — the discretion exercised when the text is silent, the trust that performance will be forthcoming, the reputation each party stakes, the threat of exit each holds in reserve — is what actually governs the dealing, and none of it is in the words. The principal cannot fully watch the agent who acts in his name, and must trust or incentivize what he cannot compel; parties who have sunk their investments into a relationship are exposed to being held up when the terms are reopened; the long bargains that sustain commerce are kept less by the contract than by the relationship around it, as Stewart Macaulay found when he discovered how rarely businessmen consult the documents they sign. A price is a verdict on a hidden contest, mistaken for a fact of nature; and the meeting of minds the law speaks of is, wherever the contract falls silent, a meeting of wills, its outcome decided by the same distribution of power that decides every other price.</p>
+
+    <p>Yet to say that the contract is incomplete is not to say that it fails, for around the gap a whole apparatus of gap-filling has grown up, and it is the achievement of the institution that the silences are, for the most part, well filled. Where the contract is silent, the law supplies a default — a term the parties are presumed to have wanted, or one designed to prod them into speaking — and the court stands ready to construe what they did not write. Reputation disciplines the party tempted to exploit a gap, for a name for sharp dealing is dear in a world of repeated business; trust, built over years, lets partners leave much unsaid in confidence it will be honored; and the careful allocation of ownership and authority places the residual power where it will do the least harm. The contract works not in spite of its incompleteness but through the institutions that manage it — and the study of the deal is, in the end, the study of how a necessarily unfinished agreement is nonetheless made to hold.</p>
+
+    <p>The twelve plates follow the contract from the gap that opens in it to the promise that would close it. They set out the gap itself — the incompleteness no clause can cure — and the remainder, the residual power that fills it; the deputy who acts for a principal he may not faithfully serve, and the spur of incentive by which the principal tries to align him; the pledge that makes a promise credible where the law cannot compel it, and the word, the trust and reputation that bind a relationship beyond its text; the holdup that threatens whoever has sunk an investment the other can exploit, and the default the law supplies when the parties have said nothing; the form, the take-it-or-leave-it bargain whose fine print no one reads, and the breach, the broken promise and the price the law sets on breaking it; the discretion an employer buys with a wage, the authority to direct; and, at the last, the promise itself — whether any words can truly bind a future neither party can foresee. Other volumes have prepared the ground: the volume on the firm traced the authority that supplants the market where contracting fails; that on the asymmetry, the hidden action and hidden knowledge that make the agent so hard to bind; on the money, the promise to pay that is itself a kind of contract; on the wage, the employment bargain whose terms the contract cannot wholly fix. The contract takes its place among the institutions as the one that binds the future — and finds, in every gap it cannot close, the contest of power it was meant to settle. The argument remains open.</p>
+
+  </section>
+
+  <main>
+    <div class="plates-head">
+      <span class="plates-num fr">№ XV</span>
+      <span class="plates-name">The twelve plates</span>
+      <span class="plates-rule"></span>
+    </div>
+
+    <div class="grid" id="grid">
+      <button class="el lit" data-id="gap" aria-label="Plate i — The Gap — in print"><span class="el-rn">Plate i</span><span class="pl-hero">The Gap</span><span class="el-gloss">the incomplete contract: no agreement can foresee everything, so every contract leaves gaps where the unforeseen falls and the words give out</span><span class="pl-flag">in print</span></button>
+      <button class="el lit" data-id="remainder" aria-label="Plate ii — The Remainder — in print"><span class="el-rn">Plate ii</span><span class="pl-hero">The Remainder</span><span class="el-gloss">residual control as power: the unwritten remainder of every contract, the questions left open, governed by whoever holds the right to decide them</span><span class="pl-flag">in print</span></button>
+      <button class="el" data-id="deputy" aria-label="Plate iii — The Deputy"><span class="el-rn">Plate iii</span><span class="pl-hero">The Deputy</span><span class="el-gloss">the principal and the agent: hidden action, divergent interest, and the cost of having anyone act on another's behalf</span></button>
+      <button class="el" data-id="spur" aria-label="Plate iv — The Spur"><span class="el-rn">Plate iv</span><span class="pl-hero">The Spur</span><span class="el-gloss">incentive contracts: tying pay to performance, the trade-off between risk and motivation, and Holmström's informativeness principle</span></button>
+      <button class="el" data-id="pledge" aria-label="Plate v — The Pledge"><span class="el-rn">Plate v</span><span class="pl-hero">The Pledge</span><span class="el-gloss">commitment and bonding: hostages, bonds, and staked reputations — making a promise credible where the law cannot compel it</span></button>
+      <button class="el" data-id="word" aria-label="Plate vi — The Word"><span class="el-rn">Plate vi</span><span class="pl-hero">The Word</span><span class="el-gloss">trust and the relational contract: Macaulay's businessmen who never read the documents, and the self-enforcing agreement</span></button>
+      <button class="el" data-id="holdup" aria-label="Plate vii — The Holdup"><span class="el-rn">Plate vii</span><span class="pl-hero">The Holdup</span><span class="el-gloss">the hold-up problem: specific investment, the quasi-rent it exposes, and the fear of being held up — Fisher Body and General Motors</span></button>
+      <button class="el" data-id="default" aria-label="Plate viii — The Default"><span class="el-rn">Plate viii</span><span class="pl-hero">The Default</span><span class="el-gloss">the law's gap-filling: majoritarian and penalty defaults, and the silent terms that govern what the parties did not say</span></button>
+      <button class="el" data-id="form" aria-label="Plate ix — The Form"><span class="el-rn">Plate ix</span><span class="pl-hero">The Form</span><span class="el-gloss">the contract of adhesion: take-it-or-leave-it terms, the fine print no one reads, and the law that polices what one side imposes</span></button>
+      <button class="el" data-id="breach" aria-label="Plate x — The Breach"><span class="el-rn">Plate x</span><span class="pl-hero">The Breach</span><span class="el-gloss">breach and remedy: expectation damages, specific performance, and the efficient breach — when is it right to break a promise?</span></button>
+      <button class="el" data-id="discretion" aria-label="Plate xi — The Discretion"><span class="el-rn">Plate xi</span><span class="pl-hero">The Discretion</span><span class="el-gloss">authority as the answer to incompleteness: Coase, Simon, and the employment contract as the purchase of the right to direct</span></button>
+      <button class="el" data-id="promise" aria-label="Plate xii — The Promise"><span class="el-rn">Plate xii</span><span class="pl-hero">The Promise</span><span class="el-gloss">the capstone: whether any promise can bind an unforeseeable future, and what a contract finally is</span></button>
+    </div>
+  </main>
+
+  <section class="detail" id="detail" aria-live="polite"></section>
+
+  <footer>
+    <div class="f-bar">
+      <a class="f-mark" href="numeraire-atlas.html">Numéraire</a>
+      <span class="f-ref">Volume XV &middot; The Institutions</span>
+    </div>
+    <p class="colophon">Volume XV, <em>The Contract</em>, opens with two plates in print — <em>The Gap</em> and <em>The Remainder</em>, the gap that no clause can close and the residual power that fills it. The fifteenth element of the table, and the nineteenth of its volumes to appear; it completes the institutions, taking its place beside <a href="the-firm.html">The Firm</a>, <a href="the-money.html">The Money</a>, the tax, and the rule — the firm that supplants the market where contracting fails, the money whose every note is a promise, the tax that lays its claim, the rule that makes agreement enforceable, and now the contract that binds the future and discovers, in every gap it cannot close, the contest of power it was meant to settle. Where the volume on <a href="the-asymmetry.html">The Asymmetry</a> traced the hidden action and hidden knowledge that make the agent so hard to bind, this one anatomizes the institution built to bind him anyway — and finds that no agreement can foresee everything, so that what governs a relationship is less its written terms than the power that fills its silences. Return to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+
+<script>
+const PLATES = {
+  gap:{rn:"i",title:"The Gap",family:"in print",lit:true,url:"the-gap.html",
+    desc:`The volume's foundation is the simplest and most consequential fact about contracts: that none of them is complete. A contract must be written before the future it governs arrives, and no drafter can foresee every turn the world might take, nor name every contingency, nor afford to bargain over each — so every contract, however long, leaves gaps where the unforeseen will fall and the words give out. This plate sets out the incomplete contract: the impossibility of the fully contingent agreement that classical theory imagined; the bounded rationality, the costliness of writing, and the sheer variety of the world that make incompleteness inescapable; and the recognition, owed to Grossman, Hart, and Moore, that because the gap can never be closed, the deepest question a contract poses is not what its terms say but what is to happen — and who is to decide — when the world arrives where the terms are silent.`,
+    excerpt:`<span class="x-cap">N</span>o contract can foresee everything. The contingencies the future might bring are without number; language is too coarse to name them all, foresight too short to imagine them, and the cost of writing down every possibility would soon exceed the value of the deal. So every contract, however long and however carefully drawn, is unfinished — a sketch with gaps where the unforeseen will one day fall. The gap is not the mark of careless drafting but the permanent condition of agreement, the place where the contract runs out and something else must take over. And because the gap can never be wholly closed, the real question a contract poses is not what its words say, but what is to happen when the world arrives at a place those words did not foresee.`},
+  remainder:{rn:"ii",title:"The Remainder",family:"in print",lit:true,url:"the-remainder.html",
+    desc:`If the gap can never be closed, then what fills it decides the relationship — and what fills it is power. This plate gives the thesis on which the volume turns: that the unwritten remainder of every contract, the vast territory of questions the text left open, is governed not by agreement but by the distribution of power between the parties — by who holds the residual right to decide, who owns the assets the relationship depends on, who has the better alternative and can walk away. The terms a contract sets down are only half the bargain; the other half is the remainder, and the remainder is contested still. The plate sets out residual control as the true seat of power in any incomplete contract, the gap between the written deal and the governed relationship, and the conclusion that the agreement a contract records is a verdict on a contest over everything it could not say.`,
+    excerpt:`<span class="x-cap">W</span>hen a contract falls silent — and every contract falls silent somewhere — someone must decide what it failed to say. That someone is whoever holds what the lawyers call residual control: the right to determine the questions the contract left open. And residual control is power, the plainest kind there is, for the party who decides the unwritten remainder can bend the relationship to its advantage in every case the words did not foresee. The terms a contract sets down, then, are only half the agreement; the other half is the remainder, unwritten and governed by power — by who owns what, who can walk away, who holds the discretion the gaps confer. The written deal looks complete and settled because it is written; but its completeness is a surface, and beneath it the remainder is contested still.`},
+  deputy:{rn:"iii",title:"The Deputy",family:"in preparation",lit:false,
+    desc:`To contract with another is often to engage him to act on one's behalf — and the moment one party acts for another, a gap opens that no contract can fully close, for the agent has interests of his own and the principal cannot see all that he does. This is the principal-agent problem, and it runs through every relationship in which one person's effort or judgment serves another's ends: the manager and the shareholder, the worker and the firm, the lawyer and the client, the official and the public. This plate sets out the agency relationship: the moral hazard of hidden action, in which the agent, unobserved, may shirk or serve himself; the divergence of interest the contract cannot legislate away; and the agency costs — of monitoring, of bonding, of the residual loss that remains — that Jensen and Meckling placed at the center of the modern theory of the firm, the price of having anyone do anything for anyone else.`,
+    openq:`if no one can watch the agent at every moment, and his interests are not the principal's, what keeps him working for the one he serves rather than himself?`},
+  spur:{rn:"iv",title:"The Spur",family:"in preparation",lit:false,
+    desc:`If the agent cannot be watched, perhaps he can be motivated — his pay tied to the results he produces, so that in serving himself he serves the principal too. But the incentive contract, the spur of performance pay, is harder to design than it looks. Results depend not on effort alone but on luck the agent does not control, and to make his reward swing with results is to load him with risk he would rather not bear and may demand to be paid for; to spare him the risk is to blunt the spur. This plate sets out the economics of incentives: the trade-off between insurance and motivation at the heart of every pay scheme; Bengt Holmström's informativeness principle, that a reward should depend on whatever signals best reveal the effort behind it; the distortion of rewarding what can be measured over what matters; and the limits of the spur where tasks are many, effort is subtle, and the wrong incentive can do more harm than none.`,
+    openq:`how tightly should pay be bound to performance, when performance is part effort and part luck, and a sharper spur loads the agent with more of the risk?`},
+  pledge:{rn:"v",title:"The Pledge",family:"in preparation",lit:false,
+    desc:`A promise the other party cannot trust is worth nothing, and where the law cannot compel performance — because a breach could not be proved, or the harm not measured, or the courts not reached in time — a contract needs some other way to make its promises credible. The answer is the pledge: the deliberate sacrifice of one's own freedom to defect, so that keeping faith becomes the promisor's own interest. This plate sets out commitment and bonding: the hostage offered to the other side, the bond posted against performance, the specific investment that would be lost if the deal collapsed, the reputation deliberately staked — all the devices, anatomized by Oliver Williamson and illuminated by Thomas Schelling's analysis of credible commitment, through which a party binds his own hands in order to be believed. The plate examines the paradox at their heart: that the power to make a promise often depends on first destroying one's power to break it.`,
+    openq:`when the law cannot compel a promise to be kept, what makes it worth believing — and why must a party first bind his own hands to be trusted?`},
+  word:{rn:"vi",title:"The Word",family:"in preparation",lit:false,
+    desc:`Most of what binds two parties in a long relationship is not in the contract at all. The agreements that sustain commerce — between a firm and its suppliers, an employer and its workers, partners of many years — are kept far less by the threat of a lawsuit than by the value of the relationship itself, the reputation each stakes, and the trust built over repeated dealing. This plate sets out the relational contract: Stewart Macaulay's discovery that businessmen rarely read the documents they sign and almost never sue, preferring to settle disputes by the norms of the trade and the wish to deal again; the self-enforcing agreement, sustained because the future gains from cooperation exceed the one-time gain from cheating; and the trust and reputation that fill the gaps no formal term could reach. It is the plate's argument that the written contract is often the least important thing holding a relationship together — a backstop seldom invoked, behind a structure of trust that does the real work.`,
+    openq:`how much of what truly binds two parties is written in the contract, and how much in the relationship, the reputation, and the wish to deal again?`},
+  holdup:{rn:"vii",title:"The Holdup",family:"in preparation",lit:false,
+    desc:`The deepest hazard of the incomplete contract appears once a party has sunk an investment specific to the relationship — a plant built to serve one buyer, a skill useful only to one employer, a part designed for a single assembler. The investment, once made, cannot be moved without loss, and the other party, knowing this, can reopen the terms and demand a larger share, threatening to walk away from a deal the first can no longer afford to lose. This is the holdup problem. This plate sets it out: the quasi-rent that specific investment creates and exposes to expropriation; the fear of being held up that leads parties to underinvest, or to forgo valuable but vulnerable commitments altogether; the classic case of Fisher Body and General Motors, by which Klein, Crawford, and Alchian made asset specificity central to the theory of the firm; and the institutions — ownership, the long-term contract, vertical integration — that grow up to protect the investment the contract cannot.`,
+    openq:`once one party has sunk into the deal an investment the other can exploit, what stops the other from reopening the terms — and what is built to prevent it?`},
+  default:{rn:"viii",title:"The Default",family:"in preparation",lit:false,
+    desc:`When a contract is silent and a dispute arises, the law does not throw up its hands; it supplies the missing term. The default rule — the term that governs unless the parties have agreed otherwise — is the law's answer to incompleteness, and the choice among possible defaults is one of the quiet arts of contract law. This plate sets out the law of gap-filling: the majoritarian default, which supplies the term most parties would have chosen, sparing them the cost of writing it; the penalty default, which deliberately supplies a term the parties do not want, to force the better-informed of them to reveal what he knows by contracting around it, a strategy Ian Ayres and Robert Gertner named and analyzed; and the mandatory rule, which the parties may not waive at all. The plate examines how the silent architecture of defaults shapes the bargains struck on top of it — for the term a contract omits is governed by a law the parties may never have read.`,
+    openq:`when the contract says nothing, whose terms should the law supply — those the parties would have chosen, or those that force them to speak?`},
+  form:{rn:"ix",title:"The Form",family:"in preparation",lit:false,
+    desc:`Most contracts today are not bargained at all. They are presented, already written, on a take-it-or-leave-it basis — the terms of service, the insurance policy, the lease, the loan — and the party who "agrees" does so by clicking, signing, or simply proceeding, having read, in the usual case, nothing. This plate sets out the standard-form contract, or contract of adhesion: the efficiency of mass-produced terms, which spares the cost of haggling over every deal and lets firms transact at scale; the fine print no rational person reads, since the cost of reading exceeds the small chance of its mattering; the asymmetry of power between the drafter who writes the form and the multitude who accept it; and the law's uneasy response — the doctrines of unconscionability and reasonable expectations by which courts police the terms that adhesion lets one side impose. It is the plate's question whether a contract no one reads is an agreement at all, or a private legislation the strong write for the weak.`,
+    openq:`who truly agrees to the fine print no one reads, and on whose terms is a bargain struck that one side writes and the other can only take or leave?`},
+  breach:{rn:"x",title:"The Breach",family:"in preparation",lit:false,
+    desc:`Every contract contains, unwritten, the possibility of its own breaking — and the law's response to the broken promise is not always to compel performance. This plate sets out breach and remedy: the ordinary rule of expectation damages, which gives the wronged party the money value of what was promised, no more; the rarer remedy of specific performance, which compels the promised act itself; and the striking idea, owed to the economic analysis of law and prefigured in Justice Holmes's view of a contract as a choice between performing and paying, of the efficient breach — that it can be right to break a promise and pay damages when the resources are worth more elsewhere, so that the breach leaves the wronged party whole and the world better off. The plate examines the tension between this view and the moral intuition that a promise ought simply to be kept, and asks what measure of damages truly makes the wronged party whole — and whether anything can.`,
+    openq:`when is it right to break a promise and pay for the breaking rather than perform — and what is a broken promise actually worth?`},
+  discretion:{rn:"xi",title:"The Discretion",family:"in preparation",lit:false,
+    desc:`The employment contract is the strangest of agreements, for what it chiefly transfers is not a defined task but a submission to direction: the worker agrees, within limits, to do as he is told. This plate sets out authority as the answer to incompleteness: Ronald Coase's insight that the firm exists because it is too costly to contract for every action in the market, so that the employment relation substitutes the command of a manager for an endless sequence of bargains; Herbert Simon's model of the employment contract as the purchase of the right to direct within a zone of acceptance, the worker ceding discretion in exchange for the wage; and the question of how far that authority runs — what an employer may and may not command, where direction shades into coercion, and how the open-ended submission the contract buys is bounded by law, by custom, and by the worker's own power to refuse or to leave. It is the institution by which the contract, unable to specify the work, instead specifies who shall decide it.`,
+    openq:`what does an employer buy with a wage but the discretion to direct the unspecified — and how far may that authority run before it must answer to something else?`},
+  promise:{rn:"xii",title:"The Promise",family:"in preparation",lit:false,
+    desc:`The volume ends at the question beneath all the others: what a promise is, and whether anything can truly bind a future no one can foresee. The plates have shown the contract to be incomplete by its nature, its gaps filled by power, its silences governed by discretion, trust, and the threat of exit. This final plate asks what, in the end, the institution accomplishes. Is a contract a genuine binding of the will across time — a way of making the future certain by an act of present promising — or is it only a structure of incentives and powers, dressed in the language of obligation, that makes performance likely without ever making it bound? The plate sets out the nature of the promise: the moral force of the given word against the economic account of the self-enforcing bargain; the law's long effort to make promises hold; and the recognition, after all the analysis, that the contract is at once less than it claims — for no words can foresee everything — and more than the cynic allows, since upon its imperfect promises the whole cooperating world is built.`,
+    openq:`can any promise truly bind a future neither party can foresee — and is a contract a binding of the will, or only a structure of power that makes performance likely?`}
+};
+
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+function render(id){
+  var tile=document.querySelector('.el[data-id="'+id+'"]');
+  var d=PLATES[id]; if(!d||!tile) return;
+  var h='';
+  h+='<div class="d-head">';
+  h+='<div class="d-sym'+(d.lit?' lit':'')+'">'+esc(d.rn)+'</div>';
+  h+='<div class="d-titles">';
+  h+='<div class="d-family">The Contract &middot; Plate '+esc(d.rn)+' &middot; '+esc(d.family)+'</div>';
+  h+='<h2 class="d-name">'+esc(d.title)+'</h2>';
+  h+='<div class="d-status'+(d.lit?' print':'')+'">'+esc(d.family)+'</div>';
+  h+='</div></div>';
+  h+='<p class="d-desc">'+esc(d.desc)+'</p>';
+  if(d.lit && d.excerpt){
+    h+='<div class="d-excerpt"><span class="lead">From the opening</span><p>'+d.excerpt+'</p></div>';
+  }
+  if(d.url){h+='<p class="d-readplate"><a href="'+d.url+'">Read the plate<span class="arr" aria-hidden="true">&#8594;</span></a></p>';}
+  if(!d.lit && d.openq){
+    h+='<p class="d-openq"><span class="lead">This plate will ask</span><q>'+esc(d.openq)+'</q></p>';
+  }
+  document.getElementById('detail').innerHTML=h;
+  var prev=document.querySelector('.el.sel'); if(prev) prev.classList.remove('sel');
+  tile.classList.add('sel');
+}
+
+(function(){
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.el').forEach(function(b){
+    b.addEventListener('click',function(){
+      render(b.dataset.id);
+      document.getElementById('detail').scrollIntoView({behavior:reduce?'auto':'smooth',block:'nearest'});
+    });
+  });
+  render('gap');
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-boundary.html">← The Boundary</a><a rel="next" href="the-gap.html">The Gap →</a></nav>
+</body>
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Theorem — Numéraire, The Externality, Plate ii</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:66rem; --measure:35rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(2.8rem,7vh,5rem) 0 clamp(1.4rem,3.5vh,2.2rem);text-align:center;}
+
+  .crumbs{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 400;
+    font-size:.8rem;letter-spacing:.04em;color:var(--faint);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:center;gap:.55rem;}
+  .crumbs a{text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .2s ease,color .2s ease;}
+  .crumbs a:hover{border-color:var(--num);color:var(--ink);}
+  .crumbs .sep{color:var(--faintest);}
+  .crumbs .here{color:var(--ink);}
+
+  .plate-mark{width:116px;height:116px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:.18rem;line-height:1;}
+  .plate-mark.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pm-vol{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.84rem;letter-spacing:.06em;color:rgba(240,235,225,.62);}
+  .pm-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;
+    font-size:2.5rem;letter-spacing:.02em;text-transform:uppercase;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.1rem,6vw,4rem);line-height:1.03;letter-spacing:-.025em;margin:1rem 0 0;text-wrap:balance;}
+  .status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:42rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .epi{max-width:38rem;margin:clamp(2.2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .epi q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.46;color:var(--ink);quotes:none;display:block;text-wrap:pretty;}
+  .epi .cite{display:block;margin-top:.95rem;font-size:.78rem;color:var(--faintest);letter-spacing:.05em;font-style:normal;}
+  .epi .cite em{font-style:italic;}
+
+  .essay{max-width:52rem;margin:clamp(3rem,7vh,5rem) auto 0;counter-reset:sn;}
+  .essay::after{content:"";display:block;clear:both;}
+  .essay > p,.essay > .pull{max-width:var(--measure);}
+  .essay p{font-size:1.075rem;line-height:1.8;color:var(--ink);margin:0 0 1.4rem;text-wrap:pretty;}
+  .essay em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.72;padding:.08em .14em 0 0;color:var(--ink);}
+
+  .divider{display:flex;justify-content:center;margin:2.4rem 0;}
+  .divider svg{width:96px;height:12px;overflow:visible;}
+  .divider line{stroke:var(--num);stroke-width:1;} .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.5vw,1.74rem);line-height:1.34;color:var(--ink);text-align:center;
+    margin:2.4rem auto;max-width:33rem;text-wrap:balance;}
+
+  .snref{font-family:"Fraunces",serif;font-size:.64em;line-height:0;vertical-align:super;
+    color:var(--soft);counter-increment:sn;margin-left:1px;font-style:normal;}
+  .snref::after{content:counter(sn);}
+  .sn{display:block;max-width:var(--measure);margin:.1rem 0 1.4rem;padding:.15rem 0 .15rem 1.05rem;
+    border-left:1px solid var(--hair);font-size:.84rem;line-height:1.52;color:var(--faint);}
+  .sn::before{content:counter(sn);font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--faintest);margin-right:.5em;font-size:.92em;}
+  .sn em{font-style:italic;}
+
+  @media (min-width:64rem){
+    .sn{float:right;clear:right;width:15rem;margin:.35rem 0 1.3rem;padding:0;border-left:none;}
+    .divider,.pull,.apparatus{clear:both;}
+  }
+
+  .apparatus{max-width:52rem;margin:clamp(3.2rem,7vh,5rem) auto 0;padding-top:2rem;border-top:1px solid var(--hair);clear:both;}
+  .app-h{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;}
+  .app-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.4rem;}
+  .app-list li{border-top:1px solid var(--hair);}
+  .app-list li:first-child,.app-list li:nth-child(2){border-top:none;}
+  .app-list a{display:block;text-decoration:none;padding:.95rem 0;}
+  .app-list a:hover .app-t{color:var(--soft);}
+  .app-rel{display:block;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faintest);margin-bottom:.3rem;}
+  .app-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.12rem;color:var(--ink);transition:color .2s ease;}
+  .app-g{display:block;font-size:.84rem;color:var(--faint);font-style:italic;line-height:1.4;margin-top:.22rem;}
+
+  footer{margin-top:clamp(3.5rem,8vh,6rem);padding:2.2rem 0 4rem;border-top:1px solid var(--hair);}
+  .crumbs.foot{justify-content:flex-start;margin-bottom:1.3rem;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .plate-mark{width:96px;height:96px;}
+    .pm-num{font-size:2.1rem;}
+    .essay p{font-size:1.04rem;line-height:1.74;}
+    .dropcap{font-size:3rem;}
+    .app-list{grid-template-columns:1fr;}
+    .app-list li:nth-child(2){border-top:1px solid var(--hair);}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="crumbs rise d1" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-externality.html">The Externality &middot; Vol XI</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate ii</span>
+    </nav>
+    <div class="plate-mark lit rise d2" aria-hidden="true">
+      <span class="pm-vol">Ex</span>
+      <span class="pm-num">ii</span>
+    </div>
+    <h1 class="rise d3">The Theorem</h1>
+    <div class="status rise d3">in print &middot; The Externality &middot; plate ii</div>
+    <p class="standfirst rise d4">Pigou's answer to the smoke was a tax. In 1960 Ronald Coase gave another, and overturned a discipline. The harm, he argued, is reciprocal — the factory and its neighbors both want the air — and if the law will only say whose it is, the parties, bargaining, will reach the efficient use with no tax at all. This plate follows that argument to its limit, and to the transaction costs that decide when it holds.</p>
+  </header>
+
+  <div class="epi rise d5">
+    <q>Sic utere tuo ut alienum non laedas: so use your own as not to injure another's.</q>
+    <span class="cite">A maxim of the common law of nuisance</span>
+  </div>
+
+  <article class="essay">
+
+    <p class="lede"><span class="dropcap">I</span>n 1960 an English economist named Ronald Coase published a paper that began by accepting everything Pigou had said and ended by turning it inside out. The standard view was simple and humane: where a factory smokes and its neighbors suffer, the factory is the cause of the harm, and the state should make it pay. Coase's first stroke was to deny that the matter is so one-sided. The harm, he insisted, is reciprocal. The smoke injures the laundry, true; but to silence the factory injures the factory, and the wash and the cloth are both things people want. To ask only how to stop the factory from harming the laundry is to have decided, without argument, that the laundry's use of the air matters more than the factory's — which is precisely the question to be settled, not the answer to assume.</p>
+
+    <p>The point looks at first like a quibble and is in truth a reversal of the whole inquiry.<sup class="snref"></sup> The law had long reasoned about such cases under a comfortable maxim — that a man must use his own so as not to harm another's — which quietly casts one party as aggressor and the other as victim, and asks only how to restrain the first. Coase saw that the maxim begs the question. The factory and its neighbors are not wrongdoer and wronged but two parties wanting the same scarce thing, the air, for incompatible ends — the one to carry off its smoke, the other to breathe clean. They cannot both be satisfied, and to stop the factory imposing on the laundry is, just as surely, to let the laundry impose on the factory, denying it a use of the air it would otherwise have had. Once the symmetry is seen, the question of blame dissolves, and a colder, more useful one takes its place: not who harms whom, but which of the two uses of the air is worth more.</p>
+    <aside class="sn">The reframing is the whole of Coase's originality, and it is easy to underrate. To say the factory harms the laundry is to picture a wrongdoer and a victim, and to ask only how the wrongdoer is to be stopped. But the factory and the laundry both want the same scarce thing — the air, to carry off smoke or to keep clean — and they cannot both have it. Stop the factory, and you have harmed it as surely as its smoke harmed the laundry. The harm is mutual; the only real question is which use of the air is worth more.</aside>
+
+    <p>From that question Coase drew a conclusion that startled everyone, including, one suspects, himself.<sup class="snref"></sup> Suppose the law makes the air clearly someone's — it scarcely matters whose — and suppose the parties can bargain freely and at no cost. Then they will arrive at the more valuable use no matter who was given the right. Say clean air is worth more to the laundry than the extra cloth is worth to the factory. If the laundry holds the right, the factory cannot buy it, for the cloth will not cover the price, and the smoke stops. But if the factory holds the right, the laundry will purchase its silence, since clean air is worth more to it than the cloth is to the factory; and the smoke stops again. Whichever way the right is handed out, the air goes to its higher use. The assignment settles who must pay whom. It does not settle what is finally done.</p>
+    <aside class="sn">The argument runs by cases, and both come out the same. Suppose clean air is worth more to the laundry than the smoke-made cloth is worth to the factory. Give the laundry the right to clean air, and the factory must stop — it cannot pay enough to buy the right, since the cloth is worth less. Give the factory the right to pollute, and the laundry will buy it out — it can afford to, since clean air is worth more to it than the cloth-profit is to the factory. Either way the smoke stops. The right decides who pays; it does not decide what happens.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>The implication, pressed home, is radical: in such a world there is no need for Pigou at all.<sup class="snref"></sup> No tax need be levied, no harm appraised by a ministry, no output planned from above; the law has only to say whose the air is and then stand aside, and the parties, bargaining, will find the efficient use unaided. The externality, on this account, is not an inherent failure of the market but an artifact of the law's silence — a cost left to run wild only because no one was given the property right to it, and so no one could be made to bargain over it. Define the right, to whichever party, and a market appears where there was none, in the very thing the price could not see. The previous plate ended on the externality as the shadow the price casts where nothing is owned; Coase's reply is disarmingly direct — then let something be owned, and the shadow lifts.</p>
+    <aside class="sn">What vanishes, in this frictionless world, is the need for Pigou. No tax, no regulator, no official valuing the smoke: define whose the air is, step back, and the parties bargain their way to the efficient use unaided. The externality ceases to be a flaw in the market and becomes a gap in the law — a cost running wild only because no one had been given the right to it. Assign the right, and a market springs up where none was, in the very thing the price had been blind to. The cure for a missing market is to supply the missing owner.</aside>
+
+    <p>This reorientation did more than answer Pigou; it founded a discipline.<sup class="snref"></sup> Pigou had asked how the state should correct a market gone wrong. Coase taught economists to ask a prior and stranger question: how should the underlying rights be assigned in the first place, and can those who hold them trade? The legal rule deciding who is liable for the smoke — who has the right and who must buy it — turns out to be an economic instrument, shaping outcomes as surely as any tax. From this grew the field of law and economics, which reads the common law of property, contract, and nuisance as a vast, half-conscious machinery for allocating resources, and asks of each rule not merely whether it is just but whether it puts things to their most valued use, or lets the parties get them there.</p>
+    <aside class="sn">From this grew a whole discipline. If the assignment of legal rights determines who bears a cost — and, where bargaining is dear, determines the outcome itself — then the law is not a thing apart from the economy but one of its load-bearing walls, and the judge deciding a nuisance case is, whether he knows it or not, an allocator of resources. Law and economics, the field Coase did much to found, takes its bearing from this: that the rules of liability and property should be set with an eye to the bargains they enable or replace.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>And here we reach the part of Coase most quoted and least understood.<sup class="snref"></sup> The frictionless bargain on which the theorem turns was never meant as a picture of the world; it was a deliberate idealization, set up to be knocked down. Coase's real subject was its opposite — the transaction costs that in life are everywhere, the expense of finding the parties, striking the deal, and holding them to it. When those costs are low, as between one factory and one laundry, his counsel is to define the rights and let the parties bargain. But when they are high — when the smoke falls on a whole city, and the thousands harmed could never be gathered into a single negotiation — the bargain the theorem promises will never take place, and the Pigovian tax or the regulator's rule, so often brandished as the thing Coase refuted, returns as the better tool. His theorem is not a proof that markets always suffice. It is an argument that the right remedy depends, in every case, on the costs of transacting — and that sometimes those costs make the state's hand the lighter burden.</p>
+    <aside class="sn">Here lies the most plundered passage in modern economics, and the most misread. Coase did not say the state should stand aside; he said the case turns on the cost of bargaining, and built his argument precisely to show that this cost is usually high. The frictionless world in which rights can be traded to perfection was his foil, not his ideal — a limiting case meant to throw the real one into relief. Where the parties are two, let them deal; where they are millions, breathing one city's smoke, they never will, and the tax or the rule he is so often cited against comes back into its own.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>Even granted its premises, the theorem leaves a residue that will not settle.<sup class="snref"></sup> It shows that the assignment of the right does not disturb the efficient outcome — but it freely admits that the assignment decides who pays whom, and that is a question of justice on which efficiency is mute: to give the factory the right is to make the neighbors buy their air; to give it to the neighbors is to make the factory buy its license; and the two are very different worlds for those who must live in them. There is a subtler disquiet in the reciprocity itself. The factory does something — it burns, it fouls — while the neighbor only goes on breathing; and to enter their claims as symmetric, the imposer's and the merely-present, can feel like a conjuror's trick as much as a clarification. Nor does Coase escape the difficulty that sank Pigou, for the court that would assign the air to its higher use must somehow know which use is higher — the same unpriced valuation, merely moved from the tax-collector's desk to the judge's.</p>
+    <aside class="sn">Grant the theorem its frictionless premise and a residue still troubles. The choice of who holds the right, Coase shows, does not touch efficiency — but it decides who pays whom, and that is a question of justice the efficiency calculus cannot reach. There is, too, a moral unease in the symmetry itself: the factory acts and the neighbor merely breathes, and to call their claims equal may be a sleight as much as an insight. And the court that must assign the right to the higher use needs to know which use is higher — the very valuation, missing from the market, that defeated Pigou.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>Step back, and the two great answers prove to address a single question, the one this work keeps unearthing.<sup class="snref"></sup> A price, it has held, is a verdict on a hidden contest mistaken for a fact of nature; and the externality, the last plate showed, is the contest left without a judge, because the thing fought over — the air — is owned by no one and so comes before no court. Pigou and Coase are two ways of supplying the missing judge. Pigou appoints the state: let an authority weigh the harm and set a price upon it. Coase makes an owner: let the law declare whose the air is, and the parties, bargaining, will render the verdict themselves. Both drag a buried contest into daylight and force it to a settlement; they quarrel only over who holds the gavel — a public officer reckoning the social cost, or a private owner haggling in his own interest. The smoke the price could not see is made visible, by the one through a tax, by the other through a title.</p>
+    <aside class="sn">The two great answers are answers to one question. The externality, the previous plate showed, is a contest — over the air, over who shall bear the smoke — with no judge, because the thing contested is owned by no one and so falls under no court. Pigou would appoint a judge: let the state weigh the harm and price it. Coase would make an owner: let the law say whose the air is, and the parties will judge for themselves by bargaining. Both are devices for dragging a buried contest into the open and forcing it to a verdict. They disagree only on who should hold the gavel.</aside>
+
+    <p>The most disquieting of Coase's lessons is the one he drew most reluctantly: that the line between the market and the state, on which so much argument depends, may not exist.<sup class="snref"></sup> We are used to imagining a natural market outcome — what would happen if the government simply kept out — against which every intervention can be judged a meddling. But there is no such outcome, for what the market does depends utterly on who owns what, and ownership is not given in nature; it is assigned, by law, in one configuration or another. The factory's liberty to send up its smoke and the resident's liberty to breathe unfouled air are alike creatures of the legal order, grants that might have gone the other way. Change the assignment and you change the market's result, though no government has done anything but draw the property lines differently. The market is not a state of nature lying beneath the law and asking to be let alone. It is built upon the law, and built otherwise as the law is otherwise — a theme the volume on the rules takes up in full.</p>
+    <aside class="sn">The deepest casualty of the theorem is the line between the market and the state. There is no outcome the market reaches "on its own," prior to all law, against which the state's meddling might be measured — for what the market does depends entirely on who owns what, and ownership is the law's creation, assigned one way or another by some prior decision. The factory's freedom to smoke and the neighbor's freedom to breathe are alike grants of the legal order. The market is not found beneath the rules, waiting to be left alone. It is built on them, and built differently as they differ.</aside>
+
+    <p>So the volume's two opening plates frame the externality between a failure and a remedy that prove to be the same fact seen twice. The price is blind to a cost because the cost has no owner; and one may answer that blindness either by computing the cost and charging it, as Pigou urged, or by conjuring an owner and letting him bargain, as Coase preferred. Which answer serves depends, as Coase insisted and Pigou would not have denied, on how many parties there are and how dearly they must deal — on transaction costs, the homely friction that decides whether a market can be built in the missing thing or must be done without. Neither answer is a creed; both are tools, and the art is in matching the tool to the case. What both make plain is the lesson the rest of the volume turns over from every side: that the costs a price omits do not vanish for being omitted, and that to see them counted is always, in the end, a choice about who shall be made to bear them.</p>
+
+    <p class="pull">The cure for a missing market is to supply the missing owner — but where the parties are millions, the owner can strike no bargain, and the state must judge after all.</p>
+
+    <p>There is a final turn, quieter than the rest. If the price of the cloth depends on whether the factory or its neighbors own the air — and Coase has shown that it does — then that price was never the plain fact of nature it pretended to be. It was the downstream consequence of a verdict the law had already rendered, in deciding whose the air should be, long before any bolt was sold. The market reported a number and called it the cost of cloth; but folded invisibly inside it was a prior judgment about who must bear the smoke, made not by the market but for it. The externality, which began as the price's blind spot, ends as the proof that no price stands outside the law that frames it. A price is a verdict on a hidden contest, mistaken for a fact of nature — and here the hidden contest is over the ownership of the world itself, on which every price is quietly built. The argument remains open.</p>
+
+  </article>
+
+  <nav class="apparatus" aria-label="Related reading">
+    <h2 class="app-h">Related</h2>
+    <ul class="app-list">
+      <li><a href="the-spillover.html"><span class="app-rel">In this volume</span><span class="app-t">The Spillover</span><span class="app-g">plate i — the concept and the Pigovian orthodoxy this plate answers: the cost that escapes the price</span></a></li>
+      <li><a href="the-externality.html"><span class="app-rel">In this volume</span><span class="app-t">The Holdout</span><span class="app-g">plate viii — where Coase's bargain founders: the transaction costs that rise with the number of parties</span></a></li>
+      <li><a href="the-externality.html"><span class="app-rel">In this volume</span><span class="app-t">The Shadow</span><span class="app-g">plate ix — the valuation Coase cannot escape: the court, too, must know which use is worth more</span></a></li>
+      <li><a href="the-money.html"><span class="app-rel">In The Money</span><span class="app-t">The Money</span><span class="app-g">the thing we take for the most natural in economic life, and find to be the most thoroughly made — as the market itself, this plate argues, is made by the law</span></a></li>
+    </ul>
+  </nav>
+
+  <footer>
+    <nav class="crumbs foot" aria-label="Return">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-externality.html">The Externality &middot; Vol XI</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate ii</span>
+    </nav>
+    <p class="colophon">The second plate of Volume XI, <em>The Externality</em> — Coase's reciprocal reframing, the theorem that bears his name, and the transaction costs that decide whether the parties may bargain or the state must act. Return to <a href="the-externality.html">the volume</a>, or to <a href="numeraire-atlas.html">the complete table of volumes</a>. The epigraph is a maxim of the common law of nuisance; the modern authorities are given in paraphrase. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-spillover.html">← The Spillover</a><a rel="next" href="the-asymmetry.html">The Asymmetry →</a></nav>
+</body>
+</html>

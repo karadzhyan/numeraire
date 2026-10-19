@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Insurance — The Wage, plate x</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1;
+    --ink:#1c1a16;
+    --soft:#534e45;
+    --faint:#6e685d;
+    --faintest:#9a9384;
+    --num:#c4bcab;
+    --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16);
+    --frame:68rem;
+    --read:37rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.6rem,4vw,4rem);}
+  p{margin:0;}
+  i,em{font-style:italic;}
+  a{color:inherit;}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:4px;border-radius:1px;}
+  .fr{font-family:"Fraunces",Georgia,serif;font-feature-settings:"liga" 1,"dlig" 0;}
+
+  /* ---- heavy entrance ---- */
+  .hero{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:space-between;}
+  .bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.5rem;padding:2.5rem 0 0;}
+  .mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.3rem;letter-spacing:-.01em;}
+  .edition{font-size:.9rem;color:var(--faint);letter-spacing:.06em;}
+  .hero-foot{padding-bottom:clamp(3.5rem,8vh,7rem);text-align:center;}
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(3.4rem,12vw,11rem);line-height:.95;letter-spacing:-.03em;margin:0;}
+  .standfirst{font-size:clamp(1.16rem,1.5vw,1.36rem);line-height:1.55;color:var(--soft);
+    margin:clamp(1.6rem,3vh,2.4rem) auto 0;max-width:45rem;text-wrap:pretty;}
+
+  /* ---- reading column ---- */
+  .read{max-width:var(--read);margin:0 auto;}
+  .read p{font-size:1.07rem;line-height:1.74;color:var(--ink);margin:0;text-indent:1.4em;text-wrap:pretty;}
+  .sec-head + p,.pull + p,.opening,.plate + p,.coda + p{text-indent:0;}
+
+  .sec-head{text-align:center;margin:clamp(4rem,9vh,7.5rem) 0 clamp(1.8rem,3.5vh,2.6rem);}
+  .sec-head.first{margin-top:clamp(5rem,11vh,9rem);}
+  .sec-num{display:block;font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;
+    font-size:.98rem;letter-spacing:.06em;color:var(--faintest);margin-bottom:.85rem;}
+  .sec-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.6rem,2.6vw,2.05rem);line-height:1.12;letter-spacing:-.012em;margin:0;}
+
+  .opening::first-letter{
+    font-family:"Fraunces",serif;font-weight:500;float:left;font-size:5.3rem;line-height:.72;
+    padding:.36rem .55rem 0 0;color:var(--ink);
+  }
+
+  .pull{max-width:50rem;margin:clamp(4.5rem,9vh,7rem) auto;text-align:center;}
+  .pull p{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:clamp(2rem,4.2vw,3.1rem);line-height:1.08;letter-spacing:-.02em;color:var(--ink);
+    margin:0;text-indent:0;text-wrap:balance;}
+
+  .ref{font-size:.62em;vertical-align:.5em;line-height:0;color:var(--faint);font-style:normal;}
+  .ref a{text-decoration:none;}
+  .ref a:hover{color:var(--ink);}
+
+  /* ---- plates (diagrams) ---- */
+  .plate{max-width:var(--read);margin:clamp(3.4rem,7vh,5.2rem) auto;}
+  .plate.wide{max-width:44rem;}
+  .plate figure{margin:0;}
+  .plate svg{display:block;width:100%;height:auto;overflow:visible;}
+  .plate text{font-family:"Fraunces",Georgia,serif;fill:var(--soft);paint-order:stroke;stroke:var(--paper);stroke-width:2.6px;stroke-linejoin:round;}
+  .plate .axis{stroke:var(--soft);stroke-width:1.1;}
+  .plate .curve{fill:none;stroke:var(--ink);stroke-width:1.6;}
+  .plate .curve.sec{stroke:var(--soft);stroke-width:1.4;}
+  .plate .guide{stroke:var(--faintest);stroke-width:1;stroke-dasharray:2.4 3.4;fill:none;}
+  .plate .level{stroke:var(--faintest);stroke-width:1;stroke-dasharray:1 4;}
+  .plate .floor{stroke:var(--ink);stroke-width:1.2;stroke-dasharray:5 4;}
+  .plate .dot{fill:var(--ink);}
+  .plate .dot.open{fill:var(--paper);stroke:var(--ink);stroke-width:1.4;}
+  .plate .lbl{font-size:14px;fill:var(--soft);}
+  .plate .tick{font-size:13px;fill:var(--faint);}
+  .plate .reg{font-size:12.5px;fill:var(--faint);font-style:italic;}
+  .plate figcaption{font-size:.82rem;line-height:1.56;color:var(--faint);margin:1.2rem auto 0;
+    max-width:33rem;text-align:center;text-wrap:pretty;}
+  .plate figcaption .pn{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;
+    color:var(--faintest);letter-spacing:.05em;text-transform:uppercase;font-size:.74rem;}
+
+  /* ---- coda ---- */
+  .coda{max-width:46rem;margin:clamp(5rem,10vh,8rem) auto 0;text-align:center;}
+  .coda p{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400,"ital" 0;font-style:italic;
+    font-size:clamp(1.5rem,2.6vw,2.05rem);line-height:1.3;color:var(--soft);margin:0;text-wrap:balance;}
+
+  /* ---- notes ---- */
+  .notes{max-width:var(--read);margin:clamp(5rem,11vh,9rem) auto 0;padding-top:2.4rem;border-top:1px solid var(--hair);}
+  .notes h3{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.92rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.6rem;}
+  .note{display:flex;gap:.9rem;scroll-margin-top:2rem;font-size:.86rem;line-height:1.56;color:var(--faint);margin:0 0 1rem;text-wrap:pretty;}
+  .note .nn{flex:0 0 auto;font-family:"Fraunces",serif;color:var(--faintest);min-width:1.1rem;}
+  .note i{font-style:italic;}
+
+  /* ---- colophon ---- */
+  footer{margin-top:clamp(6rem,13vh,10rem);padding:2.6rem 0 4.5rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.5rem;margin-bottom:1.8rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.1rem;}
+  .f-ref{font-size:.82rem;color:var(--faintest);letter-spacing:.18em;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:60ch;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .r{opacity:0;transform:translateY(12px);animation:rise 1.1s cubic-bezier(.2,.6,.2,1) both;}
+    .r1{animation-delay:.06s}.r2{animation-delay:.2s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .read p{font-size:1.04rem;}
+    .opening::first-letter{font-size:4.4rem;}
+    .f-bar{flex-direction:column;gap:.7rem;}
+    .plate .lbl,.plate .reg,.plate .tick{font-size:11px;}
+  }
+
+  /* ===== revision: airier rhythm + new plate types ===== */
+  .read p{line-height:1.82;}
+  .sec-head{margin:clamp(5.5rem,12.5vh,9.5rem) 0 clamp(2.2rem,4vh,3rem);}
+  .sec-head.first{margin-top:clamp(5rem,11vh,8.5rem);}
+  .sec-head::before{content:"";display:block;width:2.4rem;height:1px;background:var(--num);margin:0 auto 1.7rem;opacity:.85;}
+  .pull{margin:clamp(5.5rem,11vh,8.5rem) auto;}
+  .plate{margin:clamp(4.4rem,9vh,6.6rem) auto;}
+  .coda{margin-top:clamp(6rem,12vh,9rem);}
+
+  /* centered closing ornament */
+  .orn{display:flex;justify-content:center;margin:clamp(5rem,10vh,7.5rem) auto 0;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;}
+  .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* ledger plate: sources -> remedies */
+  .ledger figure{margin:0;}
+  .ledger-grid{display:grid;grid-template-columns:1fr 1fr;position:relative;
+    border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);}
+  .ledger-grid::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:1px;background:var(--hair);}
+  .ledger-grid .lh{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;
+    font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);padding:1.15rem 1.5rem .55rem;}
+  .ledger-grid .lh.r{text-align:right;} .ledger-grid .lh.l{text-align:left;}
+  .ledger-grid .cell{padding:1.3rem 1.5rem;border-top:1px solid var(--hair);}
+  .ledger-grid .src{text-align:right;} .ledger-grid .rem{text-align:left;}
+  .ledger-grid .cell b{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 500;font-weight:500;
+    font-size:1.13rem;display:block;color:var(--ink);letter-spacing:-.01em;line-height:1.15;}
+  .ledger-grid .cell span{display:block;font-size:.81rem;color:var(--faint);margin-top:.34rem;line-height:1.42;}
+  .ledger-coda{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.16rem;line-height:1.42;color:var(--soft);text-align:center;margin:1.7rem auto 0;max-width:33rem;text-wrap:balance;}
+  @media (max-width:620px){
+    .ledger-grid{grid-template-columns:1fr;}
+    .ledger-grid::before{display:none;}
+    .ledger-grid .lh{display:none;}
+    .ledger-grid .src,.ledger-grid .rem{text-align:left;}
+    .ledger-grid .src{border-bottom:none;}
+    .ledger-grid .rem{border-top:none;padding-top:.1rem;padding-left:2.4rem;position:relative;}
+    .ledger-grid .rem::before{content:"\2192";position:absolute;left:1.1rem;top:.1rem;color:var(--faintest);}
+    .ledger-grid .cell{padding-bottom:.5rem;}
+    .ledger-grid .rem{padding-bottom:1.3rem;}
+  }
+
+  /* ===== frontispiece: annotated contents ===== */
+  .sec-head{scroll-margin-top:2.5rem;}
+  .contents{max-width:40rem;margin:0 auto;padding:clamp(3rem,8vh,7rem) 0 clamp(3rem,7vh,6rem);}
+  .contents .orn{margin:0 auto 2.4rem;}
+  .contents-eyebrow{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faintest);text-align:center;margin:0 0 3rem;}
+  .contents-list{list-style:none;margin:0 auto;padding:0;max-width:33rem;counter-reset:none;}
+  .contents-list li{margin:0 0 1.7rem;}
+  .contents-list li:last-child{margin-bottom:0;}
+  .contents-list a{display:grid;grid-template-columns:2.6rem 1fr;column-gap:1.1rem;
+    text-decoration:none;align-items:baseline;}
+  .contents-list .cn{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;
+    font-size:.96rem;color:var(--faintest);text-align:right;letter-spacing:.02em;}
+  .contents-list .ct{font-family:"Fraunces",serif;font-variation-settings:"opsz" 58,"wght" 500;
+    font-size:1.2rem;color:var(--ink);letter-spacing:-.012em;line-height:1.18;transition:color .25s ease;}
+  .contents-list .cg{grid-column:2;font-style:italic;font-size:.92rem;color:var(--faint);
+    margin-top:.22rem;line-height:1.42;text-wrap:pretty;}
+  .contents-list a:hover .ct{color:var(--soft);}
+  @media (max-width:600px){
+    .contents-list a{grid-template-columns:1.9rem 1fr;column-gap:.85rem;}
+    .contents-list .ct{font-size:1.1rem;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-founding">The Founding Atlas · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+
+  <section class="hero">
+    <div class="bar r r1">
+      <span class="mark">Numéraire</span>
+      <span class="edition">The Wage · № I · x</span>
+    </div>
+    <div class="hero-foot r r2">
+      <h1>The Insurance</h1>
+      <p class="standfirst">The classical economists set the wage's floor at subsistence — the cost of keeping a body alive. In a wealthy society that floor lies far below where any wage actually rests, and a different question takes its place: what is the lowest wage a worker will agree to, when starvation is no longer the alternative? The answer turns out to depend on two things the classics never modelled — the friction of finding work at all, and the insurance a society provides against not finding it. This plate is about the modern floor: the reservation wage, the search that sets it, and the safety net that lifts it. It is also about why that floor is not merely a kindness but a form of power.</p>
+    </div>
+  </section>
+
+  <nav class="contents" aria-label="Contents">
+    <div class="orn" aria-hidden="true"><svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg></div>
+    <p class="contents-eyebrow">The argument in seven movements</p>
+    <ol class="contents-list">
+      <li><a href="#s1"><span class="cn">I</span><span class="ct">The Floor, Now</span><span class="cg">the modern floor is not subsistence</span></a></li>
+      <li><a href="#s2"><span class="cn">II</span><span class="ct">The Reservation Wage</span><span class="cg">the lowest wage a worker will take</span></a></li>
+      <li><a href="#s3"><span class="cn">III</span><span class="ct">The Search</span><span class="cg">why the floor is the value of waiting</span></a></li>
+      <li><a href="#s4"><span class="cn">IV</span><span class="ct">Friction Makes the Range</span><span class="cg">how search opens the gap that power divides</span></a></li>
+      <li><a href="#s5"><span class="cn">V</span><span class="ct">The Insurance</span><span class="cg">why a society underwrites the floor</span></a></li>
+      <li><a href="#s6"><span class="cn">VI</span><span class="ct">The Tradeoff</span><span class="cg">what insurance costs, and the right amount of it</span></a></li>
+      <li><a href="#s7"><span class="cn">VII</span><span class="ct">The Floor as Leverage</span><span class="cg">the safety net as power</span></a></li>
+    </ol>
+  </nav>
+
+  <article class="read">
+
+    <div class="sec-head first" id="s1"><span class="sec-num fr">I</span><h2 class="sec-title">The Floor, Now</h2></div>
+
+    <p class="opening">The plate on subsistence left the floor in mid-air. The classical economists had pinned it to the body — the wage could not fall below what kept a worker alive and reproducing — but that floor, we saw, lies far beneath any wage paid in a wealthy society. The modern worker who turns down a job is not choosing to starve. So what, now, is the floor? What is the lowest wage a worker will accept, when refusing it no longer means death?</p>
+
+    <p>The answer is the worker's reservation wage: the wage below which they will say no. It is the modern, secular descendant of the subsistence floor — the bottom of the bargaining range with which this whole volume began. But where subsistence was fixed by nature, the reservation wage is fixed by circumstance, and by two circumstances above all: what else the worker might find, and what the worker can fall back on while looking. The first is a question of search. The second is a question of insurance. Together they set the floor — and, this plate will argue, they set much of the worker's power.<sup class="ref"><a href="#n1">1</a></sup></p>
+
+    <div class="sec-head" id="s2"><span class="sec-num fr">II</span><h2 class="sec-title">The Reservation Wage</h2></div>
+
+    <p>Begin with the idea itself. Every worker, offered a job, weighs the wage against their alternatives, and there is some wage so low that they prefer the alternatives — prefer to keep looking, or to live on savings, or to draw what the state provides. That threshold is the reservation wage. Above it, they accept; below it, they refuse.<sup class="ref"><a href="#n2">2</a></sup></p>
+
+    <p>In the frictionless market of the textbook, the reservation wage is simply the next-best wage on offer; and since identical workers all command the same wage everywhere, the reservation wage equals the market wage and the whole notion collapses to a point. But the labour market is not frictionless. A worker cannot survey every job at once and step instantly into the best; jobs must be found, one at a time, at the cost of time and effort and forgone earnings. And it is precisely this friction — the brute fact that finding work takes time — that turns the reservation wage from a triviality into the hinge of the modern theory of wages.</p>
+
+    <div class="sec-head" id="s3"><span class="sec-num fr">III</span><h2 class="sec-title">The Search</h2></div>
+
+    <p>The economics of this was worked out in the theory of job search, and its central result is elegant. Picture a worker sampling offers over time — one this week, another the next, each drawn from the distribution of wages employers happen to offer. The worker need not take the first; they may reject it and wait for a better one. But waiting is costly: another week unemployed, another week's earnings forgone. The worker's problem is therefore one of optimal stopping — accept this offer, or gamble on a better — and its solution is a reservation wage: a threshold such that the worker accepts any offer above it and rejects any below.<sup class="ref"><a href="#n3">3</a></sup></p>
+
+    <div class="plate">
+      <figure>
+        <svg viewBox="0 0 640 400" role="img" aria-label="Two lines on a graph of value against the wage offered. A rising line is the value of accepting the offer; a flat line is the value of continuing to search. They cross at the reservation wage. To the right the worker accepts, to the left the worker rejects and searches on. A faint higher flat line shows that more generous insurance lifts the value of searching and raises the reservation wage.">
+          <line class="axis" x1="90" y1="340" x2="594" y2="340"/>
+          <path d="M598,340 L588,336 L588,344 Z" style="fill:var(--soft)"/>
+          <line class="axis" x1="90" y1="340" x2="90" y2="60"/>
+          <path d="M90,56 L86,66 L94,66 Z" style="fill:var(--soft)"/>
+          <line class="guide" x1="110" y1="193" x2="380" y2="193"/>
+          <line class="guide" x1="363" y1="340" x2="363" y2="191"/>
+          <line x1="110" y1="215" x2="560" y2="215" style="stroke:var(--soft);stroke-width:1.4"/>
+          <line class="curve" x1="110" y1="300" x2="560" y2="110"/>
+          <line class="floor" x1="311" y1="340" x2="311" y2="213"/>
+          <circle class="dot" cx="311" cy="215" r="4.2"/>
+          <path d="M315,349 L355,349" style="stroke:var(--faint);stroke-width:1.2"/>
+          <path d="M359,349 L350,345 L350,353 Z" style="fill:var(--faint)"/>
+          <text class="tick" x="455" y="150">value of accepting</text>
+          <text class="reg" x="130" y="206">value of searching on</text>
+          <text class="reg" x="130" y="186">(with more insurance)</text>
+          <text class="tick" x="316" y="208">w*</text>
+          <text class="reg" x="195" y="330" text-anchor="middle">reject — keep searching</text>
+          <text class="reg" x="458" y="330" text-anchor="middle">accept the offer</text>
+          <text class="lbl" transform="translate(62,200) rotate(-90)" text-anchor="middle">value to the worker</text>
+          <text class="reg" x="340" y="372" text-anchor="middle">wage offered</text>
+        </svg>
+        <figcaption><span class="pn">Plate x.a&nbsp;&middot;&nbsp;</span>The reservation wage, after the theory of job search. A worker weighs accepting the offer in hand against rejecting it to search for a better one. The value of accepting (the rising line) climbs with the wage offered; the value of searching on (the flat line) does not depend on the present offer at all — it is the worth of drawing again next week. Where the two meet is the reservation wage, w*: the offer just good enough that taking it beats waiting. Above it the worker accepts; below it, refuses and searches on. The floor of the wage is the value of being able to wait — and it rises with anything that makes waiting easier. A more generous safety net lifts the flat line (the faint one), and the reservation wage rises with it: insured against destitution, the worker can hold out for a better job, or refuse a worse one.</figcaption>
+      </figure>
+    </div>
+
+    <p>What sets the threshold? Exactly the comparison the diagram draws. The value of accepting an offer rises with the wage — a better job is worth more. The value of rejecting it does not depend on the current offer at all; it is the value of remaining in search, of drawing again from the distribution next week. The reservation wage is the wage at which these two are equal — the offer just good enough that accepting it beats searching on. And now the levers are visible. Anything that raises the value of continued search — a better distribution of offers, a lower cost of waiting, and above all a more generous cushion to live on while waiting — raises the reservation wage, and the worker holds out for more. Anything that makes waiting more painful lowers it, and the worker takes less. The floor is the value of being able to wait.<sup class="ref"><a href="#n4">4</a></sup></p>
+
+    <div class="sec-head" id="s4"><span class="sec-num fr">IV</span><h2 class="sec-title">Friction Makes the Range</h2></div>
+
+    <p>Here the plate pays a debt it has owed since the first. The opening plate asserted that the wage is settled within a range — a floor, a ceiling, and a contested space between — but it did not say where the range comes from. Search theory supplies the answer, and it is the same friction that set the reservation wage.</p>
+
+    <p>When a worker and a firm meet and find each other suitable, they create something that did not exist before: a productive match, worth more together than either party's next-best alternative. The worker brings a floor — their reservation wage, the value of walking away and searching on. The firm brings a ceiling — the worker's productivity, the most the match is worth to it. Because search is costly, these are not the same number; it is worth something to both sides to strike a deal here rather than break it off and begin again. Between the floor and the ceiling lies a surplus — the gain from the match existing at all — and the wage is simply the line that divides it.<sup class="ref"><a href="#n5">5</a></sup></p>
+
+    <div class="plate">
+      <figure>
+        <svg viewBox="0 0 640 280" role="img" aria-label="A horizontal bar running from the worker's reservation wage on the left to the worker's productivity on the right represents the match surplus. A vertical line marks the wage, dividing the bar: the left portion is the worker's gain, the right portion the firm's gain. Where the dividing line falls is set by bargaining.">
+          <path d="M140,142 L140,132 L540,132 L540,142" style="fill:none;stroke:var(--faint);stroke-width:1.2"/>
+          <text class="tick" x="340" y="123" text-anchor="middle">the match surplus</text>
+          <rect x="140" y="170" width="220" height="30" style="fill:var(--sel)"/>
+          <rect x="140" y="170" width="400" height="30" style="fill:none;stroke:var(--soft);stroke-width:1.4"/>
+          <line x1="360" y1="158" x2="360" y2="212" style="stroke:var(--ink);stroke-width:2"/>
+          <text class="tick" x="360" y="151" text-anchor="middle">the wage</text>
+          <text class="reg" x="250" y="190" text-anchor="middle">worker's gain</text>
+          <text class="reg" x="450" y="190" text-anchor="middle">firm's gain</text>
+          <text class="tick" x="140" y="224" text-anchor="middle">reservation wage</text>
+          <text class="reg" x="140" y="240" text-anchor="middle">the floor</text>
+          <text class="tick" x="540" y="224" text-anchor="middle">productivity</text>
+          <text class="reg" x="540" y="240" text-anchor="middle">the ceiling</text>
+        </svg>
+        <figcaption><span class="pn">Plate x.b&nbsp;&middot;&nbsp;</span>The match surplus, and its division. When a worker and a firm find each other and the match is worth making, they create a surplus — the gain from its existing — lying between the worker's reservation wage (the floor, the value of walking away) and the worker's productivity (the ceiling, the most the match is worth to the firm). Because search is costly, floor and ceiling are not the same number, and the wage is merely the line that divides the surplus between them: low, and the firm keeps most of it; high, and the worker does. Where the line falls is fixed neither by productivity nor by subsistence, but by bargaining — that is, by power. This is the bargaining range of the first plate, derived from a single friction. Remove the friction and the floor rises to the ceiling, the surplus vanishes, the wage pins to a point; restore it, and the range — and the question of who gets what — returns.</figcaption>
+      </figure>
+    </div>
+
+    <p>Set the wage low, near the worker's reservation, and the firm keeps most of the surplus; set it high, near the worker's productivity, and the worker does. Where exactly the wage falls is not pinned down by productivity or by subsistence; it is settled by bargaining, and bargaining is settled by power. This is the whole architecture of the volume, derived from a single friction. Take the friction away — let workers find the best job instantly and at no cost — and the floor rises to meet the ceiling: any firm offering less than full productivity is abandoned at once for one offering more, the surplus vanishes, and the wage pins to a point, exactly as competition promises. Restore the friction and the surplus reopens, the range returns, and with it the question of who gets what. The monopsony of the eighth plate is one answer — the friction lets the employer hold the wage near the floor. The reservation wage of this plate <em>is</em> that floor. And the safety net, we will now see, is the most deliberate way a society has of raising it — of moving the worker's walk-away point up, and the division of the surplus with it.</p>
+
+    <div class="sec-head" id="s5"><span class="sec-num fr">V</span><h2 class="sec-title">The Insurance</h2></div>
+
+    <p>Why, then, does every wealthy society take the worker's fallback — the income they live on while searching — partly out of the worker's own hands and into the state's? Why unemployment insurance, paid not by the worker alone but pooled across all workers and underwritten by the public?</p>
+
+    <p>Because the risk of job loss is one a private market cannot insure well. A worker would gladly buy insurance against losing their job; but no private insurer will readily sell it. Those most likely to be laid off would be the keenest to buy, and the insurer, unable to tell them apart, must price for the worst — until the premium drives the safer workers out and the market unravels, the classic spiral of adverse selection. And once insured, a worker has a weaker reason to keep the job or hurry back to a new one — moral hazard, which a private insurer can monitor only clumsily. Worse, the risk is correlated: in a recession everyone is laid off at once, so the insurer faces not many small independent claims but one vast simultaneous one, precisely when its own finances are strained. For all these reasons private unemployment insurance barely exists, and the task falls to the state, which can compel participation, pool the whole workforce, and draw on the public purse in a downturn.<sup class="ref"><a href="#n6">6</a></sup></p>
+
+    <p>What the state provides is, by design, partial and temporary — in the United States, a benefit that typically replaces something between a third and a half of prior earnings, for a limited spell, commonly up to about six months and in many states now less.<sup class="ref"><a href="#n7">7</a></sup> But even a partial, temporary cushion does to the reservation wage exactly what the diagram showed: it lifts the value of searching, and so raises the wage below which the worker will not go. The insured worker can wait for a better match; can refuse a worse one; can, for a while, say no. The safety net is the most deliberate instrument a society has for setting the floor of the wage.</p>
+
+    <div class="sec-head" id="s6"><span class="sec-num fr">VI</span><h2 class="sec-title">The Tradeoff</h2></div>
+
+    <p>Insurance is not free, and the very property that makes it valuable makes it costly. The cushion that lets a worker hold out for a better job also lets a worker hold out longer than they otherwise would — and some of that holding-out is not the patient pursuit of a good match but simple delay. The evidence is plain and a little uncomfortable: workers drawing unemployment benefits search less intensively and return to work more slowly, and the rate at which they find jobs jumps sharply just as their benefits are about to run out — a spike too sudden to reflect anything but the incentive itself.<sup class="ref"><a href="#n8">8</a></sup> This is the moral hazard of insurance, and it sets the central problem of policy: a safety net generous enough to give real security is generous enough to dull the urgency of return.</p>
+
+    <p>How generous, then, should it be? The question has a clean answer in principle, due to Baily and later sharpened by Chetty. Each added dollar of benefit buys something and costs something. What it buys is consumption smoothing: a worker who loses their job suffers a steep fall in living standards, and because they are risk-averse, a dollar of income in that bad state is worth far more to them than a dollar in good times — so insurance that moves income from the good state to the bad is genuinely valuable. What it costs is the behavioural distortion: the slower search, the longer unemployment, the spike at exhaustion. The optimal benefit is the one at which these are equal at the margin — where the last dollar of insurance buys just as much consumption-smoothing value as it costs in distorted behaviour.<sup class="ref"><a href="#n9">9</a></sup></p>
+
+    <div class="plate">
+      <figure>
+        <svg viewBox="0 0 640 400" role="img" aria-label="Two curves plotted against the generosity of the unemployment benefit. A solid declining curve is the marginal value of insurance, the consumption-smoothing gain. A dashed rising curve is the marginal cost, the behavioural distortion. They cross at the optimal benefit, where marginal gain equals marginal cost.">
+          <line class="axis" x1="90" y1="340" x2="594" y2="340"/>
+          <path d="M598,340 L588,336 L588,344 Z" style="fill:var(--soft)"/>
+          <line class="axis" x1="90" y1="340" x2="90" y2="60"/>
+          <path d="M90,56 L86,66 L94,66 Z" style="fill:var(--soft)"/>
+          <path class="curve" d="M110,105 C 220,135 320,180 400,200 C 480,218 540,232 560,240" style="fill:none"/>
+          <path d="M110,295 C 210,262 320,228 400,200 C 470,176 530,140 560,120" style="fill:none;stroke:var(--ink);stroke-width:2;stroke-dasharray:5 4"/>
+          <line class="floor" x1="400" y1="340" x2="400" y2="200"/>
+          <circle class="dot" cx="400" cy="200" r="4.2"/>
+          <text class="tick" x="120" y="92">the gain — consumption smoothed</text>
+          <text class="tick" x="560" y="112" text-anchor="end">the cost — slower search</text>
+          <text class="reg" x="115" y="358">stingy</text>
+          <text class="tick" x="400" y="358" text-anchor="middle">the optimal benefit</text>
+          <text class="reg" x="560" y="358" text-anchor="end">generous</text>
+          <text class="lbl" transform="translate(62,200) rotate(-90)" text-anchor="middle">value at the margin</text>
+        </svg>
+        <figcaption><span class="pn">Plate x.c&nbsp;&middot;&nbsp;</span>How much insurance? After Baily and Chetty. Each added dollar of benefit both buys and costs. What it buys is consumption smoothing (the solid line): because a jobless worker values income far more than an employed one, insurance that shifts income into the bad state is worth a great deal — most when the benefit is meagre, less as it grows generous. What it costs is the behavioural distortion (the dashed line): slower search, longer unemployment, the tell-tale jump in job-finding as benefits expire — rising as the benefit grows. The optimal benefit sits where the two meet, the last dollar of insurance worth just what it costs. One caveat softens the cost: part of the apparent distortion is not sloth but liquidity — the benefit lets a cash-strapped worker afford to search properly rather than seize the first job to make rent — so the true cost is smaller, and the optimal floor higher, than the crude view allows.</figcaption>
+      </figure>
+    </div>
+
+    <p>There is a subtlety here that rescues insurance from the charge of being mere sloth subsidised, and it is among the more beautiful results in the field. Part of what looks like moral hazard is not waste at all. A worker without savings, suddenly jobless, may grab the first job going not because it is a good match but because the rent is due — a fire sale of their own labour, forced by a cash constraint rather than chosen. Unemployment benefits relax that constraint, and some of the extra time they buy is spent not shirking but searching properly, finding work that actually fits. Chetty showed that this liquidity effect — insurance letting the constrained worker afford to search well — accounts for a large share of the behavioural response the crude view dismisses as moral hazard. Insurance does not only cushion the fall; it can improve the match made on the way back up.<sup class="ref"><a href="#n10">10</a></sup></p>
+
+    <div class="sec-head" id="s7"><span class="sec-num fr">VII</span><h2 class="sec-title">The Floor as Leverage</h2></div>
+
+    <p>Step back from the machinery, and the plate's place in the volume comes clear. Everything here has been about the floor of the bargaining range — the reservation wage, what sets it, how a society lifts it. But the floor is never merely a number. It is the worker's walk-away point, and the walk-away point is the source of the worker's power.</p>
+
+    <p>This is the thread that runs through the whole volume. A worker who can refuse a bad bargain — because they have savings, or insurance, or a public floor beneath them — has leverage in the bargain; a worker who cannot refuse, who must take this wage or go hungry, has none. Raise the floor and you raise the worker's power: their reservation wage climbs, the share of the match surplus they can claim climbs with it, and the monopsony markdown of the eighth plate — which feeds on the worker's inability to walk away — shrinks. The safety net, in this light, is not only consumption smoothing and not only charity. It is a power-shifting institution, kin to the union of the ninth plate: where the union gathers many workers so that each can afford to say no together, insurance equips each worker to afford to say no alone.<sup class="ref"><a href="#n11">11</a></sup></p>
+
+    <p>And so the modern floor turns out to be, in the deepest sense, a choice — and a choice about power. The classical floor was fixed by nature: subsistence was subsistence, and no one decided it. The modern floor is fixed by policy — how generous the benefit, how long it lasts, how easily it is claimed — and every such decision is, whatever else it is, a decision about how much the worker may refuse, about where in the contest the wage records a society chooses to stand.<sup class="ref"><a href="#n12">12</a></sup> Reasonable people weigh the tradeoff differently, and the right point is genuinely contested: too low a floor leaves workers at the mercy of whoever is hiring; too high a floor can price the match away entirely, and a job that never forms pays no wage at all.<sup class="ref"><a href="#n13">13</a></sup> But the volume's claim is not about where to set the floor. It is about what the floor is. It is the worker's power to walk away, rendered in money — and the wage, as ever, is decided in the space that power opens.</p>
+
+    <div class="orn" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="coda"><p>Subsistence kept the worker alive. Insurance lets the worker say no. The first is a floor beneath the body; the second, a floor beneath the bargain — and only the second is power.</p></div>
+
+    <section class="notes">
+      <h3>Notes</h3>
+      <p class="note" id="n1"><span class="nn fr">1</span><span>The reservation wage as the modern descendant of the subsistence floor builds on plate iii, <i>The Subsistence</i>: where the classical floor was biological, the modern floor is the worker's reservation wage, set by outside options and the safety net rather than by the body's bare need. It remains the bottom of the bargaining range of plate i.</span></p>
+      <p class="note" id="n2"><span class="nn fr">2</span><span>The reservation wage is the lowest wage at which a worker will accept employment rather than remain unemployed or out of the labour force.</span></p>
+      <p class="note" id="n3"><span class="nn fr">3</span><span>The theory of sequential job search and the reservation-wage property: John J. McCall, &ldquo;Economics of Information and Job Search,&rdquo; <i>Quarterly Journal of Economics</i> (1970). The worker accepts the first offer above a reservation threshold; the threshold equates the value of accepting with the value of continued search.</span></p>
+      <p class="note" id="n4"><span class="nn fr">4</span><span>The equilibrium theory of search and matching, for which Peter Diamond, Dale Mortensen, and Christopher Pissarides shared the 2010 Nobel Memorial Prize: it shows how frictions jointly determine wages, unemployment, and vacancies, and how the reservation wage shifts with the value of remaining unemployed.</span></p>
+      <p class="note" id="n5"><span class="nn fr">5</span><span>Search frictions create a match surplus, divided between worker and firm by bargaining — usually modelled as Nash bargaining, with the split set by the parties' relative power and outside options. The wage is thus indeterminate within a range, precisely the range of plate i; and the friction that opens that range is the same that grounds the monopsony of plate viii (Alan Manning, <i>Monopsony in Motion</i>, 2003).</span></p>
+      <p class="note" id="n6"><span class="nn fr">6</span><span>On the market failures that leave the state to provide unemployment insurance — adverse selection, moral hazard, and the correlated (aggregate) nature of the risk, which together make private unemployment insurance nearly nonexistent: a standard result in the economics of insurance and public finance.</span></p>
+      <p class="note" id="n7"><span class="nn fr">7</span><span>In the United States, regular state unemployment insurance commonly replaces roughly 30 to 50 percent of prior earnings, for a maximum of 26 weeks in most states but now lower in many (as few as 12 in some), and tied in several states to the unemployment rate; the mean duration of receipt runs well below the maximum. Figures from the U.S. Department of Labor and state programmes, 2025&ndash;26.</span></p>
+      <p class="note" id="n8"><span class="nn fr">8</span><span>On the moral hazard of unemployment insurance — longer spells and the spike in job-finding as benefits approach exhaustion: Bruce Meyer, &ldquo;Unemployment Insurance and Unemployment Spells,&rdquo; <i>Econometrica</i> (1990); and David Card, Raj Chetty &amp; Andrea Weber, <i>Quarterly Journal of Economics</i> (2007), on behaviour around benefit exhaustion.</span></p>
+      <p class="note" id="n9"><span class="nn fr">9</span><span>The optimal-insurance tradeoff: Martin Baily, &ldquo;Some Aspects of Optimal Unemployment Insurance,&rdquo; <i>Journal of Public Economics</i> (1978), and Raj Chetty, &ldquo;A General Formula for the Optimal Level of Social Insurance,&rdquo; <i>Journal of Public Economics</i> (2006): optimal benefits balance the marginal consumption-smoothing value against the marginal cost of the behavioural response.</span></p>
+      <p class="note" id="n10"><span class="nn fr">10</span><span>The decomposition of the unemployment-insurance response into a moral-hazard component and a liquidity component — the latter efficient: Raj Chetty, &ldquo;Moral Hazard versus Liquidity and Optimal Unemployment Insurance,&rdquo; <i>Journal of Political Economy</i> (2008). On the consumption drop at unemployment that insurance smooths: Jonathan Gruber, &ldquo;The Consumption Smoothing Benefits of Unemployment Insurance,&rdquo; <i>American Economic Review</i> (1997).</span></p>
+      <p class="note" id="n11"><span class="nn fr">11</span><span>That raising the worker's reservation wage — the outside option — reduces the employer's monopsony markdown follows directly from the model of plate viii; the safety net thus functions, like the union of plate ix, as an institution that shifts bargaining power toward labour.</span></p>
+      <p class="note" id="n12"><span class="nn fr">12</span><span>On the floor as a social and policy choice rather than a fact of nature — the theme of plate iii's close. The parameters of the safety net (replacement rate, duration, eligibility) are political decisions, and each is, among other things, a decision about how much a worker may refuse.</span></p>
+      <p class="note" id="n13"><span class="nn fr">13</span><span>The genuine policy tradeoff, weighed differently across the political spectrum: a higher floor strengthens workers against low offers and can improve match quality, but may also raise unemployment and, pushed far enough, prevent matches from forming at all; debates over the generosity of unemployment insurance, minimum-income guarantees, and universal basic income turn on where the balance lies. The plate takes no position on the optimal level, only on what the level governs.</span></p>
+    </section>
+
+  </article>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref">The Wage · plate x</span>
+    </div>
+    <p class="colophon">The tenth plate of <i>The Wage</i>: insurance — the modern theory of the wage's floor. Where the plate on subsistence found the classical floor in the cost of keeping a body alive, this plate finds the modern floor in the reservation wage: the lowest wage a worker will accept, set by the friction of search and the cushion a society provides against not finding work. The plate derives the bargaining range of the first plate from search frictions alone; explains why the state, not a private market, must insure against job loss; weighs the consumption-smoothing value of unemployment insurance against its moral hazard, with the liquidity effect that redeems part of the apparent waste; and argues that the floor is never merely a number but the worker's power to walk away. The companion to the plate on subsistence — the floor then and now — and kin to the plates on monopsony and the union. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-wage-union.html">← The Union</a><a rel="next" href="the-wage-machine.html">The Machine →</a></nav>
+</body>
+</html>

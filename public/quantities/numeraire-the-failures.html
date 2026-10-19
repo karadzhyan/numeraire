@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Numéraire — The Failures — Group III</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+
+  /* ---- masthead ---- */
+  .masthead{padding:clamp(3rem,8vh,6rem) 0 clamp(2rem,5vh,3.4rem);text-align:center;}
+  .orn{display:flex;justify-content:center;margin:0 auto 1.9rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;}
+  .edition{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+  .kicker{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;
+    font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--faintest);
+    margin:clamp(1.6rem,4vh,2.6rem) 0 0;}
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.3rem,6.5vw,4.6rem);line-height:1.02;letter-spacing:-.025em;margin:.5rem 0 0;text-wrap:balance;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:43rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  /* ---- legend ---- */
+  .legend{display:flex;flex-wrap:wrap;justify-content:center;gap:1.4rem 2.2rem;align-items:center;
+    margin:clamp(1.8rem,4vh,2.6rem) auto 0;padding-top:1.8rem;border-top:1px solid var(--hair);max-width:50rem;}
+  .legend-item{display:flex;align-items:center;gap:.55rem;font-size:.82rem;color:var(--faint);}
+  .legend-swatch{width:20px;height:20px;border:1px solid var(--hair);border-radius:2px;flex:0 0 auto;}
+  .legend-swatch.lit{background:var(--ink);border-color:var(--ink);}
+  .legend-anatomy{font-size:.82rem;color:var(--faint);}
+  .legend-anatomy b{font-family:"Fraunces",serif;font-weight:500;color:var(--soft);}
+  .legend-anatomy em{font-style:italic;}
+
+  /* ---- the argument of the group ---- */
+  .argument{max-width:46rem;margin:clamp(2.2rem,5vh,3.2rem) auto 0;padding-top:clamp(2rem,4vh,2.6rem);
+    border-top:1px solid var(--hair);}
+  .arg-lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--faintest);display:block;margin:0 0 1.2rem;}
+  .argument p{font-size:clamp(1rem,1.25vw,1.1rem);line-height:1.74;color:var(--soft);margin:0 0 1.05rem;text-wrap:pretty;}
+  .argument p:last-child{margin-bottom:0;}
+  .argument em{font-style:italic;}
+  .argument .lede{text-indent:0;}
+  .argument .lede::first-letter{
+    font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    float:left;font-size:3.1rem;line-height:.82;padding:.06em .12em 0 0;color:var(--ink);}
+
+  /* ---- the table ---- */
+  main{padding:clamp(2.6rem,6vh,4.4rem) 0 0;}
+  .group{margin:0 0 clamp(2.4rem,5vh,3.6rem);}
+  .group-head{display:flex;align-items:baseline;gap:.9rem;margin:0 0 1.25rem;}
+  .group-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-size:.86rem;color:var(--faintest);letter-spacing:.04em;flex:0 0 auto;}
+  .group-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);flex:0 0 auto;}
+  .group-rule{flex:1;height:1px;background:var(--hair);position:relative;top:-2px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(176px,1fr));gap:13px;}
+
+  .el{appearance:none;-webkit-appearance:none;background:var(--paper);border:1px solid var(--hair);border-radius:2px;
+    padding:15px 15px 17px;text-align:left;cursor:pointer;position:relative;min-height:150px;
+    display:flex;flex-direction:column;color:inherit;font-family:inherit;
+    transition:border-color .22s ease,background .22s ease,transform .22s ease,box-shadow .22s ease;}
+  .el:hover{border-color:var(--faintest);transform:translateY(-2px);}
+  .el-num{position:absolute;top:11px;right:13px;font-family:"Fraunces",serif;font-size:.72rem;color:var(--faintest);letter-spacing:.03em;}
+  .el-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2.15rem;line-height:1;margin-top:.5rem;letter-spacing:-.012em;}
+  .el-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1rem;margin-top:.55rem;line-height:1.12;}
+  .el-gloss{font-size:.77rem;color:var(--faint);line-height:1.34;margin-top:.3rem;}
+  .el-plates{margin-top:auto;padding-top:.7rem;font-family:"Fraunces",serif;font-size:.68rem;letter-spacing:.05em;color:var(--faintest);}
+  .el.lit{background:var(--ink);border-color:var(--ink);}
+  .el.lit .el-sym,.el.lit .el-name{color:var(--paper);}
+  .el.lit .el-num{color:rgba(240,235,225,.55);}
+  .el.lit .el-gloss{color:rgba(240,235,225,.66);}
+  .el.sel{box-shadow:inset 0 0 0 1.5px var(--ink);border-color:var(--ink);}
+  .el.lit.sel{box-shadow:inset 0 0 0 1.5px var(--paper);}
+
+  /* ---- detail panel ---- */
+  .detail{margin:clamp(2.4rem,5vh,3.6rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);scroll-margin-top:1.4rem;}
+  .d-head{display:flex;gap:1.3rem;align-items:flex-start;}
+  .d-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 500;font-size:2.7rem;line-height:1;
+    color:var(--ink);flex:0 0 auto;border:1px solid var(--hair);border-radius:2px;
+    width:86px;height:86px;display:flex;align-items:center;justify-content:center;}
+  .d-sym.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .d-titles{min-width:0;}
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);}
+  .d-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.7rem,3.6vw,2.5rem);margin:.22rem 0 .35rem;line-height:1.04;letter-spacing:-.016em;}
+  .d-status{font-size:.84rem;color:var(--faint);font-style:italic;}
+  .d-status.print{color:var(--soft);font-style:normal;}
+  .d-status.print::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .d-desc{font-size:1.05rem;line-height:1.72;color:var(--ink);max-width:42rem;margin:1.3rem 0 0;text-wrap:pretty;}
+  .d-openq{margin:1.5rem 0 0;max-width:40rem;}
+  .d-openq .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.5rem;}
+  .d-openq q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);quotes:none;}
+
+  .d-plates{margin:2.2rem 0 0;}
+  .d-plates h3{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.76rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faint);margin:0 0 1.3rem;}
+  .plate-list{list-style:none;margin:0;padding:0;max-width:42rem;}
+  .plate-list li{display:grid;grid-template-columns:2.3rem 1fr;column-gap:1rem;align-items:baseline;
+    padding:.72rem 0;border-top:1px solid var(--hair);}
+  .plate-list li:first-child{border-top:none;}
+  .pl-num{font-family:"Fraunces",serif;font-size:.9rem;color:var(--faintest);text-align:right;}
+  .pl-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.04rem;color:var(--ink);line-height:1.15;}
+  .pl-gloss{grid-column:2;font-size:.84rem;color:var(--faint);font-style:italic;margin-top:.18rem;line-height:1.36;}
+  .pl-tag{display:inline-block;margin-left:.6rem;font-family:"Newsreader",serif;font-style:normal;
+    font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--paper);background:var(--ink);
+    border-radius:2px;padding:.12em .5em;vertical-align:.12em;}
+  .pl-bridge{grid-column:2;font-size:.78rem;color:var(--faintest);margin-top:.3rem;}
+  .pl-bridge b{font-family:"Fraunces",serif;font-weight:500;font-style:normal;color:var(--faint);}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:62ch;}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}.rise.d4{animation-delay:.42s}
+    .group{opacity:0;transform:translateY(14px);animation:rise .9s cubic-bezier(.2,.6,.2,1) both;animation-delay:.56s;}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;}
+    .el{min-height:138px;padding:12px 12px 14px;}
+    .el-sym{font-size:1.9rem;}
+    .el-name{font-size:.92rem;}
+    .el-gloss{font-size:.72rem;}
+    .el-plates{font-size:.64rem;}
+    .d-head{gap:1rem;}
+    .d-sym{width:64px;height:64px;font-size:2rem;}
+    .argument .lede::first-letter{font-size:2.6rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-quantities">The Quantities edition · contents</a><a href="numeraire-the-table.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="rise d1">
+      <span class="imprint">Numéraire</span>
+      <div class="edition">Group III of <a href="numeraire-the-table.html" style="color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px;text-decoration-color:var(--faintest)">the table of twenty-six</a></div>
+    </div>
+    <div class="kicker rise d2">The Third Group · Four Volumes</div>
+    <h1 class="rise d2">The Failures</h1>
+    <p class="standfirst rise d3">The four ways the invisible hand misfires: when one side holds too much power, when a cost slips past the price, when one party knows what the other cannot, and when the thing in question belongs to no one. The market has a theorem that promises efficiency — <em>this group is its fine print.</em></p>
+    <div class="legend rise d3">
+      <span class="legend-item"><span class="legend-swatch lit"></span>in print</span>
+      <span class="legend-item"><span class="legend-swatch"></span>in preparation</span>
+      <span class="legend-anatomy">Each tile is a <b>volume</b>; select one to open its <b>twelve plates</b>. None is yet in print — Volume I, <em>The Wage</em>, holds that distinction — but each is now set.</span>
+    </div>
+  </header>
+
+  <section class="argument rise d4" aria-label="The argument of the group">
+    <span class="arg-lead">The argument of the group</span>
+    <p class="lede">The first group weighed the prices; the second counted the quantities, and found the most important of them strangely hard to count. This group turns to a graver trouble — not whether the numbers can be measured, but whether the mechanism that makes them works at all. There is a theorem, the finest the discipline owns, that says it does: that a competitive market, left to itself, turns the pursuit of private gain into public efficiency, as though by an unseen hand. These four volumes are the fine print on that promise.</p>
+    <p>For the theorem holds only on conditions, and each volume is one condition the world declines to supply. That every trader be too small to move the price — and not, as in <em>The Power</em>, large enough to bend it. That every cost fall upon a party to the bargain — and not, as in <em>The Externality</em>, drift onto a stranger who never agreed to it. That both sides know the same things — and not, as in <em>The Asymmetry</em>, one hold what the other cannot see. And that every good be owned and rival — and not, as in <em>The Commons</em>, lie open to all and so belong to none. Strike any one, and the hand falters: too little of the good thing, too much of the bad, a price that misinforms, a market that empties or never opens at all.</p>
+    <p>Against each failure a century of ingenuity has raised a remedy — the antitrust suit, the corrective tax, the costly signal, the village's own book of rules. The finding that orders the group, and the one most often hurried past, is that a market failure is not, in itself, an argument for anything. To name it is only to open a comparison among imperfect remedies, each carrying a failure of its own. The <em>numéraire</em> of honesty here is the refusal of the easy slide — from <em>the market is imperfect</em> to <em>therefore the state</em>, and just as firmly from <em>the state is imperfect</em> to <em>therefore the market</em> — and the patience to ask, each time, imperfect beside what?</p>
+  </section>
+
+  <main>
+    <section class="group">
+      <div class="group-head"><span class="group-num fr">Group III</span><span class="group-name">The Failures</span><span class="group-rule"></span></div>
+      <div class="grid">
+        <button class="el" data-id="power" aria-label="The Power — too few on one side — twelve plates"><span class="el-num">10</span><span class="el-sym">Pw</span><span class="el-name">The Power</span><span class="el-gloss">too few on one side</span><span class="el-plates">XII plates · in prep.</span></button>
+        <button class="el" data-id="externality" aria-label="The Externality — costs that escape the price — twelve plates"><span class="el-num">11</span><span class="el-sym">Ex</span><span class="el-name">The Externality</span><span class="el-gloss">costs that escape the price</span><span class="el-plates">XII plates · in prep.</span></button>
+        <button class="el" data-id="asymmetry" aria-label="The Asymmetry — what one side cannot know — twelve plates"><span class="el-num">12</span><span class="el-sym">As</span><span class="el-name">The Asymmetry</span><span class="el-gloss">what one side cannot know</span><span class="el-plates">XII plates · in prep.</span></button>
+        <button class="el" data-id="commons" aria-label="The Commons — what no one owns — twelve plates"><span class="el-num">13</span><span class="el-sym">Cm</span><span class="el-name">The Commons</span><span class="el-gloss">what no one owns</span><span class="el-plates">XII plates · in prep.</span></button>
+      </div>
+    </section>
+  </main>
+
+  <section class="detail" id="detail" aria-live="polite"></section>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref">Group III · The Failures</span>
+    </div>
+    <p class="colophon">The third of the table's six groups, brought from sketch to structure. Four volumes — <em>The Power</em>, <em>The Externality</em>, <em>The Asymmetry</em>, <em>The Commons</em> — each now set in twelve plates, none yet in print; Volume I, <em>The Wage</em>, still holds that distinction. Together they are the four standing exceptions to the market's great theorem: the conditions a competitive economy is assumed to meet and the world routinely withholds — and, set beside each, the imperfect remedy it provokes. The discipline of the group is to remember that a failure named is not a remedy earned. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+
+<script>
+const DATA = {
+  power:{group:"The Failures",gi:"III",status:"in preparation · № X · twelve plates set",
+    desc:"What happens when there are too few on one side of the market — monopoly, and its less famous mirror, monopsony. The complete anatomy of market power, of which the single buyer of labor in The Wage is only one organ; here it becomes the whole body.",
+    openq:"what is a fair price worth, when one side has nowhere else to go?",
+    plates:[
+      {n:"i",title:"The Single Seller",gloss:"Cournot, 1838; the first equation of monopoly, and marginal revenue fallen below the price"},
+      {n:"ii",title:"The Wedge",gloss:"deadweight loss; the output quietly withheld so that the price may climb"},
+      {n:"iii",title:"The Degrees",gloss:"Pigou's price discrimination, first to third, and the buyer's surplus carried off",bridge:"The Surplus"},
+      {n:"iv",title:"The Few",gloss:"oligopoly; Cournot's quantities, Bertrand's prices, and the kinked demand curve",bridge:"The Game"},
+      {n:"v",title:"The Differentiated",gloss:"Chamberlin and Robinson, 1933; each firm the small monopolist of its own brand"},
+      {n:"vi",title:"The Index",gloss:"Lerner, 1934; the markup over cost taken as the very measure of power"},
+      {n:"vii",title:"The Buyer",gloss:"monopsony; Robinson's coinage, the wage pressed below the worth — the whole body of which The Wage saw a single organ",bridge:"The Wage"},
+      {n:"viii",title:"The Structure",gloss:"Bain's paradigm; concentration, conduct, and performance following one upon the next"},
+      {n:"ix",title:"The Chicago Turn",gloss:"Stigler and Bork; the doctrine that most monopoly, left alone, does not last"},
+      {n:"x",title:"The Contestable",gloss:"Baumol; the lone seller disciplined not by rivals present but by the mere threat of entry"},
+      {n:"xi",title:"The Platform",gloss:"network effects and the two-sided market; the tipping point, and the winner who takes the most"},
+      {n:"xii",title:"The Bigness",gloss:"Khan and the neo-Brandeisians; the return of structure, and whether consumer welfare was ever the whole of it"}
+    ]},
+  externality:{group:"The Failures",gi:"III",status:"in preparation · № XI · twelve plates set",
+    desc:"The costs and benefits that escape the price entirely — the factory's smoke, the neighbor's noise, the stranger's vaccine. Pigou's corrective tax against Coase's private bargain, and the deep question of when, and how, a price can be made to tell the whole truth.",
+    openq:"who pays for the smoke, when the price of the goods does not?",
+    plates:[
+      {n:"i",title:"The Smoke",gloss:"Marshall's external economies; the cost that settles on a stranger to the bargain"},
+      {n:"ii",title:"The Divergence",gloss:"Pigou, 1920; private cost set against social, and the gap between them given a name"},
+      {n:"iii",title:"The Tax",gloss:"the Pigovian remedy; the price compelled, at last, to carry the harm it causes",bridge:"The Tax"},
+      {n:"iv",title:"The Subsidy",gloss:"the benefit that escapes upward; Meade's bees, the stranger's vaccine, the half-paid-for idea"},
+      {n:"v",title:"The Theorem",gloss:"Coase, 1960; with the rights made clear and the bargaining made free, the parties settle it themselves"},
+      {n:"vi",title:"The Transaction Cost",gloss:"and why, friction lying everywhere, the assignment of the right comes to matter after all",bridge:"The Firm"},
+      {n:"vii",title:"The Reciprocal",gloss:"Coase's deeper and stranger claim: the harm, looked at squarely, runs in both directions"},
+      {n:"viii",title:"The Permit",gloss:"Dales and Crocker; the right to pollute itself made a thing to be bought and sold"},
+      {n:"ix",title:"The Instrument",gloss:"Weitzman, 1974; the price against the quantity, and which to fix when the world is uncertain"},
+      {n:"x",title:"The Carbon",gloss:"the social cost, Stern against Nordhaus on the rate of discount, and the externality that spans the globe and the century",bridge:"The Commons"},
+      {n:"xi",title:"The Double Dividend",gloss:"whether a tax upon the harm might also, with its proceeds, lighten the tax upon the good"},
+      {n:"xii",title:"The Internalized",gloss:"the limit, where damage cannot be measured nor the right assigned, and no price, after all, tells the whole truth"}
+    ]},
+  asymmetry:{group:"The Failures",gi:"III",status:"in preparation · № XII · twelve plates set",
+    desc:"What one side of a deal knows and the other cannot — the used car, the insurance applicant, the borrower's true intentions. How hidden information quietly unravels a market from the inside, and the ingenious devices — signals, screens, warranties — built to hold it together.",
+    openq:"how does a market survive when the seller knows what the buyer cannot?",
+    plates:[
+      {n:"i",title:"The Lemon",gloss:"Akerlof, 1970; the used-car market that unravels from the rotten end — a paper three journals rejected as either wrong or dull"},
+      {n:"ii",title:"The Unraveling",gloss:"adverse selection at large; the good risks fleeing a pooled price until the pool itself is poison"},
+      {n:"iii",title:"The Insurance",gloss:"Rothschild and Stiglitz, 1976; the market so afflicted it may possess no equilibrium at all"},
+      {n:"iv",title:"The Signal",gloss:"Spence, 1973; the costly gesture that proves what cannot be spoken — and the doubt it casts on the worth of a degree",bridge:"The Wage"},
+      {n:"v",title:"The Screen",gloss:"the uninformed side's reply; the menu of terms built to make each hidden type confess itself"},
+      {n:"vi",title:"The Hidden Action",gloss:"moral hazard; the care that slackens the very moment the risk has become someone else's"},
+      {n:"vii",title:"The Agent",gloss:"the principal who cannot watch; the contract that can never quite bind two wills as one",bridge:"The Firm"},
+      {n:"viii",title:"The Incentive",gloss:"Holmström, 1979; pay tied to whatever can be seen, and the mischief of rewarding only the measured"},
+      {n:"ix",title:"The Efficiency Wage",gloss:"the wage set deliberately above the market, so that the threat of dismissal may bite",bridge:"The Cycle"},
+      {n:"x",title:"The Mechanism",gloss:"Hurwicz, Maskin, Myerson; the game designed from the outset so that the truth is the dominant move",bridge:"The Rule"},
+      {n:"xi",title:"The Reputation",gloss:"the encounter repeated, and the trust that hidden quality must slowly and expensively earn"},
+      {n:"xii",title:"The Disclosure",gloss:"the rating, the warranty, the mandated truth; the unraveling turned, for once, to the good — for silence damns"}
+    ]},
+  commons:{group:"The Failures",gi:"III",status:"in preparation · № XIII · twelve plates set",
+    desc:"What no one owns and everyone draws upon — the fishery, the pasture, the atmosphere, the open library of code. The tragedy long thought inevitable, and Elinor Ostrom's patient demonstration that communities have, again and again, governed it without ruin.",
+    openq:"why is the shared meadow always overgrazed — and need it be?",
+    plates:[
+      {n:"i",title:"The Pasture",gloss:"Lloyd in 1833, Hardin in 1968; the herdsman's faultless private logic and the meadow's certain ruin"},
+      {n:"ii",title:"The Dilemma",gloss:"the tragedy seen plainly for what it is — a prisoner's dilemma played among the many",bridge:"The Game"},
+      {n:"iii",title:"The Fourfold",gloss:"rivalry set against excludability; the two axes that sort every good in the world into four"},
+      {n:"iv",title:"The Public Good",gloss:"Samuelson, 1954; the lighthouse, and the good that one more may enjoy without taking from the rest"},
+      {n:"v",title:"The Free Rider",gloss:"the temptation to enjoy what others have paid for, and the chronic under-provision it breeds"},
+      {n:"vi",title:"The Lindahl Price",gloss:"the personalized toll that would set it all right — could the hidden willingness to pay ever be charged"},
+      {n:"vii",title:"The Pivotal",gloss:"Clarke and Groves; the ingenious tax contrived to make honest revelation the dominant move",bridge:"The Asymmetry"},
+      {n:"viii",title:"The Club",gloss:"Buchanan, 1965; the good that can exclude — the pool, the toll road — and so can be sold after all"},
+      {n:"ix",title:"The Enclosure",gloss:"privatization as the cure, and the older, harder history of precisely who was fenced out"},
+      {n:"x",title:"The Leviathan",gloss:"the state as the rival cure, and its own failures — of local knowledge, of will, of capture"},
+      {n:"xi",title:"The Self-Governed",gloss:"Ostrom, 1990; the patient field evidence that communities, given the chance, write durable rules of their own",bridge:"The Rule"},
+      {n:"xii",title:"The Copy",gloss:"the knowledge commons, where the copy depletes nothing it takes from, and one more user may only add",bridge:"The Growth"}
+    ]}
+};
+
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+function render(id){
+  var tile=document.querySelector('.el[data-id="'+id+'"]');
+  var d=DATA[id]; if(!d||!tile) return;
+  var sym=tile.querySelector('.el-sym').textContent;
+  var name=tile.querySelector('.el-name').textContent;
+  var num=tile.querySelector('.el-num').textContent;
+  var lit=tile.classList.contains('lit');
+  var h='';
+  h+='<div class="d-head">';
+  h+='<div class="d-sym'+(lit?' lit':'')+'">'+esc(sym)+'</div>';
+  h+='<div class="d-titles">';
+  h+='<div class="d-family">'+esc(d.group)+' &middot; Group '+d.gi+' &middot; '+esc(num)+'</div>';
+  h+='<h2 class="d-name">'+esc(name)+'</h2>';
+  h+='<div class="d-status'+(d.print?' print':'')+'">'+esc(d.status)+'</div>';
+  h+='</div></div>';
+  h+='<p class="d-desc">'+esc(d.desc)+'</p>';
+  if(d.openq){
+    var lead=d.plates ? 'Its opening question' : 'The first plate would ask';
+    h+='<p class="d-openq"><span class="lead">'+lead+'</span><q>'+esc(d.openq)+'</q></p>';
+  }
+  if(d.plates){
+    h+='<div class="d-plates"><h3>The twelve plates, as set</h3><ol class="plate-list">';
+    d.plates.forEach(function(p){
+      h+='<li'+(p.inprint?' class="inprint"':'')+'>';
+      h+='<span class="pl-num">'+p.n+'</span>';
+      h+='<span class="pl-title">'+esc(p.title)+(p.inprint?'<span class="pl-tag">in print</span>':'')+'</span>';
+      h+='<span class="pl-gloss">'+esc(p.gloss)+'</span>';
+      if(p.bridge){h+='<span class="pl-bridge">a bridge to <b>'+esc(p.bridge)+'</b></span>';}
+      h+='</li>';
+    });
+    h+='</ol></div>';
+  }
+  document.getElementById('detail').innerHTML=h;
+  var prev=document.querySelector('.el.sel'); if(prev) prev.classList.remove('sel');
+  tile.classList.add('sel');
+}
+
+(function(){
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.el').forEach(function(b){
+    b.addEventListener('click',function(){
+      render(b.dataset.id);
+      document.getElementById('detail').scrollIntoView({behavior:reduce?'auto':'smooth',block:'nearest'});
+    });
+  });
+  var __h=(location.hash||'').replace(/^#/,'');
+  render(DATA[__h]?__h:'power');
+  if(__h&&DATA[__h]){document.getElementById('detail').scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});}
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="numeraire-the-quantities.html">← Numéraire</a><a rel="next" href="numeraire-the-institutions.html">Numéraire →</a></nav>
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Triangle — The Surplus, Plate i · Numéraire</title>
+<meta name="description" content="Hotelling; consumer and producer surplus, the value an exchange creates beyond its price, and the welfare optimum where price equals the cost of one more.">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- reading-progress hairline ---- */
+  .progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--ink);z-index:10000;}
+
+  /* ---- masthead ---- */
+  .masthead{padding:clamp(2.8rem,8vh,5.6rem) 0 clamp(1.6rem,4vh,2.6rem);text-align:center;}
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;}
+  .edition{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+  .edition b{font-family:"Fraunces",serif;font-weight:500;font-style:normal;color:var(--soft);letter-spacing:.04em;}
+
+  .symbox{width:84px;height:84px;border:1px solid var(--ink);border-radius:2px;background:var(--ink);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;margin:clamp(1.4rem,3.4vh,2.2rem) auto 0;}
+  .symbox .sb-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2rem;line-height:1;color:var(--paper);letter-spacing:-.01em;}
+  .symbox .sb-num{font-family:"Fraunces",serif;font-size:.66rem;color:rgba(240,235,225,.58);margin-top:.28rem;letter-spacing:.04em;}
+
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-top:1.15rem;}
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.5rem,7vw,5rem);line-height:1.0;letter-spacing:-.028em;margin:.55rem 0 0;text-wrap:balance;}
+  .subtitle{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.05rem,1.7vw,1.32rem);color:var(--faint);margin:.5rem 0 0;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.64;color:var(--soft);
+    max-width:43rem;margin:clamp(1.3rem,3vh,1.9rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+  .status{font-size:.84rem;color:var(--soft);margin:clamp(1.2rem,2.6vh,1.7rem) auto 0;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .backrow{margin-top:clamp(1.3rem,3vh,1.9rem);padding-top:1.5rem;border-top:1px solid var(--hair);max-width:50rem;margin-left:auto;margin-right:auto;}
+  .backlink{display:inline-block;font-size:.82rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .backlink:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- generic block furniture ---- */
+  main{padding:0;}
+  .eyebrow{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.2rem;}
+
+  .block-argument{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .argument{max-width:40rem;margin:0 auto;}
+  .argument p{font-size:1.08rem;line-height:1.74;color:var(--ink);margin:0 0 1.2rem;text-wrap:pretty;}
+  .argument p:last-child{margin-bottom:0;}
+  .argument .closer{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 400;font-style:italic;color:var(--soft);font-size:1.06rem;}
+
+  /* ---- table of plates ---- */
+  .block-toc{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .toc ol{list-style:none;margin:0;padding:0;max-width:44rem;}
+  .toc li{display:grid;grid-template-columns:2.5rem 1fr;column-gap:1rem;align-items:baseline;
+    padding:.85rem 0;border-top:1px solid var(--hair);}
+  .toc li:first-child{border-top:none;}
+  .t-num{font-family:"Fraunces",serif;font-size:.92rem;color:var(--faintest);text-align:right;}
+  .t-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.08rem;color:var(--ink);line-height:1.15;text-decoration:none;}
+  a.t-title{border-bottom:1px solid var(--num);padding-bottom:1px;}
+  a.t-title:hover{border-bottom-color:var(--ink);}
+  .t-gloss{grid-column:2;font-size:.85rem;color:var(--faint);font-style:italic;margin-top:.22rem;line-height:1.4;}
+  .t-q{grid-column:2;font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:.95rem;color:var(--soft);margin-top:.42rem;line-height:1.36;}
+  .t-q .lead{font-family:"Fraunces",serif;font-style:normal;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-right:.5rem;}
+  .t-tag{display:inline-block;margin-left:.6rem;font-family:"Newsreader",serif;font-size:.64rem;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--paper);background:var(--ink);border-radius:2px;padding:.12em .5em;vertical-align:.14em;}
+  .t-read{grid-column:2;margin-top:.42rem;}
+  .t-read a{font-size:.8rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .t-read a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- the plates (essays) ---- */
+  .plates-open{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.8rem,6vh,4rem);}
+  .plates-open .eyebrow{text-align:center;}
+  .plate{max-width:54rem;margin:clamp(2.8rem,6.5vh,4.4rem) auto 0;padding-top:clamp(2.2rem,4.6vh,3rem);
+    border-top:1px solid var(--hair);position:relative;scroll-margin-top:1.4rem;}
+  .plate:first-of-type{border-top:none;margin-top:clamp(1.6rem,3.5vh,2.4rem);padding-top:0;}
+  .plate-head{margin:0 0 1.7rem;}
+  .plate-kicker{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .plate-kicker .pk-tag{margin-left:.6rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .plate-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.8rem,4.2vw,2.7rem);line-height:1.03;letter-spacing:-.02em;margin:.32rem 0 .42rem;}
+  .plate-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.02rem;color:var(--faint);max-width:36rem;line-height:1.45;}
+
+  .epigraph{max-width:34rem;margin:1.4rem 0 1.9rem;padding-left:1.1rem;border-left:1px solid var(--num);}
+  .epigraph p{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:1.04rem;line-height:1.42;color:var(--soft);margin:0;}
+  .epigraph cite{display:block;font-style:normal;font-family:"Newsreader",serif;font-size:.78rem;
+    letter-spacing:.03em;color:var(--faintest);margin-top:.55rem;}
+
+  .plate-body{max-width:37rem;}
+  .plate-body p{font-size:1.05rem;line-height:1.75;color:var(--ink);margin:0 0 1.18rem;text-wrap:pretty;}
+  .plate-body p:last-child{margin-bottom:0;}
+  .plate-body em{font-style:italic;}
+  .plate-body .lead-para::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 500;
+    float:left;font-size:3.5rem;line-height:.78;padding:.08em .14em 0 0;color:var(--ink);}
+  .plate-body h4{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);margin:1.9rem 0 .9rem;}
+
+  .break{display:flex;justify-content:center;margin:1.9rem 0;}
+  .break span{font-family:"Fraunces",serif;font-size:1.05rem;letter-spacing:.4em;color:var(--faintest);padding-left:.4em;}
+
+  /* sidenotes — inline by default, true margin notes on wide screens */
+  .sn-ref{font-family:"Fraunces",serif;font-size:.64rem;vertical-align:super;line-height:0;color:var(--soft);margin-left:.06em;}
+  .sidenote{font-family:"Newsreader",serif;font-size:.82rem;line-height:1.52;color:var(--faint);
+    border-left:2px solid var(--hair);padding-left:.9rem;margin:.7rem 0 1.05rem;}
+  .sidenote .sn-num{font-family:"Fraunces",serif;color:var(--faintest);font-size:.7rem;margin-right:.38rem;}
+  .sidenote em{font-style:italic;}
+  @media (min-width:1040px){
+    .sidenote{float:right;clear:right;width:14.5rem;margin:.25rem -17.5rem 1.15rem 0;
+      border-left:none;border-top:1px solid var(--hair);padding:.42rem 0 0;}
+  }
+
+  /* ---- coda ---- */
+  .coda{max-width:40rem;margin:clamp(2.8rem,6vh,4rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);}
+  .coda p{font-size:1.06rem;line-height:1.74;color:var(--ink);margin:0 0 1.15rem;text-wrap:pretty;}
+  .coda p:last-child{margin-bottom:0;}
+  .coda .q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .f-ref a{text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .f-ref a:hover{border-bottom-color:var(--soft);}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .progress{transition:width .08s linear;}
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}.rise.d4{animation-delay:.4s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    h1{font-size:clamp(2.2rem,11vw,3rem);}
+    .symbox{width:72px;height:72px;}
+    .symbox .sb-sym{font-size:1.7rem;}
+    .plate-body .lead-para::first-letter{font-size:3rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+
+  /* ---- standalone plate (leaf) ---- */
+  .leaf-head{max-width:54rem;margin:0 auto;padding:clamp(2.2rem,6.5vh,4.4rem) 0 0;text-align:center;}
+  .leaf-loc{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.08em;color:var(--faintest);margin-bottom:1.7rem;}
+  .leaf-loc a{text-decoration:none;color:var(--faint);border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .leaf-loc a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+  .leaf-loc .sep{margin:0 .5rem;color:var(--num);}
+  .leaf-kicker{font-family:"Fraunces",serif;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .leaf-kicker .pk-tag{margin-left:.55rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .leaf-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.2rem,5.6vw,3.7rem);line-height:1.02;letter-spacing:-.024em;margin:.42rem 0 0;text-wrap:balance;}
+  .leaf-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.06rem;color:var(--faint);
+    max-width:34rem;margin:.72rem auto 0;line-height:1.5;text-wrap:pretty;}
+  .epigraph.leaf-epigraph{margin:1.95rem auto 1.4rem;text-align:left;}
+  .leaf-body-wrap{max-width:54rem;margin:clamp(1.8rem,4vh,2.8rem) auto 0;}
+
+  .leaf-nav{max-width:54rem;margin:clamp(3rem,7vh,5.2rem) auto 0;padding-top:clamp(1.8rem,4vh,2.6rem);
+    border-top:1px solid var(--hair);display:grid;grid-template-columns:1fr auto 1fr;gap:1.3rem;align-items:start;}
+  .ln-cell{text-decoration:none;display:block;}
+  .ln-cell .lab{display:block;font-family:"Fraunces",serif;font-size:.64rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--faintest);margin-bottom:.36rem;}
+  .ln-cell .ttl{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1rem;
+    color:var(--soft);line-height:1.22;}
+  a.ln-cell:hover .ttl{color:var(--ink);}
+  .ln-prev{text-align:left;} .ln-home{text-align:center;} .ln-next{text-align:right;}
+
+  @media (max-width:600px){
+    .leaf-nav{grid-template-columns:1fr;gap:1.4rem;}
+    .ln-prev,.ln-home,.ln-next{text-align:center;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#ne-contents">Complete contents</a><a href="../editions.html#volume-surplus">The Surplus · both editions</a><a href="../volumes/the-surplus.html">Collected volume</a></div></nav>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="frame">
+
+  <header class="leaf-head">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="leaf-loc rise d1" aria-label="Location in the series"><a href="numeraire-atlas-updated.html">Numéraire</a><span class="sep">·</span><a href="numeraire-vii-the-surplus.html">Volume VII · The Surplus</a></nav>
+    <div class="leaf-kicker rise d2">Plate i <span class="pk-tag">in print</span></div>
+    <h1 class="leaf-title rise d2">The Triangle</h1>
+    <div class="leaf-gloss rise d3">Hotelling; consumer and producer surplus, the value an exchange creates beyond its price, and the welfare optimum where price equals the cost of one more.</div>
+    <div class="epigraph leaf-epigraph rise d3">
+      <p>The good an exchange does is not the price that changes hands but the gap above it — the worth of a thing to the one who buys, beyond what he pays, and the worth of his trade to the one who sells, beyond what it costs; and the sum of every such gap is the true measure of what a market makes, larger than any price and largest of all when price is set at the cost of one more.</p>
+      <cite>— the argument of this plate, after Harold Hotelling, 1938</cite>
+    </div>
+  </header>
+
+  <main class="leaf-body-wrap">
+    <article class="plate">
+      <div class="plate-body">
+<p class="lead-para">The volume's subject is the surplus — the value an exchange creates beyond its price — and the long contest over where it comes from and who, in the end, keeps it. A price, by itself, creates nothing; it is only a transfer, a sum that passes from one hand to another, as much a loss to the payer as a gain to the receiver. What a market actually MAKES lies not in the price but in the gap around it: the difference between what a thing is worth to the buyer and what he pays, and the difference between what the seller receives and what it cost him to provide. These gaps are the surplus, the genuine creation of value that a voluntary exchange brings into being, and measuring them — turning the vague sense that trade does good into a definite magnitude one can add up and compare — was the work of welfare economics, given its most rigorous early form by Harold Hotelling. Begin, then, with what the surplus is.</p>
+
+<p>Consider a single buyer. He does not value a good at its price; he values it at whatever it is worth to him, and that worth — the most he would pay rather than go without — is usually higher than what he is actually charged. A man who would gladly pay forty for a thing he finds selling at twenty-five walks away fifteen to the good: he has the thing, and he has kept fifteen he was willing to part with. That fifteen is his CONSUMER SURPLUS, the value he captures from the exchange over and above what he surrenders. Now array all the buyers in a market from the most eager, who would pay the most, down to the marginal one, who would pay just the going price and no more. That array is the demand curve, each point a buyer's private valuation; and the consumer surplus of the whole market is the region that lies UNDER the demand curve and ABOVE the price — a triangle of captured value, wide at the top where the eager buyers sit, narrowing to nothing at the margin. It is value that the market confers on buyers and that no money measures, for it is precisely what they did NOT have to pay.<sup class="sn-ref">1</sup></p>
+<div class="sidenote"><span class="sn-num">1.</span> A buyer values a good not at its price but at the most he would pay rather than go without — usually higher than what he is charged. A man who would pay forty for a thing selling at twenty-five keeps fifteen: his CONSUMER SURPLUS, value captured over what he surrenders. Array all buyers from the most eager down to the marginal one who would pay just the going price — that is the demand curve, each point a private valuation — and the market's consumer surplus is the region UNDER the demand curve and ABOVE the price: a triangle of captured value, wide where the eager buyers sit, narrowing to nothing at the margin. It is value no money measures, for it is exactly what buyers did not have to pay.</div>
+
+<p>The seller has his mirror image of the same gain. He will not part with a good for less than it costs him to provide — the labor, the materials, the next-best use of his resources — and that cost is usually below the price he can command. A baker whose loaf costs him one to make and who sells it for three is two to the good on every loaf: that two is his PRODUCER SURPLUS, the excess of the price over his cost. Array the sellers from the lowest-cost, who would supply even at a pittance, up to the marginal one whose cost just equals the price, and that array is the supply curve; the producer surplus of the market is the region ABOVE the supply curve and BELOW the price. Add the two together — the buyers' captured value and the sellers' — and one has the TOTAL SURPLUS, the gains from trade: the whole value the exchange creates beyond the resources it consumes. This, and not the price, is what the market produces. The price merely settles where, within the surplus, the line between the buyer's share and the seller's share is drawn.<sup class="sn-ref">2</sup></p>
+<div class="sidenote"><span class="sn-num">2.</span> The seller has the mirror gain. He will not sell below his cost — labor, materials, the next-best use — usually below the price he can command. A baker whose loaf costs one and sells for three is two to the good: his PRODUCER SURPLUS, price over cost. Array sellers from lowest-cost up to the marginal one whose cost just equals the price — the supply curve — and producer surplus is the region ABOVE supply and BELOW price. The two together are TOTAL SURPLUS, the gains from trade: the whole value the exchange creates beyond the resources it consumes. This, not the price, is what a market produces; the price merely settles where, within the surplus, the line between the buyer's share and the seller's is drawn.</div>
+
+<div class="break"><span>⁂</span></div>
+
+<p>To draw these triangles is easy; to trust them is not, and it was Hotelling who did the most to make consumer surplus a respectable measure of welfare rather than a suggestive picture. The notion went back to the French engineer who first used it to value public works and to the great Cambridge economist who gave it its textbook form, but it had always drawn objections: that the worth a buyer places on a good depends on his whole situation and the prices of everything else, so the simple area under one demand curve might mislead; that to add the surplus of a rich man to that of a poor man is to weigh sums of money as though they meant the same to both. Hotelling met these doubts head-on. He showed the conditions under which the area under the demand curve is a sound measure of the total benefit a good confers, set out when the approximation holds and when it fails, and argued that, for the practical questions of public policy, the surplus is the right thing to look at — that the proper test of a project or a price is whether it enlarges the sum of surplus, the total benefit to all, net of all cost. He took a vivid diagram and made it into a tool one could reason with.<sup class="sn-ref">3</sup></p>
+<div class="sidenote"><span class="sn-num">3.</span> To draw the triangles is easy; to trust them is not, and Hotelling did the most to make consumer surplus a respectable welfare measure. The notion went back to the French engineer who valued public works and the Cambridge economist who gave it textbook form, but it drew objections: a buyer's valuation depends on his whole situation and all other prices, so one demand curve may mislead; and adding a rich man's surplus to a poor man's weighs money as if it meant the same to both. Hotelling met these head-on — showing when the area under demand soundly measures total benefit, and arguing that the right test of a project or price is whether it enlarges the sum of surplus, net of all cost. He made a diagram into a tool.</div>
+
+<p>With the surplus made measurable, a sharp result follows about when it is largest. Every unit whose worth to some buyer exceeds its cost to some seller is a unit that, if traded, adds to the total surplus; every unit whose cost exceeds its worth subtracts. It follows that the surplus is maximized when exactly those units are made and traded for which worth exceeds cost, and no others — which is to say, when output is carried to the point where the demand curve meets the supply curve, where the value of one more unit to a buyer has fallen to equal the cost of one more to a seller. That meeting point is the competitive equilibrium, and it is no accident that it is also the point of greatest surplus: a market in which price settles where supply equals demand carries every trade that creates value and stops just where further trade would destroy it. The price there equals the marginal cost — the cost of one more unit — and equals, too, the marginal worth to the buyer. Set output anywhere short of that point and some value-creating trades go unmade; the surplus they would have created simply fails to appear, lost to no one's benefit. That loss is the theme of a later plate; here the point is the optimum itself — surplus is greatest where price equals the cost of one more.<sup class="sn-ref">4</sup></p>
+<div class="sidenote"><span class="sn-num">4.</span> A sharp result follows about when surplus is largest. Every unit whose worth to a buyer exceeds its cost to a seller adds to total surplus if traded; every unit whose cost exceeds its worth subtracts. So surplus is maximized when exactly the worth-exceeds-cost units are traded and no others — when output reaches the point where demand meets supply, where the value of one more to a buyer equals the cost of one more to a seller. That is the competitive equilibrium, and it is the point of greatest surplus: every value-creating trade made, none that destroys value. There price equals marginal cost and marginal worth alike. Short of that point, value-creating trades go unmade, their surplus lost to no one. Surplus is greatest where price equals the cost of one more.</div>
+
+<p>From this Hotelling drew a conclusion that startled his contemporaries and still divides them, concerning the industries whose costs fall as they grow — the railway, the bridge, the water main, the power grid, where a vast fixed outlay is followed by a tiny cost for each additional user. In such an industry the cost of one more unit lies far below the average cost, and so the surplus-maximizing rule, price equals marginal cost, sets a price too low to cover the fixed outlay: the enterprise priced for maximum welfare runs at a loss. The instinct is to raise the price to cover costs, but Hotelling showed this to be a mistake, for any price above marginal cost chokes off trades whose worth exceeds their true cost, destroying surplus. Better, he argued, to hold the price at marginal cost and meet the deficit from general taxation, since a well-chosen tax can raise the needed sum while destroying less surplus than the inflated price would. It was a bold case for pricing the public utilities at the cost of one more and subsidizing the difference — a case made entirely in the currency of surplus, and a sign of how much weight that currency could be made to bear.<sup class="sn-ref">5</sup></p>
+<div class="sidenote"><span class="sn-num">5.</span> Hotelling drew a startling conclusion about decreasing-cost industries — the railway, bridge, water main, power grid, where a vast fixed outlay is followed by a tiny cost per added user. There marginal cost lies far below average cost, so the surplus-maximizing rule (price = marginal cost) sets a price too low to cover the fixed outlay: the welfare-maximizing enterprise runs at a loss. The instinct is to raise the price, but any price above marginal cost chokes off worth-exceeds-cost trades, destroying surplus. Better, Hotelling argued, to hold price at marginal cost and meet the deficit from general taxation, which can raise the sum while destroying less surplus than the inflated price would. A bold case, made entirely in the currency of surplus.</div>
+
+<p>So the volume opens on the surplus itself: the value an exchange creates beyond its price, which a price can never measure because a price is only a transfer. The buyer captures the gap between what a thing is worth to him and what he pays — consumer surplus, the triangle under the demand curve above the price; the seller captures the gap between the price and his cost — producer surplus, the triangle above supply below price; and their sum, the total surplus, is the gains from trade, the genuine creation a market brings about. Harold Hotelling made this measurable, defending consumer surplus as a sound gauge of benefit and proving that the surplus is greatest exactly at the competitive point, where price equals the cost of one more — even arguing, against the instinct of his age, that the great fixed-cost utilities should be priced there and subsidized rather than marked up. The surplus is real, it is measurable, and it is maximized by competition. It remains to ask where it comes from, how it is divided between the two parties, how the powerful capture it and the blocked destroy it, and who, when the contest is done, walks away with it. The next plate is the unseen.</p>
+      </div>
+    </article>
+  </main>
+
+  <nav class="leaf-nav" aria-label="Plate navigation">
+    <span class="ln-cell ln-prev"></span>
+    <a class="ln-cell ln-home" href="numeraire-vii-the-surplus.html"><span class="lab">The volume</span><span class="ttl">The Surplus · contents</span></a>
+    <a class="ln-cell ln-next" href="numeraire-vii-ii-the-bridge.html"><span class="lab">Next plate →</span><span class="ttl">Plate ii · The Bridge</span></a>
+  </nav>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref"><a href="numeraire-vii-the-surplus.html">The Surplus</a> · <a href="numeraire-atlas-updated.html">the table</a></span>
+    </div>
+    <p class="colophon">Plate i of <em>The Surplus</em>, Volume the Seventh of <em>Numéraire</em> — a periodic table of economic life. This leaf may be read on its own or as part of the volume. Set in Fraunces and Newsreader. The argument remains open.</p>
+    <p class="colophon" id="ne-reading-note">In the complete volume, <a href="numeraire-vii-ii-the-bridge.html">The Bridge</a> follows this plate and leads into <a href="numeraire-vii-iii-the-unseen.html">The Unseen</a>.</p>
+  </footer>
+
+</div>
+<script>
+(function(){
+  var bar=document.getElementById('progress');
+  function onScroll(){
+    var h=document.documentElement;
+    var max=(h.scrollHeight-h.clientHeight);
+    var p=max>0?(h.scrollTop||document.body.scrollTop)/max:0;
+    bar.style.width=(p*100).toFixed(2)+'%';
+  }
+  document.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="numeraire-vii-the-surplus.html">← The Surplus</a><a rel="next" href="numeraire-vii-ii-the-bridge.html">The Bridge →</a></nav>
+</body>
+</html>

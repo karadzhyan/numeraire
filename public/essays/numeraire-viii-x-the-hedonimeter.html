@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Hedonimeter — The Utility, Plate x · Numéraire</title>
+<meta name="description" content="Edgeworth's dreamed-of instrument, and the modern attempt to read pleasure off the brain itself.">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- reading-progress hairline ---- */
+  .progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--ink);z-index:10000;}
+
+  /* ---- masthead ---- */
+  .masthead{padding:clamp(2.8rem,8vh,5.6rem) 0 clamp(1.6rem,4vh,2.6rem);text-align:center;}
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;}
+  .edition{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+  .edition b{font-family:"Fraunces",serif;font-weight:500;font-style:normal;color:var(--soft);letter-spacing:.04em;}
+
+  .symbox{width:84px;height:84px;border:1px solid var(--ink);border-radius:2px;background:var(--ink);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;margin:clamp(1.4rem,3.4vh,2.2rem) auto 0;}
+  .symbox .sb-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2rem;line-height:1;color:var(--paper);letter-spacing:-.01em;}
+  .symbox .sb-num{font-family:"Fraunces",serif;font-size:.66rem;color:rgba(240,235,225,.58);margin-top:.28rem;letter-spacing:.04em;}
+
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-top:1.15rem;}
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.5rem,7vw,5rem);line-height:1.0;letter-spacing:-.028em;margin:.55rem 0 0;text-wrap:balance;}
+  .subtitle{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.05rem,1.7vw,1.32rem);color:var(--faint);margin:.5rem 0 0;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.64;color:var(--soft);
+    max-width:43rem;margin:clamp(1.3rem,3vh,1.9rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+  .status{font-size:.84rem;color:var(--soft);margin:clamp(1.2rem,2.6vh,1.7rem) auto 0;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .backrow{margin-top:clamp(1.3rem,3vh,1.9rem);padding-top:1.5rem;border-top:1px solid var(--hair);max-width:50rem;margin-left:auto;margin-right:auto;}
+  .backlink{display:inline-block;font-size:.82rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .backlink:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- generic block furniture ---- */
+  main{padding:0;}
+  .eyebrow{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.2rem;}
+
+  .block-argument{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .argument{max-width:40rem;margin:0 auto;}
+  .argument p{font-size:1.08rem;line-height:1.74;color:var(--ink);margin:0 0 1.2rem;text-wrap:pretty;}
+  .argument p:last-child{margin-bottom:0;}
+  .argument .closer{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 400;font-style:italic;color:var(--soft);font-size:1.06rem;}
+
+  /* ---- table of plates ---- */
+  .block-toc{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .toc ol{list-style:none;margin:0;padding:0;max-width:44rem;}
+  .toc li{display:grid;grid-template-columns:2.5rem 1fr;column-gap:1rem;align-items:baseline;
+    padding:.85rem 0;border-top:1px solid var(--hair);}
+  .toc li:first-child{border-top:none;}
+  .t-num{font-family:"Fraunces",serif;font-size:.92rem;color:var(--faintest);text-align:right;}
+  .t-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.08rem;color:var(--ink);line-height:1.15;text-decoration:none;}
+  a.t-title{border-bottom:1px solid var(--num);padding-bottom:1px;}
+  a.t-title:hover{border-bottom-color:var(--ink);}
+  .t-gloss{grid-column:2;font-size:.85rem;color:var(--faint);font-style:italic;margin-top:.22rem;line-height:1.4;}
+  .t-q{grid-column:2;font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:.95rem;color:var(--soft);margin-top:.42rem;line-height:1.36;}
+  .t-q .lead{font-family:"Fraunces",serif;font-style:normal;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-right:.5rem;}
+  .t-tag{display:inline-block;margin-left:.6rem;font-family:"Newsreader",serif;font-size:.64rem;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--paper);background:var(--ink);border-radius:2px;padding:.12em .5em;vertical-align:.14em;}
+  .t-read{grid-column:2;margin-top:.42rem;}
+  .t-read a{font-size:.8rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .t-read a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- the plates (essays) ---- */
+  .plates-open{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.8rem,6vh,4rem);}
+  .plates-open .eyebrow{text-align:center;}
+  .plate{max-width:54rem;margin:clamp(2.8rem,6.5vh,4.4rem) auto 0;padding-top:clamp(2.2rem,4.6vh,3rem);
+    border-top:1px solid var(--hair);position:relative;scroll-margin-top:1.4rem;}
+  .plate:first-of-type{border-top:none;margin-top:clamp(1.6rem,3.5vh,2.4rem);padding-top:0;}
+  .plate-head{margin:0 0 1.7rem;}
+  .plate-kicker{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .plate-kicker .pk-tag{margin-left:.6rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .plate-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.8rem,4.2vw,2.7rem);line-height:1.03;letter-spacing:-.02em;margin:.32rem 0 .42rem;}
+  .plate-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.02rem;color:var(--faint);max-width:36rem;line-height:1.45;}
+
+  .epigraph{max-width:34rem;margin:1.4rem 0 1.9rem;padding-left:1.1rem;border-left:1px solid var(--num);}
+  .epigraph p{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:1.04rem;line-height:1.42;color:var(--soft);margin:0;}
+  .epigraph cite{display:block;font-style:normal;font-family:"Newsreader",serif;font-size:.78rem;
+    letter-spacing:.03em;color:var(--faintest);margin-top:.55rem;}
+
+  .plate-body{max-width:37rem;}
+  .plate-body p{font-size:1.05rem;line-height:1.75;color:var(--ink);margin:0 0 1.18rem;text-wrap:pretty;}
+  .plate-body p:last-child{margin-bottom:0;}
+  .plate-body em{font-style:italic;}
+  .plate-body .lead-para::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 500;
+    float:left;font-size:3.5rem;line-height:.78;padding:.08em .14em 0 0;color:var(--ink);}
+  .plate-body h4{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);margin:1.9rem 0 .9rem;}
+
+  .break{display:flex;justify-content:center;margin:1.9rem 0;}
+  .break span{font-family:"Fraunces",serif;font-size:1.05rem;letter-spacing:.4em;color:var(--faintest);padding-left:.4em;}
+
+  /* sidenotes — inline by default, true margin notes on wide screens */
+  .sn-ref{font-family:"Fraunces",serif;font-size:.64rem;vertical-align:super;line-height:0;color:var(--soft);margin-left:.06em;}
+  .sidenote{font-family:"Newsreader",serif;font-size:.82rem;line-height:1.52;color:var(--faint);
+    border-left:2px solid var(--hair);padding-left:.9rem;margin:.7rem 0 1.05rem;}
+  .sidenote .sn-num{font-family:"Fraunces",serif;color:var(--faintest);font-size:.7rem;margin-right:.38rem;}
+  .sidenote em{font-style:italic;}
+  @media (min-width:1040px){
+    .sidenote{float:right;clear:right;width:14.5rem;margin:.25rem -17.5rem 1.15rem 0;
+      border-left:none;border-top:1px solid var(--hair);padding:.42rem 0 0;}
+  }
+
+  /* ---- coda ---- */
+  .coda{max-width:40rem;margin:clamp(2.8rem,6vh,4rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);}
+  .coda p{font-size:1.06rem;line-height:1.74;color:var(--ink);margin:0 0 1.15rem;text-wrap:pretty;}
+  .coda p:last-child{margin-bottom:0;}
+  .coda .q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .f-ref a{text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .f-ref a:hover{border-bottom-color:var(--soft);}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .progress{transition:width .08s linear;}
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}.rise.d4{animation-delay:.4s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    h1{font-size:clamp(2.2rem,11vw,3rem);}
+    .symbox{width:72px;height:72px;}
+    .symbox .sb-sym{font-size:1.7rem;}
+    .plate-body .lead-para::first-letter{font-size:3rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+
+  /* ---- standalone plate (leaf) ---- */
+  .leaf-head{max-width:54rem;margin:0 auto;padding:clamp(2.2rem,6.5vh,4.4rem) 0 0;text-align:center;}
+  .leaf-loc{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.08em;color:var(--faintest);margin-bottom:1.7rem;}
+  .leaf-loc a{text-decoration:none;color:var(--faint);border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .leaf-loc a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+  .leaf-loc .sep{margin:0 .5rem;color:var(--num);}
+  .leaf-kicker{font-family:"Fraunces",serif;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .leaf-kicker .pk-tag{margin-left:.55rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .leaf-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.2rem,5.6vw,3.7rem);line-height:1.02;letter-spacing:-.024em;margin:.42rem 0 0;text-wrap:balance;}
+  .leaf-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.06rem;color:var(--faint);
+    max-width:34rem;margin:.72rem auto 0;line-height:1.5;text-wrap:pretty;}
+  .epigraph.leaf-epigraph{margin:1.95rem auto 1.4rem;text-align:left;}
+  .leaf-body-wrap{max-width:54rem;margin:clamp(1.8rem,4vh,2.8rem) auto 0;}
+
+  .leaf-nav{max-width:54rem;margin:clamp(3rem,7vh,5.2rem) auto 0;padding-top:clamp(1.8rem,4vh,2.6rem);
+    border-top:1px solid var(--hair);display:grid;grid-template-columns:1fr auto 1fr;gap:1.3rem;align-items:start;}
+  .ln-cell{text-decoration:none;display:block;}
+  .ln-cell .lab{display:block;font-family:"Fraunces",serif;font-size:.64rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--faintest);margin-bottom:.36rem;}
+  .ln-cell .ttl{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1rem;
+    color:var(--soft);line-height:1.22;}
+  a.ln-cell:hover .ttl{color:var(--ink);}
+  .ln-prev{text-align:left;} .ln-home{text-align:center;} .ln-next{text-align:right;}
+
+  @media (max-width:600px){
+    .leaf-nav{grid-template-columns:1fr;gap:1.4rem;}
+    .ln-prev,.ln-home,.ln-next{text-align:center;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#ne-contents">Complete contents</a><a href="../editions.html#volume-utility">The Utility · both editions</a><a href="../volumes/the-utility.html">Collected volume</a></div></nav>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="frame">
+
+  <header class="leaf-head">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="leaf-loc rise d1" aria-label="Location in the series"><a href="numeraire-atlas-updated.html">Numéraire</a><span class="sep">·</span><a href="numeraire-viii-the-utility.html">Volume VIII · The Utility</a></nav>
+    <div class="leaf-kicker rise d2">Plate x <span class="pk-tag">in print</span></div>
+    <h1 class="leaf-title rise d2">The Hedonimeter</h1>
+    <div class="leaf-gloss rise d3">Edgeworth's dreamed-of instrument, and the modern attempt to read pleasure off the brain itself.</div>
+    <div class="epigraph leaf-epigraph rise d3">
+      <p>Imagine an ideal instrument laid against a person, registering the height of pleasure from moment to moment, so that the area beneath its trace would be the happiness of an interval of life.</p>
+          <cite>— the conceit of this plate, after F. Y. Edgeworth, 1881</cite>
+    </div>
+  </header>
+
+  <main class="leaf-body-wrap">
+    <article class="plate">
+      <div class="plate-body">
+<p class="lead-para">If the whole difficulty is that utility is forever inferred and never seen — read off the choosing, because the choosing is all that shows — then the boldest reply is also the most obvious. Build the instrument. Lay it against the person and read the want directly, and the inference, with all its slippage, is no longer needed. The idea sounds like a caricature of scientific ambition, the economist with his calipers measuring joy. But it was proposed in earnest, and early, by one of the most mathematically serious minds the subject has produced. In 1881 Edgeworth imagined what he called a <em>hedonimeter</em>: an ideal instrument that would register, continuously and from instant to instant, the intensity of pleasure a person was feeling, tracing it as a curve through time. Integrate beneath the curve and you would have the quantity Bentham had only named — the total happiness of an hour, a day, a life — read at last from a dial rather than guessed from behavior.<sup class="sn-ref">1</sup></p>
+<div class="sidenote"><span class="sn-num">1.</span> F. Y. Edgeworth, <em>Mathematical Psychics</em> (1881). What is startling is not the fantasy of the device but its mathematical content: Edgeworth already conceives utility as the <em>integral of momentary feeling over time</em> — precisely the modern notion of experienced utility, stated a century before the instruments to pursue it existed.</div>
+
+<p>For a hundred years this was filed as a charming impossibility, and the discipline congratulated itself on having outgrown it: revealed preference (the fourth plate) had shown how to do economics with no pleasure-meter at all, and the very wish for one came to seem a category mistake, like wanting a thermometer for justice. Then, at the end of the twentieth century, the impossibility was reopened — not by economists but at the border where economics meets psychology, and chiefly by Kahneman, who proposed that the question had been badly put. The error, he argued, lay in running together two different things under the one word <em>utility</em>. There is the weight an outcome carries in a decision — call it <em>decision utility</em>, and it is exactly what revealed preference measures, the utility inferred from what people choose. And there is the quality of an experience as it is actually lived through, moment by moment — call it <em>experienced utility</em>, and it is Edgeworth's quantity, the thing the hedonimeter would read. The discipline had assumed the two were one. Kahneman set out to measure the second on its own terms and to ask whether it matched the first.<sup class="sn-ref">2</sup></p>
+<div class="sidenote"><span class="sn-num">2.</span> D. Kahneman, P. Wakker & R. Sarin, "Back to Bentham? Explorations of Experienced Utility," <em>Quarterly Journal of Economics</em> (1997). The title is not a flourish: the program is an explicit return to the Benthamite substance of <em>Plate i</em>, now equipped with instruments Bentham lacked.</div>
+
+<p>They did not match. The experiments are simple and their result is a knife at the root of the whole behavioral theory of value. Subjects underwent unpleasant episodes — a hand held in painfully cold water; a medical examination of some duration — while reporting their discomfort moment by moment, so that the lived total could be computed as Edgeworth prescribed, by summing the moments. Afterward they were asked how bad the whole thing had been, and, in one design, which of two such episodes they would choose to repeat. Their verdicts ignored the sum almost entirely. What governed the remembered badness of an episode was the average of its worst moment and its final moment; how <em>long</em> the suffering lasted scarcely entered the judgment at all. So an episode that was worse by the only measure that adds up the living of it — longer, with more total pain — could be the one people <em>remembered</em> as milder and <em>chose</em> to repeat, simply because it happened to end less badly.<sup class="sn-ref">3</sup> The moment-by-moment self and the remembering, choosing self gave different answers; and it is the remembering self that does the choosing, and so the remembering self whose verdict revealed preference records. The implication is severe. Choice does not track the goodness of experience. It tracks a memory of experience that systematically misrepresents it. The instrument revealed preference reads is not broken, but it is not reading what economics took it to read.</p>
+<div class="sidenote"><span class="sn-num">3.</span> The peak–end rule and duration neglect: D. Kahneman et al. (1993), on the cold-pressor task; D. Redelmeier & D. Kahneman (1996), on colonoscopy. Remembered utility ≈ the average of peak and end; duration barely registers. Since choice follows memory, the gap between living and choosing is not noise but structure.</div>
+
+<p>If choice cannot be trusted to register experience, then experience must be measured in its own right, and the back half of the program built the means. The Day Reconstruction Method has people reconstruct a day as a sequence of episodes and rate the feeling in each, yielding something close to Edgeworth's curve assembled from memory's better-behaved fragments; from such data one can compute a blunt but usable index — the share of waking time a person spends in an unpleasant state — and compare lives and circumstances by it.<sup class="sn-ref">4</sup> This is not the hedonimeter. It is testimony, refined and time-stamped, not a reading taken from the person without his word. But it is the nearest the social sciences have come to measuring lived feeling directly, and it already does what the construct was always meant to do: it lets two situations be ranked by the quality of the experience they produce, rather than by the choices people make about them.</p>
+<div class="sidenote"><span class="sn-num">4.</span> D. Kahneman, A. Krueger, D. Schkade, N. Schwarz & A. Stone, "A Survey Method for Characterizing Daily Life Experience" (DRM), <em>Science</em> (2004); the U-index in Kahneman & Krueger (2006). Still self-report — testimony, not transduction — but anchored in moments rather than global summaries.</div>
+
+<div class="break"><span>⁂</span></div>
+
+<p>The literal instrument, the dial that needs no testimony, is now sought where Edgeworth could not have thought to look: inside the skull. Neuroeconomics asks whether the brain keeps something like a common register of value, a single quantity in which the worth of a sip of juice and the worth of a sum of money are written in the same units, so that the brain can compare unlike goods and choose. There are real findings to point to. A signal carried by the neurotransmitter dopamine behaves, with uncanny fidelity, like an error term — the gap between the reward an animal receives and the reward it had learned to expect — which is exactly the quantity a system would need in order to learn what is worth wanting.<sup class="sn-ref">5</sup> Activity in particular regions of the prefrontal cortex tracks the subjective value a person places on an option closely enough that, from the activity, a rough ranking of the options can sometimes be recovered. The hedonimeter, in this telling, is not a fantasy but a research program with a budget.<sup class="sn-ref">6</sup></p>
+<div class="sidenote"><span class="sn-num">5.</span> W. Schultz, P. Dayan & P. R. Montague, "A Neural Substrate of Prediction and Reward," <em>Science</em> (1997). Crucially the dopamine signal encodes a <em>prediction error</em> — a learning signal about what to pursue — not the felt pleasure of consumption. Berridge's distinction between <em>wanting</em> (incentive salience, dopaminergic) and <em>liking</em> (hedonic impact, a separate and far smaller opioid system) shows the brain itself splitting the pursuit of a thing from the pleasure of it.</div>
+<div class="sidenote"><span class="sn-num">6.</span> On a neural "common currency" of value in ventromedial prefrontal cortex and striatum, see work by Glimcher, Camerer, Rangel, Padoa-Schioppa and others. A reliable neural correlate of value is a genuine achievement; it is not yet a calibrated, cross-personally meaningful scale, and the distance between the two is the subject of the paragraphs that follow.</div>
+
+<p>Suppose the program succeeds completely. Suppose that one day there is a true hedonimeter — a reading, taken from the brain without a word spoken, of the pleasure a person is feeling, accurate and continuous and beyond dispute. It is worth being precise about what such a triumph would, and would not, settle, because the precision is the whole lesson of this plate. It would settle less than its makers hope, and for three separate reasons, each of which the earlier plates have already prepared.</p>
+
+<p>The first is the one the experiments forced on us, and it cuts the wrong way for economics. A perfected hedonimeter would measure <em>experienced</em> utility — the lived feeling. But the quantity a science of markets needs is <em>decision</em> utility, the thing that governs what people choose, and the two come apart, reliably, in the manner of the peak and the end. So the instrument would not predict behavior; it would <em>contradict</em> it. It would not vindicate revealed preference by grounding it in feeling at last; it would stand as a permanent witness that our choices and our experiences diverge — telling us not what we will do but that what we do is, by the measure of lived pleasure, often a mistake. The dream was an instrument that would underwrite the theory of choice. The instrument, realized, would indict it.</p>
+
+<p>The second reason is the scandal of the eighth plate, and no instrument touches it. Grant a perfect reading of <em>my</em> pleasure and a perfect reading of <em>yours</em>. They are two readings on two instruments, each registering the state of one brain. Nothing in the two readings fixes a common zero or a common unit between them; nothing tells us whether the number my scanner reports as a seven means more felt pleasure, or less, than the seven yours reports. The comparison of one person's want with another's was shown, in its place, to be impossible not for want of measurement but as a matter of what the quantities are — and a quantity measured in the brain is still a quantity belonging to one person. No microscope, however fine, sees across the gap between two minds, because the gap is not a distance that finer resolution could close. The hedonimeter would let us read each person's want with perfect clarity and leave us exactly as unable as before to add one person's to another's.<sup class="sn-ref">7</sup></p>
+<div class="sidenote"><span class="sn-num">7.</span> Calibrating two instruments against a shared external standard is what makes physical measurements comparable; there is no analogous shared standard against which two persons' hedonic scales could be jointly calibrated. The interpersonal problem of <em>Plate viii</em> is therefore ontological, not technological — untouched by any advance in resolution.</div>
+
+<p>The third reason is the oldest, and it questions the prize itself. Even were pleasure perfectly measurable and perfectly comparable, there remains the question whether pleasure is the thing that ought to be measured — whether a life goes well to the precise extent that it feels good. A famous thought-experiment asks whether one would consent to be wired, for the rest of one's days, into a machine that produced any experience one wished, indistinguishable from the real thing, at the cost that none of it was real. Most people refuse, and the refusal reveals that they want something beyond the experience of a good life: they want the life. If that is so, then a reading of felt pleasure, however exact, measures one ingredient of a good life and not its sum, and the leap from <em>how much pleasure</em> to <em>how well it goes</em> is a leap the instrument cannot make for us.<sup class="sn-ref">8</sup> It is exactly this leap that the eleventh plate refuses to attempt — proposing that we abandon want and pleasure as the measure of advantage altogether, and ask instead what a person is actually able to do and to be.</p>
+<div class="sidenote"><span class="sn-num">8.</span> R. Nozick's experience machine, in <em>Anarchy, State, and Utopia</em> (1974). The intuition it pumps — that we value more than our experiences — presses against any purely hedonic theory of the good, and points toward the alternative pursued in <em>Plate xi, The Capability.</em></div>
+
+<p>So the hedonimeter, were it ever built, would be a triumph and a disappointment in the same instant. It would accomplish the thing economics had declared forever out of reach: it would let us <em>see the ghost</em>, read the want plainly off the matter of the brain, end the long inference at last. And in the same moment it would show that seeing the ghost was never the whole of the problem. We would at last be able to measure the want — and find that the want, made visible, still could not predict our choices, still could not be summed across our separate minds, and still could not tell us, by itself, what a good life amounts to. Edgeworth's curve would be drawn on the page, exact and continuous and real. And the questions that sent us looking for it would be standing, undisturbed, beside the instrument that found it.</p>
+      </div>
+    </article>
+  </main>
+
+  <nav class="leaf-nav" aria-label="Plate navigation">
+    <a class="ln-cell ln-prev" href="numeraire-viii-ix-the-impossibility.html"><span class="lab">← Previous plate</span><span class="ttl">Plate ix · The Impossibility</span></a>
+    <a class="ln-cell ln-home" href="numeraire-viii-the-utility.html"><span class="lab">The volume</span><span class="ttl">The Utility · contents</span></a>
+    <a class="ln-cell ln-next" href="numeraire-viii-xi-the-capability.html"><span class="lab">Next plate →</span><span class="ttl">Plate xi · The Capability</span></a>
+  </nav>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref"><a href="numeraire-viii-the-utility.html">The Utility</a> · <a href="numeraire-atlas-updated.html">the table</a></span>
+    </div>
+    <p class="colophon">Plate x of <em>The Utility</em>, Volume the Eighth of <em>Numéraire</em> — a periodic table of economic life. This leaf may be read on its own or as part of the volume. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<script>
+(function(){
+  var bar=document.getElementById('progress');
+  function onScroll(){
+    var h=document.documentElement;
+    var max=(h.scrollHeight-h.clientHeight);
+    var p=max>0?(h.scrollTop||document.body.scrollTop)/max:0;
+    bar.style.width=(p*100).toFixed(2)+'%';
+  }
+  document.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="numeraire-viii-ix-the-impossibility.html">← The Impossibility</a><a rel="next" href="numeraire-viii-xi-the-capability.html">The Capability →</a></nav>
+</body>
+</html>

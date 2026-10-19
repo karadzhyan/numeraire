@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Signal — The Asymmetry, Plate viii · Numéraire</title>
+<meta name="description" content="the price as a broken signal: how asymmetry turns a market into a game of inference, and how it survives — when it survives — only by paying, in real resources, to reveal what the price no longer can.">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- reading-progress hairline ---- */
+  .progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--ink);z-index:10000;}
+
+  /* ---- masthead ---- */
+  .masthead{padding:clamp(2.8rem,8vh,5.6rem) 0 clamp(1.6rem,4vh,2.6rem);text-align:center;}
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;}
+  .edition{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+  .edition b{font-family:"Fraunces",serif;font-weight:500;font-style:normal;color:var(--soft);letter-spacing:.04em;}
+
+  .symbox{width:84px;height:84px;border:1px solid var(--ink);border-radius:2px;background:var(--ink);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;margin:clamp(1.4rem,3.4vh,2.2rem) auto 0;}
+  .symbox .sb-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2rem;line-height:1;color:var(--paper);letter-spacing:-.01em;}
+  .symbox .sb-num{font-family:"Fraunces",serif;font-size:.66rem;color:rgba(240,235,225,.58);margin-top:.28rem;letter-spacing:.04em;}
+
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-top:1.15rem;}
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.5rem,7vw,5rem);line-height:1.0;letter-spacing:-.028em;margin:.55rem 0 0;text-wrap:balance;}
+  .subtitle{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.05rem,1.7vw,1.32rem);color:var(--faint);margin:.5rem 0 0;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.64;color:var(--soft);
+    max-width:43rem;margin:clamp(1.3rem,3vh,1.9rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+  .status{font-size:.84rem;color:var(--soft);margin:clamp(1.2rem,2.6vh,1.7rem) auto 0;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .backrow{margin-top:clamp(1.3rem,3vh,1.9rem);padding-top:1.5rem;border-top:1px solid var(--hair);max-width:50rem;margin-left:auto;margin-right:auto;}
+  .backlink{display:inline-block;font-size:.82rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .backlink:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- generic block furniture ---- */
+  main{padding:0;}
+  .eyebrow{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.2rem;}
+
+  .block-argument{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .argument{max-width:40rem;margin:0 auto;}
+  .argument p{font-size:1.08rem;line-height:1.74;color:var(--ink);margin:0 0 1.2rem;text-wrap:pretty;}
+  .argument p:last-child{margin-bottom:0;}
+  .argument .closer{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 400;font-style:italic;color:var(--soft);font-size:1.06rem;}
+
+  /* ---- table of plates ---- */
+  .block-toc{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .toc ol{list-style:none;margin:0;padding:0;max-width:44rem;}
+  .toc li{display:grid;grid-template-columns:2.5rem 1fr;column-gap:1rem;align-items:baseline;
+    padding:.85rem 0;border-top:1px solid var(--hair);}
+  .toc li:first-child{border-top:none;}
+  .t-num{font-family:"Fraunces",serif;font-size:.92rem;color:var(--faintest);text-align:right;}
+  .t-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.08rem;color:var(--ink);line-height:1.15;text-decoration:none;}
+  a.t-title{border-bottom:1px solid var(--num);padding-bottom:1px;}
+  a.t-title:hover{border-bottom-color:var(--ink);}
+  .t-gloss{grid-column:2;font-size:.85rem;color:var(--faint);font-style:italic;margin-top:.22rem;line-height:1.4;}
+  .t-q{grid-column:2;font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:.95rem;color:var(--soft);margin-top:.42rem;line-height:1.36;}
+  .t-q .lead{font-family:"Fraunces",serif;font-style:normal;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-right:.5rem;}
+  .t-tag{display:inline-block;margin-left:.6rem;font-family:"Newsreader",serif;font-size:.64rem;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--paper);background:var(--ink);border-radius:2px;padding:.12em .5em;vertical-align:.14em;}
+  .t-read{grid-column:2;margin-top:.42rem;}
+  .t-read a{font-size:.8rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .t-read a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- the plates (essays) ---- */
+  .plates-open{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.8rem,6vh,4rem);}
+  .plates-open .eyebrow{text-align:center;}
+  .plate{max-width:54rem;margin:clamp(2.8rem,6.5vh,4.4rem) auto 0;padding-top:clamp(2.2rem,4.6vh,3rem);
+    border-top:1px solid var(--hair);position:relative;scroll-margin-top:1.4rem;}
+  .plate:first-of-type{border-top:none;margin-top:clamp(1.6rem,3.5vh,2.4rem);padding-top:0;}
+  .plate-head{margin:0 0 1.7rem;}
+  .plate-kicker{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .plate-kicker .pk-tag{margin-left:.6rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .plate-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.8rem,4.2vw,2.7rem);line-height:1.03;letter-spacing:-.02em;margin:.32rem 0 .42rem;}
+  .plate-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.02rem;color:var(--faint);max-width:36rem;line-height:1.45;}
+
+  .epigraph{max-width:34rem;margin:1.4rem 0 1.9rem;padding-left:1.1rem;border-left:1px solid var(--num);}
+  .epigraph p{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:1.04rem;line-height:1.42;color:var(--soft);margin:0;}
+  .epigraph cite{display:block;font-style:normal;font-family:"Newsreader",serif;font-size:.78rem;
+    letter-spacing:.03em;color:var(--faintest);margin-top:.55rem;}
+
+  .plate-body{max-width:37rem;}
+  .plate-body p{font-size:1.05rem;line-height:1.75;color:var(--ink);margin:0 0 1.18rem;text-wrap:pretty;}
+  .plate-body p:last-child{margin-bottom:0;}
+  .plate-body em{font-style:italic;}
+  .plate-body .lead-para::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 500;
+    float:left;font-size:3.5rem;line-height:.78;padding:.08em .14em 0 0;color:var(--ink);}
+  .plate-body h4{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);margin:1.9rem 0 .9rem;}
+
+  .break{display:flex;justify-content:center;margin:1.9rem 0;}
+  .break span{font-family:"Fraunces",serif;font-size:1.05rem;letter-spacing:.4em;color:var(--faintest);padding-left:.4em;}
+
+  /* sidenotes — inline by default, true margin notes on wide screens */
+  .sn-ref{font-family:"Fraunces",serif;font-size:.64rem;vertical-align:super;line-height:0;color:var(--soft);margin-left:.06em;}
+  .sidenote{font-family:"Newsreader",serif;font-size:.82rem;line-height:1.52;color:var(--faint);
+    border-left:2px solid var(--hair);padding-left:.9rem;margin:.7rem 0 1.05rem;}
+  .sidenote .sn-num{font-family:"Fraunces",serif;color:var(--faintest);font-size:.7rem;margin-right:.38rem;}
+  .sidenote em{font-style:italic;}
+  @media (min-width:1040px){
+    .sidenote{float:right;clear:right;width:14.5rem;margin:.25rem -17.5rem 1.15rem 0;
+      border-left:none;border-top:1px solid var(--hair);padding:.42rem 0 0;}
+  }
+
+  /* ---- coda ---- */
+  .coda{max-width:40rem;margin:clamp(2.8rem,6vh,4rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);}
+  .coda p{font-size:1.06rem;line-height:1.74;color:var(--ink);margin:0 0 1.15rem;text-wrap:pretty;}
+  .coda p:last-child{margin-bottom:0;}
+  .coda .q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .f-ref a{text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .f-ref a:hover{border-bottom-color:var(--soft);}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .progress{transition:width .08s linear;}
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}.rise.d4{animation-delay:.4s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    h1{font-size:clamp(2.2rem,11vw,3rem);}
+    .symbox{width:72px;height:72px;}
+    .symbox .sb-sym{font-size:1.7rem;}
+    .plate-body .lead-para::first-letter{font-size:3rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+
+  /* ---- standalone plate (leaf) ---- */
+  .leaf-head{max-width:54rem;margin:0 auto;padding:clamp(2.2rem,6.5vh,4.4rem) 0 0;text-align:center;}
+  .leaf-loc{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.08em;color:var(--faintest);margin-bottom:1.7rem;}
+  .leaf-loc a{text-decoration:none;color:var(--faint);border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .leaf-loc a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+  .leaf-loc .sep{margin:0 .5rem;color:var(--num);}
+  .leaf-kicker{font-family:"Fraunces",serif;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .leaf-kicker .pk-tag{margin-left:.55rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .leaf-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.2rem,5.6vw,3.7rem);line-height:1.02;letter-spacing:-.024em;margin:.42rem 0 0;text-wrap:balance;}
+  .leaf-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.06rem;color:var(--faint);
+    max-width:34rem;margin:.72rem auto 0;line-height:1.5;text-wrap:pretty;}
+  .epigraph.leaf-epigraph{margin:1.95rem auto 1.4rem;text-align:left;}
+  .leaf-body-wrap{max-width:54rem;margin:clamp(1.8rem,4vh,2.8rem) auto 0;}
+
+  .leaf-nav{max-width:54rem;margin:clamp(3rem,7vh,5.2rem) auto 0;padding-top:clamp(1.8rem,4vh,2.6rem);
+    border-top:1px solid var(--hair);display:grid;grid-template-columns:1fr auto 1fr;gap:1.3rem;align-items:start;}
+  .ln-cell{text-decoration:none;display:block;}
+  .ln-cell .lab{display:block;font-family:"Fraunces",serif;font-size:.64rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--faintest);margin-bottom:.36rem;}
+  .ln-cell .ttl{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1rem;
+    color:var(--soft);line-height:1.22;}
+  a.ln-cell:hover .ttl{color:var(--ink);}
+  .ln-prev{text-align:left;} .ln-home{text-align:center;} .ln-next{text-align:right;}
+
+  @media (max-width:600px){
+    .leaf-nav{grid-template-columns:1fr;gap:1.4rem;}
+    .ln-prev,.ln-home,.ln-next{text-align:center;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#ne-contents">Complete contents</a><a href="../editions.html#volume-asymmetry">The Asymmetry · both editions</a><a href="../volumes/the-asymmetry.html">Collected volume</a></div></nav>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="frame">
+
+  <header class="leaf-head">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="leaf-loc rise d1" aria-label="Location in the series"><a href="numeraire-atlas-updated.html">Numéraire</a><span class="sep">·</span><a href="numeraire-xii-the-asymmetry.html">Volume XII · The Asymmetry</a></nav>
+    <div class="leaf-kicker rise d2">Plate viii <span class="pk-tag">in print</span></div>
+    <h1 class="leaf-title rise d2">The Signal</h1>
+    <div class="leaf-gloss rise d3">the price as a broken signal: how asymmetry turns a market into a game of inference, and how it survives — when it survives — only by paying, in real resources, to reveal what the price no longer can.</div>
+    <div class="epigraph leaf-epigraph rise d3">
+      <p>The price does the work of a mind no one possesses: it gathers what is known to each and to none, so that men who understand almost nothing of the whole are led to act as though they understood it all.</p>
+      <cite>— the thesis this plate overturns, after Friedrich Hayek, 1945</cite>
+    </div>
+  </header>
+
+  <main class="leaf-body-wrap">
+    <article class="plate">
+      <div class="plate-body">
+<p class="lead-para">The volume has anatomized a disease and its cures — hidden quality and the markets it unravels, the signals and screens and incentive contracts raised against it. But every one of these has circled a single figure without yet naming what is happening to it: the price. The case for the market, at its deepest, is a case about the price as a carrier of knowledge; and the asymmetry, the flagship must now show, strikes the market exactly there — not at the fairness of the price, which the first family questioned, but at its competence to do the one thing for which it is most admired.</p>
+
+<p>Begin with the marvel the price is supposed to be. No planner, the argument runs, could ever gather the knowledge dispersed across a society — the particular facts of time and place known only to the man on the spot, the shading of one preference against another, the local scarcity that only the local trader feels. The price spares us the gathering. When tin grows scarce, its price rises, and every user of tin economizes and every producer makes more, each responding correctly to a scarcity not one of them needs to understand, or even to know about; the price has carried the relevant knowledge to exactly where it must act, compressed into a single number that tells those who act on it all they need to know. This is the price system's supreme claim: that it lets a society coordinate on knowledge no member possesses, that it makes the ignorant act wisely — that it is, in effect, a mind no one owns.<sup class="sn-ref">1</sup></p>
+<div class="sidenote"><span class="sn-num">1.</span> The Hayekian case (Friedrich Hayek, "The Use of Knowledge in Society," 1945): prices aggregate dispersed, local knowledge into a signal that coordinates action without any agent grasping the whole — the market's central informational virtue, and the deepest argument for it over central planning. Compare the first welfare theorem's efficient market.</div>
+
+<p>Now lift the assumption hidden in that marvel — the assumption that the price reports an honest fact about the thing, the same to both sides of the trade. Where one party knows what the other cannot, the price stops reporting and starts betraying. The price a seller will accept no longer says only "this is what the thing is worth"; it now also says "this is what I, who know more than you, am willing to let it go for" — and a buyer who reasons well must read it as the second, not the first. The willingness to sell becomes evidence that the thing is worth less than it seems; the eagerness to buy, evidence that it is worth more. Every offer is now a tell, every acceptance a confession, and the price is no longer a neutral summary of dispersed knowledge but a move in a game of inference, in which each side strains to read the other's private knowledge off the very terms it proposes. The signal that was to carry knowledge transparently has become a thing to be decoded — and decoded with suspicion.<sup class="sn-ref">2</sup></p>
+<div class="sidenote"><span class="sn-num">2.</span> Under asymmetric information the price ceases to be an honest aggregate and turns strategic: an offer reveals the offerer's private information, so each party reads the other's terms for what they betray. The winner's curse in auctions is one instance — to win is to learn one bid more than those who knew more. The price becomes a move in an inference game, not a transparent signal.</div>
+
+<div class="break"><span>⁂</span></div>
+
+<p>Here the inversion stands forth, and it is the sharpest the table has yet drawn, because it strikes the market's pride rather than its conscience. The first family found that prices, while doing their work, quietly concealed a contest over who gets what — the price a fair-seeming mask upon power, position, decision, luck. The asymmetry finds something harder: that the price, where knowledge is unequal, cannot reliably do its work at all. The very property for which the price is celebrated — that it conveys, in one honest number, the knowledge a market needs, so that no one must know much — is the property private information destroys; for a number cannot honestly convey what one party is determined to hide, and the price, in an asymmetric market, conveys not the value of the thing but the equilibrium of mutual suspicion about it. The market's supreme virtue and its characteristic failure are the same fact seen from two sides: the price economizes on knowledge magnificently when knowledge is shared, and fails precisely and catastrophically when it is not.<sup class="sn-ref">3</sup></p>
+<div class="sidenote"><span class="sn-num">3.</span> The inversion: Group I showed prices conceal a distributive contest — a question of fairness; <em>The Asymmetry</em> shows prices cannot perform their informational function under private information — a question of efficiency. The price's celebrated virtue (conveying dispersed knowledge cheaply) and its characteristic failure are one fact: it works when knowledge is shared and fails when it is private and interests diverge.</div>
+
+<p>So the volume's question can be answered. How does a market survive when the seller knows what the buyer cannot? Not by the price, which has failed as a signal — but by building, at great cost, the machinery to convey by other means the knowledge the price can no longer carry. The signal of the third plate, the screen of the fourth, the incentive contract of the fifth, and beside them the warranty, the brand, the credit record, the inspection, the audit, the rating agency, the licensing board, the disclosure law, the due-diligence team — all of it is the apparatus by which a market, denied an honest price, manufactures enough trust to trade anyway. And all of it costs: the resources burned to send a credible signal, the efficiency sacrificed to a separating screen, the risk loaded onto agents to keep them diligent, the armies of inspectors and auditors and lawyers employed to verify what cannot be taken on the word of the one who knows. This expenditure is the true price of the asymmetry — paid not once, in a few lost trades, but continuously, by every honest party, as the standing cost of the few who would lie.<sup class="sn-ref">4</sup></p>
+<div class="sidenote"><span class="sn-num">4.</span> Markets survive asymmetry not through the price but through costly devices — signals, screens, incentive contracts, warranties, brands, ratings, audits, licensing, disclosure rules, due diligence. Each conveys or verifies the hidden information the price cannot. Their aggregate cost — resources, distortion, risk, verification labor — is the continuous price of asymmetry, borne by the honest to contain the dishonest.</div>
+
+<p>And the answer carries a sting, for it means that the survival of these markets is not a refutation of the failure but the very form the failure takes. We are tempted to look at a functioning used-car market, a thriving insurance industry, a vast system of credit, and conclude that the lemon problem was overblown — the markets work, after all. But they work only by spending, on the manufacture of trust, what symmetric knowledge would have rendered free; the diploma that teaches nothing, the deductible that under-insures the careful, the audit that polices the books, the brand premium that buys assurance — every one is a cost that exists only because knowing is unequal, a deadweight a world of shared knowledge would simply not incur. The market's survival is purchased by this expenditure, and the expenditure is the measure of the asymmetry's bite. The failure is not that these markets collapse; it is that they can be held standing only by a perpetual and costly war against the silence between the two sides.<sup class="sn-ref">5</sup></p>
+<div class="sidenote"><span class="sn-num">5.</span> The markets' survival is itself the failure's form: they function only by incurring costs — signaling, screening, verification, distortion — that symmetric information would eliminate. A functioning asymmetric market is not evidence the problem is minor but a measure of its standing cost: a perpetual deadweight that shared knowledge would not require.</div>
+
+<div class="break"><span>⁂</span></div>
+
+<p>The careful statement guards against two errors, the complacent and the despairing. It is not true that asymmetric information always ruins markets — the devices often work, and a great deal of honest trade proceeds, dearly bought but real; the lemon does not always win. Nor is it true that the price is worthless as a signal — where knowledge is roughly shared, or where the devices have done their work, the price recovers much of its Hayekian power and coordinates as advertised. The claim is the precise one: that the price's informational competence is conditional, not absolute; that it holds where knowledge is shared and fails where it is private and interests diverge; and that the elaborate institutions of a modern economy — its credentials and certifications, its auditors and regulators, its brands and warranties and disclosure laws — are in large part the standing infrastructure built to supply the knowledge that prices, under asymmetry, cannot. To see them so is to see that much of what looks like the natural furniture of commerce is in truth a costly prosthesis for a signal that private knowledge has broken.<sup class="sn-ref">6</sup></p>
+<div class="sidenote"><span class="sn-num">6.</span> The honest edge: asymmetry does not always ruin markets (devices often suffice; honest trade persists), and the price is not worthless (it recovers its power where knowledge is shared or devices succeed). The claim is conditional — the price's informational competence holds under shared knowledge and fails under private, divergent knowledge; the institutions of commerce are largely a costly prosthesis for the broken signal.</div>
+
+<p>With this the first of the failures completes its work and sets the theme of the family it opens. The prices, the first family taught, are not the innocent measures they appear: each conceals a contest. The failures, this family will show, are not the rare and tidy exceptions the textbook pictures — a footnote of externalities here, a public good there — but the standing condition of markets across great stretches of economic life: wherever knowledge is unequal, wherever costs spill onto third parties, wherever a thing is owned by all and so by none. The asymmetry is the first because it is the most intimate: it lives inside the ordinary two-party trade, in the gap between what the seller knows and the buyer can see, and it shows that even there, in the simplest transaction, the market's central promise is conditional on a knowledge the parties rarely fully share. If the price can fail in a single sale between two people, the family's later members — the costs that fall on bystanders, the resource no one owns — will show it failing on the grandest scales as well.<sup class="sn-ref">7</sup></p>
+<div class="sidenote"><span class="sn-num">7.</span> The family's theme: market failures are not rare exceptions but pervasive conditions — asymmetric information (this volume), externalities (<em>The Externality</em>), and common-pool or public goods (<em>The Commons</em>). The Asymmetry is the most intimate, arising within the ordinary two-party trade; the later failures operate at larger scales (third parties, unowned resources). Group III as a whole qualifies the efficiency the prices of Group I quietly presuppose.</div>
+
+<p>So we end where the volume's subject began, with the gap between what one side knows and the other cannot — and we end by locating, in that small gap, a failure of the price itself. The price was offered to us as the thing that spares us the need to know: trust the number, and you may deal wisely with strangers about whom you know nothing. The asymmetry is the discovery that this holds only among those who already know enough — that where one side knows what the other does not, the number cannot be trusted, and the burden of knowing, which the price was to lift, descends again upon the parties, who must bear it the hard way, through signals and screens and the patient, costly verification of what the price will no longer vouch. The first family showed that a price is never quite the honest measure of worth it appears. The asymmetry shows that it is not always even a working signal. And the remaining failures, taking up the costs that markets ignore and the goods that markets cannot count, will show that the price, for all its genius, leaves a great deal of the world's value, and the world's harm, entirely outside the only ledger it knows how to keep.<sup class="sn-ref">8</sup></p>
+<div class="sidenote"><span class="sn-num">8.</span> The close looks ahead: where Group I anatomized what prices conceal, Group III anatomizes where the price mechanism fails — and the asymmetry, by breaking the price as a signal in the simplest trade, opens the case. The remaining failures extend it: <em>The Externality</em>, the harm and benefit the price omits; <em>The Commons</em>, the value no price defends. The price's ledger is powerful but partial, and the family maps its edges.</div>
+      </div>
+    </article>
+  </main>
+
+  <nav class="leaf-nav" aria-label="Plate navigation">
+    <a class="ln-cell ln-prev" href="numeraire-xii-v-the-hazard.html"><span class="lab">← Previous plate</span><span class="ttl">Plate v · The Hazard</span></a>
+    <a class="ln-cell ln-home" href="numeraire-xii-the-asymmetry.html"><span class="lab">The volume</span><span class="ttl">The Asymmetry · contents</span></a>
+    <a class="ln-cell ln-next" href="numeraire-xii-x-the-stereotype.html"><span class="lab">Next plate →</span><span class="ttl">Plate x · The Stereotype</span></a>
+  </nav>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref"><a href="numeraire-xii-the-asymmetry.html">The Asymmetry</a> · <a href="numeraire-atlas-updated.html">the table</a></span>
+    </div>
+    <p class="colophon">Plate viii of <em>The Asymmetry</em>, Volume the Twelfth of <em>Numéraire</em> — a periodic table of economic life. This leaf may be read on its own or as part of the volume. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<script>
+(function(){
+  var bar=document.getElementById('progress');
+  function onScroll(){
+    var h=document.documentElement;
+    var max=(h.scrollHeight-h.clientHeight);
+    var p=max>0?(h.scrollTop||document.body.scrollTop)/max:0;
+    bar.style.width=(p*100).toFixed(2)+'%';
+  }
+  document.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="numeraire-xii-v-the-hazard.html">← The Hazard</a><a rel="next" href="numeraire-xii-x-the-stereotype.html">The Stereotype →</a></nav>
+</body>
+</html>

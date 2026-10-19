@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Tax — Numéraire, Volume XVII</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem; --measure:40rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.9rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(3rem,8vh,6rem) 0 clamp(1.6rem,4vh,2.6rem);text-align:center;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;text-decoration:none;}
+  .imprint:hover{color:var(--soft);}
+  .vol-dateline{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+
+  .vol-sym{width:114px;height:114px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;align-items:center;justify-content:center;
+    font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 500;font-size:3.1rem;line-height:1;letter-spacing:-.01em;}
+  .vol-sym.lit{background:var(--ink);color:var(--paper);}
+  .vol-elnum{font-family:"Fraunces",serif;font-size:.74rem;color:var(--faintest);letter-spacing:.18em;text-transform:uppercase;margin-top:1rem;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.3rem,6.5vw,4.6rem);line-height:1.02;letter-spacing:-.025em;margin:.7rem 0 0;text-wrap:balance;}
+  .vol-status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .vol-status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:44rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .vol-q{max-width:46rem;margin:clamp(2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .vol-q .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.7rem;}
+  .vol-q q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.3rem,2.4vw,1.72rem);line-height:1.32;color:var(--ink);quotes:none;text-wrap:balance;}
+
+  .front{margin:clamp(3rem,7vh,5rem) auto 0;max-width:var(--measure);}
+  .front-eyebrow{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);text-align:center;
+    display:flex;align-items:center;gap:.9rem;justify-content:center;margin:0 0 2.1rem;}
+  .front-eyebrow::before,.front-eyebrow::after{content:"";height:1px;width:2.4rem;background:var(--hair);}
+  .front p{font-size:1.07rem;line-height:1.76;color:var(--ink);margin:0 0 1.35rem;text-wrap:pretty;}
+  .front p:last-child{margin-bottom:0;}
+  .front em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.74;padding:.1em .12em 0 0;color:var(--ink);}
+  .front-orn{display:flex;justify-content:center;margin:2rem 0;}
+  .front-orn svg{width:96px;height:12px;overflow:visible;}
+  .front-orn line{stroke:var(--num);stroke-width:1;} .front-orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  main{padding:clamp(3rem,7vh,5rem) 0 0;}
+  .plates-head{display:flex;align-items:baseline;gap:.9rem;margin:0 0 1.6rem;}
+  .plates-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-size:.86rem;color:var(--faintest);letter-spacing:.04em;flex:0 0 auto;}
+  .plates-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);flex:0 0 auto;}
+  .plates-rule{flex:1;height:1px;background:var(--hair);position:relative;top:-2px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:13px;}
+
+  .el{appearance:none;-webkit-appearance:none;background:var(--paper);border:1px solid var(--hair);border-radius:2px;
+    padding:14px 15px 16px;text-align:left;cursor:pointer;position:relative;min-height:152px;
+    display:flex;flex-direction:column;color:inherit;font-family:inherit;
+    transition:border-color .22s ease,background .22s ease,transform .22s ease,box-shadow .22s ease;}
+  .el:hover{border-color:var(--faintest);transform:translateY(-2px);}
+  .el-rn{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-size:.78rem;color:var(--faintest);letter-spacing:.18em;text-transform:uppercase;}
+  .pl-hero{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 500;font-size:1.34rem;line-height:1.06;margin-top:.5rem;letter-spacing:-.012em;}
+  .el-gloss{font-size:.79rem;color:var(--faint);line-height:1.36;margin-top:.5rem;font-style:italic;}
+  .pl-flag{margin-top:auto;padding-top:.7rem;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--faintest);}
+  .el.lit{background:var(--ink);border-color:var(--ink);}
+  .el.lit .pl-hero{color:var(--paper);}
+  .el.lit .el-rn{color:rgba(240,235,225,.5);}
+  .el.lit .el-gloss{color:rgba(240,235,225,.62);}
+  .el.lit .pl-flag{color:rgba(240,235,225,.7);}
+  .el.sel{box-shadow:inset 0 0 0 1.5px var(--ink);border-color:var(--ink);}
+  .el.lit.sel{box-shadow:inset 0 0 0 1.5px var(--paper);}
+
+  .detail{margin:clamp(2.4rem,5vh,3.6rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);scroll-margin-top:1.4rem;}
+  .d-head{display:flex;gap:1.3rem;align-items:flex-start;}
+  .d-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 500;font-size:1.5rem;line-height:1;
+    color:var(--ink);flex:0 0 auto;border:1px solid var(--hair);border-radius:2px;letter-spacing:.04em;
+    width:86px;height:86px;display:flex;align-items:center;justify-content:center;text-transform:uppercase;}
+  .d-sym.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .d-titles{min-width:0;}
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);}
+  .d-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.7rem,3.6vw,2.5rem);margin:.22rem 0 .35rem;line-height:1.04;letter-spacing:-.016em;}
+  .d-status{font-size:.84rem;color:var(--faint);font-style:italic;}
+  .d-status.print{color:var(--soft);font-style:normal;}
+  .d-status.print::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .d-desc{font-size:1.05rem;line-height:1.72;color:var(--ink);max-width:42rem;margin:1.3rem 0 0;text-wrap:pretty;}
+
+  .d-openq{margin:1.6rem 0 0;max-width:40rem;}
+  .d-openq .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.5rem;}
+  .d-openq q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);quotes:none;}
+
+  .d-excerpt{margin:1.8rem 0 0;max-width:42rem;border-left:1px solid var(--hair);padding:.2rem 0 .2rem 1.5rem;}
+  .d-excerpt .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.8rem;}
+  .d-excerpt p{font-size:1.04rem;line-height:1.74;color:var(--ink);margin:0;text-wrap:pretty;}
+  .d-excerpt .x-cap{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 500;font-size:1.15rem;}
+  .d-readplate{margin:1.6rem 0 0;}
+  .d-readplate a{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:.94rem;
+    letter-spacing:.01em;text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:2px;transition:border-color .2s ease,color .2s ease;}
+  .d-readplate a:hover{color:var(--soft);border-color:var(--soft);}
+  .d-readplate .arr{margin-left:.4rem;}
+
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;text-decoration:none;}
+  .f-mark:hover{color:var(--soft);}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;}
+    .el{min-height:138px;padding:12px 12px 14px;}
+    .pl-hero{font-size:1.18rem;}
+    .el-gloss{font-size:.74rem;}
+    .vol-sym{width:92px;height:92px;font-size:2.5rem;}
+    .d-head{gap:1rem;}
+    .d-sym{width:64px;height:64px;font-size:1.25rem;}
+    .front p{font-size:1.04rem;}
+    .dropcap{font-size:3rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="rise d1">
+      <a class="imprint" href="numeraire-atlas.html">Numéraire</a>
+      <div class="vol-dateline">The Seventeenth Volume &middot; The Institutions</div>
+    </div>
+    <div class="vol-sym lit rise d2" aria-hidden="true">Tx</div>
+    <div class="vol-elnum rise d2">Element 17 &middot; Group IV</div>
+    <h1 class="rise d3">The Tax</h1>
+    <div class="vol-status rise d3">in print &middot; № XVII &middot; 2 of 12 plates</div>
+    <p class="standfirst rise d4">The party named in the statute is rarely the party that pays. This volume is about the incidence of a tax — the gap between who is charged and who bears — and the quiet machinery, hidden in every price, by which a burden once imposed slides off the shoulders the law named and onto whoever can least escape it. The wedge a tax drives between what a buyer pays and a seller keeps, the elasticity that splits it, and the contest, beneath the schedule of rates, over who has somewhere to flee.</p>
+    <div class="vol-q rise d5">
+      <span class="lead">The question of the volume</span>
+      <q>the law names the party who shall hand a tax to the state, and we read that name as the answer to who pays — but is the burden not driven, through prices, onto whoever can least escape it, so that who truly bears a tax is settled by a contest the statute never mentions?</q>
+    </div>
+  </header>
+
+  <section class="front" aria-label="The argument of the volume">
+    <div class="front-eyebrow">The argument</div>
+
+    <p><span class="dropcap">T</span>he law that lays a tax writes a name into its text — the seller shall remit, the employer shall withhold, the corporation shall pay — and the plain reader takes that name for the answer to the one question that finally matters: who pays it. It is a natural reading, and almost always wrong. The party a tax is levied upon is rarely the party that ends the poorer for it, for a burden, once imposed, does not sit where the law sets it down. It moves. It works through the prices at which things are bought and sold, shifting from the shoulders the statute named onto others it never mentioned, until it rests somewhere no drafter chose and no schedule records. This volume is about that movement — the incidence of a tax, the difference between who is charged and who bears — and about the quiet machinery, hidden in every price, by which the bill for the public business is passed from hand to hand and presented to someone who never signed for it.</p>
+
+    <p>Economists mark the difference with two terms. Statutory incidence is a matter of law: it names who must hand the money to the state, and is written plainly in the code. Economic incidence is a matter of consequence: it names whose command over goods is actually reduced, and is written nowhere, for it must be discovered. The two coincide only by accident. A tax laid on a manufacturer is built into his prices, and the shopper, who never remits a cent, pays it at the till; a tax on the wage may be borne by the worker in lower take-home, or shifted to the employer, or passed to the customer in a dearer product, as forces the law does not touch decide. The intuition is old: the Physiocrats held that every tax, however first laid, was shifted and shifted again until it rested on the land, the one thing that could pass it to no one — wrong in the detail, right in the insight that a tax goes where it is driven, not where it is set.</p>
+
+    <p>The clearest way to see the movement is to picture the tax as a wedge. Before it, a single price joins buyer and seller: the buyer pays what the seller receives. The tax drives a wedge between them, so that now there are two — a higher price the buyer pays, a lower one the seller keeps — the difference, the wedge’s thickness, flowing to the state. The question of incidence is where the wedge opens: how much above, by the buyer in a higher price, and how much below, by the seller in a thinner return. And the decisive fact, the one that overturns the naïve reading of the statute, is that the division of the wedge has nothing to do with which side the law tells to pay. A tax collected from the seller and the identical tax collected from the buyer split exactly alike; the burden settles in the same place either way, indifferent to who remits. What governs the split is something no law can legislate.</p>
+
+    <p>What governs it is the capacity of each side to walk away. The burden of a tax falls on whichever party is less able to escape it — to substitute something else, to do without, to take its custom or capital elsewhere. The side with alternatives shifts the burden onto the side without them, which must stay and bear it. Tax a thing buyers cannot easily forgo — bread, fuel, medicine — and they, with nowhere to turn, pay nearly the whole of it in a higher price; tax a thing they can readily drop, and the sellers, who would rather cut their margin than lose the sale, absorb most of it. The economist's name for this capacity to flee is elasticity — the responsiveness of the quantity one will trade to a change in price — and the rule of incidence is exact: the more inelastic side, the one that cannot get away, bears the greater share, and the elastic side escapes. The burden seeks out the captive.</p>
+
+    <div class="front-orn" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>And here the tax shows what it has in common with every other figure this work has anatomized. A price is a verdict on a hidden contest, mistaken for a fact of nature — and the price a tax brings into being, the altered price that ferries the burden to its resting place, is a verdict of precisely that kind. It looks like mere arithmetic — the old price plus the rate — but the look deceives, for how much of the tax surfaces in the buyer’s price, and how much sinks into the seller’s return, is no arithmetical necessity but the settled outcome of a contest between them, a silent trial of strength over which side can do without the other. The statute names a party to remit; it names no party to bear. That second naming, the one that counts, is done not in the chamber where the rate is set but in the market where the price is struck, and the price announces the verdict without ever disclosing the contest behind it.</p>
+
+    <p>Take the gravest instance, the tax upon capital. The law charges the corporation, and the public imagines its owners reduced by exactly the sum. But capital is the most mobile of things — it crosses borders at the touch of a key, withdraws from where it is taxed heavily and gathers where it is taxed light — while labor stays, bound to where the worker has built a life. When the taxed factor can flee and the untaxed cannot, the burden migrates: a tax laid on capital comes to rest, in no small part, on wages, the immobile bearing what the mobile escapes. A price is a verdict on a hidden contest, mistaken for a fact of nature; and the incidence of the great taxes — falling between capital and labor, between the party that can move and the party that cannot — is the verdict of the contest between them, handed down in the guise of a fact of fiscal arithmetic. To learn who truly pays a tax, one asks not whose name the law has written but who, when the wedge is driven home, has somewhere else to go.</p>
+
+    <p>For elasticity, on inspection, is not a brute datum of nature but another name for power and for options. To be elastic is to have somewhere to turn — the capital that can cross a frontier, the firm that can shift a plant abroad, the household that can give up a luxury; to be inelastic is to be cornered — the worker tied to a town, the family that must heat its home and feed its children, the owner of land that can be taxed but never moved. The distribution of a tax's burden is therefore the distribution of escape, and the distribution of escape is, at bottom, the distribution of power. The schedule of rates a legislature argues over is only the visible face of taxation; its hidden face, decided in the market once the law has passed, is the sorting of the taxed into those who can flee the burden and those who must shoulder it. And that sorting, far more than the rate on the page, decides what a tax accomplishes — whom it spares, whom it grinds, and whose verdict the final price records.</p>
+
+    <p>The twelve plates follow the burden from the wedge that splits it to the compact that would justify it. They set out the wedge of incidence and the escape elasticity affords; the excess burden a tax destroys beyond the revenue it raises, and the inverse rule that taxes most heavily the things that flee least; the ladder of progression that should climb with the capacity to bear it, and the toil of labor the income tax discourages as it taxes; the tariff the home consumer quietly pays, and the ground whose tax cannot be shifted, since land has nowhere to flee; the corrective levy that taxes a harm to mend it, and the leak through which the taxed avoid and evade; the base on which the edifice rests — income, consumption, or wealth — and, at the last, the compact: what a society’s members owe to its keeping, who must consent before they pay, and whether a tax is tribute extracted by power or the price of a civilized common life. Other volumes have prepared the ground: the volume on the surplus traced the deadweight loss a tax inflicts on the gains from trade; that on the externality, the corrective tax that turns a spillover to account; on the stock, the levy that would reach wealth the income tax cannot; on the rent, the unearned increment a land tax would capture; on the rule, the sovereign power without which no tax could be laid. The tax takes its place among the institutions as the one that presents the bill — and conceals, within the price, the name of who in truth pays it. The argument remains open.</p>
+  </section>
+
+  <main>
+    <div class="plates-head">
+      <span class="plates-num fr">№ XVII</span>
+      <span class="plates-name">The twelve plates</span>
+      <span class="plates-rule"></span>
+    </div>
+
+    <div class="grid" id="grid">
+      <button class="el lit" data-id="wedge" aria-label="Plate i — The Wedge — in print"><span class="el-rn">Plate i</span><span class="pl-hero">The Wedge</span><span class="el-gloss">statutory against economic incidence: the wedge a tax drives between price paid and price kept, and why who remits does not decide who bears</span><span class="pl-flag">in print</span></button>
+      <button class="el lit" data-id="escape" aria-label="Plate ii — The Escape — in print"><span class="el-rn">Plate ii</span><span class="pl-hero">The Escape</span><span class="el-gloss">the burden falls on who cannot flee: elasticity as the power to escape, and the contest beneath who really pays a tax</span><span class="pl-flag">in print</span></button>
+      <button class="el" data-id="excess" aria-label="Plate iii — The Excess"><span class="el-rn">Plate iii</span><span class="pl-hero">The Excess</span><span class="el-gloss">deadweight loss: the gains from trade a tax destroys beyond the revenue it raises, rising with the rate and with elasticity</span></button>
+      <button class="el" data-id="inverse" aria-label="Plate iv — The Inverse"><span class="el-rn">Plate iv</span><span class="pl-hero">The Inverse</span><span class="el-gloss">the Ramsey rule: tax most what flees least — efficient, and regressive, since the inelastic goods are the necessities of the poor</span></button>
+      <button class="el" data-id="ladder" aria-label="Plate v — The Ladder"><span class="el-rn">Plate v</span><span class="pl-hero">The Ladder</span><span class="el-gloss">progression and ability to pay: how steep the burden should climb with the means to bear it, and equity against efficiency</span></button>
+      <button class="el" data-id="toil" aria-label="Plate vi — The Toil"><span class="el-rn">Plate vi</span><span class="pl-hero">The Toil</span><span class="el-gloss">the income tax: its incidence on the wage, the effort it discourages, and Mirrlees's search for the optimal schedule</span></button>
+      <button class="el" data-id="tariff" aria-label="Plate vii — The Tariff"><span class="el-rn">Plate vii</span><span class="pl-hero">The Tariff</span><span class="el-gloss">the tax on trade: borne by the home consumer, not the foreign seller — protection, its price, and the optimal-tariff exception</span></button>
+      <button class="el" data-id="ground" aria-label="Plate viii — The Ground"><span class="el-rn">Plate viii</span><span class="pl-hero">The Ground</span><span class="el-gloss">the one tax that cannot be shifted: land cannot flee, so its tax falls wholly on the owner — Henry George and the single tax</span></button>
+      <button class="el" data-id="corrective" aria-label="Plate ix — The Corrective"><span class="el-rn">Plate ix</span><span class="pl-hero">The Corrective</span><span class="el-gloss">the Pigovian tax: taxing a harm to mend the market rather than distort it — carbon, congestion, and the trouble of the rate</span></button>
+      <button class="el" data-id="leak" aria-label="Plate x — The Leak"><span class="el-rn">Plate x</span><span class="pl-hero">The Leak</span><span class="el-gloss">avoidance, evasion, and the elasticity of taxable income: the Laffer curve and the gap between the rate and the revenue</span></button>
+      <button class="el" data-id="base" aria-label="Plate xi — The Base"><span class="el-rn">Plate xi</span><span class="pl-hero">The Base</span><span class="el-gloss">what to tax — income, consumption, or wealth: the choice of the base that decides the burden more deeply than the rate</span></button>
+      <button class="el" data-id="compact" aria-label="Plate xii — The Compact"><span class="el-rn">Plate xii</span><span class="pl-hero">The Compact</span><span class="el-gloss">what a tax is for: tribute or the price of civilization, consent and the benefit principle — the question beneath the volume</span></button>
+    </div>
+  </main>
+
+  <section class="detail" id="detail" aria-live="polite"></section>
+
+  <footer>
+    <div class="f-bar">
+      <a class="f-mark" href="numeraire-atlas.html">Numéraire</a>
+      <span class="f-ref">Volume XVII &middot; The Institutions</span>
+    </div>
+    <p class="colophon">Volume XVII, <em>The Tax</em>, opens with two plates in print — <em>The Wedge</em> and <em>The Escape</em>, the wedge a tax drives between the price paid and the price kept, and the elasticity that decides on which side the burden falls. The seventeenth element of the table, and the eighteenth of its volumes to appear; it joins <a href="the-firm.html">The Firm</a>, <a href="the-money.html">The Money</a>, and <a href="the-rule.html">The Rule</a> among the institutions — the firm that supplants the market, the money that measures every price, the rule that makes the market possible, and now the tax that lays a claim on the product and hides, within the price, the name of who truly pays. Where those anatomized the institutions that constitute a market, this one anatomizes the institution that draws its revenue from one — and finds the burden of a tax settling not where the law sets it down but where the contest over who can flee comes to rest. Return to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+
+<script>
+const PLATES = {
+  wedge:{rn:"i",title:"The Wedge",family:"in print",lit:true,url:"the-wedge.html",
+    desc:`The volume's foundation is the distinction between who is charged with a tax and who is reduced by it — statutory incidence against economic incidence — and the wedge that a tax drives between the price a buyer pays and the price a seller keeps. Before the tax, one price; after it, two, with the difference going to the state. This plate sets out the central and counterintuitive fact of public finance: that how the wedge divides — how much of the burden falls on the buyer and how much on the seller — is wholly independent of which party the law names to remit the money. A tax collected from the seller and the same tax collected from the buyer come to rest in exactly the same place. The burden settles where market forces drive it, not where the statute sets it down, and to read a tax is to learn to find the bearer the law conceals.`,
+    excerpt:`<span class="x-cap">A</span> tax is a wedge. Before it is imposed, a single price joins the buyer and the seller — the buyer pays exactly what the seller receives. The tax drives a wedge between them: the buyer now pays more than the seller keeps, and the difference goes to the state. Everything that is puzzling about who bears a tax follows from a single fact about this wedge — that how it divides, how much falls on the buyer and how much on the seller, has nothing whatever to do with which of the two the law commands to pay. The statute names a payer; the market names a bearer; and they are seldom the same person. To understand a tax is to learn to read the second name, which is written not in the law but in the price.`},
+  escape:{rn:"ii",title:"The Escape",family:"in print",lit:true,url:"the-escape.html",
+    desc:`If the wedge splits without regard to who remits, what does decide the split? This plate gives the answer on which the whole volume turns: the burden falls on whichever party is less able to escape it. The side that can substitute, abstain, relocate, or wait shifts the burden onto the side that cannot, which must stay and bear it. The economist's name for the capacity to flee is elasticity, and the rule is exact — the more inelastic side carries the more. The plate follows the principle to its gravest case, the taxation of mobile capital and immobile labor, where a tax laid on the one may settle on the other; and to its deepest implication, that elasticity is not a fact of nature but a name for power and options, so that who bears a tax is decided by who is free to walk away. Incidence, in the end, is the distribution of escape.`,
+    excerpt:`<span class="x-cap">T</span>he burden of a tax falls on whoever cannot get away from it. This is the whole secret of incidence, and once it is grasped the rest is detail. A tax drives a wedge between what the buyer pays and what the seller keeps; the wedge opens toward whichever party is less able to escape — to substitute, to abstain, to take its money or its labor or its custom elsewhere. The side with alternatives shifts the burden; the side without them bears it. Economists call the capacity to flee elasticity and dress the matter in curves, but beneath the curves lies something plainer and harder: that to be unable to escape a tax is to be, in the relevant sense, without power — and that the question of who pays is, in the end, a question of who is free to walk away.`},
+  excess:{rn:"iii",title:"The Excess",family:"in preparation",lit:false,
+    desc:`A tax does not merely transfer money from the taxed to the state; it destroys value that no one receives at all. By driving a wedge between what buyers pay and sellers get, a tax discourages trades that would have benefited both parties — exchanges that would have happened at the old price but do not at the new — and the gains from those vanished trades are lost to everyone, the buyer, the seller, and the treasury alike. This is the excess burden, or deadweight loss, of taxation: the cost of a tax over and above the revenue it raises. This plate sets out the excess burden — its origin in the trades a tax suppresses, its measurement as the triangle of forgone gains, and the rule that it rises with the square of the rate and with the elasticity of what is taxed, so that the most distorting taxes are those laid on the things people can most easily stop buying.`,
+    openq:`if a tax destroys gains from trade that no one captures — neither the parties nor the treasury — how is the true cost of raising a dollar of public revenue to be reckoned, and how much more than a dollar is it?`},
+  inverse:{rn:"iv",title:"The Inverse",family:"in preparation",lit:false,
+    desc:`If the excess burden of a tax is greater the more elastic the thing taxed, then efficiency seems to counsel a clear rule: tax most heavily the things that respond least — the inelastic necessities — and lightly or not at all the things that flee. This is the Ramsey rule of optimal commodity taxation, the inverse-elasticity principle, and it minimizes the deadweight loss of raising a given revenue. This plate sets out the rule and the deep discomfort it provokes, for the things that flee least are very often the things people can least do without — food, fuel, the staples of a poor household's budget — so that the tax which is most efficient is frequently the most regressive, falling hardest on those least able to bear it. The plate examines the collision, at the heart of tax design, between the efficiency that would tax the captive and the equity that would spare them.`,
+    openq:`if the most efficient taxes fall on the goods people can least escape, and those are the goods the poor most depend on, must efficiency in taxation be bought at the price of fairness?`},
+  ladder:{rn:"v",title:"The Ladder",family:"in preparation",lit:false,
+    desc:`Against the efficiency rule that would tax the inelastic stands the principle of equity: that the burden of a tax should climb with the capacity to bear it, the broad shoulders carrying more than the narrow. This plate sets out the case for progression — the ability-to-pay principle, the diminishing marginal utility of income that makes a dollar matter less to the rich than to the poor, and the competing benefit principle by which one pays in proportion to what one receives from the state — and the long argument over how steep the ladder of rates should be. It examines the vertical equity that asks how the burden should differ between rich and poor, the horizontal equity that asks that equals be taxed equally, and the perennial tension between a tax that is fair and a tax that is efficient, since the rates that equity would raise are often the rates that efficiency would lower.`,
+    openq:`if fairness asks that the burden of a tax rise with the ability to bear it, how steep should the climb be — and who is to say how much more the fortunate owe than the rest?`},
+  toil:{rn:"vi",title:"The Toil",family:"in preparation",lit:false,
+    desc:`The largest of modern taxes falls on income from work, and this plate examines its incidence and its cost. A tax on the wage may be borne by the worker in lower take-home pay, or shifted in part to the employer or the consumer, depending on the elasticities of labor supply and demand; and beyond the question of who bears it lies the question of what it does — for a tax on earning is also a tax on the effort that earns, and may lead people to work less, or less visibly, than they otherwise would. The plate sets out the taxation of labor: the incidence of the payroll and income tax, the distortion of the choice between work and leisure, and the modern theory of optimal income taxation, framed by James Mirrlees, which seeks the schedule of rates that balances the revenue and redistribution a society wants against the effort its taxes discourage — the search for the most a state can take from labor before labor gives less.`,
+    openq:`if a tax on what people earn is also a tax on the effort of earning it, how much can a society take from the wage before the willing worker, no longer willing, simply does less?`},
+  tariff:{rn:"vii",title:"The Tariff",family:"in preparation",lit:false,
+    desc:`A tariff is a tax on what crosses a border, and few taxes are more thoroughly misunderstood by those who levy them. It is imposed on the foreign seller in form, and presented to the public as a charge upon him; but its incidence, like that of any tax, depends on who can escape it, and in the usual case the burden falls largely on the domestic buyer, who pays a higher price for the imported good and for the protected home-made good alike. This plate sets out the economics of the tariff: its incidence on the home consumer rather than the foreign producer; the protection it affords domestic industry and the higher prices that protection costs everyone else; the deadweight loss it inflicts and the rare case of the optimal tariff that a large country might levy to turn the terms of trade in its favor; and the enduring gap between the tariff as it is sold — a tax on foreigners — and the tariff as it works — a tax on one's own.`,
+    openq:`if a tariff laid on the foreign seller is paid in the main by the domestic buyer, why is it so persistently believed, and so often levied, as though the foreigner bore it?`},
+  ground:{rn:"viii",title:"The Ground",family:"in preparation",lit:false,
+    desc:`There is one tax that cannot be shifted, and it is the exception that proves the rule of incidence. The supply of land is fixed: it cannot be manufactured, withheld from the market without cost, or moved to a friendlier jurisdiction. Because land cannot flee, a tax on the value of land falls entirely and inescapably on the landowner, who can pass it to no one — the perfectly inelastic factor bearing the whole of its tax. This plate sets out the land-value tax and the tradition behind it: Henry George's argument that the unearned rise in land values, created by the growth of the community rather than any effort of the owner, is the natural and just object of taxation; the claim that a tax on land alone, the single tax, could fund the state without the deadweight loss that every other tax inflicts, since a tax that cannot be escaped distorts no choice; and the question of why so efficient and equitable a tax has so rarely been adopted.`,
+    openq:`if a tax on land cannot be shifted and distorts no choice, falling wholly on an unearned value, why is the one tax economists most agree on the one governments least impose?`},
+  corrective:{rn:"ix",title:"The Corrective",family:"in preparation",lit:false,
+    desc:`Most taxes are a necessary evil, distorting choices in order to raise revenue; but one kind of tax improves the choices it touches. When an activity imposes a cost on others that its price does not reflect — pollution, congestion, the harm of a spillover — a tax equal to that cost makes the actor reckon with the whole damage he does, and so does not distort the market but corrects it. This is the Pigovian, or corrective, tax, and this plate sets it out: Arthur Pigou's proposal to tax an externality at the margin of the harm it causes, turning a private decision toward the social good; the carbon tax, the congestion charge, and the levy on tobacco as its modern instances; the double benefit of a tax that raises revenue and mends a market at once; and the difficulty, never wholly solved, of measuring the harm precisely enough to set the rate — the corrective tax being only as good as the price it puts on a damage no market ever named.`,
+    openq:`if a tax on a harm can mend the market rather than distort it, making the polluter pay the cost he imposes, why is the corrective tax so hard to set, and so fiercely resisted by those it would charge?`},
+  leak:{rn:"x",title:"The Leak",family:"in preparation",lit:false,
+    desc:`A tax rate on paper is not a tax collected. Between the two lies the whole world of avoidance and evasion — the legal restructuring that shelters income from the rate, and the illegal concealment that hides it altogether — and the gap between the statutory rate and the revenue actually gathered can be vast. This plate examines the leak in the bucket: the responsiveness of taxable income to the rate, by which a higher rate yields proportionally less as the taxed shift their affairs into untaxed forms, defer their gains, or move them abroad; the Laffer curve and the contested point past which a higher rate raises less rather than more; and the difference, central to tax design, between the elasticity of the underlying activity and the elasticity of its mere reporting — for a tax may distort little real behavior and yet leak heavily through avoidance, so that what escapes the tax is not the work but the declaration of it.`,
+    openq:`if the taxed respond to a higher rate less by working less than by hiding, sheltering, and shifting what they owe, where is the rate that gathers the most — and does raising rates past it yield only the leak?`},
+  base:{rn:"xi",title:"The Base",family:"in preparation",lit:false,
+    desc:`Before a rate can be set, a base must be chosen: the thing that is to be taxed. The choice is among the most consequential in fiscal policy and the least visible. Shall a society tax income — all that a person earns — or consumption, what he spends, sparing what he saves; or the stock of wealth itself, the accumulated holdings that yield income or do not? Each base implies a different distribution of the burden, a different set of incentives, and a different conception of fairness. This plate sets out the choice of the base: the Haig-Simons ideal of a comprehensive income, taxing all accretions to wealth alike; the rival case for taxing consumption rather than income, on the ground that it does not penalize thrift; the broadening of the base that lets rates fall as exemptions narrow; and the deep truth that the definition of what shall count as taxable — more than the rate applied to it — silently decides who pays and who is spared.`,
+    openq:`if the choice of what to tax — income, spending, or wealth — decides the burden more quietly and more deeply than the rate, on what principle should a society choose the very thing it counts as taxable?`},
+  compact:{rn:"xii",title:"The Compact",family:"in preparation",lit:false,
+    desc:`The volume ends at the question its analysis has circled throughout: what, in the end, a tax is. The plates have shown the burden sliding through prices, settling on the captive, destroying value and mending markets, falling where power and options send it; this final plate asks what claim a tax has on those who bear it. Is taxation a tribute, extracted by a power strong enough to take it, the modern descendant of the levy a conqueror laid on the conquered? Or is it the price of a civilized society, in Justice Holmes's phrase — the fee that members of a common enterprise pay for the order, security, and shared provision that none could secure alone? The plate sets out the compact: the benefit and ability-to-pay principles as rival accounts of what is owed; the old cry that there shall be no taxation without representation, binding the power to tax to the consent of the taxed; and the question, beneath the whole volume, of whether a tax is something done to a people or something a people does for itself.`,
+    openq:`if a tax is a burden that power can lay and the law can hide, what makes it legitimate rather than mere extraction — the consent of those who bear it, the benefit they draw, or the justice of how it is shared?`}
+};
+
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+function render(id){
+  var tile=document.querySelector('.el[data-id="'+id+'"]');
+  var d=PLATES[id]; if(!d||!tile) return;
+  var h='';
+  h+='<div class="d-head">';
+  h+='<div class="d-sym'+(d.lit?' lit':'')+'">'+esc(d.rn)+'</div>';
+  h+='<div class="d-titles">';
+  h+='<div class="d-family">The Tax &middot; Plate '+esc(d.rn)+' &middot; '+esc(d.family)+'</div>';
+  h+='<h2 class="d-name">'+esc(d.title)+'</h2>';
+  h+='<div class="d-status'+(d.lit?' print':'')+'">'+esc(d.family)+'</div>';
+  h+='</div></div>';
+  h+='<p class="d-desc">'+esc(d.desc)+'</p>';
+  if(d.lit && d.excerpt){
+    h+='<div class="d-excerpt"><span class="lead">From the opening</span><p>'+d.excerpt+'</p></div>';
+  }
+  if(d.url){h+='<p class="d-readplate"><a href="'+d.url+'">Read the plate<span class="arr" aria-hidden="true">&#8594;</span></a></p>';}
+  if(!d.lit && d.openq){
+    h+='<p class="d-openq"><span class="lead">This plate will ask</span><q>'+esc(d.openq)+'</q></p>';
+  }
+  document.getElementById('detail').innerHTML=h;
+  var prev=document.querySelector('.el.sel'); if(prev) prev.classList.remove('sel');
+  tile.classList.add('sel');
+}
+
+(function(){
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.el').forEach(function(b){
+    b.addEventListener('click',function(){
+      render(b.dataset.id);
+      document.getElementById('detail').scrollIntoView({behavior:reduce?'auto':'smooth',block:'nearest'});
+    });
+  });
+  render('wedge');
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-barter.html">← The Barter</a><a rel="next" href="the-wedge.html">The Wedge →</a></nav>
+</body>
+</html>

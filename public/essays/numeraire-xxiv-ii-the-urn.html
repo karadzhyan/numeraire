@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Urn — The Bias, Plate ii · Numéraire</title>
+<meta name="description" content="Ellsberg; ambiguity aversion, the preference for a known risk over an unknown one, and the line between measurable risk and Knightian uncertainty.">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- reading-progress hairline ---- */
+  .progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--ink);z-index:10000;}
+
+  /* ---- masthead ---- */
+  .masthead{padding:clamp(2.8rem,8vh,5.6rem) 0 clamp(1.6rem,4vh,2.6rem);text-align:center;}
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;}
+  .edition{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+  .edition b{font-family:"Fraunces",serif;font-weight:500;font-style:normal;color:var(--soft);letter-spacing:.04em;}
+
+  .symbox{width:84px;height:84px;border:1px solid var(--ink);border-radius:2px;background:var(--ink);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;margin:clamp(1.4rem,3.4vh,2.2rem) auto 0;}
+  .symbox .sb-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2rem;line-height:1;color:var(--paper);letter-spacing:-.01em;}
+  .symbox .sb-num{font-family:"Fraunces",serif;font-size:.66rem;color:rgba(240,235,225,.58);margin-top:.28rem;letter-spacing:.04em;}
+
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-top:1.15rem;}
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.5rem,7vw,5rem);line-height:1.0;letter-spacing:-.028em;margin:.55rem 0 0;text-wrap:balance;}
+  .subtitle{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.05rem,1.7vw,1.32rem);color:var(--faint);margin:.5rem 0 0;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.64;color:var(--soft);
+    max-width:43rem;margin:clamp(1.3rem,3vh,1.9rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+  .status{font-size:.84rem;color:var(--soft);margin:clamp(1.2rem,2.6vh,1.7rem) auto 0;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .backrow{margin-top:clamp(1.3rem,3vh,1.9rem);padding-top:1.5rem;border-top:1px solid var(--hair);max-width:50rem;margin-left:auto;margin-right:auto;}
+  .backlink{display:inline-block;font-size:.82rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .backlink:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- generic block furniture ---- */
+  main{padding:0;}
+  .eyebrow{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.2rem;}
+
+  .block-argument{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .argument{max-width:40rem;margin:0 auto;}
+  .argument p{font-size:1.08rem;line-height:1.74;color:var(--ink);margin:0 0 1.2rem;text-wrap:pretty;}
+  .argument p:last-child{margin-bottom:0;}
+  .argument .closer{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 400;font-style:italic;color:var(--soft);font-size:1.06rem;}
+
+  /* ---- table of plates ---- */
+  .block-toc{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .toc ol{list-style:none;margin:0;padding:0;max-width:44rem;}
+  .toc li{display:grid;grid-template-columns:2.5rem 1fr;column-gap:1rem;align-items:baseline;
+    padding:.85rem 0;border-top:1px solid var(--hair);}
+  .toc li:first-child{border-top:none;}
+  .t-num{font-family:"Fraunces",serif;font-size:.92rem;color:var(--faintest);text-align:right;}
+  .t-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.08rem;color:var(--ink);line-height:1.15;text-decoration:none;}
+  a.t-title{border-bottom:1px solid var(--num);padding-bottom:1px;}
+  a.t-title:hover{border-bottom-color:var(--ink);}
+  .t-gloss{grid-column:2;font-size:.85rem;color:var(--faint);font-style:italic;margin-top:.22rem;line-height:1.4;}
+  .t-q{grid-column:2;font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:.95rem;color:var(--soft);margin-top:.42rem;line-height:1.36;}
+  .t-q .lead{font-family:"Fraunces",serif;font-style:normal;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-right:.5rem;}
+  .t-tag{display:inline-block;margin-left:.6rem;font-family:"Newsreader",serif;font-size:.64rem;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--paper);background:var(--ink);border-radius:2px;padding:.12em .5em;vertical-align:.14em;}
+  .t-read{grid-column:2;margin-top:.42rem;}
+  .t-read a{font-size:.8rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .t-read a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- the plates (essays) ---- */
+  .plates-open{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.8rem,6vh,4rem);}
+  .plates-open .eyebrow{text-align:center;}
+  .plate{max-width:54rem;margin:clamp(2.8rem,6.5vh,4.4rem) auto 0;padding-top:clamp(2.2rem,4.6vh,3rem);
+    border-top:1px solid var(--hair);position:relative;scroll-margin-top:1.4rem;}
+  .plate:first-of-type{border-top:none;margin-top:clamp(1.6rem,3.5vh,2.4rem);padding-top:0;}
+  .plate-head{margin:0 0 1.7rem;}
+  .plate-kicker{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .plate-kicker .pk-tag{margin-left:.6rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .plate-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.8rem,4.2vw,2.7rem);line-height:1.03;letter-spacing:-.02em;margin:.32rem 0 .42rem;}
+  .plate-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.02rem;color:var(--faint);max-width:36rem;line-height:1.45;}
+
+  .epigraph{max-width:34rem;margin:1.4rem 0 1.9rem;padding-left:1.1rem;border-left:1px solid var(--num);}
+  .epigraph p{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:1.04rem;line-height:1.42;color:var(--soft);margin:0;}
+  .epigraph cite{display:block;font-style:normal;font-family:"Newsreader",serif;font-size:.78rem;
+    letter-spacing:.03em;color:var(--faintest);margin-top:.55rem;}
+
+  .plate-body{max-width:37rem;}
+  .plate-body p{font-size:1.05rem;line-height:1.75;color:var(--ink);margin:0 0 1.18rem;text-wrap:pretty;}
+  .plate-body p:last-child{margin-bottom:0;}
+  .plate-body em{font-style:italic;}
+  .plate-body .lead-para::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 500;
+    float:left;font-size:3.5rem;line-height:.78;padding:.08em .14em 0 0;color:var(--ink);}
+  .plate-body h4{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);margin:1.9rem 0 .9rem;}
+
+  .break{display:flex;justify-content:center;margin:1.9rem 0;}
+  .break span{font-family:"Fraunces",serif;font-size:1.05rem;letter-spacing:.4em;color:var(--faintest);padding-left:.4em;}
+
+  /* sidenotes — inline by default, true margin notes on wide screens */
+  .sn-ref{font-family:"Fraunces",serif;font-size:.64rem;vertical-align:super;line-height:0;color:var(--soft);margin-left:.06em;}
+  .sidenote{font-family:"Newsreader",serif;font-size:.82rem;line-height:1.52;color:var(--faint);
+    border-left:2px solid var(--hair);padding-left:.9rem;margin:.7rem 0 1.05rem;}
+  .sidenote .sn-num{font-family:"Fraunces",serif;color:var(--faintest);font-size:.7rem;margin-right:.38rem;}
+  .sidenote em{font-style:italic;}
+  @media (min-width:1040px){
+    .sidenote{float:right;clear:right;width:14.5rem;margin:.25rem -17.5rem 1.15rem 0;
+      border-left:none;border-top:1px solid var(--hair);padding:.42rem 0 0;}
+  }
+
+  /* ---- coda ---- */
+  .coda{max-width:40rem;margin:clamp(2.8rem,6vh,4rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);}
+  .coda p{font-size:1.06rem;line-height:1.74;color:var(--ink);margin:0 0 1.15rem;text-wrap:pretty;}
+  .coda p:last-child{margin-bottom:0;}
+  .coda .q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .f-ref a{text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .f-ref a:hover{border-bottom-color:var(--soft);}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .progress{transition:width .08s linear;}
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}.rise.d4{animation-delay:.4s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    h1{font-size:clamp(2.2rem,11vw,3rem);}
+    .symbox{width:72px;height:72px;}
+    .symbox .sb-sym{font-size:1.7rem;}
+    .plate-body .lead-para::first-letter{font-size:3rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+
+  /* ---- standalone plate (leaf) ---- */
+  .leaf-head{max-width:54rem;margin:0 auto;padding:clamp(2.2rem,6.5vh,4.4rem) 0 0;text-align:center;}
+  .leaf-loc{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.08em;color:var(--faintest);margin-bottom:1.7rem;}
+  .leaf-loc a{text-decoration:none;color:var(--faint);border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .leaf-loc a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+  .leaf-loc .sep{margin:0 .5rem;color:var(--num);}
+  .leaf-kicker{font-family:"Fraunces",serif;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .leaf-kicker .pk-tag{margin-left:.55rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .leaf-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.2rem,5.6vw,3.7rem);line-height:1.02;letter-spacing:-.024em;margin:.42rem 0 0;text-wrap:balance;}
+  .leaf-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.06rem;color:var(--faint);
+    max-width:34rem;margin:.72rem auto 0;line-height:1.5;text-wrap:pretty;}
+  .epigraph.leaf-epigraph{margin:1.95rem auto 1.4rem;text-align:left;}
+  .leaf-body-wrap{max-width:54rem;margin:clamp(1.8rem,4vh,2.8rem) auto 0;}
+
+  .leaf-nav{max-width:54rem;margin:clamp(3rem,7vh,5.2rem) auto 0;padding-top:clamp(1.8rem,4vh,2.6rem);
+    border-top:1px solid var(--hair);display:grid;grid-template-columns:1fr auto 1fr;gap:1.3rem;align-items:start;}
+  .ln-cell{text-decoration:none;display:block;}
+  .ln-cell .lab{display:block;font-family:"Fraunces",serif;font-size:.64rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--faintest);margin-bottom:.36rem;}
+  .ln-cell .ttl{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1rem;
+    color:var(--soft);line-height:1.22;}
+  a.ln-cell:hover .ttl{color:var(--ink);}
+  .ln-prev{text-align:left;} .ln-home{text-align:center;} .ln-next{text-align:right;}
+
+  @media (max-width:600px){
+    .leaf-nav{grid-template-columns:1fr;gap:1.4rem;}
+    .ln-prev,.ln-home,.ln-next{text-align:center;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#ne-contents">Complete contents</a><a href="../editions.html#volume-bias">The Bias · both editions</a><a href="../volumes/the-bias.html">Collected volume</a></div></nav>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="frame">
+
+  <header class="leaf-head">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="leaf-loc rise d1" aria-label="Location in the series"><a href="numeraire-atlas-updated.html">Numéraire</a><span class="sep">·</span><a href="numeraire-xxiv-the-bias.html">Volume XXIV · The Bias</a></nav>
+    <div class="leaf-kicker rise d2">Plate ii <span class="pk-tag">in print</span></div>
+    <h1 class="leaf-title rise d2">The Urn</h1>
+    <div class="leaf-gloss rise d3">Ellsberg; ambiguity aversion, the preference for a known risk over an unknown one, and the line between measurable risk and Knightian uncertainty.</div>
+    <div class="epigraph leaf-epigraph rise d3">
+      <p>Offered two wagers of equal apparent odds, one on a chance you can count and one on a chance no one has counted, you will reach for the chance you can count, and pay for the privilege. The preference is stubborn and widely shared, and it cannot be squared with any odds you might secretly assign to the unknown; it shows that a known risk and an unknown one are not two amounts of the same thing, but two different things, and that the mind, sensibly or not, fears the second more.</p>
+      <cite>— the argument of this plate, after Daniel Ellsberg, 1961</cite>
+    </div>
+  </header>
+
+  <main class="leaf-body-wrap">
+    <article class="plate">
+      <div class="plate-body">
+<p class="lead-para">The model that the whole table has leaned on asks the chooser to weigh each prize by its probability. But the question presumes that a probability is there to be had, and often it is not. The Survivor, in the family of prices, drew the old and stubborn line, after Frank Knight: between a measurable risk, where the odds are known and can be insured against as a roulette wheel can, and an immeasurable uncertainty, where the odds are not known and perhaps not knowable, as in a war or a wholly new venture. The orthodox theory had a confident reply to the distinction, and it was meant to dissolve it: even where no odds are posted, a coherent person simply supplies his own, a subjective probability drawn from his own degree of belief, and then proceeds to maximize exactly as before — so that risk and uncertainty differ in their source but not in the arithmetic of choice, and the second collapses neatly into the first. Daniel Ellsberg, in 1961, built a small experiment to test that reply, and it did not survive. He found that people, confronted with a chance they cannot measure, do not quietly invent a number and carry on; they flinch, preferring a known risk to an unknown one with a consistency the theory flatly forbids. The flinch has a name, ambiguity aversion, and it has proved one of the most robust facts in the study of choice. The plate's question is the one the experiment poses to each of us: offered a danger you can measure and a danger you cannot, which would you rather face?</p>
+
+<p>The demonstration needs only an urn. Imagine ninety balls: thirty are known to be red, and the remaining sixty are some mixture of black and yellow in a proportion nobody has disclosed — they might be all black, all yellow, or anything between. Now consider two wagers. In the first, you may bet on red or bet on black, winning a prize if your color is drawn; and here most people bet on red. The reason is plain: red is a known one in three, while black might be anything from impossible to two in three, and faced with that fog people take the chance they can see. In the second wager, you may bet on red-or-yellow or on black-or-yellow, winning if the drawn ball is either of your two colors; and here most people bet on black-or-yellow. The reason is again the visible chance: black and yellow together must be exactly sixty in ninety, a known two in three, while red-or-yellow is thirty plus an undisclosed number of yellows, a foggy sum — so once more the measured bet is taken over the unmeasured. Each choice, on its own, looks like nothing but prudence. Set side by side, they cannot both be the acts of a person maximizing on any odds at all. For to bet red over black is to behave as though red were the likelier; to bet black-or-yellow over red-or-yellow is to behave as though black were the likelier, since the yellows are added to each side alike and cancel. The same person, in the same minutes, has ranked red above black and black above red. No probabilities, however cunningly assigned to the unseen, can make that pair of choices consistent.<sup class="sn-ref">1</sup></p>
+<div class="sidenote"><span class="sn-num">1.</span> The urn: 30 red, 60 black-or-yellow in undisclosed proportion. Bet red vs black: most pick red, a known one in three over a foggy black. Bet red-or-yellow vs black-or-yellow: most pick black-or-yellow, a known two in three over a foggy sum. Each looks like prudence, but together they are inconsistent: red over black implies red the likelier; black-or-yellow over red-or-yellow implies black the likelier, since the yellows add to each side and cancel. The same person ranks red above black and black above red.</div>
+
+<p>What the pair of choices breaks is a particular axiom, the one Leonard Savage called the sure-thing principle, and it is a keystone of the rational theory of choice under uncertainty. The principle says that if two acts yield the same result in some state of the world, that shared result should drop out of the comparison and not sway the choice between them. In the urn the shared result is the yellow draw: between the bet on red and the bet on black, a yellow ball pays nothing either way; between red-or-yellow and black-or-yellow, a yellow ball pays in both. The yellows are the sure thing, common to each side, and by the principle they ought to be invisible to the choice — yet adding them is precisely what reverses the preference, flipping the chooser from the red camp to the black. The axiom is violated not at the margin but head on. And the violation has the same disquieting durability that the volume's first paradox showed: it is not the slip of the careless or the untrained. Confront a thoughtful person with the contradiction, lay the cancellation out for him in full, and he will more often than not look at it, grant it, and keep his choices anyway — judging, against the axiom, that the difference between a counted chance and an uncounted one is a difference worth paying to act upon.<sup class="sn-ref">2</sup></p>
+<div class="sidenote"><span class="sn-num">2.</span> The pattern violates Savage's sure-thing principle: if two acts agree in some state, that shared outcome should not affect the choice between them. Here the yellow draw is shared — paying nothing on each side in the first pair, paying on both in the second — so by the principle it should be invisible, yet adding it reverses the preference. The axiom breaks head on. And like the volume's opening paradox, the violation survives reflection: shown the contradiction in full, thoughtful people grant it and keep their choices, judging a counted chance worth paying for over an uncounted one.</div>
+
+<div class="break"><span>⁂</span></div>
+
+<p>The meaning beneath the puzzle is larger than a broken axiom. The rational theory assumed that all uncertainty is at bottom one substance, probability, and that a chooser faced with the unknown has nothing to do but estimate it and treat the estimate as fact. Ellsberg's urn shows that people refuse this reduction. They mark a difference the theory had erased — between a chance whose magnitude they trust and a chance whose magnitude they merely guess — and they let the difference move them, shying from the guess even when its best estimate matches the chance they accept. This is ambiguity aversion proper: not a distaste for risk, which the model already allows and measures, but a distaste for not knowing the risk, a second and distinct shrinking for which the model had no room. And it returns to choice the very line that Knight had drawn in thought. Where Knight argued that measurable risk and immeasurable uncertainty are different in kind, and the older theory answered that the difference vanishes once the chooser supplies his own numbers, Ellsberg shows the chooser declining to let it vanish — keeping the two apart in his conduct, and so confirming in the laboratory what Knight had claimed in the study: that the confidence one has in one's odds is itself a feature of the decision, and not a thing that can be folded into the odds without remainder.<sup class="sn-ref">3</sup></p>
+<div class="sidenote"><span class="sn-num">3.</span> The deeper point: the theory assumed all uncertainty is one substance, probability, to be estimated and treated as fact. People refuse the reduction, marking a difference the theory erased — between a chance whose size they trust and one they merely guess — and shying from the guess even when its best estimate matches the trusted chance. Ambiguity aversion is not a distaste for risk (the model measures that) but for not knowing the risk. It returns to choice the line Knight drew in thought: the confidence in one's odds is a feature of the decision, not foldable into the odds.</div>
+
+<p>Once seen, the aversion is everywhere, and it accounts for behavior the bare model finds puzzling. It is why investors crowd into the home market they feel they understand and hold too little of the foreign one whose prospects are merely as good but less legible; why people will insure readily against a familiar hazard and balk at a strange one of equal expected cost; why a novel venture must promise a premium over a familiar one to draw the same money; and why, when a crisis turns the known odds of a hundred markets suddenly unknowable, capital does not calmly reprice but flees toward whatever still looks measurable, the safe asset and the cash. In each, the unknown is paid to be avoided, and the size of that payment — the ambiguity premium — is a real and recurring price the standard theory cannot name. The challenge to the model is therefore no curiosity of the seminar but a gap in its reach: it had assumed every uncertainty reducible to a probability and every chooser content to assign one, and a great deal of conduct obeys neither assumption. Decision theory has since labored to repair the gap, building rules in which a cautious chooser, rather than trusting a single estimate, guards against the least favorable of the several he finds plausible — but the finding those rules are built to honor is the one the urn first forced into view.<sup class="sn-ref">4</sup></p>
+<div class="sidenote"><span class="sn-num">4.</span> The aversion is everywhere: the home bias, crowding into the familiar market over an equally good but less legible foreign one; readiness to insure familiar hazards and balking at strange ones of equal cost; the premium a novel venture must pay; the flight to cash when a crisis makes known odds unknowable. The unknown is paid to be avoided, and the ambiguity premium is a price the standard theory cannot name. Decision theory has since built rules where a cautious chooser guards against the least favorable of several plausible estimates — honoring the finding the urn forced into view.</div>
+
+<p>So the plate leaves a chooser more complicated, and more human, than the one the table began with. He does not always have the probabilities the model hands him; often he knows he does not, and instead of inventing them and pressing on, he treats his own ignorance as information and steps back from it. Whether that stepping back is a flaw or a wisdom is the question the volume's flagship will press, and ambiguity aversion is among its sharpest cases. Measured against the axioms, the aversion is simply an error — a refusal of the sure-thing principle, a failure to be the coherent maximizer the theory describes. But measured against the world, it may be something better than error. For the model's serene probabilities are, where the odds are truly unknown, a fiction dressed as knowledge; and a chooser who declines to stake everything on a number he had to invent, preferring the ground he can actually survey, is not obviously the fool of the two. The answer to the plate's question, then, is that most of us would rather face the danger we can measure, and will pay to do so — and that whether to count this a defect of reason or a due humility before the unmeasurable is exactly the quarrel the rest of the volume joins. Knight saw the line; Ellsberg caught the mind honoring it; and the worth of that homage is left, fittingly, for the plate that asks what reason is.<sup class="sn-ref">5</sup></p>
+<div class="sidenote"><span class="sn-num">5.</span> The chooser is left more human: lacking the probabilities the model hands him, knowing he lacks them, he treats his ignorance as information and steps back. Whether that is flaw or wisdom is the flagship's question, and ambiguity aversion a sharp case. Against the axioms it is error, a refusal of the sure-thing principle; against the world it may be better, for the model's serene probabilities, where odds are truly unknown, are a fiction dressed as knowledge, and declining to stake all on an invented number is not obviously foolish. Most would rather face the measurable danger, and pay to.</div>
+      </div>
+    </article>
+  </main>
+
+  <nav class="leaf-nav" aria-label="Plate navigation">
+    <a class="ln-cell ln-prev" href="numeraire-xxiv-i-the-certainty.html"><span class="lab">← Previous plate</span><span class="ttl">Plate i · The Certainty</span></a>
+    <a class="ln-cell ln-home" href="numeraire-xxiv-the-bias.html"><span class="lab">The volume</span><span class="ttl">The Bias · contents</span></a>
+    <a class="ln-cell ln-next" href="numeraire-xxiv-iii-the-reference.html"><span class="lab">Next plate →</span><span class="ttl">Plate iii · The Reference</span></a>
+  </nav>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref"><a href="numeraire-xxiv-the-bias.html">The Bias</a> · <a href="numeraire-atlas-updated.html">the table</a></span>
+    </div>
+    <p class="colophon">Plate ii of <em>The Bias</em>, Volume the Twenty-fourth of <em>Numéraire</em> — a periodic table of economic life. This leaf may be read on its own or as part of the volume. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<script>
+(function(){
+  var bar=document.getElementById('progress');
+  function onScroll(){
+    var h=document.documentElement;
+    var max=(h.scrollHeight-h.clientHeight);
+    var p=max>0?(h.scrollTop||document.body.scrollTop)/max:0;
+    bar.style.width=(p*100).toFixed(2)+'%';
+  }
+  document.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="numeraire-xxiv-i-the-certainty.html">← The Certainty</a><a rel="next" href="numeraire-xxiv-iii-the-reference.html">The Reference →</a></nav>
+</body>
+</html>

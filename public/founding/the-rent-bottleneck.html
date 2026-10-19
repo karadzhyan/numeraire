@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Bottleneck — The Rent, plate iv</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1;
+    --ink:#1c1a16;
+    --soft:#534e45;
+    --faint:#6e685d;
+    --faintest:#9a9384;
+    --num:#c4bcab;
+    --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16);
+    --frame:68rem;
+    --read:37rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.6rem,4vw,4rem);}
+  p{margin:0;}
+  i,em{font-style:italic;}
+  a{color:inherit;}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:4px;border-radius:1px;}
+  .fr{font-family:"Fraunces",Georgia,serif;font-feature-settings:"liga" 1,"dlig" 0;}
+
+  /* ---- heavy entrance ---- */
+  .hero{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:space-between;}
+  .bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.5rem;padding:2.5rem 0 0;}
+  .mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.3rem;letter-spacing:-.01em;}
+  .edition{font-size:.9rem;color:var(--faint);letter-spacing:.06em;}
+  .hero-foot{padding-bottom:clamp(3.5rem,8vh,7rem);text-align:center;}
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(3.4rem,12vw,11rem);line-height:.95;letter-spacing:-.03em;margin:0;}
+  .standfirst{font-size:clamp(1.16rem,1.5vw,1.36rem);line-height:1.55;color:var(--soft);
+    margin:clamp(1.6rem,3vh,2.4rem) auto 0;max-width:45rem;text-wrap:pretty;}
+
+  /* ---- reading column ---- */
+  .read{max-width:var(--read);margin:0 auto;}
+  .read p{font-size:1.07rem;line-height:1.74;color:var(--ink);margin:0;text-indent:1.4em;text-wrap:pretty;}
+  .sec-head + p,.pull + p,.opening,.plate + p,.coda + p{text-indent:0;}
+
+  .sec-head{text-align:center;margin:clamp(4rem,9vh,7.5rem) 0 clamp(1.8rem,3.5vh,2.6rem);}
+  .sec-head.first{margin-top:clamp(5rem,11vh,9rem);}
+  .sec-num{display:block;font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;
+    font-size:.98rem;letter-spacing:.06em;color:var(--faintest);margin-bottom:.85rem;}
+  .sec-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.6rem,2.6vw,2.05rem);line-height:1.12;letter-spacing:-.012em;margin:0;}
+
+  .opening::first-letter{
+    font-family:"Fraunces",serif;font-weight:500;float:left;font-size:5.3rem;line-height:.72;
+    padding:.36rem .55rem 0 0;color:var(--ink);
+  }
+
+  .pull{max-width:50rem;margin:clamp(4.5rem,9vh,7rem) auto;text-align:center;}
+  .pull p{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:clamp(2rem,4.2vw,3.1rem);line-height:1.08;letter-spacing:-.02em;color:var(--ink);
+    margin:0;text-indent:0;text-wrap:balance;}
+
+  .ref{font-size:.62em;vertical-align:.5em;line-height:0;color:var(--faint);font-style:normal;}
+  .ref a{text-decoration:none;}
+  .ref a:hover{color:var(--ink);}
+
+  /* ---- plates (diagrams) ---- */
+  .plate{max-width:var(--read);margin:clamp(3.4rem,7vh,5.2rem) auto;}
+  .plate.wide{max-width:44rem;}
+  .plate figure{margin:0;}
+  .plate svg{display:block;width:100%;height:auto;overflow:visible;}
+  .plate text{font-family:"Fraunces",Georgia,serif;fill:var(--soft);paint-order:stroke;stroke:var(--paper);stroke-width:2.6px;stroke-linejoin:round;}
+  .plate .axis{stroke:var(--soft);stroke-width:1.1;}
+  .plate .curve{fill:none;stroke:var(--ink);stroke-width:1.6;}
+  .plate .curve.sec{stroke:var(--soft);stroke-width:1.4;}
+  .plate .guide{stroke:var(--faintest);stroke-width:1;stroke-dasharray:2.4 3.4;fill:none;}
+  .plate .level{stroke:var(--faintest);stroke-width:1;stroke-dasharray:1 4;}
+  .plate .floor{stroke:var(--ink);stroke-width:1.2;stroke-dasharray:5 4;}
+  .plate .dot{fill:var(--ink);}
+  .plate .dot.open{fill:var(--paper);stroke:var(--ink);stroke-width:1.4;}
+  .plate .lbl{font-size:14px;fill:var(--soft);}
+  .plate .tick{font-size:13px;fill:var(--faint);}
+  .plate .reg{font-size:12.5px;fill:var(--faint);font-style:italic;}
+  .plate figcaption{font-size:.82rem;line-height:1.56;color:var(--faint);margin:1.2rem auto 0;
+    max-width:33rem;text-align:center;text-wrap:pretty;}
+  .plate figcaption .pn{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;
+    color:var(--faintest);letter-spacing:.05em;text-transform:uppercase;font-size:.74rem;}
+
+  /* ---- coda ---- */
+  .coda{max-width:46rem;margin:clamp(5rem,10vh,8rem) auto 0;text-align:center;}
+  .coda p{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400,"ital" 0;font-style:italic;
+    font-size:clamp(1.5rem,2.6vw,2.05rem);line-height:1.3;color:var(--soft);margin:0;text-wrap:balance;}
+
+  /* ---- notes ---- */
+  .notes{max-width:var(--read);margin:clamp(5rem,11vh,9rem) auto 0;padding-top:2.4rem;border-top:1px solid var(--hair);}
+  .notes h3{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.92rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.6rem;}
+  .note{display:flex;gap:.9rem;scroll-margin-top:2rem;font-size:.86rem;line-height:1.56;color:var(--faint);margin:0 0 1rem;text-wrap:pretty;}
+  .note .nn{flex:0 0 auto;font-family:"Fraunces",serif;color:var(--faintest);min-width:1.1rem;}
+  .note i{font-style:italic;}
+
+  /* ---- colophon ---- */
+  footer{margin-top:clamp(6rem,13vh,10rem);padding:2.6rem 0 4.5rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.5rem;margin-bottom:1.8rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.1rem;}
+  .f-ref{font-size:.82rem;color:var(--faintest);letter-spacing:.18em;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:60ch;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .r{opacity:0;transform:translateY(12px);animation:rise 1.1s cubic-bezier(.2,.6,.2,1) both;}
+    .r1{animation-delay:.06s}.r2{animation-delay:.2s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .read p{font-size:1.04rem;}
+    .opening::first-letter{font-size:4.4rem;}
+    .f-bar{flex-direction:column;gap:.7rem;}
+    .plate .lbl,.plate .reg,.plate .tick{font-size:11px;}
+  }
+
+  /* ===== revision: airier rhythm + new plate types ===== */
+  .read p{line-height:1.82;}
+  .sec-head{margin:clamp(5.5rem,12.5vh,9.5rem) 0 clamp(2.2rem,4vh,3rem);}
+  .sec-head.first{margin-top:clamp(5rem,11vh,8.5rem);}
+  .sec-head::before{content:"";display:block;width:2.4rem;height:1px;background:var(--num);margin:0 auto 1.7rem;opacity:.85;}
+  .pull{margin:clamp(5.5rem,11vh,8.5rem) auto;}
+  .plate{margin:clamp(4.4rem,9vh,6.6rem) auto;}
+  .coda{margin-top:clamp(6rem,12vh,9rem);}
+
+  /* centered closing ornament */
+  .orn{display:flex;justify-content:center;margin:clamp(5rem,10vh,7.5rem) auto 0;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;}
+  .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* ledger plate: sources -> remedies */
+  .ledger figure{margin:0;}
+  .ledger-grid{display:grid;grid-template-columns:1fr 1fr;position:relative;
+    border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);}
+  .ledger-grid::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:1px;background:var(--hair);}
+  .ledger-grid .lh{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;
+    font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);padding:1.15rem 1.5rem .55rem;}
+  .ledger-grid .lh.r{text-align:right;} .ledger-grid .lh.l{text-align:left;}
+  .ledger-grid .cell{padding:1.3rem 1.5rem;border-top:1px solid var(--hair);}
+  .ledger-grid .src{text-align:right;} .ledger-grid .rem{text-align:left;}
+  .ledger-grid .cell b{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 500;font-weight:500;
+    font-size:1.13rem;display:block;color:var(--ink);letter-spacing:-.01em;line-height:1.15;}
+  .ledger-grid .cell span{display:block;font-size:.81rem;color:var(--faint);margin-top:.34rem;line-height:1.42;}
+  .ledger-coda{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.16rem;line-height:1.42;color:var(--soft);text-align:center;margin:1.7rem auto 0;max-width:33rem;text-wrap:balance;}
+  @media (max-width:620px){
+    .ledger-grid{grid-template-columns:1fr;}
+    .ledger-grid::before{display:none;}
+    .ledger-grid .lh{display:none;}
+    .ledger-grid .src,.ledger-grid .rem{text-align:left;}
+    .ledger-grid .src{border-bottom:none;}
+    .ledger-grid .rem{border-top:none;padding-top:.1rem;padding-left:2.4rem;position:relative;}
+    .ledger-grid .rem::before{content:"\2192";position:absolute;left:1.1rem;top:.1rem;color:var(--faintest);}
+    .ledger-grid .cell{padding-bottom:.5rem;}
+    .ledger-grid .rem{padding-bottom:1.3rem;}
+  }
+
+  /* ===== frontispiece: annotated contents ===== */
+  .sec-head{scroll-margin-top:2.5rem;}
+  .contents{max-width:40rem;margin:0 auto;padding:clamp(3rem,8vh,7rem) 0 clamp(3rem,7vh,6rem);}
+  .contents .orn{margin:0 auto 2.4rem;}
+  .contents-eyebrow{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faintest);text-align:center;margin:0 0 3rem;}
+  .contents-list{list-style:none;margin:0 auto;padding:0;max-width:33rem;counter-reset:none;}
+  .contents-list li{margin:0 0 1.7rem;}
+  .contents-list li:last-child{margin-bottom:0;}
+  .contents-list a{display:grid;grid-template-columns:2.6rem 1fr;column-gap:1.1rem;
+    text-decoration:none;align-items:baseline;}
+  .contents-list .cn{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;
+    font-size:.96rem;color:var(--faintest);text-align:right;letter-spacing:.02em;}
+  .contents-list .ct{font-family:"Fraunces",serif;font-variation-settings:"opsz" 58,"wght" 500;
+    font-size:1.2rem;color:var(--ink);letter-spacing:-.012em;line-height:1.18;transition:color .25s ease;}
+  .contents-list .cg{grid-column:2;font-style:italic;font-size:.92rem;color:var(--faint);
+    margin-top:.22rem;line-height:1.42;text-wrap:pretty;}
+  .contents-list a:hover .ct{color:var(--soft);}
+  @media (max-width:600px){
+    .contents-list a{grid-template-columns:1.9rem 1fr;column-gap:.85rem;}
+    .contents-list .ct{font-size:1.1rem;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-founding">The Founding Atlas · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+
+  <section class="hero">
+    <div class="bar r r1">
+      <span class="mark">Numéraire</span>
+      <span class="edition">The Rent · № II · iv</span>
+    </div>
+    <div class="hero-foot r r2">
+      <h1>The Bottleneck</h1>
+      <p class="standfirst">Three plates were spent on land, and it is time to confess that land was only ever the example. Everything the law of rent describes — a factor fixed in supply, a surplus that demand alone determines, a price determined by rent rather than determining it — depends not at all on the factor's being soil. It depends only on the factor's being scarce, and fixed, and pressed upon by demand. The economist who saw this most clearly was Alfred Marshall, and the instrument he forged for it was the quasi-rent: the rent-like surplus earned by any factor whose supply cannot quickly adjust — a machine, a skill, a patent, a brand — which obeys every law of rent while its fixity lasts, and erodes when supply at last responds. This plate follows the generalization to its end. It shows that the difference between rent and the ordinary returns to capital and labour is one of time, not kind; that rent appears wherever there is a bottleneck; and that the line between a quasi-rent rewarding genuine creation and a rent merely extracting a toll is the line the whole volume has been drawing. It is the bridge from the land of the first plates to the talents, licences, and platforms of the plates to come.</p>
+    </div>
+  </section>
+
+  <nav class="contents" aria-label="Contents">
+    <div class="orn" aria-hidden="true"><svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg></div>
+    <p class="contents-eyebrow">The argument in seven movements</p>
+    <ol class="contents-list">
+      <li><a href="#s1"><span class="cn">I</span><span class="ct">Beyond the Field</span><span class="cg">rent was never really about land</span></a></li>
+      <li><a href="#s2"><span class="cn">II</span><span class="ct">The Fixed Factor in the Short Run</span><span class="cg">the machine that behaves like land</span></a></li>
+      <li><a href="#s3"><span class="cn">III</span><span class="ct">Quasi-Rent</span><span class="cg">the surplus of a factor fixed for now</span></a></li>
+      <li><a href="#s4"><span class="cn">IV</span><span class="ct">The Difference Is Time</span><span class="cg">how the surplus erodes, or does not</span></a></li>
+      <li><a href="#s5"><span class="cn">V</span><span class="ct">The Many Bottlenecks</span><span class="cg">rent wherever supply cannot answer demand</span></a></li>
+      <li><a href="#s6"><span class="cn">VI</span><span class="ct">Reward or Extraction?</span><span class="cg">the return on creation, and its drift</span></a></li>
+      <li><a href="#s7"><span class="cn">VII</span><span class="ct">The Spectrum of Fixity</span><span class="cg">from the fixed pole to the reproducible</span></a></li>
+    </ol>
+  </nav>
+
+  <article class="read">
+
+    <div class="sec-head first" id="s1"><span class="sec-num fr">I</span><h2 class="sec-title">Beyond the Field</h2></div>
+
+    <p class="opening">Three plates have been spent on land, and it is time to confess that land was only ever the example. Everything the law of rent describes — a factor fixed in supply, a surplus that demand alone determines, a price determined by rent rather than determining it — depends not at all on the factor's being soil. It depends only on the factor's being scarce, and fixed, and pressed upon by demand. Land is the purest case, because its supply is fixed forever and by nature; but it is a case, not the category. The category is larger, and once seen it is seen everywhere.</p>
+
+    <p>The economist who saw it most clearly, and gave the seeing its lasting vocabulary, was Alfred Marshall, whose <i>Principles of Economics</i> (1890) did for the generation around 1900 what Ricardo's <i>Principles</i> had done eighty years before: it set the terms of the discipline. Marshall's contribution here was a single fertile idea — that the surplus Ricardo had found in land is a special case of a surplus that attaches, for a time, to any factor whose supply cannot quickly adjust. He called it quasi-rent, and with it he turned a theory of ground rent into a theory of the whole economy.<sup class="ref"><a href="#n1">1</a></sup></p>
+
+    <div class="sec-head" id="s2"><span class="sec-num fr">II</span><h2 class="sec-title">The Fixed Factor in the Short Run</h2></div>
+
+    <p>Begin with a machine. A manufacturer builds one — a press, a loom, a turbine — at considerable cost. The moment it is finished, something important changes about it: its cost of construction is sunk, gone, beyond recovery, and therefore irrelevant to every decision that follows. What governs the machine's use from now on is not what it cost to build but what it costs to run; and so long as the machine earns more than that running cost, it will be kept working, for the only alternative is to leave it idle and earn nothing at all.<sup class="ref"><a href="#n2">2</a></sup></p>
+
+    <p>This means that the machine's earnings, in the period before more machines like it can be built, are set not by its cost but by demand. If the product it makes is keenly wanted, the machine earns far above its running cost, and the surplus is large; if the product is little wanted, the surplus is small; but in either case the surplus is whatever demand leaves after the running cost is met. The machine, in the short run, behaves exactly as land does: its supply is fixed, demand alone fixes its return, and the return is a residual — price-determined, not price-determining. The fixed factor need not be a gift of nature. It need only be fixed.<sup class="ref"><a href="#n3">3</a></sup></p>
+
+    <div class="plate">
+      <figure>
+        <svg viewBox="0 0 660 400" role="img" aria-label="A machine whose supply is fixed in the short run, shown as a vertical line. A downward demand curve meets it at the return to the factor. A horizontal operating-cost floor sits below; the gap between the return and the operating cost is the quasi-rent.">
+          <line class="axis" x1="80" y1="340" x2="620" y2="340"/>
+          <path d="M624,340 L614,336 L614,344 Z" style="fill:var(--soft)"/>
+          <line class="axis" x1="80" y1="340" x2="80" y2="70"/>
+          <path d="M80,66 L76,76 L84,76 Z" style="fill:var(--soft)"/>
+          <line x1="330" y1="340" x2="330" y2="92" style="stroke:var(--ink);stroke-width:1.8"/>
+          <line x1="110" y1="270" x2="510" y2="270" style="stroke:var(--soft);stroke-width:1.3;stroke-dasharray:5 4"/>
+          <line x1="150" y1="88" x2="510" y2="232" style="stroke:var(--ink);stroke-width:1.4"/>
+          <circle class="dot" cx="330" cy="160" r="4"/>
+          <line x1="352" y1="166" x2="352" y2="264" style="stroke:var(--soft);stroke-width:1.2"/>
+          <path d="M352,160 L348,169 L356,169 Z" style="fill:var(--soft)"/>
+          <path d="M352,270 L348,261 L356,261 Z" style="fill:var(--soft)"/>
+          <text class="lbl" x="330" y="80" text-anchor="middle">fixed in the short run</text>
+          <text class="reg" x="200" y="100">demand</text>
+          <text class="reg" x="118" y="263">operating cost</text>
+          <text class="lbl" x="362" y="219">quasi-rent</text>
+          <text class="lbl" transform="translate(50,205) rotate(-90)" text-anchor="middle">the factor's return</text>
+        </svg>
+        <figcaption><span class="pn">Plate iv.a&nbsp;&middot;&nbsp;</span>Quasi-rent on a machine. The vertical line is the machine, whose supply cannot grow until more are built — fixed, for the short run, exactly as land is fixed forever. A downward demand for what it makes meets that fixed supply at the dot: the machine's return, set by demand alone. Below runs the operating cost, the running expense that must be covered to keep it working. The gap between the two — the surplus of the return over the operating cost — is the quasi-rent: what is left for the fixed factor once the bills of running it are paid. Raise the demand and the gap widens; lower it and the gap narrows; but the operating cost does not move. The surplus is demand's gift, and it is price-determined, not price-determining — the signature of rent, here earned by a thing that human hands made.</figcaption>
+      </figure>
+    </div>
+
+    <div class="sec-head" id="s3"><span class="sec-num fr">III</span><h2 class="sec-title">Quasi-Rent</h2></div>
+
+    <p>Marshall gave this surplus its name. The income earned by a factor whose supply is fixed in the short run he called <i>quasi-rent</i> — rent-like, because while the fixity lasts it obeys every law of rent, but only <i>quasi</i>, because the fixity will not last. In the short run the distinction between quasi-rent and true rent is invisible. Both are surpluses thrown off by a factor that cannot multiply; both are governed by demand; both could be taxed away without changing anyone's behaviour, since the factor sits there earning its surplus regardless. Stand close to a machine earning a fat return in a boom and you cannot tell its income from the rent of land. The two look identical, behave identically, and are, for the moment, the same thing.</p>
+
+    <p>The word <i>quasi</i> carries the whole of the difference, and the difference is not of kind but of duration. True rent is the surplus of a factor fixed forever; quasi-rent is the surplus of a factor fixed for now. To see what <i>for now</i> does to the picture, one has only to let time pass.<sup class="ref"><a href="#n4">4</a></sup></p>
+
+    <div class="sec-head" id="s4"><span class="sec-num fr">IV</span><h2 class="sec-title">The Difference Is Time</h2></div>
+
+    <p>Let the boom continue, and the machines earning their fat returns will not go unnoticed. Other manufacturers, seeing the surplus, build machines of their own; the supply that was fixed in the short run begins, in the long run, to grow; and as it grows, the product becomes more plentiful, its price falls, and the surplus on every machine shrinks. The process halts only when the return on a machine has fallen to the level that just suffices to call forth new ones — the cost of building them, plus the ordinary return on the capital they absorb. At that point the quasi-rent has been competed away entirely, and what remains is merely the normal return to capital, the long-run supply price of the machine. The surplus was real, but it was temporary; it lasted exactly as long as the supply stayed fixed, and no longer.<sup class="ref"><a href="#n5">5</a></sup></p>
+
+    <div class="plate">
+      <figure>
+        <svg viewBox="0 0 660 400" role="img" aria-label="Two lines beginning together at a high level. The land-rent line stays flat over time. The quasi-rent curve decays toward a lower normal-return floor as supply responds. The horizontal floor marks the long-run normal return.">
+          <line class="axis" x1="80" y1="340" x2="620" y2="340"/>
+          <path d="M624,340 L614,336 L614,344 Z" style="fill:var(--soft)"/>
+          <line class="axis" x1="80" y1="340" x2="80" y2="70"/>
+          <path d="M80,66 L76,76 L84,76 Z" style="fill:var(--soft)"/>
+          <line x1="110" y1="280" x2="600" y2="280" style="stroke:var(--faintest);stroke-width:1.3;stroke-dasharray:5 4"/>
+          <line x1="110" y1="140" x2="582" y2="140" style="stroke:var(--ink);stroke-width:1.5"/>
+          <path d="M110,140 Q260,175 400,250 Q480,272 580,278" style="fill:none;stroke:var(--ink);stroke-width:1.5"/>
+          <text class="reg" x="432" y="132">land rent &mdash; it persists</text>
+          <text class="lbl" x="255" y="176">quasi-rent &mdash; it erodes</text>
+          <text class="reg" x="300" y="298">the normal return</text>
+          <text class="reg" x="165" y="312" text-anchor="middle">short run</text>
+          <text class="reg" x="520" y="312" text-anchor="middle">long run</text>
+          <text class="reg" x="340" y="360" text-anchor="middle">time &rarr;</text>
+          <text class="lbl" transform="translate(50,205) rotate(-90)" text-anchor="middle">the return</text>
+        </svg>
+        <figcaption><span class="pn">Plate iv.b&nbsp;&middot;&nbsp;</span>The difference is time. Both lines begin at the same place: in the short run, a quasi-rent and a true rent are one and the same, a high surplus on a factor that cannot, just now, be multiplied. Then time passes. The quasi-rent erodes — as new machines are built, supply grows, the price falls, and the surplus sinks toward the normal return that merely repays the cost of making more. Land rent does not erode, because land cannot be made; it holds its level forever. The whole distinction between rent and the ordinary returns to capital and labour is drawn here, on the dial of a clock: rent is what a factor's return becomes when its supply can never grow, and wages and profit are the rents of things that can.</figcaption>
+      </figure>
+    </div>
+
+    <p>Here is the deep result, the one that reorganises the theory of distribution. The difference between rent and the ordinary returns to capital and labour is not a difference of kind; it is a difference of time horizon. In the very short run, every factor is fixed and earns a quasi-rent. Over the long run, the reproducible factors — capital, ordinary labour — watch their quasi-rents competed away as supply adjusts, and are left earning only their cost of reproduction. Only the factors that cannot be reproduced — land, and the handful of things as fixed as land — go on earning a true and permanent rent. Rent is not a separate species of income sitting beside wages and profit; it is what every income would be if its factor could never be increased, and wages and profit are merely the rents of things that can. Time, Marshall held, lies near the centre of almost every difficulty in economics, and nowhere more than here, where it alone divides the rent that lasts from the rent that fades.<sup class="ref"><a href="#n6">6</a></sup></p>
+
+    <div class="sec-head" id="s5"><span class="sec-num fr">V</span><h2 class="sec-title">The Many Bottlenecks</h2></div>
+
+    <p>Once rent is unchained from land, it appears wherever the same conditions are met — wherever supply is fixed, or barred from adjusting, and demand presses against the limit. The condition is general, and so the phenomenon is general. A drug under patent earns a rent, because the law forbids anyone else to make it. A surgeon of rare gifts, or a singer, earns a rent, because the supply of such gifts cannot be expanded to meet the want of them. A taxi medallion, a liquor licence, a banking charter earns a rent, because the number of them is capped. A platform that everyone must use to reach everyone else earns a rent, because its position cannot be duplicated. A brand a century in the building earns a rent, because a century is how long a rival would need to match it. Each is a bottleneck — a narrow place that others must pass through and one party controls — and at each, the controller collects a surplus above what was needed to bring the thing into being.<sup class="ref"><a href="#n7">7</a></sup></p>
+
+    <div class="plate wide ledger">
+      <figure>
+        <div class="ledger-grid">
+          <div class="lh r">The bottleneck</div>
+          <div class="lh l">What it earns</div>
+          <div class="cell src"><b>A machine, newly built</b><span>its supply fixed till more are made</span></div>
+          <div class="cell rem"><b>Quasi-rent</b><span>a surplus, for now</span></div>
+          <div class="cell src"><b>A rare skill</b><span>years to acquire, scarce meanwhile</span></div>
+          <div class="cell rem"><b>A wage premium</b><span>rent to ability</span></div>
+          <div class="cell src"><b>A patent</b><span>entry barred by law for a term</span></div>
+          <div class="cell rem"><b>A monopoly rent</b><span>for twenty years</span></div>
+          <div class="cell src"><b>A network platform</b><span>the gate between two sides</span></div>
+          <div class="cell rem"><b>A take on every passage</b><span>rent of position</span></div>
+          <div class="cell src"><b>Land, and the permanently scarce</b><span>supply fixed for good</span></div>
+          <div class="cell rem"><b>Rent</b><span>forever</span></div>
+        </div>
+        <p class="ledger-coda">Each is a bottleneck — a point where supply is fixed and demand must press against it — and each yields its holder a surplus above what was needed to bring it forth. They differ only in how long the fixity lasts: the machine's surplus fades as more are built; the land's never fades at all. Rent and quasi-rent are the two ends of a single spectrum, and most of the economy lives between them.</p>
+        <figcaption><span class="pn">Plate iv.c&nbsp;&middot;&nbsp;</span>The many bottlenecks. Detach rent from the soil and it is suddenly everywhere — wherever a scarce thing stands between others and what they want, and one party holds it. A new machine, a rare skill, a patent, a platform, a brand, a harbour: each is fixed in supply for a while, or for good, and each earns its holder a surplus that demand alone determines. The only question — and it is the question of the modern plates — is how long the fixity, and so the surplus, can be made to last.</figcaption>
+      </figure>
+    </div>
+
+    <p>The bottlenecks differ in their nature and in their permanence, and the plates to come take them one by one: the rent of scarce talent in the next, the rent of legal restriction in the one after, the rents of patent and platform in the modern plates near the end. But they share a skeleton, and it is Ricardo's — a fixed supply, a pressing demand, a surplus to whoever holds the fixed thing. Land was the first bottleneck economics understood. It was not the last, nor, in a modern economy, the largest.<sup class="ref"><a href="#n8">8</a></sup></p>
+
+    <div class="sec-head" id="s6"><span class="sec-num fr">VI</span><h2 class="sec-title">Reward or Extraction?</h2></div>
+
+    <p>There is a distinction here that the volume has been circling since its first plate, and quasi-rent forces it into the open. Land rent, the earlier plates insisted, is unearned: no one made the land, and its rent rewards no act of creation. But quasi-rent is different, in a way that matters morally and analytically both. Someone built the machine. Someone risked the capital, and might have lost it; someone spent the decade acquiring the rare skill. The quasi-rent that the machine or the skill earns is, taken over its whole life, the reward for that building and risking and acquiring — and it must be, or the building would never be done. A manufacturer who could never earn a surplus over his running costs would never construct the machine in the first place; the quasi-rents of its fat years are precisely what repay the cost and the hazard of making it. Seen over the full span, quasi-rent is not a windfall but a return on investment, the indispensable lure that calls forth the capital and the effort a society needs.<sup class="ref"><a href="#n9">9</a></sup></p>
+
+    <p>And yet. The same income, viewed at a single instant, is indistinguishable from a pure rent; and the difference between a quasi-rent that is rewarding genuine creation and a rent that is merely being extracted can be desperately hard to read from the outside — the more so when the surplus is large, and lasting, and defended. A quasi-rent that springs from luck rather than effort; one inflated by an artificial barrier the holder lobbied into being; one that persists, decade upon decade, long after the investment that justified it has been repaid many times over, because something keeps the supply from ever adjusting — such a surplus has drifted across the line, from the reward of creation toward the extraction of a toll. The whole moral argument of this volume lives in that drift, and in the difficulty of seeing it. The plates ahead will watch a series of quasi-rents and ask, of each, on which side of the line it has come to rest.<sup class="ref"><a href="#n10">10</a></sup></p>
+
+    <div class="sec-head" id="s7"><span class="sec-num fr">VII</span><h2 class="sec-title">The Spectrum of Fixity</h2></div>
+
+    <p>It is best, in the end, to stop thinking of rent as a box and start thinking of it as a pole. At one extreme stand land and the things as permanently scarce as land — a unique site, a finite ore, a band of the spectrum — whose supply can never grow, and whose rent is therefore pure and perpetual. At the other extreme stand the perfectly reproducible things, made freely and at once to meet any demand, which earn no rent at all because their supply forever answers their price. And between the poles lies almost everything: the vast middle country of quasi-rents, where supply adjusts but slowly, and the surplus lasts a while — a year, a generation, the term of a patent, the life of a brand — before it fades, if it fades. Every asset in an economy can be placed somewhere on that line by asking a single question: how fast can its supply respond? The nearer the fixed pole, the more rent-like and lasting its return; the nearer the reproducible pole, the more fleeting.<sup class="ref"><a href="#n11">11</a></sup></p>
+
+    <p>This is the map the rest of the volume will walk. The land plates explored the fixed pole; the plates to come move through the middle country, where the modern economy increasingly lives — among talents that cannot be copied, licences that cannot be had, platforms and patents and networks whose fixity is engineered and whose quasi-rents show, year upon year, a stubborn refusal to erode.<sup class="ref"><a href="#n12">12</a></sup> The concept's reach runs wider still: Marshall's own extension of it — the composite quasi-rent shared between two factors worth far more together than apart — became, generations later, a seed of the modern theory of the firm, in which the scramble to capture a jointly created surplus helps explain why some exchanges are folded inside a company rather than trusted to the open market.<sup class="ref"><a href="#n13">13</a></sup> Whether the modern quasi-rents' refusal to fade is the honest reward of creation or the quiet entrenchment of a toll is the question the volume now carries into its second half. Ricardo found rent in the ground; Marshall found it everywhere the ground's condition was met; and the everywhere has only grown.</p>
+
+    <div class="orn" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="coda"><p>A bottleneck is a simple thing: a narrow place, a thing in fixed supply, a crowd that must pass through, and a hand at the valve. The land was the first such place economics learned to see, but it was never the only one, and in an age of patents and platforms and networks it may no longer be the most important. What unites the toll on a field with the toll on a franchise and the toll on a platform is not the soil but the structure — supply that cannot answer demand, and an owner who collects the difference. Marshall taught economics to see the structure wherever it stood, and to mark, by the speed at which supply could answer, how long each toll would last. The tolls that fade are the wages of creation. The tolls that do not fade are something else — and telling the two apart, asset by asset and age by age, is the work the rest of these plates have set themselves.</p></div>
+
+    <section class="notes">
+      <p class="note" id="n1"><span class="nn fr">1</span><span>Alfred Marshall, <i>Principles of Economics</i> (1890), especially Book V on value and the role of time, where the concept of <i>quasi-rent</i> is developed. Marshall's <i>Principles</i> was the dominant English-language economics text for a generation; the generalisation of rent to any temporarily-fixed factor is among its most influential moves.</span></p>
+      <p class="note" id="n2"><span class="nn fr">2</span><span>Sunk costs and the short run: once a durable asset is built, its construction cost is sunk and irrelevant to the decision whether to operate it; only variable (running) costs bear on that decision, and the asset is used so long as it covers them. This is the foundation of the short-run / long-run distinction in the theory of the firm, and the reason a fixed factor's return is a residual.</span></p>
+      <p class="note" id="n3"><span class="nn fr">3</span><span>With the asset's quantity fixed in the short run, its return is set by the demand for its output, not by its cost — exactly Ricardo's &ldquo;price-determined, not price-determining&rdquo; (cf. plates i, ii), now applied to a man-made factor. The return is what demand leaves after variable costs are met: the quasi-rent.</span></p>
+      <p class="note" id="n4"><span class="nn fr">4</span><span>Quasi-rent, defined: the surplus earned by a factor fixed in the short run but not the long. While the fixity lasts it is indistinguishable from true rent — both demand-governed, both taxable without distortion — and the difference appears only over time, as quasi-rent erodes while true rent does not. The term and the distinction are Marshall's.</span></p>
+      <p class="note" id="n5"><span class="nn fr">5</span><span>The long-run erosion: high quasi-rents attract new supply (more of the reproducible factor is built), driving the return down to the long-run supply price — the cost of reproduction plus the normal return on capital. There the quasi-rent is zero and only the normal return remains. For a truly fixed factor such as land, no such adjustment occurs, and the rent persists.</span></p>
+      <p class="note" id="n6"><span class="nn fr">6</span><span>The reorganisation of distribution theory: the difference between rent and the returns to capital and labour is one of time horizon, not kind. In the very short run all factors earn quasi-rents; in the long run, reproducible factors are left with their cost of reproduction, and only non-reproducible factors earn permanent rent. This is the marginal-productivity vision (cf. plate ii, n6) seen through time — rent as the limiting case of any factor's return when its supply is fixed for good. Marshall held that time lies at the centre of nearly every difficulty in economics (<i>Principles</i>, Book V), and the rent / quasi-rent distinction is a leading instance.</span></p>
+      <p class="note" id="n7"><span class="nn fr">7</span><span>The generality of the bottleneck: rent and quasi-rent arise wherever supply is fixed or restricted and demand presses — patents (legal restriction), scarce talent (natural limit), licences and charters (statutory caps), network platforms (positional uniqueness), durable brands (slow replicability). Each is taken up later: talent in plate v, legal restriction in vi, patents and platforms in xi.</span></p>
+      <p class="note" id="n8"><span class="nn fr">8</span><span>The shared skeleton: each of these is Ricardo's structure — fixed supply, pressing demand, surplus to the holder of the fixed thing — in a different costume. Land was the first such structure economics analysed; it is neither the last nor, in a modern economy, necessarily the largest, as plates xi and xii will argue.</span></p>
+      <p class="note" id="n9"><span class="nn fr">9</span><span>Quasi-rent as a return on investment: unlike land rent, the quasi-rent on a created asset rewards the act of creating it. Over the asset's life the quasi-rents must sum to recover the sunk cost plus a normal return, or the asset would never be built; the surplus of the good years is the reward, paid in arrears, for the investment and the risk. This is the crucial disanalogy with land, which no one made — cf. plate i on pure rent versus the return on improvement, and plate iii on the unearned increment.</span></p>
+      <p class="note" id="n10"><span class="nn fr">10</span><span>The drift from reward to extraction: a quasi-rent shades into a pure, extractive rent when it springs from luck rather than effort, from an artificial barrier the holder procured, or from a persistence far beyond what the original investment requires — sustained by something that keeps supply from adjusting. The line between compensatory quasi-rent and extractive rent is the line the volume draws; reading it from the outside is the central practical difficulty, and the matter of the rent-seeking (vii), efficiency (viii), and modern-rent (xi, xii) plates.</span></p>
+      <p class="note" id="n11"><span class="nn fr">11</span><span>The spectrum of fixity: assets range from the permanently fixed (land, finite resources, spectrum — pure perpetual rent) to the perfectly reproducible (no rent), with quasi-rents of every durability between. An asset's place is set by how fast its supply can respond to price; the slower the response, the more rent-like and durable the return.</span></p>
+      <p class="note" id="n12"><span class="nn fr">12</span><span>The map of the volume's second half: the remaining plates walk the spectrum from the fixed pole into the middle country — scarce talent (v), legal restriction (vi), and the engineered fixities of the modern economy (xi, xii) — asking of each quasi-rent whether it rewards creation or entrenches a toll.</span></p>
+      <p class="note" id="n13"><span class="nn fr">13</span><span>The concept's wider afterlife: Marshall also described the <i>composite quasi-rent</i> earned jointly by two factors specialised to each other and worth far more together than apart — a surplus whose division between them the market cannot settle. A century on, that idea became a foundation of the modern theory of the firm (Klein, Crawford &amp; Alchian, 1978; Williamson), where the danger of being held up over a jointly-created surplus explains why specialised exchanges are often brought inside a single firm rather than left to contract. Quasi-rent, born to generalise Ricardo, turned out to illuminate the boundaries of the corporation too.</span></p>
+    </section>
+
+  </article>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref">The Rent · plate iv</span>
+    </div>
+    <p class="colophon">The fourth plate of <i>The Rent</i> — the generalisation, and the hinge on which the volume turns from land to the whole economy. It detaches rent from the soil, following Alfred Marshall's recognition that the surplus Ricardo found in land attaches, for a time, to any factor whose supply cannot quickly adjust. Its instrument is the quasi-rent: the rent-like surplus earned by a factor fixed in the short run though not the long — a machine, a skill, a patent, a brand — which obeys every law of rent while its fixity lasts and erodes when supply at last responds. The plate shows that the difference between rent and the ordinary returns to capital and labour is one of time, not kind; that rent appears wherever there is a bottleneck; and that the line between a quasi-rent rewarding genuine creation and a rent merely extracting a toll is the line the whole volume draws. The bridge from the land of the first plates to the talents, licences, and platforms of the plates to come. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-rent-increment.html">← The Increment</a><a rel="next" href="the-rent-talent.html">The Talent →</a></nav>
+</body>
+</html>

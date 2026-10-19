@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Credibility — The Game, Plate iv · Numéraire</title>
+<meta name="description" content="Selten; subgame perfection and backward induction, and why a threat the threatener would never carry out fails to bind at all.">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- reading-progress hairline ---- */
+  .progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--ink);z-index:10000;}
+
+  /* ---- masthead ---- */
+  .masthead{padding:clamp(2.8rem,8vh,5.6rem) 0 clamp(1.6rem,4vh,2.6rem);text-align:center;}
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;}
+  .edition{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+  .edition b{font-family:"Fraunces",serif;font-weight:500;font-style:normal;color:var(--soft);letter-spacing:.04em;}
+
+  .symbox{width:84px;height:84px;border:1px solid var(--ink);border-radius:2px;background:var(--ink);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;margin:clamp(1.4rem,3.4vh,2.2rem) auto 0;}
+  .symbox .sb-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2rem;line-height:1;color:var(--paper);letter-spacing:-.01em;}
+  .symbox .sb-num{font-family:"Fraunces",serif;font-size:.66rem;color:rgba(240,235,225,.58);margin-top:.28rem;letter-spacing:.04em;}
+
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-top:1.15rem;}
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.5rem,7vw,5rem);line-height:1.0;letter-spacing:-.028em;margin:.55rem 0 0;text-wrap:balance;}
+  .subtitle{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.05rem,1.7vw,1.32rem);color:var(--faint);margin:.5rem 0 0;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.64;color:var(--soft);
+    max-width:43rem;margin:clamp(1.3rem,3vh,1.9rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+  .status{font-size:.84rem;color:var(--soft);margin:clamp(1.2rem,2.6vh,1.7rem) auto 0;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .backrow{margin-top:clamp(1.3rem,3vh,1.9rem);padding-top:1.5rem;border-top:1px solid var(--hair);max-width:50rem;margin-left:auto;margin-right:auto;}
+  .backlink{display:inline-block;font-size:.82rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .backlink:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- generic block furniture ---- */
+  main{padding:0;}
+  .eyebrow{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.2rem;}
+
+  .block-argument{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .argument{max-width:40rem;margin:0 auto;}
+  .argument p{font-size:1.08rem;line-height:1.74;color:var(--ink);margin:0 0 1.2rem;text-wrap:pretty;}
+  .argument p:last-child{margin-bottom:0;}
+  .argument .closer{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 400;font-style:italic;color:var(--soft);font-size:1.06rem;}
+
+  /* ---- table of plates ---- */
+  .block-toc{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .toc ol{list-style:none;margin:0;padding:0;max-width:44rem;}
+  .toc li{display:grid;grid-template-columns:2.5rem 1fr;column-gap:1rem;align-items:baseline;
+    padding:.85rem 0;border-top:1px solid var(--hair);}
+  .toc li:first-child{border-top:none;}
+  .t-num{font-family:"Fraunces",serif;font-size:.92rem;color:var(--faintest);text-align:right;}
+  .t-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.08rem;color:var(--ink);line-height:1.15;text-decoration:none;}
+  a.t-title{border-bottom:1px solid var(--num);padding-bottom:1px;}
+  a.t-title:hover{border-bottom-color:var(--ink);}
+  .t-gloss{grid-column:2;font-size:.85rem;color:var(--faint);font-style:italic;margin-top:.22rem;line-height:1.4;}
+  .t-q{grid-column:2;font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:.95rem;color:var(--soft);margin-top:.42rem;line-height:1.36;}
+  .t-q .lead{font-family:"Fraunces",serif;font-style:normal;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-right:.5rem;}
+  .t-tag{display:inline-block;margin-left:.6rem;font-family:"Newsreader",serif;font-size:.64rem;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--paper);background:var(--ink);border-radius:2px;padding:.12em .5em;vertical-align:.14em;}
+  .t-read{grid-column:2;margin-top:.42rem;}
+  .t-read a{font-size:.8rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .t-read a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- the plates (essays) ---- */
+  .plates-open{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.8rem,6vh,4rem);}
+  .plates-open .eyebrow{text-align:center;}
+  .plate{max-width:54rem;margin:clamp(2.8rem,6.5vh,4.4rem) auto 0;padding-top:clamp(2.2rem,4.6vh,3rem);
+    border-top:1px solid var(--hair);position:relative;scroll-margin-top:1.4rem;}
+  .plate:first-of-type{border-top:none;margin-top:clamp(1.6rem,3.5vh,2.4rem);padding-top:0;}
+  .plate-head{margin:0 0 1.7rem;}
+  .plate-kicker{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .plate-kicker .pk-tag{margin-left:.6rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .plate-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.8rem,4.2vw,2.7rem);line-height:1.03;letter-spacing:-.02em;margin:.32rem 0 .42rem;}
+  .plate-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.02rem;color:var(--faint);max-width:36rem;line-height:1.45;}
+
+  .epigraph{max-width:34rem;margin:1.4rem 0 1.9rem;padding-left:1.1rem;border-left:1px solid var(--num);}
+  .epigraph p{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:1.04rem;line-height:1.42;color:var(--soft);margin:0;}
+  .epigraph cite{display:block;font-style:normal;font-family:"Newsreader",serif;font-size:.78rem;
+    letter-spacing:.03em;color:var(--faintest);margin-top:.55rem;}
+
+  .plate-body{max-width:37rem;}
+  .plate-body p{font-size:1.05rem;line-height:1.75;color:var(--ink);margin:0 0 1.18rem;text-wrap:pretty;}
+  .plate-body p:last-child{margin-bottom:0;}
+  .plate-body em{font-style:italic;}
+  .plate-body .lead-para::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 500;
+    float:left;font-size:3.5rem;line-height:.78;padding:.08em .14em 0 0;color:var(--ink);}
+  .plate-body h4{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);margin:1.9rem 0 .9rem;}
+
+  .break{display:flex;justify-content:center;margin:1.9rem 0;}
+  .break span{font-family:"Fraunces",serif;font-size:1.05rem;letter-spacing:.4em;color:var(--faintest);padding-left:.4em;}
+
+  /* sidenotes — inline by default, true margin notes on wide screens */
+  .sn-ref{font-family:"Fraunces",serif;font-size:.64rem;vertical-align:super;line-height:0;color:var(--soft);margin-left:.06em;}
+  .sidenote{font-family:"Newsreader",serif;font-size:.82rem;line-height:1.52;color:var(--faint);
+    border-left:2px solid var(--hair);padding-left:.9rem;margin:.7rem 0 1.05rem;}
+  .sidenote .sn-num{font-family:"Fraunces",serif;color:var(--faintest);font-size:.7rem;margin-right:.38rem;}
+  .sidenote em{font-style:italic;}
+  @media (min-width:1040px){
+    .sidenote{float:right;clear:right;width:14.5rem;margin:.25rem -17.5rem 1.15rem 0;
+      border-left:none;border-top:1px solid var(--hair);padding:.42rem 0 0;}
+  }
+
+  /* ---- coda ---- */
+  .coda{max-width:40rem;margin:clamp(2.8rem,6vh,4rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);}
+  .coda p{font-size:1.06rem;line-height:1.74;color:var(--ink);margin:0 0 1.15rem;text-wrap:pretty;}
+  .coda p:last-child{margin-bottom:0;}
+  .coda .q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .f-ref a{text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .f-ref a:hover{border-bottom-color:var(--soft);}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .progress{transition:width .08s linear;}
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}.rise.d4{animation-delay:.4s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    h1{font-size:clamp(2.2rem,11vw,3rem);}
+    .symbox{width:72px;height:72px;}
+    .symbox .sb-sym{font-size:1.7rem;}
+    .plate-body .lead-para::first-letter{font-size:3rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+
+  /* ---- standalone plate (leaf) ---- */
+  .leaf-head{max-width:54rem;margin:0 auto;padding:clamp(2.2rem,6.5vh,4.4rem) 0 0;text-align:center;}
+  .leaf-loc{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.08em;color:var(--faintest);margin-bottom:1.7rem;}
+  .leaf-loc a{text-decoration:none;color:var(--faint);border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .leaf-loc a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+  .leaf-loc .sep{margin:0 .5rem;color:var(--num);}
+  .leaf-kicker{font-family:"Fraunces",serif;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .leaf-kicker .pk-tag{margin-left:.55rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .leaf-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.2rem,5.6vw,3.7rem);line-height:1.02;letter-spacing:-.024em;margin:.42rem 0 0;text-wrap:balance;}
+  .leaf-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.06rem;color:var(--faint);
+    max-width:34rem;margin:.72rem auto 0;line-height:1.5;text-wrap:pretty;}
+  .epigraph.leaf-epigraph{margin:1.95rem auto 1.4rem;text-align:left;}
+  .leaf-body-wrap{max-width:54rem;margin:clamp(1.8rem,4vh,2.8rem) auto 0;}
+
+  .leaf-nav{max-width:54rem;margin:clamp(3rem,7vh,5.2rem) auto 0;padding-top:clamp(1.8rem,4vh,2.6rem);
+    border-top:1px solid var(--hair);display:grid;grid-template-columns:1fr auto 1fr;gap:1.3rem;align-items:start;}
+  .ln-cell{text-decoration:none;display:block;}
+  .ln-cell .lab{display:block;font-family:"Fraunces",serif;font-size:.64rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--faintest);margin-bottom:.36rem;}
+  .ln-cell .ttl{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1rem;
+    color:var(--soft);line-height:1.22;}
+  a.ln-cell:hover .ttl{color:var(--ink);}
+  .ln-prev{text-align:left;} .ln-home{text-align:center;} .ln-next{text-align:right;}
+
+  @media (max-width:600px){
+    .leaf-nav{grid-template-columns:1fr;gap:1.4rem;}
+    .ln-prev,.ln-home,.ln-next{text-align:center;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#ne-contents">Complete contents</a><a href="../editions.html#volume-game">The Game · both editions</a><a href="../volumes/the-game.html">Collected volume</a></div></nav>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="frame">
+
+  <header class="leaf-head">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="leaf-loc rise d1" aria-label="Location in the series"><a href="numeraire-atlas-updated.html">Numéraire</a><span class="sep">·</span><a href="numeraire-xxv-the-game.html">Volume XXV · The Game</a></nav>
+    <div class="leaf-kicker rise d2">Plate iv <span class="pk-tag">in print</span></div>
+    <h1 class="leaf-title rise d2">The Credibility</h1>
+    <div class="leaf-gloss rise d3">Selten; subgame perfection and backward induction, and why a threat the threatener would never carry out fails to bind at all.</div>
+    <div class="epigraph leaf-epigraph rise d3">
+      <p>A threat the threatener would never trouble to carry out is no threat at all; reason your way back from the game's final move, granting each player his later self-interest at every step, and the hollow menaces fall away, leaving only the equilibrium that every stage would actually sustain.</p>
+      <cite>— the argument of this plate, after Reinhard Selten, 1965</cite>
+    </div>
+  </header>
+
+  <main class="leaf-body-wrap">
+    <article class="plate">
+      <div class="plate-body">
+<p class="lead-para">Schelling showed that commitments and threats can change a game — but only if they are believed. Reinhard Selten took up the question Schelling's work forced into the open: which threats and promises deserve to be believed? His answer refined the very notion of equilibrium. A Nash equilibrium, it turns out, can rest on a threat so hollow that no clear-eyed opponent should fear it; Selten's subgame-perfect equilibrium strips these empty menaces away, by demanding that each player act rationally not merely at the outset of the game but at every point within it. The tool is backward induction — reasoning from the end of the game toward its beginning — and in wielding it Selten turned strategy into a discipline of credibility.</p>
+
+<p>Nash's definition asks only that no player can do better by deviating at the outset; in a game played out in sequence, this turns out to permit equilibria built on threats that would never actually be carried out. Consider an established firm and a potential rival weighing entry into its market. The incumbent announces: enter, and I will flood the market and slash prices until we both bleed. If the rival believes it, he stays out — and the pairing of the rival staying out with the incumbent's standing threat satisfies Nash's condition, for given the threat, staying out is the rival's best move, and given that the rival stays out, the incumbent never has to act on it. Yet the threat is hollow. Were the rival actually to enter, a price war would ruin the incumbent too; its real best response would then be to accommodate the newcomer and share the market. A rival who sees this should enter regardless, calling a bluff that Nash's equilibrium had wrongly dignified as a settled outcome.<sup class="sn-ref">1</sup></p>
+<div class="sidenote"><span class="sn-num">1.</span> A Nash equilibrium can rest on a threat never meant to be executed. An incumbent warns a would-be rival: enter, and I wage a ruinous price war. If believed, the rival stays out, and that pairing satisfies Nash — the threat never has to be acted on. But the threat is hollow: were the rival to enter, the war would ruin the incumbent too, whose real best move is to accommodate. A clear-eyed rival enters anyway, calling a bluff Nash had dignified.</div>
+
+<p>Selten's remedy was to require more of an equilibrium than that it hold at the start. A combination of strategies is subgame-perfect, he proposed, if it forms a Nash equilibrium not only in the whole game but in every subgame — every situation that could arise as play unfolds, including those reached only if some player departs from the expected path. The demand is that each player's plan be optimal at every point, so that the player would in fact follow it were that point ever reached. Apply this to the entry game: at the moment when the rival has already entered, the incumbent's plan to wage war is not optimal, since accommodation is better — so the war threat fails the test of subgame perfection and is ruled out. The only subgame-perfect equilibrium has the rival enter and the incumbent accommodate. Credibility, in other words, is built directly into the refined definition: an equilibrium survives only if every threat and promise it contains is one the player would genuinely choose to keep when the moment to keep it arrived.<sup class="sn-ref">2</sup></p>
+<div class="sidenote"><span class="sn-num">2.</span> Subgame perfection requires more: a strategy profile must be a Nash equilibrium in every subgame — every situation play could reach, including after a deviation. Each player's plan must be optimal at every point, so he would actually follow it. In the entry game, once the rival has entered, waging war is not optimal, so the war threat fails the test and is ruled out; the rival enters, the incumbent accommodates. Credibility is built into the equilibrium concept itself.</div>
+
+<div class="break"><span>⁂</span></div>
+
+<p>The method for finding such equilibria is backward induction, and it is as elegant as it is powerful. In a finite game played in sequence, one begins at the very last decision: whoever moves there will choose what is best for himself, and that choice is thereby fixed. Step back to the second-to-last decision: the player there, knowing what will follow, chooses his best response to it. Continue folding the game back, decision by decision, each step resolved by the rational play that is now known to come after it, until one reaches the opening move. The path that emerges is the subgame-perfect equilibrium — what the players will actually do when each anticipates the future rationality of all the others, including his own future self. Backward induction is the formal expression of looking ahead and reasoning back, and it converts a tangle of possible futures into a single credible line of play. It is the engine that drives the analysis of every sequential game, from chess to bargaining to the timing of an investment.<sup class="sn-ref">3</sup></p>
+<div class="sidenote"><span class="sn-num">3.</span> Backward induction finds the subgame-perfect path. Begin at the last decision: the mover there picks his best option, fixing it. Step back to the prior decision, chosen as a best response to what now must follow. Fold the game back stage by stage until the opening move. The emerging path is what players do when each anticipates the future rationality of all — the formal form of "look ahead, reason back." It powers the analysis of every sequential game, from chess to bargaining.</div>
+
+<p>Selten pressed his own logic to a disquieting conclusion, the chain-store paradox. A chain store with branches in many towns faces a sequence of would-be entrants, one to a town. It is tempted to fight the first few with ruinous price wars, building a reputation for toughness that will frighten off the rest. But backward induction dissolves the strategy. In the last town there is no future left to protect, so fighting is pointless and the chain accommodates; the last entrant, foreseeing this, enters. Knowing the last town is already conceded, the chain has no reason to fight in the second-to-last either; so that entrant enters too. The reasoning marches backward through every town, and the chain should accommodate them all — the reputation-building deterrence unravels completely, town by town, from the end. The paradox is troubling because real chains do seem to fight, and real reputations do seem to deter; its resolution, Selten and others came to see, lies in relaxing the assumption that everything is known — a thread this volume takes up under incomplete information.<sup class="sn-ref">4</sup></p>
+<div class="sidenote"><span class="sn-num">4.</span> The chain-store paradox: a chain facing entrants town by town would like to fight early ones to deter the rest. But backward induction unravels it — in the last town fighting is pointless, so the chain accommodates and that entrant enters; with the last town conceded, no reason to fight the next-to-last; and so back through all of them. Deterrence collapses. Yet real reputations do deter; the resolution lies in dropping the assumption that all is known — the thread of The Fog.</div>
+
+<p>Selten's refinement gave strategy its discipline of credibility, and it harmonizes with a theme the table has met before. A threat or promise is credible only if carrying it out is in the player's interest when the time arrives; a plan that is optimal to announce but not to execute will be neither believed nor binding. This is precisely the time-consistency problem that The Level found at the heart of monetary policy, where a central bank's promise of low inflation is credible only if keeping it remains optimal when the moment comes, which is why the bank must be insulated and bound. Schelling's commitment devices are, in this light, the means of making the otherwise non-credible credible: by altering the payoffs at the future decision point — automating the retaliation, staking the reputation — they make executing the threat optimal after all, and so restore it to subgame-perfect standing. Yet Schelling and Selten alike have assumed players who calculate, who know the game and reason about one another. The volume's central question still stands unanswered: granting all this strategy, how does cooperation itself survive? And what becomes of strategy when the players do not reason at all? The next plate is the population.<sup class="sn-ref">5</sup></p>
+<div class="sidenote"><span class="sn-num">5.</span> Credibility means a threat is credible only if optimal to execute when the moment comes — the time-consistency problem The Level found in monetary policy, where the bank must be bound to be believed. Schelling's commitment devices make the non-credible credible by changing future payoffs, restoring subgame-perfect standing. But Schelling and Selten assume players who calculate. What of strategy when they do not reason at all? Next: the population.</div>
+
+<p>Selten gave strategy its test of credibility. A Nash equilibrium, in a game played out over time, can rest on threats no one would trouble to execute — the incumbent's ruinous price war, announced to deter entry but hollow if entry should come. Subgame perfection rules these out by demanding that every player act optimally at every point, not merely at the start, so that an equilibrium survives only if its every threat and promise is one the player would actually choose to keep. The method is backward induction: solve the game from its last move backward, each step fixed by the rational play to follow. Pressed to its limit in the chain-store paradox, the logic even dissolves reputation-building deterrence, a puzzle resolved only by admitting that players may not know all. Credibility here echoes the time-consistency that bound the central bank of The Level. But Schelling and Selten both assume players who calculate; the next plate asks what becomes of strategy when they do not. The next plate is the population.</p>
+      </div>
+    </article>
+  </main>
+
+  <nav class="leaf-nav" aria-label="Plate navigation">
+    <a class="ln-cell ln-prev" href="numeraire-xxv-iii-the-commitment.html"><span class="lab">← Previous plate</span><span class="ttl">Plate iii · The Commitment</span></a>
+    <a class="ln-cell ln-home" href="numeraire-xxv-the-game.html"><span class="lab">The volume</span><span class="ttl">The Game · contents</span></a>
+    <a class="ln-cell ln-next" href="numeraire-xxv-v-the-population.html"><span class="lab">Next plate →</span><span class="ttl">Plate v · The Population</span></a>
+  </nav>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref"><a href="numeraire-xxv-the-game.html">The Game</a> · <a href="numeraire-atlas-updated.html">the table</a></span>
+    </div>
+    <p class="colophon">Plate iv of <em>The Game</em>, Volume the Twenty-fifth of <em>Numéraire</em> — a periodic table of economic life. This leaf may be read on its own or as part of the volume. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<script>
+(function(){
+  var bar=document.getElementById('progress');
+  function onScroll(){
+    var h=document.documentElement;
+    var max=(h.scrollHeight-h.clientHeight);
+    var p=max>0?(h.scrollTop||document.body.scrollTop)/max:0;
+    bar.style.width=(p*100).toFixed(2)+'%';
+  }
+  document.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="numeraire-xxv-iii-the-commitment.html">← The Commitment</a><a rel="next" href="numeraire-xxv-v-the-population.html">The Population →</a></nav>
+</body>
+</html>

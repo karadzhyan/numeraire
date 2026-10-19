@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Wage — Numéraire, Volume I</title>
+<meta name="description" content="Numéraire, Volume I: The Wage — the price of labor. The wage as the residue of an unequal bargain: marginal product, skill, the monopsony inversion where the wage measures the employer's power, and the reservation wage beneath which a worker will not go, which a safety net can raise.">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- reading-progress hairline ---- */
+  .progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--ink);z-index:10000;}
+
+  /* ---- masthead ---- */
+  .masthead{padding:clamp(2.8rem,8vh,5.6rem) 0 clamp(1.6rem,4vh,2.6rem);text-align:center;}
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;}
+  .edition{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+  .edition b{font-family:"Fraunces",serif;font-weight:500;font-style:normal;color:var(--soft);letter-spacing:.04em;}
+
+  .symbox{width:84px;height:84px;border:1px solid var(--ink);border-radius:2px;background:var(--ink);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;margin:clamp(1.4rem,3.4vh,2.2rem) auto 0;}
+  .symbox .sb-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2rem;line-height:1;color:var(--paper);letter-spacing:-.01em;}
+  .symbox .sb-num{font-family:"Fraunces",serif;font-size:.66rem;color:rgba(240,235,225,.58);margin-top:.28rem;letter-spacing:.04em;}
+
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-top:1.15rem;}
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.5rem,7vw,5rem);line-height:1.0;letter-spacing:-.028em;margin:.55rem 0 0;text-wrap:balance;}
+  .subtitle{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.05rem,1.7vw,1.32rem);color:var(--faint);margin:.5rem 0 0;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.64;color:var(--soft);
+    max-width:43rem;margin:clamp(1.3rem,3vh,1.9rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+  .status{font-size:.84rem;color:var(--soft);margin:clamp(1.2rem,2.6vh,1.7rem) auto 0;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .backrow{margin-top:clamp(1.3rem,3vh,1.9rem);padding-top:1.5rem;border-top:1px solid var(--hair);max-width:50rem;margin-left:auto;margin-right:auto;}
+  .backlink{display:inline-block;font-size:.82rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .backlink:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- generic block furniture ---- */
+  main{padding:0;}
+  .eyebrow{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.2rem;}
+
+  .block-argument{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .argument{max-width:40rem;margin:0 auto;}
+  .argument p{font-size:1.08rem;line-height:1.74;color:var(--ink);margin:0 0 1.2rem;text-wrap:pretty;}
+  .argument p:last-child{margin-bottom:0;}
+  .argument .closer{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 400;font-style:italic;color:var(--soft);font-size:1.06rem;}
+
+  /* ---- table of plates ---- */
+  .block-toc{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .toc ol{list-style:none;margin:0;padding:0;max-width:44rem;}
+  .toc li{display:grid;grid-template-columns:2.5rem 1fr;column-gap:1rem;align-items:baseline;
+    padding:.85rem 0;border-top:1px solid var(--hair);}
+  .toc li:first-child{border-top:none;}
+  .t-num{font-family:"Fraunces",serif;font-size:.92rem;color:var(--faintest);text-align:right;}
+  .t-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.08rem;color:var(--ink);line-height:1.15;text-decoration:none;}
+  a.t-title{border-bottom:1px solid var(--num);padding-bottom:1px;}
+  a.t-title:hover{border-bottom-color:var(--ink);}
+  .t-gloss{grid-column:2;font-size:.85rem;color:var(--faint);font-style:italic;margin-top:.22rem;line-height:1.4;}
+  .t-q{grid-column:2;font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:.95rem;color:var(--soft);margin-top:.42rem;line-height:1.36;}
+  .t-q .lead{font-family:"Fraunces",serif;font-style:normal;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-right:.5rem;}
+  .t-tag{display:inline-block;margin-left:.6rem;font-family:"Newsreader",serif;font-size:.64rem;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--paper);background:var(--ink);border-radius:2px;padding:.12em .5em;vertical-align:.14em;}
+  .t-read{grid-column:2;margin-top:.42rem;}
+  .t-read a{font-size:.8rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .t-read a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- the plates (essays) ---- */
+  .plates-open{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.8rem,6vh,4rem);}
+  .plates-open .eyebrow{text-align:center;}
+  .plate{max-width:54rem;margin:clamp(2.8rem,6.5vh,4.4rem) auto 0;padding-top:clamp(2.2rem,4.6vh,3rem);
+    border-top:1px solid var(--hair);position:relative;scroll-margin-top:1.4rem;}
+  .plate:first-of-type{border-top:none;margin-top:clamp(1.6rem,3.5vh,2.4rem);padding-top:0;}
+  .plate-head{margin:0 0 1.7rem;}
+  .plate-kicker{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .plate-kicker .pk-tag{margin-left:.6rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .plate-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.8rem,4.2vw,2.7rem);line-height:1.03;letter-spacing:-.02em;margin:.32rem 0 .42rem;}
+  .plate-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.02rem;color:var(--faint);max-width:36rem;line-height:1.45;}
+
+  .epigraph{max-width:34rem;margin:1.4rem 0 1.9rem;padding-left:1.1rem;border-left:1px solid var(--num);}
+  .epigraph p{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:1.04rem;line-height:1.42;color:var(--soft);margin:0;}
+  .epigraph cite{display:block;font-style:normal;font-family:"Newsreader",serif;font-size:.78rem;
+    letter-spacing:.03em;color:var(--faintest);margin-top:.55rem;}
+
+  .plate-body{max-width:37rem;}
+  .plate-body p{font-size:1.05rem;line-height:1.75;color:var(--ink);margin:0 0 1.18rem;text-wrap:pretty;}
+  .plate-body p:last-child{margin-bottom:0;}
+  .plate-body em{font-style:italic;}
+  .plate-body .lead-para::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 500;
+    float:left;font-size:3.5rem;line-height:.78;padding:.08em .14em 0 0;color:var(--ink);}
+  .plate-body h4{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);margin:1.9rem 0 .9rem;}
+
+  .break{display:flex;justify-content:center;margin:1.9rem 0;}
+  .break span{font-family:"Fraunces",serif;font-size:1.05rem;letter-spacing:.4em;color:var(--faintest);padding-left:.4em;}
+
+  /* sidenotes — inline by default, true margin notes on wide screens */
+  .sn-ref{font-family:"Fraunces",serif;font-size:.64rem;vertical-align:super;line-height:0;color:var(--soft);margin-left:.06em;}
+  .sidenote{font-family:"Newsreader",serif;font-size:.82rem;line-height:1.52;color:var(--faint);
+    border-left:2px solid var(--hair);padding-left:.9rem;margin:.7rem 0 1.05rem;}
+  .sidenote .sn-num{font-family:"Fraunces",serif;color:var(--faintest);font-size:.7rem;margin-right:.38rem;}
+  .sidenote em{font-style:italic;}
+  @media (min-width:1040px){
+    .sidenote{float:right;clear:right;width:14.5rem;margin:.25rem -17.5rem 1.15rem 0;
+      border-left:none;border-top:1px solid var(--hair);padding:.42rem 0 0;}
+  }
+
+  /* ---- coda ---- */
+  .coda{max-width:40rem;margin:clamp(2.8rem,6vh,4rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);}
+  .coda p{font-size:1.06rem;line-height:1.74;color:var(--ink);margin:0 0 1.15rem;text-wrap:pretty;}
+  .coda p:last-child{margin-bottom:0;}
+  .coda .q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .f-ref a{text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .f-ref a:hover{border-bottom-color:var(--soft);}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .progress{transition:width .08s linear;}
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}.rise.d4{animation-delay:.4s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    h1{font-size:clamp(2.2rem,11vw,3rem);}
+    .symbox{width:72px;height:72px;}
+    .symbox .sb-sym{font-size:1.7rem;}
+    .plate-body .lead-para::first-letter{font-size:3rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#ne-contents">Complete contents</a><a href="../editions.html#volume-wage">The Wage · both editions</a><a href="../volumes/the-wage.html">Collected volume</a></div></nav>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="rise d1">
+      <span class="imprint">Numéraire</span>
+      <div class="edition"><b>Volume the First</b> &middot; of the table of twenty-six</div>
+    </div>
+    <div class="symbox rise d2" aria-hidden="true"><span class="sb-sym">Wg</span><span class="sb-num">01</span></div>
+    <div class="d-family rise d2">The Prices &middot; Group I &middot; № 01 &middot; Wg</div>
+    <h1 class="rise d2">The Wage</h1>
+    <div class="subtitle rise d3">the price of labor</div>
+    <p class="standfirst rise d3">The wage is the price of the one thing most people have to sell, and so it is the price on which the most lives turn. The orthodox account makes it a measurement: a worker is paid the value of the last hour worked, no more and no less, so that the wage is a clean reading of what the labor was worth. This is the volume of that claim, and of the quiet inversion waiting beneath it. Its twelve plates follow the wage from the unequal bargain Adam Smith placed at the origin of the subject, through the marginal-productivity orthodoxy and the skill it is said to reward, to the structure at the volume's center — where a single, realistic change to the model turns the wage from a measure of the worker's worth into a measure of the employer's power — and on to the combinations, public and private, by which that power is answered, and to the floor the worker brings to the table on his own — the least he will accept before he keeps looking, and what a public insurance does to lift it.</p>
+    <div class="status rise d3">in print &middot; № I &middot; 12 of 12 plates</div>
+    <div class="backrow rise d4">
+      <a class="backlink" href="numeraire-atlas-updated.html">← The complete table of volumes</a>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="block-argument">
+      <div class="argument">
+        <p class="eyebrow">The argument of the volume</p>
+        <p>Of all the prices a market sets, the wage is the one that decides the most. It is what most people receive for most of what they do, and the shape of a life — its security, its hours, its horizon — is largely the shape of a wage. A price of such consequence invites the belief that it must rest on something solid: that the figure on the cheque is fixed by the worker's productivity, by the arithmetic of supply and demand, by something out in the world rather than at the table. The wage, more than any other price, is mistaken for a fact of nature.</p>
+        <p>The orthodox theory obliges that belief, and does so with great elegance. In a competitive market a worker is paid the value of his marginal product — the worth of what the last hour of his labor adds — because an employer who paid more would lose money, and one who paid less would lose the worker to a rival. The wage is thus pinned, determinate, and, in the hands of its first great expositor, even just: each is paid the value of what he himself creates. On this account the wage is a measurement, the labor market an instrument that reads a worker's contribution and reports it in money, and the distribution of income the morally neutral sum of those readings.</p>
+        <p>The volume is concerned with what the measurement leaves out, and the omission is named at the very beginning of the subject, by the same Adam Smith usually invoked to bless the market. The wage, Smith insisted, is settled by a bargain between two parties who are not equally placed: the employers are fewer and combine more easily, and they can hold out far longer than the workers, whom hunger brings quickly to terms. The competitive idealization erases that asymmetry by assuming no party has any power over the price. The plate at the volume's center asks what becomes of the wage when the assumption is dropped — when an employer must raise the wage to hire more labor, and so has reason to hire less and pay less — and the answer is an inversion: the wage falls below the marginal product, and the gap between the two measures not the worker's worth but the employer's power. The same number the orthodoxy read as contribution can be read, as well or better, as the price of the worker's weaker place at the table. And the measurement leaves out, too, the floor beneath the bargain: the least a worker will accept is fixed not by his product but by what he can fall back on while he keeps looking, so that a public insurance, by funding the search, can raise the wage he is able to refuse — and with it the wage he must be offered.</p>
+        <p class="closer">The argument remains open. What follows is an attempt to fix its exact edges.</p>
+      </div>
+    </section>
+
+    <section class="block-toc toc">
+      <p class="eyebrow">The twelve plates of this volume</p>
+      <ol>
+        <li>
+          <span class="t-num">i</span>
+          <a class="t-title" href="numeraire-i-i-the-bargain.html">The Bargain<span class="t-tag">in print</span></a>
+          <span class="t-gloss">the wage as an unequal exchange; the asymmetry Adam Smith placed at the origin of the subject.</span>
+          <span class="t-read"><a href="numeraire-i-i-the-bargain.html">Read the plate →</a></span>
+        </li>
+        <li>
+          <span class="t-num">ii</span>
+          <a class="t-title" href="numeraire-i-ii-the-margin.html">The Margin<span class="t-tag">in print</span></a>
+          <span class="t-gloss">the marginal-productivity orthodoxy; the wage as the value of the last hour worked, determinate and, it was said, just.</span>
+          <span class="t-read"><a href="numeraire-i-ii-the-margin.html">Read the plate →</a></span>
+        </li>
+        <li>
+          <span class="t-num">iii</span>
+          <a class="t-title" href="numeraire-i-iii-the-subsistence.html">The Subsistence<span class="t-tag">in print</span></a>
+          <span class="t-gloss">the classical and Marxian alternatives; the wage driven toward the cost of keeping a worker alive and able to return.</span>
+          <span class="t-read"><a href="numeraire-i-iii-the-subsistence.html">Read the plate →</a></span>
+        </li>
+        <li>
+          <span class="t-num">iv</span>
+          <a class="t-title" href="numeraire-i-iv-the-skill.html">The Skill<span class="t-tag">in print</span></a>
+          <span class="t-gloss">human capital and the return to schooling; the wage as the yield on an investment lodged in the person.</span>
+          <span class="t-read"><a href="numeraire-i-iv-the-skill.html">Read the plate →</a></span>
+        </li>
+        <li>
+          <span class="t-num">v</span>
+          <a class="t-title" href="numeraire-i-v-the-difference.html">The Difference<span class="t-tag">in print</span></a>
+          <span class="t-gloss">compensating differentials; the part of a wage that pays not for the work but for its danger, its tedium, its hours.</span>
+          <span class="t-read"><a href="numeraire-i-v-the-difference.html">Read the plate →</a></span>
+        </li>
+        <li>
+          <span class="t-num">vi</span>
+          <a class="t-title" href="numeraire-i-vi-the-discrimination.html">The Discrimination<span class="t-tag">in print</span></a>
+          <span class="t-gloss">taste-based against statistical; the wage gaps that survive equal skill, and the two very different mechanisms behind them.</span>
+          <span class="t-read"><a href="numeraire-i-vi-the-discrimination.html">Read the plate →</a></span>
+        </li>
+        <li>
+          <span class="t-num">vii</span>
+          <a class="t-title" href="numeraire-i-vii-the-floor.html">The Floor<span class="t-tag">in print</span></a>
+          <span class="t-gloss">the minimum wage in the competitive model; the standard verdict that a price floor must cost the lowest-paid their jobs.</span>
+          <span class="t-read"><a href="numeraire-i-vii-the-floor.html">Read the plate →</a></span>
+        </li>
+        <li>
+          <span class="t-num">viii</span>
+          <a class="t-title" href="numeraire-i-viii-the-monopsony.html">The Monopsony<span class="t-tag">in print</span></a>
+          <span class="t-gloss">employer power and the inversion; why a single buyer of labor pays below the worker's worth, and the gap is the measure of its power.</span>
+          <span class="t-read"><a href="numeraire-i-viii-the-monopsony.html">Read the plate →</a></span>
+        </li>
+        <li>
+          <span class="t-num">ix</span>
+          <a class="t-title" href="numeraire-i-ix-the-union.html">The Union<span class="t-tag">in print</span></a>
+          <span class="t-gloss">collective bargaining and countervailing power; the workers' combination as the answer to the employers', and the case where it costs no jobs.</span>
+          <span class="t-read"><a href="numeraire-i-ix-the-union.html">Read the plate →</a></span>
+        </li>
+        <li>
+          <span class="t-num">x</span>
+          <a class="t-title" href="numeraire-i-x-the-insurance.html">The Insurance<span class="t-tag">in print</span></a>
+          <span class="t-gloss">search, the reservation wage, the safety net; the lowest wage a worker will accept, and what raises the floor beneath it.</span>
+          <span class="t-read"><a href="numeraire-i-x-the-insurance.html">Read the plate →</a></span>
+        </li>
+        <li>
+          <span class="t-num">xi</span>
+          <a class="t-title" href="numeraire-i-xi-the-machine.html">The Machine<span class="t-tag">in print</span></a>
+          <span class="t-gloss">automation and the future of the wage; the old fear that the machine ends the wage, and what it gets right and wrong.</span>
+          <span class="t-read"><a href="numeraire-i-xi-the-machine.html">Read the plate →</a></span>
+        </li>
+        <li>
+          <span class="t-num">xii</span>
+          <a class="t-title" href="numeraire-i-xii-the-share.html">The Share<span class="t-tag">in print</span></a>
+          <span class="t-gloss">labor's share and the great divergence; the wage as a slice of the whole product, and why the slice has been shrinking.</span>
+          <span class="t-read"><a href="numeraire-i-xii-the-share.html">Read the plate →</a></span>
+        </li>
+      </ol>
+    </section>
+
+    <section class="coda">
+      <p class="eyebrow">In closing</p>
+      <p>This volume began with the price that decides the most, and asked what it measures. The orthodox answer — the value of the marginal product — is not so much wrong as partial: it describes the ceiling a wage cannot long exceed, and the relative pull of one kind of labor against another, and it does so with real power. The plates in print followed that answer to its limit, and past it.</p>
+      <p>The bargain, Smith saw, was never struck between equals. The marginal product fixes the wage only where no one at the table has power over it; and the skill a worker brings, real as its return is, can be priced below its worth by an employer who has the upper hand, and cannot by itself say who keeps the surplus it produces. At the volume's center a single, realistic change — that an employer must offer more to hire more — turns the wage from a measure of contribution into a measure of power, and returns Smith's asymmetry, banished by the competitive idealization, as the general case. The union is the answer the structure invites: against the combination of employers, a combination of workers, restoring to the weaker party the one thing the bargain turned on — the ability to wait. The safety net, last of the plates in print, restores that ability by another route: an unemployment insurance funds the worker's search and raises his reservation wage — the least he will accept — so lifting the floor beneath which no wage can fall, a result John McCall drew from the simple problem of a worker deciding, offer by offer, when to stop looking.</p>
+      <p>The wage is the first volume of this table, and it is also its plainest lesson. A price commonly taken for a fact of nature — fixed, impersonal, out in the world — turns out to be the residue of a contest, and the figure it reports is as much a verdict on power as a reading of worth. What is true of the wage is the wager of the whole work: that beneath each of the table's prices and quantities lies not a hard floor but a settlement, and that the task of the discipline is less to take the readings than to see, honestly, what they are readings of. Every element here is a primitive that turns out not to be primitive. The wage is the one where it matters most that we admit it.</p>
+      <p class="q">If the wage is part worth and part power, and no arithmetic divides the one from the other, then when a life is priced by what it earns, how much of that price was ever about the work?</p>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref"><a href="numeraire-atlas-updated.html">The table of volumes</a></span>
+    </div>
+    <p class="colophon">Volume the First of <em>Numéraire</em>, a periodic table of economic life: twenty-six primitives gathered in six families, each to be turned inside out at the seam where the seminar and the essay usually part — with the rigor of the one and the grace of the other — and each scrupulous about the exact edge of what can be known. <em>The Wage</em> is in print; all twelve plates are published, and the eighth, <em>The Monopsony</em>, stands as the flagship of the volume. It is the first element of the table, and the pattern for those that follow. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var bar=document.getElementById('progress');
+  function onScroll(){
+    var h=document.documentElement;
+    var max=(h.scrollHeight-h.clientHeight);
+    var p=max>0?(h.scrollTop||document.body.scrollTop)/max:0;
+    bar.style.width=(p*100).toFixed(2)+'%';
+  }
+  document.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="numeraire-atlas-updated.html">← Numéraire</a><a rel="next" href="numeraire-i-i-the-bargain.html">The Bargain →</a></nav>
+</body>
+</html>

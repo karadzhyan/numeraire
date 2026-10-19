@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Spread — Numéraire, Volume V</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem; --measure:40rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.9rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(3rem,8vh,6rem) 0 clamp(1.6rem,4vh,2.6rem);text-align:center;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;text-decoration:none;}
+  .imprint:hover{color:var(--soft);}
+  .vol-dateline{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+
+  .vol-sym{width:114px;height:114px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;align-items:center;justify-content:center;
+    font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 500;font-size:3.1rem;line-height:1;letter-spacing:-.01em;}
+  .vol-sym.lit{background:var(--ink);color:var(--paper);}
+  .vol-elnum{font-family:"Fraunces",serif;font-size:.74rem;color:var(--faintest);letter-spacing:.18em;text-transform:uppercase;margin-top:1rem;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.3rem,6.5vw,4.6rem);line-height:1.02;letter-spacing:-.025em;margin:.7rem 0 0;text-wrap:balance;}
+  .vol-status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .vol-status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:44rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .vol-q{max-width:46rem;margin:clamp(2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .vol-q .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.7rem;}
+  .vol-q q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.3rem,2.4vw,1.72rem);line-height:1.32;color:var(--ink);quotes:none;text-wrap:balance;}
+
+  .front{margin:clamp(3rem,7vh,5rem) auto 0;max-width:var(--measure);}
+  .front-eyebrow{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);text-align:center;
+    display:flex;align-items:center;gap:.9rem;justify-content:center;margin:0 0 2.1rem;}
+  .front-eyebrow::before,.front-eyebrow::after{content:"";height:1px;width:2.4rem;background:var(--hair);}
+  .front p{font-size:1.07rem;line-height:1.76;color:var(--ink);margin:0 0 1.35rem;text-wrap:pretty;}
+  .front p:last-child{margin-bottom:0;}
+  .front em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.74;padding:.1em .12em 0 0;color:var(--ink);}
+  .front-orn{display:flex;justify-content:center;margin:2rem 0;}
+  .front-orn svg{width:96px;height:12px;overflow:visible;}
+  .front-orn line{stroke:var(--num);stroke-width:1;} .front-orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  main{padding:clamp(3rem,7vh,5rem) 0 0;}
+  .plates-head{display:flex;align-items:baseline;gap:.9rem;margin:0 0 1.6rem;}
+  .plates-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-size:.86rem;color:var(--faintest);letter-spacing:.04em;flex:0 0 auto;}
+  .plates-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);flex:0 0 auto;}
+  .plates-rule{flex:1;height:1px;background:var(--hair);position:relative;top:-2px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:13px;}
+
+  .el{appearance:none;-webkit-appearance:none;background:var(--paper);border:1px solid var(--hair);border-radius:2px;
+    padding:14px 15px 16px;text-align:left;cursor:pointer;position:relative;min-height:152px;
+    display:flex;flex-direction:column;color:inherit;font-family:inherit;
+    transition:border-color .22s ease,background .22s ease,transform .22s ease,box-shadow .22s ease;}
+  .el:hover{border-color:var(--faintest);transform:translateY(-2px);}
+  .el-rn{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-size:.78rem;color:var(--faintest);letter-spacing:.18em;text-transform:uppercase;}
+  .pl-hero{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 500;font-size:1.34rem;line-height:1.06;margin-top:.5rem;letter-spacing:-.012em;}
+  .el-gloss{font-size:.79rem;color:var(--faint);line-height:1.36;margin-top:.5rem;font-style:italic;}
+  .pl-flag{margin-top:auto;padding-top:.7rem;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--faintest);}
+  .el.lit{background:var(--ink);border-color:var(--ink);}
+  .el.lit .pl-hero{color:var(--paper);}
+  .el.lit .el-rn{color:rgba(240,235,225,.5);}
+  .el.lit .el-gloss{color:rgba(240,235,225,.62);}
+  .el.lit .pl-flag{color:rgba(240,235,225,.7);}
+  .el.sel{box-shadow:inset 0 0 0 1.5px var(--ink);border-color:var(--ink);}
+  .el.lit.sel{box-shadow:inset 0 0 0 1.5px var(--paper);}
+
+  .detail{margin:clamp(2.4rem,5vh,3.6rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);scroll-margin-top:1.4rem;}
+  .d-head{display:flex;gap:1.3rem;align-items:flex-start;}
+  .d-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 500;font-size:1.5rem;line-height:1;
+    color:var(--ink);flex:0 0 auto;border:1px solid var(--hair);border-radius:2px;letter-spacing:.04em;
+    width:86px;height:86px;display:flex;align-items:center;justify-content:center;text-transform:uppercase;}
+  .d-sym.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .d-titles{min-width:0;}
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);}
+  .d-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.7rem,3.6vw,2.5rem);margin:.22rem 0 .35rem;line-height:1.04;letter-spacing:-.016em;}
+  .d-status{font-size:.84rem;color:var(--faint);font-style:italic;}
+  .d-status.print{color:var(--soft);font-style:normal;}
+  .d-status.print::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .d-desc{font-size:1.05rem;line-height:1.72;color:var(--ink);max-width:42rem;margin:1.3rem 0 0;text-wrap:pretty;}
+
+  .d-openq{margin:1.6rem 0 0;max-width:40rem;}
+  .d-openq .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.5rem;}
+  .d-openq q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);quotes:none;}
+
+  .d-excerpt{margin:1.8rem 0 0;max-width:42rem;border-left:1px solid var(--hair);padding:.2rem 0 .2rem 1.5rem;}
+  .d-excerpt .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.8rem;}
+  .d-excerpt p{font-size:1.04rem;line-height:1.74;color:var(--ink);margin:0;text-wrap:pretty;}
+  .d-excerpt .x-cap{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 500;font-size:1.15rem;}
+  .d-readplate{margin:1.6rem 0 0;}
+  .d-readplate a{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:.94rem;
+    letter-spacing:.01em;text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:2px;transition:border-color .2s ease,color .2s ease;}
+  .d-readplate a:hover{color:var(--soft);border-color:var(--soft);}
+  .d-readplate .arr{margin-left:.4rem;}
+
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;text-decoration:none;}
+  .f-mark:hover{color:var(--soft);}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;}
+    .el{min-height:138px;padding:12px 12px 14px;}
+    .pl-hero{font-size:1.18rem;}
+    .el-gloss{font-size:.74rem;}
+    .vol-sym{width:92px;height:92px;font-size:2.5rem;}
+    .d-head{gap:1rem;}
+    .d-sym{width:64px;height:64px;font-size:1.25rem;}
+    .front p{font-size:1.04rem;}
+    .dropcap{font-size:3rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="rise d1">
+      <a class="imprint" href="numeraire-atlas.html">Numéraire</a>
+      <div class="vol-dateline">The Fifth Volume &middot; The Prices</div>
+    </div>
+    <div class="vol-sym lit rise d2" aria-hidden="true">Sp</div>
+    <div class="vol-elnum rise d2">Element 05 &middot; Group I</div>
+    <h1 class="rise d3">The Spread</h1>
+    <div class="vol-status rise d3">in print &middot; № V &middot; 2 of 12 plates</div>
+    <p class="standfirst rise d4">The spread is the price of standing between: the cut the middleman takes for connecting a buyer to a seller — the broker's commission, the bid-ask, the platform's take rate, the merchant's markup, the banker's margin. This volume anatomizes it, weighing the real services intermediation provides — matching, liquidity, trust, the reduction of the costs of finding and vouching for a counterparty — against the suspicion that has shadowed the middleman since antiquity: that his cut may be less the price of a service than a toll levied on a passage he has contrived to control. Its question is the oldest about the man in the middle: when does he earn his cut, and when does he merely levy it?</p>
+    <div class="vol-q rise d5">
+      <span class="lead">The question of the volume</span>
+      <q>the spread looks like the fair price of connection, the middleman's wage for bringing buyer and seller together — but when does he earn his cut by the value he creates, and when does he merely levy a toll on a passage he controls?</q>
+    </div>
+  </header>
+
+  <section class="front" aria-label="The argument of the volume">
+    <div class="front-eyebrow">The argument</div>
+
+    <p><span class="dropcap">T</span>he prices the table has weighed so far have each been paid by one party to another — the wage from employer to worker, the rent from tenant to owner, the interest from borrower to lender, the premium from the insured to the bearer of his risk. This last of the prices is paid to neither party but to a third: the one who stands between the two who would trade, and takes a cut for the standing. Call it the spread — the gap between what the buyer pays and what the seller receives, captured by the middleman in between. It wears a hundred names: the broker's commission, the dealer's bid-ask, the platform's take rate, the merchant's markup, the banker's margin between the rate he pays and the rate he charges. In almost every exchange of any complexity, someone stands in the middle and is paid for it; and this volume is the anatomy of what he is paid, and of the oldest question about the man in the middle — whether his cut is the price of a service, or the toll of a position.</p>
+
+    <p>Why should standing between command a price at all? Because the middleman, at his best, does work the parties cannot easily do for themselves. He matches: he finds the buyer for the seller, sparing each the costly search through a world of strangers. He provides liquidity: he stands ready to trade at once, so that neither party need wait for the other to appear — the dealer who will always buy and always sell, the market that is open when you are. He bears the interval: he holds the goods, or the position, or the risk, between the moment one party is ready and the moment the other is. And he vouches: he interposes his own credit between strangers who could not trust each other, so that trade which mutual suspicion would have killed can go forward. Each of these is a genuine service with a real cost, and the spread is, in the first place, its wage. The middleman is paid because finding, waiting, trusting, and bearing are hard, and he makes them easy.</p>
+
+    <p>The thought that the middleman earns his keep is old, and so is the thought that he does not. Richard Cantillon, in the eighteenth century, made the merchant the very type of the entrepreneur — the man who buys at a known price to sell at an unknown one, bearing the uncertainty between, and earning his profit as the wage of that risk. The arbitrageur who carries grain from the glutted province to the starving raises its price where it is low and lowers it where it is high, knitting separate markets into one. Yet the suspicion is older still. Aristotle distinguished the natural getting of wealth by producing from the unnatural getting of it by exchange, and thought the trader who buys only to sell dearer produced nothing. The medieval moralist and the modern populist alike have hated the middleman as a parasite who toils not but skims. Frédéric Bastiat gave the merchant his most spirited defense — cut him out, and the work he did does not vanish but falls, done worse and dearer, on you — and the quarrel between his view and the parasite's is unsettled still.</p>
+
+    <p>And the middleman has not withered with the centuries; he has grown. The greatest intermediaries of the age are platforms — marketplaces owned by a third party who matches the two sides and skims a share of every exchange between them. A network effect makes such a platform more useful, and more unavoidable, the more people use it, until the buyers are where the sellers are and the sellers where the buyers are, and to leave is to leave the market itself. The financial intermediary stands between all the savers and all the borrowers, taking a margin on the passage of money through him. The supply chain interposes a procession of middlemen — exporter, importer, wholesaler, distributor, retailer — between the maker of a thing and its user, each adding a spread. Intermediation has become vaster, more layered, and more concentrated than any earlier age could have imagined, and the share of all economic value captured in spreads, by those who make nothing but stand between those who do, has risen with it.</p>
+
+    <div class="front-orn" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>Here the volume's question opens. The spread presents itself as the price of a service, fair payment for the real work of connecting, of providing liquidity, of vouching — and often that is exactly what it is. But a price is a verdict on a hidden contest, mistaken for a fact of nature; and the spread conceals a contest over whether the middleman earns his cut by the value he creates or merely levies it by his command of the passage between the parties. A service has a cost; a cut can run far above it; and what fixes the difference is not, in general, the worth of the work but the strength of the position. The middleman has every incentive to make himself necessary — to insert himself where he might be bypassed, to keep the buyer and the seller from finding one another, to widen the spread to whatever his place between them will bear. The line between the fee he earns and the toll he exacts is real, but it is never drawn where he says it is.</p>
+
+    <p>Consider the difference between a fee and a toll, for it is the heart of the matter. A fee is paid for something done; a toll is paid for being let past, to one who has placed himself across the road. The middleman who controls the only bridge may charge far more than the bridge costs to keep — not for his labor but for his location, rent drawn from the mere fact of standing where all must pass. A price is a verdict on a hidden contest, mistaken for a fact of nature; and the spread is the verdict of a contest between the middleman and the two he stands between, over how much of the gain from their trade he can capture by virtue of his position. For the spread is always a slice of the surplus that buyer and seller create by dealing at all, and the size of the slice measures, beyond the cost of his service, the power his place affords — the platform none can leave, the exchange all must use, the broker who alone knows where to find the other side.</p>
+
+    <p>None of this is the populist's case against the middleman, a fool's case the volume will not make. Bastiat was right: the functions the intermediary performs are real, and abolishing him does not abolish them. Cut out the broker and you must find the buyer yourself; cut out the bank and the saver must judge the borrower alone. Disintermediation fails as often as attempted, because the search, the liquidity, and the trust do not vanish when the middleman does — they revert to the parties, who do them worse. The market-maker's spread is the price of a liquidity you would miss the instant it was gone; the platform's take buys a marketplace you could not cheaply build alone. Skill in intermediation is real, and the finest middlemen enlarge the gains from trade — more deals, at lower total cost — rather than merely taxing them. Much of the spread, perhaps most of it, is honestly earned. The argument is not that the middleman is a thief, but that his cut is a verdict, and that the share of it which is toll rather than fee is hidden in the same number as the rest.</p>
+
+    <p>The twelve plates follow the price of standing between from the service to the toll. The Middleman sets out the spread and the services it pays for; The Tribute asks when those services explain it and when only the middleman's power does. The Match anatomizes the reducing of search, The Dealer the liquidity priced in the bid-ask, The Hub the platform whose network effect makes it inescapable. The Arbitrage weighs the trade that equalizes prices or contrives the gap it exploits; The Escrow, the manufacture of trust that lets strangers deal; The Chain, the procession of middlemen between maker and user; The Merchant, the markup of the oldest of them all. The Banker takes up financial intermediation, The Bypass the dream of cutting the middleman out and his recurring return, and The Passage the politics of the toll — whether the passage between us belongs to the one who stands in it or to those who must pass. Other volumes border this one: the power, for the middleman's grip is a kind of monopoly; the rent, for his toll is an unearned return to position; the surplus, whose gains of trade he slices; and the tax, his cut a private wedge between buyer and seller. Whether the man in the middle earns his cut or merely levies it is the question this volume holds open. The argument remains open.</p>
+
+  </section>
+
+  <main>
+    <div class="plates-head">
+      <span class="plates-num fr">№ V</span>
+      <span class="plates-name">The twelve plates</span>
+      <span class="plates-rule"></span>
+    </div>
+
+    <div class="grid" id="grid">
+      <button class="el lit" data-id="middleman" aria-label="Plate i — The Middleman — in print"><span class="el-rn">Plate i</span><span class="pl-hero">The Middleman</span><span class="el-gloss">the price of standing between: the cut the middleman takes for connecting buyer and seller, and the services — matching, liquidity, trust — a spread is meant to pay for</span><span class="pl-flag">in print</span></button>
+      <button class="el lit" data-id="tribute" aria-label="Plate ii — The Tribute — in print"><span class="el-rn">Plate ii</span><span class="pl-hero">The Tribute</span><span class="el-gloss">the contest beneath the spread: when the middleman earns his cut by the value he creates, and when he merely levies a toll on a passage he has contrived to control</span><span class="pl-flag">in print</span></button>
+      <button class="el" data-id="match" aria-label="Plate iii — The Match"><span class="el-rn">Plate iii</span><span class="pl-hero">The Match</span><span class="el-gloss">search and matching: the intermediary who finds the buyer for the seller — the matchmaker, the realtor, the job market — and the cost of finding a counterparty alone</span></button>
+      <button class="el" data-id="dealer" aria-label="Plate iv — The Dealer"><span class="el-rn">Plate iv</span><span class="pl-hero">The Dealer</span><span class="el-gloss">market-making and liquidity: the bid-ask spread as the dealer's wage for standing ready to trade at once, bearing inventory and the risk of being picked off</span></button>
+      <button class="el" data-id="hub" aria-label="Plate v — The Hub"><span class="el-rn">Plate v</span><span class="pl-hero">The Hub</span><span class="el-gloss">the platform and the network: two-sided markets, network effects, and the take rate of the marketplace everyone must use because everyone uses it</span></button>
+      <button class="el" data-id="arbitrage" aria-label="Plate vi — The Arbitrage"><span class="el-rn">Plate vi</span><span class="pl-hero">The Arbitrage</span><span class="el-gloss">buying cheap here to sell dear there: the arbitrageur who profits from price differences across place and time, and whether he equalizes prices or merely skims the gap</span></button>
+      <button class="el" data-id="escrow" aria-label="Plate vii — The Escrow"><span class="el-rn">Plate vii</span><span class="pl-hero">The Escrow</span><span class="el-gloss">the trusted third party: the intermediary who vouches, guarantees, and holds the stake, so that strangers who could not trust each other can trade</span></button>
+      <button class="el" data-id="chain" aria-label="Plate viii — The Chain"><span class="el-rn">Plate viii</span><span class="pl-hero">The Chain</span><span class="el-gloss">the supply chain: the layers of middlemen between producer and consumer — wholesaler, distributor, retailer — and the cascade of spreads each adds along the way</span></button>
+      <button class="el" data-id="merchant" aria-label="Plate ix — The Merchant"><span class="el-rn">Plate ix</span><span class="pl-hero">The Merchant</span><span class="el-gloss">the retailer's markup: the merchant who buys to resell, the oldest intermediary of all, and the long quarrel over whether his margin is service or extraction</span></button>
+      <button class="el" data-id="banker" aria-label="Plate x — The Banker"><span class="el-rn">Plate x</span><span class="pl-hero">The Banker</span><span class="el-gloss">financial intermediation: the bank between saver and borrower, the spread between the rate it pays and the rate it charges, and the maturity it transforms</span></button>
+      <button class="el" data-id="bypass" aria-label="Plate xi — The Bypass"><span class="el-rn">Plate xi</span><span class="pl-hero">The Bypass</span><span class="el-gloss">disintermediation: cutting out the middleman, the dream of the direct deal, and why the middleman so often returns in a new and larger form</span></button>
+      <button class="el" data-id="passage" aria-label="Plate xii — The Passage"><span class="el-rn">Plate xii</span><span class="pl-hero">The Passage</span><span class="el-gloss">the capstone: the politics of the toll — when a society should let intermediation be priced freely, and when it should regulate, tax, or open the passage the middleman controls</span></button>
+    </div>
+  </main>
+
+  <section class="detail" id="detail" aria-live="polite"></section>
+
+  <footer>
+    <div class="f-bar">
+      <a class="f-mark" href="numeraire-atlas.html">Numéraire</a>
+      <span class="f-ref">Volume V &middot; The Prices</span>
+    </div>
+    <p class="colophon">Volume V, <em>The Spread</em>, opens with two plates in print — <em>The Middleman</em> and <em>The Tribute</em>, the price of standing between and the contest over whether the man in the middle earns his cut or merely levies it. The fifth element of the table, and the twenty-third of its volumes to appear; with it the prices stand complete. It joins <a href="the-wage.html">The Wage</a>, <a href="the-rent.html">The Rent</a>, <a href="the-rate.html">The Rate</a>, and <a href="the-premium.html">The Premium</a> — the price of labor, the return to ownership, the price of time, the price of risk, and now the spread the price of intermediation, the cut of the third party who stands between buyer and seller. It borders <a href="the-power.html">The Power</a>, for the middleman's grip on the passage is a kind of monopoly; <a href="the-rent.html">The Rent</a> again, for the toll he levies is an unearned return to position; and <a href="the-surplus.html">The Surplus</a>, for the spread is a slice of the gains every exchange creates. The thesis is that the spread, which wears the look of the fair price of connection, is in truth a verdict — on whether the middleman creates the value he charges for, or merely controls the passage and collects a toll. Return to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+
+<script>
+const PLATES = {
+  middleman:{rn:"i",title:"The Middleman",family:"in print",lit:true,url:"the-middleman.html",
+    desc:`The volume opens with the price of standing between. Between a buyer and a seller there is often a third party who takes a cut for bringing them together, and the cut is the spread — the gap between what the buyer pays and the seller receives. This plate sets out that price and the services it is meant to pay for. The middleman matches parties who would otherwise search; he provides liquidity, standing ready to trade so neither must wait; he bears the goods or the position in the interval; he vouches, so that strangers may deal. Each is real work, and the spread is, in the first place, its wage. The plate sets out intermediation as a service like any other, priced like any other — before asking, in the plates that follow, how much of the spread that service can actually explain.`,
+    excerpt:`<span class="x-cap">B</span>etween every buyer and every seller there is often a third party, and he is rarely there for free. The broker who finds you a house and takes his percent, the dealer who quotes one price to buy and a higher one to sell, the platform that hosts the market and skims a share of every sale, the wholesaler between the farm and the shop — each stands in the gap between the two who would trade, and each takes a cut for standing there. The cut is the spread: the difference between what the buyer pays and what the seller receives, captured by the one in the middle. He earns it, when he earns it, by doing what the parties cannot easily do for themselves — finding each other, trusting each other, trading at once instead of waiting. The spread is the price of being spared the trouble of going direct; the question is how much of it is the price of that service, and how much the toll of a man who has placed himself where you must pass.`},
+  tribute:{rn:"ii",title:"The Tribute",family:"in print",lit:true,url:"the-tribute.html",
+    desc:`If the spread is the price of a service, the deepest question is whether the service explains it — and here the volume meets the suspicion that has dogged the middleman since antiquity. This plate gives the thesis on which the volume turns. A service has a cost; a cut can run far above it; and what fixes the gap is often not the value the middleman adds but the power he holds over the passage between the parties. The broker who keeps buyer and seller apart, the platform all must use, the dealer alone in quoting a price, can charge what their position commands rather than what their work is worth. The plate draws the line, never where either side claims it lies, between the fee earned for a service and the toll levied for being let past — and argues that the share of the spread that is toll measures not the middleman's contribution but his grip on the gate.`,
+    excerpt:`<span class="x-cap">T</span>he middleman would have us believe his cut is the price of his service, and sometimes it is. But a service has a cost, and a cut can run far above it; and what fixes the difference is not the value he adds but the power he holds over the passage between the parties. The broker who can keep buyer and seller from ever meeting, the platform all must use because all use it, the dealer who is the only one quoting a price — each can charge not what his work is worth but what his position commands, and the two are seldom the same. This is the difference between a fee and a toll: a fee is paid for something done, a toll for being let past, to one who has placed himself across the road. The spread the middleman takes is always some of each, and the share that is toll rather than fee measures not his service but his grip on the gate.`},
+  match:{rn:"iii",title:"The Match",family:"in preparation",lit:false,
+    desc:`Before two parties can trade, they must find each other, and finding is costly. This plate sets out the intermediary as a reducer of search: the matchmaker who pairs the marriageable, the realtor who knows which house and which buyer, the agency that fills the job, the exchange that gathers the scattered into one place. Search-and-matching theory, which earned its founders a Nobel, shows how much friction stands between willing parties and how much a good matcher can remove — the unemployment that persists because workers and jobs cannot find one another, the trades that never happen because the parties never meet. The plate sets out the real value of matching and the spread it can command. It also marks the matcher's temptation: that the more he controls who meets whom, the more he can charge for the introduction — and the more reason he has to keep the parties from meeting without him.`,
+    openq:`the matcher's value is in bringing parties together — so what is his incentive once he can keep them from meeting without him?`},
+  dealer:{rn:"iv",title:"The Dealer",family:"in preparation",lit:false,
+    desc:`In a deep market you can buy or sell at any moment, because someone — the dealer, the market-maker — always stands ready to take the other side. This plate sets out the price of that readiness: the bid-ask spread, the gap between the price at which the dealer will buy and the higher price at which he will sell. The spread is his compensation for providing immediacy — for sparing you the wait until a natural counterparty appears — and for the risks he runs: holding inventory that may move against him, and trading against others who may know more than he does. The plate sets out liquidity as a service with a real cost and a real value, the bid-ask as its price. It asks what determines the spread's width — competition among dealers narrows it, the threat of better-informed traders widens it — and when the market-maker's cut is the fair price of immediacy, and when the toll of a privileged position.`,
+    openq:`the bid-ask is the price of immediacy — so what widens it past the cost of the service, and into the dealer's rent?`},
+  hub:{rn:"v",title:"The Hub",family:"in preparation",lit:false,
+    desc:`The modern middleman is often a platform — a marketplace owned by a third party who matches the two sides and skims a share of every exchange. This plate sets out the economics of the two-sided market: the network effect by which a platform grows more useful, and more inescapable, the more people use it, until buyers go where the sellers are and sellers where the buyers are, and no one can afford to leave. The take rate is the spread the platform charges, and the network effect is what lets it charge so much: once the marketplace is the marketplace, its owner holds a gate that all must pass. The plate weighs the genuine value a platform creates — the marketplace that would cost a fortune to build alone, the trust and the reach it supplies — against the power its position confers, and the spread that reflects the one against the spread that reflects the other.`,
+    openq:`the network effect makes the platform indispensable — so is its take rate the price of the marketplace, or the toll of a gate none can leave?`},
+  arbitrage:{rn:"vi",title:"The Arbitrage",family:"in preparation",lit:false,
+    desc:`The oldest middleman buys where a thing is cheap and sells where it is dear, pocketing the difference. This plate sets out arbitrage: the trade across space, time, or form that profits from a price difference. In the classical defense, the arbitrageur serves all — by buying in the cheap market he raises its price, by selling in the dear one he lowers it, until the two converge and the good flows to where it is most wanted; his profit is the reward for moving value to its highest use and the measure of how far apart the prices were. The plate sets out this benign account — arbitrage as the force that knits scattered markets into one — alongside its shadow: the arbitrage that creates the very scarcity it exploits, the cornering of a market, the reseller who buys up the tickets only to sell them back, dearer, to those he has shut out. The same act equalizes and extracts; which it is depends on whether the gap was the arbitrageur's to close or his to manufacture.`,
+    openq:`the arbitrageur's profit is the gap between two prices — so does he close that gap for everyone, or contrive it for himself?`},
+  escrow:{rn:"vii",title:"The Escrow",family:"in preparation",lit:false,
+    desc:`Much trade fails not because the parties cannot meet but because they cannot trust — the buyer fears the goods are bad, the seller fears the payment will not come, and neither will move first. This plate sets out the intermediary as a maker of trust: the escrow who holds the payment until the goods arrive, the exchange that guarantees the trade will clear, the rating and the brand that vouch for quality, the clearinghouse that stands behind every contract. By interposing his own credit between strangers, the trusted middleman lets trade happen that distrust would have killed — a service of great value, especially where the parties are many, distant, and anonymous. The plate sets out the economics of intermediated trust, and the power it concentrates: for the one whom everyone must trust holds a position of singular leverage, and the fee for his assurance can become a toll on the trust he has made himself the sole keeper of.`,
+    openq:`the trusted middleman makes trade possible among strangers — so what does he charge once everyone must route their trust through him?`},
+  chain:{rn:"viii",title:"The Chain",family:"in preparation",lit:false,
+    desc:`Between the farm and the table, the factory and the home, stands not one middleman but many — the exporter, the importer, the wholesaler, the distributor, the retailer — each adding a spread, so that the price the consumer pays may be several times what the producer received. This plate sets out the supply chain as a chain of intermediaries, and the cascade of margins it imposes. Each link may add real value — transport, storage, breaking bulk, financing, reaching the final buyer — and a long chain is not in itself a sign of waste. But the chain is also where spreads hide: the consumer sees only the final price, the producer only the first, and neither can see how the difference was divided among the hands between, or whether each hand earned its share. The plate asks how to tell a chain that adds value at every link from one padded with links that add only their own markup.`,
+    openq:`every link in the chain adds a spread — so which links earn their margin, and which survive only because no one can see them?`},
+  merchant:{rn:"ix",title:"The Merchant",family:"in preparation",lit:false,
+    desc:`The merchant buys in order to sell — at a higher price than he paid, the difference his markup. He is the oldest middleman of all, and the most maligned. This plate sets out retail intermediation: the trader who carries goods from where they are made to where they are wanted, holds them until the buyer comes, breaks the bulk shipment into the single sale, and extends the credit that lets the customer buy. Each is a service, and the markup is its price; the merchant who stocks what you need, when and where you need it, has earned something. Yet the markup has drawn suspicion since antiquity — Aristotle thought buying to sell dearer an unnatural way of getting wealth, producing nothing — and the suspicion has never died, because the merchant's gain is so visibly the gap between two prices he set by making nothing. The plate weighs the merchant's real services against the ancient charge that he merely stands between the maker and the user and taxes their meeting.`,
+    openq:`the merchant makes nothing, yet sells dearer than he buys — so is his markup the wage of his service, or a tax on the meeting of maker and user?`},
+  banker:{rn:"x",title:"The Banker",family:"in preparation",lit:false,
+    desc:`The bank stands between those with money to spare and those who need it, paying the saver one rate and charging the borrower a higher one, the difference its spread. This plate sets out financial intermediation. The banker performs services neither party could easily perform alone: he pools many small deposits into loans large enough to matter; he transforms maturity, lending long while owing short, so the saver keeps his money available even as the borrower gets it for years; he screens and monitors borrowers the depositor could never assess. The spread pays for this, and for the risk the banker bears when his judgment fails. The plate sets out the real and intricate value of financial intermediation — and the peculiar power it concentrates, for the system that stands between all savers and all borrowers can draw a spread that owes more to its centrality than to its service, and whose failures, as the world has learned, fall on those who never shared in the spread.`,
+    openq:`the banker's spread pays for pooling, maturity, and screening — so how much of it is the price of those services, and how much the rent of standing at the center of everything?`},
+  bypass:{rn:"xi",title:"The Bypass",family:"in preparation",lit:false,
+    desc:`If the middleman's cut is resented, why not cut him out? This plate sets out disintermediation: the recurring attempt to let buyer and seller deal directly, sparing the spread. Each new technology has promised it — the catalog, the telephone, above all the internet, which was to abolish the middleman by letting everyone find everyone. Sometimes it works, and a layer of intermediaries vanishes. But more often the middleman returns in a new form: the platform that replaces the broker is a middleman too, and often a larger one; the direct marketplace needs someone to run it, vouch for it, match within it. The plate sets out why disintermediation so often fails — because the functions the middleman performed are real and must be performed by someone — and why it sometimes succeeds. The recurring return of the middleman is the best evidence that much of the spread is earned; the new middleman's greater size is the best evidence that much of it is not.`,
+    openq:`cut out the middleman and his work remains to be done — so when does disintermediation free the parties, and when does it merely crown a larger middleman?`},
+  passage:{rn:"xii",title:"The Passage",family:"in preparation",lit:false,
+    desc:`The volume ends where the spread becomes a public question: not what the middleman charges, but what a society should let him charge. This final plate sets out the politics of intermediation. The middleman who controls a passage all must use holds a power that markets alone may not discipline, and societies have always reached for tools against it — the regulation of brokers and exchanges, the antitrust suit against the platform, the public road built beside the private toll, the postal service and the public option that offer a passage no one owns. The plate weighs the case for leaving the spread to competition, which can narrow it where entry is free, against the case for governing it where the middleman's position is a natural monopoly no competitor can challenge. It asks the question beneath every toll: whether the passage between us belongs to the one who stands in it, or to those who must pass — and who, in the end, should hold the gate.`,
+    openq:`when the middleman holds a passage all must use, should the spread be left to competition, or does the gate belong to those who must pass through it?`}
+};
+
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+function render(id){
+  var tile=document.querySelector('.el[data-id="'+id+'"]');
+  var d=PLATES[id]; if(!d||!tile) return;
+  var h='';
+  h+='<div class="d-head">';
+  h+='<div class="d-sym'+(d.lit?' lit':'')+'">'+esc(d.rn)+'</div>';
+  h+='<div class="d-titles">';
+  h+='<div class="d-family">The Spread &middot; Plate '+esc(d.rn)+' &middot; '+esc(d.family)+'</div>';
+  h+='<h2 class="d-name">'+esc(d.title)+'</h2>';
+  h+='<div class="d-status'+(d.lit?' print':'')+'">'+esc(d.family)+'</div>';
+  h+='</div></div>';
+  h+='<p class="d-desc">'+esc(d.desc)+'</p>';
+  if(d.lit && d.excerpt){
+    h+='<div class="d-excerpt"><span class="lead">From the opening</span><p>'+d.excerpt+'</p></div>';
+  }
+  if(d.url){h+='<p class="d-readplate"><a href="'+d.url+'">Read the plate<span class="arr" aria-hidden="true">&#8594;</span></a></p>';}
+  if(!d.lit && d.openq){
+    h+='<p class="d-openq"><span class="lead">This plate will ask</span><q>'+esc(d.openq)+'</q></p>';
+  }
+  document.getElementById('detail').innerHTML=h;
+  var prev=document.querySelector('.el.sel'); if(prev) prev.classList.remove('sel');
+  tile.classList.add('sel');
+}
+
+(function(){
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.el').forEach(function(b){
+    b.addEventListener('click',function(){
+      render(b.dataset.id);
+      document.getElementById('detail').scrollIntoView({behavior:reduce?'auto':'smooth',block:'nearest'});
+    });
+  });
+  render('middleman');
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-fortune.html">← The Fortune</a><a rel="next" href="the-middleman.html">The Middleman →</a></nav>
+</body>
+</html>

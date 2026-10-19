@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Contract — Numéraire, Volume XV</title>
+<meta name="description" content="The Contract — Volume XV of Numéraire, A Periodic Table of Economic Life. The law of the deal, and the impossibility of writing one that foresees everything. The enforceable promise, the incompleteness no clause can cure, and the default rules, trust, and reputation that fill the gaps the words leave.">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem; --measure:40rem;
+    --wash:rgba(28,26,22,.066); --wash2:rgba(28,26,22,.12);
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.62;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  .measure{max-width:var(--measure);margin-left:auto;margin-right:auto;}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- ornaments ---- */
+  .orn{display:flex;justify-content:center;margin:0 auto;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .divider{display:flex;align-items:center;gap:1.1rem;max-width:30rem;margin:clamp(3rem,7vh,5rem) auto;color:var(--num);}
+  .divider .ln{flex:1;height:1px;background:var(--hair);}
+  .divider svg{display:block;width:12px;height:12px;overflow:visible;flex:0 0 auto;}
+  .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* ---- progress + running head ---- */
+  #progress{position:fixed;top:0;left:0;height:2px;width:100%;transform:scaleX(0);transform-origin:0 50%;background:var(--soft);opacity:.45;z-index:10000;}
+  #topbar{position:fixed;top:0;left:0;right:0;z-index:9998;transform:translateY(-100%);transition:transform .5s cubic-bezier(.2,.6,.2,1);
+    background:rgba(240,235,225,.86);-webkit-backdrop-filter:saturate(1.1) blur(8px);backdrop-filter:saturate(1.1) blur(8px);
+    border-bottom:1px solid var(--hair);}
+  #topbar.show{transform:translateY(0);}
+  .tb-in{max-width:var(--frame);margin:0 auto;padding:.62rem clamp(1.4rem,4vw,3.4rem);display:flex;justify-content:space-between;align-items:baseline;gap:1.2rem;}
+  .tb-l{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:.86rem;letter-spacing:.01em;}
+  .tb-l span{color:var(--faintest);font-weight:400;}
+  .tb-r{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);text-align:right;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+
+  /* ---- title page ---- */
+  .vol-title{padding:clamp(3.4rem,11vh,8rem) 0 clamp(1.6rem,5vh,3rem);text-align:center;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.16rem;letter-spacing:.02em;}
+  .vol-no{font-size:.84rem;color:var(--faint);letter-spacing:.16em;text-transform:uppercase;margin-top:.55rem;}
+  h1.vol-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 380;font-weight:380;
+    font-size:clamp(2.9rem,9vw,6rem);line-height:.98;letter-spacing:-.028em;margin:clamp(1.7rem,4.5vh,2.8rem) 0 0;text-wrap:balance;}
+  .vol-sym{width:78px;height:78px;margin:clamp(1.6rem,4vh,2.4rem) auto 0;border:1px solid var(--hair);border-radius:2px;
+    display:flex;align-items:center;justify-content:center;background:var(--ink);}
+  .vol-sym span{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2.3rem;line-height:1;color:var(--paper);letter-spacing:-.01em;}
+  .vol-coords{font-family:"Fraunces",serif;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);margin-top:1.1rem;}
+  .vol-gloss{font-style:italic;color:var(--soft);font-size:1.12rem;margin:.5rem 0 0;}
+  .vol-epigraph{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 400;font-style:italic;
+    font-size:clamp(1.14rem,1.7vw,1.34rem);line-height:1.42;color:var(--soft);max-width:33rem;margin:clamp(1.8rem,4vh,2.6rem) auto 0;text-wrap:pretty;}
+  .vol-epigraph .lead{display:block;font-style:normal;font-variation-settings:"opsz" 24,"wght" 400;
+    font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.7rem;}
+  .vol-status{display:inline-flex;align-items:center;gap:.5rem;margin:clamp(1.8rem,4vh,2.4rem) auto 0;font-size:.84rem;color:var(--soft);}
+  .vol-status::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ink);}
+
+  /* ---- the argument (preface) ---- */
+  .part-head{text-align:center;margin:0 0 clamp(1.6rem,3.5vh,2.3rem);}
+  .part-kicker{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faintest);}
+  .part-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-weight:400;
+    font-size:clamp(1.5rem,3.4vw,2.1rem);letter-spacing:-.012em;margin:.4rem 0 0;}
+  .argument p{font-size:1.05rem;line-height:1.74;margin:0 0 1.15rem;text-wrap:pretty;}
+  .argument p.lede::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 420;
+    float:left;font-size:3.5em;line-height:.78;padding:.05em .1em 0 0;color:var(--ink);}
+  .argument em,.plate-body em,.coda em{font-style:italic;}
+
+  /* ---- contents ---- */
+  .toc{list-style:none;margin:0 auto;padding:0;max-width:43rem;}
+  .toc li{border-top:1px solid var(--hair);}
+  .toc li:last-child{border-bottom:1px solid var(--hair);}
+  .toc a{display:grid;grid-template-columns:2.6rem 1fr;column-gap:1.1rem;align-items:baseline;
+    padding:.82rem .3rem;text-decoration:none;transition:background .2s ease;}
+  .toc a:hover{background:rgba(28,26,22,.035);}
+  .toc-n{font-family:"Fraunces",serif;font-size:.92rem;color:var(--faintest);text-align:right;}
+  .toc-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.06rem;color:var(--ink);line-height:1.16;}
+  .toc-g{grid-column:2;font-size:.85rem;font-style:italic;color:var(--faint);margin-top:.16rem;line-height:1.38;}
+
+  /* ---- plates ---- */
+  .plate{margin:clamp(3.2rem,8vh,6rem) 0 0;padding-top:clamp(2.4rem,5.5vh,3.4rem);border-top:1px solid var(--hair);scroll-margin-top:4rem;}
+  .plate-open{max-width:var(--measure);margin-inline:auto;}
+  .plate-no{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 360;font-size:clamp(2.6rem,7vw,4.1rem);
+    line-height:.9;color:var(--num);letter-spacing:.02em;}
+  .plate-kicker{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faintest);margin:.9rem 0 .2rem;}
+  .plate-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.8rem,4.4vw,2.7rem);line-height:1.04;letter-spacing:-.018em;margin:0;text-wrap:balance;}
+  .plate-gloss{font-style:italic;color:var(--soft);font-size:1.02rem;margin:.55rem 0 0;line-height:1.4;}
+
+  .ask{max-width:var(--measure);margin:clamp(1.5rem,3.5vh,2.2rem) auto clamp(1.8rem,4vh,2.4rem);}
+  .ask .lead{display:block;font-family:"Fraunces",serif;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.55rem;}
+  .ask q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:clamp(1.18rem,1.8vw,1.38rem);line-height:1.36;color:var(--soft);quotes:none;}
+
+  .plate-body{max-width:var(--measure);margin-inline:auto;}
+  .plate-body p{margin:0 0 1.18rem;text-wrap:pretty;}
+  .plate-body > p:first-of-type::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 430;
+    float:left;font-size:3.5em;line-height:.76;padding:.04em .12em 0 0;color:var(--ink);}
+  .plate-body h4{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.76rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faint);margin:2rem 0 .9rem;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 380;font-style:italic;
+    font-size:clamp(1.4rem,2.3vw,1.7rem);line-height:1.32;color:var(--soft);text-align:center;
+    max-width:33rem;margin:clamp(2rem,4.5vh,2.8rem) auto;text-wrap:balance;}
+
+  .edge{max-width:var(--measure);margin:1.7rem auto;padding:.1rem 0 .1rem 1.15rem;border-left:1px solid var(--hair);
+    color:var(--faint);font-size:.92rem;line-height:1.62;}
+  .edge .lead{display:block;font-family:"Fraunces",serif;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.4rem;}
+  .edge em{font-style:italic;color:var(--soft);}
+
+  /* ---- figures (engravings) ---- */
+  .fig{max-width:var(--measure);margin:clamp(2.1rem,4.5vh,2.9rem) auto;}
+  .fig-frame{border:1px solid var(--hair);border-radius:2px;padding:clamp(1rem,2.4vw,1.7rem) clamp(1rem,2.4vw,1.7rem) clamp(.8rem,2vw,1.3rem);background:rgba(255,253,247,.4);}
+  .fig svg{display:block;width:100%;height:auto;}
+  figcaption{margin:.95rem auto 0;max-width:38rem;font-size:.85rem;line-height:1.5;color:var(--faint);text-wrap:pretty;}
+  figcaption .fig-n{font-family:"Fraunces",serif;font-weight:500;letter-spacing:.04em;color:var(--soft);}
+  figcaption em{font-style:italic;}
+  .ax{stroke:var(--soft);stroke-width:1.1;fill:none;}
+  .tick{stroke:var(--soft);stroke-width:1;}
+  .curve{stroke:var(--ink);stroke-width:1.5;fill:none;stroke-linecap:round;}
+  .curve2{stroke:var(--ink);stroke-width:1.3;fill:none;stroke-linecap:round;}
+  .guide{stroke:var(--faintest);stroke-width:1;fill:none;stroke-dasharray:3 3.5;}
+  .core{stroke:var(--ink);stroke-width:3;fill:none;stroke-linecap:round;}
+  .fill-cs{fill:var(--wash);}
+  .fill-dwl{fill:var(--wash2);}
+  .fill-wedge{fill:var(--wash);}
+  .fill-lens{fill:var(--wash);}
+  .hatch-line{stroke:var(--faintest);stroke-width:.8;}
+  .lbl{font-family:"Fraunces",serif;font-size:11.5px;fill:var(--faint);font-variation-settings:"opsz" 24,"wght" 400;}
+  .lbl-i{font-family:"Newsreader",serif;font-style:italic;font-size:11px;fill:var(--soft);}
+  .lbl-sm{font-family:"Fraunces",serif;font-size:9.6px;fill:var(--faintest);letter-spacing:.02em;}
+  .lbl-ax{font-family:"Fraunces",serif;font-size:9.4px;fill:var(--faintest);letter-spacing:.12em;}
+
+  /* ---- coda + colophon ---- */
+  .coda{max-width:var(--measure);margin:clamp(3rem,7vh,5rem) auto 0;}
+  .coda p{margin:0 0 1.18rem;text-wrap:pretty;}
+  .coda p.lede::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 430;
+    float:left;font-size:3.5em;line-height:.76;padding:.04em .12em 0 0;color:var(--ink);}
+  footer{margin-top:clamp(3.6rem,8vh,6rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.4rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .colophon{font-size:.85rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+
+  /* ---- motion / reveal ---- */
+  @media (prefers-reduced-motion: no-preference){
+    html.js .reveal{opacity:0;transform:translateY(14px);}
+    html.js .reveal.in{opacity:1;transform:none;}
+    .reveal{transition:opacity .9s cubic-bezier(.2,.6,.2,1),transform .9s cubic-bezier(.2,.6,.2,1);}
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.18s}.rise.d3{animation-delay:.32s}.rise.d4{animation-delay:.46s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  /* ---- responsive ---- */
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .argument p,.plate-body p,.coda p{font-size:1.01rem;}
+    .plate-body > p:first-of-type::first-letter,.argument p.lede::first-letter,.coda p.lede::first-letter{font-size:3em;}
+    .f-bar{flex-direction:column;gap:.5rem;}
+    .toc a{grid-template-columns:2rem 1fr;column-gap:.8rem;}
+    figcaption{font-size:.82rem;}
+  }
+
+  /* ---- print: a volume, in print ---- */
+  @media print{
+    html,body{background:#fff;color:#000;}
+    body{font-size:11.5pt;line-height:1.5;}
+    body::before,#progress,#topbar{display:none !important;}
+    .frame{max-width:none;padding:0;}
+    .measure,.plate-open,.plate-body,.ask,.edge,.coda{max-width:34rem;}
+    a{text-decoration:none;}
+    .plate{break-before:page;border-top:none;padding-top:0;}
+    .fig,figure{break-inside:avoid;}
+    .plate-no{color:#bbb;}
+    .reveal{opacity:1 !important;transform:none !important;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#ne-contents">Complete contents</a><a href="../editions.html#volume-contract">The Contract · both editions</a><a href="../essays/numeraire-xv-the-contract.html">Expanded essays</a></div></nav>
+<div id="progress" aria-hidden="true"></div>
+<div id="topbar" aria-hidden="true"><div class="tb-in">
+  <span class="tb-l">Numéraire <span>· The Contract</span></span>
+  <span class="tb-r" id="tb-plate">Volume XV</span>
+</div></div>
+
+<div class="frame">
+
+  <header class="vol-title">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="rise d1">
+      <span class="imprint">Numéraire</span>
+      <div class="vol-no">Volume XV &middot; № XV</div>
+    </div>
+    <h1 class="vol-name rise d2">The Contract</h1>
+    <div class="vol-sym rise d3" aria-hidden="true"><span>Ct</span></div>
+    <div class="vol-coords rise d3">Group IV &middot; The Institutions</div>
+    <p class="vol-gloss rise d3">the law of the deal</p>
+    <p class="vol-epigraph rise d4">
+      <span class="lead">The question of the volume</span>
+      No contract can foresee everything — what fills the gaps it leaves?
+    </p>
+    <div class="vol-status rise d4">in print &middot; twelve plates</div>
+  </header>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <section class="argument reveal" aria-labelledby="arg-h">
+    <div class="part-head">
+      <div class="part-kicker">Numéraire &middot; Volume XV</div>
+      <h2 class="part-title" id="arg-h">The Argument</h2>
+    </div>
+    <p class="lede">A market is a place of exchange, and the simplest exchange is simultaneous: I hand you the coin as you hand me the bread, and neither of us need trust the other, for neither is ever exposed. But almost nothing that matters in an economy is simultaneous. The work is done before the wage is paid, the goods shipped before the invoice clears, the house built before the loan is repaid, the career staked on a firm before the firm has shown what it will become. Wherever performance and counter-performance are separated in time, one party must go first, and trust that the other will follow — and it is into this gap, between the deed done and the return awaited, that the contract enters. The contract is the institution by which a promise is made to bind, so that the one who goes first may rely on the one who comes after; it is the device that lets us reach across time and cooperate with strangers we have no other reason to trust. To study it is to ask how a mere form of words comes to bind the future, and what happens in all the future the words could not foresee.</p>
+    <p>That a promise should bind at all is no small thing, and no natural one. A promise is only words; what gives it force? In an earlier world the answer was the oath, the honor of the man who swore, the shame or the vengeance that would follow its breaking; my word was my bond because to break it was to be dishonored. The contract is the descendant of the oath, but its force is no longer honor — it is law. A contract is a promise the law will enforce, and behind it stands the whole apparatus of the state that <em>The Rule</em> described: the court that will hear the complaint, the judgment that will issue, the sheriff who will, in the last resort, seize the goods or garnish the wage. The bond of the word has been socialized, taken out of the hands of the swearer and his honor and placed in the hands of an institution that will make the promise good whether the promisor wishes it or not. This is the first thing the volume must hold: that the binding force of a contract is not in the paper but in the public power that stands behind it, and that the contract is therefore, like money and tax and the rule itself, an institution — a thing the community builds to make a certain kind of cooperation possible.</p>
+    <aside class="pull">The contract is the device that lets us reach across time and cooperate with strangers we have no other reason to trust — and its force is not in the paper, but in the public power that stands behind the word.</aside>
+    <p>What this institution makes possible is commitment, and commitment is worth more than it first appears. To be able to bind oneself credibly — to make a promise the other can rely on — is not a limitation but a power, for it is what allows the other to do his part, and so allows the cooperation that benefits them both. Without the capacity to commit, the one who must perform first will not perform, foreseeing that the other, once served, has every reason to renege; and the exchange that would have enriched them both never happens. The contract solves this, the oldest problem of cooperation across time, by making the second mover's promise as good as done — and in doing so it unlocks the vast web of deferred and conditional exchanges on which a developed economy runs. The whole structure of investment, credit, employment, and trade rests on the ability to make promises that bind; an economy of none but simultaneous exchanges would be a poor and primitive thing.</p>
+    <p>And yet the central fact about contracts, the one from which this volume takes its question, is that they cannot do the thing we ask of them completely. A complete contract — one that specified what each party should do in every possible future, that left nothing to chance or to later dispute — is an impossibility, for the futures are too many to foresee, too subtle to describe, and too costly to negotiate even where foreseen. Every real contract is therefore incomplete, shot through with gaps, silent on most of what may come to pass; and the question of the contract is really the question of what fills those gaps. Part of the answer is the law itself, which supplies default terms where the parties were silent, reads in obligations of good faith, and asks what reasonable parties would have wanted — a vast unwritten contract beneath the written one. But the larger part of the answer is not law at all. It is trust, reputation, and the relationship: the knowledge that the parties must deal with each other again, that a name once spoiled is dear to restore, that most of commerce runs not on the threat of the lawsuit but on the value of the ongoing tie. <em>The Firm</em> gave one answer to incompleteness — ownership, the residual control that decides what the contract did not; this volume gives the others, the law's defaults and the parties' trust, and finds that the written contract floats always on a sea of the unwritten.</p>
+    <p>Because the contract is a form into which any content may be poured, it is also a vessel of power, and not only of cooperation. The law's grand phrase is freedom of contract, and the freedom is real; but where one party needs the deal far more than the other, or where the terms are dictated in fine print no one reads and offered take-it-or-leave-it, the form of free agreement may clothe a substance of command. The employment contract that <em>The Wage</em> and <em>The Firm</em> examined, the standard form that governs the consumer, the lease and the loan and the licence — these are contracts in which one side writes and the other only signs, and the freedom of the signer is the freedom to accept or to do without. The history of contract law is in part the history of a struggle over this: of courts and legislatures deciding which agreements to enforce as written and which to refuse, where formal freedom must yield to a floor of fairness, and what — the sale of oneself, of one's vote, of one's organs — may not be made the subject of a contract at all, however willing the parties. The contract has limits, and the drawing of them is a moral and political act, not a technical one.</p>
+    <p>The thesis, then, is that the contract is the institution of the enforceable promise — the device by which we bind the future and make cooperation across time possible — and that it is at once indispensable, incomplete, and contested. Indispensable, because without it the deferred exchanges that constitute an economy could not occur. Incomplete, because no words can foresee the future, so that every contract is finished not by its own terms but by the law's defaults and the parties' trust. And contested, because the form of free agreement may carry a substance of power, so that what the contract enforces is always also a question of whose terms, and at whose mercy. The contract completes the institutions of this group — money the medium of exchange, tax the public claim upon it, the rule the design of the market, the firm its planned interior, and the contract the binding promise that lets exchange reach across time — and it shares their deepest character: that it is a thing the community made, to make a certain cooperation possible, and could have made, and may yet make, otherwise.</p>
+  </section>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <section class="contents reveal" aria-labelledby="toc-h">
+    <div class="part-head">
+      <div class="part-kicker">The twelve plates of this volume</div>
+      <h2 class="part-title" id="toc-h">The Plates</h2>
+    </div>
+    <ol class="toc">
+      <li><a href="#plate-i"><span class="toc-n">i</span><span class="toc-t">The Word</span><span class="toc-g">the contract as enforceable promise; the bond of the word</span></a></li>
+      <li><a href="#plate-ii"><span class="toc-n">ii</span><span class="toc-t">The Mast</span><span class="toc-g">commitment; binding the future, and the freedom in being bound</span></a></li>
+      <li><a href="#plate-iii"><span class="toc-n">iii</span><span class="toc-t">The Seal</span><span class="toc-g">what makes a promise binding; consideration and the bargain</span></a></li>
+      <li><a href="#plate-iv"><span class="toc-n">iv</span><span class="toc-t">The Remedy</span><span class="toc-g">breach and its remedies; expectation damages; the efficient breach</span></a></li>
+      <li><a href="#plate-v"><span class="toc-n">v</span><span class="toc-t">The Unforeseen</span><span class="toc-g">incompleteness; the impossibility of the complete contract</span></a></li>
+      <li><a href="#plate-vi"><span class="toc-n">vi</span><span class="toc-t">The Default</span><span class="toc-g">the law's gap-fillers; default rules, implied terms, good faith</span></a></li>
+      <li><a href="#plate-vii"><span class="toc-n">vii</span><span class="toc-t">The Handshake</span><span class="toc-g">relational contracts; trust, reputation, the shadow of the future</span></a></li>
+      <li><a href="#plate-viii"><span class="toc-n">viii</span><span class="toc-t">The Adhesion</span><span class="toc-g">the standard form; the fine print; the fiction of agreement</span></a></li>
+      <li><a href="#plate-ix"><span class="toc-n">ix</span><span class="toc-t">The Limit</span><span class="toc-g">what cannot be contracted; the coerced, the inalienable, the void</span></a></li>
+      <li><a href="#plate-x"><span class="toc-n">x</span><span class="toc-t">The Warranty</span><span class="toc-g">contracting under asymmetry; the warranty, the signal, the guarantee</span></a></li>
+      <li><a href="#plate-xi"><span class="toc-n">xi</span><span class="toc-t">The Compact</span><span class="toc-g">the social contract; the polity as agreement, and the fiction of consent</span></a></li>
+      <li><a href="#plate-xii"><span class="toc-n">xii</span><span class="toc-t">The Bond</span><span class="toc-g">the tie that binds; promise, trust, and cooperation across time</span></a></li>
+    </ol>
+  </section>
+
+  <main class="plates" id="plates">
+
+    <!-- ===================== PLATE I ===================== -->
+    <section class="plate reveal" id="plate-i" data-label="Plate i · The Word">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">i</div>
+        <p class="plate-kicker">Plate the First &middot; The Institutions &middot; № XV</p>
+        <h3 class="plate-title">The Word</h3>
+        <p class="plate-gloss">the contract as enforceable promise; the bond of the word</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>how does a mere form of words come to bind — and what stands behind it when it does?</q></div>
+      <div class="plate-body">
+        <p>A contract is, at bottom, a promise the law will enforce; and the place to begin is with the strangeness that a promise should bind at all. A promise is nothing but words — a sound in the air, a mark on a page — and it concerns the future, which has not yet happened and over which the speaker has no certain power. How, then, does the saying of words now create an obligation that grips the speaker tomorrow? The older world had an answer: the oath. A promise bound because the one who made it had pledged his honor, sworn before his God or his fellows, and to break it was to be forsworn — dishonored, shamed, perhaps damned, perhaps the object of a wronged party's vengeance. The bond of the word was the swearer's own person, his standing in the eyes of those who mattered to him, and the promise held because the cost of breaking it fell on who he was.</p>
+        <p>The contract is the descendant of the oath, but the source of its binding force has changed, and the change is everything. A contract binds not because the promisor's honor is staked upon it but because the law will make him perform. Behind the contract stands the whole apparatus of the state that <em>The Rule</em> anatomized: the court that will hear the complaint, the judgment that will issue against the breacher, and, in the last resort, the officer who will seize his goods or garnish his wages to satisfy it. The bond of the word has been socialized — lifted out of the keeping of the individual's honor and placed in the keeping of an institution that will make the promise good whether the promisor, when the time comes, wishes it or not. This is the first thing to fix about the contract, and the thing that makes it an institution rather than a mere agreement: that its force is not in the paper, nor in the characters of the parties, but in the public power that has undertaken to enforce the promises its citizens make to one another.</p>
+        <p>That promising itself is a human institution, and not a fact of nature, is a point the philosophers reached long before the economists. David Hume called promising an artificial virtue — artificial not in the sense of false, but in the sense of made, a convention humanity adopted because it serves us, not a duty written into the structure of things. There is, on this view, no obligation of promises antecedent to the practice of promising; the practice creates the obligation, and we maintain the practice because a world in which words can bind the future is a world in which we can do vastly more together than a world in which they cannot. The contract takes this useful convention and gives it the further force of law, so that what began as a moral practice sustained by conscience and reputation becomes a legal institution sustained by the courts. At the root of the law of the deal, then, lies an invention — the invention of the binding promise — and like the other inventions of this group it is a thing made to make cooperation possible.</p>
+        <aside class="pull">A promise is only words. What makes a contract bind is not the swearer's honor, as once it was, but the public power that has taken the bond of the word into its own keeping.</aside>
+        <p>What the socialized promise makes possible, above all, is the cooperation of strangers — and this is why it matters so for the economy. The plates that follow will trace what the contract does and where it fails, but the foundation is here: that by lodging the enforcement of promises in an impersonal institution, a society lets its members rely on one another without the personal knowledge that honor required. I need not know your character, your kin, or your faith to contract with you; I need only know that the same law binds us both. The bond of the word, once the most personal of things, has become the most impersonal — and on that transformation rests the extended market, the market of strangers, that no economy of honor among intimates could ever have reached.</p>
+        <aside class="edge"><span class="lead">the edge</span> The move from the oath to the contract — from a promise bound by honor to one bound by law — is one of the quiet revolutions on which the modern economy rests, and it is worth pausing over what was gained and what was changed. What was gained is the capacity of strangers to trust one another. In a world where promises bind only by honor, one can safely deal only with those whose honor one can judge — kin, neighbors, the members of one's guild or faith — and commerce is confined within the circle of the known. The legal enforcement of promises breaks the circle: it lets me contract with a stranger on the far side of the world, whom I will never meet and whose honor I cannot assess, because behind his promise stands not his character but a court that will make him perform. The impersonal market, the market of strangers, is built on this socialization of the bond, and the prosperity it brings would be impossible without it. But something changed as well. When the bond was honor, to keep a promise was a matter of who one was; when the bond is law, to keep a promise becomes a matter of what one can be made to do, and the question shifts from the promisor's virtue to the promisee's remedy — from whether he will keep his word to what may be recovered if he does not. The contract makes promising safe for strangers by making it, in a sense, no longer quite about the promise; and the trust it enables is a trust not in persons but in institutions, which is the characteristic trust, and the characteristic vulnerability, of the modern world.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE II ===================== -->
+    <section class="plate reveal" id="plate-ii" data-label="Plate ii · The Mast">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">ii</div>
+        <p class="plate-kicker">Plate the Second &middot; The Institutions &middot; № XV</p>
+        <h3 class="plate-title">The Mast</h3>
+        <p class="plate-gloss">commitment; binding the future, and the freedom in being bound</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if binding yourself is a loss of freedom, why is the power to do it worth so much?</q></div>
+      <div class="plate-body">
+        <p>What the binding promise gives us is commitment, and to see why commitment is precious we must look at the problem it solves — the oldest problem of cooperation across time. Suppose two parties could both gain from an exchange in which one performs first and the other repays after: the worker labors and is paid at the month's end, the merchant ships and is settled on delivery, the lender advances and is repaid in a year. The trouble is that the second party, once the first has performed, is tempted to keep the benefit and give nothing back; and the first party, foreseeing this, declines to perform at all. The cooperation that would have enriched them both is strangled by the very rationality of the parties, each reasoning correctly about the other. The figure draws this in its barest form.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ff1t ff1d">
+              <title id="ff1t">The problem of exchange across time</title>
+              <desc id="ff1d">A game tree: the first party chooses whether to perform; if it does, the second party chooses whether to reciprocate or renege. Without enforcement the second party reneges, so the first does not perform, and no trade occurs.</desc>
+              <line x1="210" y1="68" x2="120" y2="153" stroke="var(--ink)" stroke-width="1.1"/>
+              <line x1="230" y1="69" x2="290" y2="141" stroke="var(--ink)" stroke-width="1.1"/>
+              <line x1="292" y1="160" x2="256" y2="210" stroke="var(--ink)" stroke-width="1.1"/>
+              <line x1="308" y1="160" x2="369" y2="210" stroke="var(--ink)" stroke-width="1.1"/>
+              <circle cx="112" cy="158" r="5" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.1"/>
+              <circle cx="250" cy="216" r="5" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.1"/>
+              <circle cx="375" cy="216" r="5" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.1"/>
+              <circle cx="220" cy="60" r="13" fill="var(--ink)" stroke="var(--ink)" stroke-width="1.1"/>
+              <circle cx="300" cy="150" r="13" fill="var(--ink)" stroke="var(--ink)" stroke-width="1.1"/>
+              <text class="lbl" x="220" y="64.5" text-anchor="middle" fill="var(--paper)">A</text>
+              <text class="lbl" x="300" y="154.5" text-anchor="middle" fill="var(--paper)">B</text>
+              <text class="lbl-sm" x="158" y="104" text-anchor="middle">don't</text>
+              <text class="lbl-sm" x="273" y="100" text-anchor="middle">perform</text>
+              <text class="lbl-sm" x="238" y="196" text-anchor="middle">reciprocate</text>
+              <text class="lbl-sm" x="352" y="186" text-anchor="middle">renege</text>
+              <text class="lbl-sm" x="110" y="178" text-anchor="middle">no trade</text>
+              <text class="lbl-sm" x="110" y="192" text-anchor="middle">0 , 0</text>
+              <text class="lbl-sm" x="250" y="236" text-anchor="middle">trade</text>
+              <text class="lbl-sm" x="250" y="250" text-anchor="middle">2 , 2</text>
+              <text class="lbl-sm" x="372" y="236" text-anchor="middle">A cheated</text>
+              <text class="lbl-sm" x="372" y="250" text-anchor="middle">−1 , 3</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 1.</span> The problem of exchange across time. A would gain by performing if B then reciprocates — the outcome worth two to each. But once A has performed, B does better to renege, keeping the benefit for a payoff of three while A loses one. Reasoning this through, A declines to perform, and the parties are left at no trade, worth nothing to either, though both would have preferred the cooperation. Enforcement breaks the trap: a contract that penalizes reneging lowers B's payoff from it below the payoff from reciprocating, so B performs, A trusts, and the trade that rationality forbade becomes the rational course.</figcaption>
+        </figure>
+        <p>The contract is what breaks the trap. By making the second party's promise enforceable — by lowering, through the threat of damages, the payoff to reneging below the payoff to performing — it removes the temptation that strangled the deal, so that the second party reciprocates, the first party trusts, and the cooperation that pure reason forbade becomes the course that pure reason now commends. The contract does not change the parties' selfishness; it changes their incentives, rearranging the payoffs so that keeping the promise is the selfish thing to do. And in doing so it unlocks the entire structure of deferred and conditional exchange on which a developed economy depends: the investment made today against a return promised tomorrow, the credit advanced against repayment, the long employment, the trade across oceans and seasons. The capacity to make a binding promise is the hinge on which intertemporal cooperation turns, and an economy without it would be confined to the hand-to-hand exchange of the marketplace, a poor thing beside what the binding promise makes possible.</p>
+        <p>Seen from the side of the promisor, this capacity wears a paradoxical aspect, and the paradox is the plate's title. To make a binding promise is to give up a freedom — the freedom to change one's mind, to renege when reneging would profit. Yet the power to surrender that freedom is itself a freedom, and frequently the more valuable one. Thomas Schelling built a science on the observation that the power to constrain another may rest on the power to bind oneself, and Homer had seen it long before: Ulysses, who longed to hear the Sirens yet knew their song was death, had himself lashed to the mast and his oarsmen's ears stopped with wax, and so could do what no free man could — hear the song and live. He bought an experience by surrendering, in advance, his freedom to act on it. The contract is the mast of economic life, the device by which we bind ourselves so that we may safely be relied upon, and so may do together what no party free to renege could ever undertake.</p>
+        <aside class="pull">To bind yourself is to lose a freedom — the freedom to change your mind. But it is to gain a greater one: the power to be relied upon, and so to be dealt with at all.</aside>
+        <p>This inverts the picture of freedom we are apt to carry into economics, and the inversion matters for everything that follows. We tend to equate freedom with the keeping-open of options and to see every promise as a cage. But the party who can only ever choose, and never commit, is shut out of every cooperation that asks one side to rely on the other's future conduct — which is most of economic life. The borrower who might repudiate at will cannot borrow; the firm that might always renege cannot raise capital or hire on long terms; the nation that might always retreat cannot deter. To bind the future is to make the future bankable, and the contract is the institution through which we do it. The plates that follow will examine the machinery by which the law makes promises bind, the gaps that machinery cannot reach, and the power that hides within the form of free agreement; but the foundation is this — that the binding promise is less a constraint upon freedom than the instrument of a deeper freedom, the freedom to give one's word and have it count.</p>
+        <aside class="edge"><span class="lead">the edge</span> The commitment the contract makes possible reverses our usual intuition about freedom, and the reversal is worth dwelling on. We are inclined to equate freedom with the keeping-open of options, and to see any binding of the future as a diminishment — the fewer the promises, the freer the man. But Schelling's insight, and Ulysses' before him, is that the power to bind oneself is itself a freedom, and often the more valuable one. The runner who could at any moment leave the race cannot anchor a relay; the nation that might always retreat cannot credibly deter; the borrower who could repudiate at will cannot borrow. To be capable only of choice, and never of commitment, is to be excluded from every cooperation that requires one party to rely on another's future conduct — which is to say, from most of economic life. The contract is the institution that lets us trade a slice of our future freedom, the freedom to renege, for something we want more: the standing to be relied upon, and so to be dealt with. This is why the freedom of contract includes, essentially, the freedom to bind oneself, and why a doctrine of freedom that recognized only the right to choose, and not the right to commit, would impoverish the very people it meant to liberate. The deepest freedom the market offers may be the freedom to give one's word and have it count.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE III ===================== -->
+    <section class="plate reveal" id="plate-iii" data-label="Plate iii · The Seal">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">iii</div>
+        <p class="plate-kicker">Plate the Third &middot; The Institutions &middot; № XV</p>
+        <h3 class="plate-title">The Seal</h3>
+        <p class="plate-gloss">what makes a promise binding; consideration and the bargain</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>which promises does the law enforce, and why not all of them?</q></div>
+      <div class="plate-body">
+        <p>Not every promise is a contract, and the law has always needed some way to mark the promises it will enforce off from the promises it will not. The common law's chief device is the doctrine of consideration, which holds that a promise binds only when it is part of a bargain — given in exchange for something, the consideration, which is the price of the promise and the thing the promisor gets in return. A promise for which nothing is given back — the gift promise, the gratuitous undertaking to hand over a sum or render a service for nothing — is, as a rule, not enforceable, however solemnly it was made. The law will compel you to keep a promise you sold; it will leave you free to break one you merely gave. To bind the law to your word, you must have been paid for it.</p>
+        <p>The rationale is not that the gift promise is less sincere, but that the law of contract is the law of the market, and its proper business is exchange. The bargain requirement performs several offices at once. It marks the serious from the casual, for a promise made as part of a deal, with something staked on each side, is unlikely to be the idle word of a moment. It separates the domain of exchange, where mutual benefit is the rule and enforcement the natural support, from the domain of gift and affection, where generosity is its own warrant and the law's coercion would be an intrusion. And it leaves evidence, for a bargain involves an exchange that can be seen and proved, where a bare promise leaves only the contested memory of words. Before consideration did this work, formalities did it — above all the seal, the wax and the signature that marked a promise as binding regardless of any exchange. Lon Fuller saw that such formalities serve three functions that the law still needs: they are evidentiary, proving a promise was made; cautionary, making the promisor pause and feel the weight of binding himself; and channeling, signaling that this utterance, unlike the day's other words, is meant to be a legal act.</p>
+        <p>Yet the bargain principle, for all its sense, can work injustice, and the law has grown a second principle beside it to catch what it misses. Sometimes a person stakes much on a promise that was freely given — gives up a job, spends a sum, alters his life in reliance on an assurance for which he paid nothing — and to let the promisor walk away unscathed offends justice plainly. The doctrine of promissory estoppel answers this: a promise that foreseeably induces reasonable reliance may bind, even without consideration, so far as is needed to prevent injustice. With it, reliance joins bargain as a ground of obligation, and the enforceable promise is no longer only the promise that was bought, but also the promise that was trusted. The history of contract, as Atiyah told it, is in part the rising and falling rivalry of these two principles, the bargain and the reliance, each claiming to say why a promise should bind.</p>
+        <aside class="pull">The law enforces deals, not favors. A promise paid for binds; a promise freely given, as a rule, does not — and the line between them is drawn by doctrine, not by nature.</aside>
+        <p>Beneath the doctrines lies the question they answer without ever quite settling: why does the law enforce promises at all? Three answers contend. The will theory says the law enforces a promise because the promisor willed it so — bound himself by his own free choice — and the law does no more than hold him to his self-imposed obligation, out of respect for his autonomy. The reliance theory says the law enforces a promise to protect the one who relied on it, sparing him the harm of a trust betrayed. And the economic theory says the law enforces promises because doing so sustains the institution of binding promise on which all intertemporal cooperation depends — that we enforce promises not chiefly to honor wills or shield reliers but because a world where words can bind is a world in which we can all do more. The law's actual rules are never purely the issue of any one of these; they are a shifting compound of all three. And the proportions it strikes — how far it enforces to honor the will, how far to protect reliance, how far to serve the general welfare — are a choice, remade in every generation, about what the binding of the word is finally for. The boundary of the enforceable promise is drawn, not found.</p>
+        <aside class="edge"><span class="lead">the edge</span> The requirement that a promise be bought before the law will enforce it draws a revealing line through the world of human undertakings — the line between exchange and gift, between the deal and the favor. The law, by and large, will compel you to keep a promise for which you received something in return, and leave you free to break one you made from pure generosity; the bargain binds, the gift does not. This is not because the gift promise is less sincerely meant — often it is more so — but because the law of contract is the law of the market, and its business is the enforcement of exchanges, not the policing of kindness. There is wisdom in the restraint: a law that dragged every broken invitation and unkept favor into court would be intolerable, and the bargain requirement keeps the law's coercion where coercion belongs, in the realm of deliberate, mutual, priced commitment. But the line has a cost, and the reliance principle grew up to soften it, for sometimes a person stakes much on a promise freely given, and to let the promisor walk away works a real injustice. The contest between the bargain principle and the reliance principle — between enforcing promises because they were paid for and enforcing them because they were trusted — runs through the whole law of contract; and beneath it lies the deepest question, whether the law enforces promises to honor the will of the one who made them, to protect the one who relied, or simply to sustain the institution of promising on which our cooperation depends. The proportions the law strikes among these are a choice, remade in every age.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE IV ===================== -->
+    <section class="plate reveal" id="plate-iv" data-label="Plate iv · The Remedy">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">iv</div>
+        <p class="plate-kicker">Plate the Fourth &middot; The Institutions &middot; № XV</p>
+        <h3 class="plate-title">The Remedy</h3>
+        <p class="plate-gloss">breach and its remedies; expectation damages; the efficient breach</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if a contract can be broken by paying for the breach, in what sense must it be kept?</q></div>
+      <div class="plate-body">
+        <p>A promise binds, the plates so far have said; but what does the law actually do when a promise is broken? The answer reveals more about the nature of the obligation than any amount of talk about its solemnity. The law's usual response to breach is not to compel the breacher to perform but to make him pay — expectation damages, a sum of money calculated to put the promisee where performance would have left him, to give him the benefit of his bargain in cash since he cannot have it in kind. The law could, in principle, order specific performance, commanding the breacher to do the very thing he promised, and for unique things — a particular parcel of land, an irreplaceable painting — it sometimes does. But for most contracts it does not; it sets a price on breach and leaves the breacher free to pay it. To enforce a contract, in the ordinary case, is not to insist that it be kept but to compensate the disappointed party when it is not.</p>
+        <p>Oliver Wendell Holmes drew the deflationary conclusion with a bluntness that still startles: the duty to keep a contract at common law, he wrote, means a prediction that you must pay damages if you do not keep it, and nothing else. On this view the contractual obligation is not a command to perform but an option — perform, or pay the promisee's loss — and the promisor who breaches and pays has done all the law asks of him. The figure shows why an economist would see in this not a defect but a virtue. Let the promisee value performance at some amount, and let the promisor's cost of performing rise — because, say, a third party has appeared who wants the promised goods more. So long as the cost of performing stays below the promisee's value, performance creates value and the promisor performs. But once the cost of performing exceeds the value to the promisee, performance destroys value, and the efficient course is to breach.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ff2t ff2d">
+              <title id="ff2t">The efficient breach</title>
+              <desc id="ff2d">Performance is efficient while its cost stays below the promisee's value; once the cost of performing exceeds that value, breaching and paying expectation damages becomes the efficient course.</desc>
+              <line class="ax" x1="60" y1="252" x2="404" y2="252"/>
+              <line class="ax" x1="60" y1="252" x2="60" y2="44"/>
+              <line class="curve2" x1="60" y1="150" x2="390" y2="150"/>
+              <line class="curve" x1="70" y1="225" x2="370" y2="80"/>
+              <line class="guide" x1="225" y1="252" x2="225" y2="150"/>
+              <circle cx="225" cy="150" r="2.6" fill="var(--ink)"/>
+              <text class="lbl-sm" x="330" y="92" text-anchor="middle">cost of performing</text>
+              <text class="lbl-sm" x="116" y="142" text-anchor="middle">value (= damages)</text>
+              <text class="lbl-i" x="135" y="236" text-anchor="middle">perform</text>
+              <text class="lbl-i" x="308" y="236" text-anchor="middle">breach &amp; pay</text>
+              <text class="lbl" x="225" y="266" text-anchor="middle">C = V</text>
+              <text class="lbl-ax" x="330" y="271" text-anchor="middle">PERFORMANCE COST</text>
+              <text class="lbl-ax" transform="rotate(-90 28 150)" x="28" y="150" text-anchor="middle">VALUE</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 2.</span> The efficient breach. The flat line is the promisee's value of performance, which expectation damages restore. The rising line is the promisor's cost of performing, climbing as a better use of his resources appears. While cost lies below value, performance creates value and the promisor performs; once cost exceeds value, performance would destroy value, and the promisor breaches and pays the damages V. Because the damages equal the promisee's loss, the promisor breaches exactly when breach is efficient — when the goods are worth more elsewhere — and the law's money remedy lets the resources flow to their highest use.</figcaption>
+        </figure>
+        <p>Expectation damages are what make the private decision to breach track the social interest. Because the breacher must pay the promisee's full loss, he keeps the gain from breaching only when that gain exceeds the loss he must cover — which is exactly the case in which breach moves the goods to someone who values them more, leaving the promisee whole and the world richer by the difference. The seller who has promised widgets to one buyer for a hundred, and is offered a hundred and thirty by another who needs them more, ought to breach, pay the first buyer the ten he lost, and let the widgets go where they are worth most. The law's preference for damages over forced performance, on this account, is not a weakness in its respect for promises but a mechanism for keeping resources flowing to their highest use, with the promisee protected by the damages and no one made worse off.</p>
+        <aside class="pull">The law does not, as a rule, force you to keep your contract; it makes you pay if you don't. A promise enforced by damages is less a command than a price — perform, or compensate.</aside>
+        <p>Against this stands an older and stubborner intuition, that a promise is meant to bind and not to be priced. To treat one's word as an option, kept or broken as the ledger dictates, is — the moralists of contract insist — to drain it of the very quality that made it a promise; the seller who breaches has not merely reallocated goods efficiently but broken his word, and the cash he pays does not undo the breach so much as buy his way out of it. Nor is the economic story as clean as it looks, for expectation damages routinely undercompensate: they rarely cover the cost and delay of litigation, the losses too diffuse to prove, the value to the promisee that no court can price, or the trust that breach destroys. If damages fall short of the true loss, then breach the law calls efficient may not be, and the promisor who breaches captures a gain that the promisee, undercompensated, has partly paid for. The dispute is not merely philosophical, for the two views recommend different remedies — the economic, damages and the liberty to breach; the moral, performance and the duty to keep — and the law's choice between them settles what a contract most deeply is. Where the remedy is damages, the contract is an option; where it is performance, the contract is a bond. The bindingness of the binding promise turns out to be not a fact about promises but a decision about remedies.</p>
+        <aside class="edge"><span class="lead">the edge</span> Holmes's deflationary account of the contract — that the duty to perform is merely a prediction one must pay damages if one does not — captures a real feature of the law and offends a real intuition, and the tension between them is instructive. The feature is real: the law, for most contracts, does not compel performance but awards money, so that the promisor who breaches and pays has, in the law's eyes, done all that was required, and the obligation turns out to be an option to perform or to pay. From the economist's vantage this is a virtue, for it lets resources flow to their highest use — if a third party values the goods more, the seller should breach, compensate the buyer's loss, and let them go where they are worth most, leaving everyone at least as well off and the world richer by the difference. But the intuition it offends is also real: that a promise is meant to bind, not to be priced; that to treat one's word as an option, kept or broken as profit dictates, is to empty it of the quality that made it a promise. The two views are not merely academic, for they recommend different remedies — damages and the freedom to breach, or performance and the duty to keep — and the law's choice between them decides what a contract most deeply is. Where the remedy is damages, the contract is an option; where it is performance, the contract is a bond. The bindingness of the binding promise is thus not a fact about promises but a decision about remedies, and the law, in choosing how to enforce, chooses what it is enforcing.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE V ===================== -->
+    <section class="plate reveal" id="plate-v" data-label="Plate v · The Unforeseen">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">v</div>
+        <p class="plate-kicker">Plate the Fifth &middot; The Institutions &middot; № XV</p>
+        <h3 class="plate-title">The Unforeseen</h3>
+        <p class="plate-gloss">incompleteness; the impossibility of the complete contract</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>why can no contract be complete — and is its incompleteness a flaw, or a choice?</q></div>
+      <div class="plate-body">
+        <p>We come now to the fact from which this volume took its question, and around which the law of the deal is truly organized: that no contract can foresee everything, and every contract is therefore incomplete. The reason is not laziness or haste but the structure of the world and the mind. The futures that may befall a contract are too many to enumerate — the price that triples, the supplier that fails, the war, the flood, the regulation, the thousand contingencies no one thought of until they arrived. The human mind, as Herbert Simon insisted, is boundedly rational, able to foresee and to reckon with only a fraction of what may come. Even the contingencies one could foresee are mostly too costly to address, the lawyer's hours and the negotiator's patience exhausted long before the rare cases are reached. And even those one troubles to specify may prove unenforceable, for a court can act only on what it can verify, and much that the parties themselves can see — the effort given, the quality intended, the spirit of the thing — no court can confirm. The complete contingent contract of ideal theory, which names an act for every state of the world, is a fiction as thorough as the frictionless market, and impossible for the same kind of reason.</p>
+        <p>It follows that incompleteness is not merely a failing to be regretted but, within limits, a choice to be made well, and the figure shows the choosing. Each additional contingency a contract addresses yields some value — the protection it affords, the dispute it forecloses — but the value falls as one proceeds, for the likeliest and weightiest cases are specified first and the rest grow ever rarer and slighter. Each addition also costs something — the foreseeing, the drafting, the haggling — and the cost rises, for the contingencies that remain are the subtle and improbable ones, hardest to imagine and to pin in words. The rational contract is written up to the point where the marginal value of specifying one more thing just meets the marginal cost, and there it stops, leaving everything beyond deliberately blank. The gap is not an oversight; it is the region the parties wisely chose not to fill, because filling it would have cost more than it was worth.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ff3t ff3d">
+              <title id="ff3t">The optimal incompleteness of a contract</title>
+              <desc id="ff3d">The marginal value of specifying more contingencies falls while the marginal cost rises; they cross well short of full completeness, and everything beyond is left to the gap-fillers.</desc>
+              <line class="ax" x1="60" y1="252" x2="404" y2="252"/>
+              <line class="ax" x1="60" y1="252" x2="60" y2="44"/>
+              <line class="curve2" x1="70" y1="90" x2="380" y2="210"/>
+              <line class="curve" x1="70" y1="210" x2="380" y2="70"/>
+              <line class="guide" x1="213" y1="252" x2="213" y2="145"/>
+              <circle cx="213" cy="145" r="2.6" fill="var(--ink)"/>
+              <text class="lbl-sm" x="120" y="82" text-anchor="middle">value of specifying</text>
+              <text class="lbl-sm" x="340" y="82" text-anchor="middle">cost of specifying</text>
+              <text class="lbl-i" x="320" y="236" text-anchor="middle">left to the gap-fillers</text>
+              <text class="lbl" x="213" y="266" text-anchor="middle">c*</text>
+              <text class="lbl-ax" x="336" y="271" text-anchor="middle">COMPLETENESS →</text>
+              <text class="lbl-ax" transform="rotate(-90 28 150)" x="28" y="150" text-anchor="middle">VALUE · COST</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 3.</span> The optimal incompleteness of a contract. The value of specifying one more contingency falls as the likeliest cases are covered first; the cost of specifying rises as the remaining contingencies grow rarer and subtler. The two meet at c*, well short of complete, and the rational contract stops there. Everything to the right — the vast region of improbable, unverifiable, or trivial contingencies — is left deliberately blank, to be governed not by the contract's words but by whatever fills its gaps. Incompleteness is not the contract's failure; it is its design.</figcaption>
+        </figure>
+        <p>The consequence is that a contract is never the whole of the parties' relationship but only its visible skeleton, and that something must govern them in all the situations the document left blank — which is to say, in most situations that will actually arise. What governs them there is the subject of the plates immediately following. Part of it is the law itself, which supplies default terms where the parties were silent, reads in an obligation of good faith, and asks what reasonable parties would have intended — a vast unwritten contract beneath the written one. Part of it is trust and reputation and the value of the continuing relationship, which lead parties to deal fairly in the gaps without any compulsion to do so. And part of it, as <em>The Firm</em> showed, is ownership — the residual control that decides the unwritten when nothing else does. The contract proper is only the first and smallest of these; the others do the larger share of the work.</p>
+        <aside class="pull">Every contract is a sketch, not a blueprint. It specifies a core and leaves a vast penumbra blank — not from carelessness, but because no words could fill it, and it would not be worth it if they could.</aside>
+        <p>The gap that incompleteness opens is, moreover, not merely a blank to be filled but a danger to be managed, for it is exactly where opportunism lives. <em>The Firm</em> traced the holdup that the unspecified situation invites — the party who exploits the silence, who reads the gap in his own favor when the other is locked in and cannot easily walk away. Incompleteness and opportunism together make the central problem of contracting that Williamson placed at the heart of his economics: that because we cannot specify everything, and because some will exploit what we did not specify, the design of contracts and of the institutions around them must aim less at the impossible completeness than at safeguarding the parties through the gaps that must remain. The contract is necessarily a sketch; the art is in how the blank spaces are governed, and the gravest error in thinking about contracts is to mistake the skeleton for the body — to suppose that what the parties owe each other is exhausted by what they wrote, when what they wrote was never meant, and never able, to be complete.</p>
+        <aside class="edge"><span class="lead">the edge</span> The incompleteness of contracts is the point at which the legal and economic imagination of the contract — as a self-contained document, binding within its four corners — breaks against the world, and the break is fundamental rather than incidental. The ideal contract of theory specifies an action for every state of the world, leaving nothing to chance or to later dispute; it is the contractual counterpart of the complete market, and like the complete market it does not exist and cannot. The future holds more contingencies than any mind can foresee, more than any document can describe, and more than any court can verify; and even the contingencies we could specify are mostly not worth the cost of specifying, so that the rational contract is deliberately incomplete, a core of express terms surrounded by a penumbra left blank on purpose. This means a contract is never the whole of the parties' relationship but only its visible skeleton, and that what governs them in all the situations the document did not foresee must come from somewhere else: from the law that supplies defaults and reads in good faith, from the trust and reputation that make them deal fairly without compulsion, from the ownership that decides who has the last word. The contract floats on a sea of the unwritten, and the gravest error in thinking about it is to mistake the skeleton for the body — to imagine that the parties' obligations are exhausted by what they wrote, when what they wrote was never meant, and never able, to be complete.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE VI ===================== -->
+    <section class="plate reveal" id="plate-vi" data-label="Plate vi · The Default">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">vi</div>
+        <p class="plate-kicker">Plate the Sixth &middot; The Institutions &middot; № XV</p>
+        <h3 class="plate-title">The Default</h3>
+        <p class="plate-gloss">the law's gap-fillers; default rules, implied terms, good faith</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>when the contract is silent, who decides — and on what?</q></div>
+      <div class="plate-body">
+        <p>The gap that every contract must leave has to be governed by something, and the first of the things that govern it is the law itself. Where the parties have fallen silent — which is to say, across most of the situations they will actually meet — the law does not throw up its hands but supplies a term, reading into the agreement the provision the parties did not write. These supplied provisions are the default rules of contract, and they make up the great bulk of contract law. They are to be distinguished from the mandatory rules, the terms the law imposes whatever the parties may say — the prohibition of unconscionable bargains, the consumer protections that cannot be waived — which we shall meet at the volume's limit. The default rule is gentler: it governs unless the parties have agreed otherwise, an off-the-shelf term they are free to replace but, in the ordinary case, do not.</p>
+        <p>The law fills the gap by several instruments. It implies terms — some implied in fact, as what the parties must have intended though they did not say it; some implied in law, as what justice or policy requires whatever they intended, like the warranty that goods be fit for their ordinary use. It reads into every contract a duty of good faith and fair dealing, an obligation not to exploit the silences opportunistically nor to defeat the other's reasonable expectations — which is, in effect, the law's general weapon against the holdup that the gaps invite. And where no more definite term will serve, it imports the standard of the reasonable: the reasonable price where none was fixed, the reasonable time where none was set, the reasonable efforts the party must make. The reasonable is the law's all-purpose gap-filler, the device by which it pours a community's settled expectations into the blank the parties left. And when a dispute finally arises in a gap, it is a court that decides — interpreting, implying, applying good faith and reason — so that the contract's incompleteness is resolved, in the last resort, by the ex post discretion of a judge. What <em>The Firm</em> called residual control, the right to decide what the contract did not, the law keeps a share of for itself.</p>
+        <p>Why the law sets its defaults where it does is a question with more than one good answer. The natural thought is that defaults should be majoritarian — set to what most parties would have wanted, the term the typical pair would have chosen had they bothered to negotiate — so that the law's standard deal saves the parties the cost of writing the common terms themselves. But Ian Ayres and Robert Gertner showed that the law sometimes does better to set a penalty default, a term the parties do not want, precisely in order to force the better-informed party to speak. If one side knows something the other does not, a default set against the knowing party gives it a reason to reveal what it knows by contracting around the default — and the revelation may benefit everyone. The default rule, on this view, is not merely a gap-filler but an instrument, a lever the law can pull to shape what the parties disclose and negotiate. Either way, the setting of defaults is a choice, and a consequential one, about what the law supplies when the parties say nothing.</p>
+        <aside class="pull">Most of your contract was written by the law, not by you. Beneath the page you signed lies a vast unwritten contract of default terms, implied duties, and the standard of the reasonable — the deal the law supplies when you fall silent.</aside>
+        <p>The upshot is that the contract which actually governs the parties is far larger than the document they signed, and most of it was written not by them but by the law. The page bears the few terms that distinguish this deal from the standard one — the price, the quantity, the dates, the particular promises; everything else, the great unwritten remainder, is supplied by the default rules, the implied terms, the duty of good faith, and the standard of the reasonable that the law reads in. This rescues the contract from its own incompleteness, for if the parties had to write every term there could be almost no contracts at all; but it should temper the picture of the contract as a pure creature of the parties' will. The will draws the few lines that mark this deal as theirs; the law draws all the rest, against a background the parties did not choose and mostly never see. Yet the law is only the first and crudest of the gap-fillers, for courts are slow and costly and can act only on what they can verify, and much of what passes between contracting parties is beyond a court's reach entirely. For the subtle, the ongoing, and the unverifiable, the gap is filled not by the law at all, but by something the next plate must take up: the trust and reputation that govern the relationship the contract only partly describes.</p>
+        <aside class="edge"><span class="lead">the edge</span> The default rule is one of the law's quiet masterpieces, and it solves a problem the rhetoric of freedom of contract tends to hide. If contracts had to be complete to be enforceable — if the parties had to specify every term and foresee every contingency — there could be almost no contracts at all, for the cost of writing them would be ruinous and the task in any case impossible. The default rule rescues the contract from its own incompleteness by supplying, free of charge, the terms the parties did not write: the reasonable price where none was named, the duty of good faith where none was spelled out, the warranty of fitness the buyer never thought to demand. This means the contract that governs the parties is vastly larger than the document they signed, and that most of it was written not by them but by the law — by legislatures choosing what the standard deal should be, by courts deciding ex post what reasonable parties would have wanted. The freedom of contract, then, is exercised against a background the parties did not choose and mostly do not see: a default contract supplied by the state, which they may vary at the margins but rarely displace. There is no shame in this and much wisdom, for the alternative is not more freedom but no contracts; yet it should temper the picture of the contract as a pure creature of the parties' will. The will draws the few lines that distinguish this deal from the standard one; the law draws all the rest.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE VII ===================== -->
+    <section class="plate reveal" id="plate-vii" data-label="Plate vii · The Handshake">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">vii</div>
+        <p class="plate-kicker">Plate the Seventh &middot; The Institutions &middot; № XV</p>
+        <h3 class="plate-title">The Handshake</h3>
+        <p class="plate-gloss">relational contracts; trust, reputation, the shadow of the future</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if most deals never see a courtroom, what actually makes people keep them?</q></div>
+      <div class="plate-body">
+        <p>The law fills the gaps it can reach, but it cannot reach far, and the larger share of the work of holding a contract together is done by something the law books scarcely mention: trust, reputation, and the value of the continuing relationship. The point was made unforgettably by Stewart Macaulay, who in the early nineteen-sixties went and asked businessmen how they actually used contracts, and found that they used them remarkably little. They planned their dealings loosely, left much unspecified, and when disputes arose they settled them by negotiation and forbearance rather than by the terms of any document; lawsuits were rare and faintly disreputable, a last resort that usually ended the relationship it was meant to vindicate. The formal contract sat in a drawer, drawn up and forgotten; what governed the parties day to day was the expectation of continued dealing and the simple understanding that a person's word was his bond. The law of contract and the practice of contracting, Macaulay showed, were two different things.</p>
+        <p>Ian Macneil built the observation into a theory. The classical law imagined the contract as discrete — a single, self-contained exchange, planned in advance and enforced at law — but most real contracts, he argued, are relational: embedded in ongoing relationships and governed by the norms of those relationships, by flexibility and reciprocity and the expectation of a shared future, far more than by their written terms. The long-term supply agreement, the employment, the franchise, the joint venture — these are not transactions but relationships, and the document that nominally governs them is at most a frame within which the relationship does its work. The contract, on this view, is not the paper but the relation; and the relation is held together not by the threat of the court but by the parties' stake in its continuance.</p>
+        <p>The mechanism by which that stake enforces cooperation is the shadow of the future, and the figure draws it. In any relationship expected to continue, a party who is tempted to cheat must weigh the gain from cheating once against the value of all the future dealings that cheating would destroy — for the other party, discovering the betrayal, will deal with him no more. Cheating yields a fixed one-time gain that scarcely depends on how the future is valued. Cooperating yields a stream of future benefit whose worth rises the more the future is weighted. Where the future weighs little, the one-time gain wins and cooperation breaks down; but where the future weighs heavily enough — past the threshold the figure marks — the value of the continuing relationship exceeds the gain from any single betrayal, and honesty becomes simply the profitable course.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ff4t ff4d">
+              <title id="ff4t">The shadow of the future</title>
+              <desc id="ff4d">The payoff from cooperating rises with the weight placed on the future, while the one-time gain from cheating stays flat; past a threshold, cooperation becomes the more profitable course.</desc>
+              <line class="ax" x1="60" y1="252" x2="404" y2="252"/>
+              <line class="ax" x1="60" y1="252" x2="60" y2="44"/>
+              <line class="curve" x1="70" y1="225" x2="390" y2="70"/>
+              <line class="curve2" x1="70" y1="150" x2="390" y2="146"/>
+              <line class="guide" x1="229" y1="252" x2="229" y2="148"/>
+              <circle cx="229" cy="148" r="2.6" fill="var(--ink)"/>
+              <text class="lbl-sm" x="340" y="86" text-anchor="middle">cooperate</text>
+              <text class="lbl-sm" x="128" y="138" text-anchor="middle">cheat once</text>
+              <text class="lbl-i" x="135" y="236" text-anchor="middle">breaks down</text>
+              <text class="lbl-i" x="322" y="236" text-anchor="middle">cooperation sustained</text>
+              <text class="lbl" x="229" y="266" text-anchor="middle">δ*</text>
+              <text class="lbl-ax" x="312" y="271" text-anchor="middle">WEIGHT ON FUTURE (δ) →</text>
+              <text class="lbl-ax" transform="rotate(-90 28 150)" x="28" y="150" text-anchor="middle">PAYOFF</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 4.</span> The shadow of the future. The flat line is the gain from cheating once, a fixed prize that does not depend on the future. The rising line is the value of cooperating in a continuing relationship, which grows the more the future is weighted. To the left of δ*, where the future counts for little, cheating pays and cooperation collapses; to the right, where the relationship's future weighs heavily enough, its value exceeds any one-time gain, and the parties keep faith not from fear of the court but from the plain profit of the next deal. Reputation extends the logic beyond the pair: the cheat is known, and shunned by all.</figcaption>
+        </figure>
+        <p>What sustains the bilateral relationship, reputation sustains across a whole market. A party who cheats does not only forfeit the relationship he betrayed; he acquires a name, and in a trade where dealings are observed and talked of, a spoiled name closes other doors as well. The medieval merchants whom Avner Greif studied enforced honesty across great distances not by any court but by a network of reputation, in which the trader who cheated one was boycotted by all; the modern firm guards its brand for the same reason, because a reputation for fair dealing is an asset that cheating destroys. Reputation is the multilateral shadow of the future, and it lets trust extend even to parties who may never deal again, so long as each must deal with someone who will know. On this foundation of relationship and reputation rests the trust that is the true lubricant of exchange — the willingness to rely on another's performance without, or well beyond, any legal compulsion — and that some have counted, under the name of social capital, among the deepest determinants of which economies prosper.</p>
+        <aside class="pull">The contract sits in the drawer; the relationship does the work. Most deals are kept not for fear of the court but for the value of the next deal — the shadow of the future falling on the present.</aside>
+        <p>None of this makes the law superfluous. It is the backstop that makes trust safe to extend, the recourse when relationships fail or when the parties are strangers with no shared future to protect; the market of strangers that the first plate described could not exist without it. But the daily operation of the law of the deal is, it turns out, mostly not law at all. The gaps that no clause could close — the unverifiable quality, the unforeseen contingency, the adjustment that fairness requires — are filled not by the court but by the relationship and the reputation that ride upon it. The deepest enforcement of promises runs not through the sheriff but through the simple, powerful fact that we must deal with one another again. The contract is the frame and the rarely-summoned guarantor; trust is what holds the ordinary economy together.</p>
+        <aside class="edge"><span class="lead">the edge</span> That most contracts are kept without the law's compulsion, and most disputes settled without its judgment, is a finding that ought to unsettle the legal imagination of the contract, and Macaulay's quiet sociology unsettled it permanently. The law pictures the contract as a discrete instrument, planned to cover the contingencies and enforced, when broken, by the court; but the businesses Macaulay studied planned little, litigated less, and kept their bargains for reasons that had nothing to do with the threat of suit — because they wanted the relationship to continue, because a name once spoiled is dear to restore, because in a trade where everyone deals with everyone the cheat is soon known and shunned. The mechanism is the shadow of the future: in any relationship expected to continue, the gain from cheating once must be weighed against the value of all the dealings cheating would forfeit, and where the future weighs enough, honesty is simply the profitable course. This does not make the law superfluous, for it is the backstop that makes trust safe to extend and the last resort when relationships fail; the market of strangers could not exist without it. But it inverts the usual picture, for it shows that the law of the deal is, in its daily operation, mostly not law at all — that the gaps no clause could close are filled not by the court but by the relationship, and that the deepest enforcement of promises runs not through the sheriff but through the simple fact that we must deal with one another again. Trust, and not the lawsuit, is what holds the ordinary economy together; the contract is its frame, and its rarely-summoned guarantor.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE VIII ===================== -->
+    <section class="plate reveal" id="plate-viii" data-label="Plate viii · The Adhesion">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">viii</div>
+        <p class="plate-kicker">Plate the Eighth &middot; The Institutions &middot; № XV</p>
+        <h3 class="plate-title">The Adhesion</h3>
+        <p class="plate-gloss">the standard form; the fine print; the fiction of agreement</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>when one party writes all the terms and the other only signs, in what sense have they agreed?</q></div>
+      <div class="plate-body">
+        <p>The plates so far have treated the contract as a meeting of two wills, a bargain struck between parties who each had something to offer and something to withhold. A great share of the contracts that actually govern modern life are nothing of the kind. They are contracts of adhesion: one party — the bank, the insurer, the employer, the platform — writes every term in advance, the same terms for everyone, and offers them take-it-or-leave-it; the other party does not negotiate but merely adheres, signing the form or clicking the box or, having no real alternative, simply using the service and being deemed to have agreed. The terms arrive in fine print that no one reads and that studies confirm almost no one reads — the arbitration clause, the liability waiver, the fee schedule, the license to one's data — and that the adhering party could not have changed had he read every word. The freedom of the adhering party is the freedom to accept the terms entire or to do without the thing, and where the thing is a necessity and the terms are much the same wherever he turns, doing without is no freedom at all.</p>
+        <p>To call this agreement, and to enforce it as the free concurrence of two minds, strains the very concept on which contract is supposed to rest. The doctrine of contract presupposes mutual assent, a meeting of the minds upon the terms; but in the adhesion contract there is no meeting and, as to the terms, scarcely any minds — one party dictates and the other submits, and the law treats the submission as assent because it must have some workable rule and cannot inquire into each transaction's reality. The fiction is convenient and largely unavoidable; a commerce of standard forms could not function if every term required real negotiation and real consent. But it is a fiction, and Friedrich Kessler named it as such eighty years ago: the standard form, he saw, is an instrument of the powerful, a way of legislating private law for one's customers under the forms of contract, and the language of free agreement disguises what is in substance the unilateral imposition of terms.</p>
+        <aside class="pull">No one reads the fine print, and no one could change it if they did. The standard form is not a meeting of minds but a dictation accepted — the form of free agreement clothing a substance of command.</aside>
+        <p>What makes this more than a technical curiosity is the use to which the rhetoric of free agreement has been put. Freedom of contract sounds like the very voice of liberty — the right of each to make whatever bargain he chooses, and of the law to hold him to it — and within its proper sphere it is. But it has repeatedly been wielded to defeat the protections that the weaker party most needs. In the era that takes its name from Lochner v. New York, the courts struck down maximum-hours laws, minimum-wage laws, and the early statutes of industrial safety, on the ground that such laws interfered with the worker's and the employer's sacred liberty of contract — as though the worker who must labor to eat and the employer who may hire a hundred others were equal parties freely meeting in the market. The realist critique, which the law absorbed only slowly and against resistance, is that formal freedom of contract among unequal parties produces substantive unfreedom: that to treat the strong and the weak as free and equal contractors is precisely to ratify the power of the strong, and that the form of consent then launders the substance of command. The employment contract that <em>The Wage</em> and <em>The Firm</em> examined, the lease, the loan, the terms of service — these are the places where the contract is most plainly a vessel of power, and least plainly a meeting of minds.</p>
+        <p>The law has not, in the end, enforced adhesion contracts entirely as written, and the next plate takes up the limits it has come to impose — the refusal to enforce the unconscionable term, the consumer protections that cannot be waived, the construction of ambiguities against the party who drafted them. These are the law's admission that agreement to dictated terms is suspect, and that the floor of fairness must sometimes override the form of consent. But the deeper lesson of the adhesion contract is that the contract, which the earlier plates showed to be the instrument of cooperation across time, is also the instrument through which economic power is exercised and, worse, legitimized. Where the line falls between free agreement and dictated terms — which contracts the law enforces as written, and which it polices, and which protective statutes it allows to stand — is not a question contract doctrine can answer from within. It is a political question, a recurring verdict on how much the form of consent may be permitted to clothe the substance of power.</p>
+        <aside class="edge"><span class="lead">the edge</span> The contract of adhesion exposes the fault line that runs beneath the whole law of contract, between the form of agreement and the substance of power, and the doctrine of freedom of contract sits astride it. The classical picture supposes two parties of roughly equal standing, each free to walk away, hammering out terms that reflect their mutual will; and where that picture holds, the enforcement of the bargain is the enforcement of freedom. But across vast stretches of economic life the picture is a fiction. The consumer does not bargain with the bank, the worker does not negotiate the standard employment, the tenant does not draft the lease; one party writes, in fine print no one reads, and the other signs or does without — and where the good is a necessity and the terms are everywhere the same, doing without is no choice at all. To call this agreement, and to enforce it as the free expression of two wills, is to let the form of contract launder the substance of command. The doctrine of freedom of contract, which sounds like the very voice of liberty, has often done exactly this work: in the Lochner era it struck down the laws that protected workers, on the reasoning that a maximum-hours law insulted the worker's freedom to sell his labor — as though the worker who must labor to eat and the employer who may hire elsewhere were equal parties freely meeting. The realist insight, absorbed only slowly, is that formal freedom of contract among unequal parties produces substantive unfreedom, and that to treat the strong and the weak as free equals is to ratify the power of the strong. Where the line falls between free agreement and dictated terms is therefore not a technical question but a political one, a recurring verdict on how much the form of consent may clothe the substance of power.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE IX ===================== -->
+    <section class="plate reveal" id="plate-ix" data-label="Plate ix · The Limit">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">ix</div>
+        <p class="plate-kicker">Plate the Ninth &middot; The Institutions &middot; № XV</p>
+        <h3 class="plate-title">The Limit</h3>
+        <p class="plate-gloss">what cannot be contracted; the coerced, the inalienable, the void</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what may not be bought, sold, or promised, however willing the parties?</q></div>
+      <div class="plate-body">
+        <p>The freedom of contract, however grand its rhetoric, has always stopped somewhere, and the places where it stops are worth a plate of their own, for they mark the moral perimeter of the market. Not every agreement the parties might wish to make is one the law will enforce. The figure arranges the possibilities along a spectrum, from the bargains the law enforces as written, through the bargains it enforces only subject to terms it will not let the parties waive, to the bargains it refuses to enforce at all — the void and the forbidden, the things that may not be made the subject of a contract however willing those who would make it.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ff5t ff5d">
+              <title id="ff5t">The spectrum of contractibility</title>
+              <desc id="ff5d">A bar divided into three zones: bargains enforced as written, bargains regulated by mandatory terms, and bargains the law holds void or that concern inalienable things.</desc>
+              <text class="lbl-sm" x="230" y="112" text-anchor="middle">what a contract may govern</text>
+              <rect x="50" y="128" width="360" height="44" fill="none" stroke="var(--ink)" stroke-width="1.2"/>
+              <line x1="170" y1="128" x2="170" y2="172" stroke="var(--ink)" stroke-width="1.1"/>
+              <line x1="290" y1="128" x2="290" y2="172" stroke="var(--ink)" stroke-width="1.1"/>
+              <text class="lbl-i" x="110" y="154" text-anchor="middle">as written</text>
+              <text class="lbl-i" x="230" y="154" text-anchor="middle">regulated</text>
+              <text class="lbl-i" x="350" y="154" text-anchor="middle">void</text>
+              <text class="lbl-sm" x="110" y="192" text-anchor="middle">ordinary deals</text>
+              <text class="lbl-sm" x="230" y="190" text-anchor="middle">mandatory terms</text>
+              <text class="lbl-sm" x="230" y="203" text-anchor="middle">unconscionability</text>
+              <text class="lbl-sm" x="350" y="190" text-anchor="middle">the coerced</text>
+              <text class="lbl-sm" x="350" y="203" text-anchor="middle">the inalienable</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 5.</span> The spectrum of contractibility. At one end lie the ordinary bargains the law enforces as the parties wrote them. In the middle lie the bargains the law enforces only on its own terms — supplying mandatory provisions the parties cannot waive, striking the grossly one-sided clause as unconscionable, protecting the consumer and the worker against themselves. At the far end lie the agreements the law will not enforce at all: those extracted by coercion, those whose object is forbidden, and those concerning things held inalienable — liberty, the vote, the person — which may not be sold however freely. As one moves rightward, the freedom of contract recedes before the claims of justice, dignity, and public order.</figcaption>
+        </figure>
+        <p>The limits fall into kinds, each protecting something the bare enforcement of agreements would endanger. Some protect the conditions of free agreement itself: the contract signed under duress is voidable, the consent procured by fraud is no consent, for an agreement extracted by force or deceit is not the free act the law means to honor. Some protect against exploitation even where consent was formally given: the doctrine of unconscionability lets a court refuse to enforce a term so grossly one-sided, so oppressively imposed on a party with no real choice, that to enforce it would make the law complicit in the oppression. Some protect third parties and the public: the contract to commit a crime, the agreement that injures those who never signed it, the bargain in restraint of trade that <em>The Power</em> condemned — these the law holds void because their enforcement would harm the wider order the contract is supposed to serve. And some protect what must not be alienated at all if persons are to remain persons and citizens citizens.</p>
+        <p>This last category is the deepest, and the most revealing. There are things one cannot contract away however willing, because to allow their sale would undo the very status that makes the seller free to sell. One cannot bind oneself into slavery; the law will not enforce a contract of self-enslavement, for liberty is inalienable, and a freedom that could be sold would be no freedom at all. One cannot sell one's vote, for a democracy in which suffrage had a price would cease to be one. In most places one cannot sell one's organs, one's children, oneself. These inalienabilities mark the goods a society holds too fundamental to be subject to exchange, and beyond them lies the territory <em>The Rule</em> mapped under the name of the repugnant — the things that perhaps could be bought and sold, but that a society judges should not be, because the market is thought to corrupt them in the very act of pricing them, as Sandel and Satz argued of the goods that money ought not to buy.</p>
+        <aside class="pull">What a society refuses to let be sold is a portrait of its values. The inalienable — liberty, the vote, the person — marks the edge of the market, and the edge is drawn by judgment, not by nature.</aside>
+        <p>What the limits share is that they are judgments of value, and because they are judgments of value the boundary moves. Surrogacy and sexual labor, the sale of organs and of blood and of risk, the trade in personal data, the waiver of rights once thought unwaivable — each is drawn differently in different places and contested everywhere, enforced as ordinary commerce here and forbidden as repugnant there, the line shifting with a society's sense of what dignity requires and what the market would spoil. The limit of contract is not a fact of nature awaiting discovery but a verdict a society passes on itself; and in deciding what may not be bought or promised, however freely, it decides in part what kind of persons, and what kind of polity, it means to be. The freedom of contract is real and precious within its sphere, but the drawing of the sphere's edge — the marking-off of the coerced, the exploited, the inalienable, and the repugnant — is among the most consequential moral and political acts a legal order performs, and the least reducible to the logic of agreement it bounds.</p>
+        <aside class="edge"><span class="lead">the edge</span> The things a society places beyond contract are a truer portrait of its values than the things it allows to be sold, and the drawing of that boundary is among the most revealing acts a legal order performs. Everywhere the freedom of contract stops somewhere: the agreement signed at gunpoint is void for duress, the term too grossly one-sided is struck as unconscionable, the bargain to commit a crime or to sell one's vote or to bind oneself into servitude the law will not enforce however freely it was made. These limits are not technical exceptions to a general freedom; they are the moral perimeter of the market, encoding a society's judgments about what voluntariness requires, what dignity forbids, and what the market would corrode if it were allowed to reach. Some protect the conditions of free agreement itself, for a consent extracted by coercion is no consent. Others protect what must not be alienated if persons are to remain persons and citizens citizens — for one cannot be free if one may sell one's freedom, and a democracy fails the moment votes acquire a price. Still others protect goods the market is thought to degrade in the very act of pricing them. And because these are judgments of value, the boundary moves: surrogacy, sexual labor, the sale of organs and of data, the waiver of rights once thought unwaivable — each is drawn differently in different places and contested in all of them. The limit of contract is not a fact of nature awaiting discovery but a verdict a society passes on itself, and in deciding what may not be bought or promised it decides, in part, what kind of persons and what kind of polity it means to be.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE X ===================== -->
+    <section class="plate reveal" id="plate-x" data-label="Plate x · The Warranty">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">x</div>
+        <p class="plate-kicker">Plate the Tenth &middot; The Institutions &middot; № XV</p>
+        <h3 class="plate-title">The Warranty</h3>
+        <p class="plate-gloss">contracting under asymmetry; the warranty, the signal, the guarantee</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>how does a seller who knows prove what a buyer cannot see?</q></div>
+      <div class="plate-body">
+        <p>A different difficulty besets the contract when the parties know different things, and it is distinct from the difficulty <em>The Firm</em> met in its agent. There the problem was hidden action — the effort a principal could not observe; here it is hidden knowledge — the quality a buyer cannot see but the seller can. The trouble this makes is severe. When buyers cannot tell the good goods from the bad, they will pay only what the average is worth; at that price the sellers of genuinely good goods, unwilling to sell quality for a mediocre return, withdraw; their withdrawal lowers the average quality that remains, which lowers the price buyers will pay, which drives out the next tier of sellers — and the market unravels toward the lemons, in the spiral George Akerlof made famous. Asymmetric information, left to itself, can hollow out an exchange that would have benefited everyone, and the bare contract of a price for a good is powerless against it.</p>
+        <p>The contract escapes this fate by carrying devices whose whole purpose is to make hidden quality credible, and the warranty is the purest of them. A warranty is a promise to make good any failure of the goods — to repair, replace, or refund — and its beauty as a signal is that it costs a seller exactly in proportion to how often his goods fail. The figure shows why this makes it credible. To the maker of good goods, which rarely fail, even a generous warranty is cheap, for few claims will ever be made upon it; to the maker of bad goods, which fail often, the same warranty is ruinous. There is therefore a range of warranty — generous enough that the maker of bad goods cannot afford to offer it, yet still affordable to the maker of good goods — within which only the honest seller will go.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ff6t ff6d">
+              <title id="ff6t">The warranty as a credible signal</title>
+              <desc id="ff6d">A warranty costs a low-quality seller far more than a high-quality one; a warranty generous enough that the low-quality seller will not offer it credibly signals high quality.</desc>
+              <line class="ax" x1="60" y1="252" x2="404" y2="252"/>
+              <line class="ax" x1="60" y1="252" x2="60" y2="44"/>
+              <line class="guide" x1="60" y1="125" x2="385" y2="125"/>
+              <line class="curve" x1="70" y1="225" x2="330" y2="70"/>
+              <line class="curve2" x1="70" y1="225" x2="390" y2="150"/>
+              <line class="guide" x1="238" y1="252" x2="238" y2="125"/>
+              <circle cx="238" cy="125" r="2.6" fill="var(--ink)"/>
+              <text class="lbl-sm" x="305" y="84" text-anchor="middle">low quality</text>
+              <text class="lbl-sm" x="350" y="172" text-anchor="middle">high quality</text>
+              <text class="lbl-sm" x="132" y="118" text-anchor="middle">gain from signaling</text>
+              <text class="lbl-i" x="320" y="236" text-anchor="middle">credible signal</text>
+              <text class="lbl" x="238" y="266" text-anchor="middle">w*</text>
+              <text class="lbl-ax" x="330" y="271" text-anchor="middle">WARRANTY OFFERED →</text>
+              <text class="lbl-ax" transform="rotate(-90 28 150)" x="28" y="150" text-anchor="middle">COST</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 6.</span> The warranty as a credible signal. The steep line is the cost of a warranty to a seller of low-quality goods, which fail often; the shallow line, its cost to a seller of high-quality goods, which rarely fail. The flat line is the gain from being believed to sell quality. Past w*, the warranty is generous enough that the low-quality seller's cost exceeds that gain and he will not offer it — so any warranty beyond w* could come only from a high-quality seller, and the buyer rightly reads it as proof. The warranty says what no unbacked claim could, because it is costly in a way that depends on the truth.</figcaption>
+        </figure>
+        <p>Because the warranty is costly in a way that tracks the truth, it conveys what no mere assertion could. Any seller may say his goods are good; only the seller whose goods truly are good can profitably back the claim with a promise that failure will be made expensive to him. The buyer, knowing this, believes the warranty though he would not believe the words, and the honest seller, by binding himself to a cost he can bear and his rival cannot, separates himself from the dishonest. The same logic, traced by Michael Spence for the labor market, runs through a family of contractual devices. There is the signal that only the high type finds worth sending. There is the screening menu, in which the uninformed party offers a choice of terms — a high deductible at a low premium, a low deductible at a high one — designed so that each type sorts itself by what it chooses. There is the brand, an asset built at long expense that the sale of bad goods would destroy, and so a standing hostage to quality. There is the bond posted and forfeited on cheating. Each converts the unverifiable into the credible by the same alchemy: it makes honesty cheaper than deceit.</p>
+        <aside class="pull">A warranty is a promise that costs the honest seller little and the dishonest seller much — and so, by offering it, the honest seller says what no mere claim could prove: that his goods are good.</aside>
+        <p>What this reveals about the contract is that much of its apparent complexity is not the record of the exchange at all but machinery built around the information the parties do not share. The warranties and guarantees, the contingent terms, the menus and the deductibles, the elaborate representations and the bonds — these are the contract's response to the simple, stubborn fact that one party knows what the other cannot check, and that without some device to make knowledge credible the exchange would fail. The contract is thus shaped, in its very form, by the structure of information in the transaction, and to read a contract's terms is often to read a map of who knew what. The general anatomy of that information — the hidden action and the hidden knowledge that shadow every bargain, and the failures they breed — belongs to <em>The Asymmetry</em>, the element this plate can only gesture toward. Here it is enough to have seen that the contract is not merely the record of a deal but a structure built to make a promise believed by someone who cannot verify it — and that this, as much as the binding of the future, is among the quiet labors the institution performs.</p>
+        <aside class="edge"><span class="lead">the edge</span> The warranty and its kin reveal that a great deal of what a contract contains is not the exchange itself but machinery for making the exchange possible despite what one party cannot see, and the machinery is more ingenious than it first appears. Where the seller knows the quality of his goods and the buyer does not, the naive contract — a price for a good — fails, for the buyer, unable to tell the good from the bad, will pay only for the average; the seller of the good withdraws rather than sell quality at a mediocre price; and the market hollows toward the lemons, as Akerlof showed. The contract escapes this fate by carrying devices that make hidden quality credible. The warranty is the purest of them: a promise to make good any failure, which costs a seller in proportion to how often his goods fail, and which therefore the maker of good goods can offer cheaply and the maker of bad goods cannot afford — so that the warranty, by being costly in a way that depends on the truth, says what no unbacked claim could, and the buyer rightly believes it. The same logic runs through the signal only the high type will send, the menu of terms by which each type sorts itself, the brand built at a cost that cheating would destroy, the bond posted as a hostage to performance. What these share is that they convert the unverifiable into the credible by making honesty cheaper than deceit, and they show that the contract is not merely a record of an exchange but a structure built around the information the parties do and do not share. The general anatomy of that information belongs to <em>The Asymmetry</em>; here it is enough to see that much of the contract's complexity is the trace of a simpler thing — the struggle to make a promise believed by someone who cannot check it.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE XI ===================== -->
+    <section class="plate reveal" id="plate-xi" data-label="Plate xi · The Compact">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">xi</div>
+        <p class="plate-kicker">Plate the Eleventh &middot; The Institutions &middot; № XV</p>
+        <h3 class="plate-title">The Compact</h3>
+        <p class="plate-gloss">the social contract; the polity as agreement, and the fiction of consent</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if the state rests on a contract no one signed, is the consent that binds us real or imagined?</q></div>
+      <div class="plate-body">
+        <p>The contract idea did not stay within commerce. In the hands of the political philosophers it was raised to its highest power and made to bear the weight of the whole political order, in the family of theories that go by the name of the social contract. Their question is the question of legitimacy: by what right does the state command, and why are we bound to obey? And their answer is the answer of contract: that political authority rests, at bottom, on an agreement — that we are bound to the polity because we have, in some sense, consented to it. The boldness of this is easy to miss from a distance of centuries. It located the ground of authority not in the will of God or the right of conquest or the order of nature, but in the agreement of the governed — and in doing so it made the legitimacy of every state a matter of whether it could be justified to those it ruled.</p>
+        <p>Thomas Hobbes drew the starkest version, and the figure draws Hobbes. Imagine, he said, a state of nature with no common power to keep men in awe: each, rightly fearing every other, strikes first, and the result is a war of all against all, in which life is solitary, poor, nasty, brutish, and short. The structure is the one this volume opened with, now written across a whole society — a trap in which each does worse by the very prudence that leads all to defect.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ff7t ff7d">
+              <title id="ff7t">The social contract and the state of nature</title>
+              <desc id="ff7d">A payoff matrix in which mutual cooperation is best for all but mutual defection is the equilibrium without an enforcer; the social contract installs the sovereign that makes cooperation hold.</desc>
+              <text class="lbl-sm" x="190" y="68" text-anchor="middle">they cooperate</text>
+              <text class="lbl-sm" x="310" y="68" text-anchor="middle">they defect</text>
+              <rect x="130" y="80" width="240" height="180" fill="none" stroke="var(--ink)" stroke-width="1.2"/>
+              <line x1="250" y1="80" x2="250" y2="260" stroke="var(--ink)" stroke-width="1.1"/>
+              <line x1="130" y1="170" x2="370" y2="170" stroke="var(--ink)" stroke-width="1.1"/>
+              <text class="lbl-sm" transform="rotate(-90 114 125)" x="114" y="125" text-anchor="middle">you cooperate</text>
+              <text class="lbl-sm" transform="rotate(-90 114 215)" x="114" y="215" text-anchor="middle">you defect</text>
+              <text class="lbl-i" x="190" y="120" text-anchor="middle">civil society</text>
+              <text class="lbl-sm" x="190" y="137" text-anchor="middle">3 , 3</text>
+              <text class="lbl-sm" x="310" y="120" text-anchor="middle">the sucker</text>
+              <text class="lbl-sm" x="310" y="137" text-anchor="middle">0 , 4</text>
+              <text class="lbl-sm" x="190" y="210" text-anchor="middle">the predator</text>
+              <text class="lbl-sm" x="190" y="227" text-anchor="middle">4 , 0</text>
+              <text class="lbl-i" x="310" y="210" text-anchor="middle">state of nature</text>
+              <text class="lbl-sm" x="310" y="227" text-anchor="middle">1 , 1</text>
+              <text class="lbl-sm" x="250" y="281" text-anchor="middle">defect dominates — until a sovereign is installed</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 7.</span> The social contract and the state of nature. Mutual cooperation — civil society — is best for all, worth three to each. But without an enforcer, defection dominates: whatever the other does, each gains by predation, and both are driven to the war of all, worth only one apiece, though both would have preferred the peace. The social contract is the agreement to escape the trap by erecting a sovereign who punishes defection, changing the payoffs so that cooperation can hold. It is the logic of the second plate — enforcement makes the promise bind — raised to the scale of a whole people.</figcaption>
+        </figure>
+        <p>The escape, for Hobbes, is the social contract: men agree, each with all, to lay down their natural liberty and submit to a sovereign who will enforce the peace, and it is this agreement — hypothetical, but binding in its logic — that grounds the sovereign's authority and the subject's duty to obey. Later hands softened and redirected the idea without abandoning its form. John Locke gave the state of nature a law and rights of its own, and made the contract establish a government whose authority was conditional on its protecting life, liberty, and property, forfeit if it betrayed the trust — and so grounded both limited government and the right of revolution. Jean-Jacques Rousseau, declaring that man is born free yet everywhere is in chains, made the contract the union of citizens under a general will, and so grounded popular sovereignty and self-rule. And in our own age John Rawls remade the contract as a thought experiment, asking what principles of justice free and equal persons would choose from behind a veil of ignorance that hid their place in society — turning the contract from a story about the origin of the state into a test of the justice of its arrangements. Through all these transformations the core held: that the legitimacy of the political order is to be measured by its agreement with the will of those who live under it, a thought to which <em>The Tax</em> appealed when it grounded the fiscal claim in consent.</p>
+        <aside class="pull">We never signed it, and we cannot leave. The social contract is a contract in one sense only — that it asks whether the order we were born into is one free and equal people could have agreed to.</aside>
+        <p>And yet the social contract, as a contract, is a fiction, and the fiction is the same one the eighth plate found in the standard form, written now across a nation. We never signed the contract that binds us; we were born into the state, never asked, and cannot in any real sense leave it. David Hume pressed the objection with finality: to say a citizen tacitly consents by remaining in his country is like saying a man carried sleeping aboard a ship consents to the voyage because he does not leap into the sea. The consent that supposedly binds us is hypothetical or tacit — a consent imagined, not given — and most people obey from habit and interest, not from any agreement they ever made. This does not destroy the idea, but it changes what the idea is for. The social contract was never the record of a historical bargain; it is a standing question, posed in the form of a hypothetical agreement — the question whether the order we inhabit is one that free and equal people could accept, whether the state can justify itself to those it binds. That, and not the false claim that we agreed, is the contract's deepest gift to political thought.</p>
+        <p>The metaphor must be handled with care, for the polity is not in truth a deal. One cannot negotiate the clauses, withhold one's signature, or take one's custom elsewhere; the parties do not pre-exist the society that supposedly made them; and our obligations to one another may rest on more than consent — on fairness, on community, on duties we did not choose. Pushed too hard, the contract model of the state misleads, dressing in the language of agreement a bond that agreement only partly explains. But handled with care it remains the most powerful instrument we have for thinking about legitimacy, and it inherits, at the scale of the polity, exactly the three features this volume has traced in the smallest commercial promise. Its logic is the logic of enforcement that makes cooperation possible; its consent is the fiction that the forms of agreement throw over a relation of power; and its incompleteness is the constitutional truth that no founding document can foresee the futures a people will meet, so that the social contract, like every contract, is a sketch forever being filled in by interpretation, convention, and trust. The contract, carried to its height, turns the whole political order from a fact we must endure into a question we may always press — which is the work this table means everywhere to do.</p>
+        <aside class="edge"><span class="lead">the edge</span> The social contract is the contract idea raised to its highest power, and it inherits, at that height, the very features the volume has traced in the humblest commercial deal. Its logic is the logic of the second plate, scaled to a whole society: just as two parties cannot cooperate across time until some enforcer makes their promises bind, a multitude cannot escape the war of all against all until it installs a sovereign to enforce the peace — and the social contract is the name for that installation, the agreement to erect the power that makes the largest cooperation possible. Its consent is the fiction of the eighth plate, written across a nation: we never signed the contract that binds us, were never asked, and cannot in any real sense leave, so that the agreement grounding our obligation is hypothetical or tacit, a consent imagined rather than given — as Hume saw when he likened the citizen free to emigrate to a man carried sleeping aboard a ship, who may leap into the ocean if he does not care for the voyage. And its incompleteness is the fifth plate's, made constitutional: no founding document can foresee the futures a polity will meet, so the social contract, like every contract, is a sketch filled in by interpretation, convention, and trust. None of this discredits the idea, for its purpose was never to record a historical bargain but to pose a standing question — whether the order we inhabit is one that free and equal people could accept, whether authority can justify itself to those it binds. That is the contract's deepest gift to political thought: not the false claim that we agreed, but the demanding test of whether we could have, which turns authority from a fact we must endure into a question we may always press.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE XII ===================== -->
+    <section class="plate reveal" id="plate-xii" data-label="Plate xii · The Bond">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">xii</div>
+        <p class="plate-kicker">Plate the Twelfth &middot; The Institutions &middot; № XV</p>
+        <h3 class="plate-title">The Bond</h3>
+        <p class="plate-gloss">the tie that binds; promise, trust, and cooperation across time</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what, in the end, does the contract bind — and what binds it?</q></div>
+      <div class="plate-body">
+        <p>We began with a gap — the gap between the deed done and the return awaited, into which one party must step on the strength of another's word — and we end having seen what it takes to make that step safe. The contract is the institution of the enforceable promise: the device by which a society lets its members bind the future, make their words count, and cooperate across time with strangers they have no other reason to trust. It is the mast to which we lash ourselves so that we may be relied upon, the bond of the word lifted out of the keeping of honor and placed in the keeping of the law. And it is, on the showing of these plates, at once indispensable, incomplete, and contested — the three things that must be held together if the contract is to be understood at all.</p>
+        <p>Indispensable, because without the binding promise the whole structure of deferred and conditional exchange on which a developed economy rests would simply fall away, leaving only the hand-to-hand commerce of the marketplace. The first plates traced this: how the enforceable promise solves the oldest problem of cooperation across time, the problem of the party who must go first; how the power to commit, far from being a mere constraint, is the instrument of a deeper freedom; how the law's machinery of consideration and remedy gives the promise its grip, though even there — in the choice of damages over performance — the bindingness we imagine fixed turns out to be a thing the law constructs and could construct otherwise.</p>
+        <p>Incomplete, because no contract can foresee everything, and every contract is therefore a sketch, a core of express terms surrounded by a penumbra deliberately left blank. This was the volume's hinge, the fact from which its question grew, and it forced the central discovery: that what governs the parties in all the situations their words did not reach must come from somewhere else. Part of it comes from the law, which fills the silence with default rules, implied terms, and the standard of the reasonable — a vast unwritten contract beneath the written one, most of it composed by the state rather than the parties. But the larger part comes from no law at all. It comes from trust and reputation and the value of the continuing relationship — from the shadow of the future, under which honesty is simply the profitable course, and the cheat is known and shunned. The deepest finding of this volume is the inversion this implies: that the law of the deal is, in its daily operation, mostly not law, that the written floats always on a sea of the unwritten, and that the contract is in the end less the sheriff's creature than the quiet product of the fact that we must deal with one another again.</p>
+        <p>And contested, because the form of free agreement may carry a substance of power, and the reach of contract is bounded by judgments no logic of agreement can supply. The plates on the adhesion contract and the limit showed both edges of this: how the standard form and the rhetoric of freedom of contract can launder the dictation of terms by the strong to the weak, so that consent becomes a fiction and the contract a vessel of power; and how every society draws a perimeter around what may be made the subject of a bargain at all, refusing the coerced, the unconscionable, the inalienable, and the repugnant — a perimeter that is a portrait of its values and a verdict it passes on itself. The contract coping with the hidden knowledge of the parties, through the warranty and the signal and the screen, showed a gentler face of the same truth: that much of what a contract contains is not the exchange but the machinery built around what the parties cannot see. And the social contract, the idea raised to its political height, showed the contract's logic, its fiction of consent, and its incompleteness all written across a whole polity — turning the legitimacy of the state itself into a question of what free and equal people could have agreed to.</p>
+        <p>With this volume the first of the table's six families is complete, and it is worth pausing on what the completed group amounts to. The Institutions are the made things within which exchange occurs, and there are five of them. <em>The Money</em> is the medium — the common measure and means in which the deals are struck and the debts denominated. <em>The Tax</em> is the public claim — the share the polity takes from the exchange to sustain the common life that makes exchange possible. <em>The Rule</em> is the design — the property, the enforcement, the regulation, the very architecture that a market requires and that is built rather than found. <em>The Firm</em> is the planned interior — the islands of conscious coordination, of command in place of price, that dot the market's sea. And <em>The Contract</em> is the binding promise — the institution that lets exchange reach across time, that makes the future bankable and the stranger trustworthy. Money, tax, rule, firm, and contract: these are not additions to the market but the frame within which every market price is struck, and the first family of the table delivers, complete, the lesson the whole work was built to teach. The market is not a state of nature. It is an institutional achievement — conducted in a money we minted, under rules we wrote, taxed by a state we constituted, organized into firms we built, and bound by contracts we agreed to enforce — and every price that emerges from it is a verdict reached within that made and alterable frame.</p>
+        <p>So the threads run outward, as they have run throughout. To <em>The Firm</em>, which is itself but a nexus of contracts, and which answered the incompleteness this volume anatomized with the device of ownership where the contract answered it with defaults and trust — the two halves of a single response to a single gap. To <em>The Rule</em>, for whom the enforcement of promises is one of the load-bearing pillars on which any market stands. To <em>The Tax</em>, whose fiscal contract is the social contract rendered in money. To <em>The Money</em>, the medium in which the deal is denominated and itself, at bottom, a promise. To <em>The Power</em> and <em>The Wage</em>, where the contract is most nakedly an instrument of command. To <em>The Surplus</em>, since every bargain is a division of the gains from trade, and the terms of a contract are a verdict on who keeps them. To <em>The Rate</em>, the price of the very time across which the contract reaches. And forward to <em>The Asymmetry</em>, which will take up in full the hidden knowledge and hidden action that the warranty and the agent could only begin to meet.</p>
+        <p>The contract is the most ordinary of things — a deal, an agreement, a handshake, a signature — and we are tempted to see in it nothing made at all, only two parties doing what parties have always done. This volume has tried to show the institution beneath the ordinary thing: the enforceable promise, constructed by law, performing the profound work of binding the future and extending cooperation across time; never complete, and so forever finished by the law's defaults and the parties' trust; and never innocent of power, its freedom often formal and its limits drawn by contested judgments of value. Like the money it is denominated in, the rule that enforces it, the tax that shares in it, and the firm that is woven from it, the contract is a thing a community made to make a certain cooperation possible — and a thing that could be made, and may yet make, otherwise. The argument remains open.</p>
+      </div>
+    </section>
+</main>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref">Volume XV &middot; The Contract</span>
+    </div>
+    <p class="colophon">Volume XV of <em>Numéraire, A Periodic Table of Economic Life</em> — <em>The Contract</em>, the fifteenth of twenty-six and the fifth and last of The Institutions, completing the first of the table's six families. Twelve plates and seven engravings, written with the rigor of the seminar and the grace of the essay, and scrupulous throughout about the exact edge of what can be known. The contract is the institution of the enforceable promise — the device by which we bind the future, make our word count, and cooperate with strangers across time; this volume asks how a mere form of words comes to bind, why no contract can foresee everything, and what fills the gaps the words must leave — and finds the answer less in the law than in the trust, reputation, and relationship on which the written contract floats, and the contract itself a thing at once indispensable, incomplete, and contested. With it the institutions stand complete — money the medium, tax the public claim, the rule the design, the firm the planned interior, the contract the binding promise — the made frame within which every price is struck. It hands its findings to <em>The Firm</em> and <em>The Rule</em>, its neighbors in this group, to <em>The Money</em> and <em>The Tax</em> beside them, and outward to <em>The Power</em>, <em>The Wage</em>, <em>The Surplus</em>, <em>The Rate</em>, and <em>The Asymmetry</em>. The figures stand after Schelling and Macaulay, Hobbes and Hume, Akerlof and Spence, Posner and Holmes. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var root=document.documentElement; root.classList.add('js');
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var bar=document.getElementById('progress');
+  var topbar=document.getElementById('topbar');
+  var title=document.querySelector('.vol-title');
+  var label=document.getElementById('tb-plate');
+  function onScroll(){
+    var doc=document.documentElement;
+    var h=doc.scrollHeight-window.innerHeight;
+    var p=h>0?Math.min(1,Math.max(0,window.scrollY/h)):0;
+    if(bar) bar.style.transform='scaleX('+p.toFixed(4)+')';
+    if(topbar){
+      var threshold=(title?title.offsetHeight:420)*0.72;
+      if(window.scrollY>threshold) topbar.classList.add('show'); else topbar.classList.remove('show');
+    }
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+  if('IntersectionObserver' in window){
+    var rev=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); rev.unobserve(e.target); } });
+    },{rootMargin:'0px 0px -10% 0px',threshold:0.06});
+    document.querySelectorAll('.reveal').forEach(function(el){ rev.observe(el); });
+    if(label){
+      var cur=new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting){ var t=e.target.getAttribute('data-label'); if(t) label.textContent=t; } });
+      },{rootMargin:'-44% 0px -50% 0px',threshold:0});
+      document.querySelectorAll('.plate[data-label]').forEach(function(el){ cur.observe(el); });
+    }
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-firm.html">← The Firm</a><a rel="next" href="the-money.html">The Money →</a></nav>
+</body>
+</html>

@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Level — Numéraire, Volume XXI</title>
+<meta name="description" content="The Level — Volume XXI of Numéraire, A Periodic Table of Economic Life, and the third of The Aggregates. The price level and inflation: the value of money and the drift of prices — a price index and the classical dichotomy, the neutrality of money and the quantity theory, the inflation tax and hyperinflation, the Phillips curve and its dissolution by expectations, the natural rate, disinflation and the sacrifice ratio, the costs of inflation and the graver danger of deflation, the zero lower bound, and the central bank as the anchor of the price level.">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem; --measure:40rem;
+    --wash:rgba(28,26,22,.066); --wash2:rgba(28,26,22,.12);
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.62;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  .measure{max-width:var(--measure);margin-left:auto;margin-right:auto;}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- ornaments ---- */
+  .orn{display:flex;justify-content:center;margin:0 auto;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .divider{display:flex;align-items:center;gap:1.1rem;max-width:30rem;margin:clamp(3rem,7vh,5rem) auto;color:var(--num);}
+  .divider .ln{flex:1;height:1px;background:var(--hair);}
+  .divider svg{display:block;width:12px;height:12px;overflow:visible;flex:0 0 auto;}
+  .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* ---- progress + running head ---- */
+  #progress{position:fixed;top:0;left:0;height:2px;width:100%;transform:scaleX(0);transform-origin:0 50%;background:var(--soft);opacity:.45;z-index:10000;}
+  #topbar{position:fixed;top:0;left:0;right:0;z-index:9998;transform:translateY(-100%);transition:transform .5s cubic-bezier(.2,.6,.2,1);
+    background:rgba(240,235,225,.86);-webkit-backdrop-filter:saturate(1.1) blur(8px);backdrop-filter:saturate(1.1) blur(8px);
+    border-bottom:1px solid var(--hair);}
+  #topbar.show{transform:translateY(0);}
+  .tb-in{max-width:var(--frame);margin:0 auto;padding:.62rem clamp(1.4rem,4vw,3.4rem);display:flex;justify-content:space-between;align-items:baseline;gap:1.2rem;}
+  .tb-l{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:.86rem;letter-spacing:.01em;}
+  .tb-l span{color:var(--faintest);font-weight:400;}
+  .tb-r{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);text-align:right;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+
+  /* ---- title page ---- */
+  .vol-title{padding:clamp(3.4rem,11vh,8rem) 0 clamp(1.6rem,5vh,3rem);text-align:center;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.16rem;letter-spacing:.02em;}
+  .vol-no{font-size:.84rem;color:var(--faint);letter-spacing:.16em;text-transform:uppercase;margin-top:.55rem;}
+  h1.vol-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 380;font-weight:380;
+    font-size:clamp(2.9rem,9vw,6rem);line-height:.98;letter-spacing:-.028em;margin:clamp(1.7rem,4.5vh,2.8rem) 0 0;text-wrap:balance;}
+  .vol-sym{width:78px;height:78px;margin:clamp(1.6rem,4vh,2.4rem) auto 0;border:1px solid var(--hair);border-radius:2px;
+    display:flex;align-items:center;justify-content:center;background:var(--ink);}
+  .vol-sym span{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2.3rem;line-height:1;color:var(--paper);letter-spacing:-.01em;}
+  .vol-coords{font-family:"Fraunces",serif;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);margin-top:1.1rem;}
+  .vol-gloss{font-style:italic;color:var(--soft);font-size:1.12rem;margin:.5rem 0 0;}
+  .vol-epigraph{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 400;font-style:italic;
+    font-size:clamp(1.14rem,1.7vw,1.34rem);line-height:1.42;color:var(--soft);max-width:33rem;margin:clamp(1.8rem,4vh,2.6rem) auto 0;text-wrap:pretty;}
+  .vol-epigraph .lead{display:block;font-style:normal;font-variation-settings:"opsz" 24,"wght" 400;
+    font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.7rem;}
+  .vol-status{display:inline-flex;align-items:center;gap:.5rem;margin:clamp(1.8rem,4vh,2.4rem) auto 0;font-size:.84rem;color:var(--soft);}
+  .vol-status::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ink);}
+
+  /* ---- the argument (preface) ---- */
+  .part-head{text-align:center;margin:0 0 clamp(1.6rem,3.5vh,2.3rem);}
+  .part-kicker{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faintest);}
+  .part-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-weight:400;
+    font-size:clamp(1.5rem,3.4vw,2.1rem);letter-spacing:-.012em;margin:.4rem 0 0;}
+  .argument p{font-size:1.05rem;line-height:1.74;margin:0 0 1.15rem;text-wrap:pretty;}
+  .argument p.lede::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 420;
+    float:left;font-size:3.5em;line-height:.78;padding:.05em .1em 0 0;color:var(--ink);}
+  .argument em,.plate-body em,.coda em{font-style:italic;}
+
+  /* ---- contents ---- */
+  .toc{list-style:none;margin:0 auto;padding:0;max-width:43rem;}
+  .toc li{border-top:1px solid var(--hair);}
+  .toc li:last-child{border-bottom:1px solid var(--hair);}
+  .toc a{display:grid;grid-template-columns:2.6rem 1fr;column-gap:1.1rem;align-items:baseline;
+    padding:.82rem .3rem;text-decoration:none;transition:background .2s ease;}
+  .toc a:hover{background:rgba(28,26,22,.035);}
+  .toc-n{font-family:"Fraunces",serif;font-size:.92rem;color:var(--faintest);text-align:right;}
+  .toc-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.06rem;color:var(--ink);line-height:1.16;}
+  .toc-g{grid-column:2;font-size:.85rem;font-style:italic;color:var(--faint);margin-top:.16rem;line-height:1.38;}
+
+  /* ---- plates ---- */
+  .plate{margin:clamp(3.2rem,8vh,6rem) 0 0;padding-top:clamp(2.4rem,5.5vh,3.4rem);border-top:1px solid var(--hair);scroll-margin-top:4rem;}
+  .plate-open{max-width:var(--measure);margin-inline:auto;}
+  .plate-no{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 360;font-size:clamp(2.6rem,7vw,4.1rem);
+    line-height:.9;color:var(--num);letter-spacing:.02em;}
+  .plate-kicker{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faintest);margin:.9rem 0 .2rem;}
+  .plate-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.8rem,4.4vw,2.7rem);line-height:1.04;letter-spacing:-.018em;margin:0;text-wrap:balance;}
+  .plate-gloss{font-style:italic;color:var(--soft);font-size:1.02rem;margin:.55rem 0 0;line-height:1.4;}
+
+  .ask{max-width:var(--measure);margin:clamp(1.5rem,3.5vh,2.2rem) auto clamp(1.8rem,4vh,2.4rem);}
+  .ask .lead{display:block;font-family:"Fraunces",serif;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.55rem;}
+  .ask q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:clamp(1.18rem,1.8vw,1.38rem);line-height:1.36;color:var(--soft);quotes:none;}
+
+  .plate-body{max-width:var(--measure);margin-inline:auto;}
+  .plate-body p{margin:0 0 1.18rem;text-wrap:pretty;}
+  .plate-body > p:first-of-type::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 430;
+    float:left;font-size:3.5em;line-height:.76;padding:.04em .12em 0 0;color:var(--ink);}
+  .plate-body h4{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.76rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faint);margin:2rem 0 .9rem;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 380;font-style:italic;
+    font-size:clamp(1.4rem,2.3vw,1.7rem);line-height:1.32;color:var(--soft);text-align:center;
+    max-width:33rem;margin:clamp(2rem,4.5vh,2.8rem) auto;text-wrap:balance;}
+
+  .edge{max-width:var(--measure);margin:1.7rem auto;padding:.1rem 0 .1rem 1.15rem;border-left:1px solid var(--hair);
+    color:var(--faint);font-size:.92rem;line-height:1.62;}
+  .edge .lead{display:block;font-family:"Fraunces",serif;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.4rem;}
+  .edge em{font-style:italic;color:var(--soft);}
+
+  /* ---- figures (engravings) ---- */
+  .fig{max-width:var(--measure);margin:clamp(2.1rem,4.5vh,2.9rem) auto;}
+  .fig-frame{border:1px solid var(--hair);border-radius:2px;padding:clamp(1rem,2.4vw,1.7rem) clamp(1rem,2.4vw,1.7rem) clamp(.8rem,2vw,1.3rem);background:rgba(255,253,247,.4);}
+  .fig svg{display:block;width:100%;height:auto;}
+  figcaption{margin:.95rem auto 0;max-width:38rem;font-size:.85rem;line-height:1.5;color:var(--faint);text-wrap:pretty;}
+  figcaption .fig-n{font-family:"Fraunces",serif;font-weight:500;letter-spacing:.04em;color:var(--soft);}
+  figcaption em{font-style:italic;}
+  .ax{stroke:var(--soft);stroke-width:1.1;fill:none;}
+  .tick{stroke:var(--soft);stroke-width:1;}
+  .curve{stroke:var(--ink);stroke-width:1.5;fill:none;stroke-linecap:round;}
+  .curve2{stroke:var(--ink);stroke-width:1.3;fill:none;stroke-linecap:round;}
+  .guide{stroke:var(--faintest);stroke-width:1;fill:none;stroke-dasharray:3 3.5;}
+  .core{stroke:var(--ink);stroke-width:3;fill:none;stroke-linecap:round;}
+  .fill-cs{fill:var(--wash);}
+  .fill-dwl{fill:var(--wash2);}
+  .fill-wedge{fill:var(--wash);}
+  .fill-lens{fill:var(--wash);}
+  .hatch-line{stroke:var(--faintest);stroke-width:.8;}
+  .lbl{font-family:"Fraunces",serif;font-size:11.5px;fill:var(--faint);font-variation-settings:"opsz" 24,"wght" 400;}
+  .lbl-i{font-family:"Newsreader",serif;font-style:italic;font-size:11px;fill:var(--soft);}
+  .lbl-sm{font-family:"Fraunces",serif;font-size:9.6px;fill:var(--faintest);letter-spacing:.02em;}
+  .lbl-ax{font-family:"Fraunces",serif;font-size:9.4px;fill:var(--faintest);letter-spacing:.12em;}
+
+  /* ---- coda + colophon ---- */
+  .coda{max-width:var(--measure);margin:clamp(3rem,7vh,5rem) auto 0;}
+  .coda p{margin:0 0 1.18rem;text-wrap:pretty;}
+  .coda p.lede::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 430;
+    float:left;font-size:3.5em;line-height:.76;padding:.04em .12em 0 0;color:var(--ink);}
+  footer{margin-top:clamp(3.6rem,8vh,6rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.4rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .colophon{font-size:.85rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+
+  /* ---- motion / reveal ---- */
+  @media (prefers-reduced-motion: no-preference){
+    html.js .reveal{opacity:0;transform:translateY(14px);}
+    html.js .reveal.in{opacity:1;transform:none;}
+    .reveal{transition:opacity .9s cubic-bezier(.2,.6,.2,1),transform .9s cubic-bezier(.2,.6,.2,1);}
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.18s}.rise.d3{animation-delay:.32s}.rise.d4{animation-delay:.46s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  /* ---- responsive ---- */
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .argument p,.plate-body p,.coda p{font-size:1.01rem;}
+    .plate-body > p:first-of-type::first-letter,.argument p.lede::first-letter,.coda p.lede::first-letter{font-size:3em;}
+    .f-bar{flex-direction:column;gap:.5rem;}
+    .toc a{grid-template-columns:2rem 1fr;column-gap:.8rem;}
+    figcaption{font-size:.82rem;}
+  }
+
+  /* ---- print: a volume, in print ---- */
+  @media print{
+    html,body{background:#fff;color:#000;}
+    body{font-size:11.5pt;line-height:1.5;}
+    body::before,#progress,#topbar{display:none !important;}
+    .frame{max-width:none;padding:0;}
+    .measure,.plate-open,.plate-body,.ask,.edge,.coda{max-width:34rem;}
+    a{text-decoration:none;}
+    .plate{break-before:page;border-top:none;padding-top:0;}
+    .fig,figure{break-inside:avoid;}
+    .plate-no{color:#bbb;}
+    .reveal{opacity:1 !important;transform:none !important;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#ne-contents">Complete contents</a><a href="../editions.html#volume-level">The Level · both editions</a><a href="../essays/numeraire-xxi-the-level.html">Expanded essays</a></div></nav>
+<div id="progress" aria-hidden="true"></div>
+<div id="topbar" aria-hidden="true"><div class="tb-in">
+  <span class="tb-l">Numéraire <span>· The Level</span></span>
+  <span class="tb-r" id="tb-plate">Volume XXI</span>
+</div></div>
+
+<div class="frame">
+
+  <header class="vol-title">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="rise d1">
+      <span class="imprint">Numéraire</span>
+      <div class="vol-no">Volume XXI &middot; № XXI</div>
+    </div>
+    <h1 class="vol-name rise d2">The Level</h1>
+    <div class="vol-sym rise d3" aria-hidden="true"><span>Lv</span></div>
+    <div class="vol-coords rise d3">Group V &middot; The Aggregates</div>
+    <p class="vol-gloss rise d3">the worth of money and the drift of prices</p>
+    <p class="vol-epigraph rise d4">
+      <span class="lead">The question of the volume</span>
+      What fixes the value of money — and why does the measure of all prices refuse to hold still?
+    </p>
+    <div class="vol-status rise d4">in print &middot; twelve plates</div>
+  </header>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <section class="argument measure reveal" aria-labelledby="arg-h">
+    <div class="part-head">
+      <div class="part-kicker">Numéraire &middot; Volume XXI</div>
+      <h2 class="part-title" id="arg-h">The Argument</h2>
+    </div>
+    <p class="lede">The volume before this one followed the real — the output a society produces, the goods and the services, the rising tide of things. This one follows the nominal: not the things but their prices, not what is made but what it costs, the general level of money prices and its restless drift. The two are the macroeconomy's great trends, and they differ in kind. Growth is measured in bread and steel and hours; the price level is measured in money, and money is a thing a society invents — a unit of account, the numéraire in which every price in this atlas is quoted. The strange subject of the present volume is the value of that invented unit: why it changes, what governs it, and why the changing of a number that names no real thing should matter so much. For the price level is the value of money inverted — when prices double, money is worth half — and the question of the price level is, at bottom, the question of what money is worth.</p>
+    <p>Begin with the measurement. The price level is not the price of any one thing but the price of everything at once — or rather, of a representative basket, a fixed assortment of the goods a household buys, whose total cost, tracked over time and set against a base year, is a price index. Inflation is the rate at which that index rises; deflation, the rate at which it falls. An inflation of a few percent a year is the quiet condition of most modern economies; an inflation of thousands of percent is the catastrophe of a few; a falling price level is the rarer and, as this volume will argue, the more dangerous disease. The index is a crude instrument — a basket held fixed while tastes and goods shift beneath it, a single number standing in for a million distinct prices — but it is the best gauge we have of a thing otherwise invisible: the slow swelling or shrinking of the measuring rod itself.</p>
+    <p>What governs the level? The oldest answer, and in the long run the soundest, is the quantity of money. The classical economists, David Hume foremost among them, saw money as a veil over the real economy: double the quantity of money in everyone's pocket overnight, and in time every price simply doubles, leaving every real thing — what is produced, who works, what each can buy — exactly as it was before. Money, on this view, is neutral; it fixes the level of prices but touches nothing real. The doctrine is captured in the quantity theory, in the equation that the quantity of money, times the speed at which it circulates, equals the price level times the volume of real output: if velocity and output are given, the price level moves with the money supply, and sustained inflation is, in Milton Friedman's phrase, always and everywhere a monetary phenomenon — too much money chasing too few goods, the price of money's overissue paid in the erosion of its worth.</p>
+    <p>But money is neutral only in the long run, and in that qualification lies the whole difficulty. In the short run, prices and wages are sticky — set in contracts, slow to revise, anchored by habit — and a change in the quantity of money, finding prices unable to move at once, spills instead into real things: into output, into employment, into the booms and slumps of the volume on the cycle. A burst of money can, for a while, buy a fall in unemployment; a contraction can, for a while, bring on a recession rather than a gentle deflation. The price level and the real economy, which the long run holds apart, the short run binds together. This is the central tension of the subject, the seam along which all of monetary economics is cut: money is a veil over the real economy in the long run and a lever upon it in the short, and the whole art of monetary policy lives in the gap between the two.</p>
+    <p>The binding of inflation to the real economy seemed, for a season, to offer a standing bargain. The Phillips curve, drawn straight from the data, showed a stable tradeoff: more inflation bought less unemployment, and a society might simply choose its preferred point on the menu. Then Friedman and Edmund Phelps saw the flaw, and the stagflation of the nineteen-seventies confirmed it. The tradeoff holds only so long as the inflation is a surprise; once people come to expect it, they build it into the wages they demand and the prices they set, and the economy returns to its natural rate of unemployment with nothing to show for the inflation but the inflation itself. The long-run Phillips curve is vertical: there is no permanent tradeoff, and the attempt to exploit a temporary one yields only accelerating prices. Expectations are the hinge on which neutrality turns — and because expectations turn on what people believe the monetary authority will do, the management of the level becomes a problem of credibility, of a central bank's power to make a promise that markets believe.</p>
+    <p>Why does any of this matter — why fear a rising number that, were it to rise evenly, would change nothing real? Because it never rises evenly. Inflation taxes those who hold money and spares those who hold goods, redistributes arbitrarily from creditor to debtor, distorts a tax system written in nominal terms, and injects noise into the very prices that are meant to guide an economy's every decision — and when it explodes into hyperinflation, it destroys money altogether, returning a society to barter and to ruin. Deflation, its mirror, is graver still: falling prices raise the real weight of every debt, and with interest rates unable to fall below zero, the central bank loses its grip, and the economy can spiral into a trap from which escape is hard. The thesis of the volume is that the price level is the value of the numéraire — the worth of the unit in which all else is priced — governed in the long run by the quantity of money, and in the short run entangled with the real economy through the stickiness of prices and the turning of expectations; and that its management is among the gravest charges an institution can hold, for the costs of getting it wrong, in either direction, are immense. The aggregate, here as everywhere in the atlas, is a verdict on a hidden contest: between the real and the nominal, between money as a veil and money as a force, between the discretion that tempts and the rule that binds, between the value we assign the measure of all value and its refusal to hold still. The argument remains open.</p>
+  </section>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <section class="contents reveal" aria-labelledby="toc-h">
+    <div class="part-head">
+      <div class="part-kicker">The twelve plates of this volume</div>
+      <h2 class="part-title" id="toc-h">The Plates</h2>
+    </div>
+    <ol class="toc">
+      <li><a href="#plate-i"><span class="toc-n">i</span><span class="toc-t">The Yardstick</span><span class="toc-g">the price level and its measure — a basket, an index, and inflation as its rate; the value of money inverted</span></a></li>
+      <li><a href="#plate-ii"><span class="toc-n">ii</span><span class="toc-t">The Mask</span><span class="toc-g">the classical dichotomy and the neutrality of money — doubling the money doubles all prices and changes nothing real — Hume</span></a></li>
+      <li><a href="#plate-iii"><span class="toc-n">iii</span><span class="toc-t">The Equation</span><span class="toc-g">the quantity theory — MV = PY, and inflation as a monetary phenomenon — Fisher, Friedman</span></a></li>
+      <li><a href="#plate-iv"><span class="toc-n">iv</span><span class="toc-t">The Toll</span><span class="toc-g">inflation as a tax — seigniorage, the inflation tax, and why governments print — Cagan</span></a></li>
+      <li><a href="#plate-v"><span class="toc-n">v</span><span class="toc-t">The Spiral</span><span class="toc-g">hyperinflation — the fiscal roots, the flight from money, and the death of a currency</span></a></li>
+      <li><a href="#plate-vi"><span class="toc-n">vi</span><span class="toc-t">The Menu</span><span class="toc-g">the Phillips curve — the apparent menu of inflation and unemployment — Phillips, Samuelson, Solow</span></a></li>
+      <li><a href="#plate-vii"><span class="toc-n">vii</span><span class="toc-t">The Expectation</span><span class="toc-g">the natural rate — how expectations dissolve the tradeoff and turn the long-run curve vertical — Friedman, Phelps</span></a></li>
+      <li><a href="#plate-viii"><span class="toc-n">viii</span><span class="toc-t">The Sacrifice</span><span class="toc-g">disinflation — the sacrifice ratio, credibility, and the cost of bringing inflation down — Sargent</span></a></li>
+      <li><a href="#plate-ix"><span class="toc-n">ix</span><span class="toc-t">The Erosion</span><span class="toc-g">the costs of inflation — shoe-leather, menu, the inflation tax, and the noise in the price signal</span></a></li>
+      <li><a href="#plate-x"><span class="toc-n">x</span><span class="toc-t">The Fall</span><span class="toc-g">deflation — debt-deflation, the zero lower bound, and why falling prices are the graver danger — Fisher</span></a></li>
+      <li><a href="#plate-xi"><span class="toc-n">xi</span><span class="toc-t">The Mooring</span><span class="toc-g">monetary policy — the central bank, time-inconsistency, rules, and inflation targeting — Kydland, Prescott</span></a></li>
+      <li><a href="#plate-xii"><span class="toc-n">xii</span><span class="toc-t">The Value</span><span class="toc-g">the level made whole — the value of the unit that names this atlas, toward The Money, The Share, The Tax</span></a></li>
+    </ol>
+  </section>
+
+  <main class="plates" id="plates">
+
+    <section class="plate reveal" id="plate-i" data-label="Plate i · The Yardstick">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">i</div>
+        <p class="plate-kicker">Plate the First &middot; The Aggregates &middot; № XXI</p>
+        <h3 class="plate-title">The Yardstick</h3>
+        <p class="plate-gloss">the price level and its measure — a basket, an index, and inflation as its rate; the value of money inverted</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what does it mean to measure all prices with a rod that is itself made of rubber?</q></div>
+      <div class="plate-body">
+        <p>The price level is not the price of any one thing but the price of everything at once. Since one cannot literally add the price of bread to the price of haircuts to the price of steel, the measure is built from a representative basket — a fixed assortment of the goods a household buys — whose total cost, tracked over time and set against the cost in some base year, becomes a single number: a price index. Inflation is the rate at which that index climbs; deflation, the rate at which it sinks. The index reduces a million distinct, jostling prices to one figure, the better to see a movement that no single price reveals — the slow swelling or shrinking of money prices in general, the drift of the level itself.</p>
+        <p>And here is the strange heart of the matter: the price level is the value of money inverted. To say that prices have doubled is to say that money buys half as much — that each unit of currency is worth half what it was. Money's own value is never quoted directly; one cannot ask the price of a dollar in dollars, for the answer is always one. Its worth is revealed only obliquely, in the mirror of all other prices, rising as they fall and falling as they rise. The figure draws the two as the mirror images they are: the price level ascending, the purchasing power of money descending, crossing in the middle, each the other turned upside down. This is the yardstick problem in its purest form. Money is the rod by which a society measures the value of all things — and the rod itself changes length, lengthening in deflation and shrinking in inflation, so that every measurement taken with it is suspect.</p>
+        <aside class="pull">Money is the rod by which we measure all value — and the rod itself is made of rubber.</aside>
+        <p>Even the measuring of the rubber rod is treacherous. The basket is held fixed while the world it prices shifts beneath it: people buy less of what grows dear and more of what grows cheap, so a fixed basket overstates the rising cost of living; goods improve, so that a phone or a medicine priced today is not the thing it was a decade ago; entirely new goods appear that no base-year basket contained. A price index must somehow reckon with all of this, and every method of reckoning is a compromise. The number is indispensable — pensions and wages and debts are tied to it, central banks steer by it — and it is, irreducibly, an approximation of a thing that does not sit still to be measured.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="f1t f1d">
+              <title id="f1t">The price level and the value of money</title>
+              <desc id="f1d">Two curves over time. The price level rises from low to high; the purchasing power of a unit of money falls from high to low. They are mirror images, crossing in the middle: as the price level climbs, the value of money declines in exact inverse.</desc>
+              <line x1="64" y1="250" x2="414" y2="250" class="ax"/>
+              <polygon points="414,250 406,246 406,254" fill="var(--soft)"/>
+              <line x1="64" y1="250" x2="64" y2="40" class="ax"/>
+              <polygon points="64,40 60,48 68,48" fill="var(--soft)"/>
+              <text x="180" y="278" class="lbl-sm">time &#8594;</text>
+              <text x="26" y="150" class="lbl-ax" text-anchor="middle" transform="rotate(-90 26 150)">index</text>
+              <polyline points="64,210 140,198 220,180 290,150 350,110 404,72" class="curve"/>
+              <text x="398" y="66" class="lbl-sm" text-anchor="end">price level</text>
+              <polyline points="64,90 140,102 220,120 290,150 350,190 404,214" class="curve2"/>
+              <text x="398" y="226" class="lbl-sm" text-anchor="end">value of money</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 1.</span> The level and its inverse. As the price level rises, the purchasing power of a unit of money falls in exact mirror — the two are one fact seen from opposite sides. To track the price level is to track the shrinking of money's worth; the curves cross where the index passes its base. The price level is the value of the numéraire turned upside down, and inflation is the rate at which that value melts away.</figcaption>
+        </figure>
+        <aside class="edge"><span class="lead">the edge</span> There is no single true rate of inflation. Different households buy different baskets, so the inflation that falls on the poor — heavier in food, fuel, and rent — differs from the inflation that falls on the rich; the quality and novelty of goods defy clean measurement; and the choice of base year and averaging formula shifts the number materially. The headline figure is a useful fiction, and the pensions, wages, and contracts indexed to it ride on a measurement contestable to its core. The very phrase <em>the price level</em> treats as one thing what is a vast scatter of individual prices heaving every which way — and the average can hold perfectly still while, beneath it, the relative prices that actually guide an economy move violently.</aside>
+      </div>
+    </section>
+
+    <section class="plate reveal" id="plate-ii" data-label="Plate ii · The Mask">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">ii</div>
+        <p class="plate-kicker">Plate the Second &middot; The Aggregates &middot; № XXI</p>
+        <h3 class="plate-title">The Mask</h3>
+        <p class="plate-gloss">the classical dichotomy and the neutrality of money — doubling the money doubles all prices and changes nothing real — Hume</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if every price and every wage doubled overnight, what would change?</q></div>
+      <div class="plate-body">
+        <p>Suppose that tonight, while everyone sleeps, a miracle of arithmetic is worked: every banknote and every bank balance doubles, and so does every price tag, every wage, every debt, every contract. You wake to find twice the money in your pocket and twice the price on everything you might buy with it. What has changed? Nothing real. You can purchase exactly the basket you could have purchased yesterday; the baker bakes the same loaves; the worker works the same hours for the same bread. The great doubling was a pure relabeling — a change in the unit of measure, not in any quantity the unit measures, like restating every distance in inches where before it was in feet. This is the neutrality of money, and it is the foundation stone of all thinking about the price level.</p>
+        <p>From this thought experiment the classical economists — David Hume stated it with the most lasting clarity — drew a great separation, the classical dichotomy. Real variables, they held, are settled by real forces: what is produced, who is employed, the relative prices of goods, the real wage that labor commands, all flow from tastes and technology and the scarcity of resources. Nominal variables — the price level, the money value of everything — are settled by the quantity of money. The two run on separate tracks, and to understand what is really happening in an economy one must look through the monetary surface to the real machinery beneath. Money is a veil; or, to borrow the image this plate is named for, money is the mask, and the real economy is the living face behind it, whose expressions the mask merely covers without changing.</p>
+        <aside class="pull">Money is the mask; the real economy is the face beneath — and in the long run the mask changes nothing the face does.</aside>
+        <p>The dichotomy is true in the long run and false in the short, and its long-run truth is as profound as it is easily forgotten. Over years and decades money is genuinely neutral: nations that have endured great inflations and nations that have kept stable currencies are left, when the dust settles, with the same real economies, growing at rates set by the real forces of the previous volume and indifferent to how many zeros their banknotes carry. This is why sustained inflation cannot, in the end, purchase prosperity — why the printing press is no substitute for the slow accumulation of capital and ideas. And yet the overnight experiment cheats in exactly one respect: it assumes that every price moves at once, in the same instant, by the same proportion. In the waking world they do not. Prices and wages are set in contracts, revised on schedules, anchored by habit, and they move at different times and different speeds. That single, realistic failure of the thought experiment is the crack through which the short-run power of money pours — and from it flows the whole of the plates to come.</p>
+        <aside class="edge"><span class="lead">the edge</span> Neutrality is a long-run proposition, and <em>the long run</em> is a treacherous phrase — long enough that the doctrine is sound, short enough that to invoke it against present pain, a slump or a deflation in progress, is often a cruelty; as Keynes wrote, in the long run we are all dead. The dichotomy assumes, too, that the quantity of money can be cleanly severed from real forces, which modern systems — where money is created largely by banks lending against real activity — quietly blur. And even across the long run, a sufficiently violent inflation is not neutral at all: it corrodes the contracts, the price signals, and the trust on which the real economy stands, so that a mask billowing hard enough can tear the face it was meant only to cover.</aside>
+      </div>
+    </section>
+
+    <section class="plate reveal" id="plate-iii" data-label="Plate iii · The Equation">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">iii</div>
+        <p class="plate-kicker">Plate the Third &middot; The Aggregates &middot; № XXI</p>
+        <h3 class="plate-title">The Equation</h3>
+        <p class="plate-gloss">the quantity theory — MV = PY, and inflation as a monetary phenomenon — Fisher, Friedman</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>where do prices, in the end, come from?</q></div>
+      <div class="plate-body">
+        <p>The classical intuition has a precise expression, the equation of exchange, set down in its modern form by Irving Fisher: the quantity of money, multiplied by its velocity — the number of times each unit is spent in a period — equals the price level multiplied by the volume of real output. Written compactly, MV = PY. The left side is total spending: all the money there is, times how often it changes hands. The right side is the money value of everything produced: the price level, times the quantity of real goods. As it stands the equation is an identity, true by the meaning of its terms, telling us nothing on its own. It becomes a theory of the price level the moment one makes an assumption about the two terms on the side of money — velocity and output.</p>
+        <p>The quantity theory makes exactly that assumption. If velocity is roughly stable — fixed by the slow-moving habits of payment, the calendar of wages and bills — and if real output is determined by the real forces of the previous volume rather than by money, then the price level has nowhere to move but with the money supply. More money, the same goods, and prices must rise to absorb it; inflation becomes simply money growth running ahead of output growth. The long-run evidence, gathered across many countries and many decades, is the figure: money growth and inflation line up close to one-for-one, the points scattered along a single rising line, the high-money-growth nations carrying high inflation and the disciplined ones low. It is this regularity that Milton Friedman compressed into his famous verdict — that inflation is always and everywhere a monetary phenomenon — meaning that wherever and whenever prices rise persistently, an excess of money lies behind it.</p>
+        <aside class="pull">Print money faster than the economy grows, and the surplus is paid out in prices: inflation is the overissue of money, seen from the side of goods.</aside>
+        <p>The qualifications matter as much as the rule, for the quantity theory is a truth of the long run and the large sample, not of the month and the margin. Velocity is not in fact constant: it drifts with interest rates, with the inventions of finance, with confidence — and in a panic, as the volume on the cycle showed, the demand to hold money can leap and velocity collapse, so that even a steady money supply yields falling prices. Output, too, is not fixed in the short run, for money moves it. So over short horizons the link between money and prices is loose, noisy, and an unreliable guide to policy; it is across years, and across the vast range that runs from stable currencies to raging hyperinflations, that the quantity theory shows its iron. The equation is a frame within which to think, not a dial by which to steer from one quarter to the next.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="f2t f2d">
+              <title id="f2t">Money growth and inflation across countries</title>
+              <desc id="f2d">A scatter of countries with money growth on the horizontal axis and inflation on the vertical. The points cluster around a straight line of one-for-one, where inflation equals money growth: high-money-growth countries have high inflation, low-money-growth countries low inflation.</desc>
+              <line x1="64" y1="250" x2="414" y2="250" class="ax"/>
+              <polygon points="414,250 406,246 406,254" fill="var(--soft)"/>
+              <line x1="64" y1="250" x2="64" y2="40" class="ax"/>
+              <polygon points="64,40 60,48 68,48" fill="var(--soft)"/>
+              <text x="96" y="278" class="lbl-sm">money growth (%) &#8594;</text>
+              <text x="26" y="150" class="lbl-ax" text-anchor="middle" transform="rotate(-90 26 150)">inflation (%)</text>
+              <line x1="64" y1="250" x2="390" y2="70" class="guide"/>
+              <text x="350" y="86" class="lbl-sm" text-anchor="end">one-for-one</text>
+              <circle cx="100" cy="232" r="3.2" fill="var(--ink)"/>
+              <circle cx="130" cy="208" r="3.2" fill="var(--ink)"/>
+              <circle cx="160" cy="202" r="3.2" fill="var(--ink)"/>
+              <circle cx="195" cy="172" r="3.2" fill="var(--ink)"/>
+              <circle cx="225" cy="166" r="3.2" fill="var(--ink)"/>
+              <circle cx="260" cy="136" r="3.2" fill="var(--ink)"/>
+              <circle cx="295" cy="128" r="3.2" fill="var(--ink)"/>
+              <circle cx="330" cy="98" r="3.2" fill="var(--ink)"/>
+              <circle cx="360" cy="90" r="3.2" fill="var(--ink)"/>
+              <circle cx="385" cy="70" r="3.2" fill="var(--ink)"/>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 2.</span> The long-run signature of the quantity theory. Each point is a country; the more its money supply grows, the more its prices rise, the scatter hugging the line of one-for-one. The relation is loose in any single year and tight across decades and across the great range of monetary experience — the empirical core of the claim that sustained inflation is a monetary phenomenon. Velocity and output wander in the short run; over the long haul, money governs the level.</figcaption>
+        </figure>
+        <aside class="edge"><span class="lead">the edge</span> The clean terms of the equation are slipperier than they look. <em>Money</em> is not one thing but a nested ladder of ever-broader aggregates — cash, then deposits, then near-monies — that behave differently and that financial innovation keeps redefining, so that which measure to count is itself a live dispute. Velocity, far from a constant, has at times shifted enough to sever the short-run link between money and prices outright, embarrassing the monetarist experiments that tried to steer economies by money-supply targets in the nineteen-eighties. The theory is robust as a long-run, cross-country regularity and unreliable as a short-run rule — a distinction its boldest advocates have not always been careful to honor.</aside>
+      </div>
+    </section>
+
+    <section class="plate reveal" id="plate-iv" data-label="Plate iv · The Toll">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">iv</div>
+        <p class="plate-kicker">Plate the Fourth &middot; The Aggregates &middot; № XXI</p>
+        <h3 class="plate-title">The Toll</h3>
+        <p class="plate-gloss">inflation as a tax — seigniorage, the inflation tax, and why governments print — Cagan</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>who pays when a government prints the money it cannot raise?</q></div>
+      <div class="plate-body">
+        <p>A government that issues money can buy real things with paper that costs almost nothing to make, and the difference between what the money will purchase and what it cost to print is a revenue — seigniorage, the ancient profit of the issuer. It was once the prince's privilege, exercised by clipping and debasing the coinage, melting good coin into baser metal and spending the difference; it is now the modern state's, exercised through the central bank that creates the base money. Seigniorage is, at root, a way of commandeering resources without raising a tax or selling a bond — and so it is the resort of every government that finds it cannot tax enough, and cannot borrow enough, to pay for what it has resolved to spend. When the ordinary sources fail, a state can always, as a last device, print.</p>
+        <p>But to print money beyond the growth of output is to cause inflation, and inflation is itself a tax — perhaps the purest tax there is. It is a levy on everyone who holds money, whose real value the rising price level quietly eats away. Hold cash through a year in which prices rise a tenth, and you have paid a tenth of it in tax as surely as if an assessor had knocked at your door — except that no assessor called, no legislature voted, and the burden fell, without distinction or appeal, on whoever happened to be holding money as prices climbed. This is the inflation tax: its base is the real quantity of money the public chooses to hold, its rate is the rate of inflation, and its singular feature — the feature that makes it so tempting to the cornered state — is that it need never be legislated, debated, or even named.</p>
+        <aside class="pull">The inflation tax is the only tax that need not be voted — which is precisely why the desperate state reaches for it.</aside>
+        <p>There is, however, a ceiling on what this tax can raise, and the ceiling is the doorway to catastrophe. For the inflation tax erodes its own base: as inflation rises, people contrive to hold less money — they spend it faster, switch into goods, flee to a foreign currency — and the real stock of money that the tax falls upon shrinks. Beyond some rate, faster inflation yields less revenue, not more, the same Laffer-shaped peak that haunts every tax pushed too far, now traced in the demand for money. A government that has come to lean on the inflation tax discovers, as its base flees, that holding revenue steady requires inflating faster, which drives the base away faster still. Phillip Cagan, studying the great hyperinflations, mapped precisely this dynamic — the desperate chase of a fleeing base by an accelerating inflation — and in mapping it described the mechanism of the next plate, where the chase runs away entirely and money itself is destroyed.</p>
+        <aside class="edge"><span class="lead">the edge</span> The inflation tax is a genuine tax, with a base and a rate and a yield, and in real moderation it is even, by some accounts, an efficient one — cheap to collect, impossible to evade. But it is uniquely lawless: unlegislated, unannounced, and sharply regressive, falling hardest on the poor and the unsophisticated, who hold their little wealth in cash precisely because they lack access to the assets that ride inflation out. And its Laffer ceiling is not a comfortable bound but a cliff edge: a state dependent on the inflation tax finds that as its base erodes, the only way to keep the revenue flowing is to inflate faster, which erodes the base faster — a feedback that does not gently settle toward its limit but accelerates straight through it, into the spiral.</aside>
+      </div>
+    </section>
+
+    <section class="plate reveal" id="plate-v" data-label="Plate v · The Spiral">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">v</div>
+        <p class="plate-kicker">Plate the Fifth &middot; The Aggregates &middot; № XXI</p>
+        <h3 class="plate-title">The Spiral</h3>
+        <p class="plate-gloss">hyperinflation — the fiscal roots, the flight from money, and the death of a currency</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>how does money die?</q></div>
+      <div class="plate-body">
+        <p>Hyperinflation — by the usual convention, inflation above fifty percent a month — is the disease in which money destroys itself. Prices double in weeks, then in days; a wage is worth spending the very hour it is paid; banknotes are carried in baskets and wheelbarrows, printed in ever larger denominations, and at last simply refused. The historical cases are notorious: Germany in 1923, where a loaf of bread came to cost billions of marks; Hungary in 1946, the worst ever recorded, with prices doubling in a matter of hours; Zimbabwe in the first decade of this century, and a grim handful of others. The figure traces the signature they share: the price level, drawn even on a logarithmic scale — a scale on which mere exponential growth would be a straight line — still curving upward, bending toward the vertical, because the inflation is accelerating, feeding upon itself.</p>
+        <p>The roots of hyperinflation are, almost always, fiscal — it is a fiscal catastrophe wearing a monetary mask. It begins where a government's spending so outruns its power to tax or to borrow — in the wreckage after a war, a defeat, a revolution, a collapse — that it finances the gap by printing, and finds it cannot stop. The inflation tax of the previous plate is driven past its Laffer peak; the base flees; the government prints faster merely to stand still; prices accelerate. The monetary explosion is the proximate cause, the thing one sees, but the fiscal hole the printing fills is the ultimate one — which is why a true hyperinflation can never be cured by monetary sternness alone, but only by closing the budgetary chasm that compels the printing in the first place. To tell a government in this state simply to stop printing is to tell it to stop paying its army and its pensioners; the printing is a symptom of a fiscal disease.</p>
+        <aside class="pull">Money dies when those who hold it will not: the flight from a currency is the currency's executioner.</aside>
+        <p>What turns a high inflation into a hyperinflation is the collapse of the demand for money — the velocity term of the equation grown monstrous. As people come to expect prices to rise without limit, they race to convert money into anything that holds value before it melts in their hands; the racing itself drives prices up faster, which confirms the expectation and quickens the next flight, in a loop that tightens upon itself. Money sheds its functions in order: first it ceases to be a store of value, then a unit of account — merchants begin quoting prices in a foreign currency or in goods — and finally a medium of exchange, as barter creeps back and the currency is abandoned where it stands. The currency dies. Its death is ordinarily ended only by a sharp and credible fiscal reform, often a wholly new money, and — as the plates ahead will insist — by the restoration of the single thing a hyperinflation annihilates most completely, which is belief.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="f3t f3d">
+              <title id="f3t">The path of a hyperinflation</title>
+              <desc id="f3d">The price level over time on a logarithmic scale. The curve starts low and nearly flat, then bends upward ever more steeply until it is almost vertical — rising faster than exponentially, the signature of a process feeding on itself.</desc>
+              <line x1="64" y1="250" x2="414" y2="250" class="ax"/>
+              <polygon points="414,250 406,246 406,254" fill="var(--soft)"/>
+              <line x1="64" y1="250" x2="64" y2="40" class="ax"/>
+              <polygon points="64,40 60,48 68,48" fill="var(--soft)"/>
+              <text x="180" y="278" class="lbl-sm">time &#8594;</text>
+              <text x="26" y="150" class="lbl-ax" text-anchor="middle" transform="rotate(-90 26 150)">price level (log)</text>
+              <polyline points="64,244 140,238 200,228 250,212 290,188 320,152 345,105 362,60 372,46" class="curve"/>
+              <text x="140" y="90" class="lbl-sm">hyperinflation</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 3.</span> Money destroying itself. The price level is drawn on a logarithmic scale, where steady exponential inflation would trace a straight line; the curve instead bends upward toward the vertical, because the inflation accelerates as the flight from money quickens. The path is super-exponential — the mathematical fingerprint of a process feeding on its own expectation. Where it runs vertical, the currency has ceased to function and a society falls back upon barter.</figcaption>
+        </figure>
+        <aside class="edge"><span class="lead">the edge</span> The fifty-percent-a-month threshold is a convention, not a law of nature, and the boundary between a severe chronic inflation and a true hyperinflation is genuinely blurred. The fiscal account, powerful as it is, may not be quite universal: some argue that the loss of credibility and the unanchoring of expectations can drive an inflation beyond what the deficit alone would warrant, so that belief is not merely the channel of hyperinflation but at times an independent engine of it. And the cures, though they can be astonishingly swift — Thomas Sargent's study of the great interwar stabilizations found that a credible fiscal reform could halt a raging hyperinflation almost overnight, at a fraction of the cost gradualist theory predicted — depend on a political capacity to close the fiscal gap that the very conditions breeding hyperinflation tend to have destroyed.</aside>
+      </div>
+    </section>
+
+    <section class="plate reveal" id="plate-vi" data-label="Plate vi · The Menu">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">vi</div>
+        <p class="plate-kicker">Plate the Sixth &middot; The Aggregates &middot; № XXI</p>
+        <h3 class="plate-title">The Menu</h3>
+        <p class="plate-gloss">the Phillips curve — the apparent menu of inflation and unemployment — Phillips, Samuelson, Solow</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>can a society buy lower unemployment with a little more inflation?</q></div>
+      <div class="plate-body">
+        <p>In 1958 the engineer-turned-economist A.W. Phillips plotted nearly a century of British data and found a relation of arresting stability: years of low unemployment were years in which wages rose quickly, and years of high unemployment were years in which wages rose slowly or fell. Drawn in the plane of inflation and unemployment, the points traced a smooth downward-sloping curve — the figure of this plate. The mechanism seemed plain enough: a tight labor market, with jobs chasing few workers, bids wages up; a slack one, with workers chasing few jobs, holds them down. Paul Samuelson and Robert Solow soon carried the relation across the Atlantic and from wages to prices, fitting it to American data, and in doing so drew the moral that would dominate a decade of policy. Here, they suggested, was a menu — a stable and exploitable trade-off, from which a society might simply choose the combination of inflation and unemployment it preferred.</p>
+        <p>If the curve were stable, the implication for policy was irresistible. Monetary and fiscal management faced a choice along it: accept a little more inflation and be repaid in a little less unemployment, or wring inflation down and pay for it in idle workers. For a decade this framing organized the central debate of macroeconomic policy — not whether to manage demand, but where on the curve to come to rest, how to weigh the public's distaste for rising prices against its dread of joblessness. The trade-off seemed to promise that resolute demand management could purchase permanently lower unemployment for a modest and permanent inflation — a humane bargain, and to the politically bold an apparently free lunch, a standing offer that only timidity would decline.</p>
+        <aside class="pull">The Phillips curve offered a menu of inflation and unemployment — and a society that ordered from it twice found the prices had changed.</aside>
+        <p>But the menu rested on an assumption that no one had thought to examine: that the trade-off would hold still while policymakers leaned upon it. The Phillips curve was an empirical regularity in want of a theory, and the theory it lacked was precisely the one that would explain why inflation and unemployment should be linked at all. That missing theory — which the next plate supplies — locates the link not in inflation as such but in the gap between actual inflation and the inflation people expect. Workers and firms, it insists, care in the end about real wages, about what money will buy; and once they come to expect inflation, they build it into the wages they demand, so the gap closes and the trade-off evaporates. The menu, in other words, was a snapshot taken while expectations sat still — and the act of ordering from it repeatedly was exactly the thing that would set expectations moving and dissolve the offer. The curve, leaned upon, moves.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="f4t f4d">
+              <title id="f4t">The original Phillips curve</title>
+              <desc id="f4d">Inflation on the vertical axis, unemployment on the horizontal. A downward-sloping curve: low unemployment comes with high inflation, high unemployment with low inflation — an apparent stable trade-off, read as a menu of policy choices.</desc>
+              <line x1="64" y1="250" x2="414" y2="250" class="ax"/>
+              <polygon points="414,250 406,246 406,254" fill="var(--soft)"/>
+              <line x1="64" y1="250" x2="64" y2="40" class="ax"/>
+              <polygon points="64,40 60,48 68,48" fill="var(--soft)"/>
+              <text x="140" y="278" class="lbl-sm">unemployment &#8594;</text>
+              <text x="26" y="150" class="lbl-ax" text-anchor="middle" transform="rotate(-90 26 150)">inflation</text>
+              <polyline points="90,70 130,105 180,140 240,170 310,192 380,205" class="curve"/>
+              <text x="210" y="118" class="lbl-sm">Phillips curve</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 4.</span> The apparent trade-off. Down the curve, lower unemployment is bought with higher inflation, and the relation looks stable enough to choose from like a menu. The flaw is hidden: the curve is drawn for a fixed state of inflation expectations, and exploiting it sets those expectations moving. Read as a structural law rather than a fleeting regularity, the menu invites a bargain that cannot be kept.</figcaption>
+        </figure>
+        <aside class="edge"><span class="lead">the edge</span> Phillips's relation was entirely real in the data of its time, and the menu reading was not foolish — it organized a decade of policy and fit the evidence then to hand. Its error was to mistake a behavioral regularity for a structural law, exploitable without limit, when in truth it held only so long as inflation expectations stayed anchored. This is the first and most celebrated instance of a deeper principle — the Lucas critique, which the coming plates make explicit — that a relationship estimated under one policy regime may dissolve the instant policy tries to exploit it, because the very behavior the relationship summarizes will itself adjust to the new regime.</aside>
+      </div>
+    </section>
+
+    <section class="plate reveal" id="plate-vii" data-label="Plate vii · The Expectation">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">vii</div>
+        <p class="plate-kicker">Plate the Seventh &middot; The Aggregates &middot; № XXI</p>
+        <h3 class="plate-title">The Expectation</h3>
+        <p class="plate-gloss">the natural rate — how expectations dissolve the tradeoff and turn the long-run curve vertical — Friedman, Phelps</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what is left of the bargain once everyone sees it coming?</q></div>
+      <div class="plate-body">
+        <p>In 1968, independently and almost at once, Milton Friedman and Edmund Phelps saw what the menu had concealed. Workers and firms do not care about nominal wages and prices for their own sake; they care about real wages, about what a wage will actually buy. The Phillips trade-off works, when it works, only because an unexpected burst of inflation makes real wages fall — nominal wages, fixed in advance, lag behind the rising prices — so that firms, finding labor suddenly cheap, take on more of it. But this turns entirely on the inflation being a surprise. Let the inflation persist, and workers learn to expect it; they demand nominal raises that build the expected inflation in; real wages stop falling; and employment drifts back to its natural rate — the level fixed by the real frictions of the labor market, by the churn of jobs found and lost, wholly independent of how fast prices happen to be rising.</p>
+        <p>The consequence is the figure. There is not one Phillips curve but a whole family of them — a separate short-run curve for each rate of expected inflation, each sloping downward, each sitting higher than the last as expected inflation rises. A society can ride down any one of these short-run curves, buying lower unemployment, only until expectations catch up to the new inflation and the curve shifts up beneath its feet, depositing unemployment back at the natural rate but now at a higher inflation than before. The long-run Phillips curve — the locus of all the points where actual inflation has come to equal expected inflation — is therefore vertical, planted at the natural rate of unemployment. There is no permanent trade-off to be had. The attempt to hold unemployment below the natural rate purchases not a steady higher inflation but an ever-accelerating one, as policy forever chases an expectation that forever catches up; this is the accelerationist hypothesis, and it is the menu's epitaph.</p>
+        <aside class="pull">You can fool the labor market with inflation once; you cannot fool it forever, and the price of trying is an inflation that never stops rising.</aside>
+        <p>The prediction was vindicated almost as soon as it was made. The nineteen-seventies brought stagflation — high inflation and high unemployment together — a combination the stable menu had declared all but impossible, and which the expectations-augmented curve explained to the letter: inflation expectations had risen, shifting the whole short-run curve upward, so that even slack labor markets now came paired with rapid inflation. Robert Lucas then pressed the logic to its sharpest edge with the hypothesis of rational expectations: if people form their expectations using all the information available — including their understanding of how the central bank behaves — then only genuinely unanticipated money can move anything real, for anticipated inflation is built in at once and alters nothing. The exploitable trade-off shrinks to the merely surprising, and any systematic attempt to use it must fail, because a systematic policy is, by its nature, foreseen. The Lucas critique of the previous plate here arrives in full force: the menu was never a structure to be exploited, only a regularity waiting to be dissolved by the act of exploitation.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="f5t f5d">
+              <title id="f5t">The expectations-augmented Phillips curve</title>
+              <desc id="f5d">Inflation on the vertical axis, unemployment on the horizontal. A vertical long-run Phillips curve stands at the natural rate of unemployment. Two downward-sloping short-run curves cross it, the higher one for higher expected inflation; the economy can move down a short-run curve only until expectations adjust and the curve shifts up, returning unemployment to the natural rate.</desc>
+              <line x1="64" y1="250" x2="414" y2="250" class="ax"/>
+              <polygon points="414,250 406,246 406,254" fill="var(--soft)"/>
+              <line x1="64" y1="250" x2="64" y2="40" class="ax"/>
+              <polygon points="64,40 60,48 68,48" fill="var(--soft)"/>
+              <text x="140" y="278" class="lbl-sm">unemployment &#8594;</text>
+              <text x="26" y="150" class="lbl-ax" text-anchor="middle" transform="rotate(-90 26 150)">inflation</text>
+              <line x1="230" y1="240" x2="230" y2="55" class="curve"/>
+              <text x="236" y="64" class="lbl-sm">long run</text>
+              <text x="230" y="264" class="lbl-sm" text-anchor="middle">u*</text>
+              <polyline points="130,140 180,152 230,165 290,184 345,200" class="curve2"/>
+              <polyline points="130,85 180,97 230,110 290,129 345,145" class="curve2"/>
+              <text x="96" y="80" class="lbl-sm">short-run</text>
+              <circle cx="230" cy="165" r="3.2" fill="var(--ink)"/>
+              <circle cx="230" cy="110" r="3.2" fill="var(--ink)"/>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 5.</span> The trade-off dissolved. Each downward-sloping short-run curve holds for a given level of expected inflation; raising inflation moves the economy down a curve only until expectations adjust and the curve jumps upward, restoring unemployment to the natural rate <em>u*</em> at a higher inflation. The long-run curve, joining the points where actual equals expected inflation, is vertical: no permanent trade-off exists. Pushing below <em>u*</em> buys not steady inflation but accelerating inflation.</figcaption>
+        </figure>
+        <aside class="edge"><span class="lead">the edge</span> The natural-rate hypothesis is among the most influential ideas in macroeconomics and, in its strong forms, among the most contested. The vertical long-run curve is now widely accepted; the rational-expectations claim that only surprises matter, and that systematic policy is therefore powerless, is not — the apparent persistence of real effects from anticipated monetary changes, and the marked flattening of the Phillips curve in recent decades, all suggest the truth is messier than the clean theory allows. The natural rate itself, moreover, is unobservable and drifts over time, so that a central bank aiming at it is aiming at a moving target it cannot directly see — forced to judge, in real time, whether unemployment sits above or below a level no instrument can measure.</aside>
+      </div>
+    </section>
+
+    <section class="plate reveal" id="plate-viii" data-label="Plate viii · The Sacrifice">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">viii</div>
+        <p class="plate-kicker">Plate the Eighth &middot; The Aggregates &middot; № XXI</p>
+        <h3 class="plate-title">The Sacrifice</h3>
+        <p class="plate-gloss">disinflation — the sacrifice ratio, credibility, and the cost of bringing inflation down — Sargent</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>once inflation is loose, what does it cost to cage it again?</q></div>
+      <div class="plate-body">
+        <p>The expectations story cuts in both directions. If raising inflation above what people expect can buy a temporary boom, then lowering it below what people expect must exact a temporary slump. To bring inflation down, a central bank must run money tight enough that inflation falls short of expectations — which means, by the same mechanism that drove the natural-rate argument, that real wages rise, firms hire less, and unemployment climbs above its natural rate until expectations adjust downward to the new, lower reality. Disinflation, in the world the previous plates built, is paid for in foregone output and idle workers. The recession is not an accident of the cure; it is the cure's price, the mirror image of the fleeting boom that the original inflation once bought.</p>
+        <p>The size of that price is measured by the sacrifice ratio: the cumulative percentage of a year's output that must be given up to bring inflation down by a single percentage point. The estimates vary across time and country, but the ratio is typically several — disinflation is expensive, and the deeper and faster the squeeze, the steeper the recession it requires. The episode that fixed this in the modern mind was the disinflation of the early nineteen-eighties in the United States, under the Federal Reserve then chaired by Paul Volcker, which broke a decade of entrenched inflation but at the cost of the sharpest recession since the nineteen-thirties. It was a vivid, painful demonstration that the expectations-augmented Phillips curve is no mere blackboard exercise — that wringing deeply rooted inflation out of an economy is among the most costly undertakings a central bank can attempt.</p>
+        <aside class="pull">The cost of curing inflation is mostly the cost of being believed: a credible promise disinflates for free; a doubted one, only through a slump.</aside>
+        <p>But the sacrifice ratio is not fixed, and here the argument turns toward the institutions of the plates ahead. The ratio depends on expectations, and expectations depend on credibility. If a central bank announces a disinflation and is believed, people lower their inflation expectations at once; the short-run curve shifts down without the economy having to pass through a recession to drag it there; and the disinflation is nearly painless. If the bank is not believed — if people suspect it will lose its nerve and relent — they keep demanding the high nominal raises that entrenched inflation requires, inflation stays stubbornly up, and the bank must impose the full weight of recession simply to prove that it means what it says. The cost of disinflation is thus, in large part, the cost of establishing credibility, and Thomas Sargent's study of the great interwar stabilizations found exactly this pattern: where a stabilization was credible — backed by visible, durable reform of the fiscal and monetary regime together — even enormous inflations were halted swiftly and at modest cost, while where the reform was doubted, the price ran high. Credibility is the scarce resource of monetary policy, and the plates that remain are about how an institution comes to possess it.</p>
+        <aside class="edge"><span class="lead">the edge</span> The sacrifice ratio is real but unstable, and the credibility that lowers it is hardest to summon at the moment it is most needed — a central bank that has allowed inflation to take root has, by that very fact, spent the credibility that would make bringing it back down cheap. The painless-disinflation promise of the strong rational-expectations school proved too optimistic in practice: the Volcker disinflation was credible by most measures and still cost a brutal recession, which suggests that nominal rigidities and slow-adjusting expectations drag out the adjustment even when the announcement is believed. The lesson is asymmetric and sobering — inflation is easy to acquire and dear to shed — and it stands as the strongest practical argument for never letting it loose in the first place.</aside>
+      </div>
+    </section>
+
+    <section class="plate reveal" id="plate-ix" data-label="Plate ix · The Erosion">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">ix</div>
+        <p class="plate-kicker">Plate the Ninth &middot; The Aggregates &middot; № XXI</p>
+        <h3 class="plate-title">The Erosion</h3>
+        <p class="plate-gloss">the costs of inflation — shoe-leather, menu, the inflation tax, and the noise in the price signal</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if inflation is anticipated and evenly shared, why is it bad at all?</q></div>
+      <div class="plate-body">
+        <p>Begin with the hardest case for the prosecution: a perfectly anticipated, evenly shared inflation, in which every price and wage and contract rises together at a rate known to all in advance. Even this is not without cost. There are shoe-leather costs — the bother of economizing on cash whose value is steadily melting, the extra trips to the bank, the effort of holding wealth in things rather than in money. There are menu costs — the real resources consumed in constantly re-pricing, reprinting catalogs, re-tagging shelves, resetting the machines. There is the inflation tax on whatever cash people must still hold to transact. And there is the corrosive interaction with a tax code written in nominal terms: inflation drags incomes into higher brackets that were never meant for them, taxes purely paper capital gains as though they were real, and distorts saving and investment in ways no legislature ever chose. These costs are present even when the inflation surprises no one at all.</p>
+        <p>The graver costs come from inflation that is not foreseen. Debts are written in nominal terms, and so unexpected inflation transfers wealth wholesale from creditors to debtors — the lender is repaid in money worth less than the money he parted with — while an unexpected disinflation runs the transfer cruelly in reverse. Across a whole economy, surprise inflation is a vast and arbitrary redistribution: capricious, unlegislated, rewarding the indebted and punishing the thrifty, silently eroding the long-dated contracts — the pension, the bond, the lifetime of savings — on which provision for the future is built. It is the arbitrariness, far more than the average level, that does the deepest damage here. A known and steady inflation can be planned around, written into contracts, neutralized; a variable and surprising one cannot, and it poisons the very act of making promises across time.</p>
+        <aside class="pull">Inflation's deepest cost is not that prices rise but that they lie: in the general ascent, the signal of true scarcity is lost in the noise.</aside>
+        <p>Beneath all of these lies the subtlest cost, and perhaps the worst. Prices are signals — this is the lesson the whole atlas has pressed — and a rising relative price says, with great economy, this thing is scarce: make more of it, use less of it, look for substitutes. But inflation makes all prices rise at once, and in the general ascent it becomes genuinely hard to tell a relative-price change, which carries real information, from a merely monetary one, which carries none. Is this good dearer because it has grown scarce, or only because everything is dearer? The signal is buried in noise; the price system — the great decentralized machine by which a market economy computes what to make and where to send it — works less well; and resources are misallocated because the prices meant to guide them have been blurred. High and variable inflation degrades the very mechanism through which a market coordinates itself, which is why even a moderate inflation, if it is erratic, can exact a cost out of all proportion to its average rate, and why the central banks of the next plate labor so hard to keep inflation not merely low but steady.</p>
+        <aside class="edge"><span class="lead">the edge</span> The costs of a moderate, anticipated inflation are, by most careful reckonings, surprisingly small — which is exactly why the modern target is a low positive number rather than zero, and why some economists argue the fear of moderate inflation is overdrawn relative to the fear of the unemployment that fighting it can cause. The serious costs attach to inflation that is high, or variable, or unexpected; the case against a steady two or three percent a year is far weaker than the case against ten, or against wild swings around any mean. Precisely where the costs turn grave — at what level and what variability inflation tips from a nuisance into a scourge — is genuinely uncertain, and that uncertainty underlies much of the long dispute over how hard a central bank ought to fight.</aside>
+      </div>
+    </section>
+
+    <section class="plate reveal" id="plate-x" data-label="Plate x · The Fall">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">x</div>
+        <p class="plate-kicker">Plate the Tenth &middot; The Aggregates &middot; № XXI</p>
+        <h3 class="plate-title">The Fall</h3>
+        <p class="plate-gloss">deflation — debt-deflation, the zero lower bound, and why falling prices are the graver danger — Fisher</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>surely cheaper things are good — so why do central banks dread a falling price level?</q></div>
+      <div class="plate-body">
+        <p>Falling prices sound at first like nothing but a blessing: your money buys more, the cost of living drops, the household budget stretches further. And a mild deflation that springs from rising productivity — goods becoming genuinely cheaper to make — can indeed be benign, a gentle sharing-out of plenty. But a deflation that springs from collapsing demand — too little money chasing the goods, the exact mirror of inflation — is among the most dreaded conditions in all of macroeconomics, for reasons the naive view misses entirely. The danger lies not in the cheapness of things but in what a generally falling price level does to debt and to the central bank.</p>
+        <p>The first danger is the one Irving Fisher named, surveying the wreckage of the nineteen-thirties: debt-deflation. Debts are fixed in nominal terms, and when the price level falls, the real burden of every debt rises — the farmer who borrowed against dollar wheat must repay in fifty-cent wheat, owing twice the real amount he meant to. Debtors, crushed by a weight that grows heavier as their incomes and asset prices fall, cut their spending to the bone and sell whatever they can to service what they owe; the selling drives prices down further; the further fall raises the real burden of debt again; and the economy corkscrews downward in a vicious circle, in which the very struggle to pay down debt makes the debt, measured in real things, larger still. The harder the debtors labor to escape, the deeper the whole economy sinks.</p>
+        <aside class="pull">Deflation turns every debtor's burden heavier as he struggles to pay it, and ties the central bank's hands at the moment it most needs them free.</aside>
+        <p>The second danger, drawn in the figure, is that deflation disarms the central bank precisely when it is most needed. Ordinarily the bank fights a slump by cutting the interest rate; but the nominal rate cannot fall much below zero, for no one will lend at a loss while they have the option of simply holding cash. When deflation sets in, the real interest rate — the nominal rate minus inflation — becomes the nominal rate plus the rate of deflation, and it can be stuck painfully high at the very moment the economy is begging for it to be low or negative. The bank, having cut its rate to zero, can cut no further; the real rate that recovery requires lies below zero and out of its reach; monetary policy is jammed against its floor and loses its grip. This is the liquidity trap of the volume on the cycle, seen now from the side of prices as a deflationary trap. Japan's long stagnation after 1990, and the rich world's brush with deflation after the crisis of 2008, made this once-academic fear vividly, expensively real — and they explain why central banks deliberately aim at a low positive inflation rather than at price stability proper: to keep a buffer of distance between themselves and the zero bound, and the trap that waits just beyond it.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="f6t f6d">
+              <title id="f6t">Deflation and the zero lower bound</title>
+              <desc id="f6d">Interest rate against the depth of a slump. A dashed line marks the zero bound. The nominal policy rate declines and then flattens along zero, unable to fall below it. The natural rate the economy needs continues downward past zero into negative territory; the gap between the floored nominal rate and the needed natural rate is the shortfall of policy.</desc>
+              <line x1="64" y1="250" x2="414" y2="250" class="ax"/>
+              <polygon points="414,250 406,246 406,254" fill="var(--soft)"/>
+              <line x1="64" y1="250" x2="64" y2="40" class="ax"/>
+              <polygon points="64,40 60,48 68,48" fill="var(--soft)"/>
+              <text x="104" y="278" class="lbl-sm">the slump deepens &#8594;</text>
+              <text x="26" y="150" class="lbl-ax" text-anchor="middle" transform="rotate(-90 26 150)">interest rate</text>
+              <line x1="64" y1="170" x2="404" y2="170" class="guide"/>
+              <text x="398" y="164" class="lbl-sm" text-anchor="end">zero bound</text>
+              <polyline points="64,80 120,100 170,128 210,150 245,168 290,170 360,170 404,170" class="curve"/>
+              <text x="90" y="72" class="lbl-sm">nominal rate</text>
+              <polyline points="210,150 245,178 290,200 360,225 404,235" class="curve2"/>
+              <text x="398" y="242" class="lbl-sm" text-anchor="end">natural rate</text>
+              <text x="300" y="196" class="lbl-sm">policy gap</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 6.</span> Policy against its floor. As the slump deepens, the rate the economy needs — the natural rate — falls below zero, but the nominal policy rate cannot follow it past the zero bound and flattens there. The shaded distance between the floored nominal rate and the needed natural rate is the policy gap: the stimulus the central bank cannot deliver. With deflation, the real rate is the nominal rate plus the rate of price decline, stuck high exactly when it should be low — the deflationary trap.</figcaption>
+        </figure>
+        <aside class="edge"><span class="lead">the edge</span> Not all deflation is dangerous — the distinction between a benign, supply-driven fall in prices and a malign, demand-driven one is real but hard to draw in the moment, and the fear of deflation can be overstated. The zero lower bound, once thought an absolute floor, has proved slightly permeable: central banks have pushed rates marginally negative, and have reached past the bound with other instruments — large-scale purchases of assets, and promises about the future path of rates — though whether these substitutes are adequate remains disputed. What is not disputed is the asymmetry that organizes modern monetary policy: a central bank has all but unlimited power to raise rates and fight inflation, but only limited power to fight deflation once rates have hit zero — which is what makes the falling price level the more dangerous enemy, and the buffer held against it well worth its modest cost.</aside>
+      </div>
+    </section>
+
+    <section class="plate reveal" id="plate-xi" data-label="Plate xi · The Mooring">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">xi</div>
+        <p class="plate-kicker">Plate the Eleventh &middot; The Aggregates &middot; № XXI</p>
+        <h3 class="plate-title">The Mooring</h3>
+        <p class="plate-gloss">monetary policy — the central bank, time-inconsistency, rules, and inflation targeting — Kydland, Prescott</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>who should hold the power to move the value of every price at once, and how should they be bound?</q></div>
+      <div class="plate-body">
+        <p>The price level, left entirely to itself, is indeterminate — nothing within a pure market of relative prices pins down the absolute level of money prices, the number of dollars a thing costs. What pins it down is the monetary authority: the central bank, which controls the supply of base money and, through it, anchors both the price level and the expectations that ride upon it. This is a power of an awesome kind — to move, by adjusting a single interest rate, a number that touches every price, every wage, every debt and contract in the economy at one stroke — and the central question of monetary institutions is how so great a power ought to be exercised, and how it ought to be constrained.</p>
+        <p>Here lies a deep trap, identified by Finn Kydland and Edward Prescott: the problem of time-inconsistency. Imagine a central bank that holds discretion and announces it will keep inflation low. Suppose the public believes it and sets wages accordingly. The bank now faces a temptation, for by the Phillips logic a small surprise inflation would, at this moment, buy a welcome burst of extra employment. But the public, being no fool, anticipates that the bank will face exactly this temptation; it therefore does not believe the low-inflation promise in the first place; it builds higher inflation into its expectations; and the bank, to avoid the recession that would follow from disappointing those expectations, validates them by inflating. The outcome is an inflation bias: discretion delivers higher inflation than was promised, with no lasting gain in employment to show for it — everyone worse off, not through anyone's bad intent but through the bare logic of a promise that cannot bind the one who makes it. The disease is not malice; it is the absence of credible commitment.</p>
+        <aside class="pull">A central bank's deepest problem is not knowing what to do but being believed when it promises to do it — and so it binds itself, trading discretion for credibility.</aside>
+        <p>The cure is to bind the authority — to put commitment in the place of discretion, so that the promise becomes credible precisely because the bank can no longer renege on it. The forms this binding takes are several, and the figure draws the most explicit of them. A rule may tie the policy rate mechanically to inflation and output: the Taylor rule of the figure raises the nominal interest rate more than one-for-one with inflation, so that the real rate itself rises to lean against any rise in prices — the Taylor principle, the steepness beyond forty-five degrees that distinguishes a stabilizing rule from a destabilizing one. Independence may insulate the central bank from the government's standing electoral temptation to inflate. And the modern synthesis, inflation targeting, may fix a public, numerical inflation goal for which the bank is held openly accountable, anchoring the expectations of all to a single number that everyone can see and check. The common thread through every form is the deliberate sacrifice of flexibility for credibility: an authority that gives up the power to surprise gains, in exchange, the far more valuable power to be believed — and a believed central bank can hold inflation low and steady at a small fraction of the cost borne by one forever suspected of being about to cheat.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="f7t f7d">
+              <title id="f7t">The Taylor rule and the Taylor principle</title>
+              <desc id="f7d">The policy interest rate against inflation. A reference line of slope one rises at forty-five degrees. The Taylor rule rises more steeply than slope one, raising the nominal rate more than one-for-one with inflation so that the real rate rises to lean against it. The two cross at the inflation target, marked below.</desc>
+              <line x1="64" y1="250" x2="414" y2="250" class="ax"/>
+              <polygon points="414,250 406,246 406,254" fill="var(--soft)"/>
+              <line x1="64" y1="250" x2="64" y2="40" class="ax"/>
+              <polygon points="64,40 60,48 68,48" fill="var(--soft)"/>
+              <text x="160" y="278" class="lbl-sm">inflation &#8594;</text>
+              <text x="26" y="150" class="lbl-ax" text-anchor="middle" transform="rotate(-90 26 150)">policy rate</text>
+              <line x1="90" y1="210" x2="360" y2="120" class="guide"/>
+              <text x="352" y="130" class="lbl-sm">slope 1</text>
+              <line x1="90" y1="230" x2="330" y2="60" class="curve"/>
+              <text x="325" y="56" class="lbl-sm" text-anchor="end">Taylor rule</text>
+              <circle cx="143" cy="192" r="3.2" fill="var(--ink)"/>
+              <line x1="143" y1="192" x2="143" y2="250" class="guide"/>
+              <text x="143" y="264" class="lbl-sm" text-anchor="middle">target</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 7.</span> Leaning against inflation. A rule of slope one would raise the nominal rate point-for-point with inflation, leaving the real rate unchanged and doing nothing to restrain it. The Taylor rule rises more steeply — the Taylor principle — so that the real rate climbs as inflation climbs, pressing back against it; the rule passes through the neutral setting at the inflation target. Binding policy to such a rule trades the discretion that breeds inflation bias for the credibility that anchors expectations.</figcaption>
+        </figure>
+        <aside class="edge"><span class="lead">the edge</span> The case for rules over discretion is strong in theory and messier in practice — no simple rule survives contact with the shocks a real economy throws up, and every actual central bank retains, and uses, substantial discretion, so the real question is not rules <em>or</em> discretion but how much of each. Central bank independence, now orthodox, sits in genuine tension with democratic accountability: an unelected body wielding so consequential a power must answer to someone, and where exactly the line falls between insulation and accountability is contested — the more so as monetary policy shades into the distributional and fiscal questions that are properly the stuff of politics. And inflation targeting, for all its success in anchoring expectations, was caught flat-footed by the zero lower bound, and by the unsettled question of whether a bank should target consumer prices alone while asset prices and financial risks build unseen — debates the last decade has reopened and left unresolved.</aside>
+      </div>
+    </section>
+
+    <section class="plate reveal" id="plate-xii" data-label="Plate xii · The Value">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">xii</div>
+        <p class="plate-kicker">Plate the Twelfth &middot; The Aggregates &middot; № XXI</p>
+        <h3 class="plate-title">The Value</h3>
+        <p class="plate-gloss">the level made whole — the value of the unit that names this atlas, toward The Money, The Share, The Tax</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what, in the end, is money worth — and on what does its worth depend?</q></div>
+      <div class="plate-body">
+        <p>The price level is the value of money inverted — the worth of the numéraire, the unit in which every price in this atlas is quoted. Across eleven plates that worth has shown itself governed, in the long run, by one thing, and entangled, in the short run, with another. We have seen the yardstick made of rubber and the mask over the real economy; the equation of exchange and the toll the printing press exacts; the spiral in which money dies; the menu that dissolves when ordered from twice and the expectation that dissolves it; the sacrifice that breaking inflation demands; the erosion it works even when foreseen; the fall that deflation brings; and the mooring by which a central bank holds the whole at rest. It remains to gather them.</p>
+        <p>In the long run, money is a veil. It sets the level of prices and touches nothing real; the price level moves with the quantity of money relative to output; and so sustained inflation is, in the end, a monetary phenomenon, and the printing press can buy no lasting prosperity. This is the soundest proposition in the subject and the most easily forgotten in the heat of any particular year — the truth that the classical economists saw and that the quantity theory, with all its qualifications, still carries: that over long horizons a society's real fortunes are written in bread and steel and ideas, not in the number of zeros on its banknotes.</p>
+        <p>In the short run, money is a lever. Because prices are sticky, a change in money spills into output and employment; the price level is bound to the cycle; and the painful trades open — the Phillips menu that beckons and betrays, the disinflation paid for in slumps. And inflation, even when perfectly anticipated, is not free, while unanticipated it redistributes by caprice and, worst of all, buries the signal of true scarcity in the noise of a general ascent. Deflation is graver still, raising the real weight of every debt and disarming the central bank at the zero bound. The management of the level is therefore never the bloodless adjustment of a single number; it is inseparable from the management of output, employment, and the burden of debt.</p>
+        <p>Everything turns on expectations, and expectations turn on credibility. The trade-off between inflation and unemployment works only by surprise; the surprise cannot be repeated; the cost of disinflation is, in the main, the cost of being believed; and the inflation bias of a discretionary authority is, at root, a failure of credible promise. The scarce resource in the governance of the price level is not knowledge of what to do — that much is, by now, fairly well understood — but belief: the power of an institution to make a promise that the markets, and the wage-setters, and the lenders, will actually trust. This is the hinge on which the whole subject swings, and the reason the modern theory of monetary policy is, in the end, a theory of credibility.</p>
+        <p>And so the price level, indeterminate in itself, is anchored by an institution, and that institution's awesome power — to move the value of every price at once — must be bound if it is to be trusted: by rules, by independence, by a public and accountable target. The deliberate sacrifice of flexibility for credibility is the central design of every modern monetary regime. Here is the answer to the question with which this volume opened, the question of who should hold the power to change the value of every price at once: not a discretion free to surprise, however well-intentioned, but an institution bound, accountable, and — by virtue of being bound — believed.</p>
+        <p>What is known here is a genuine triumph, and worth naming as such. The long-run neutrality of money and the quantity theory; the expectations-augmented Phillips curve and the natural rate; the time-inconsistency problem and the case for credible rules; the inflation-targeting regimes that, built upon all of these, tamed the great inflations of the late twentieth century — together they form one of the more complete and successful bodies of knowledge in all of macroeconomics. What is not known is named with equal candor. The short-run dynamics remain contested — how sticky prices truly are, how rational expectations truly are, how flat the curve has truly become. The natural rate is unobservable and drifts, a target no one can see. The right response to the zero bound, and to the asset-price and financial risks that consumer-price targeting may miss, is unsettled. And the recent decades — a puzzling flatness of inflation, then its sudden and unforecast return — have humbled the confident on every side.</p>
+        <p>The Level is the third of The Aggregates, and the nominal companion to The Growth's real trend: the two of them, the nominal and the real, are the great trends of the macroeconomy, with The Cycle the wobble around them and The Share the question of how their fruits divide. Its bridges run throughout the atlas. To The Money, the institution whose quantity governs the level and whose very nature this volume has presupposed. Back to The Cycle, whose slumps the price level rides, and whose liquidity trap is this volume's deflationary trap seen from the other side. To The Growth, the real trend that the nominal merely shadows. To The Share, for inflation is among the great arbitrary redistributors of wealth. To The Tax, for the inflation tax is the levy that need never be voted. And to The Rate and The Spread, where the interest rate the central bank sets, and the credit through which it works, are studied in their own right.</p>
+        <p>What, then, is money worth? Exactly what the quantity of it, set against the goods it can buy, makes it worth — and that worth is anchored, in the last analysis, not by any real thing but by the credibility of the institution that issues it and the expectations of those who hold it. Money is a shared fiction that works only so long as it is believed; a measure of all value that has, itself, no value of its own; a numéraire whose own price can be asked only by inverting all the others. The price level is the value of that fiction, and its management is the management of belief. The aggregate, like every quantity this atlas has weighed, is a verdict on a hidden contest: between the real and the nominal, between money as a veil and money as a force, between the discretion that tempts and the rule that binds, between the worth a society assigns its measure of worth and that measure's own refusal to hold still. The argument remains open.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref">Volume XXI &middot; The Level</span>
+    </div>
+    <p class="colophon">Volume XXI of <em>Numéraire, A Periodic Table of Economic Life</em> — <em>The Level</em>, the twenty-first of twenty-six and the third of <em>The Aggregates</em>. Twelve plates and seven engravings, each worked at the seam where the seminar and the essay usually part, with the rigor of the one and the grace of the other, and each scrupulous about the exact edge of what can be known. The price level is the value of money inverted — the worth of the numéraire in which every price in this atlas is quoted: the yardstick made of rubber and the mask money draws over the real economy; the equation of exchange and the inflation tax the printing press exacts; the spiral of hyperinflation in which a currency dies; the Phillips menu that beckons and the expectation that dissolves it into a long-run curve standing vertical at the natural rate; the sacrifice that disinflation demands; the erosion inflation works even when foreseen, and the noise it pours into the price signal; the fall of deflation, with its debt-deflation spiral and its zero lower bound; and the mooring by which a central bank, bound by rule and target and independence, anchors a number that touches every price at once. It is the nominal companion to the growth that precedes it, and it hands the inquiry onward to <em>The Money</em>, <em>The Share</em>, and <em>The Tax</em>. The figures stand after Hume; Fisher; Friedman and Phelps; Cagan; Phillips, Samuelson, and Solow; Lucas; Sargent and Volcker; Kydland and Prescott; Taylor; and Keynes. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<script>
+(function(){
+  var root=document.documentElement; root.classList.add('js');
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var bar=document.getElementById('progress');
+  var topbar=document.getElementById('topbar');
+  var title=document.querySelector('.vol-title');
+  var label=document.getElementById('tb-plate');
+  function onScroll(){
+    var doc=document.documentElement;
+    var h=doc.scrollHeight-window.innerHeight;
+    var p=h>0?Math.min(1,Math.max(0,window.scrollY/h)):0;
+    if(bar) bar.style.transform='scaleX('+p.toFixed(4)+')';
+    if(topbar){
+      var threshold=(title?title.offsetHeight:420)*0.72;
+      if(window.scrollY>threshold) topbar.classList.add('show'); else topbar.classList.remove('show');
+    }
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+  if('IntersectionObserver' in window){
+    var rev=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); rev.unobserve(e.target); } });
+    },{rootMargin:'0px 0px -10% 0px',threshold:0.06});
+    document.querySelectorAll('.reveal').forEach(function(el){ rev.observe(el); });
+    if(label){
+      var cur=new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting){ var t=e.target.getAttribute('data-label'); if(t) label.textContent=t; } });
+      },{rootMargin:'-44% 0px -50% 0px',threshold:0});
+      document.querySelectorAll('.plate[data-label]').forEach(function(el){ cur.observe(el); });
+    }
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-growth.html">← The Growth</a><a rel="next" href="the-share.html">The Share →</a></nav>
+</body>
+</html>

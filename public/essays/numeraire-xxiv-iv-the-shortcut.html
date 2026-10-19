@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Shortcut — The Bias, Plate iv · Numéraire</title>
+<meta name="description" content="Tversky and Kahneman; the heuristics of judgment — representativeness, availability, anchoring — and the systematic biases they breed.">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- reading-progress hairline ---- */
+  .progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--ink);z-index:10000;}
+
+  /* ---- masthead ---- */
+  .masthead{padding:clamp(2.8rem,8vh,5.6rem) 0 clamp(1.6rem,4vh,2.6rem);text-align:center;}
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;}
+  .edition{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+  .edition b{font-family:"Fraunces",serif;font-weight:500;font-style:normal;color:var(--soft);letter-spacing:.04em;}
+
+  .symbox{width:84px;height:84px;border:1px solid var(--ink);border-radius:2px;background:var(--ink);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;margin:clamp(1.4rem,3.4vh,2.2rem) auto 0;}
+  .symbox .sb-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2rem;line-height:1;color:var(--paper);letter-spacing:-.01em;}
+  .symbox .sb-num{font-family:"Fraunces",serif;font-size:.66rem;color:rgba(240,235,225,.58);margin-top:.28rem;letter-spacing:.04em;}
+
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-top:1.15rem;}
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.5rem,7vw,5rem);line-height:1.0;letter-spacing:-.028em;margin:.55rem 0 0;text-wrap:balance;}
+  .subtitle{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.05rem,1.7vw,1.32rem);color:var(--faint);margin:.5rem 0 0;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.64;color:var(--soft);
+    max-width:43rem;margin:clamp(1.3rem,3vh,1.9rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+  .status{font-size:.84rem;color:var(--soft);margin:clamp(1.2rem,2.6vh,1.7rem) auto 0;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .backrow{margin-top:clamp(1.3rem,3vh,1.9rem);padding-top:1.5rem;border-top:1px solid var(--hair);max-width:50rem;margin-left:auto;margin-right:auto;}
+  .backlink{display:inline-block;font-size:.82rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .backlink:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- generic block furniture ---- */
+  main{padding:0;}
+  .eyebrow{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.2rem;}
+
+  .block-argument{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .argument{max-width:40rem;margin:0 auto;}
+  .argument p{font-size:1.08rem;line-height:1.74;color:var(--ink);margin:0 0 1.2rem;text-wrap:pretty;}
+  .argument p:last-child{margin-bottom:0;}
+  .argument .closer{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 400;font-style:italic;color:var(--soft);font-size:1.06rem;}
+
+  /* ---- table of plates ---- */
+  .block-toc{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .toc ol{list-style:none;margin:0;padding:0;max-width:44rem;}
+  .toc li{display:grid;grid-template-columns:2.5rem 1fr;column-gap:1rem;align-items:baseline;
+    padding:.85rem 0;border-top:1px solid var(--hair);}
+  .toc li:first-child{border-top:none;}
+  .t-num{font-family:"Fraunces",serif;font-size:.92rem;color:var(--faintest);text-align:right;}
+  .t-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.08rem;color:var(--ink);line-height:1.15;text-decoration:none;}
+  a.t-title{border-bottom:1px solid var(--num);padding-bottom:1px;}
+  a.t-title:hover{border-bottom-color:var(--ink);}
+  .t-gloss{grid-column:2;font-size:.85rem;color:var(--faint);font-style:italic;margin-top:.22rem;line-height:1.4;}
+  .t-q{grid-column:2;font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:.95rem;color:var(--soft);margin-top:.42rem;line-height:1.36;}
+  .t-q .lead{font-family:"Fraunces",serif;font-style:normal;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-right:.5rem;}
+  .t-tag{display:inline-block;margin-left:.6rem;font-family:"Newsreader",serif;font-size:.64rem;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--paper);background:var(--ink);border-radius:2px;padding:.12em .5em;vertical-align:.14em;}
+  .t-read{grid-column:2;margin-top:.42rem;}
+  .t-read a{font-size:.8rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .t-read a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- the plates (essays) ---- */
+  .plates-open{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.8rem,6vh,4rem);}
+  .plates-open .eyebrow{text-align:center;}
+  .plate{max-width:54rem;margin:clamp(2.8rem,6.5vh,4.4rem) auto 0;padding-top:clamp(2.2rem,4.6vh,3rem);
+    border-top:1px solid var(--hair);position:relative;scroll-margin-top:1.4rem;}
+  .plate:first-of-type{border-top:none;margin-top:clamp(1.6rem,3.5vh,2.4rem);padding-top:0;}
+  .plate-head{margin:0 0 1.7rem;}
+  .plate-kicker{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .plate-kicker .pk-tag{margin-left:.6rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .plate-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.8rem,4.2vw,2.7rem);line-height:1.03;letter-spacing:-.02em;margin:.32rem 0 .42rem;}
+  .plate-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.02rem;color:var(--faint);max-width:36rem;line-height:1.45;}
+
+  .epigraph{max-width:34rem;margin:1.4rem 0 1.9rem;padding-left:1.1rem;border-left:1px solid var(--num);}
+  .epigraph p{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:1.04rem;line-height:1.42;color:var(--soft);margin:0;}
+  .epigraph cite{display:block;font-style:normal;font-family:"Newsreader",serif;font-size:.78rem;
+    letter-spacing:.03em;color:var(--faintest);margin-top:.55rem;}
+
+  .plate-body{max-width:37rem;}
+  .plate-body p{font-size:1.05rem;line-height:1.75;color:var(--ink);margin:0 0 1.18rem;text-wrap:pretty;}
+  .plate-body p:last-child{margin-bottom:0;}
+  .plate-body em{font-style:italic;}
+  .plate-body .lead-para::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 500;
+    float:left;font-size:3.5rem;line-height:.78;padding:.08em .14em 0 0;color:var(--ink);}
+  .plate-body h4{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);margin:1.9rem 0 .9rem;}
+
+  .break{display:flex;justify-content:center;margin:1.9rem 0;}
+  .break span{font-family:"Fraunces",serif;font-size:1.05rem;letter-spacing:.4em;color:var(--faintest);padding-left:.4em;}
+
+  /* sidenotes — inline by default, true margin notes on wide screens */
+  .sn-ref{font-family:"Fraunces",serif;font-size:.64rem;vertical-align:super;line-height:0;color:var(--soft);margin-left:.06em;}
+  .sidenote{font-family:"Newsreader",serif;font-size:.82rem;line-height:1.52;color:var(--faint);
+    border-left:2px solid var(--hair);padding-left:.9rem;margin:.7rem 0 1.05rem;}
+  .sidenote .sn-num{font-family:"Fraunces",serif;color:var(--faintest);font-size:.7rem;margin-right:.38rem;}
+  .sidenote em{font-style:italic;}
+  @media (min-width:1040px){
+    .sidenote{float:right;clear:right;width:14.5rem;margin:.25rem -17.5rem 1.15rem 0;
+      border-left:none;border-top:1px solid var(--hair);padding:.42rem 0 0;}
+  }
+
+  /* ---- coda ---- */
+  .coda{max-width:40rem;margin:clamp(2.8rem,6vh,4rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);}
+  .coda p{font-size:1.06rem;line-height:1.74;color:var(--ink);margin:0 0 1.15rem;text-wrap:pretty;}
+  .coda p:last-child{margin-bottom:0;}
+  .coda .q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .f-ref a{text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .f-ref a:hover{border-bottom-color:var(--soft);}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .progress{transition:width .08s linear;}
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}.rise.d4{animation-delay:.4s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    h1{font-size:clamp(2.2rem,11vw,3rem);}
+    .symbox{width:72px;height:72px;}
+    .symbox .sb-sym{font-size:1.7rem;}
+    .plate-body .lead-para::first-letter{font-size:3rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+
+  /* ---- standalone plate (leaf) ---- */
+  .leaf-head{max-width:54rem;margin:0 auto;padding:clamp(2.2rem,6.5vh,4.4rem) 0 0;text-align:center;}
+  .leaf-loc{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.08em;color:var(--faintest);margin-bottom:1.7rem;}
+  .leaf-loc a{text-decoration:none;color:var(--faint);border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .leaf-loc a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+  .leaf-loc .sep{margin:0 .5rem;color:var(--num);}
+  .leaf-kicker{font-family:"Fraunces",serif;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .leaf-kicker .pk-tag{margin-left:.55rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .leaf-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.2rem,5.6vw,3.7rem);line-height:1.02;letter-spacing:-.024em;margin:.42rem 0 0;text-wrap:balance;}
+  .leaf-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.06rem;color:var(--faint);
+    max-width:34rem;margin:.72rem auto 0;line-height:1.5;text-wrap:pretty;}
+  .epigraph.leaf-epigraph{margin:1.95rem auto 1.4rem;text-align:left;}
+  .leaf-body-wrap{max-width:54rem;margin:clamp(1.8rem,4vh,2.8rem) auto 0;}
+
+  .leaf-nav{max-width:54rem;margin:clamp(3rem,7vh,5.2rem) auto 0;padding-top:clamp(1.8rem,4vh,2.6rem);
+    border-top:1px solid var(--hair);display:grid;grid-template-columns:1fr auto 1fr;gap:1.3rem;align-items:start;}
+  .ln-cell{text-decoration:none;display:block;}
+  .ln-cell .lab{display:block;font-family:"Fraunces",serif;font-size:.64rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--faintest);margin-bottom:.36rem;}
+  .ln-cell .ttl{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1rem;
+    color:var(--soft);line-height:1.22;}
+  a.ln-cell:hover .ttl{color:var(--ink);}
+  .ln-prev{text-align:left;} .ln-home{text-align:center;} .ln-next{text-align:right;}
+
+  @media (max-width:600px){
+    .leaf-nav{grid-template-columns:1fr;gap:1.4rem;}
+    .ln-prev,.ln-home,.ln-next{text-align:center;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#ne-contents">Complete contents</a><a href="../editions.html#volume-bias">The Bias · both editions</a><a href="../volumes/the-bias.html">Collected volume</a></div></nav>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="frame">
+
+  <header class="leaf-head">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="leaf-loc rise d1" aria-label="Location in the series"><a href="numeraire-atlas-updated.html">Numéraire</a><span class="sep">·</span><a href="numeraire-xxiv-the-bias.html">Volume XXIV · The Bias</a></nav>
+    <div class="leaf-kicker rise d2">Plate iv <span class="pk-tag">in print</span></div>
+    <h1 class="leaf-title rise d2">The Shortcut</h1>
+    <div class="leaf-gloss rise d3">Tversky and Kahneman; the heuristics of judgment — representativeness, availability, anchoring — and the systematic biases they breed.</div>
+    <div class="epigraph leaf-epigraph rise d3">
+      <p>Asked how probable a thing is, or how numerous, the mind seldom reckons; it answers an easier question in place of the hard one — how closely this resembles its type, how readily examples come to mind, how near a figure lies to whatever number the guessing began from — and because the easy question is not the one that was asked, the answers go wrong in ways as lawful as the questions that trip them.</p>
+      <cite>— the argument of this plate, after Amos Tversky and Daniel Kahneman, 1974</cite>
+    </div>
+  </header>
+
+  <main class="leaf-body-wrap">
+    <article class="plate">
+      <div class="plate-body">
+<p class="lead-para">Prospect theory described how a person values a gamble once its odds are laid before him. But the odds are rarely laid before him. In the ordinary run of life the probabilities are not given but guessed — how likely is this venture to pay, this patient to recover, this applicant to succeed, this road to be clear — and the guessing is the prior and harder task on which all valuing depends. Here the same two investigators, Amos Tversky and Daniel Kahneman, in work that preceded prospect theory by half a decade, found a second country of systematic departure. Their thesis was that when the mind is asked a hard question about likelihood or quantity, it does not labor toward the true answer by the rules of probability; it quietly swaps the hard question for an easier one it can answer at a glance, and reports the answer to the easy question as though it were the answer to the hard. The substitutions are quick, effortless, and most of the time good enough. But they are not the thing asked for, and so they fail — not at random, like a hand that slips, but lawfully, in the same direction every time, for the same reasons. Tversky and Kahneman called the shortcuts heuristics and the lawful failures biases, and they built a science out of reading the second to expose the first.</p>
+
+<p>The first shortcut is REPRESENTATIVENESS: to judge how probable it is that something belongs to a category, the mind asks instead how much it RESEMBLES the category, how well it fits the type. Often resemblance and probability run together, and the shortcut serves. But they can be pulled apart, and when they are, the judgment follows resemblance off a cliff. Describe a quiet, tidy, detail-loving soul who likes order and small careful tasks, and ask whether he is more likely a librarian or a farmer, and most people answer librarian — the description fits the type — though farmers so outnumber librarians that the tidy soul is, on the bare arithmetic, far more likely to be found behind a plow than a desk. The mind has fastened on the resemblance and ignored the BASE RATE, the sheer prior commonness of the categories, which probability theory says must weigh in any sound estimate. This insensitivity to base rates is the signature error of representativeness, and it is everywhere a vivid description tempts us to forget how rare the vivid case really is.<sup class="sn-ref">1</sup></p>
+<div class="sidenote"><span class="sn-num">1.</span> REPRESENTATIVENESS: to judge whether something belongs to a category, the mind asks how much it RESEMBLES the type. Often resemblance and probability run together. Pulled apart, judgment follows resemblance off a cliff. Describe a quiet, tidy, order-loving soul and ask whether he is more likely a librarian or a farmer; most answer librarian, though farmers so outnumber librarians that he is far likelier behind a plow. The mind fastens on resemblance and ignores the BASE RATE — the prior commonness of the categories that probability says must weigh in any estimate. The signature error of representativeness.</div>
+
+<p>Representativeness produces an error stranger than base-rate neglect, one that violates not merely good statistical sense but the bare logic of probability. Sketch a woman, single and outspoken and deeply engaged as a student with questions of justice and discrimination, and then ask which is more probable: that she is now a bank teller, or that she is a bank teller AND active in a movement for women's rights. A large majority choose the second. Yet the second cannot possibly be more probable than the first, for it is a part of the first — every feminist bank teller is a bank teller, so the conjunction can be no likelier than its conjunct, and is almost always less. People rank it higher because the fuller portrait, the teller-and-activist, RESEMBLES the sketch better than the bare teller does, and resemblance is the question the mind has answered. This is the conjunction fallacy, and its force is that adding detail — which can only narrow a possibility and lower its probability — makes a story feel MORE likely, because detail makes it fit the type. It is the engine behind every plausible, specific, and overconfident forecast, every vivid scenario believed precisely because its richness of incident makes it ring true.<sup class="sn-ref">2</sup></p>
+<div class="sidenote"><span class="sn-num">2.</span> A stranger error, violating the bare logic of probability. Sketch a single, outspoken woman engaged as a student with justice; ask which is likelier — that she is a bank teller, or a bank teller AND a women's-rights activist. A majority choose the second. Yet it cannot be likelier, being a PART of the first — every feminist teller is a teller. People rank it higher because the fuller portrait resembles the sketch better. The conjunction fallacy: adding detail, which can only lower a probability, makes a story feel MORE likely because detail makes it fit the type — the engine behind every vivid, overconfident forecast.</div>
+
+<div class="break"><span>⁂</span></div>
+
+<p>The second shortcut is AVAILABILITY: to judge how frequent or how probable a kind of event is, the mind asks how EASILY instances of it come to mind. Things that are common usually are easy to recall, so again the shortcut often serves. But ease of recall answers to more than frequency — it answers to vividness, to recency, to how much an event frightened or amused or was talked about — and wherever those pull apart from true frequency, the estimate is dragged off with them. People judge violent death by accident or homicide to be likelier than death by stroke or diabetes, though the quiet diseases kill far more, because the violent deaths are the ones the newspapers carry and the mind retrieves. They overrate the dangers that are dramatic and dread-soaked — the plane, the shark, the act of terror — and underrate the dangers that are dull and frequent — the car, the stairs, the slow disease — because the dramatic hazard is the one that springs to mind. The availability of an instance, its readiness to be recalled, masquerades as evidence of how often the thing occurs, and a world mediated by stories and screens, which serve up the rare and the vivid precisely because they are rare and vivid, keeps the masquerade well supplied.<sup class="sn-ref">3</sup></p>
+<div class="sidenote"><span class="sn-num">3.</span> AVAILABILITY: to judge how frequent an event is, the mind asks how EASILY instances come to mind. The common is usually easy to recall, so the shortcut often serves. But ease of recall answers to vividness, recency, and emotion too. People judge violent death likelier than death by stroke or diabetes, though the quiet diseases kill far more, because violent deaths are what the newspapers carry. They overrate the dramatic hazard — plane, shark, terror — and underrate the dull, frequent one — car, stairs, slow disease. A world of stories and screens, serving up the rare because it is rare, keeps the masquerade supplied.</div>
+
+<p>The third shortcut is ANCHORING AND ADJUSTMENT: asked to estimate some unknown quantity, the mind seizes on a starting number — an anchor, whatever happens to be at hand — and adjusts away from it toward its true estimate, but adjusts too little, so the final figure stays pulled toward where it began. What gives this its uncanny edge is that the anchor need not be relevant, need not even be meaningful; it works when it is plainly arbitrary. In the experiment that fixed the phenomenon, a wheel of fortune was spun to land on a number patently random, and people were then asked what percentage of the nations of Africa belonged to the United Nations; those whose wheel had stopped high guessed high, those whose wheel had stopped low guessed low, though everyone had watched the number arrive by chance and no one supposed it carried any information at all. The arbitrary anchor dragged the estimate toward itself regardless. This is why the first figure named in a negotiation shapes the whole, why a high sticker price makes a mere discount feel like generosity, why any number placed before us — a suggested donation, an initial offer, a stray statistic — bends the judgments that follow toward it. The mind cannot help starting somewhere, and where it starts taints where it ends.<sup class="sn-ref">4</sup></p>
+<div class="sidenote"><span class="sn-num">4.</span> ANCHORING AND ADJUSTMENT: asked to estimate an unknown, the mind seizes a starting number and adjusts away — but too little, so the figure stays pulled toward where it began. Its uncanny edge: the anchor need not be relevant or even meaningful. In the founding experiment a wheel of fortune was spun to a plainly random number, then people were asked what share of African nations sat in the UN; high spins gave high guesses, low spins low, though all had watched the number arrive by chance. Why the first figure in a negotiation shapes the whole, why a high sticker price makes a discount feel generous. Where the mind starts taints where it ends.</div>
+
+<p>Gather the three, and a picture of the judging mind emerges that is the very opposite of the calculating agent the older theory assumed. Judgment under uncertainty does not run on the rules of probability; it runs on resemblance, on recall, on whatever number lies near to hand — fast machinery, evolved or learned for a world that demanded speed, and serviceable enough that we survive by it daily. The biases are not the malfunctions of this machinery but its fingerprints: each systematic error reveals the shortcut that produced it, exactly as a visual illusion, by fooling the eye in a regular way, lays bare the rules by which the eye constructs what it sees. By cataloguing the illusions of judgment, Tversky and Kahneman reverse-engineered its workings, and together with prospect theory — that account of how the prospects, once judged, are valued — they mapped both halves of decision under uncertainty, the forming of beliefs and the weighing of outcomes, and found each one departing from the rational model in its own lawful way.<sup class="sn-ref">5</sup> Yet notice the word they chose, and that this volume has borrowed for its title: BIAS. A bias is a leaning-away from something, and the something is the correct answer, the verdict of logic and probability against which the heuristic is measured and found wanting. Built into the very name is a judgment — that the shortcut is a defect, the departure an error, the rational ideal the rightful standard. That judgment is the one thing in this whole science that its next and final plate will refuse to grant. The flagship asks whether the mind, in reaching for its shortcuts, is failing a test of reason, or passing a different test that the test of reason never thought to set.</p>
+<div class="sidenote"><span class="sn-num">5.</span> Gather the three and a picture emerges opposite to the calculating agent: judgment runs not on probability but on resemblance, recall, and the nearest number — fast machinery, serviceable enough that we survive by it daily. The biases are not malfunctions but fingerprints, each error revealing the shortcut behind it, as a visual illusion lays bare the rules of sight. With prospect theory, the heuristics map both halves of decision under uncertainty — forming beliefs and weighing outcomes — each departing lawfully from the model.</div>
+      </div>
+    </article>
+  </main>
+
+  <nav class="leaf-nav" aria-label="Plate navigation">
+    <a class="ln-cell ln-prev" href="numeraire-xxiv-iii-the-reference.html"><span class="lab">← Previous plate</span><span class="ttl">Plate iii · The Reference</span></a>
+    <a class="ln-cell ln-home" href="numeraire-xxiv-the-bias.html"><span class="lab">The volume</span><span class="ttl">The Bias · contents</span></a>
+    <a class="ln-cell ln-next" href="numeraire-xxiv-v-the-present.html"><span class="lab">Next plate →</span><span class="ttl">Plate v · The Present</span></a>
+  </nav>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref"><a href="numeraire-xxiv-the-bias.html">The Bias</a> · <a href="numeraire-atlas-updated.html">the table</a></span>
+    </div>
+    <p class="colophon">Plate iv of <em>The Bias</em>, Volume the Twenty-fourth of <em>Numéraire</em> — a periodic table of economic life. This leaf may be read on its own or as part of the volume. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<script>
+(function(){
+  var bar=document.getElementById('progress');
+  function onScroll(){
+    var h=document.documentElement;
+    var max=(h.scrollHeight-h.clientHeight);
+    var p=max>0?(h.scrollTop||document.body.scrollTop)/max:0;
+    bar.style.width=(p*100).toFixed(2)+'%';
+  }
+  document.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="numeraire-xxiv-iii-the-reference.html">← The Reference</a><a rel="next" href="numeraire-xxiv-v-the-present.html">The Present →</a></nav>
+</body>
+</html>

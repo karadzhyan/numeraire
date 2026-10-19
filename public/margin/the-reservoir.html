@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Reservoir — Numéraire, The Stock, Plate i</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:66rem; --measure:35rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(2.8rem,7vh,5rem) 0 clamp(1.4rem,3.5vh,2.2rem);text-align:center;}
+
+  .crumbs{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 400;
+    font-size:.8rem;letter-spacing:.04em;color:var(--faint);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:center;gap:.55rem;}
+  .crumbs a{text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .2s ease,color .2s ease;}
+  .crumbs a:hover{border-color:var(--num);color:var(--ink);}
+  .crumbs .sep{color:var(--faintest);}
+  .crumbs .here{color:var(--ink);}
+
+  .plate-mark{width:116px;height:116px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:.18rem;line-height:1;}
+  .plate-mark.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pm-vol{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.84rem;letter-spacing:.06em;color:rgba(240,235,225,.62);}
+  .pm-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;
+    font-size:2.5rem;letter-spacing:.02em;text-transform:uppercase;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.1rem,6vw,4rem);line-height:1.03;letter-spacing:-.025em;margin:1rem 0 0;text-wrap:balance;}
+  .status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:42rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .epi{max-width:38rem;margin:clamp(2.2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .epi q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.46;color:var(--ink);quotes:none;display:block;text-wrap:pretty;}
+  .epi .cite{display:block;margin-top:.95rem;font-size:.78rem;color:var(--faintest);letter-spacing:.05em;font-style:normal;}
+  .epi .cite em{font-style:italic;}
+
+  .essay{max-width:52rem;margin:clamp(3rem,7vh,5rem) auto 0;counter-reset:sn;}
+  .essay::after{content:"";display:block;clear:both;}
+  .essay > p,.essay > .pull{max-width:var(--measure);}
+  .essay p{font-size:1.075rem;line-height:1.8;color:var(--ink);margin:0 0 1.4rem;text-wrap:pretty;}
+  .essay em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.72;padding:.08em .14em 0 0;color:var(--ink);}
+
+  .divider{display:flex;justify-content:center;margin:2.4rem 0;}
+  .divider svg{width:96px;height:12px;overflow:visible;}
+  .divider line{stroke:var(--num);stroke-width:1;} .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.5vw,1.74rem);line-height:1.34;color:var(--ink);text-align:center;
+    margin:2.4rem auto;max-width:33rem;text-wrap:balance;}
+
+  .snref{font-family:"Fraunces",serif;font-size:.64em;line-height:0;vertical-align:super;
+    color:var(--soft);counter-increment:sn;margin-left:1px;font-style:normal;}
+  .snref::after{content:counter(sn);}
+  .sn{display:block;max-width:var(--measure);margin:.1rem 0 1.4rem;padding:.15rem 0 .15rem 1.05rem;
+    border-left:1px solid var(--hair);font-size:.84rem;line-height:1.52;color:var(--faint);}
+  .sn::before{content:counter(sn);font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--faintest);margin-right:.5em;font-size:.92em;}
+  .sn em{font-style:italic;}
+
+  @media (min-width:64rem){
+    .sn{float:right;clear:right;width:15rem;margin:.35rem 0 1.3rem;padding:0;border-left:none;}
+    .divider,.pull,.apparatus{clear:both;}
+  }
+
+  .apparatus{max-width:52rem;margin:clamp(3.2rem,7vh,5rem) auto 0;padding-top:2rem;border-top:1px solid var(--hair);clear:both;}
+  .app-h{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;}
+  .app-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.4rem;}
+  .app-list li{border-top:1px solid var(--hair);}
+  .app-list li:first-child,.app-list li:nth-child(2){border-top:none;}
+  .app-list a{display:block;text-decoration:none;padding:.95rem 0;}
+  .app-list a:hover .app-t{color:var(--soft);}
+  .app-rel{display:block;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faintest);margin-bottom:.3rem;}
+  .app-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.12rem;color:var(--ink);transition:color .2s ease;}
+  .app-g{display:block;font-size:.84rem;color:var(--faint);font-style:italic;line-height:1.4;margin-top:.22rem;}
+
+  footer{margin-top:clamp(3.5rem,8vh,6rem);padding:2.2rem 0 4rem;border-top:1px solid var(--hair);}
+  .crumbs.foot{justify-content:flex-start;margin-bottom:1.3rem;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .plate-mark{width:96px;height:96px;}
+    .pm-num{font-size:2.1rem;}
+    .essay p{font-size:1.04rem;line-height:1.74;}
+    .dropcap{font-size:3rem;}
+    .app-list{grid-template-columns:1fr;}
+    .app-list li:nth-child(2){border-top:1px solid var(--hair);}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="crumbs rise d1" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-stock.html">The Stock &middot; Vol IX</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate i</span>
+    </nav>
+    <div class="plate-mark lit rise d2" aria-hidden="true">
+      <span class="pm-vol">Sk</span>
+      <span class="pm-num">i</span>
+    </div>
+    <h1 class="rise d3">The Reservoir</h1>
+    <div class="status rise d3">in print &middot; The Stock &middot; plate i</div>
+    <p class="standfirst rise d4">Wealth is a stock and income a flow — what one owns at a moment against what one earns over time — different in kind, bound only by the rate at which a flow is capitalized into a fortune. This plate draws the distinction, follows it through Fisher's reservoir and the arithmetic of capitalization, and finds the most solid-seeming number in the economy resting on a price.</p>
+  </header>
+
+  <div class="epi rise d5">
+    <q>Remember that money is of a prolific, generating nature. Money can beget money, and its offspring can beget more.</q>
+    <span class="cite">Benjamin Franklin, <em>Advice to a Young Tradesman</em> (1748)</span>
+  </div>
+
+  <article class="essay">
+
+    <p class="lede"><span class="dropcap">A</span> man's wealth and his income are not the same kind of thing, and most confusion about who has what begins by forgetting it. Wealth is a stock: the whole of what a person owns at a given moment, a quantity that simply is, like the water standing in a reservoir. Income is a flow: what comes to him over a stretch of time, like the stream that runs into the reservoir or out of it. The one is measured in dollars, the other in dollars per year, and they can no more be added or compared directly than a lake can be added to a river. Yet they are confused constantly — the fortune treated as though it were an income, the income mistaken for the whole of a position — and from the confusion springs a great deal of muddled argument about wealth and poverty, fairness and desert.</p>
+
+    <p>The distinction is older than economics, and plainer than most of what it builds upon, but repays a moment's precision.<sup class="snref"></sup> A stock is a quantity measured at an instant, a magnitude a snapshot catches: the water in the reservoir, the dollars in the account, the wealth of a person or a nation at midnight on the last day of the year. A flow is a quantity measured across an interval, a rate only a stretch of time can register: the water entering or leaving the reservoir each hour, the income arriving each month, the spending and the wearing-out of machines. The pair runs through economics in parallel columns — wealth and income, capital and investment, debt and deficit, money supply and spending — and in every case the first is a level and the second a movement, a thing held against a thing happening. Adam Smith already drew the line, dividing a man's possessions into the stock reserved for use and the revenue it yielded; what later writers added was rigor, not the insight.</p>
+    <aside class="sn">The difference is one of dimension. A stock has the dimension of a quantity — dollars, gallons, tons; a flow that of a quantity divided by time — dollars per year, gallons per hour. The two cannot be added, any more than a distance can be added to a speed; and a ratio of the two always carries a buried unit of time, so that two thousand dollars of wealth against a hundred dollars a year of income yields a ratio of twenty years. To state such a ratio without its time dimension is the commonest sleight in loose talk about money.</aside>
+
+    <p>It was Irving Fisher who, at the opening of the twentieth century, made the distinction exact and built a theory upon it.<sup class="snref"></sup> In his treatise on capital and income he insisted that capital is a stock and income the flow of services that streams from it — that the two are not rival names for wealth but the standing fund and the moving yield, related as a reservoir to the river that runs from it — the image he chose. Capital, for Fisher, was simply the present value of expected income; income the return upon capital; and to confuse or add them was the root of a hundred fallacies in accounting and policy. A later economist, John Hicks, gave the flow its sharpest definition by tying it to the stock: a person's income, he proposed, is the most he can consume in a period and still be as well off at the end as at the beginning — the largest stream he can draw without lowering his reservoir. Income, on this account, is precisely the flow that leaves the stock intact: spend more, and one consumes capital; spend less, and one saves. The flow is defined by what it does to the stock, and the two are bound together at the root.</p>
+    <aside class="sn">Fisher's <em>The Nature of Capital and Income</em> (1906) is the classic treatment, separating a stock of wealth (capital) from the flow of services (income) it yields, and grounding the value of the former in the discounted sum of the latter. The reservoir-and-stream image by which it is taught is his. Hicks's definition of income, framed a generation later in <em>Value and Capital</em>, completes the thought from the other side: the flow is the largest a person can draw and leave his wealth undiminished.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>If a stock and a flow are bound together, the knot that binds them has a name: capitalization.<sup class="snref"></sup> To turn a flow into the stock that would yield it, one divides by the rate of return prevailing conditions allow; to turn a stock into its flow, one multiplies by that rate. An asset expected to pay a hundred dollars a year without end is worth, as a stock, that hundred divided by the rate of return — two thousand where the rate is one in twenty, a thousand where it is one in ten — for two thousand dollars, lent at the going rate, would itself yield a hundred a year, and so is what the stream is worth to a buyer. This is the arithmetic behind every asset valuation, from a bond to a building to a business: the price one pays for a thing is the capitalized value of the income it is expected to throw off, the future flow gathered into a present stock. The fortune and the income are thus two faces of one magnitude, and the rate of return the exchange rate between them — the number that says how many dollars of stock a dollar a year of flow is worth.</p>
+    <aside class="sn">The value of a perpetual income is the simplest case of present-value reckoning: a permanent flow <em>F</em> capitalized at a rate <em>r</em> is worth <em>F</em> divided by <em>r</em> as a stock; the perpetuity is chosen for its starkness. The reciprocal of the rate — twenty, where the rate is a twentieth — is the multiple of annual income at which the stock changes hands: the "years' purchase" of older usage, the price-earnings multiple of the market.</aside>
+
+    <p>From this simple exchange rate a large and unsettling consequence follows.<sup class="snref"></sup> Because the value of a stock is the flow it yields divided by the rate of return, the size of a fortune is not a fixed fact about the world but a quantity that moves with the rate — and moves, often, with violence, while nothing physical changes at all. Let the rate of return fall by half, and every asset yielding a steady income is worth twice as much as a stock, though not a brick has been laid nor a machine added: the same buildings, shares, and bonds, recorded now at double their former value, their owners twice as rich on paper for no act of theirs. This is no abstraction. The long decline of interest rates across recent decades revalued the world's assets enormously upward, swelling measured wealth far faster than any growth in the things wealth is made of, and a sustained reversal would as surely shrink it; a fortune in shares and land can double or halve with the drift of the rate, its owner producing nothing and deciding nothing. The reservoir's level, it turns out, depends not only on the water in it but on the rate at which the world agrees to capitalize a stream — and that rate is no fact of nature.</p>
+    <aside class="sn">The point explains why falling interest rates inflate asset prices and the measured wealth of those who hold them, and why an era of cheap money tends also to be one of swelling fortunes and wealth gaps. The wealth so created is a revaluation, not a creation: the same income streams, capitalized at a lower rate, simply count for more — one of the principal ways the recorded stock can change while the real economy beneath it scarcely stirs.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>And here the most solid-seeming quantity in all of economics quietly dissolves.<sup class="snref"></sup> A fortune presents itself as the hardest of facts — a number, a net worth, a definite quantity a person has or has not — and of all the magnitudes the economist handles it seems least like a verdict and most like a measurement, as plain as the reading on a scale. But we have seen what the number is made of. The dollar value of a fortune is a flow capitalized at a rate; and the rate is a price — the price of capital, the return that ownership commands. A price is a verdict on a hidden contest, mistaken for a fact of nature; and the rate of return that converts every income into a fortune is a verdict of exactly this kind, the outcome of the long struggle over how much of what is produced goes to those who own and how much to those who work. So the size of a fortune, which wears the face of a measured fact, is in truth the shadow of a price, and the price the residue of a contest over distribution. The wealth is no fact of nature; it is a flow valued at a rate, and the rate is fought over. The most concrete number in the economy turns out to rest, at one remove, on the least settled thing there is.</p>
+    <aside class="sn">That the rate of return reflects the division of the social product, and is no mere technical datum, is the burden of the plate that follows, <em>The Claim</em>. Here it is enough that the rate is not fixed by nature: it varies with the bargaining strength of owners and workers, with the abundance of capital, with policy and law; and a society that divided its product differently would capitalize its incomes at a different rate, and record a different sum of wealth from the very same assets. The number depends on the distribution, and the distribution is contested.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>The objection to all this is natural and deserves its full weight.<sup class="snref"></sup> Surely, it runs, there is something solid and factual about wealth that no talk of capitalization can dissolve. A person who owns a house, a field, a workshop, and a year's provisions is really and unarguably better off than one who owns nothing, and would be so in any society at any rate of interest; the reservoir, whatever the gauge reads, holds real water. Wealth, on this view, is at bottom command over real things — goods, land, the means of production — and the dollar figure merely a convenient way of summing that command, imperfect like all measures but not therefore an illusion. And the rate of return, the objector adds, is no arbitrary spoils of a contest but reflects forces as real as any in nature: the genuine productivity of capital, which makes tools yield more than the labor that built them, and the genuine impatience of people, who prefer goods now to later and must be paid to wait. Fisher himself grounded the rate in just these two — productivity and impatience — and on his account the number that capitalizes a flow is no verdict but a fact about technology and human nature. The stock is real, the rate is real, and the wealth they yield is as factual as the house that stands in the field.</p>
+    <aside class="sn">Fisher's <em>The Theory of Interest</em> (1930) explains the rate of return as the joint product of the investment opportunity capital affords — its real productivity — and the impatience of those who choose between consuming now and later. On this account the rate is set by technology and preference, not by class power, and the value it imparts to wealth is correspondingly objective. It is the strongest form of the case that the rate, and so the size of a fortune, rests on facts of nature rather than a contest; the plate grants its force before answering it.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>The reply is not to deny the real water but to insist on what the gauge adds to it.<sup class="snref"></sup> Grant that wealth is command over real things, and that the rate reflects, in part, the true productivity of capital and the true impatience of men; it remains that the dollar magnitude of a fortune — the number in which the argument about inequality and desert is actually conducted — is a capitalization, and the rate that performs it is not productivity and impatience alone but those forces shot through with all else that bears on the division of the product. Two societies with the very same houses, fields, and workshops will record different sums of wealth if they divide their output differently between owners and workers, for they will capitalize the owners' incomes at different rates; the real assets are identical, the wealth is not. The house is a fact; the million dollars at which it is valued is a price. And the confusion of the two — treating the capitalized figure as though it were as hard and given as the house — is precisely what lets the politics of wealth go astray, allowing a swelling of fortunes that is mere revaluation to pass for the just reward of creation, and a distribution that could be otherwise to wear the look of a fact that could not.</p>
+    <aside class="sn">The practical sting is that measured wealth inequality can widen with no one at the top creating anything new, simply because the assets the rich already hold are revalued upward when rates fall. A decade in which the wealth of the richest swells while wages stagnate may record not a surge of creation but a capitalization of existing claims at an ever lower rate — a revaluation of the past, not a reward of the present. The plate on concentration returns to how it gathers wealth into the fewest hands.</aside>
+
+    <p>So the muddle the plate began with is no innocent slip but a thing with consequences and, often, with beneficiaries.<sup class="snref"></sup> To read a fortune as an income, or an income as the whole of a fortune, is to lose track of which magnitude one is speaking of; but to read the dollar value of a fortune as a fact of nature is a deeper error, and a more useful one to those it favors. A price is a verdict on a hidden contest, mistaken for a fact of nature; and the value of a great fortune is such a verdict twice compounded — once because it is a flow capitalized at a rate the distributional contest sets, and again because the flow so capitalized is itself a claim whose justice is the very thing in dispute — the income of a position whose right to exist the rest of the volume will weigh. To hold the stock and the flow apart, and to remember that the bridge between them is a price and not a fact, is the first discipline of thinking honestly about wealth — the precondition of seeing that the most solid number in the economy is the shadow of a contest, and of refusing to mistake the shadow for the substance, or the verdict for the law.</p>
+    <aside class="sn">The discipline has a long pedigree. The national-income accountants who built the modern measures of wealth and income, following Simon Kuznets and others, took the stock-and-flow distinction as their first principle, precisely because the public argument they fed was — and remains — so prone to confusing the two. To set a billionaire's wealth, a stock, against a government's annual budget, a flow, is to commit the very category error the apparatus was built to prevent.</aside>
+
+    <p class="pull">The reservoir holds real water. But the number on the gauge is a price — and a price is the residue of a contest, never a fact read clean from nature.</p>
+
+    <p>With the stock and the flow set apart, the volume can begin its true work. This plate has drawn the distinction and followed it to its unsettling end — that a fortune's magnitude is a flow capitalized at a contested rate, and so no fact of nature but a verdict in disguise. What it has not yet asked is what the flow itself is: whether the income a stock throws off is the earned reward of the labor and abstinence that built it, or the income of a position, a standing claim on what others produce, owed to ownership and not to work. That is the question the next plate takes up, and toward which this whole volume bends. The reservoir is real, its level no illusion; but the gauge that reads it is a price, the price the cast of a contest, and the water in it — whose it is, and by what right — the matter still to be weighed. The argument remains open.</p>
+
+  </article>
+
+  <nav class="apparatus" aria-label="Related reading">
+    <h2 class="app-h">Related</h2>
+    <ul class="app-list">
+      <li><a href="the-claim.html"><span class="app-rel">In this volume</span><span class="app-t">The Claim</span><span class="app-g">plate ii — what the flow the stock yields really is: the point at which a fortune ceases to reward work and becomes a standing claim on what others produce</span></a></li>
+      <li><a href="the-unearned.html"><span class="app-rel">In The Rent</span><span class="app-t">The Unearned</span><span class="app-g">income that accrues to ownership without effort: Mill's unearned increment, the flow a stock of land yields its holder while he sleeps</span></a></li>
+      <li><a href="the-divide.html"><span class="app-rel">In The Surplus</span><span class="app-t">The Divide</span><span class="app-g">the division of the surplus between the parties to production — the distributional contest whose outcome sets the rate at which every flow is capitalized</span></a></li>
+      <li><a href="the-numeraire.html"><span class="app-rel">In The Money</span><span class="app-t">The Numeraire</span><span class="app-g">the measuring rod in which wealth is reckoned: the unit that lets a heterogeneous stock be summed as a single figure, and what the figure hides</span></a></li>
+    </ul>
+  </nav>
+
+  <footer>
+    <nav class="crumbs foot" aria-label="Return">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-stock.html">The Stock &middot; Vol IX</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate i &middot; The Reservoir</span>
+    </nav>
+    <p class="colophon">The first plate of Volume IX, <em>The Stock</em>, and the distinction on which the volume is built: the difference between a stock and a flow — between wealth, what one owns at an instant, and income, what one earns over time. Irving Fisher's reservoir and stream, the capitalization that binds the two (a fortune being a flow divided by the rate of return), and the unsettling consequence that the size of a fortune moves with the rate while nothing physical changes — so that the most solid-seeming number in the economy is the shadow of a price. The master thesis, that the dollar value of a fortune is a flow capitalized at a rate the distributional contest sets, and so a verdict and not a fact; and the steelman it must answer, that the reservoir holds real water and the rate reflects real productivity and impatience, as Fisher held. The plate opens the pair completed by its companion <a href="the-claim.html">The Claim</a>, which asks what the flow itself is. The epigraph is from Franklin's <em>Advice to a Young Tradesman</em>, on the generating nature of money; the work of Fisher and Hicks is discussed in the text. Return to <a href="the-stock.html">The Stock</a>, or to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-stock.html">← The Stock</a><a rel="next" href="the-claim.html">The Claim →</a></nav>
+</body>
+</html>

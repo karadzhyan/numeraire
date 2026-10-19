@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Bank — The Spread, Plate vii · Numéraire</title>
+<meta name="description" content="the bank as intermediary; maturity transformation, the net interest margin, and the spread between what savers are paid and borrowers are charged.">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- reading-progress hairline ---- */
+  .progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--ink);z-index:10000;}
+
+  /* ---- masthead ---- */
+  .masthead{padding:clamp(2.8rem,8vh,5.6rem) 0 clamp(1.6rem,4vh,2.6rem);text-align:center;}
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;}
+  .edition{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+  .edition b{font-family:"Fraunces",serif;font-weight:500;font-style:normal;color:var(--soft);letter-spacing:.04em;}
+
+  .symbox{width:84px;height:84px;border:1px solid var(--ink);border-radius:2px;background:var(--ink);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;margin:clamp(1.4rem,3.4vh,2.2rem) auto 0;}
+  .symbox .sb-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2rem;line-height:1;color:var(--paper);letter-spacing:-.01em;}
+  .symbox .sb-num{font-family:"Fraunces",serif;font-size:.66rem;color:rgba(240,235,225,.58);margin-top:.28rem;letter-spacing:.04em;}
+
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-top:1.15rem;}
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.5rem,7vw,5rem);line-height:1.0;letter-spacing:-.028em;margin:.55rem 0 0;text-wrap:balance;}
+  .subtitle{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.05rem,1.7vw,1.32rem);color:var(--faint);margin:.5rem 0 0;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.64;color:var(--soft);
+    max-width:43rem;margin:clamp(1.3rem,3vh,1.9rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+  .status{font-size:.84rem;color:var(--soft);margin:clamp(1.2rem,2.6vh,1.7rem) auto 0;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .backrow{margin-top:clamp(1.3rem,3vh,1.9rem);padding-top:1.5rem;border-top:1px solid var(--hair);max-width:50rem;margin-left:auto;margin-right:auto;}
+  .backlink{display:inline-block;font-size:.82rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .backlink:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- generic block furniture ---- */
+  main{padding:0;}
+  .eyebrow{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.2rem;}
+
+  .block-argument{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .argument{max-width:40rem;margin:0 auto;}
+  .argument p{font-size:1.08rem;line-height:1.74;color:var(--ink);margin:0 0 1.2rem;text-wrap:pretty;}
+  .argument p:last-child{margin-bottom:0;}
+  .argument .closer{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 400;font-style:italic;color:var(--soft);font-size:1.06rem;}
+
+  /* ---- table of plates ---- */
+  .block-toc{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .toc ol{list-style:none;margin:0;padding:0;max-width:44rem;}
+  .toc li{display:grid;grid-template-columns:2.5rem 1fr;column-gap:1rem;align-items:baseline;
+    padding:.85rem 0;border-top:1px solid var(--hair);}
+  .toc li:first-child{border-top:none;}
+  .t-num{font-family:"Fraunces",serif;font-size:.92rem;color:var(--faintest);text-align:right;}
+  .t-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.08rem;color:var(--ink);line-height:1.15;text-decoration:none;}
+  a.t-title{border-bottom:1px solid var(--num);padding-bottom:1px;}
+  a.t-title:hover{border-bottom-color:var(--ink);}
+  .t-gloss{grid-column:2;font-size:.85rem;color:var(--faint);font-style:italic;margin-top:.22rem;line-height:1.4;}
+  .t-q{grid-column:2;font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:.95rem;color:var(--soft);margin-top:.42rem;line-height:1.36;}
+  .t-q .lead{font-family:"Fraunces",serif;font-style:normal;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-right:.5rem;}
+  .t-tag{display:inline-block;margin-left:.6rem;font-family:"Newsreader",serif;font-size:.64rem;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--paper);background:var(--ink);border-radius:2px;padding:.12em .5em;vertical-align:.14em;}
+  .t-read{grid-column:2;margin-top:.42rem;}
+  .t-read a{font-size:.8rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .t-read a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- the plates (essays) ---- */
+  .plates-open{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.8rem,6vh,4rem);}
+  .plates-open .eyebrow{text-align:center;}
+  .plate{max-width:54rem;margin:clamp(2.8rem,6.5vh,4.4rem) auto 0;padding-top:clamp(2.2rem,4.6vh,3rem);
+    border-top:1px solid var(--hair);position:relative;scroll-margin-top:1.4rem;}
+  .plate:first-of-type{border-top:none;margin-top:clamp(1.6rem,3.5vh,2.4rem);padding-top:0;}
+  .plate-head{margin:0 0 1.7rem;}
+  .plate-kicker{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .plate-kicker .pk-tag{margin-left:.6rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .plate-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.8rem,4.2vw,2.7rem);line-height:1.03;letter-spacing:-.02em;margin:.32rem 0 .42rem;}
+  .plate-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.02rem;color:var(--faint);max-width:36rem;line-height:1.45;}
+
+  .epigraph{max-width:34rem;margin:1.4rem 0 1.9rem;padding-left:1.1rem;border-left:1px solid var(--num);}
+  .epigraph p{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:1.04rem;line-height:1.42;color:var(--soft);margin:0;}
+  .epigraph cite{display:block;font-style:normal;font-family:"Newsreader",serif;font-size:.78rem;
+    letter-spacing:.03em;color:var(--faintest);margin-top:.55rem;}
+
+  .plate-body{max-width:37rem;}
+  .plate-body p{font-size:1.05rem;line-height:1.75;color:var(--ink);margin:0 0 1.18rem;text-wrap:pretty;}
+  .plate-body p:last-child{margin-bottom:0;}
+  .plate-body em{font-style:italic;}
+  .plate-body .lead-para::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 500;
+    float:left;font-size:3.5rem;line-height:.78;padding:.08em .14em 0 0;color:var(--ink);}
+  .plate-body h4{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);margin:1.9rem 0 .9rem;}
+
+  .break{display:flex;justify-content:center;margin:1.9rem 0;}
+  .break span{font-family:"Fraunces",serif;font-size:1.05rem;letter-spacing:.4em;color:var(--faintest);padding-left:.4em;}
+
+  /* sidenotes — inline by default, true margin notes on wide screens */
+  .sn-ref{font-family:"Fraunces",serif;font-size:.64rem;vertical-align:super;line-height:0;color:var(--soft);margin-left:.06em;}
+  .sidenote{font-family:"Newsreader",serif;font-size:.82rem;line-height:1.52;color:var(--faint);
+    border-left:2px solid var(--hair);padding-left:.9rem;margin:.7rem 0 1.05rem;}
+  .sidenote .sn-num{font-family:"Fraunces",serif;color:var(--faintest);font-size:.7rem;margin-right:.38rem;}
+  .sidenote em{font-style:italic;}
+  @media (min-width:1040px){
+    .sidenote{float:right;clear:right;width:14.5rem;margin:.25rem -17.5rem 1.15rem 0;
+      border-left:none;border-top:1px solid var(--hair);padding:.42rem 0 0;}
+  }
+
+  /* ---- coda ---- */
+  .coda{max-width:40rem;margin:clamp(2.8rem,6vh,4rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);}
+  .coda p{font-size:1.06rem;line-height:1.74;color:var(--ink);margin:0 0 1.15rem;text-wrap:pretty;}
+  .coda p:last-child{margin-bottom:0;}
+  .coda .q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .f-ref a{text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .f-ref a:hover{border-bottom-color:var(--soft);}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .progress{transition:width .08s linear;}
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}.rise.d4{animation-delay:.4s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    h1{font-size:clamp(2.2rem,11vw,3rem);}
+    .symbox{width:72px;height:72px;}
+    .symbox .sb-sym{font-size:1.7rem;}
+    .plate-body .lead-para::first-letter{font-size:3rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+
+  /* ---- standalone plate (leaf) ---- */
+  .leaf-head{max-width:54rem;margin:0 auto;padding:clamp(2.2rem,6.5vh,4.4rem) 0 0;text-align:center;}
+  .leaf-loc{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.08em;color:var(--faintest);margin-bottom:1.7rem;}
+  .leaf-loc a{text-decoration:none;color:var(--faint);border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .leaf-loc a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+  .leaf-loc .sep{margin:0 .5rem;color:var(--num);}
+  .leaf-kicker{font-family:"Fraunces",serif;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .leaf-kicker .pk-tag{margin-left:.55rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .leaf-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.2rem,5.6vw,3.7rem);line-height:1.02;letter-spacing:-.024em;margin:.42rem 0 0;text-wrap:balance;}
+  .leaf-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.06rem;color:var(--faint);
+    max-width:34rem;margin:.72rem auto 0;line-height:1.5;text-wrap:pretty;}
+  .epigraph.leaf-epigraph{margin:1.95rem auto 1.4rem;text-align:left;}
+  .leaf-body-wrap{max-width:54rem;margin:clamp(1.8rem,4vh,2.8rem) auto 0;}
+
+  .leaf-nav{max-width:54rem;margin:clamp(3rem,7vh,5.2rem) auto 0;padding-top:clamp(1.8rem,4vh,2.6rem);
+    border-top:1px solid var(--hair);display:grid;grid-template-columns:1fr auto 1fr;gap:1.3rem;align-items:start;}
+  .ln-cell{text-decoration:none;display:block;}
+  .ln-cell .lab{display:block;font-family:"Fraunces",serif;font-size:.64rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--faintest);margin-bottom:.36rem;}
+  .ln-cell .ttl{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1rem;
+    color:var(--soft);line-height:1.22;}
+  a.ln-cell:hover .ttl{color:var(--ink);}
+  .ln-prev{text-align:left;} .ln-home{text-align:center;} .ln-next{text-align:right;}
+
+  @media (max-width:600px){
+    .leaf-nav{grid-template-columns:1fr;gap:1.4rem;}
+    .ln-prev,.ln-home,.ln-next{text-align:center;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#ne-contents">Complete contents</a><a href="../editions.html#volume-spread">The Spread · both editions</a><a href="../volumes/the-spread.html">Collected volume</a></div></nav>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="frame">
+
+  <header class="leaf-head">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="leaf-loc rise d1" aria-label="Location in the series"><a href="numeraire-atlas-updated.html">Numéraire</a><span class="sep">·</span><a href="numeraire-v-the-spread.html">Volume V · The Spread</a></nav>
+    <div class="leaf-kicker rise d2">Plate vii <span class="pk-tag">in print</span></div>
+    <h1 class="leaf-title rise d2">The Bank</h1>
+    <div class="leaf-gloss rise d3">the bank as intermediary; maturity transformation, the net interest margin, and the spread between what savers are paid and borrowers are charged.</div>
+    <div class="epigraph leaf-epigraph rise d3">
+      <p>The bank gives the depositor and the borrower different promises; its service lies in making them coexist, and its danger in the terms on which they can diverge.</p>
+      <cite>— the argument of this plate, after Diamond and Dybvig (1983); Diamond (1984)</cite>
+    </div>
+  </header>
+
+  <main class="leaf-body-wrap">
+    <article class="plate">
+<div class="plate-body">
+<p class="lead-para">Between the saver, who wants a balance close at hand, and the borrower, who needs funds committed for years, stands the bank. Its familiar spread is the difference between the interest it receives and the interest it pays. But the two sides of that difference buy different promises. The depositor has a claim against the bank; the bank has a claim against the borrower. The depositor need not wait for that particular borrower to repay before making a withdrawal, and the borrower need not replace the loan whenever that particular depositor leaves. This separation is the beginning of the service. It is also the beginning of the problem. The bank must judge the borrower, collect what is owed, arrange the payments its own creditors demand, and absorb losses somewhere in its balance sheet. The question is therefore more demanding than why the saver and borrower do not meet directly. It is what would have to replace the bank's promises, information and resources if they did. The institution earns a place between them by doing work that the two quoted rates leave largely out of sight.</p>
+<p>Even the measured spread requires care. A loan rate of six percent and a deposit rate of two percent are four percentage points apart. The bank's net interest margin need not be four percent. Suppose, for one unchanged year, it holds one hundred of interest-earning assets yielding six percent, financed by ninety of deposits costing two percent and ten of equity. Interest income is six, interest expense is one point eight, and net interest income is four point two. Dividing by the hundred of average earning assets gives a margin of 4.2 percent. The quantities on the two sides matter as well as their rates.<sup class="sn-ref">1</sup> This margin is still before the operating expenses, credit-loss provisions and other items that separate it from the bank's final profit. A larger margin can accompany more costly or riskier lending; a smaller one can accompany lower-yielding assets, more expensive funding, or stronger competition. The number records an accounting relation. To call the whole of it payment for useful work, or the whole of it a toll on access, would already assume the answer the volume is trying to find.</p>
+<div class="sidenote"><span class="sn-num">1.</span> The FDIC's <a href="https://www.fdic.gov/analysis/risk-review/2024-risk-review/2024-risk-review-glossary.pdf">2024 <em>Risk Review</em> glossary</a>, p. 72, defines net interest margin from interest and dividend income on earning assets less interest paid to depositors and other creditors, divided by average earning assets. The simplified balance sheet and rates here are authored assumptions, with no other interest income or expense; the example is not a reported bank's result.</div>
+<p>One part of the work is the watching that lending requires. A borrower may know more than the lender about the proceeds of a project and whether the promised conditions have been met. Obtaining that information costs time and expertise. If a firm borrows from a hundred small lenders and each pays to investigate the same facts, the work is duplicated; if each relies on the others to undertake it, too little may be done. Douglas Diamond's account of delegated monitoring starts from this difficulty. A bank can investigate once on behalf of the funds it has raised, enforce the loan's terms, and use information that the dispersed lenders would find expensive to acquire separately.<sup class="sn-ref">2</sup> The service is more than a first introduction. Lending establishes a relationship that continues after the money has been advanced. A covenant may have to be interpreted, a shortfall examined, a contract renegotiated. The advantage of a specialist lies partly in having someone responsible for that continuing work. It does not require every saver to be incapable of lending directly; it requires circumstances in which the combined arrangement is less costly than the available alternatives.</p>
+<div class="sidenote"><span class="sn-num">2.</span> Douglas W. Diamond, <a href="https://sites.uwm.edu/vesely/files/2019/01/Diamond-1984-RES-1xhg2wp.pdf">“Financial Intermediation and Delegated Monitoring”</a>, <em>Review of Economic Studies</em> 51 (1984), pp. 393–395. The model begins with information about project returns observed by the entrepreneur but costly for lenders to verify. Its introduction explains both duplicated monitoring and the incentive problem created by delegation.</div>
+<div class="break"><span>⁂</span></div>
+<p>The objection is immediate: who watches the watcher? The depositor who could not cheaply verify a business's receipts cannot simply assume that a bank will report and distribute its own receipts faithfully. Delegation creates another incentive problem. Diamond's answer depends on the bank's portfolio and the contract it offers its creditors. Combining many loans whose returns are independent, or independent conditional on observable information, makes the bank's aggregate receipts more predictable. In his model, the cost of giving the delegated monitor the appropriate incentives falls as the portfolio grows; under the stated assumptions it approaches zero in the limit.<sup class="sn-ref">3</sup> This is a reason diversification can make the institution economical, rather than a certificate that a large bank has become safe. Loans exposed to the same shock do not become independent because their borrowers have different names. Nor does a predictable asset portfolio by itself settle the timing of the bank's obligations. The theory's achievement is to explain how the extra link in the chain can reduce the total cost of trust. The conditions that allow it to do so remain part of the explanation.</p>
+<div class="sidenote"><span class="sn-num">3.</span> Diamond, pp. 393–395, expressly makes diversification central to the reduction of delegation costs, even with risk-neutral agents, and states the independence condition for the limiting result. The extension here to correlated exposures distinguishes that mechanism from an unconditional claim that more loans eliminate bank risk.</div>
+<p>Timing gives the bank a second service and a distinct vulnerability. Some depositors will need to spend early; others can wait. A pool can meet ordinary early demands while leaving part of its assets committed to longer projects. Diamond and Dybvig showed how demand deposits can provide insurance against uncertain consumption needs, improving on each person holding and liquidating an individual investment. Their model also admits a run. If enough depositors expect the others to withdraw, waiting becomes unattractive; early liquidation then destroys the return that patience would have produced.<sup class="sn-ref">4</sup> An asset can be sound at maturity and costly to realize today. The promise of access is valuable because the bank does not ordinarily have to turn every asset into cash at once. Its fragility appears when that ordinarily becomes the disputed fact. Credible deposit insurance can remove the run incentive in the model, but its force comes from the backing of the promise; the authors also distinguish that result from the further problem of managers choosing risky assets. Neither diversification nor a positive interest margin makes these questions disappear. The spread is earned across time, and the institution must remain able to make its payments along the way.</p>
+<div class="sidenote"><span class="sn-num">4.</span> Douglas W. Diamond and Philip H. Dybvig, <a href="https://knowledge.uchicago.edu/records/3sa4m-hvw53/files/Bank-Runs-Deposit-Insurance-and-Liquidity.pdf">“Bank Runs, Deposit Insurance, and Liquidity”</a>, <em>Journal of Political Economy</em> 91 (1983), §II, pp. 405–410; §V, pp. 413–416; conclusions, pp. 416–418. The baseline has a riskless productive technology with a cost of early liquidation. The insurance result depends on the government's taxing capacity; portfolio moral hazard is discussed as a further issue, not solved by the baseline model.</div>
+<p>The balance sheet also prevents a misleading picture of money passing unchanged from a named saver to a named borrower. In its 2014 explanation of money creation, the Bank of England describes a loan being made by crediting a deposit account: the bank acquires a loan asset and creates a matching deposit liability. It does not first have to find an existing deposit of precisely that amount and hand it onward. Yet creating the account entry does not abolish the cost of funding. When the borrower pays someone at another bank, the lending bank may have to transfer reserves to settle the payment. It must manage those outflows, attract or retain funding, and meet the capital and liquidity demands associated with its business.<sup class="sn-ref">5</sup> The power to create a deposit is a power to incur a promise, not a power to make the promise costless. This account of the transaction fits the larger account of intermediation: the bank issues one kind of claim while holding another, and must keep the arrangement viable. Deposits, other borrowing and equity perform different roles in that arrangement. The interest margin reflects some of their prices without describing the whole mechanism.</p>
+<div class="sidenote"><span class="sn-num">5.</span> Michael McLeay, Amar Radia and Ryland Thomas, <a href="https://www.bankofengland.co.uk/-/media/boe/files/quarterly-bulletin/2014/money-creation-in-the-modern-economy.pdf">“Money Creation in the Modern Economy”</a>, <em>Bank of England Quarterly Bulletin</em>, 2014 Q1, pp. 15–20, especially “Money creation in reality” and “Limits on how much banks can lend.” Their balance-sheet examples distinguish the banking system's creation of deposits from an individual bank's settlement, funding, profitability and risk constraints.</div>
+<p>The bank's defense is therefore substantial, and its fee remains open to examination. Monitoring, payments, liquidity and the bearing of losses can make an intermediary useful; the absence of alternatives can also affect the terms it obtains. To distinguish them, one would need to compare the service and risks as well as the quoted loan and deposit rates. A high margin alone cannot show how much came from costly work, how much from exposure, and how much from power over customers with few other routes. Nor can removing the bank's name remove the functions its balance sheet performed. Someone would have to undertake the watching, provide the claims and bear the consequences when their timing diverged. The next plate returns to <a href="numeraire-v-viii-the-maker.html">The Maker</a>, the dealer who supplies immediacy by remaining ready to trade. The bank supplies a different accommodation: it lets one party make a longer commitment than another is prepared to make. What it keeps between the two promises must be judged against the work, the risk and the position that make their coexistence possible.</p>
+</div>
+    </article>
+  </main>
+
+  <nav class="leaf-nav" aria-label="Plate navigation">
+    <a class="ln-cell ln-prev" href="numeraire-v-vi-the-arbitrage.html"><span class="lab">← Previous plate</span><span class="ttl">Plate vi · The Arbitrage</span></a>
+    <a class="ln-cell ln-home" href="numeraire-v-the-spread.html"><span class="lab">The volume</span><span class="ttl">The Spread · contents</span></a>
+    <a class="ln-cell ln-next" href="numeraire-v-viii-the-maker.html"><span class="lab">Next plate →</span><span class="ttl">Plate viii · The Maker</span></a>
+  </nav>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref"><a href="numeraire-v-the-spread.html">The Spread</a> · <a href="numeraire-atlas-updated.html">the table</a></span>
+    </div>
+    <p class="colophon">Plate vii of <em>The Spread</em>, Volume the Fifth of <em>Numéraire</em> — a periodic table of economic life. Adapted for the Utility edition from the earlier Quantities plate, <a href="../quantities/numeraire-plate-the-delegate.html">The Delegate</a>, and the Collected plate, <a href="../volumes/the-spread.html#plate-ix">The Bank</a>; the earlier texts and figures remain available. This leaf may be read on its own or as part of the volume. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<script>
+(function(){
+  var bar=document.getElementById('progress');
+  function onScroll(){
+    var h=document.documentElement;
+    var max=(h.scrollHeight-h.clientHeight);
+    var p=max>0?(h.scrollTop||document.body.scrollTop)/max:0;
+    bar.style.width=(p*100).toFixed(2)+'%';
+  }
+  document.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="numeraire-v-vi-the-arbitrage.html">← The Arbitrage</a><a rel="next" href="numeraire-v-viii-the-maker.html">The Maker →</a></nav>
+</body>
+</html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Power — Numéraire, Volume X</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem; --measure:40rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- ornament ---- */
+  .orn{display:flex;justify-content:center;margin:0 auto 1.9rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* ---- masthead / volume front ---- */
+  .masthead{padding:clamp(3rem,8vh,6rem) 0 clamp(1.6rem,4vh,2.6rem);text-align:center;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;text-decoration:none;}
+  .imprint:hover{color:var(--soft);}
+  .vol-dateline{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+
+  .vol-sym{width:114px;height:114px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;align-items:center;justify-content:center;
+    font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 500;font-size:3.1rem;line-height:1;letter-spacing:-.01em;}
+  .vol-sym.lit{background:var(--ink);color:var(--paper);}
+  .vol-elnum{font-family:"Fraunces",serif;font-size:.74rem;color:var(--faintest);letter-spacing:.18em;text-transform:uppercase;margin-top:1rem;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.3rem,6.5vw,4.6rem);line-height:1.02;letter-spacing:-.025em;margin:.7rem 0 0;text-wrap:balance;}
+  .vol-status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .vol-status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:44rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  /* ---- the volume question ---- */
+  .vol-q{max-width:46rem;margin:clamp(2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .vol-q .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.7rem;}
+  .vol-q q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.3rem,2.4vw,1.72rem);line-height:1.32;color:var(--ink);quotes:none;text-wrap:balance;}
+
+  /* ---- frontispiece (the argument) ---- */
+  .front{margin:clamp(3rem,7vh,5rem) auto 0;max-width:var(--measure);}
+  .front-eyebrow{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);text-align:center;
+    display:flex;align-items:center;gap:.9rem;justify-content:center;margin:0 0 2.1rem;}
+  .front-eyebrow::before,.front-eyebrow::after{content:"";height:1px;width:2.4rem;background:var(--hair);}
+  .front p{font-size:1.07rem;line-height:1.76;color:var(--ink);margin:0 0 1.35rem;text-wrap:pretty;}
+  .front p:last-child{margin-bottom:0;}
+  .front em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.74;padding:.1em .12em 0 0;color:var(--ink);}
+  .front-orn{display:flex;justify-content:center;margin:2rem 0;}
+  .front-orn svg{width:96px;height:12px;overflow:visible;}
+  .front-orn line{stroke:var(--num);stroke-width:1;} .front-orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* ---- the plates (a table within the table) ---- */
+  main{padding:clamp(3rem,7vh,5rem) 0 0;}
+  .plates-head{display:flex;align-items:baseline;gap:.9rem;margin:0 0 1.6rem;}
+  .plates-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-size:.86rem;color:var(--faintest);letter-spacing:.04em;flex:0 0 auto;}
+  .plates-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);flex:0 0 auto;}
+  .plates-rule{flex:1;height:1px;background:var(--hair);position:relative;top:-2px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:13px;}
+
+  .el{appearance:none;-webkit-appearance:none;background:var(--paper);border:1px solid var(--hair);border-radius:2px;
+    padding:14px 15px 16px;text-align:left;cursor:pointer;position:relative;min-height:152px;
+    display:flex;flex-direction:column;color:inherit;font-family:inherit;
+    transition:border-color .22s ease,background .22s ease,transform .22s ease,box-shadow .22s ease;}
+  .el:hover{border-color:var(--faintest);transform:translateY(-2px);}
+  .el-rn{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-size:.78rem;color:var(--faintest);letter-spacing:.18em;text-transform:uppercase;}
+  .pl-hero{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 500;font-size:1.34rem;line-height:1.06;margin-top:.5rem;letter-spacing:-.012em;}
+  .el-gloss{font-size:.79rem;color:var(--faint);line-height:1.36;margin-top:.5rem;font-style:italic;}
+  .pl-flag{margin-top:auto;padding-top:.7rem;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--faintest);}
+  .el.lit{background:var(--ink);border-color:var(--ink);}
+  .el.lit .pl-hero{color:var(--paper);}
+  .el.lit .el-rn{color:rgba(240,235,225,.5);}
+  .el.lit .el-gloss{color:rgba(240,235,225,.62);}
+  .el.lit .pl-flag{color:rgba(240,235,225,.7);}
+  .el.sel{box-shadow:inset 0 0 0 1.5px var(--ink);border-color:var(--ink);}
+  .el.lit.sel{box-shadow:inset 0 0 0 1.5px var(--paper);}
+
+  /* ---- detail panel (the plate, opened) ---- */
+  .detail{margin:clamp(2.4rem,5vh,3.6rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);scroll-margin-top:1.4rem;}
+  .d-head{display:flex;gap:1.3rem;align-items:flex-start;}
+  .d-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 500;font-size:1.5rem;line-height:1;
+    color:var(--ink);flex:0 0 auto;border:1px solid var(--hair);border-radius:2px;letter-spacing:.04em;
+    width:86px;height:86px;display:flex;align-items:center;justify-content:center;text-transform:uppercase;}
+  .d-sym.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .d-titles{min-width:0;}
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);}
+  .d-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.7rem,3.6vw,2.5rem);margin:.22rem 0 .35rem;line-height:1.04;letter-spacing:-.016em;}
+  .d-status{font-size:.84rem;color:var(--faint);font-style:italic;}
+  .d-status.print{color:var(--soft);font-style:normal;}
+  .d-status.print::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .d-desc{font-size:1.05rem;line-height:1.72;color:var(--ink);max-width:42rem;margin:1.3rem 0 0;text-wrap:pretty;}
+
+  .d-openq{margin:1.6rem 0 0;max-width:40rem;}
+  .d-openq .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.5rem;}
+  .d-openq q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);quotes:none;}
+
+  .d-excerpt{margin:1.8rem 0 0;max-width:42rem;border-left:1px solid var(--hair);padding:.2rem 0 .2rem 1.5rem;}
+  .d-excerpt .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.8rem;}
+  .d-excerpt p{font-size:1.04rem;line-height:1.74;color:var(--ink);margin:0;text-wrap:pretty;}
+  .d-excerpt .x-cap{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 500;font-size:1.15rem;}
+  .d-readplate{margin:1.6rem 0 0;}
+  .d-readplate a{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:.94rem;
+    letter-spacing:.01em;text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:2px;transition:border-color .2s ease,color .2s ease;}
+  .d-readplate a:hover{color:var(--soft);border-color:var(--soft);}
+  .d-readplate .arr{margin-left:.4rem;}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;text-decoration:none;}
+  .f-mark:hover{color:var(--soft);}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;}
+    .el{min-height:138px;padding:12px 12px 14px;}
+    .pl-hero{font-size:1.18rem;}
+    .el-gloss{font-size:.74rem;}
+    .vol-sym{width:92px;height:92px;font-size:2.5rem;}
+    .d-head{gap:1rem;}
+    .d-sym{width:64px;height:64px;font-size:1.25rem;}
+    .front p{font-size:1.04rem;}
+    .dropcap{font-size:3rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="rise d1">
+      <a class="imprint" href="numeraire-atlas.html">Numéraire</a>
+      <div class="vol-dateline">The Tenth Volume &middot; The Failures</div>
+    </div>
+    <div class="vol-sym lit rise d2" aria-hidden="true">Pw</div>
+    <div class="vol-elnum rise d2">Element 10 &middot; Group III</div>
+    <h1 class="rise d3">The Power</h1>
+    <div class="vol-status rise d3">in print &middot; № X &middot; 2 of 12 plates</div>
+    <p class="standfirst rise d4">The model on which economics is built begins with a market of equals, where no buyer and no seller is large enough to move the price by his own act, and the price comes to each as a fact of nature. This volume is about everything that happens when that condition fails — when one side, or a few, can set the terms the others must take. Market power, on the selling side and the buying side; its sources, its costs, and the long, swinging struggle of the law to check a thing the market is forever re-creating.</p>
+    <div class="vol-q rise d5">
+      <span class="lead">The question of the volume</span>
+      <q>what is a price worth, when one side holds the power and the other has nowhere else to go?</q>
+    </div>
+  </header>
+
+  <section class="front" aria-label="The argument of the volume">
+    <div class="front-eyebrow">The argument</div>
+
+    <p><span class="dropcap">T</span>he science begins, as a science must, with a simplification, and the central simplification is a market of equals. Picture a thousand farmers bringing wheat to one great market and a thousand merchants come to buy it: no single farmer grows enough to matter, no single merchant buys enough to be noticed, and the price that emerges from their jostling is fixed by none of them and binding upon all. To each it arrives as a fact of nature — the going rate, take it or leave it — and the most that any one of them can decide is whether to trade at that price or to walk away. This is perfect competition, the frictionless plane of economics, and within its bounds the market works the magic for which it is justly admired: the price settles at the cost of producing one more bushel, every exchange that would benefit both parties is made, and no one has the power to arrange matters otherwise. It is a beautiful condition, and a useful one to reason from. It is also, as this volume is concerned to show, very nearly the rarest condition in the whole of economic life — an ideal limit approached now and then and almost never reached, against which the actual world stands out as a landscape of power.</p>
+
+    <p>For the moment a single seller, or a single buyer, grows large enough to move the price by his own act, the magic fails and something else takes its place. The competitive farmer faces a flat price: he may sell all the wheat he has at the going rate and not a penny more. But a seller who supplies a large share of the market faces a price that <em>slopes</em> — flood the market and his price falls, hold back and it rises — and such a seller is no longer at the mercy of the price but its author. He surveys the schedule of what buyers will pay at each quantity and chooses the point that enriches him most, which is never the competitive point: he holds back supply, lets the scarcity he has manufactured lift the price, and sells less for more. This is market power, and the definition is exact — power is the ability to face a sloping demand and choose one's place upon it, to <em>set</em> the price rather than take it. On the selling side we call its possessor a monopolist; on the buying side, where the same trick is run in reverse and purchases are withheld to force the price down, a monopsonist. They are one phenomenon seen from two sides.</p>
+
+    <p>What power does, beyond enriching the one who holds it, is waste — and this is the part that offends the economist most, so it is worth stating with care, for the charge is not merely that the monopolist grows rich. When he holds back the last units of his product to keep the price high, the trades he thereby prevents were trades that both sides wanted: buyers who would gladly have paid more than those units cost to make, denied them only so that the price on all the rest might stay aloft. That forgone value — the mutually beneficial exchange that simply does not happen — is the deadweight loss, and it is pure waste, enriching no one, the monopolist included, who finds it merely the cost of his fatter margin on what he does sell. Power thus fails twice by the standard the competitive ideal sets: it transfers surplus from the many to the few, which a man may call unjust or not as he pleases, and it destroys surplus outright, which by the discipline's own lights is simply inefficient. The cleverest monopolist recovers some of the waste, but only by deepening the injury — for if he can charge each buyer a different price, the most each will privately bear, he makes the sales he would otherwise forgo and seizes as profit the very surplus a competitive market would have left in the buyers' hands. The competitive price equals the cost of one more and wastes nothing; every departure from it, every exercise of power, either destroys value or quietly confiscates it.</p>
+
+    <div class="front-orn" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>And yet the departures are the rule, not the exception, and it took the discipline an oddly long time to admit it. For a century the textbooks treated perfect competition as the normal case and monopoly as a curiosity at the margin, when the plainest look at the world shows the reverse: almost no real market has the thousand identical sellers of homogeneous wheat the model requires. Most have a few large firms, or many firms each selling something a little different — a brand, a location, a reputation — that lends it a morsel of power over its own small patch of demand. The correction came in 1933, and like the marginal revolution before it, it came twice at once: Edward Chamberlin at Harvard and Joan Robinson at Cambridge published, in the same year and in mutual ignorance, the theory of the vast middle ground between monopoly and competition — <em>monopolistic competition</em>, the world of the differentiated product, where nearly every seller is a little monopolist of the one thing only he sells. After 1933 it was no longer respectable to treat power as the exception. Pure competition and pure monopoly stood revealed as the two rare poles of a spectrum along which actual markets are strung, and most of them lie somewhere in the crowded middle.</p>
+
+    <p>Power being general, the questions become where it comes from, why it persists, and what if anything restrains it. It springs from many sources: from the economies of scale that make a single large producer cheaper than many small ones, so that competition would itself be wasteful — the natural monopoly of the water main and the rail; from the law, in the patent that grants a temporary monopoly to spur invention; from the control of a scarce resource; from the brand and the habit it breeds; and, in our own day, from the network whose value to each user swells with every other user, tipping whole markets to a single winner. Against power stands, first, the law — the antitrust statutes, the American Sherman Act of 1890 and Clayton Act of 1914 foremost among them, by which the state claims the right to break combinations and forbid the practices through which power is amassed and abused. But the law has never agreed with itself about what it is for: whether it exists, as the Chicago economists came to insist, solely to keep prices low and serve the consumer, or whether, as an older and lately revived tradition holds, concentrated economic power is a danger to the republic whatever it does to prices. Nor is the law the only check. Galbraith argued that private power is met most effectively not by the competition that seldom materializes but by an answering power deliberately built against it — the labor union against the employer, the great retailer against the manufacturer — a balance of the strong he called countervailing power, with all the perils that phrase implies. And the state is no reliable referee, for power reaches into it: the regulated, as Stigler showed without sentiment, have a way of capturing the regulator and turning the rules written to restrain them into a shelter against their rivals.</p>
+
+    <p>Beneath all of this lies the suspicion that gives the volume its place in the table. The competitive model presents the price as the impersonal verdict of supply and demand among equals, a fact of nature owned by no one and imposed by no one — and where competition truly reigns, that is very nearly what a price is. But competition is the special case, and wherever power is present the price is something else entirely: a verdict on a contest that was not equal, recording which side could set the terms and which had no choice but to take them. The wage the single employer offers, the price the single seller posts, the toll the platform exacts at its gate — each looks like a market rate, and each is partly a measure of who held the whip. A price is a verdict on a hidden contest, mistaken for a fact of nature; and here the contest is named outright, for the contest <em>is</em> power. The twelve plates that follow anatomize it — the price-maker and the single seller, the single buyer and the warring few, the differentiated many, the barriers that preserve power and the markups that betray it, the law that fights it and the countervailing power that balances it, the capture by which it corrupts its referee and the platform in which it wears its newest face — and they end by returning to the competitive ideal it all departs from, with the question left honestly open: whether competition is the natural state of markets that power corrupts, or whether power is the gravity of markets, and competition the thing that law and opposed power must forever struggle to impose. The argument remains open.</p>
+  </section>
+
+  <main>
+    <div class="plates-head">
+      <span class="plates-num fr">№ X</span>
+      <span class="plates-name">The twelve plates</span>
+      <span class="plates-rule"></span>
+    </div>
+    <div class="grid" id="grid">
+      <button class="el lit" data-id="pricemaker" aria-label="Plate i — The Price-Maker — in print"><span class="el-rn">Plate i</span><span class="pl-hero">The Price-Maker</span><span class="el-gloss">to set the price, not take it: what power is</span><span class="pl-flag">in print</span></button>
+      <button class="el lit" data-id="seller" aria-label="Plate ii — The Single Seller — in print"><span class="el-rn">Plate ii</span><span class="pl-hero">The Single Seller</span><span class="el-gloss">monopoly, the markup, and the cost of one seller</span><span class="pl-flag">in print</span></button>
+      <button class="el" data-id="buyer" aria-label="Plate iii — The Single Buyer"><span class="el-rn">Plate iii</span><span class="pl-hero">The Single Buyer</span><span class="el-gloss">monopsony, the mirror, and power over the seller</span></button>
+      <button class="el" data-id="few" aria-label="Plate iv — The Few"><span class="el-rn">Plate iv</span><span class="pl-hero">The Few</span><span class="el-gloss">oligopoly: when each one's move turns on the others'</span></button>
+      <button class="el" data-id="difference" aria-label="Plate v — The Difference"><span class="el-rn">Plate v</span><span class="pl-hero">The Difference</span><span class="el-gloss">differentiation, and the little power in a brand</span></button>
+      <button class="el" data-id="barrier" aria-label="Plate vi — The Barrier"><span class="el-rn">Plate vi</span><span class="pl-hero">The Barrier</span><span class="el-gloss">barriers to entry, and what keeps power safe</span></button>
+      <button class="el" data-id="markup" aria-label="Plate vii — The Markup"><span class="el-rn">Plate vii</span><span class="pl-hero">The Markup</span><span class="el-gloss">measuring power: the Lerner index and the rising markup</span></button>
+      <button class="el" data-id="law" aria-label="Plate viii — The Law"><span class="el-rn">Plate viii</span><span class="pl-hero">The Law</span><span class="el-gloss">antitrust, from Sherman and Clayton to the present quarrel</span></button>
+      <button class="el" data-id="counterweight" aria-label="Plate ix — The Counterweight"><span class="el-rn">Plate ix</span><span class="pl-hero">The Counterweight</span><span class="el-gloss">Galbraith, and power answered by opposed power</span></button>
+      <button class="el" data-id="capture" aria-label="Plate x — The Capture"><span class="el-rn">Plate x</span><span class="pl-hero">The Capture</span><span class="el-gloss">regulatory capture, rent-seeking, and power in politics</span></button>
+      <button class="el" data-id="platform" aria-label="Plate xi — The Platform"><span class="el-rn">Plate xi</span><span class="pl-hero">The Platform</span><span class="el-gloss">network effects, the gatekeeper, and the digital monopoly</span></button>
+      <button class="el" data-id="ideal" aria-label="Plate xii — The Ideal"><span class="el-rn">Plate xii</span><span class="pl-hero">The Ideal</span><span class="el-gloss">perfect competition, the limiting case almost never met</span></button>
+    </div>
+  </main>
+
+  <section class="detail" id="detail" aria-live="polite"></section>
+
+  <footer>
+    <div class="f-bar">
+      <a class="f-mark" href="numeraire-atlas.html">Numéraire</a>
+      <span class="f-ref">Volume X &middot; The Failures</span>
+    </div>
+    <p class="colophon">Volume X, <em>The Power</em>, opens with two plates in print — <em>The Price-Maker</em> and <em>The Single Seller</em>, the idea of power and its paradigm case. The tenth element of the table by its fixed order; the fourth volume to leave preparation, since the volumes are published as they ripen rather than as they are numbered. It is the volume of which <a href="the-monopsony.html">the eighth plate of The Wage</a>, <em>The Monopsony</em>, is the special, labor-bound case — here the single buyer is one organ in the whole body of market power. Return to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+
+<script>
+const PLATES = {
+  pricemaker:{rn:"i",title:"The Price-Maker",family:"in print",lit:true,url:"the-price-maker.html",
+    desc:`The distinction on which the whole subject rests: between the firm that must take the going price as a fact, selling all it can at a price it cannot budge, and the firm that can set its price by choosing how much to withhold. The first has no power and the second has it by definition; and the measure of the power is the gap the second can open between its price and the cost of making one thing more. What power is, before one asks how it is got or what it costs.`,
+    excerpt:`<span class="x-cap">T</span>here are two kinds of seller in the world, and the difference between them is the whole of this volume. The first faces a price he cannot change: it is set in a market too large for him to sway, and he may sell as much as he likes at that price and nothing at all above it, so that the price comes to him as the weather comes, a fact to be met and not an act to be chosen. The second faces a demand that slopes — sell less and he may charge more, sell more and he must charge less — and so the price is no longer given to him but chosen by him, picked from a schedule by deciding how much to withhold. The first is a price-taker and has no power; the second is a price-maker, and power is precisely what the word names. Everything that follows is the study of the second kind of seller, and of the buyer who is his mirror.`},
+  seller:{rn:"ii",title:"The Single Seller",family:"in print",lit:true,url:"the-single-seller.html",
+    desc:`Monopoly, the paradigm case of power: one seller, no rival, a price held above cost by holding back supply. Where monopoly comes from — the economies of scale that make one firm cheapest, the patent that forbids a second, the cornered resource — and what it costs the rest of us, in the trades that never happen and the surplus quietly transferred from the many to the one. With a note on the monopolist's subtlest art, the discrimination that charges each buyer the most he will bear.`,
+    excerpt:`<span class="x-cap">T</span>he monopolist is the figure the word power first calls to mind, and rightly, for he is power in its purest and least complicated form: the single seller of a thing for which there is no substitute, facing the whole demand of the market alone. He does not, as the cartoon has it, simply charge what he likes — even he is bound by what buyers will pay, and the higher his price the fewer of them will pay it. What he can do, and the price-taker cannot, is choose the point on that demand which suits him best: hold back the quantity, let the scarcity he has manufactured lift the price, and pocket the difference between that price and the cost of the last unit made. The loss to everyone else is not merely that they pay more. It is that trades which would have benefited both sides simply do not occur, because the seller finds it more profitable to leave them undone.`},
+  buyer:{rn:"iii",title:"The Single Buyer",family:"in preparation",lit:false,
+    desc:`Monopsony, monopoly seen in a mirror: the single buyer who faces the whole supply alone and, by buying less than he otherwise would, drives down the price he pays. The case is most familiar, and most consequential, in the market for labor, where it gives the employer a power over the wage that the competitive story denies — the matter pursued in its own right in the eighth plate of The Wage, and set here in the wider frame of which it is one instance.`,
+    openq:`if one seller can raise the price by selling less, what can one buyer do by buying less?`},
+  few:{rn:"iv",title:"The Few",family:"in preparation",lit:false,
+    desc:`Oligopoly, the commonest and the hardest case: not one firm but a few, each large enough to move the price, and each therefore forced to guess what the others will do before it acts. The unstable border between the competition that would serve us and the collusion that would not; the cartel and its constant temptation to cheat; and the tacit coordination that needs no meeting and breaks no law. Where the theory of power becomes a theory of strategy.`,
+    openq:`when a few firms each depend on the others' choices, what holds them apart — or quietly together?`},
+  difference:{rn:"v",title:"The Difference",family:"in preparation",lit:false,
+    desc:`The discovery, made on both sides of the Atlantic in 1933, that most markets are neither monopolies nor fields of perfect competition but something in between: many sellers, each holding a little power because each sells a thing a little different — by brand, by location, by quality, by the mere habit of its buyers. Chamberlin and Robinson's monopolistic competition, and the small, pervasive power that differentiation lends to almost every firm there is.`,
+    openq:`if every product is a little different, does every seller hold a little power — and is that competition, or its opposite?`},
+  barrier:{rn:"vi",title:"The Barrier",family:"in preparation",lit:false,
+    desc:`Why power, once held, so often keeps. The barriers that hold rivals at the gate — the scale a newcomer cannot match, the sunk cost it cannot risk, the brand it cannot buy, the network that grows stronger the more it excludes, the regulation written to the incumbent's measure — and the contrary claim, that the mere threat of entry disciplines even the firm that has no actual rival. What separates the power that lasts from the power that is competed away.`,
+    openq:`what keeps a single seller safe — and when is the threat of a rival enough to tame him without ever arriving?`},
+  markup:{rn:"vii",title:"The Markup",family:"in preparation",lit:false,
+    desc:`How power is measured, and how it hides. The concentration of a market, the Herfindahl index, and the Lerner ratio that reads power straight off the gap between price and marginal cost; the rising markups that recent work claims to find across whole economies; and the stubborn difficulty, met already in the first volume, that a high price can mean power or can mean cost, and the figure alone will not say which.`,
+    openq:`the markup over cost is the footprint of power — but how, from a price, do we ever learn the cost?`},
+  law:{rn:"viii",title:"The Law",family:"in preparation",lit:false,
+    desc:`The state's long and swinging war on private power. The Sherman Act and the Clayton Act, the trustbusters and the great dissolutions; the Chicago turn that narrowed antitrust to a single test, whether the consumer paid less; and the recent revival of an older idea — that concentrated economic power is a danger to the political order whatever it does to prices. The law has never settled what it is fighting, and the plate is the history of its not settling.`,
+    openq:`is the law's quarrel with bigness about the price we pay, or about the power itself?`},
+  counterweight:{rn:"ix",title:"The Counterweight",family:"in preparation",lit:false,
+    desc:`John Kenneth Galbraith's heresy: that the true check on private power is, more often than competition, an opposed power summoned into being against it — the union facing the corporation, the chain of stores facing the manufacturer, the regulatory state facing them all. Countervailing power, its successes and its dangers, and the unsettling thought that a market of equals may be less the cure for power than a balance of the powerful. The doctrine of which the ninth plate of The Wage is the labor case.`,
+    openq:`if competition will not check power, must power be checked only by an opposing power — and who then checks the check?`},
+  capture:{rn:"x",title:"The Capture",family:"in preparation",lit:false,
+    desc:`Power's reach into the hand that is meant to restrain it. George Stigler's cold demonstration that regulation is often bought by the regulated and turned to their protection; the rent-seeking that spends real resources chasing the privileges only the state can grant; and the revolving door through which the watched and the watchers exchange places. The chapter in which the failure of the market becomes the failure of the government called in to fix it.`,
+    openq:`if the powerful can capture the regulator, is the cure for market power merely another market — in influence?`},
+  platform:{rn:"xi",title:"The Platform",family:"in preparation",lit:false,
+    desc:`Power in its newest dress. The network whose worth to each user rises with every other user, and which therefore tends toward a single winner; the platform that sits as gatekeeper between the two sides it joins, and levies its toll on the passage; the services priced at zero, where the old test of power — did the price rise? — falls silent. Why the digital economy concentrates, and why a law built for railroads and oil strains to read it.`,
+    openq:`when the service is free and the network is the moat, where has the power gone — and how would one tax or break it?`},
+  ideal:{rn:"xii",title:"The Ideal",family:"in preparation",lit:false,
+    desc:`A return to the competitive ideal the whole volume has departed from — the market of many small sellers and free entry and perfect knowledge, in which no one has power and the price equals the cost of one more. What that ideal actually demands, why it is a limiting case so rarely met that it may be the exception and not the rule, and the question the volume cannot finally close: whether competition is the natural condition of markets that power corrupts, or whether power is the natural condition that competition must everywhere be made to interrupt.`,
+    openq:`is perfect competition the market's resting state, or a rare achievement that power is forever undoing?`}
+};
+
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+function render(id){
+  var tile=document.querySelector('.el[data-id="'+id+'"]');
+  var d=PLATES[id]; if(!d||!tile) return;
+  var h='';
+  h+='<div class="d-head">';
+  h+='<div class="d-sym'+(d.lit?' lit':'')+'">'+esc(d.rn)+'</div>';
+  h+='<div class="d-titles">';
+  h+='<div class="d-family">The Power &middot; Plate '+esc(d.rn)+' &middot; '+esc(d.family)+'</div>';
+  h+='<h2 class="d-name">'+esc(d.title)+'</h2>';
+  h+='<div class="d-status'+(d.lit?' print':'')+'">'+esc(d.family)+'</div>';
+  h+='</div></div>';
+  h+='<p class="d-desc">'+esc(d.desc)+'</p>';
+  if(d.lit && d.excerpt){
+    h+='<div class="d-excerpt"><span class="lead">From the opening</span><p>'+d.excerpt+'</p></div>';
+  }
+  if(d.url){h+='<p class="d-readplate"><a href="'+d.url+'">Read the plate<span class="arr" aria-hidden="true">&#8594;</span></a></p>';}
+  if(!d.lit && d.openq){
+    h+='<p class="d-openq"><span class="lead">This plate will ask</span><q>'+esc(d.openq)+'</q></p>';
+  }
+  document.getElementById('detail').innerHTML=h;
+  var prev=document.querySelector('.el.sel'); if(prev) prev.classList.remove('sel');
+  tile.classList.add('sel');
+}
+
+(function(){
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.el').forEach(function(b){
+    b.addEventListener('click',function(){
+      render(b.dataset.id);
+      document.getElementById('detail').scrollIntoView({behavior:reduce?'auto':'smooth',block:'nearest'});
+    });
+  });
+  render('pricemaker');
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-claim.html">← The Claim</a><a rel="next" href="the-price-maker.html">The Price-Maker →</a></nav>
+</body>
+</html>

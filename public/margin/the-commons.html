@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Commons — Numéraire, Volume XIII</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem; --measure:40rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.9rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(3rem,8vh,6rem) 0 clamp(1.6rem,4vh,2.6rem);text-align:center;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;text-decoration:none;}
+  .imprint:hover{color:var(--soft);}
+  .vol-dateline{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+
+  .vol-sym{width:114px;height:114px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;align-items:center;justify-content:center;
+    font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 500;font-size:3.1rem;line-height:1;letter-spacing:-.01em;}
+  .vol-sym.lit{background:var(--ink);color:var(--paper);}
+  .vol-elnum{font-family:"Fraunces",serif;font-size:.74rem;color:var(--faintest);letter-spacing:.18em;text-transform:uppercase;margin-top:1rem;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.3rem,6.5vw,4.6rem);line-height:1.02;letter-spacing:-.025em;margin:.7rem 0 0;text-wrap:balance;}
+  .vol-status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .vol-status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:44rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .vol-q{max-width:46rem;margin:clamp(2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .vol-q .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.7rem;}
+  .vol-q q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.3rem,2.4vw,1.72rem);line-height:1.32;color:var(--ink);quotes:none;text-wrap:balance;}
+
+  .front{margin:clamp(3rem,7vh,5rem) auto 0;max-width:var(--measure);}
+  .front-eyebrow{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);text-align:center;
+    display:flex;align-items:center;gap:.9rem;justify-content:center;margin:0 0 2.1rem;}
+  .front-eyebrow::before,.front-eyebrow::after{content:"";height:1px;width:2.4rem;background:var(--hair);}
+  .front p{font-size:1.07rem;line-height:1.76;color:var(--ink);margin:0 0 1.35rem;text-wrap:pretty;}
+  .front p:last-child{margin-bottom:0;}
+  .front em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.74;padding:.1em .12em 0 0;color:var(--ink);}
+  .front-orn{display:flex;justify-content:center;margin:2rem 0;}
+  .front-orn svg{width:96px;height:12px;overflow:visible;}
+  .front-orn line{stroke:var(--num);stroke-width:1;} .front-orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  main{padding:clamp(3rem,7vh,5rem) 0 0;}
+  .plates-head{display:flex;align-items:baseline;gap:.9rem;margin:0 0 1.6rem;}
+  .plates-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-size:.86rem;color:var(--faintest);letter-spacing:.04em;flex:0 0 auto;}
+  .plates-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);flex:0 0 auto;}
+  .plates-rule{flex:1;height:1px;background:var(--hair);position:relative;top:-2px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:13px;}
+
+  .el{appearance:none;-webkit-appearance:none;background:var(--paper);border:1px solid var(--hair);border-radius:2px;
+    padding:14px 15px 16px;text-align:left;cursor:pointer;position:relative;min-height:152px;
+    display:flex;flex-direction:column;color:inherit;font-family:inherit;
+    transition:border-color .22s ease,background .22s ease,transform .22s ease,box-shadow .22s ease;}
+  .el:hover{border-color:var(--faintest);transform:translateY(-2px);}
+  .el-rn{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-size:.78rem;color:var(--faintest);letter-spacing:.18em;text-transform:uppercase;}
+  .pl-hero{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 500;font-size:1.34rem;line-height:1.06;margin-top:.5rem;letter-spacing:-.012em;}
+  .el-gloss{font-size:.79rem;color:var(--faint);line-height:1.36;margin-top:.5rem;font-style:italic;}
+  .pl-flag{margin-top:auto;padding-top:.7rem;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--faintest);}
+  .el.lit{background:var(--ink);border-color:var(--ink);}
+  .el.lit .pl-hero{color:var(--paper);}
+  .el.lit .el-rn{color:rgba(240,235,225,.5);}
+  .el.lit .el-gloss{color:rgba(240,235,225,.62);}
+  .el.lit .pl-flag{color:rgba(240,235,225,.7);}
+  .el.sel{box-shadow:inset 0 0 0 1.5px var(--ink);border-color:var(--ink);}
+  .el.lit.sel{box-shadow:inset 0 0 0 1.5px var(--paper);}
+
+  .detail{margin:clamp(2.4rem,5vh,3.6rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);scroll-margin-top:1.4rem;}
+  .d-head{display:flex;gap:1.3rem;align-items:flex-start;}
+  .d-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 500;font-size:1.5rem;line-height:1;
+    color:var(--ink);flex:0 0 auto;border:1px solid var(--hair);border-radius:2px;letter-spacing:.04em;
+    width:86px;height:86px;display:flex;align-items:center;justify-content:center;text-transform:uppercase;}
+  .d-sym.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .d-titles{min-width:0;}
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);}
+  .d-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.7rem,3.6vw,2.5rem);margin:.22rem 0 .35rem;line-height:1.04;letter-spacing:-.016em;}
+  .d-status{font-size:.84rem;color:var(--faint);font-style:italic;}
+  .d-status.print{color:var(--soft);font-style:normal;}
+  .d-status.print::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .d-desc{font-size:1.05rem;line-height:1.72;color:var(--ink);max-width:42rem;margin:1.3rem 0 0;text-wrap:pretty;}
+
+  .d-openq{margin:1.6rem 0 0;max-width:40rem;}
+  .d-openq .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.5rem;}
+  .d-openq q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);quotes:none;}
+
+  .d-excerpt{margin:1.8rem 0 0;max-width:42rem;border-left:1px solid var(--hair);padding:.2rem 0 .2rem 1.5rem;}
+  .d-excerpt .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.8rem;}
+  .d-excerpt p{font-size:1.04rem;line-height:1.74;color:var(--ink);margin:0;text-wrap:pretty;}
+  .d-excerpt .x-cap{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 500;font-size:1.15rem;}
+  .d-readplate{margin:1.6rem 0 0;}
+  .d-readplate a{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:.94rem;
+    letter-spacing:.01em;text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:2px;transition:border-color .2s ease,color .2s ease;}
+  .d-readplate a:hover{color:var(--soft);border-color:var(--soft);}
+  .d-readplate .arr{margin-left:.4rem;}
+
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;text-decoration:none;}
+  .f-mark:hover{color:var(--soft);}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;}
+    .el{min-height:138px;padding:12px 12px 14px;}
+    .pl-hero{font-size:1.18rem;}
+    .el-gloss{font-size:.74rem;}
+    .vol-sym{width:92px;height:92px;font-size:2.5rem;}
+    .d-head{gap:1rem;}
+    .d-sym{width:64px;height:64px;font-size:1.25rem;}
+    .front p{font-size:1.04rem;}
+    .dropcap{font-size:3rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="rise d1">
+      <a class="imprint" href="numeraire-atlas.html">Numéraire</a>
+      <div class="vol-dateline">The Thirteenth Volume &middot; The Failures</div>
+    </div>
+    <div class="vol-sym lit rise d2" aria-hidden="true">Cm</div>
+    <div class="vol-elnum rise d2">Element 13 &middot; Group III</div>
+    <h1 class="rise d3">The Commons</h1>
+    <div class="vol-status rise d3">in print &middot; № XIII &middot; 2 of 12 plates</div>
+    <p class="standfirst rise d4">A pasture open to all is grazed to dust; a fishery free to all is emptied; the atmosphere, belonging to everyone, is altered by all and defended by none. The tragedy of the commons looks like a law of human nature — the certain ruin of whatever no one owns. But communities have governed their commons for centuries without ruin, by rules of their own making. This volume asks whether the tragedy is destiny, or only the mark of institutions we failed to build.</p>
+    <div class="vol-q rise d5">
+      <span class="lead">The question of the volume</span>
+      <q>the ruin of a shared resource looks like the inexorable work of human selfishness — but is the tragedy a law of nature, or only the absence of rules we might have made?</q>
+    </div>
+  </header>
+
+  <section class="front" aria-label="The argument of the volume">
+    <div class="front-eyebrow">The argument</div>
+
+    <p><span class="dropcap">A</span> commons is a thing that everyone may use and no one can be kept from — a pasture open to all the village, a sea free to every boat, a sky that belongs to all and to none. Such things are among the oldest forms of wealth and, by a long tradition of thought, the most accursed. For a commons is rivalrous in use and unguarded at its gate: what one grazier's beast crops, another's cannot, and yet no fence keeps any beast away. From this pairing — use depletes, but no one is excluded — there seems to follow, with the force of a proof, a melancholy conclusion: that what belongs to all will be cared for by none, and the common wealth is doomed to ruin by the very people it sustains. This volume is about that conclusion — why it has seemed so certain, why it is so often false, and what its long career as a supposed law of nature has concealed.</p>
+
+    <p>The argument was given its enduring name by Garrett Hardin, who called it the tragedy of the commons, and its sting lies in that word, tragedy. The herdsman who adds one more animal to the common pasture gathers for himself the whole gain of the beast, while the cost — the thinning of the grass, the crowding of the ground — is divided among all who share the field. His private arithmetic is plain: add the animal. But every herdsman reasons exactly so, and so every herdsman adds, and the pasture that might have fed them all in perpetuity is grazed to dust. The ruin is the work of neither folly nor malice. It is the sum of decisions each entirely rational, each defensible on its own, converging on a catastrophe that none intended and all could foresee — reason itself, faithfully followed, marching the commoners over a cliff. The same logic empties the fishery, drains the aquifer, and fouls the air: wherever a resource is shared and its use unpriced, the individually sensible and the collectively ruinous are one and the same act.</p>
+
+    <p>From so grim a diagnosis Hardin drew an equally grim prescription, and it hardened into something close to dogma. If the commons is doomed, then the commons must be abolished — and there seemed only two ways to abolish it. One was to fence it: to carve the common field into private parcels, each with an owner who, bearing the full cost of his own overuse, would husband what was now his alone. This is enclosure, the conversion of common wealth into private property, urged ever since as the cure for every commons from pasture to rainforest to gene. The other was to govern it from above: to set over the commons a sovereign power — a state, a regulator, a Leviathan — that would ration access by quota and license, compelling the restraint that self-interest would never supply. Privatize or nationalize, the market's fence or the State's hand: this was the whole of the choice the dogma allowed. The commons itself, governed by those who used it, was assumed to be no option at all — a primitive thing, fit only to be carved up or seized.</p>
+
+    <p>But every proof has its premises, and the tragedy rests on one seldom examined and frequently false. It assumes that the users of a commons are strangers — isolated maximizers, each blind to the rest, unable to speak, bargain, promise, or punish, condemned to move within the herd as atoms in a gas. Grant the assumption and ruin follows without escape. But deny it — admit that the commoners can talk, can see what each is doing, can make rules among themselves and hold one another to them — and the proof comes apart, for now the herdsman who adds the ruinous beast is no anonymous unit of appetite but a neighbor, who will be seen, judged, and made to answer. The tragedy of the commons, looked at closely, is not the tragedy of a resource. It is the tragedy of a resource <em>without rules</em> — and whether a commons has rules is no fact of nature, but a thing a community may achieve, or fail to achieve.</p>
+
+    <div class="front-orn" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>That this is so was settled not by argument alone but by looking, patiently and for years, at the commons history actually affords — the achievement of Elinor Ostrom, the first woman to win the Nobel in economics and the scholar who broke the dogma's hold. Where the theory predicted ruin she found endurance: the high pastures of the Swiss Alps, grazed in common under village rule for five hundred years; the irrigation huertas of Spain; the forests of Japan, the lobster grounds of Maine, the groundwater basins of California — commons beyond counting, managed sustainably for generation upon generation by neither the market's fence nor the State's command but by their own users, bound by rules of their own devising. These communities had solved the supposedly insoluble, and Ostrom set herself to learn how. The answer lay in institutions: clear boundaries; rules fitted to the place and made by those who lived under them; monitoring by the commoners themselves; sanctions that began as a quiet word and stiffened into real penalty; and cheap means of settling quarrels. The tragedy was no law of nature. It was the fate of a commons that lacked these things — and its opposite the reward of one that had built them.</p>
+
+    <p>And so the commons delivers the argument of these volumes in its starkest form. A price is a verdict on a hidden contest, mistaken for a fact of nature — and the ruin of the commons is the very same: not the decree of an iron law of human selfishness, but the visible signature of institutions a community failed to make. The selfsame fishery is a tragedy under open access and a treasure under good governance; the resource has not altered, only the rules around it, and the rules are made. To call the destruction of the commons inevitable — to file it among the fixed facts of human nature, beside gravity and mortality — is to commit the master mistake at the scale of the shared world: to mistake the contingent outcome of a contest over governance, which in a thousand places went otherwise, for a sentence handed down by nature.</p>
+
+    <p>Nor is the mistake innocent, for the doctrine of inevitable tragedy has always done a certain work in the world. To insist that the commons must be ruined unless it is enclosed is to lend enclosure the dignity of necessity — to present the conversion of shared wealth into private property, from the English fields to the patented genome, not as the contestable seizure it is but as the regrettable price of escaping ruin. The tragedy, dressed as a law of nature, becomes the standing argument for delivering the commons to whoever is best positioned to own it. Here the commons takes its place beside its sister failures in this third group of the table — the failure of competition that <em>The Power</em> anatomized, and the failure of price to carry every cost that <em>The Externality</em> traced — and it teaches the deepest lesson of the three. For the lesson is not that shared things are cursed, but that no economic fate is written into the nature of things: the same resource ruined under one set of rules flourishes under another, and the difference between abundance and desolation is a difference of institutions — of choices, of who decides. A price is a verdict on a hidden contest, mistaken for a fact of nature; and the tragedy of the commons is that verdict at its most sweeping — the seeming doom of the shared world unmasked as the consequence of rules we wrote, or failed to write, and might yet write better.</p>
+
+    <p>The twelve plates that follow anatomize the commons in this light. They set out the tragedy and its patient refutation; the free-rider whose defection is its engine, and the public good that is its mirror; the two old remedies — the fence of enclosure and the warden's quota — and the third way Ostrom recovered, the self-governance of those who share; the inversion of the anticommons, where too many owners freeze what too few would have wasted; the knowledge commons that no use can deplete, and the new enclosures that fence it nonetheless; the atmosphere, the commons of all humanity, with neither steward nor warden; the trust we hold for the unborn; and, at the last, the open question on which much may turn — whether the village commons, where neighbors who know one another keep their own rules, can be raised to the scale of the nation, the species, and the planet. The commons is where the master thesis comes home. For of all the things the economy presents to us as facts of nature, none looks more natural than the doom of what no one owns — and none, on inspection, proves more thoroughly a matter of the rules we make. The argument remains open.</p>
+  </section>
+
+  <main>
+    <div class="plates-head">
+      <span class="plates-num fr">№ XIII</span>
+      <span class="plates-name">The twelve plates</span>
+      <span class="plates-rule"></span>
+    </div>
+    <div class="grid" id="grid">
+      <button class="el lit" data-id="tragedy" aria-label="Plate i — The Tragedy — in print"><span class="el-rn">Plate i</span><span class="pl-hero">The Tragedy</span><span class="el-gloss">a resource open to all, rival in use, ruined by the rational acts of its users</span><span class="pl-flag">in print</span></button>
+      <button class="el lit" data-id="steward" aria-label="Plate ii — The Steward — in print"><span class="el-rn">Plate ii</span><span class="pl-hero">The Steward</span><span class="el-gloss">Ostrom's refutation: communities have governed their commons for centuries, by their own rules</span><span class="pl-flag">in print</span></button>
+      <button class="el" data-id="rider" aria-label="Plate iii — The Rider"><span class="el-rn">Plate iii</span><span class="pl-hero">The Rider</span><span class="el-gloss">the free-rider problem: why cooperation fails even when all would gain from it</span></button>
+      <button class="el" data-id="beacon" aria-label="Plate iv — The Beacon"><span class="el-rn">Plate iv</span><span class="pl-hero">The Beacon</span><span class="el-gloss">the public good — non-rival, non-excludable — undersupplied as the commons is overused</span></button>
+      <button class="el" data-id="enclosure" aria-label="Plate v — The Enclosure"><span class="el-rn">Plate v</span><span class="pl-hero">The Enclosure</span><span class="el-gloss">the first remedy: fence the commons into private plots — and at whose cost</span></button>
+      <button class="el" data-id="warden" aria-label="Plate vi — The Warden"><span class="el-rn">Plate vi</span><span class="pl-hero">The Warden</span><span class="el-gloss">the second remedy: the State as manager of the commons, and what it cannot know</span></button>
+      <button class="el" data-id="sanction" aria-label="Plate vii — The Sanction"><span class="el-rn">Plate vii</span><span class="pl-hero">The Sanction</span><span class="el-gloss">how self-governance holds: boundaries, monitoring, and the graduated punishment of the taker</span></button>
+      <button class="el" data-id="gridlock" aria-label="Plate viii — The Gridlock"><span class="el-rn">Plate viii</span><span class="pl-hero">The Gridlock</span><span class="el-gloss">the anticommons: when too many owners can each say no, the resource freezes</span></button>
+      <button class="el" data-id="torch" aria-label="Plate ix — The Torch"><span class="el-rn">Plate ix</span><span class="pl-hero">The Torch</span><span class="el-gloss">the commons that use cannot deplete — knowledge, code, a melody — and why we fence it still</span></button>
+      <button class="el" data-id="sky" aria-label="Plate x — The Sky"><span class="el-rn">Plate x</span><span class="pl-hero">The Sky</span><span class="el-gloss">the atmosphere, the commons of all humanity, with neither steward nor warden</span></button>
+      <button class="el" data-id="bequest" aria-label="Plate xi — The Bequest"><span class="el-rn">Plate xi</span><span class="pl-hero">The Bequest</span><span class="el-gloss">the commons held across time: what the living owe the unborn</span></button>
+      <button class="el" data-id="reach" aria-label="Plate xii — The Reach"><span class="el-rn">Plate xii</span><span class="pl-hero">The Reach</span><span class="el-gloss">can self-governance scale from the village that knows itself to the planet that does not?</span></button>
+    </div>
+  </main>
+
+  <section class="detail" id="detail" aria-live="polite"></section>
+
+  <footer>
+    <div class="f-bar">
+      <a class="f-mark" href="numeraire-atlas.html">Numéraire</a>
+      <span class="f-ref">Volume XIII &middot; The Failures</span>
+    </div>
+    <p class="colophon">Volume XIII, <em>The Commons</em>, opens with two plates in print — <em>The Tragedy</em> and <em>The Steward</em>, the ruin long thought inevitable and Ostrom's patient proof that it is not. The thirteenth element of the table, and the fourteenth of its volumes to appear; it joins <a href="the-power.html">The Power</a> and <a href="the-externality.html">The Externality</a> among the failures — the third of that family, and in a sense the one that turns the family's lesson back upon itself, for where those volumes show the market failing against a standard the market itself supplies, this one shows that the failure lies not in the resource but in the rules, and that what looks like the doom of the commons is the absence of an institution a community might yet build. Return to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+
+<script>
+const PLATES = {
+  tragedy:{rn:"i",title:"The Tragedy",family:"in print",lit:true,url:"the-tragedy.html",
+    desc:`The oldest and bleakest theorem in the economics of shared things. A commons — a pasture, a fishery, an aquifer, the air — is rival in use but open to all: what one takes another cannot have, yet no one can be kept out. From this pairing a ruin seems to follow with the force of logic. Each user who draws one unit more reaps the whole of its private gain, while the cost of the depletion falls on everyone alike; so each draws more, and so does every other, and the resource that might have sustained them all in perpetuity is exhausted. Garrett Hardin gave the catastrophe its enduring name — the tragedy of the commons — and the word tragedy is precise: the ruin is wrought not by villainy but by reason itself, each commoner driven to the common destruction by the faithful pursuit of his own good. This plate sets out the tragedy in full, and prepares the question that the rest of the volume turns upon: whether it is truly a law of nature, or only the fate of a commons left without rules.`,
+    excerpt:`<span class="x-cap">P</span>icture a pasture open to all. Each herdsman, reckoning his own gain, sees that another animal added to his herd brings him the whole of its value, while the cost of the crowding — the slow exhaustion of the grass — is shared among them all. So he adds it; and so, by the same flawless logic, does every other. Each acts rationally, and the sum of their rational acts is ruin: the pasture is grazed to dust, and the herdsmen with it. This is the tragedy of the commons, and its sting lies in the word tragedy — not a failure of reason but its fulfilment, each man driven to the common destruction by the faithful pursuit of his own good.`},
+  steward:{rn:"ii",title:"The Steward",family:"in print",lit:true,url:"the-steward.html",
+    desc:`The plate that breaks the tragedy's spell. For the better part of two centuries the ruin of the commons was treated as a proof, demonstrating that a shared resource must be either fenced into private property or seized by the State, since left to its own users it could only die. Then Elinor Ostrom — the first woman to win the Nobel in economics — went and looked, and found that history told another story. The world is full of commons that have been governed sustainably for centuries by neither market nor State: the alpine pastures of Switzerland, the irrigation huertas of Spain, the village forests of Japan, the lobster grounds of Maine. Their secret was institutional — clear boundaries, rules fitted to the place, monitoring by the users themselves, graduated sanctions, and the right of the commoners to make and remake their own rules. The tragedy, Ostrom showed, was not the destiny of the commons but the mark of a commons without governance. This plate is the refutation, and the hinge of the volume: the ruin is not natural, but a thing the rules decide.`,
+    excerpt:`<span class="x-cap">T</span>he tragedy of the commons has the feel of a theorem: given rational users and a shared resource, ruin follows as the night the day. For two centuries it was treated as one — a law of nature, proving that a commons must be either fenced into private plots or seized by the State, since left to itself it could only die. And then someone went and looked. What Elinor Ostrom found, in the alpine pastures of Switzerland and the irrigation channels of Spain and the coastal fisheries of Japan and Maine, was not ruin but order — communities that had governed their commons for centuries, sustainably and without a master, by the most unremarkable means in the world: rules of their own making.`},
+  rider:{rn:"iii",title:"The Rider",family:"in preparation",lit:false,
+    desc:`Beneath the tragedy of the commons lies a more general affliction: the free-rider problem, the reason that voluntary cooperation so often fails even where everyone would gain from it. Whenever a benefit cannot be withheld from those who decline to pay for it — the restraint that spares a fishery, the dues that fund a common defense, the labor that keeps a shared thing in repair — each person is tempted to enjoy the benefit while leaving the cost to others, to ride free on the effort of his fellows. And since all are tempted alike, all hold back, and the thing that would have served them all goes unmade or unprotected. Mancur Olson gave the logic its sharpest form: that a common interest, however large and however genuine, will not by itself move people to act, unless something beyond the interest — coercion, or a private reward, or the close watch of a small enough group — overcomes the steady pull of the free ride. The free-rider is the atom of the commons' tragedy, and of a great deal else besides.`,
+    openq:`if each gains most by letting others bear the cost of what all of them need, what can ever move a crowd of strangers to act together at all?`},
+  beacon:{rn:"iv",title:"The Beacon",family:"in preparation",lit:false,
+    desc:`The commons has a twin, and it fails in the mirror-opposite way. A common-pool resource is rival but not excludable — used up by use, yet open to all — and so it is overdrawn. A public good is the reverse: non-rival, so that one person's enjoyment leaves no less for anyone else, and non-excludable, so that no one can be charged. The lighthouse is the ancient example: its beam guides every ship in sight and is dimmed by none, and just for that reason no shipowner will pay to raise it, since the light cannot be sold to him alone. Clean air, national defense, basic research, a system of justice — all are public goods, and the market, which provides a thing only when its maker can charge for it, undersupplies them every one. Paul Samuelson gave the public good its formal definition and showed why a private market cannot furnish it in the right amount. Where the commons is a tragedy of too much taking, the public good is a tragedy of too little making — and both spring from the same root, the impossibility of the fence.`,
+    openq:`if the most valuable things — the safe harbor, the clean air, the common knowledge — are precisely those no one can be made to pay for, who is to build them?`},
+  enclosure:{rn:"v",title:"The Enclosure",family:"in preparation",lit:false,
+    desc:`The first of the two classic cures for the commons is to abolish it — to carve the shared field into private parcels, each with an owner who, bearing the whole cost of his own overuse, will tend what is now his. The logic is real: a clear and private title can indeed call forth the husbandry that open access destroys, and the assignment of property rights has reclaimed many a ruined commons. But enclosure is never merely a technical fix, for the common wealth it converts into private property was, before the conversion, available to all, and afterward is not. The English enclosures that fenced the open fields across three centuries made the land more productive and the landless more numerous, turning a peasantry with customary rights into a propertyless class with none. And the same act repeats wherever a commons is privatized — in the parceling of fisheries into tradable quotas, the patenting of the gene, the fencing of the digital commons — always wearing the same double face: a gain in order and care, and a transfer of what had been everyone's into the hands of someone in particular. This plate asks what enclosure solves, and what, in solving it, enclosure takes.`,
+    openq:`the fence that saves the commons from ruin also takes it from the many and gives it to the few — so by what right, and to whose gain, is it raised?`},
+  warden:{rn:"vi",title:"The Warden",family:"in preparation",lit:false,
+    desc:`The second classic cure is to set a sovereign over the commons. Where enclosure hands the resource to private owners, regulation keeps it common but governs it from above: the State, by quota and license and protected reserve, rations the access that self-interest would abuse, compelling the restraint the users will not volunteer. Sometimes this is the only remedy that can work — for commons too vast or too crowded for any community to govern itself, the warden's hand may be the last resort. But the distant authority labors under a permanent handicap, the very one Hayek pressed against all central direction: it lacks the local and particular knowledge that the users of a commons hold in their bones — which stretch of the river is fragile, which season is lean, which neighbor is quietly cutting corners. Rules made far away and applied uniformly can ruin a resource as surely as no rules at all, and the warden who cannot see the commons he governs may protect it to death. This plate weighs the State's hand on the commons: indispensable on occasion, clumsy more often, and never, by itself, the whole of the answer.`,
+    openq:`if the power that rations the commons from above cannot know what its users know, can its rule ever fit the resource it means to save?`},
+  sanction:{rn:"vii",title:"The Sanction",family:"in preparation",lit:false,
+    desc:`If a community can govern its own commons, how exactly is the feat managed — what keeps the rules from being mere words, broken by the first to find it profitable? Ostrom's long study of the commons that endure yielded not a single trick but a set of conditions, the design principles by which self-governance is made to hold. The boundaries of the commons and of its users must be clear, so that outsiders cannot plunder what insiders restrain. The rules must fit the local conditions, and be made by those who will live under them, so that they command real assent. Above all there must be monitoring — the commoners keeping watch on the resource and on one another — and graduated sanctions, penalties that open with a quiet word and stiffen, with repetition, into genuine cost, so that the first lapse is corrected before it hardens into habit and the defiant is excluded at the last. This unglamorous machinery of watching and warning and punishing is what divides a commons that survives from one that is praised while it dies. The plate examines the conditions of cooperation, and why some communities meet them and others cannot.`,
+    openq:`what must a community possess — in boundaries, in watchfulness, in the power to punish its own — before its rules for the commons are worth more than the breath that speaks them?`},
+  gridlock:{rn:"viii",title:"The Gridlock",family:"in preparation",lit:false,
+    desc:`The tragedy of the commons has an exact and surprising inversion. The commons is ruined by overuse, because too many may use it and none may exclude; but a resource can be ruined by underuse as well, when too many may exclude and none may simply use. Michael Heller named this the tragedy of the anticommons: where the rights to a thing are divided so finely that each of many owners can block all the others, the resource sits idle, for assembling every permission needed to put it to use becomes impossible. A building stands vacant because its fragmented owners cannot agree; a promising drug goes undeveloped because the patents it would touch are held by a dozen rival firms; land lies fallow beneath a tangle of competing claims. Where the commons is a field grazed to dust by all, the anticommons is a field fenced by all into uselessness — the very fragmentation of right that the enclosers prescribe as a cure, carried past the point where it becomes a disease of its own. This plate traces the mirror tragedy, and the gridlock that too much ownership can bring.`,
+    openq:`if too little ownership wastes a resource through overuse, and too much wastes it through gridlock, where between the two does the resource come into its own?`},
+  torch:{rn:"ix",title:"The Torch",family:"in preparation",lit:false,
+    desc:`Not every commons can be exhausted, and the exceptions overturn the whole grim logic. A pasture is diminished by grazing and a fishery by fishing, but a melody is not diminished by being sung, nor a theorem by being proved, nor a line of code by being copied a millionfold. These are the non-rival goods — knowledge, design, culture, software — and Jefferson caught their strange character exactly: that he who lights his taper at mine receives light without darkening me. A commons of such things faces no tragedy of overuse, for use does not consume them; the more freely they are shared, the richer the common store grows. Here the ordinary prescriptions invert. The danger is not that the knowledge commons will be overgrazed but that it will be needlessly fenced — that what might be free to all will be enclosed by patent and copyright and secret, and rationed as though it were scarce. The open-source movement, the public domain, the republic of science: these are commons that thrive precisely on the absence of a fence. This plate asks why we labor so hard to enclose the one kind of commons that enclosure can only impoverish.`,
+    openq:`if knowledge grows richer the more it is shared and is dimmed by no one's use of it, what is gained — and by whom — when we fence it as though it were a field?`},
+  sky:{rn:"x",title:"The Sky",family:"in preparation",lit:false,
+    desc:`The atmosphere is the commons of all humanity, and it is the tragedy's largest and most dangerous stage. Every furnace and engine on earth draws upon the sky's finite capacity to absorb what we release into it, and no one can be excluded from either the using or the harm; the benefit of burning is private and immediate, the cost shared, deferred, and spread across the whole globe. It is Hardin's pasture enlarged to the size of the planet — but with every feature that makes a commons governable stripped away. The users are not a village of neighbors but billions of strangers, across every nation and every generation to come; there is no boundary to draw, no overarching sovereign to set a quota, no community to make and keep a common rule. The instruments that have governed smaller commons — Ostrom's nested local institutions, the warden's regulation, even the encloser's tradable permit — all strain and slip at the planetary scale, where the polluter and the harmed may be a world and a century apart. This plate confronts the hardest commons of all: the one on which the habitability of the earth depends, and for which neither steward nor warden yet exists.`,
+    openq:`if the commons of the atmosphere has no boundary, no sovereign, and no community of neighbors, by what means could its billions of users ever be brought to restraint?`},
+  bequest:{rn:"xi",title:"The Bequest",family:"in preparation",lit:false,
+    desc:`A commons is shared not only across a community but across time — and the heirs with the largest stake in it are the ones who cannot speak, the generations not yet born. The forest felled today, the aquifer drained, the climate altered, the species lost: each is a withdrawal from a common account on which the future depends entirely and in which it has no vote. The old idea of the trust catches the obligation — that some things are held not in outright ownership but in stewardship, to be handed on undiminished to those who come after — and the public-trust doctrine, by which certain resources are deemed inalienably common, gives the idea a foothold in law. But the living, who do all the deciding, take the whole gain of spending the inheritance while bearing only a part of its cost, and the unborn, who bear the rest, are absent from the bargaining altogether. Here the free-rider problem stretches across the generations, and the discounting of the distant future can dress the squandering of a common patrimony in the respectable garb of rational choice. This plate asks what the present owes the future, and by what right it draws down the common store.`,
+    openq:`if those who will inherit the commons cannot sit at the table where its fate is settled, what binds the living to spend the patrimony as trustees rather than as heirs in haste?`},
+  reach:{rn:"xii",title:"The Reach",family:"in preparation",lit:false,
+    desc:`The volume ends at the question its own discoveries make unavoidable. Ostrom showed that communities can govern their commons without market or State — but the communities she studied were, almost without exception, small: villages whose members knew one another, watched one another, and would deal with one another again and again across a lifetime, so that reputation bit and defection was seen. The conditions of successful self-governance, that is, seem to be the conditions of the face-to-face community. And the gravest commons problems of the age — the atmosphere, the oceans, the antibiotic, the living diversity of the earth — are precisely the ones that overspill every such community, binding billions of strangers across nations that answer to no common power. So the question on which a great deal may turn: can the modest miracle of the village commons be scaled — knit upward through nested institutions, federated from the local to the global, or reconceived altogether for a world of strangers — to govern the commons of the species and the planet? Or does self-governance have a natural ceiling, above which only the old and inadequate instruments remain? This plate marks the open problem, and does not pretend to have solved it.`,
+    openq:`if the commons can be self-governed only where its users know one another, what hope remains for the planetary commons, whose users are billions of strangers who never will?`}
+};
+
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+function render(id){
+  var tile=document.querySelector('.el[data-id="'+id+'"]');
+  var d=PLATES[id]; if(!d||!tile) return;
+  var h='';
+  h+='<div class="d-head">';
+  h+='<div class="d-sym'+(d.lit?' lit':'')+'">'+esc(d.rn)+'</div>';
+  h+='<div class="d-titles">';
+  h+='<div class="d-family">The Commons &middot; Plate '+esc(d.rn)+' &middot; '+esc(d.family)+'</div>';
+  h+='<h2 class="d-name">'+esc(d.title)+'</h2>';
+  h+='<div class="d-status'+(d.lit?' print':'')+'">'+esc(d.family)+'</div>';
+  h+='</div></div>';
+  h+='<p class="d-desc">'+esc(d.desc)+'</p>';
+  if(d.lit && d.excerpt){
+    h+='<div class="d-excerpt"><span class="lead">From the opening</span><p>'+d.excerpt+'</p></div>';
+  }
+  if(d.url){h+='<p class="d-readplate"><a href="'+d.url+'">Read the plate<span class="arr" aria-hidden="true">&#8594;</span></a></p>';}
+  if(!d.lit && d.openq){
+    h+='<p class="d-openq"><span class="lead">This plate will ask</span><q>'+esc(d.openq)+'</q></p>';
+  }
+  document.getElementById('detail').innerHTML=h;
+  var prev=document.querySelector('.el.sel'); if(prev) prev.classList.remove('sel');
+  tile.classList.add('sel');
+}
+
+(function(){
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.el').forEach(function(b){
+    b.addEventListener('click',function(){
+      render(b.dataset.id);
+      document.getElementById('detail').scrollIntoView({behavior:reduce?'auto':'smooth',block:'nearest'});
+    });
+  });
+  render('tragedy');
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-signal.html">← The Signal</a><a rel="next" href="the-tragedy.html">The Tragedy →</a></nav>
+</body>
+</html>

@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Spread — Numéraire, Volume V</title>
+<meta name="description" content="The Spread — Volume V of Numéraire, A Periodic Table of Economic Life, and the last of The Prices. The price of intermediation: the bid-ask spread and the price of immediacy, the limit order book, inventory risk and adverse selection, the decomposed spread, liquidity and its premium, the bank and maturity transformation, the speed race, and the ancient contest over whether the middleman serves or extracts.">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem; --measure:40rem;
+    --wash:rgba(28,26,22,.066); --wash2:rgba(28,26,22,.12);
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.62;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  .measure{max-width:var(--measure);margin-left:auto;margin-right:auto;}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- ornaments ---- */
+  .orn{display:flex;justify-content:center;margin:0 auto;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .divider{display:flex;align-items:center;gap:1.1rem;max-width:30rem;margin:clamp(3rem,7vh,5rem) auto;color:var(--num);}
+  .divider .ln{flex:1;height:1px;background:var(--hair);}
+  .divider svg{display:block;width:12px;height:12px;overflow:visible;flex:0 0 auto;}
+  .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* ---- progress + running head ---- */
+  #progress{position:fixed;top:0;left:0;height:2px;width:100%;transform:scaleX(0);transform-origin:0 50%;background:var(--soft);opacity:.45;z-index:10000;}
+  #topbar{position:fixed;top:0;left:0;right:0;z-index:9998;transform:translateY(-100%);transition:transform .5s cubic-bezier(.2,.6,.2,1);
+    background:rgba(240,235,225,.86);-webkit-backdrop-filter:saturate(1.1) blur(8px);backdrop-filter:saturate(1.1) blur(8px);
+    border-bottom:1px solid var(--hair);}
+  #topbar.show{transform:translateY(0);}
+  .tb-in{max-width:var(--frame);margin:0 auto;padding:.62rem clamp(1.4rem,4vw,3.4rem);display:flex;justify-content:space-between;align-items:baseline;gap:1.2rem;}
+  .tb-l{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:.86rem;letter-spacing:.01em;}
+  .tb-l span{color:var(--faintest);font-weight:400;}
+  .tb-r{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);text-align:right;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+
+  /* ---- title page ---- */
+  .vol-title{padding:clamp(3.4rem,11vh,8rem) 0 clamp(1.6rem,5vh,3rem);text-align:center;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.16rem;letter-spacing:.02em;}
+  .vol-no{font-size:.84rem;color:var(--faint);letter-spacing:.16em;text-transform:uppercase;margin-top:.55rem;}
+  h1.vol-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 380;font-weight:380;
+    font-size:clamp(2.9rem,9vw,6rem);line-height:.98;letter-spacing:-.028em;margin:clamp(1.7rem,4.5vh,2.8rem) 0 0;text-wrap:balance;}
+  .vol-sym{width:78px;height:78px;margin:clamp(1.6rem,4vh,2.4rem) auto 0;border:1px solid var(--hair);border-radius:2px;
+    display:flex;align-items:center;justify-content:center;background:var(--ink);}
+  .vol-sym span{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2.3rem;line-height:1;color:var(--paper);letter-spacing:-.01em;}
+  .vol-coords{font-family:"Fraunces",serif;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);margin-top:1.1rem;}
+  .vol-gloss{font-style:italic;color:var(--soft);font-size:1.12rem;margin:.5rem 0 0;}
+  .vol-epigraph{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 400;font-style:italic;
+    font-size:clamp(1.14rem,1.7vw,1.34rem);line-height:1.42;color:var(--soft);max-width:33rem;margin:clamp(1.8rem,4vh,2.6rem) auto 0;text-wrap:pretty;}
+  .vol-epigraph .lead{display:block;font-style:normal;font-variation-settings:"opsz" 24,"wght" 400;
+    font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.7rem;}
+  .vol-status{display:inline-flex;align-items:center;gap:.5rem;margin:clamp(1.8rem,4vh,2.4rem) auto 0;font-size:.84rem;color:var(--soft);}
+  .vol-status::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ink);}
+
+  /* ---- the argument (preface) ---- */
+  .part-head{text-align:center;margin:0 0 clamp(1.6rem,3.5vh,2.3rem);}
+  .part-kicker{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faintest);}
+  .part-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-weight:400;
+    font-size:clamp(1.5rem,3.4vw,2.1rem);letter-spacing:-.012em;margin:.4rem 0 0;}
+  .argument p{font-size:1.05rem;line-height:1.74;margin:0 0 1.15rem;text-wrap:pretty;}
+  .argument p.lede::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 420;
+    float:left;font-size:3.5em;line-height:.78;padding:.05em .1em 0 0;color:var(--ink);}
+  .argument em,.plate-body em,.coda em{font-style:italic;}
+
+  /* ---- contents ---- */
+  .toc{list-style:none;margin:0 auto;padding:0;max-width:43rem;}
+  .toc li{border-top:1px solid var(--hair);}
+  .toc li:last-child{border-bottom:1px solid var(--hair);}
+  .toc a{display:grid;grid-template-columns:2.6rem 1fr;column-gap:1.1rem;align-items:baseline;
+    padding:.82rem .3rem;text-decoration:none;transition:background .2s ease;}
+  .toc a:hover{background:rgba(28,26,22,.035);}
+  .toc-n{font-family:"Fraunces",serif;font-size:.92rem;color:var(--faintest);text-align:right;}
+  .toc-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.06rem;color:var(--ink);line-height:1.16;}
+  .toc-g{grid-column:2;font-size:.85rem;font-style:italic;color:var(--faint);margin-top:.16rem;line-height:1.38;}
+
+  /* ---- plates ---- */
+  .plate{margin:clamp(3.2rem,8vh,6rem) 0 0;padding-top:clamp(2.4rem,5.5vh,3.4rem);border-top:1px solid var(--hair);scroll-margin-top:4rem;}
+  .plate-open{max-width:var(--measure);margin-inline:auto;}
+  .plate-no{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 360;font-size:clamp(2.6rem,7vw,4.1rem);
+    line-height:.9;color:var(--num);letter-spacing:.02em;}
+  .plate-kicker{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faintest);margin:.9rem 0 .2rem;}
+  .plate-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.8rem,4.4vw,2.7rem);line-height:1.04;letter-spacing:-.018em;margin:0;text-wrap:balance;}
+  .plate-gloss{font-style:italic;color:var(--soft);font-size:1.02rem;margin:.55rem 0 0;line-height:1.4;}
+
+  .ask{max-width:var(--measure);margin:clamp(1.5rem,3.5vh,2.2rem) auto clamp(1.8rem,4vh,2.4rem);}
+  .ask .lead{display:block;font-family:"Fraunces",serif;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.55rem;}
+  .ask q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:clamp(1.18rem,1.8vw,1.38rem);line-height:1.36;color:var(--soft);quotes:none;}
+
+  .plate-body{max-width:var(--measure);margin-inline:auto;}
+  .plate-body p{margin:0 0 1.18rem;text-wrap:pretty;}
+  .plate-body > p:first-of-type::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 430;
+    float:left;font-size:3.5em;line-height:.76;padding:.04em .12em 0 0;color:var(--ink);}
+  .plate-body h4{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.76rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faint);margin:2rem 0 .9rem;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 380;font-style:italic;
+    font-size:clamp(1.4rem,2.3vw,1.7rem);line-height:1.32;color:var(--soft);text-align:center;
+    max-width:33rem;margin:clamp(2rem,4.5vh,2.8rem) auto;text-wrap:balance;}
+
+  .edge{max-width:var(--measure);margin:1.7rem auto;padding:.1rem 0 .1rem 1.15rem;border-left:1px solid var(--hair);
+    color:var(--faint);font-size:.92rem;line-height:1.62;}
+  .edge .lead{display:block;font-family:"Fraunces",serif;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.4rem;}
+  .edge em{font-style:italic;color:var(--soft);}
+
+  /* ---- figures (engravings) ---- */
+  .fig{max-width:var(--measure);margin:clamp(2.1rem,4.5vh,2.9rem) auto;}
+  .fig-frame{border:1px solid var(--hair);border-radius:2px;padding:clamp(1rem,2.4vw,1.7rem) clamp(1rem,2.4vw,1.7rem) clamp(.8rem,2vw,1.3rem);background:rgba(255,253,247,.4);}
+  .fig svg{display:block;width:100%;height:auto;}
+  figcaption{margin:.95rem auto 0;max-width:38rem;font-size:.85rem;line-height:1.5;color:var(--faint);text-wrap:pretty;}
+  figcaption .fig-n{font-family:"Fraunces",serif;font-weight:500;letter-spacing:.04em;color:var(--soft);}
+  figcaption em{font-style:italic;}
+  .ax{stroke:var(--soft);stroke-width:1.1;fill:none;}
+  .tick{stroke:var(--soft);stroke-width:1;}
+  .curve{stroke:var(--ink);stroke-width:1.5;fill:none;stroke-linecap:round;}
+  .curve2{stroke:var(--ink);stroke-width:1.3;fill:none;stroke-linecap:round;}
+  .guide{stroke:var(--faintest);stroke-width:1;fill:none;stroke-dasharray:3 3.5;}
+  .core{stroke:var(--ink);stroke-width:3;fill:none;stroke-linecap:round;}
+  .fill-cs{fill:var(--wash);}
+  .fill-dwl{fill:var(--wash2);}
+  .fill-wedge{fill:var(--wash);}
+  .fill-lens{fill:var(--wash);}
+  .hatch-line{stroke:var(--faintest);stroke-width:.8;}
+  .lbl{font-family:"Fraunces",serif;font-size:11.5px;fill:var(--faint);font-variation-settings:"opsz" 24,"wght" 400;}
+  .lbl-i{font-family:"Newsreader",serif;font-style:italic;font-size:11px;fill:var(--soft);}
+  .lbl-sm{font-family:"Fraunces",serif;font-size:9.6px;fill:var(--faintest);letter-spacing:.02em;}
+  .lbl-ax{font-family:"Fraunces",serif;font-size:9.4px;fill:var(--faintest);letter-spacing:.12em;}
+
+  /* ---- coda + colophon ---- */
+  .coda{max-width:var(--measure);margin:clamp(3rem,7vh,5rem) auto 0;}
+  .coda p{margin:0 0 1.18rem;text-wrap:pretty;}
+  .coda p.lede::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 430;
+    float:left;font-size:3.5em;line-height:.76;padding:.04em .12em 0 0;color:var(--ink);}
+  footer{margin-top:clamp(3.6rem,8vh,6rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.4rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .colophon{font-size:.85rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+
+  /* ---- motion / reveal ---- */
+  @media (prefers-reduced-motion: no-preference){
+    html.js .reveal{opacity:0;transform:translateY(14px);}
+    html.js .reveal.in{opacity:1;transform:none;}
+    .reveal{transition:opacity .9s cubic-bezier(.2,.6,.2,1),transform .9s cubic-bezier(.2,.6,.2,1);}
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.18s}.rise.d3{animation-delay:.32s}.rise.d4{animation-delay:.46s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  /* ---- responsive ---- */
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .argument p,.plate-body p,.coda p{font-size:1.01rem;}
+    .plate-body > p:first-of-type::first-letter,.argument p.lede::first-letter,.coda p.lede::first-letter{font-size:3em;}
+    .f-bar{flex-direction:column;gap:.5rem;}
+    .toc a{grid-template-columns:2rem 1fr;column-gap:.8rem;}
+    figcaption{font-size:.82rem;}
+  }
+
+  /* ---- print: a volume, in print ---- */
+  @media print{
+    html,body{background:#fff;color:#000;}
+    body{font-size:11.5pt;line-height:1.5;}
+    body::before,#progress,#topbar{display:none !important;}
+    .frame{max-width:none;padding:0;}
+    .measure,.plate-open,.plate-body,.ask,.edge,.coda{max-width:34rem;}
+    a{text-decoration:none;}
+    .plate{break-before:page;border-top:none;padding-top:0;}
+    .fig,figure{break-inside:avoid;}
+    .plate-no{color:#bbb;}
+    .reveal{opacity:1 !important;transform:none !important;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#ne-contents">Complete contents</a><a href="../editions.html#volume-spread">The Spread · both editions</a><a href="../essays/numeraire-v-the-spread.html">Expanded essays</a></div></nav>
+<div id="progress" aria-hidden="true"></div>
+<div id="topbar" aria-hidden="true"><div class="tb-in">
+  <span class="tb-l">Numéraire <span>· The Spread</span></span>
+  <span class="tb-r" id="tb-plate">Volume V</span>
+</div></div>
+
+<div class="frame">
+
+  <header class="vol-title">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="rise d1">
+      <span class="imprint">Numéraire</span>
+      <div class="vol-no">Volume V &middot; № V</div>
+    </div>
+    <h1 class="vol-name rise d2">The Spread</h1>
+    <div class="vol-sym rise d3" aria-hidden="true"><span>Sp</span></div>
+    <div class="vol-coords rise d3">Group I &middot; The Prices</div>
+    <p class="vol-gloss rise d3">the price of standing in between</p>
+    <p class="vol-epigraph rise d4">
+      <span class="lead">The question of the volume</span>
+      What does it cost to trade now, rather than wait for a willing other?
+    </p>
+    <div class="vol-status rise d4">in print &middot; twelve plates</div>
+  </header>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <section class="argument measure reveal" aria-labelledby="arg-h">
+    <div class="part-head">
+      <div class="part-kicker">Numéraire &middot; Volume V</div>
+      <h2 class="part-title" id="arg-h">The Argument</h2>
+    </div>
+    <p class="lede">This volume completes the group of the prices, and it does so with the price that is, of all of them, the most easily overlooked and the most readily resented — the spread, the margin the middleman takes for standing between buyer and seller. The wage, the rent, the rate, and the premium each price something a person plainly receives: an hour of labor, the use of land, the loan of money, the shedding of a risk. The spread prices something subtler: not a good at all, but a service — the service of being able to trade. When you sell a share and someone stands ready to buy it that instant, when you buy a currency and a dealer quotes it without delay, when you find at the grocer the bread that no farmer carried to your door, you have been served by an intermediary, and the spread — the small gap between the price at which he buys and the price at which he sells — is what you have paid him. It is the price of immediacy, the price of not having to search, and the last of the five foundational prices this group sets out to anatomize.</p>
+    <p>Watch a dealer at work and the spread is plain. He quotes two prices, not one: a lower price at which he will buy from you, the bid, and a higher price at which he will sell to you, the ask, and the difference between them is his spread. Cross it in one direction — sell to him at the bid — and you have your money at once, without waiting for another buyer to appear; cross it in the other — buy from him at the ask — and you have your share at once, without hunting for a willing seller. The patient, who will wait, need not pay it: they may post their own order and let the world come to them, and so earn the spread rather than pay it. The spread is thus the price of immediacy, levied on the impatient and paid to the patient who supply what the impatient demand — and what they demand is liquidity, the power to turn an asset into cash, or cash into an asset, now and at a price known in advance.</p>
+    <p>Why should immediacy cost anything, and why should the middleman be able to charge for it? Because to stand ready to trade is itself costly, in three distinct ways the volume's central plates take in turn. First there is the plain cost of doing the work — the clerks, the systems, the seat on the exchange — the order-processing cost. Second, and more deeply, the dealer who buys before he has a buyer must hold what he has bought, bearing the risk that its price moves against him while he waits; this is the inventory cost, and it is nothing other than the price of risk of the volume just past, now borne by the market-maker rather than the insured. Third, and most subtly, some of those the dealer trades with know more than he does about what the asset is worth, and against these informed traders he loses systematically — buying from sellers who know the price will fall, selling to buyers who know it will rise; this is the adverse-selection cost, the very malady of the volume on asymmetry, here become a cost of making markets. The spread is the sum of these three, and its width is set by their sizes.</p>
+    <p>Two of the volume's great threads are thus tied at once to its neighbors. The inventory cost binds the spread to the premium: the market-maker, like the insurer, is paid to bear a risk that others wish to shed, and his spread, like the insurer's loading, is in part the price of that risk. The adverse-selection cost binds it to asymmetry: the spread is in part a toll the uninformed pay for the presence of the informed among them, levied by a dealer who cannot tell which is which and so must charge both alike. What governs the size of the spread, beyond these costs, is competition. Where many dealers vie to quote, the spread is pressed down toward the costs that justify it, and the market is liquid and cheap to trade; where one dealer holds a privileged place, or where the costs themselves are large, the spread widens, and the toll grows. The spread is therefore a barometer at once of a market's liquidity, of the risk and information swirling within it, and of the competition among those who would profit from standing in its midst.</p>
+    <p>Two shadows fall across the account. The first is ancient: the suspicion of the middleman himself. For the intermediary produces nothing one can touch — he grows no grain, weaves no cloth, builds no house — and to many eyes across many centuries he has seemed a parasite, inserting himself between producer and consumer to skim a toll he has done nothing to earn, the speculator and the scalper and the moneylender among the most reviled figures in the moral history of commerce. Against this stands the economist's defense: that the middleman provides a genuine service — liquidity, immediacy, the bearing of risk, the saving of search — and that his spread is its honest price, no more a theft than the wage is a theft for labor. Which of these is true, and when, is the contest at the volume's heart. The second shadow is modern: the machinery of intermediation has, in our age, become a contest of speed, in which market-makers and traders spend fortunes to be faster than one another by millionths of a second, and in which the spread is set, and sometimes destroyed, by algorithms racing in the dark — raising anew, in silicon, the old question of whether the intermediary steadies the market or preys upon it.</p>
+    <p>The thesis of the volume may be stated plainly. The spread is the price of intermediation — the toll the middleman takes for bridging the gap between those who would buy and those who would sell, in time, in space, in information, and in want. Most fundamentally it is the price of immediacy, the cost of trading now rather than waiting for a willing other, paid by the impatient to the patient who stand ready. Its width is set by three costs — of processing, of inventory risk, and of adverse selection — and pressed by competition toward those costs, so that the spread measures at once the liquidity of a market and the risk and information and rivalry within it. And it is shadowed throughout by a contest as old as commerce, over whether the middleman is a benefactor who provides a service or a parasite who extracts a toll. A spread, like every price in this series, is a verdict on a hidden contest — here the contest between the value of immediacy and the toll of the gatekeeper, between the liquidity the intermediary provides and the rent he may extract, and between the patient and the impatient, the informed and the uninformed, who meet across his book. With it, the prices are complete. The argument remains open.</p>
+  </section>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <section class="contents reveal" aria-labelledby="toc-h">
+    <div class="part-head">
+      <div class="part-kicker">The twelve plates of this volume</div>
+      <h2 class="part-title" id="toc-h">The Plates</h2>
+    </div>
+    <ol class="toc">
+      <li><a href="#plate-i"><span class="toc-n">i</span><span class="toc-t">The Gap</span><span class="toc-g">the bid and the ask; the spread as the price of immediacy</span></a></li>
+      <li><a href="#plate-ii"><span class="toc-n">ii</span><span class="toc-t">The Search</span><span class="toc-g">why intermediaries exist; search, matching, and the bridging of gaps</span></a></li>
+      <li><a href="#plate-iii"><span class="toc-n">iii</span><span class="toc-t">The Immediacy</span><span class="toc-g">liquidity and the limit order book; who supplies immediacy and who demands it</span></a></li>
+      <li><a href="#plate-iv"><span class="toc-n">iv</span><span class="toc-t">The Inventory</span><span class="toc-g">the dealer's inventory risk; quote-shading and the price of bearing what waits</span></a></li>
+      <li><a href="#plate-v"><span class="toc-n">v</span><span class="toc-t">The Informed</span><span class="toc-g">adverse selection in the market; the spread that information alone creates — Glosten-Milgrom</span></a></li>
+      <li><a href="#plate-vi"><span class="toc-n">vi</span><span class="toc-t">The Cut</span><span class="toc-g">the spread decomposed; order-processing, inventory, and adverse selection</span></a></li>
+      <li><a href="#plate-vii"><span class="toc-n">vii</span><span class="toc-t">The Quote</span><span class="toc-g">how competition sets the spread; rivalry, market power, and order flow</span></a></li>
+      <li><a href="#plate-viii"><span class="toc-n">viii</span><span class="toc-t">The Haircut</span><span class="toc-g">the price of illiquidity; the liquidity premium and the patient hand — Amihud-Mendelson</span></a></li>
+      <li><a href="#plate-ix"><span class="toc-n">ix</span><span class="toc-t">The Bank</span><span class="toc-g">intermediation's grandest form; maturity transformation, the net interest margin, and the run</span></a></li>
+      <li><a href="#plate-x"><span class="toc-n">x</span><span class="toc-t">The Speed</span><span class="toc-g">the electronic market; high-frequency trading, latency, and the speed race</span></a></li>
+      <li><a href="#plate-xi"><span class="toc-n">xi</span><span class="toc-t">The Middleman</span><span class="toc-g">the oldest contest; whether the intermediary serves or merely extracts</span></a></li>
+      <li><a href="#plate-xii"><span class="toc-n">xii</span><span class="toc-t">The Crossing</span><span class="toc-g">the price of intermediation made whole — completing The Prices, toward The Margin, The Money, The Asymmetry</span></a></li>
+    </ol>
+  </section>
+
+  <main class="plates" id="plates">
+
+    <!-- ===================== PLATE I ===================== -->
+    <section class="plate reveal" id="plate-i" data-label="Plate i · The Gap">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">i</div>
+        <p class="plate-kicker">Plate the First &middot; The Prices &middot; № V</p>
+        <h3 class="plate-title">The Gap</h3>
+        <p class="plate-gloss">the bid and the ask; the spread as the price of immediacy</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>why does a dealer name two prices, not one?</q></div>
+      <div class="plate-body">
+        <p>A dealer names two prices, and the doubling is the whole of the matter. Ask him what a share is worth and he will not give you a number but a pair: a lower price, the bid, at which he will buy it from you, and a higher price, the ask, at which he will sell it to you. The gap between them is the spread. Why two prices and not one? Because the dealer is not, in truth, pricing the share at all. The share has, at any moment, a single best estimate of its worth — the midpoint between his two quotes, the price at which buyers and sellers stand in rough balance — and that midpoint is the market's verdict on the asset's value. What the dealer prices with his two quotes is something else: not the asset, but the service of trading it at once. The bid and the ask straddle the value like the two banks of a river, and the spread between them is the toll for crossing.</p>
+        <p>Who pays the toll, and who collects it, is settled by a single distinction — between those who must trade now and those who can wait. One who needs to sell immediately accepts the dealer's bid, taking the lower price for the sake of speed; one who needs to buy immediately pays the ask, the higher price, for the same reason. These are the demanders of immediacy, and they cross the spread. But a patient trader need not cross it. Instead of accepting the dealer's quote, he may post his own — an order to buy a little above the prevailing bid, or to sell a little below the ask — and wait for the world to come to him; and if it does, he has traded at a better price than the impatient, capturing rather than paying the spread. He is a supplier of immediacy, standing ready so that others need not wait. The spread, then, is not a tax the dealer alone imposes; it is a payment that flows from the impatient to the patient, and the dealer is merely the most practiced of the patient, the one whose whole trade is to stand ready.</p>
+        <p>Cross the spread in both directions and its meaning is laid bare. Buy a share at the ask and sell it back an instant later at the bid, with the value unchanged between, and you are poorer by the spread: you have paid, in that round trip, the full price of immediacy, twice crossing the river for no gain but the speed of it. This round-trip cost is the spread's truest measure, and it is universal, though it wears many disguises. On a heavily traded share it is a matter of pennies, the market so liquid that immediacy is nearly free; on a thinly traded one it widens to a painful fraction. And beyond the exchanges it is everywhere, though rarely posted: the used-car dealer who buys your car for less than he will sell it, the currency booth whose buy and sell rates differ, the house that fetches one price sold in a week and another sold in a year — each is a spread, the price of turning a thing into money now rather than later. Wherever there is a middleman, there is a gap between the two prices he names, and that gap is what this volume is about.</p>
+        <aside class="pull">The dealer does not price the asset; he prices the service of trading it at once. The midpoint of his two quotes is the value; the gap between them is the toll for crossing now — paid by the impatient, collected by the patient who stand ready.</aside>
+        <aside class="edge"><span class="lead">the edge</span> The posted spread is the cleanest emblem of the price of immediacy, but it is not the whole of what trading costs, and to mistake it for the whole is to be lulled. A large order cannot be filled at the quoted price: it exhausts the orders at the best bid or ask and must reach to worse ones, moving the price against itself — the market impact the fifth plate will price, and that for a great trade dwarfs the visible spread. There are commissions and fees beside. There is the opportunity cost of patience: the limit order that would have earned the spread may simply never fill, the world having moved away, so that the supplier of immediacy is paid for a risk, not for nothing. And the midpoint, which this plate has called the value, is only the dealers' estimate of it, an estimate that can be stale, mistaken, or in a thin market nudged about by whoever cares to. The gap between bid and ask is the visible price of immediacy, and the rest of the volume builds on it; but the full cost of trading runs wider than the gap, and the wise trader counts what the quote does not show.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE II ===================== -->
+    <section class="plate reveal" id="plate-ii" data-label="Plate ii · The Search">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">ii</div>
+        <p class="plate-kicker">Plate the Second &middot; The Prices &middot; № V</p>
+        <h3 class="plate-title">The Search</h3>
+        <p class="plate-gloss">why intermediaries exist; search, matching, and the bridging of gaps</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what would a world without middlemen cost?</q></div>
+      <div class="plate-body">
+        <p>To see what the middleman is for, imagine a world without him. In such a world every buyer must find his own seller and every seller his own buyer — and not just any counterparty, but the right one, who wants exactly what is offered, in the quantity offered, at the moment and the place it is offered. A man with a surplus of grain and a want of cloth must find not merely someone with cloth, but someone with cloth who also wants grain: the double coincidence of wants, the ancient obstacle the sixteenth volume will show money was invented to overcome. Even where money has dissolved that particular knot, the difficulty of finding remains. To sell a house, a bond, a barrel of oil, or an hour of rare skill, one must search — for a willing party, at an agreeable price, without too much delay — and search is costly, in time, in effort, and in the gnawing uncertainty of whether a better counterparty waits just beyond the next inquiry. The middleman exists to spare the world this cost. He makes himself easy to find, stands always ready to trade, and so converts the hard problem of finding a particular counterparty into the easy one of finding him.</p>
+        <p>What the intermediary bridges, looked at closely, is a set of gaps, and he bridges them in four kinds. He bridges time: the dealer who buys your share today, before any final buyer has appeared, holds it until one does, spanning the interval between your wish to sell and another's wish to buy. He bridges space: the merchant who carries goods from where they are plentiful and cheap to where they are scarce and dear spans the distance between producer and consumer, the oldest form of the trade. He bridges information: the broker who knows who is buying and who selling, and matches the two, spans the gap of mutual ignorance that would otherwise keep them apart. And he bridges want and denomination: the bank that gathers a thousand small savings into one great loan, the wholesaler who buys in bulk and sells in parcels, reconciles the shape in which value is offered with the shape in which it is wanted. In every case the gain is the same in kind. Were a hundred buyers each to search among a hundred sellers, the matchings to be tried would number ten thousand; let all trade instead through a single hub that stands ready to both, and the hundred buyers and hundred sellers need strike but two hundred bargains, each with the middleman. The intermediary collapses a multitude of searches into a single point of contact, and that collapse is the source of his worth.</p>
+        <p>From this the spread takes its deepest justification. What the middleman charges is, at root, the price of the search he saves — and where he saves more than he charges, the trade is a true exchange, leaving both sides better off than they would have been alone, exactly as the insurer's loading left both better off in the volume just past. The dealer earns his spread honestly when standing ready, holding inventory, and matching the two sides costs him less than it would cost the parties to find one another; and competition among such dealers, as a later plate will show, presses the spread down toward that cost. This is the legitimate core of intermediation, and it is the standing answer to the charge that the middleman is a parasite: he produces nothing one can touch, true, but he produces something real all the same — the meeting itself, the trade that would not otherwise have happened, or would have happened only at greater cost. Yet the justification carries its own warning, which the volume's last plates will press. The spread is earned only to the extent of the search it saves; charged beyond that, it is no longer payment for a service but a toll on a passage the middleman has done nothing to ease — and the same position that lets him save the world its search may let him stand astride a gate he himself keeps shut.</p>
+        <aside class="pull">The middleman converts the hard problem of finding a particular counterparty into the easy one of finding him. His spread is the price of the search he saves — earned where he saves more than he charges, a toll where he does not.</aside>
+        <aside class="edge"><span class="lead">the edge</span> That intermediation arises from the friction of search is among the firmer findings of the theory of markets, which shows middlemen emerging unbidden wherever counterparties are costly to find, and vanishing where they are not. But the friction that creates the middleman also tempts him to preserve it. A broker whose value lies in knowing who wants what has every reason to keep buyer and seller from knowing each other directly, lest they meet without him; the gap he is paid to bridge is one he may quietly work to maintain, and much of the history of intermediation is a history of middlemen guarding their position by guarding their information. Technology that slashes the cost of search cuts both ways against him: it can disintermediate, letting the parties find one another at last and stranding the middleman who added nothing but a meeting now free — as the travel agent and the stockjobber have learned — or it can breed a new and greater intermediary, the platform whose network gathers all buyers and all sellers into one place and charges a toll the larger for being the only gate, a market power the tenth volume will anatomize. Search-saving is the honest root of the spread; it is also the root from which entrenchment grows.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE III ===================== -->
+    <section class="plate reveal" id="plate-iii" data-label="Plate iii · The Immediacy">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">iii</div>
+        <p class="plate-kicker">Plate the Third &middot; The Prices &middot; № V</p>
+        <h3 class="plate-title">The Immediacy</h3>
+        <p class="plate-gloss">liquidity and the limit order book; who supplies immediacy and who demands it</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what exactly is being bought when one buys liquidity?</q></div>
+      <div class="plate-body">
+        <p>The first plate called the spread the price of immediacy; this plate asks what immediacy is, and gives it its market name — liquidity. An asset is liquid when it can be turned into cash quickly, in quantity, and without moving its price; illiquid when it cannot. Cash itself is perfectly liquid; a traded share nearly so; a house or a private business barely at all. Liquidity is not a property of the asset alone but of the market around it — of how many stand ready to take the other side, how deep their willingness runs, how fast they replenish once a trade has drawn them down. And like immediacy, of which it is only the fuller name, liquidity is bought and sold. Those who demand it — who must trade now — pay the spread; those who supply it — who stand ready so that others need not wait — earn it. To understand the spread, then, is to understand the market in liquidity, and to see that market plainly one must look at the mechanism in which it lives: the order book.</p>
+        <p>Modern markets keep a book of orders, and the book makes the trade in liquidity visible. Into it flow two kinds of order. A limit order is an offer to trade at a stated price or better, posted and left to wait — an order to buy at no more than so much, or sell at no less; it adds itself to the book, joining the queue of the patient, and supplies liquidity to whoever later wants it. A market order is an instruction to trade at once, at whatever price the book offers — it does not wait but reaches into the book and takes; it demands liquidity, and pays the spread to get it. The book thus has two sides: a stack of bids below, the standing offers to buy, descending from the best bid; and a stack of asks above, the standing offers to sell, ascending from the best ask. Between the best bid and the best ask lies the spread, the no-man's-land where no trade rests. And the quantity standing at each price is the market's depth — how much can be traded before the price must move. The figure shows the book at a moment, with all of these upon it.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="f1t f1d">
+              <title id="f1t">The limit order book</title>
+              <desc id="f1d">Bids stand on the left and asks on the right, their heights the quantity offered at each price. Between the best bid and the best ask lies the spread, the gap a market order must cross to trade at once.</desc>
+              <line x1="64" y1="250" x2="414" y2="250" class="axis"/>
+              <polygon points="414,250 406,246 406,254" class="ink-fill"/>
+              <line x1="64" y1="250" x2="64" y2="40" class="axis"/>
+              <polygon points="64,40 60,48 68,48" class="ink-fill"/>
+              <text x="180" y="278" text-anchor="start" class="lbl-ax">price &#8594;</text>
+              <text x="26" y="156" text-anchor="middle" class="lbl-ax" transform="rotate(-90 26 156)">depth</text>
+              <rect x="96" y="172" width="18" height="78" class="band"/>
+              <rect x="126" y="152" width="18" height="98" class="band"/>
+              <rect x="156" y="132" width="18" height="118" class="band"/>
+              <rect x="186" y="112" width="18" height="138" class="band"/>
+              <rect x="264" y="122" width="18" height="128" fill="none" class="axis"/>
+              <rect x="294" y="142" width="18" height="108" fill="none" class="axis"/>
+              <rect x="324" y="162" width="18" height="88" fill="none" class="axis"/>
+              <rect x="354" y="182" width="18" height="68" fill="none" class="axis"/>
+              <line x1="204" y1="100" x2="264" y2="100" class="guide"/>
+              <line x1="204" y1="100" x2="204" y2="112" class="guide"/>
+              <line x1="264" y1="100" x2="264" y2="122" class="guide"/>
+              <text x="234" y="92" text-anchor="middle" class="lbl-sm">the spread</text>
+              <text x="150" y="66" text-anchor="middle" class="lbl-sm">bids</text>
+              <text x="318" y="66" text-anchor="middle" class="lbl-sm">asks</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 1.</span> The limit order book, where the spread is born. Along the price axis stand the orders waiting to trade: on the left, the bids — the prices at which patient buyers will buy, the highest of them the best bid; on the right, the asks — the prices at which patient sellers will sell, the lowest the best ask. The height of each is the quantity offered there, the market's depth. Between the best bid and the best ask lies a gap in which no one will trade — the spread, the distance a buyer must cross to buy at once rather than wait, and a seller to sell at once. One who posts an order and waits supplies liquidity and may earn the spread; one who crosses it to trade now demands liquidity and pays it. The spread is the price of immediacy.</figcaption>
+        </figure>
+        <p>The picture lets us name liquidity's three dimensions, for it is not one thing but three, and a market may be rich in one and poor in another. The first is tightness — the narrowness of the spread itself, the cost of a small trade done at once — and it is the dimension the rest of this volume chiefly pursues. The second is depth — how large a trade the book can absorb before the price moves against it, measured by the quantity standing near the best quotes — so that a market may have a tight spread for small orders yet little depth for large ones, immediacy cheap for the minnow and dear for the whale. The third is resilience — how quickly the book refills after a large trade has swept through it, the patient returning to replace the liquidity consumed — for a market that empties and does not refill is liquid only until it is tested. Together these make immediacy what Harold Demsetz, who first thought to price it, treated as a predictable thing: the assurance that one may trade now, in size, at a price near the last. That assurance is supplied by the patient who post and wait, and consumed by the impatient who take; and because the patient bear risk and trouble to supply it, while all may consume it, liquidity has something of the character of a common resource — abundant when many tend it, and prone, as the thirteenth volume warned of commons, to vanish exactly when the crowd that relied on it most needs it to remain.</p>
+        <aside class="pull">Liquidity is immediacy's fuller name, and it has three dimensions: the tightness of the spread, the depth that absorbs a large trade, and the resilience that refills the book once it is swept. The patient supply it; the impatient consume it.</aside>
+        <aside class="edge"><span class="lead">the edge</span> The order book is the cleanest model of the market in liquidity, but the liquidity it displays can be a fair-weather friend, and the displayed depth in particular is treacherous. Much of what stands on a modern book is fleeting — orders posted by fast traders to be cancelled in milliseconds if the wind shifts, so that the depth a slow trader sees may evaporate the instant he reaches for it, a mirage the tenth plate will examine. Liquidity is, besides, eerily correlated with the very conditions in which it is most wanted: it is plentiful in calm markets and withdraws in turbulent ones, the patient suppliers fleeing precisely when the impatient most need to sell, so that the spread is narrowest when immediacy is cheap to forgo and widest when it is dear — liquidity risk, the risk that the market will be illiquid when one must trade, which the volumes on money and the cycle will find at the center of every panic. And the neat division into patient suppliers and impatient demanders blurs under inspection, for the same trader may supply liquidity one second and demand it the next. The book is a true picture of the market in immediacy; it is a picture taken in fair weather, and the storm redraws it.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE IV ===================== -->
+    <section class="plate reveal" id="plate-iv" data-label="Plate iv · The Inventory">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">iv</div>
+        <p class="plate-kicker">Plate the Fourth &middot; The Prices &middot; № V</p>
+        <h3 class="plate-title">The Inventory</h3>
+        <p class="plate-gloss">the dealer's inventory risk; quote-shading and the price of bearing what waits</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what does the dealer risk by standing ready?</q></div>
+      <div class="plate-body">
+        <p>Of the three costs that set the spread, the first to examine is the one the volume just past prepared us for: the cost of bearing risk. A dealer who makes a market cannot wait, as the patient do, for a matching order to appear before he trades; that is the whole of his service — he trades now, taking the other side at once, and worries afterward about finding someone to take it off him. So when you sell to him, he buys, and is left holding the asset; when you buy from him, he sells, and is left short, owing an asset he must later acquire. Either way he carries a position he did not want for its own sake, only as the residue of having served you, and he carries it through an interval — seconds, hours, days — in which its price may move. That is inventory risk, and it is nothing other than the price of risk of the fourth volume, now seen from the side of the bearer rather than the shedder. The insured pays a premium to be rid of a risk; the impatient trader pays a spread to be rid of one too — the risk of holding, of waiting, of not yet having traded — and the dealer, like the insurer, is paid to take it on.</p>
+        <p>How the dealer manages this risk shapes his quotes, and the management is ingenious. He does not hold a fixed view of the asset's value and quote a fixed spread about it; rather, he shades his quotes according to the inventory he happens to carry, as Garman, and Ho and Stoll, taught us to see. Suppose he has bought heavily and runs long, holding more than he wishes: he is overexposed, anxious to sell and reluctant to buy more, and so he lowers both his bid and his ask together — the lower ask to tempt buyers to relieve him, the lower bid to deter further sellers — sliding his whole quote down until his inventory eases. Suppose instead he has sold heavily and runs short: he raises both quotes, the higher bid to attract sellers who will cover him, the higher ask to deter buyers. His quotes thus drift with his position, always leaning against it, always nudging his inventory back toward the level he wishes to hold. The figure traces this: how the dealer's bid and ask slide as his inventory moves from short to long, the spread between them riding up and down upon the true value like a boat upon a swell.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="f2t f2d">
+              <title id="f2t">Inventory and the dealer's quotes</title>
+              <desc id="f2d">As the dealer's inventory moves from short to long, he slides both bid and ask downward, leaning against his position; the spread between them rides up and down upon the asset's true value.</desc>
+              <line x1="64" y1="250" x2="414" y2="250" class="axis"/>
+              <polygon points="414,250 406,246 406,254" class="ink-fill"/>
+              <line x1="64" y1="250" x2="64" y2="40" class="axis"/>
+              <polygon points="64,40 60,48 68,48" class="ink-fill"/>
+              <text x="130" y="278" text-anchor="start" class="lbl-ax">dealer's inventory &#8594;</text>
+              <text x="26" y="156" text-anchor="middle" class="lbl-ax" transform="rotate(-90 26 156)">quoted price</text>
+              <line x1="64" y1="155" x2="404" y2="155" class="guide"/>
+              <text x="70" y="149" text-anchor="start" class="lbl-sm">true value</text>
+              <line x1="234" y1="250" x2="234" y2="90" class="guide"/>
+              <text x="234" y="264" text-anchor="middle" class="lbl-sm">zero</text>
+              <line x1="64" y1="90" x2="404" y2="180" class="curve"/>
+              <text x="398" y="174" text-anchor="end" class="lbl-sm">ask</text>
+              <line x1="64" y1="130" x2="404" y2="220" class="curve"/>
+              <text x="398" y="214" text-anchor="end" class="lbl-sm">bid</text>
+              <text x="96" y="264" text-anchor="middle" class="lbl-sm">short</text>
+              <text x="372" y="264" text-anchor="middle" class="lbl-sm">long</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 2.</span> How inventory bends the dealer's quotes — the first reason for the spread. A dealer who makes a market must hold inventory between trades, and inventory is risk: its value may move before he can pass it on. So he manages it through his quotes. The horizontal line is the asset's true value; the two sloping lines are the prices at which the dealer will buy, the bid, and sell, the ask, the gap between them the spread he earns on a round trip. When he has sold too much and runs short, at the left, he raises both quotes to attract sellers and deter buyers; when he has bought too much and runs long, at the right, he lowers both to do the reverse — always nudging his inventory back toward zero. The spread must be wide enough to pay him for the price risk he carries while he waits, which is the price of risk of the fourth volume, here borne by the market-maker.</figcaption>
+        </figure>
+        <p>What the figure shows about a single dealer, the market enforces upon all: the spread must be wide enough to pay for the inventory risk borne, or no one will bear it. A dealer who quoted too tight a spread would be flooded with the trades others shunned, accumulate inventory he could not safely carry, and be ruined by the first adverse move; the spread he survives on is the one that compensates him, on average, for the price risk he shoulders between the trade that gives him a position and the trade that clears it. And here the kinship with the premium is exact. The insurer's loading, the volume past showed, was in part a charge for the capital he must hold against the risk he has assumed; the dealer's spread is the same charge in another costume — payment for standing between, for holding what waits, for converting the impatient trader's risk of not-yet-having-traded into his own risk of having-traded-too-soon. The wider the swings in the asset's price, the more this protection must cost, which is why spreads gape in volatile markets and on volatile assets: when the thing in inventory is dangerous to hold, immediacy in it is dear. The first reason for the spread, then, is simply that someone must carry the asset across the gap of time, and carrying is risk, and risk has a price — the price the fourth volume named.</p>
+        <aside class="pull">The dealer trades now and finds a buyer after; between the two he holds a position he did not want, through an interval in which its price may move. The spread is in part the price of that risk — the premium of the fourth volume, borne now by the market-maker.</aside>
+        <aside class="edge"><span class="lead">the edge</span> Inventory cannot be the whole of the spread, and the cleanest proof is that a spread persists even where inventory risk is nearly nil. A dealer who could lay off his position instantly, or who held it for so brief a moment that no price move could touch it, would bear almost no inventory risk — yet he would still quote a spread, as the next plate will show, because of a danger that has nothing to do with holding and everything to do with whom he trades against. The inventory account, moreover, makes the spread depend on the dealer's risk aversion and his capital, which are his private circumstances rather than features of the asset; two dealers in the same security may quote differently because one is already long and the other short, or one well-capitalized and the other stretched, so that the inventory component is less a fixed cost than a shifting, dealer-specific shadow. And quote-shading, the very device by which the dealer manages his risk, leaves footprints: a dealer leaning his quotes against a large inventory moves the price in a way that betrays his position to those watching closely, who may then trade against him — so that the management of one risk opens the door to another. The price of bearing what waits is real and is part of the spread; it is the part competition and capital can most readily shrink, and the part that vanishes when trades clear fast enough.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE V ===================== -->
+    <section class="plate reveal" id="plate-v" data-label="Plate v · The Informed">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">v</div>
+        <p class="plate-kicker">Plate the Fifth &middot; The Prices &middot; № V</p>
+        <h3 class="plate-title">The Informed</h3>
+        <p class="plate-gloss">adverse selection in the market; the spread that information alone creates — Glosten-Milgrom</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>must a spread exist even with no cost of holding?</q></div>
+      <div class="plate-body">
+        <p>The deepest reason for the spread is the subtlest, and to reach it we must set the first reason aside entirely. Grant the dealer a costless trading desk, so that order-processing is free; grant him the power to clear every position instantly, so that he bears no inventory risk at all. Even so — and this is the discovery that remade the study of markets — a spread will open, for a reason of pure information. The reason is the malady of the twelfth volume, adverse selection, here wearing the dress of the trading floor. Among those who come to the dealer to trade, some know more than he does about what the asset is truly worth — an insider, an analyst, a trader who has seen the news a moment sooner — and against these informed traders the dealer cannot win. When the informed buy from him, it is because they know the price is headed up, and he has sold too cheap; when they sell to him, it is because they know it is headed down, and he has bought too dear. He loses to them as surely as the insurer lost to the sick who bought eagerly, and for the same reason: the very eagerness to trade is a signal, and it is a signal of bad news for whoever takes the other side.</p>
+        <p>Glosten and Milgrom showed precisely how this lone fact builds a spread, and the construction is beautiful. The dealer cannot tell the informed from the uninformed — they arrive at his window alike — but he knows the direction of a trade is itself evidence. The mere fact that someone wishes to buy makes it a touch more likely the asset is worth more than he thought, for an informed trader would buy only on good news; the fact that someone wishes to sell makes it likelier the asset is worth less. A dealer who would not be systematically fleeced must therefore price not against the asset's unconditional value but against its value conditional on the direction of the trade he is about to make. He sets his ask — the price at which he sells — above the unconditional expected value, high enough to cover the chance that his buyer knows something good; and he sets his bid — the price at which he buys — below it, low enough to cover the chance that his seller knows something bad. The gap between these two conditional expectations is the spread, and it has appeared without a single penny of processing cost or inventory risk. The figure shows it widening as the share of informed traders grows: where none are informed, the conditional values collapse to the unconditional one and the spread closes; where many are, the dealer must protect himself fiercely, and the spread yawns.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="f3t f3d">
+              <title id="f3t">The adverse-selection spread</title>
+              <desc id="f3d">From a single expected value, the dealer's ask rises above and his bid falls below as the share of informed traders grows; the widening wedge between them is the spread that information alone creates.</desc>
+              <polygon points="64,148 404,70 404,226" class="band"/>
+              <line x1="64" y1="250" x2="414" y2="250" class="axis"/>
+              <polygon points="414,250 406,246 406,254" class="ink-fill"/>
+              <line x1="64" y1="250" x2="64" y2="40" class="axis"/>
+              <polygon points="64,40 60,48 68,48" class="ink-fill"/>
+              <text x="140" y="278" text-anchor="start" class="lbl-ax">share informed &#8594;</text>
+              <text x="26" y="156" text-anchor="middle" class="lbl-ax" transform="rotate(-90 26 156)">price</text>
+              <line x1="64" y1="148" x2="404" y2="70" class="curve"/>
+              <text x="398" y="64" text-anchor="end" class="lbl-sm">ask (buy)</text>
+              <line x1="64" y1="148" x2="404" y2="226" class="curve"/>
+              <text x="398" y="232" text-anchor="end" class="lbl-sm">bid (sell)</text>
+              <circle cx="64" cy="148" r="3.7" class="ink-fill"/>
+              <text x="72" y="140" text-anchor="start" class="lbl-sm">E[V]</text>
+              <text x="300" y="148" text-anchor="middle" class="lbl-sm">the spread</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 3.</span> Adverse selection, the deepest reason for the spread — after Glosten and Milgrom. Set inventory and processing costs aside; let the dealer be perfectly competitive and risk-neutral. A spread still opens, for a reason of pure information. Some who trade are informed — they know the asset's value better than the dealer — so the very fact that someone wishes to buy is mild evidence the value is high, and that someone wishes to sell, evidence it is low. A dealer who would not be picked off must therefore set his ask above the unconditional expected value, to cover the chance his buyer knows something, and his bid below it; and the gap between them is the spread. As the share of informed traders grows, the dealer's peril grows with it, and the spread widens — at the left, where none are informed, it closes to nothing; at the right, it yawns. The spread is the toll the uninformed pay for the presence of the informed among them.</figcaption>
+        </figure>
+        <p>This adverse-selection spread is the toll the uninformed pay for the presence of the informed among them — and they pay it without ever meeting an informed trader, simply by trading in the same market. The dealer, unable to tell who is who, must charge everyone the wider spread the danger of the few requires; so the patient saver rebalancing his pension, who knows nothing and threatens no one, pays the same protective margin as covers the insider, his immediacy made dearer by company he never sees. The connection to the twelfth volume is therefore exact: the spread is, in this part, the market's quarantine against asymmetric information, the price all pay because some know more. But the story has a second face, and it is more flattering. The informed trader, in picking off the dealer, also moves the price — buying when value is high drives the price up, selling when it is low drives it down — and so drags the market's price toward the truth he privately knows. This is price discovery, and Albert Kyle showed how to measure its cost: the depth of a market, how far an order moves the price, is set by exactly how much informed trading the dealer fears. The spread and the price impact are thus two faces of one thing — the friction by which private knowledge is forced, at a cost, into the public price. The uninformed who pay the adverse-selection spread are, in a sense, paying for the accuracy of the very prices they trade at.</p>
+        <aside class="pull">The mere wish to buy is a hint the asset is worth more; the wish to sell, that it is worth less. A dealer who would not be fleeced sets his ask above the value and his bid below — and the gap, born of information alone, is a spread that needs no inventory and no cost to exist.</aside>
+        <aside class="edge"><span class="lead">the edge</span> That a spread can arise from adverse selection alone is among the most important things economics learned about markets, but it leaves the policy questions sharp rather than settled. If the spread is the uninformed's toll for the informed, then anything that reduces informed trading — barring insiders, mandating disclosure so that fewer know what others do not — should narrow it; and indeed the suppression of insider trading is defended partly on just this ground, that it makes markets cheaper for the honest many. Yet the same informed trading that widens the spread is what makes prices informative, so a market perfectly purged of private knowledge would have tight spreads and prices that told no one anything — and it is not obvious how much accuracy a market should buy at the price of a wider spread. There is, besides, a darker reading of who the informed are. In the model they know the asset's fundamental value; in the modern market, the next plates will suggest, the decisive knowledge is often not about the asset at all but about the order flow itself — who is about to trade, and how — a kind of information that contributes nothing to the truth of prices and merely transfers the spread into faster hands. Adverse selection explains why the spread cannot vanish; it does not, by itself, tell us whether the informed against whom we pay are discovering value or merely front-running it.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE VI ===================== -->
+    <section class="plate reveal" id="plate-vi" data-label="Plate vi · The Cut">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">vi</div>
+        <p class="plate-kicker">Plate the Sixth &middot; The Prices &middot; № V</p>
+        <h3 class="plate-title">The Cut</h3>
+        <p class="plate-gloss">the spread decomposed; order-processing, inventory, and adverse selection</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>of what, exactly, is the spread made?</q></div>
+      <div class="plate-body">
+        <p>We may now gather what the central plates have separated. The spread the dealer charges is not one thing but the sum of three, each a distinct reason that standing ready costs him something. There is the order-processing cost — the plain expense of the apparatus of trading, the clerks and screens and exchange fees, the cost of doing the work — which is real but small, and, being a cost of operation rather than of risk or information, roughly fixed per trade. There is the inventory cost, the price of the risk the dealer bears while he holds what he has bought and waits to sell it, the fourth volume's premium borne by the market-maker. And there is the adverse-selection cost, his expected loss to the better-informed, the twelfth volume's malady become a charge on every trade. The half-spread, the distance from the midpoint to either quote, is the sum of these three; the full spread is twice it. To take a spread apart is to find these three components stacked within it, and the figure stacks them.</p>
+        <p>The decomposition is not merely a conceit; it can be measured, and the measuring has occupied a generation of students of market microstructure. The three components leave different fingerprints. The order-processing cost is paid on every trade alike and does not depend on what follows. The inventory cost reveals itself in the way a dealer's quotes drift with his position and then revert. The adverse-selection cost shows itself in what happens to the price after a trade: if a purchase from the dealer is, on average, followed by a rise — if the buyer tended to know something — then part of the spread was protection against him, and that part is permanent, for it reflects a true revision of the asset's value, not a temporary swing that will reverse. By such signatures the parts can be told from one another, and what the data show is instructive. The order-processing cost is small and steady. The variation in the spread, across assets and across time, comes overwhelmingly from the other two — from how much risk the asset is to hold and how much informed trading swirls around it. The figure sets a liquid market beside an illiquid one to show this: the processing layer scarcely changes, while the inventory and adverse-selection layers swell, and it is their swelling that makes an illiquid market dear.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="f4t f4d">
+              <title id="f4t">The spread decomposed</title>
+              <desc id="f4d">Two stacked bars, a liquid market and an illiquid one, each divided into order-processing, inventory, and adverse-selection costs. The processing layer scarcely changes; the upper two swell to make the illiquid spread wide.</desc>
+              <line x1="64" y1="250" x2="64" y2="40" class="axis"/>
+              <polygon points="64,40 60,48 68,48" class="ink-fill"/>
+              <line x1="64" y1="250" x2="414" y2="250" class="axis"/>
+              <text x="26" y="156" text-anchor="middle" class="lbl-ax" transform="rotate(-90 26 156)">spread width</text>
+              <rect x="110" y="224" width="60" height="26" fill="none" class="axis"/>
+              <rect x="110" y="200" width="60" height="24" class="band"/>
+              <rect x="110" y="178" width="60" height="22" fill="none" class="axis"/>
+              <rect x="270" y="224" width="60" height="26" fill="none" class="axis"/>
+              <rect x="270" y="180" width="60" height="44" class="band"/>
+              <rect x="270" y="110" width="60" height="70" fill="none" class="axis"/>
+              <text x="336" y="238" text-anchor="start" class="lbl-sm">processing</text>
+              <text x="336" y="202" text-anchor="start" class="lbl-sm">inventory</text>
+              <text x="336" y="145" text-anchor="start" class="lbl-sm">selection</text>
+              <text x="140" y="264" text-anchor="middle" class="lbl-sm">liquid</text>
+              <text x="300" y="264" text-anchor="middle" class="lbl-sm">illiquid</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 4.</span> The spread, taken apart. Three costs set its width, and the figure stacks them. At the base is the order-processing cost — the clerical, technical expense of executing a trade — which is roughly fixed and small. Above it is the inventory cost, the price of the risk the dealer bears while he holds what he has bought and waits to sell it. At the top is the adverse-selection cost, the dealer's expected loss to traders who know more than he does. A liquid market, at the left, has a narrow spread because all three are small; an illiquid one, at the right, has a wide spread, and it widens chiefly through the upper two — more risk to carry, and more peril from the informed. Competition presses the whole stack down toward its true cost; what it cannot remove is the cost itself.</figcaption>
+        </figure>
+        <p>Over all three components plays the force the next plate will treat at length: competition. For the spread the dealer charges need not equal the cost he bears; the difference, where it exists, is his profit — a markup over cost that his market power, if he has any, allows him to keep. Competition among dealers presses this markup toward zero, driving the spread down until it just covers the three costs and no more. But mark precisely what competition can and cannot do. It can compete away the dealer's rent, the part of the spread that was pure profit; it cannot compete away the costs themselves. No rivalry, however fierce, can make it costless to bear inventory risk or to trade against the informed; those costs are features of the asset and its market, not of the dealer's greed, and they set a floor beneath the spread that competition approaches but cannot pierce. This is why the spread is so revealing a number. Stripped by competition to its costs, it becomes a barometer of those costs — a reading, taken from the price of immediacy, of how risky the asset is to hold and how thick with private information its market is. A wide competitive spread does not indict the dealer; it reports that the thing traded is dangerous to carry, or swarming with those who know more. The spread, honestly competed, tells the truth about the market beneath it.</p>
+        <aside class="pull">Competition can compete away the dealer's markup; it cannot compete away the cost of bearing risk or of trading against the informed. Those costs set a floor beneath the spread — and the floor, once reached, is a true reading of the risk and information in the market.</aside>
+        <aside class="edge"><span class="lead">the edge</span> The clean decomposition into three components is a triumph of method, but its tidiness should not be mistaken for the whole truth of the matter. The parts are not, in fact, independent: a dealer overloaded with inventory is more vulnerable to the informed, who can read his predicament and lean on it, so that the inventory and adverse-selection costs feed one another rather than simply adding. The empirical separation, besides, leans on assumptions — about what a price does after a trade, about how quickly inventories revert — that the data only roughly honor, so the estimated shares of the three components shift with the method as much as with the market. And the decomposition prices the spread the dealer charges while saying nothing of the costs the spread does not capture: the market impact of large orders, which lies outside the quoted spread, and the opportunity cost borne by the patient suppliers of liquidity, whose limit orders may go unfilled. The anatomy of the spread is real and the figure is honest; but the spread is a living thing, its parts entangled and its boundaries leaky, and the three neat layers are a truthful diagram of a messier body.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE VII ===================== -->
+    <section class="plate reveal" id="plate-vii" data-label="Plate vii · The Quote">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">vii</div>
+        <p class="plate-kicker">Plate the Seventh &middot; The Prices &middot; № V</p>
+        <h3 class="plate-title">The Quote</h3>
+        <p class="plate-gloss">how competition sets the spread; rivalry, market power, and order flow</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what sets the spread above its costs — or presses it down?</q></div>
+      <div class="plate-body">
+        <p>The spread, the last plate showed, has a floor of costs that competition cannot pierce; this plate asks what holds it above that floor, and what presses it down. What holds it up is market power; what presses it down is rivalry, and the form the rivalry takes decides the spread as surely as the costs do. Begin with the simplest case. A single dealer, alone in a market — the old specialist, the sole broker in a country town — faces no rival to undercut him, and so may set his spread well above his costs, the surplus his monopoly profit, the toll of a gatekeeper who keeps the only gate. This is the market power of the tenth volume, exercised upon the price of immediacy. Now admit competitors. When many dealers quote, a buyer takes whichever ask is lowest and a seller whichever bid is highest, so each dealer who hopes to trade must better his rivals' quotes — and the logic, which the volume on power will name for Bertrand, drives the spread down toward cost, each dealer shaving his margin to win the order until little is left to shave. The number of dealers and the keenness of their rivalry thus set the spread between its floor of cost and its ceiling of monopoly; competition is the force that walks it down from the one toward the other.</p>
+        <p>But competition among dealers carries a peculiar hazard that keeps the spread from ever quite reaching its floor — the winner's curse, met before in the volume on the auction and the bid. Consider what it means to win a trade by quoting the best price. The informed trader, who knows where value lies, shops for the keenest quote as eagerly as anyone — more eagerly, for his edge is largest where the price is most favorable to him — so the dealer who posts the tightest quote is precisely the one most likely to find himself trading against someone who knows better. To win is to be selected against. A dealer who forgot this and competed his spread down to mere processing cost would discover that his winning trades were disproportionately the poisoned ones, and would bleed to death on the very orders he had fought to capture. Knowing it, dealers hold back, refusing to tighten past the point where the adverse selection on the marginal won trade eats the margin. The spread that competition produces is therefore not the naive floor of processing cost but a higher one, set where the keenest safe quote sits — competition pressing down, the winner's curse pressing back, the spread resting where the two balance.</p>
+        <p>The modern market complicates this contest with a practice that turns the adverse-selection logic into a business model: the sorting of order flow by how informed it is. Retail orders — a saver buying a few shares, a household rebalancing — are, on the whole, uninformed, and therefore safe to trade against; a dealer who could trade only with them would face almost no adverse selection and could quote a very tight spread. So such flow is valuable, and a market has grown up to capture it. Wholesale dealers pay retail brokers for the right to fill their customers' orders — payment for order flow — and internalize those orders, executing them in-house at a hair better than the public quote, creaming the harmless retail stream and leaving the dangerous, possibly-informed flow to the public exchanges. The retail trader gains a small price improvement and is content; but the public exchange, drained of the safe flow that once diluted its danger, faces a more adversely-selected remainder and must widen its quoted spread in turn. The spread the small investor sees grows tight even as the spread that sets the public price grows wide, and the market fragments into a sheltered channel for the uninformed and an exposed one for everyone else — a sorting that lowers the price of immediacy for some by raising it for others, and whose net worth to the whole is among the most disputed questions in the regulation of markets.</p>
+        <aside class="pull">The dealer who quotes the tightest wins the trade — and the informed, hunting the best price, are whom he most often wins. To win is to be selected against; and so competition presses the spread down only to where the winner's curse presses back.</aside>
+        <aside class="edge"><span class="lead">the edge</span> Competition is the spread's great disciplinarian, but more competitors do not mechanically mean a tighter spread, and the form of the rivalry can matter more than its degree. Liquidity can be fragmented as well as deepened: split a market's orders across a dozen venues and each may be too thin to offer real depth, the displayed spread tight but the book behind it shallow, so that a large trade fares worse than it would in one consolidated pool. Payment for order flow, defended as competition that improves retail prices, is also a conflict of interest of the kind the volume on the contract anatomized — the broker is paid by the wholesaler, not the client, and may route the order to whoever pays him rather than to whoever would fill it best — which is why rules of best execution exist to bind the agent to the principal he is meant to serve, and why their adequacy is endlessly fought over. And the segmentation of flow by information, efficient for each party severally, may impoverish the public price that all of them, and the wider economy, rely upon. The spread responds to competition; but whether a given competitive arrangement serves the trader or merely reshuffles the spread among traders is a question the level of the spread alone will not answer.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE VIII ===================== -->
+    <section class="plate reveal" id="plate-viii" data-label="Plate viii · The Haircut">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">viii</div>
+        <p class="plate-kicker">Plate the Eighth &middot; The Prices &middot; № V</p>
+        <h3 class="plate-title">The Haircut</h3>
+        <p class="plate-gloss">the price of illiquidity; the liquidity premium and the patient hand — Amihud-Mendelson</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if immediacy is dear, what does illiquidity pay?</q></div>
+      <div class="plate-body">
+        <p>So far the spread has been a cost of trading — a toll paid at the moment of exchange. But a toll that must be paid every time one trades does not stay at the threshold; it seeps back into the value of the thing traded. An asset that is costly to sell is, for that reason alone, worth less than an otherwise identical asset that is cheap to sell, for whoever buys it knows he, too, will one day pay the spread to be rid of it. Illiquidity is a defect in an asset as surely as a flaw in its earnings, and the market marks the price down for it — an illiquidity discount, the haircut the title names. Seen from the other side, the same fact appears as a reward: because the illiquid asset is cheaper, it offers a higher return to whoever holds it, a liquidity premium paid to compensate for the spreads he will someday cross. The price of immediacy, paid at the moment of trade, thus has a mirror-twin paid across the whole life of the holding — and the two are the same money, the spread looked at as a cost when one trades and as a return when one waits.</p>
+        <p>Yakov Amihud and Haim Mendelson drew the relation between the two, and it is the subject of the figure. Range assets along an axis by their illiquidity — by the spread one must cross to trade them — and plot the return the market demands of each. The line rises: the more illiquid the asset, the higher the return it must offer to be held, the liquidity premium climbing with the spread. But the line rises at a decreasing rate, bending toward the flat, and the reason for the bend is the deepest point of the plate. The spread is paid only when one trades; an investor who holds for a long time pays it seldom, spreading its cost thin across many years, while one who trades often pays it again and again. So the patient demand only a small premium to hold an illiquid asset — they will rarely cross its wide spread — while the impatient demand a large one. The market sorts itself accordingly: illiquid assets gravitate into patient hands, who mind their illiquidity least, and the premium any asset must pay is set by the most patient hand willing to hold it, not the least. The curve bends because, as illiquidity rises, the clientele shifts toward longer horizons that amortize the spread, and the extra premium each further degree of illiquidity commands grows smaller.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="f5t f5d">
+              <title id="f5t">The liquidity premium</title>
+              <desc id="f5d">Expected return rises with illiquidity above the return on a perfectly liquid asset; the gap is the liquidity premium, and the curve bends because patient holders amortize the spread over long holdings.</desc>
+              <line x1="64" y1="250" x2="414" y2="250" class="axis"/>
+              <polygon points="414,250 406,246 406,254" class="ink-fill"/>
+              <line x1="64" y1="250" x2="64" y2="40" class="axis"/>
+              <polygon points="64,40 60,48 68,48" class="ink-fill"/>
+              <text x="110" y="278" text-anchor="start" class="lbl-ax">illiquidity (the spread) &#8594;</text>
+              <text x="26" y="156" text-anchor="middle" class="lbl-ax" transform="rotate(-90 26 156)">expected return</text>
+              <line x1="64" y1="210" x2="404" y2="210" class="guide"/>
+              <text x="300" y="218" text-anchor="start" class="lbl-sm">fully liquid</text>
+              <polyline points="64,210 120,176 190,150 280,126 360,112 404,106" fill="none" class="curve"/>
+              <text x="398" y="100" text-anchor="end" class="lbl-sm">required return</text>
+              <text x="150" y="190" text-anchor="start" class="lbl-sm">liquidity premium</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 5.</span> The price of illiquidity, after Amihud and Mendelson. An asset costly to trade — one carrying a wide spread — is worth less, and so must offer a higher return to be held at all, for whoever buys it knows he will pay the spread again to sell. The curve traces that compensation: as illiquidity rises along the axis, the return the market demands rises above the return on a perfectly liquid asset, and the gap between them is the liquidity premium, the spread looked at as a return rather than a cost. The curve bends because the patient, who trade seldom, can amortize the spread over a long holding and so demand less premium than the impatient — which is why illiquid assets gravitate to long-horizon hands. Liquidity, the spread's other face, is itself priced.</figcaption>
+        </figure>
+        <p>This sorting by horizon is the quiet logic by which a great deal of the world's capital is arranged. The illiquid — the private business, the building, the venture stake, the loan that cannot be sold — flows to those who can hold it untroubled: the endowment with no call on its funds for a generation, the pension matching long liabilities, the patient family fortune. They are paid the liquidity premium for a patience that costs them little, and in being paid it they perform a service, lending their long horizon to assets that would otherwise go unfunded or underpriced. But there is a subtler thing the market prices than the mere level of an asset's illiquidity, and it returns us to the fourth volume. What investors fear most is not that an asset is illiquid on average but that it will turn illiquid exactly when they must sell — that its spread will gape in the crisis, when cash is dear and buyers have fled. This is liquidity risk, and like every risk that moves with the whole rather than washing out in the crowd, it commands a premium of its own: assets whose liquidity evaporates in bad times must pay more than assets whose liquidity holds, over and above any premium for their average illiquidity. The liquidity premium is thus kin to the term premium of the third volume and the risk premium of the fourth — another of the rewards the market pays for bearing what cannot be diversified or foreseen, and another component folded silently into every required return.</p>
+        <aside class="pull">The spread is paid only when one trades; the patient, who trade seldom, amortize it across years and so demand little to hold the illiquid. Illiquid assets gravitate to patient hands — and the premium an asset pays is set by the most patient hand willing to hold it.</aside>
+        <aside class="edge"><span class="lead">the edge</span> That illiquidity is priced is well established; how much, and how stably, is not. The liquidity premium is real but elusive, its size swinging with the mood of markets — modest in calm years, when no one imagines needing to sell in a hurry, and savage in crises, when the fear of being trapped in an unsellable asset suddenly dominates every other consideration. This very instability is the danger. Investors reaching for the liquidity premium in good times — buying the illiquid asset for its extra return — are in effect selling insurance against a liquidity crisis, collecting small premiums for years and then paying out catastrophically when liquidity vanishes and the discount they shrugged at becomes the loss that ruins them; the premium is, in part, payment for a tail risk the comfortable years disguise. The sorting of illiquid assets into patient hands, besides, assumes those hands stay patient, when in truth the endowment and the pension can themselves be forced to sell — by a funding call, a redemption, a regulator — and a patient holder forced to trade in a frozen market is the very engine of a liquidity spiral, illiquidity feeding fire sales feeding more illiquidity. The liquidity premium rewards a patience the market needs; it also lures the impatient into a risk they do not see, and gathers illiquid assets into hands that are patient only until they are not.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE IX ===================== -->
+    <section class="plate reveal" id="plate-ix" data-label="Plate ix · The Bank">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">ix</div>
+        <p class="plate-kicker">Plate the Ninth &middot; The Prices &middot; № V</p>
+        <h3 class="plate-title">The Bank</h3>
+        <p class="plate-gloss">intermediation's grandest form; maturity transformation, the net interest margin, and the run</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what spread does the bank earn, and what does it dare to do for it?</q></div>
+      <div class="plate-body">
+        <p>The intermediary of the central plates stood between a buyer and a seller of a single asset, bridging the gap of time that separated their wishes. The grandest intermediary of all bridges a deeper gap, and earns the most consequential spread in the economy for doing so. The bank stands between savers and borrowers, and the gap it spans is one of maturity. Savers want their money liquid — near at hand, withdrawable, lent only for a moment if at all; borrowers want money for a long time — to buy a house over thirty years, to build a factory that pays back over twenty. Left alone, the two could scarcely meet: no saver would tie up his money for thirty years, no borrower could promise to repay on a day's notice. The bank reconciles them. It borrows short, taking the savers' deposits, payable on demand; and it lends long, making the borrowers' mortgages and business loans; and it pockets the difference between the rate it earns on the long loans and the rate it pays on the short deposits — the net interest margin, which is the bank's spread, the price of its intermediation between the patient borrower and the impatient saver.</p>
+        <p>The bank's opportunity is the shape of the yield curve, which the third volume drew and the figure recalls: the rate on money lent rises, ordinarily, with the term of the loan, so that long money commands a higher rate than short. The bank lives in the gap between the two ends of that curve. It funds itself at the short end, where the rate is low — for it pays its depositors little, their money being liquid and safe — and it lends at the long end, where the rate is high, earning the term premium the third volume described. The net interest margin is the harvest of this spanning, the slope of the yield curve turned into the bank's income. But the margin is not a free lunch, for in earning it the bank performs a genuine and perilous transformation. It does not merely pass the savers' money through to the borrowers; it changes the money's character on the way, turning a thousand liquid, short, withdrawable deposits into a few illiquid, long, locked-up loans — maturity transformation, and with it liquidity transformation, the manufacture of liquidity itself. The bank tells every depositor he may have his money whenever he likes, and tells every borrower he need not repay for years, and both believe it, and ordinarily both are right.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="f6t f6d">
+              <title id="f6t">Maturity transformation and the net interest margin</title>
+              <desc id="f6d">On an upward-sloping yield curve, the bank funds itself at the short end, paying the low deposit rate, and lends at the long end, earning the high loan rate; the gap between the two is its net interest margin.</desc>
+              <line x1="64" y1="250" x2="414" y2="250" class="axis"/>
+              <polygon points="414,250 406,246 406,254" class="ink-fill"/>
+              <line x1="64" y1="250" x2="64" y2="40" class="axis"/>
+              <polygon points="64,40 60,48 68,48" class="ink-fill"/>
+              <text x="180" y="278" text-anchor="start" class="lbl-ax">maturity &#8594;</text>
+              <text x="26" y="156" text-anchor="middle" class="lbl-ax" transform="rotate(-90 26 156)">interest rate</text>
+              <line x1="84" y1="126" x2="360" y2="126" class="guide"/>
+              <line x1="84" y1="184" x2="100" y2="184" class="guide"/>
+              <line x1="84" y1="126" x2="84" y2="184" class="guide"/>
+              <polyline points="64,200 130,170 220,146 320,130 404,122" fill="none" class="curve"/>
+              <text x="398" y="114" text-anchor="end" class="lbl-sm">the yield curve</text>
+              <circle cx="100" cy="184" r="3.7" class="ink-fill"/>
+              <text x="90" y="200" text-anchor="start" class="lbl-sm">deposits, short</text>
+              <circle cx="360" cy="126" r="3.7" class="ink-fill"/>
+              <text x="354" y="118" text-anchor="end" class="lbl-sm">loans, long</text>
+              <text x="88" y="158" text-anchor="start" class="lbl-sm">net margin</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 6.</span> Intermediation's grandest form — the bank, and the spread it earns by transforming maturity. Borrowers want to borrow long, for years; savers want to lend short, to keep their money near at hand. The bank stands between, and the upward-sloping yield curve is its opportunity: it borrows at the short end, paying its depositors the low short rate, and lends at the long end, earning the high long rate, pocketing the gap — the net interest margin, the bank's spread. For this it performs a real and dangerous magic: it turns the saver's liquid deposit into the borrower's long loan, promising each that they may have their money when they wish. The promise holds while the depositors are calm; it can be broken in an instant if they are not, and the run that follows is the bank's catastrophe, the subject the sixteenth volume must take up.</figcaption>
+        </figure>
+        <p>The transformation is a true creation — the bank manufactures liquidity, giving the saver the liquidity he craves and the borrower the patience he needs, a service neither could have had alone, and one on which the whole modern economy is built. Douglas Diamond and Philip Dybvig showed precisely what the bank provides: insurance against the saver's own uncertain need for cash, a pool in which the many who will not need their money early quietly fund the few who will, exactly the risk-pooling of the fourth volume applied to liquidity rather than to loss. But the same construction that creates the liquidity contains the seed of its destruction, and the seed is the run. The bank's promise — that all may withdraw at once — is one it cannot actually keep, for its assets are locked in long loans that cannot be called in a day; the promise holds only so long as not everyone asks. Let the depositors come to fear that others will withdraw, and each has reason to rush for the door before the bank's cash runs out, and the rush itself empties it — a self-fulfilling panic, the catastrophe of correlation from the fourth volume in its most explosive form, in which the very liquidity the bank created vanishes precisely because everyone wants it at once. The net interest margin is the price the bank earns for spanning maturity; the run is the disaster it courts in earning it; and the sixteenth volume, on money, must take up how the state — through deposit insurance and the lender of last resort — props up a promise that is, by its nature, impossible to keep alone.</p>
+        <aside class="pull">The bank tells every depositor he may withdraw whenever he likes, and every borrower he need not repay for years, and ordinarily both are right. The net interest margin is the price of that magic; the run is the disaster it courts.</aside>
+        <aside class="edge"><span class="lead">the edge</span> Maturity transformation is among the most productive arrangements in economic life and among the most dangerous, and the danger cannot be cleanly separated from the productivity. The very mismatch that earns the margin — liquid liabilities against illiquid assets — is the mismatch that makes a run possible, so a bank made perfectly run-proof, holding only liquid assets against its deposits, would transform no maturity and earn no margin and serve no borrower; safety and function trade against each other along the same balance sheet. The remedies the next volume will examine each carry their own cost: deposit insurance stops the run but invites the bank, now that its depositors no longer watch it, to gamble with their money, the moral hazard of the fourth volume returning to haunt the rescue; the lender of last resort steadies the panic but may steady the reckless along with the unlucky. And the run, banished from the insured deposit, has not died but migrated — to the money-market fund, the repo market, the shadow bank, every institution that borrows short and lends long outside the perimeter of the guarantee — so that each generation rediscovers the ancient fragility in a new and uninsured corner of finance. The bank's spread is the price of a service the economy cannot do without; it is also the price of a fragility the economy has never learned to escape, only to move.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE X ===================== -->
+    <section class="plate reveal" id="plate-x" data-label="Plate x · The Speed">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">x</div>
+        <p class="plate-kicker">Plate the Tenth &middot; The Prices &middot; № V</p>
+        <h3 class="plate-title">The Speed</h3>
+        <p class="plate-gloss">the electronic market; high-frequency trading, latency, and the speed race</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>when the market-maker is a machine, what is the spread a race for?</q></div>
+      <div class="plate-body">
+        <p>Bring the market-maker into the present, and he is no longer a man at all but a program, and the spread is set in millionths of a second by machines racing one another in the dark. The electronic market has, on its face, been a triumph for the price of immediacy: automated market-makers, competing fiercely and bearing tiny costs, have driven quoted spreads on liquid stocks to a thinness no human dealer could match, and the small investor today crosses a spread a fraction of what his grandfather paid. If the spread is the price of immediacy, immediacy has rarely been cheaper, and the machines may seem an unambiguous gift. But the same speed that narrows the spread has bred a contest of its own, and the contest raises, in a new and literal form, the question the fifth plate left open — who the informed really are, and whether the spread protects against the discovery of value or merely against being outrun.</p>
+        <p>The trouble is that a quote, once posted, is a sitting target until it is updated, and updating takes time — a few millionths of a second to see that the world has changed and pull the stale offer back. In that sliver the market-maker is exposed. When news arrives and the asset's true value jumps, every standing quote is suddenly mispriced — the maker's ask now too cheap, his bid now too dear — and a trader faster than the maker can buy the cheap ask or hit the dear bid before the maker reacts, taking a near-certain profit from a quote the maker would have withdrawn had he only been quick enough. This is sniping, and it is adverse selection of the fifth plate's kind with a crucial twist: the trader who picks off the stale quote need know nothing about the asset's value at all, only that the value has moved and that he is faster. Speed has become a form of information — information not about what a thing is worth but about the fact that its price is about to change — and against it the maker is as helpless as against any insider. The figure shows the moment: the value jumps, the maker's quote lags, and in the gap between them the swift collect what the slow have left exposed.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="f7t f7d">
+              <title id="f7t">Latency and the stale quote</title>
+              <desc id="f7d">When news arrives the true value jumps, but the dealer's quote lags for a few microseconds; in that sliver a faster trader buys the stale quote, a sure profit shaded as the picked-off region.</desc>
+              <line x1="64" y1="250" x2="414" y2="250" class="axis"/>
+              <polygon points="414,250 406,246 406,254" class="ink-fill"/>
+              <line x1="64" y1="250" x2="64" y2="40" class="axis"/>
+              <polygon points="64,40 60,48 68,48" class="ink-fill"/>
+              <text x="110" y="278" text-anchor="start" class="lbl-ax">time (microseconds) &#8594;</text>
+              <text x="26" y="156" text-anchor="middle" class="lbl-ax" transform="rotate(-90 26 156)">price</text>
+              <rect x="200" y="110" width="30" height="48" class="band"/>
+              <line x1="200" y1="250" x2="200" y2="90" class="guide"/>
+              <text x="206" y="84" text-anchor="start" class="lbl-sm">news arrives</text>
+              <polyline points="64,170 200,170 200,110 404,110" fill="none" class="curve"/>
+              <polyline points="64,158 230,158 230,98 404,98" fill="none" class="curve2"/>
+              <text x="236" y="134" text-anchor="start" class="lbl-sm">picked off</text>
+              <text x="96" y="150" text-anchor="start" class="lbl-sm">dealer's quote</text>
+              <text x="96" y="182" text-anchor="start" class="lbl-sm">true value</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 7.</span> The fastest are the new informed — the speed race of the electronic market. When news arrives, the asset's true value jumps; but the market-maker's standing quote does not move at once, for it takes him a few millionths of a second to react. In that sliver of time his quote is stale — too cheap, now that the value has risen — and a faster trader, who has seen the news first, buys at the stale price before the maker can withdraw it. The shaded sliver is the maker's loss, the sniper's sure profit, and it is adverse selection of the fifth plate's kind, only now the informed are not those who know a secret but those who are merely quicker. To survive being picked off, the maker must widen his spread or outrun the snipers, and so the market spends fortunes on speed — a race that, some argue, the design of the market itself, batching trades rather than running them continuously, could simply call off.</figcaption>
+        </figure>
+        <p>Two consequences follow, and they frame the modern anxiety about the speed of markets. The first is an arms race. Since being a little faster than one's rivals is worth a great deal — the difference between sniping and being sniped — market-makers and traders pour fortunes into speed: into faster cables, microwave towers strung in straight lines across continents, machines placed as near the exchange as money can buy them, all to shave microseconds from a reaction time. Eric Budish, Peter Cramton, and John Shim argued that this race is the product of a flaw in the market's very design — the running of trades continuously, instant by instant, which makes the tiniest speed advantage decisive — and that batching trades together, clearing them in periodic auctions a fraction of a second apart rather than one by one, would render raw speed nearly worthless and call the race off, narrowing the spread to its true informational cost. The second consequence is fragility. The liquidity the machines supply is liquidity only in fair weather: when prices move violently, the makers, fearing they are being sniped wholesale, withdraw their quotes all at once, and the liquidity that seemed so abundant evaporates in an instant — the flash crash, in which a market deep and tight one moment is empty and broken the next, the spread blowing out to nothing as every machine flees the same danger together. So the oldest question about the intermediary returns in silicon form. Is the high-speed trader a market-maker, the descendant of the dealer who narrows spreads and provides immediacy — the stabilizing speculator Milton Friedman defended, who buys cheap and sells dear and so smooths the price? Or is he a predator who fattens on the slow and flees when needed — the destabilizing speculator Keynes feared, who turns the market into a casino and the serious business of valuation into a guessing game about the guesses of others? The machines have made immediacy cheaper than ever in calm times; whether they have made it dearer, or merely more treacherous, in the times that matter most is the contest of the modern spread.</p>
+        <aside class="pull">Speed has become a kind of information — not about what a thing is worth, but that its price is about to change. Against the trader who is merely faster, the market-maker is as helpless as against any insider, and must widen his spread or outrun him.</aside>
+        <aside class="edge"><span class="lead">the edge</span> Whether the speed race is waste or progress is genuinely unsettled, and the cleanest-seeming remedies are less clean than they look. The fortunes spent on speed are, in one light, pure social waste — a contest in which one firm's microsecond advantage is another's disadvantage, the net effect on the accuracy of prices slight and the resources burned enormous — and in another light the price of a real good, the faster incorporation of news into prices and tighter spreads in normal times; the two effects are hard to weigh, and honest economists differ. The batch-auction remedy, elegant in theory, must overcome the formidable inertia of incumbent exchanges that profit from the present arrangement, and a single market that adopted it while others did not might simply lose its order flow to the venues that let the fast keep their edge. The flash crash, meanwhile, indicts a liquidity that was perhaps never really there — much of the displayed depth on a modern book being fleeting quotes that were always going to vanish under stress, so that the crash reveals a fragility the placid spread had merely hidden. And the deepest question — whether the speculator steadies or unsettles — has no single answer, because he does both, smoothing prices in the ordinary run and amplifying them in the rare break, providing the immediacy on which the market depends and withdrawing it exactly when the dependence is greatest. The machine has not resolved the ancient ambivalence about the middleman; it has merely made it faster.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE XI ===================== -->
+    <section class="plate reveal" id="plate-xi" data-label="Plate xi · The Middleman">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">xi</div>
+        <p class="plate-kicker">Plate the Eleventh &middot; The Prices &middot; № V</p>
+        <h3 class="plate-title">The Middleman</h3>
+        <p class="plate-gloss">the oldest contest; whether the intermediary serves or merely extracts</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>is the spread a fair price, or a toll?</q></div>
+      <div class="plate-body">
+        <p>Every plate so far has priced the middleman's service; this one asks the question the pricing has circled from the start, and that the whole moral history of commerce has turned upon. Is the spread a fair price for a service rendered, or a toll extracted by one who has wedged himself into a passage he did nothing to open? The suspicion is ancient and nearly universal. The middleman makes nothing one can hold — he grows no grain, forges no tool, raises no wall — and to the moral eye of most times and places this has seemed damning: he buys cheap and sells dear, pocketing a difference he did not earn by any labor, living off the trades of others like a toll-keeper on a road built by other hands. The medieval law made crimes of his very acts, punishing the forestaller who bought goods before they reached the market and the regrater who bought to sell again at a higher price in the same place; the moralists condemned the usurer who sold the use of money and the engrosser who cornered a commodity; and the modern temper, which tolerates the merchant, still recoils at the scalper who buys tickets only to resell them, the speculator who profits from a famine's prices, the arbitrageur who seems to conjure money from nothing but being in two places at once. Beneath all these lies one intuition: that value is created by making and growing, and that the man who merely moves, holds, or times what others made is a parasite upon their industry.</p>
+        <p>The whole of this volume is the economist's answer to that intuition, and the answer is that the middleman does produce something real — not a good, but a service, and a valuable one. He produces the meeting that would not otherwise have happened: the liquidity that lets a man sell when he must, the immediacy that spares him the wait, the bearing of the risk he wished to shed, the search he need no longer undertake, the bridging of the gaps in time and space and information and maturity that the second and ninth plates set out. The arbitrageur who buys where a thing is cheap and sells where it is dear is not conjuring money from the air; he is carrying value from where it is abundant to where it is wanted, equalizing prices across the gap and bearing the risk of the passage, performing in space exactly the service the merchant has always performed. The speculator who buys in the glut and sells in the dearth, reviled in every age, is — when he guesses right — moving goods across time from the season of plenty to the season of want, smoothing the price and softening the famine, the stabilizing service Milton Friedman insisted the successful speculator must perform, since to profit he must buy when prices are low and sell when they are high, which is to say he must push them toward the middle. The spread is the honest price of these services, and to call it theft is to misunderstand what trade is and why the meeting of buyer and seller is itself a thing of value.</p>
+        <p>And yet the suspicion cannot be simply dismissed, for the same position that lets the middleman serve lets him extract, and the two can wear the same coat. The line the volume has sought runs here, between intermediation that creates value and intermediation that merely captures it, and the line is real though it is devilishly hard to draw. The middleman extracts rather than serves when he adds nothing and interposes everything — the rent-collector of the second volume in a new guise, levying a toll on a passage whose scarcity he guards rather than eases. He extracts when he manufactures the bottleneck he profits from: the dealer who corners the market, the platform that locks in its users and then raises its take, the broker who keeps buyer and seller apart precisely so they will still need him. He extracts when his service is pure transfer and no creation — the latency arbitrageur of the last plate, whose microsecond edge produces no grain of price discovery and merely shifts the spread from slower hands to faster, a private gain matched by an equal social loss. He extracts, the scalper's critics say, when he intercepts a surplus the maker meant for someone else, buying the underpriced ticket the artist priced low for his true audience and reselling it to the highest bidder, capturing a value he created none of. In each case there is a spread, and in each case the spread is a toll and not a wage — payment not for a service rendered but for a position held.</p>
+        <p>The contest, then, resolves into neither slogan. It is false that the middleman is a parasite, for most intermediation is the productive bridging of real gaps, and a world without middlemen would be a world of crippling search, frozen illiquidity, and unborne risk. It is equally false that every spread is an earned wage, for some intermediation creates nothing and merely levies, and the history of commerce is littered with toll-keepers who served only themselves. The truth is that the spread is sometimes the one and sometimes the other, and that telling which requires asking, of each intermediary in turn, the single question this volume has pressed from its first page: what would have happened without him? Where his absence would have meant a trade forgone, a risk unborne, a price less true, a search longer — there his spread is the price of a service, and is earned. Where his absence would have changed nothing but the destination of the surplus — there his spread is a toll, and is extracted. The moral suspicion of the middleman, so easily mocked by the economist, is at bottom a rough and serviceable intuition that the second kind exists; the economist's defense, so easily caricatured by the moralist, is the harder-won recognition that the first kind predominates. Between them lies not a verdict but a method — to judge each spread by the service beneath it, and to keep, by competition and by law, the middleman honest enough that his toll stays a wage.</p>
+        <aside class="pull">It is false that the middleman is a parasite, and false that every spread is earned. The spread is sometimes a wage for a service and sometimes a toll on a position — and telling which requires asking, of each intermediary: what would have happened without him?</aside>
+        <aside class="edge"><span class="lead">the edge</span> The method this plate proposes — judge the spread by the service beneath it — runs at once into the difficulty that has shadowed the whole volume: the service is a counterfactual, and counterfactuals cannot be observed. We cannot run the world without a given middleman to see what his absence would cost, and so we are thrown back on proxies — whether competition disciplines his spread, whether entry is free, whether he bears real risk, whether he adds to the information in prices or merely consumes it — proxies that point but do not prove. There is, besides, a distributive question the service-or-toll distinction does not touch: a middleman may render a genuine service and still capture more of its value than a society judges fair, so that even an earned spread can be contested on grounds of how the gains are split — the verdict on a hidden contest that every price in this series has turned out to be. And the suspicion of the middleman carries a history darker than mere economic error. The intuition that the trader and the moneylender are parasites, rough-true in the rare cases of pure extraction, has across the centuries been turned against the merchant minority and the lending outsider with monstrous result, the charge of parasitism becoming the pretext for persecution and worse. So the contest over the middleman is more than a question of efficiency. It is an economic question — service or rent? — that economics can largely answer; and it is a moral and political question — what share is fair, what role legitimate, what suspicion just — that economics can inform but never close, and that the later groups of the table, on the institutions that govern markets and the behaviors that move them, must take up in their turn.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE XII ===================== -->
+    <section class="plate reveal" id="plate-xii" data-label="Plate xii · The Crossing">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">xii</div>
+        <p class="plate-kicker">Plate the Twelfth &middot; The Prices &middot; № V</p>
+        <h3 class="plate-title">The Crossing</h3>
+        <p class="plate-gloss">the price of intermediation made whole — completing The Prices, toward The Margin, The Money, The Asymmetry</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what, in the end, does the spread price?</q></div>
+      <div class="plate-body">
+        <p>The volume set out to price the most overlooked and most resented of the foundational prices — the middleman's cut, the gap between the two prices a dealer names — and eleven plates have traced it from the trading floor to the moral imagination. The account may now be gathered. The spread is the price of intermediation: the toll the middleman takes for standing between those who would buy and those who would sell, and bridging the gaps — of time, of space, of information, of maturity — that would otherwise keep them apart. Most fundamentally it is the price of immediacy, the cost of trading now rather than waiting for a willing other, paid by the impatient who cross it and earned by the patient who stand ready. Its width is set by three costs that standing ready imposes — the plain cost of processing the trade, the cost of bearing the risk of inventory held while a buyer is found, and the cost of trading against those who know more — and pressed by competition toward those costs, so that the spread, honestly competed, is a true reading of the risk and the information in the market beneath it.</p>
+        <p>The deepest discovery of the volume is that the spread is not a new and separate price but the meeting-place of the prices that came before, which is why it is the right note on which to close their group. Its inventory component is the price of risk of the fourth volume, the insurer's burden borne now by the market-maker, who is paid, exactly as the insurer is paid, to carry what others wish to shed. Its adverse-selection component is the malady of the twelfth volume, the asymmetry between the informed and the ignorant, become a toll levied on all because some know more. Its mirror in asset prices, the liquidity premium, is kin to the term premium of the third volume, another reward the market pays for bearing what cannot be foreseen. And the force that disciplines it is the competition whose absence the tenth volume will call power. The spread thus gathers into a single number the risk, the information, the time, and the rivalry that the other prices treat severally — and to understand it is to see the prices of this group not as four or five separate things but as facets of one subject, the cost a market charges for its most basic services.</p>
+        <p>The achievement this records deserves to be named plainly, for the middleman's cut, despised for most of history as the parasite's skim, has been made by the study of markets into a precise and illuminating object of science. To have seen, with Demsetz, that immediacy is a service with a price; to have shown, with Glosten and Milgrom, that a spread arises from information alone, and with Kyle, how private knowledge moves price at a measurable rate; to have priced illiquidity, with Amihud and Mendelson, as a discount on value and a premium on return — these turned a moral grievance into a working theory of how prices are made, trade by trade, in the only place prices are ever actually made, which is the meeting of a buyer and a seller across someone's book. And the thing the theory describes is itself among the great achievements of economic organization. Intermediation is the circulatory system of the market economy: the liquidity it manufactures is what lets capital flow to its uses, savers lend to borrowers, risk pass to those who will bear it, and goods reach the hands that want them most. A world that could not trade now, that had to search anew for every counterparty and hold every risk it could not place, would be a poorer and more frightened world; the middleman, and the spread that pays him, are much of what spares us it.</p>
+        <p>Yet the volume has been, as much as a vindication, a catalogue of where intermediation strains and turns against those it serves. The liquidity the market provides is a fair-weather friend, abundant in calm and vanishing in the storm, so that the spread is narrowest when immediacy can best be done without and gapes precisely in the crisis when it is most needed — liquidity risk, the engine of every panic. The maturity transformation by which the bank earns its margin is the same mismatch that breeds the run, a fragility finance has learned only to move and not to cure. The speed of the electronic market, which narrows the spread in tranquil times, funds an arms race that may be pure waste and a sniping that preys on the slow, and supplies a liquidity that evaporates in the flash crash. And over all hangs the volume's central and unresolved question — whether a given spread is the wage of a service or the toll of a position — which economics can frame with care but cannot finally answer, because the service is a counterfactual no one can observe and the fairness of the middleman's share is a moral question no model contains. The spread is an honest price and a powerful instrument; it is also, in its every component, a site of contest that the pricing illuminates without ending.</p>
+        <p>With this volume the group of the prices is complete, and the foundation of the table is laid. Five prices have been drawn, each a verdict on a different hidden contest. The wage is the price of labor, and the contest beneath it is over what an hour of a life is worth. The rent is the price of land and of all that is scarce, and the contest is over who shall keep the surplus that scarcity throws off. The rate is the price of time, and the contest is between the present and the future, the patient and the impatient. The premium is the price of risk, and the contest is between the one who sheds a danger and the one who bears it. And the spread is the price of intermediation and of immediacy, and the contest is between the value the middleman creates and the toll he may extract, between the patient and the impatient, the informed and the uninformed, who meet across his book. Labor, land, time, risk, and the meeting itself — these are the elementary services a market charges for, and The Prices has now named the charge for each.</p>
+        <p>To complete the prices is to complete the foundation, for everything the rest of the table will treat presupposes them. The quantities a market produces, the failures it suffers, the institutions that govern it, the aggregates it sums to, and the behaviors that move it — all are built upon prices, and could not be reasoned about until the prices themselves had been denaturalized. That has been the work of this group: to take the five numbers a market quotes for its most basic services and show that not one of them is the simple fact it appears to be — that each is the visible settlement of an invisible struggle, a verdict rendered on a contest the price itself conceals. The wage that looks like the value of work, the rent that looks like the cost of land, the rate that looks like the price of a loan, the premium that looks like the cost of cover, and the spread that looks like the middleman's skim are each, on inspection, a truce in a hidden war — and to read a price as a verdict rather than a fact is the habit of mind this group has tried to teach, and that the groups to come will need.</p>
+        <p>The debts of this volume run outward across the table. It hands on, most immediately, to The Margin, the sixth volume and the opening of The Quantities, where the difference between what a thing costs to provide and what it fetches — the markup the spread has been a special case of — becomes the subject in its own right. It hands on to The Money, the sixteenth, where the bank's manufacture of liquidity, the run that threatens it, and the double coincidence of wants the second plate invoked are taken up as the nature of money itself. It hands on to The Asymmetry, the twelfth, for the informed trader whose presence widens every spread; to The Rate, the third, with which its liquidity premium composes the return on every asset; to The Power, the tenth, for the market power that lets a spread swell into a rent; and to The Commons, the thirteenth, for the liquidity that is tended by the many and consumed by all and apt to vanish when most relied upon. And it stands beside The Premium, the volume just past and its nearest sibling, with which it shares the deepest of its themes — that to stand between, to hold, to bear what waits, is a service, and that the price of risk and the price of immediacy are two namings of the cost of carrying the burden of an uncertain future on another's behalf.</p>
+        <p>The spread, in the end, is the price of the crossing — of the meeting the middleman makes possible between a buyer and a seller who would not, or could not, have met alone. It is the price of being able to trade at all: to turn a possession into money, or money into a possession, now, at a price one can know, without searching the world for a willing other or bearing alone the risk of the wait. That is the quiet service on which every market rests, and the spread is its honest price — save where it is not a price but a toll, levied by one who has wedged himself into a passage he keeps narrow on purpose. Which it is, in any given case, the volume has insisted cannot be settled by a slogan but only by looking beneath the spread to the service, or the absence of service, that it pays for. The prices are complete; the contest each conceals goes on. The argument remains open.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref">Volume V &middot; The Spread</span>
+    </div>
+    <p class="colophon">Volume V of <em>Numéraire, A Periodic Table of Economic Life</em> — <em>The Spread</em>, the fifth of twenty-six and the last of <em>The Prices</em>. Twelve plates and seven engravings, each held to the seam where the seminar and the essay usually part, with the rigor of the one and the grace of the other, and each scrupulous about the exact edge of what can be known. The spread is the price of intermediation and of immediacy — the toll the middleman takes for standing between buyer and seller, and the cost of trading now rather than waiting for a willing other. This volume names the bid and the ask and reads liquidity from the order book; decomposes the spread into the cost of processing, the inventory risk borne by the market-maker, and the adverse selection of trading against the informed; prices illiquidity as a discount on value and a premium on return; follows intermediation to its grandest form in the bank's transformation of maturity and the run that haunts it, and to its fastest in the speed race of the electronic market; and weighs, at the last, the oldest contest — whether the middleman serves or merely extracts, the stabilizing speculator of Friedman against the casino of Keynes. With it the prices are complete, and the volume hands the markup onward to <em>The Margin</em>, the manufacture of liquidity to <em>The Money</em>, and the informed trader to <em>The Asymmetry</em>, standing throughout beside its nearest sibling, <em>The Premium</em>. The figures stand after Demsetz, Garman, Ho and Stoll, Glosten and Milgrom, Kyle, Amihud and Mendelson, Diamond and Dybvig, and Budish, Cramton, and Shim. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<script>
+(function(){
+  var root=document.documentElement; root.classList.add('js');
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var bar=document.getElementById('progress');
+  var topbar=document.getElementById('topbar');
+  var title=document.querySelector('.vol-title');
+  var label=document.getElementById('tb-plate');
+  function onScroll(){
+    var doc=document.documentElement;
+    var h=doc.scrollHeight-window.innerHeight;
+    var p=h>0?Math.min(1,Math.max(0,window.scrollY/h)):0;
+    if(bar) bar.style.transform='scaleX('+p.toFixed(4)+')';
+    if(topbar){
+      var threshold=(title?title.offsetHeight:420)*0.72;
+      if(window.scrollY>threshold) topbar.classList.add('show'); else topbar.classList.remove('show');
+    }
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+  if('IntersectionObserver' in window){
+    var rev=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); rev.unobserve(e.target); } });
+    },{rootMargin:'0px 0px -10% 0px',threshold:0.06});
+    document.querySelectorAll('.reveal').forEach(function(el){ rev.observe(el); });
+    if(label){
+      var cur=new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting){ var t=e.target.getAttribute('data-label'); if(t) label.textContent=t; } });
+      },{rootMargin:'-44% 0px -50% 0px',threshold:0});
+      document.querySelectorAll('.plate[data-label]').forEach(function(el){ cur.observe(el); });
+    }
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-premium.html">← The Premium</a><a rel="next" href="the-margin.html">The Margin →</a></nav>
+</body>
+</html>

@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Bias — Numéraire, Volume XXIV</title>
+<meta name="description" content="The Bias — Volume XXIV of Numéraire, A Periodic Table of Economic Life. The systematic, predictable ways real choosers depart from the rational model: the dual-process mind and its heuristics; availability, representativeness, and the anchor that drags; prospect theory, loss aversion, and the weighting of rare events; the endowment effect, overconfidence, and mental accounting; and the consequences — whether biases survive markets, the nudge and its paternalism, and the welfare question economics meeting the actual mind can no longer avoid.">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem; --measure:40rem;
+    --wash:rgba(28,26,22,.066); --wash2:rgba(28,26,22,.12);
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.62;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  .measure{max-width:var(--measure);margin-left:auto;margin-right:auto;}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- ornaments ---- */
+  .orn{display:flex;justify-content:center;margin:0 auto;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .divider{display:flex;align-items:center;gap:1.1rem;max-width:30rem;margin:clamp(3rem,7vh,5rem) auto;color:var(--num);}
+  .divider .ln{flex:1;height:1px;background:var(--hair);}
+  .divider svg{display:block;width:12px;height:12px;overflow:visible;flex:0 0 auto;}
+  .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* ---- progress + running head ---- */
+  #progress{position:fixed;top:0;left:0;height:2px;width:100%;transform:scaleX(0);transform-origin:0 50%;background:var(--soft);opacity:.45;z-index:10000;}
+  #topbar{position:fixed;top:0;left:0;right:0;z-index:9998;transform:translateY(-100%);transition:transform .5s cubic-bezier(.2,.6,.2,1);
+    background:rgba(240,235,225,.86);-webkit-backdrop-filter:saturate(1.1) blur(8px);backdrop-filter:saturate(1.1) blur(8px);
+    border-bottom:1px solid var(--hair);}
+  #topbar.show{transform:translateY(0);}
+  .tb-in{max-width:var(--frame);margin:0 auto;padding:.62rem clamp(1.4rem,4vw,3.4rem);display:flex;justify-content:space-between;align-items:baseline;gap:1.2rem;}
+  .tb-l{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:.86rem;letter-spacing:.01em;}
+  .tb-l span{color:var(--faintest);font-weight:400;}
+  .tb-r{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);text-align:right;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+
+  /* ---- title page ---- */
+  .vol-title{padding:clamp(3.4rem,11vh,8rem) 0 clamp(1.6rem,5vh,3rem);text-align:center;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.16rem;letter-spacing:.02em;}
+  .vol-no{font-size:.84rem;color:var(--faint);letter-spacing:.16em;text-transform:uppercase;margin-top:.55rem;}
+  h1.vol-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 380;font-weight:380;
+    font-size:clamp(2.9rem,9vw,6rem);line-height:.98;letter-spacing:-.028em;margin:clamp(1.7rem,4.5vh,2.8rem) 0 0;text-wrap:balance;}
+  .vol-sym{width:78px;height:78px;margin:clamp(1.6rem,4vh,2.4rem) auto 0;border:1px solid var(--hair);border-radius:2px;
+    display:flex;align-items:center;justify-content:center;background:var(--ink);}
+  .vol-sym span{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2.3rem;line-height:1;color:var(--paper);letter-spacing:-.01em;}
+  .vol-coords{font-family:"Fraunces",serif;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);margin-top:1.1rem;}
+  .vol-gloss{font-style:italic;color:var(--soft);font-size:1.12rem;margin:.5rem 0 0;}
+  .vol-epigraph{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 400;font-style:italic;
+    font-size:clamp(1.14rem,1.7vw,1.34rem);line-height:1.42;color:var(--soft);max-width:33rem;margin:clamp(1.8rem,4vh,2.6rem) auto 0;text-wrap:pretty;}
+  .vol-epigraph .lead{display:block;font-style:normal;font-variation-settings:"opsz" 24,"wght" 400;
+    font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.7rem;}
+  .vol-status{display:inline-flex;align-items:center;gap:.5rem;margin:clamp(1.8rem,4vh,2.4rem) auto 0;font-size:.84rem;color:var(--soft);}
+  .vol-status::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ink);}
+
+  /* ---- the argument (preface) ---- */
+  .part-head{text-align:center;margin:0 0 clamp(1.6rem,3.5vh,2.3rem);}
+  .part-kicker{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faintest);}
+  .part-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-weight:400;
+    font-size:clamp(1.5rem,3.4vw,2.1rem);letter-spacing:-.012em;margin:.4rem 0 0;}
+  .argument p{font-size:1.05rem;line-height:1.74;margin:0 0 1.15rem;text-wrap:pretty;}
+  .argument p.lede::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 420;
+    float:left;font-size:3.5em;line-height:.78;padding:.05em .1em 0 0;color:var(--ink);}
+  .argument em,.plate-body em,.coda em{font-style:italic;}
+
+  /* ---- contents ---- */
+  .toc{list-style:none;margin:0 auto;padding:0;max-width:43rem;}
+  .toc li{border-top:1px solid var(--hair);}
+  .toc li:last-child{border-bottom:1px solid var(--hair);}
+  .toc a{display:grid;grid-template-columns:2.6rem 1fr;column-gap:1.1rem;align-items:baseline;
+    padding:.82rem .3rem;text-decoration:none;transition:background .2s ease;}
+  .toc a:hover{background:rgba(28,26,22,.035);}
+  .toc-n{font-family:"Fraunces",serif;font-size:.92rem;color:var(--faintest);text-align:right;}
+  .toc-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.06rem;color:var(--ink);line-height:1.16;}
+  .toc-g{grid-column:2;font-size:.85rem;font-style:italic;color:var(--faint);margin-top:.16rem;line-height:1.38;}
+
+  /* ---- plates ---- */
+  .plate{margin:clamp(3.2rem,8vh,6rem) 0 0;padding-top:clamp(2.4rem,5.5vh,3.4rem);border-top:1px solid var(--hair);scroll-margin-top:4rem;}
+  .plate-open{max-width:var(--measure);margin-inline:auto;}
+  .plate-no{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 360;font-size:clamp(2.6rem,7vw,4.1rem);
+    line-height:.9;color:var(--num);letter-spacing:.02em;}
+  .plate-kicker{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faintest);margin:.9rem 0 .2rem;}
+  .plate-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.8rem,4.4vw,2.7rem);line-height:1.04;letter-spacing:-.018em;margin:0;text-wrap:balance;}
+  .plate-gloss{font-style:italic;color:var(--soft);font-size:1.02rem;margin:.55rem 0 0;line-height:1.4;}
+
+  .ask{max-width:var(--measure);margin:clamp(1.5rem,3.5vh,2.2rem) auto clamp(1.8rem,4vh,2.4rem);}
+  .ask .lead{display:block;font-family:"Fraunces",serif;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.55rem;}
+  .ask q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:clamp(1.18rem,1.8vw,1.38rem);line-height:1.36;color:var(--soft);quotes:none;}
+
+  .plate-body{max-width:var(--measure);margin-inline:auto;}
+  .plate-body p{margin:0 0 1.18rem;text-wrap:pretty;}
+  .plate-body > p:first-of-type::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 430;
+    float:left;font-size:3.5em;line-height:.76;padding:.04em .12em 0 0;color:var(--ink);}
+  .plate-body h4{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.76rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faint);margin:2rem 0 .9rem;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 380;font-style:italic;
+    font-size:clamp(1.4rem,2.3vw,1.7rem);line-height:1.32;color:var(--soft);text-align:center;
+    max-width:33rem;margin:clamp(2rem,4.5vh,2.8rem) auto;text-wrap:balance;}
+
+  .edge{max-width:var(--measure);margin:1.7rem auto;padding:.1rem 0 .1rem 1.15rem;border-left:1px solid var(--hair);
+    color:var(--faint);font-size:.92rem;line-height:1.62;}
+  .edge .lead{display:block;font-family:"Fraunces",serif;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.4rem;}
+  .edge em{font-style:italic;color:var(--soft);}
+
+  /* ---- figures (engravings) ---- */
+  .fig{max-width:var(--measure);margin:clamp(2.1rem,4.5vh,2.9rem) auto;}
+  .fig-frame{border:1px solid var(--hair);border-radius:2px;padding:clamp(1rem,2.4vw,1.7rem) clamp(1rem,2.4vw,1.7rem) clamp(.8rem,2vw,1.3rem);background:rgba(255,253,247,.4);}
+  .fig svg{display:block;width:100%;height:auto;}
+  figcaption{margin:.95rem auto 0;max-width:38rem;font-size:.85rem;line-height:1.5;color:var(--faint);text-wrap:pretty;}
+  figcaption .fig-n{font-family:"Fraunces",serif;font-weight:500;letter-spacing:.04em;color:var(--soft);}
+  figcaption em{font-style:italic;}
+  .ax{stroke:var(--soft);stroke-width:1.1;fill:none;}
+  .tick{stroke:var(--soft);stroke-width:1;}
+  .curve{stroke:var(--ink);stroke-width:1.5;fill:none;stroke-linecap:round;}
+  .curve2{stroke:var(--ink);stroke-width:1.3;fill:none;stroke-linecap:round;}
+  .guide{stroke:var(--faintest);stroke-width:1;fill:none;stroke-dasharray:3 3.5;}
+  .core{stroke:var(--ink);stroke-width:3;fill:none;stroke-linecap:round;}
+  .fill-cs{fill:var(--wash);}
+  .fill-dwl{fill:var(--wash2);}
+  .fill-wedge{fill:var(--wash);}
+  .fill-lens{fill:var(--wash);}
+  .hatch-line{stroke:var(--faintest);stroke-width:.8;}
+  .lbl{font-family:"Fraunces",serif;font-size:11.5px;fill:var(--faint);font-variation-settings:"opsz" 24,"wght" 400;}
+  .lbl-i{font-family:"Newsreader",serif;font-style:italic;font-size:11px;fill:var(--soft);}
+  .lbl-sm{font-family:"Fraunces",serif;font-size:9.6px;fill:var(--faintest);letter-spacing:.02em;}
+  .lbl-ax{font-family:"Fraunces",serif;font-size:9.4px;fill:var(--faintest);letter-spacing:.12em;}
+
+  /* ---- coda + colophon ---- */
+  .coda{max-width:var(--measure);margin:clamp(3rem,7vh,5rem) auto 0;}
+  .coda p{margin:0 0 1.18rem;text-wrap:pretty;}
+  .coda p.lede::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 430;
+    float:left;font-size:3.5em;line-height:.76;padding:.04em .12em 0 0;color:var(--ink);}
+  footer{margin-top:clamp(3.6rem,8vh,6rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.4rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .colophon{font-size:.85rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+
+  /* ---- motion / reveal ---- */
+  @media (prefers-reduced-motion: no-preference){
+    html.js .reveal{opacity:0;transform:translateY(14px);}
+    html.js .reveal.in{opacity:1;transform:none;}
+    .reveal{transition:opacity .9s cubic-bezier(.2,.6,.2,1),transform .9s cubic-bezier(.2,.6,.2,1);}
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.18s}.rise.d3{animation-delay:.32s}.rise.d4{animation-delay:.46s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  /* ---- responsive ---- */
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .argument p,.plate-body p,.coda p{font-size:1.01rem;}
+    .plate-body > p:first-of-type::first-letter,.argument p.lede::first-letter,.coda p.lede::first-letter{font-size:3em;}
+    .f-bar{flex-direction:column;gap:.5rem;}
+    .toc a{grid-template-columns:2rem 1fr;column-gap:.8rem;}
+    figcaption{font-size:.82rem;}
+  }
+
+  /* ---- print: a volume, in print ---- */
+  @media print{
+    html,body{background:#fff;color:#000;}
+    body{font-size:11.5pt;line-height:1.5;}
+    body::before,#progress,#topbar{display:none !important;}
+    .frame{max-width:none;padding:0;}
+    .measure,.plate-open,.plate-body,.ask,.edge,.coda{max-width:34rem;}
+    a{text-decoration:none;}
+    .plate{break-before:page;border-top:none;padding-top:0;}
+    .fig,figure{break-inside:avoid;}
+    .plate-no{color:#bbb;}
+    .reveal{opacity:1 !important;transform:none !important;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#ne-contents">Complete contents</a><a href="../editions.html#volume-bias">The Bias · both editions</a><a href="../essays/numeraire-xxiv-the-bias.html">Expanded essays</a></div></nav>
+<div id="progress" aria-hidden="true"></div>
+<div id="topbar" aria-hidden="true"><div class="tb-in">
+  <span class="tb-l">Numéraire <span>· The Bias</span></span>
+  <span class="tb-r" id="tb-plate">Volume XXIV</span>
+</div></div>
+
+<div class="frame">
+
+  <header class="vol-title">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="rise d1">
+      <span class="imprint">Numéraire</span>
+      <div class="vol-no">Volume XXIV &middot; № XXIV</div>
+    </div>
+    <h1 class="vol-name rise d2">The Bias</h1>
+    <div class="vol-sym rise d3" aria-hidden="true"><span>Bi</span></div>
+    <div class="vol-coords rise d3">Group VI &middot; The Behaviors</div>
+    <p class="vol-gloss rise d3">the systematic errors</p>
+    <p class="vol-epigraph rise d4">
+      <span class="lead">The question of the volume</span>
+      The mind departs from the model in regular ways — which, and at what cost?
+    </p>
+    <div class="vol-status rise d4">in print &middot; twelve plates</div>
+  </header>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <section class="argument reveal" aria-labelledby="arg-h">
+    <div class="part-head">
+      <div class="part-kicker">Numéraire &middot; Volume XXIV</div>
+      <h2 class="part-title" id="arg-h">The Argument</h2>
+    </div>
+    <p class="lede">The volume on the choice built the rational agent in his full elegance and then, at the seams, confessed that real people are not quite he — that they cannot compute the optimum, that their preferences bend with the framing and reverse across time, that the wants they bring to market were partly made there. This volume is the systematic study of those confessions. It is the work of behavioral economics, the marriage of the science of choice to the psychology of the actual chooser, and its founding discovery is deceptively simple and entirely decisive: the ways people depart from the model are not random. They are systematic, predictable, and patterned, error with a direction one can forecast in advance — and that single fact is what turns a scattered list of human mistakes into a science.</p>
+    <p>Why the systematic matters so much is worth stating at the outset, for it is the hinge on which the whole relevance of the field turns. Random error is the friend of the orthodox theory. If people err in every direction at once, with no tilt to the scatter, then their mistakes cancel in the aggregate; the average consumer behaves as the rational one would, the market price reflects the wisdom of the crowd, and the model survives the irrationality of its members untouched. Systematic error grants no such mercy. When everyone leans the same way — when all overweight the vivid, all feel losses more sharply than gains, all reach for the immediate — the mistakes do not cancel; they compound. They tilt the aggregate, they move the price, they persist where random noise would wash away, and they can be predicted and therefore exploited. The discovery that human error has a shape is the discovery that it does not cancel, and that is why the catalogue this volume assembles is not a curiosity at the margin of economics but a challenge at its center.</p>
+    <p>The mind that produces these patterned errors is, on the now-standard account, a divided instrument. It thinks in two ways: a fast, automatic, intuitive mode that delivers impressions and feelings without effort, and a slow, deliberate, effortful mode that reasons and checks but tires quickly and would rather not be troubled. Most judgments issue from the fast system, and most biases are its work — for it reaches its verdicts by heuristics, shortcuts that substitute an easy question for a hard one and usually answer well enough, but fail in regular and discoverable ways. The slow system, which might catch the failures, is a lazy auditor that endorses the fast system's output more often than it should. Bias is what results when a shortcut misfires and the auditor is asleep.</p>
+    <p>The catalogue itself falls into natural families. There are the heuristics of judgment, by which people estimate likelihood and frequency — availability, which judges by what comes easily to mind; representativeness, which judges by resemblance to a type; anchoring, which judges by adjustment from whatever number happened to be in view. There is prospect theory, the great descriptive rival to expected utility, with its reference points and its loss aversion and its peculiar weighting of probability — the apparatus the volume on the choice deliberately held back, and which this volume now sets down in full. And there are the further departures that ramify from these: the endowment effect and the stickiness of the status quo, the honoring of sunk costs, the mental accounting that treats money as anything but fungible, the overconfidence that inflates every self-assessment. Each is a place where the actual mind parts from the model in a direction the model did not predict and cannot accommodate.</p>
+    <p>The deeper question is the one the volume's animating query poses — not merely which biases, but at what cost — and the cost is reckoned on three ledgers. For the individual, bias is a tax on his own welfare: the under-saving, the ruinous debt, the exploitable mistake, the choice made against his own interest. For the market, bias raises the question whether the discipline of arbitrage will purge what individuals get wrong — and the answer, which the orthodox tradition gave too quickly in the affirmative, turns out to depend on whether arbitrage is cheap and safe, which it often is not, so that biases can survive to move prices and inflate bubbles. And for policy, bias opens a door the older economics had bolted: if people predictably choose against themselves, the architecture of their choices can be arranged to help them, and the nudge is born — together with a quarrel about paternalism it has not laid to rest.</p>
+    <p>None of this is settled, and the honesty this table has practiced requires the unsettlement be shown. The field is charged, not without justice, with being a butterfly collection — a glittering array of biases without the single organizing principle that gave rational choice its power, dozens of effects where the old theory had one axiom. It is charged with overstating the irrationality it finds, mistaking the artificial puzzles of the laboratory for the native habitat of a mind whose fast heuristics are, in the environments they evolved for, often the smarter strategy. And beneath these lies a wound the field has opened and cannot close: if a person's choices no longer reliably reveal his good, then the whole apparatus that read welfare from choice is in crisis, and behavioral economics, having shown more vividly than anyone that what is chosen and what is good come apart, has no agreed measure of the good to put in choice's place.</p>
+    <p>The position this volume reaches is therefore double, as the volume on the choice's was. Behavioral economics is a triumph: it brought the actual mind into a science that had abstracted it away, it is empirically rich where the old theory was empirically thin, it predicts real anomalies the old theory called impossible, and it has changed how governments and firms and citizens act. And it is incomplete: a research program in mid-stride rather than a finished theory, lacking the unification it dethroned, contested in its reach, and trailing a crisis about welfare it has sharpened without resolving. With this volume the family of the Behaviors is complete — the choice that is the model, the bias that is its critique, the game that is its strategic extension, the norm that is its social alternative — four ways of theorizing the one figure on whom every price in this table depends. The argument remains open.</p>
+  </section>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <section class="contents reveal" aria-labelledby="toc-h">
+    <div class="part-head">
+      <div class="part-kicker">The twelve plates of this volume</div>
+      <h2 class="part-title" id="toc-h">The Plates</h2>
+    </div>
+    <ol class="toc">
+      <li><a href="#plate-i"><span class="toc-n">i</span><span class="toc-t">The Departure</span><span class="toc-g">what a bias is; systematic error, not random noise; the model meets the mind</span></a></li>
+      <li><a href="#plate-ii"><span class="toc-n">ii</span><span class="toc-t">The Intuition</span><span class="toc-g">the two systems, fast and slow; heuristics as the engine of error</span></a></li>
+      <li><a href="#plate-iii"><span class="toc-n">iii</span><span class="toc-t">The Availability</span><span class="toc-g">judging the likely by the easily recalled; the vivid risk and the quiet one</span></a></li>
+      <li><a href="#plate-iv"><span class="toc-n">iv</span><span class="toc-t">The Resemblance</span><span class="toc-g">judging by similarity to a type; the conjunction fallacy; the neglected base rate</span></a></li>
+      <li><a href="#plate-v"><span class="toc-n">v</span><span class="toc-t">The Drag</span><span class="toc-g">anchoring and adjustment; the pull of an arbitrary number</span></a></li>
+      <li><a href="#plate-vi"><span class="toc-n">vi</span><span class="toc-t">The Kink</span><span class="toc-g">prospect theory; loss aversion; the value function bent at the reference</span></a></li>
+      <li><a href="#plate-vii"><span class="toc-n">vii</span><span class="toc-t">The Weight</span><span class="toc-g">the weighting of probability; the overweighting of rare events; lottery and insurance together</span></a></li>
+      <li><a href="#plate-viii"><span class="toc-n">viii</span><span class="toc-t">The Possession</span><span class="toc-g">the endowment effect; status quo and sunk cost; money that is not fungible</span></a></li>
+      <li><a href="#plate-ix"><span class="toc-n">ix</span><span class="toc-t">The Conceit</span><span class="toc-g">overconfidence; the above-average self; the plan that always runs late</span></a></li>
+      <li><a href="#plate-x"><span class="toc-n">x</span><span class="toc-t">The Arbitrage</span><span class="toc-g">whether biases survive the market; the limits of arbitrage; behavioral finance</span></a></li>
+      <li><a href="#plate-xi"><span class="toc-n">xi</span><span class="toc-t">The Nudge</span><span class="toc-g">choice architecture and the nudge; libertarian paternalism and its quarrel</span></a></li>
+      <li><a href="#plate-xii"><span class="toc-n">xii</span><span class="toc-t">The Mind</span><span class="toc-g">what the catalogue amounts to; bias, welfare, and economics meeting the mind</span></a></li>
+    </ol>
+  </section>
+
+  <main class="plates" id="plates">
+
+    <!-- ===================== PLATE I ===================== -->
+    <section class="plate reveal" id="plate-i" data-label="Plate i · The Departure">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">i</div>
+        <p class="plate-kicker">Plate the First &middot; The Behaviors &middot; № XXIV</p>
+        <h3 class="plate-title">The Departure</h3>
+        <p class="plate-gloss">what a bias is; systematic error, not random noise; the model meets the mind</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what turns a heap of human mistakes into a science of error?</q></div>
+      <div class="plate-body">
+        <p>A bias, in the sense this volume gives the word, is not simply a mistake. People have always made mistakes, and the rational model never claimed they did not; a theory of how a coherent agent ought to choose was never refuted by the observation that flesh-and-blood agents sometimes choose badly. The claim that founds behavioral economics is sharper and stranger than that people err. It is that they err <em>systematically</em> — that the departures from the model are not a random scatter of slips but a patterned tilt, leaning the same direction across persons and occasions, predictable in advance by anyone who knows the pattern. A bias is an error with a shape.</p>
+        <p>Everything turns on the distinction between error that is random and error that is systematic, and it is worth being slow about it, because the whole standing of the field depends on which kind human error is. Suppose people's mistakes were random — scattered evenly around the right answer, some too high and some too low, with no prevailing lean. Then the orthodox theory would have little to fear, for random errors cancel. Average across a crowd of noisy choosers and the noise washes out, leaving the rational answer behind; the market price still reflects the wisdom of the many, the typical consumer still behaves as the model says, and the rationality of the aggregate survives the irrationality of its parts. This is the great defense the older economics raised against every report of human folly: it does not matter, the errors cancel, the model holds in the large. The defense is sound — but only for noise.</p>
+        <p>Against systematic error it collapses entirely. When the mistakes all lean one way — when nearly everyone overweights the dramatic, feels a loss more keenly than the equal gain, grasps at the sooner reward — the errors do not cancel; they reinforce. The average is not pulled back to the rational answer but dragged away from it in the direction everyone leans. The bias survives aggregation, persists where noise would dissipate, moves prices that noise would leave alone, and stands waiting to be exploited by anyone who sees it. To show that human error is systematic is therefore to show that it does not wash out — that it reaches past the individual into the market and the aggregate, the very places the older economics had declared it could not reach. This is why the catalogue assembled in these plates is not a footnote about human frailty but a claim upon the foundations.</p>
+        <aside class="pull">That people err did not threaten the model; errors that cancel leave it standing. That people err the same way does. A bias is error with a direction — and a direction is the one thing that does not average to nothing.</aside>
+        <p>The discovery was long resisted, for economics had built its rigor on the rational agent and did not surrender him gladly. It took the patient accumulation of evidence — the heuristics and biases mapped by Kahneman and Tversky through the nineteen-seventies, the anomalies pressed by Thaler through the eighties, a generation of experiments each showing the same lean in the same place — to force the rational chooser to share his table with the actual mind. The recognition came slowly and then, with two Nobel prizes a decade and a half apart, decisively. What had been a quarrel at the edge of the discipline became, in the end, the discipline's overdue encounter with the psychology it had spent a century abstracting away. This volume stands to the volume on the choice as anatomy to architecture: where that volume drew the model and conceded, at its seams, that people slip from it, this one studies the slips themselves, maps their direction, and offers in prospect theory a positive account of the mind that makes them.</p>
+        <aside class="edge"><span class="lead">the edge</span> The word <em>bias</em> is not innocent, and the whole field rests on a presupposition the word conceals. To call a behavior a bias is to call it a deviation, and a deviation requires a standard from which to deviate — and the standard, throughout, is the rational model of the previous volume. Behavioral economics measures the living mind against that model and books every discrepancy to the mind's account, as a defect, a failure, an error to be corrected. But the booking assumes what is very much in question: that the rational model is the right measure of good thinking, that logical consistency under the axioms is what reasoning well consists in. Suppose it is not. Suppose, as a rival tradition insists, that the mind's fast heuristics are well-adapted instruments for the uncertain and time-pressed problems it actually faces, and that they look like errors only when graded against an artificial norm of consistency on artificial laboratory puzzles for which they were never meant. Then much of what this volume will catalogue as bias is not the mind failing at rationality but the analyst failing to understand the mind — judging a hammer by how poorly it turns screws. The whole inquiry, that is, takes for granted that the rational model defines the target the mind is aiming at and missing; whether the mind is aiming at that target at all is a question the word <em>bias</em> settles by fiat before the evidence is in, and a question the closing plates will have to reopen.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE II ===================== -->
+    <section class="plate reveal" id="plate-ii" data-label="Plate ii · The Intuition">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">ii</div>
+        <p class="plate-kicker">Plate the Second &middot; The Behaviors &middot; № XXIV</p>
+        <h3 class="plate-title">The Intuition</h3>
+        <p class="plate-gloss">the two systems, fast and slow; heuristics as the engine of error</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if the mind reasons in two ways, which one is doing the choosing — and which is asleep?</q></div>
+      <div class="plate-body">
+        <p>Before the biases can be catalogued, the machine that makes them must be described, and the description that has organized the field divides the mind into two ways of working. The first is fast: automatic, effortless, always running, the source of the impression that arrives before you have decided to form it. It recognizes a face, completes the phrase <em>bread and</em>, reads anger in a voice, knows that two and two are four, and supplies, without any sense of labor, the great majority of the judgments a person makes in a day. The second is slow: deliberate, effortful, the seat of conscious reasoning and self-control, the faculty that multiplies seventeen by twenty-four, checks a syllogism, or holds the tongue. Kahneman named them, drably and deliberately, System One and System Two, and the drabness was a kindness, for any livelier name would have tempted us to think we knew them.</p>
+        <p>The relation between the two is the key to everything that follows, and it is not a partnership of equals. The fast system runs the show; the slow system, which fancies itself in charge, is in truth a lazy auditor that mostly rubber-stamps what the fast system hands it. Reasoning is effortful and the slow system conserves its effort, engaging fully only when the fast system stumbles into something it flags as hard or wrong. Most of the time it does not stumble, and most of the time, therefore, the deliberate mind simply endorses the intuition the automatic mind produced, adding a veneer of reasons after the fact. We are, far more than we like to believe, creatures of the first system narrating in the voice of the second.</p>
+        <p>And the first system reaches its verdicts by a method that is the engine of every bias in this volume. Confronted with a hard question — how probable is this, how frequent is that, how much is this worth — it does not labor toward the hard answer. It quietly substitutes an easier question whose answer is ready to hand, and reports that instead. Asked how likely an event is, it answers how easily an example springs to mind. Asked how probable it is that a person belongs to a category, it answers how much the person resembles the category's type. This is attribute substitution, the swapping of a hard question for a tractable one, and it is ingenious, for the easy answer usually does correlate with the hard one — things that come readily to mind usually are common, things that resemble a type usually do belong to it. The heuristic works. It is fast where deliberation would be slow, frugal where calculation would be costly, and right often enough to have been worth evolving.</p>
+        <aside class="pull">We are, more than we admit, the fast mind narrating in the voice of the slow one. It answers the hard question — how likely? how much? — by swapping in an easy one, and reports the substitute as though it were the original.</aside>
+        <p>The bias is the shadow the heuristic casts. For the easy question's answer correlates with the hard one's only usually, not always, and where the correlation breaks the substitution misfires — in exactly the same direction, for everyone, every time. The vivid but rare event comes easily to mind and is judged common; the person who resembles a type but belongs to a tiny minority is assigned to the type against the odds. The biases to come are therefore not a miscellaneous list of human defects to be memorized one by one. They are the predictable failure-modes of a small repertoire of heuristics, and to understand the heuristic is to know in advance where, and in which direction, the error will fall. That is the order beneath the catalogue, and it is what makes the catalogue a science rather than an inventory.</p>
+        <aside class="edge"><span class="lead">the edge</span> The two-systems picture is so lucid, and has proved so irresistible in the lecture hall and the airport bookshop, that it is easy to forget it is a metaphor and not a finding. There are not two organs in the skull, one fast and one slow, nor two mechanisms that hard science has isolated and named; there is a continuum of mental processes, some quicker and some more deliberate, which the dichotomy usefully but crudely personifies. To say <em>System One thinks</em> this and <em>System Two checks</em> that is to populate the mind with two homunculi, and a homunculus is a placeholder for an explanation, not an explanation. The neat bimodal story has been criticized as too neat by those who study cognition closely, and the wider reckoning that the field has lately undergone — in which several of its celebrated effects, the depletion of willpower by use, the steering of behavior by subliminal primes, failed to reappear when the experiments were run again with care — has fallen on some of the dual-process furniture as well. There is an irony here the honest reader should sit with. Behavioral economics earned its authority by exposing the rational agent as a tidy fiction that flattered the theorist with its simplicity; and then, describing the mind that replaced him, it reached for a fiction nearly as tidy. The two systems are a serviceable scaffold for organizing what we have learned, and this volume will lean on them as such. But they are scaffolding, not architecture, and a reader who mistakes the one for the other has caught from the critics of rational choice the very habit they were criticizing.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE III ===================== -->
+    <section class="plate reveal" id="plate-iii" data-label="Plate iii · The Availability">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">iii</div>
+        <p class="plate-kicker">Plate the Third &middot; The Behaviors &middot; № XXIV</p>
+        <h3 class="plate-title">The Availability</h3>
+        <p class="plate-gloss">judging the likely by the easily recalled; the vivid risk and the quiet one</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>why do we dread the shark and the airplane, and shrug at the things that actually kill us?</q></div>
+      <div class="plate-body">
+        <p>The first of the great heuristics answers the question <em>how likely?</em> with the question <em>how easily can I recall an instance?</em> This is availability, and like every heuristic it begins as good sense. Things that happen often do, as a rule, leave more traces in memory; the common event is the one you have met before, and so the ease with which examples spring to mind is a serviceable gauge of how frequent a thing really is. Asked whether dogs or dingoes are the more common, you need run no census — instances of dogs flood in, instances of dingoes do not, and the flood gives you the answer. Most of the time, availability and frequency march together, and the shortcut delivers.</p>
+        <p>They part company whenever something other than frequency governs what comes to mind, and many things do. Vividness governs it: a death by fire is more memorable than a death by diabetes. Recency governs it: the crash reported this morning is fresher than the steady toll of the road. Emotion governs it, and above all the news governs it, for the news is in the business of reporting the unusual — a plane that lands safely is not a story, a plane that falls is — and a mind fed on the unusual comes to believe the unusual is usual. Where these forces inflate the availability of an event beyond its true frequency, the heuristic misfires in a fixed direction: the dramatic, the recent, the reported, and the frightening are judged more common than they are, and the mundane, the silent, the unreported, and the slow are judged rarer. We do not misjudge risk at random. We misjudge it toward the lurid.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ff1t ff1d">
+              <title id="ff1t">Perceived against actual frequency of causes of death</title>
+              <desc id="ff1d">A scatter of causes of death with actual frequency on the horizontal axis and perceived frequency on the vertical. A diagonal marks perfect judgment. Dramatic causes such as tornadoes, homicide, and accidents lie above the line, overestimated; quiet causes such as diabetes, stroke, and heart disease lie below, underestimated.</desc>
+              <line class="ax" x1="60" y1="252" x2="404" y2="252"/>
+              <line class="ax" x1="60" y1="252" x2="60" y2="44"/>
+              <text class="lbl-ax" x="232" y="278" text-anchor="middle">actual frequency →</text>
+              <text class="lbl-ax" transform="rotate(-90 26 150)" x="26" y="150" text-anchor="middle">perceived →</text>
+              <line class="guide" x1="60" y1="252" x2="390" y2="58"/>
+              <text class="lbl-sm" x="384" y="54" text-anchor="end">judged truly</text>
+              <circle cx="105" cy="100" r="3.5" fill="var(--ink)"/>
+              <text class="lbl-sm" x="110" y="91" text-anchor="start">tornado</text>
+              <circle cx="150" cy="80" r="3.5" fill="var(--ink)"/>
+              <text class="lbl-sm" x="155" y="72" text-anchor="start">homicide</text>
+              <circle cx="200" cy="96" r="3.5" fill="var(--ink)"/>
+              <text class="lbl-sm" x="205" y="88" text-anchor="start">accidents</text>
+              <circle cx="245" cy="180" r="3.5" fill="var(--ink)"/>
+              <text class="lbl-sm" x="250" y="192" text-anchor="start">diabetes</text>
+              <circle cx="300" cy="165" r="3.5" fill="var(--ink)"/>
+              <text class="lbl-sm" x="305" y="177" text-anchor="start">stroke</text>
+              <circle cx="355" cy="135" r="3.5" fill="var(--ink)"/>
+              <text class="lbl-sm" x="349" y="148" text-anchor="end">heart disease</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 1.</span> The signature of availability, after the classic survey of Lichtenstein and Slovic. Each cause of death is placed by how often it truly kills and how often people think it does; the diagonal is where the two would agree. The dramatic killers — the tornado, the murder, the accident — float above the line, their toll inflated by how readily the mind supplies an example. The patient killers — diabetes, stroke, the heart's slow failure — sink below it, their far greater toll discounted because no vivid instance comes when summoned. The error is not scattered. It leans, every time, toward what the imagination can picture.</figcaption>
+        </figure>
+        <p>The consequences are neither small nor confined to the laboratory. We dread the terrorist and ignore the staircase, fear the shark and not the sun, buy the lottery ticket whose jackpot we can vividly imagine and neglect the retirement we cannot. Whole public policies follow the same lean, lavishing attention and money on the salient catastrophe while the statistical one, which kills far more and photographs far worse, goes unaddressed. And the modern information environment pours fuel on the fire, for a press and a feed that select relentlessly for the rare and the shocking are availability machines, manufacturing the impression that the world is composed of the very events that are, by construction, the least representative of it. The citizen who watches the most news is not the best informed about the frequencies of life but, in a precise and measurable way, the most misled about them.</p>
+        <aside class="pull">We do not misjudge risk at random; we misjudge it toward the lurid. The dramatic floats above its true frequency and the patient sinks below, because the mind gauges how common a thing is by how easily it can picture one.</aside>
+        <p>Yet before the mind is convicted, the heuristic deserves its defense, which is the defense the closing plates will generalize.</p>
+        <aside class="edge"><span class="lead">the edge</span> Availability looks like a flaw only against a backdrop it was never designed for. For almost the whole of the human past, the events a person could vividly recall were the events of his own small world, and weighting them heavily was not a bias but the height of prudence: the watering-hole where a companion was taken by a crocodile, the plant that sickened a child, the season the river flooded the camp were precisely the local dangers a survivor needed to overweight, and a memory that made them loom large was a memory doing its job. The heuristic tracked real risk because the only instances available were the ones that bore on the recaller's actual life. What broke the link was not a defect in the mind but a revolution in its environment: a press and a network that fill the memory with lurid instances drawn from a planet of eight billion strangers, events that are vivid precisely because they are rare and distant and have nothing to do with the risks the recaller actually faces. The mind applies an ancient and sound rule — weight what comes easily to mind — in a world that has hijacked what comes easily to mind. And even now, even granting the distortion, one may ask what the alternative was supposed to be: no person carries the actuarial tables, none can compute true frequencies from first principles, and weighting by ease of recall remains a sane default for a bounded creature who must judge risk in a moment with the evidence memory happens to hold. To call this a defect of reason is to grade the mind against an omniscient statistician it was never in a position to be.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE IV ===================== -->
+    <section class="plate reveal" id="plate-iv" data-label="Plate iv · The Resemblance">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">iv</div>
+        <p class="plate-kicker">Plate the Fourth &middot; The Behaviors &middot; № XXIV</p>
+        <h3 class="plate-title">The Resemblance</h3>
+        <p class="plate-gloss">judging by similarity to a type; the conjunction fallacy; the neglected base rate</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>why does adding a detail to a story make it feel more likely, when every added detail can only make it less?</q></div>
+      <div class="plate-body">
+        <p>The second great heuristic answers the question <em>how probable is it that this belongs to that?</em> with the question <em>how much does this resemble a typical that?</em> This is representativeness, judgment by similarity to a type. Shown a quiet, orderly, detail-loving man and asked whether he is more likely a librarian or a salesman, the mind does not reach for the numbers; it measures him against its stereotypes and, finding him a better match for the librarian, answers accordingly. As ever the shortcut has a sound core, for things that resemble a type usually do belong to it, and similarity is a fair first guess at category. As ever it fails where the resemblance and the probability come apart — and they come apart in ways that are precise, repeatable, and instructive.</p>
+        <p>They come apart, first, because resemblance is blind to the base rate — to how many of each kind there are to begin with. The orderly man resembles the librarian, but librarians are few and salesmen are many, and once the sheer preponderance of salesmen is weighed, even a bookish man is the likelier a salesman. Representativeness ignores this; the stereotype fills the mind and crowds the numbers out, so that people will confidently sort a person into a tiny category he merely resembles, against a base rate that should have overwhelmed the resemblance. And they come apart, most famously, in the puzzle of Linda. Linda is described as a philosophy student, outspoken on social justice, once active against nuclear arms. Is she more likely a bank teller, or a bank teller who is active in the feminist movement? The overwhelming majority choose the second — for the feminist detail resembles the Linda they were shown, while a bare bank teller does not. And the overwhelming majority are, demonstrably, wrong.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ff2t ff2d">
+              <title id="ff2t">The conjunction fallacy as nested sets</title>
+              <desc id="ff2d">A large circle of all bank tellers contains a small circle of feminist bank tellers. Because every feminist bank teller is a bank teller, the inner set is wholly within the outer and necessarily smaller, so it cannot be the more probable.</desc>
+              <circle cx="200" cy="156" r="116" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+              <text class="lbl" x="200" y="70" text-anchor="middle">all bank tellers</text>
+              <circle cx="200" cy="196" r="50" fill="none" stroke="var(--ink)" stroke-width="1.3"/>
+              <text class="lbl-sm" x="200" y="192" text-anchor="middle">feminist</text>
+              <text class="lbl-sm" x="200" y="206" text-anchor="middle">bank tellers</text>
+              <text class="lbl-sm" x="200" y="288" text-anchor="middle">every feminist teller is a teller: the inner set is the smaller</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 2.</span> Why the Linda answer cannot be right. The feminist bank tellers are a part of the bank tellers — every one of them is a bank teller who happens also to be a feminist — so their circle lies wholly inside the larger one and contains fewer people. A part cannot be larger than the whole that contains it, and a smaller set cannot be the more probable. Adding the feminist detail makes Linda <em>resemble</em> the description more, and so feels like a better answer; but each detail added narrows the set it describes, and a narrower set is always the less likely. Resemblance rises with detail; probability falls. The heuristic reads the rising line and reports it as the falling one.</figcaption>
+        </figure>
+        <p>The same misreading of resemblance fathers a whole brood of errors. It produces the gambler's fallacy, the conviction that after a long run of red the black is somehow due — for a mixed sequence looks more representative of chance than a monotonous one, though the wheel has no memory and each spin stands alone. It produces an insensitivity to sample size, by which a result from three cases is trusted as readily as a result from three thousand, since both equally resemble the truth they are meant to estimate, though only the larger sample has earned the trust. It produces the seeing of patterns in noise, the streaks and hot hands and meaningful coincidences with which the mind, demanding that randomness look random, overwrites the genuine article. In each, a judgment that should rest on the structure of probability rests instead on a feeling of similarity, and the feeling misleads in a direction one can predict.</p>
+        <aside class="pull">Each detail added to a description narrows the set it picks out, and a narrower set is the less likely. Yet each detail makes the story resemble its subject more — so probability falls while the feeling of probability climbs. The mind reports the feeling.</aside>
+        <p>The conjunction fallacy is among the most cited results in all of social science, and it is also among the most contested — a contest the honest reader must weigh before convicting the mind.</p>
+        <aside class="edge"><span class="lead">the edge</span> The Linda problem may show less than it seems, for two reasons that its critics have pressed hard and that have never been fully answered. The first is a matter of language. In the logician's sense, <em>probable</em> obeys the rule that a conjunction cannot exceed its conjunct; but in ordinary speech, where most of the subjects were living, to offer <em>bank teller</em> alongside <em>bank teller and feminist</em> all but invites the listener to read the first as <em>bank teller and not especially a feminist</em> — for why, by the ordinary rules of helpful conversation, would you mention the plain category if you meant to include the vivid one? Read so, choosing the conjunction is not a blunder in logic but a reasonable interpretation of an under-specified question, and the experiment may be measuring the subjects' grasp of conversational implicature rather than their grasp of probability. The second is a matter of format, and it is the more consequential. When the very same problem is posed not in the language of single-case probability — <em>how likely is Linda</em> — but in the language of frequency — <em>of a hundred women fitting this description, how many are bank tellers, and how many are feminist bank tellers?</em> — the fallacy very largely melts away, and people honor the nesting they had seemed to violate. Gigerenzer and his school drew the moral that the mind is not built for single-event probabilities, an unnatural and recent invention, but reasons competently in frequencies, the form in which experience actually arrives. This cuts two ways at once. It is a rebuke to the laboratory, which by choosing the unnatural format manufactured an incompetence the natural format dispels; and it is a gift to the practitioner, for it means that risks presented as frequencies — so many in a thousand, not a probability of so much — will be understood where the same risks, dressed as probabilities, will not. The bias is real in the form it was found. Whether it is a flaw in the mind or an artifact of the question remains, after decades, genuinely open.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE V ===================== -->
+    <section class="plate reveal" id="plate-v" data-label="Plate v · The Drag">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">v</div>
+        <p class="plate-kicker">Plate the Fifth &middot; The Behaviors &middot; № XXIV</p>
+        <h3 class="plate-title">The Drag</h3>
+        <p class="plate-gloss">anchoring and adjustment; the pull of an arbitrary number</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>why does a number you know to be meaningless still bend the guess you make next?</q></div>
+      <div class="plate-body">
+        <p>The third heuristic concerns not likelihood but magnitude — the estimation of an unknown quantity, a length, a price, a count — and it works by starting somewhere and moving. The mind takes an initial value, an anchor, and adjusts away from it toward what it judges the truth to be. The adjustment, however, is reliably insufficient. People stop too soon, at the near edge of the range they find plausible rather than its center, and the final estimate is left clinging to the anchor it set out from. To anchor and adjust is sensible; to adjust too little is the bias, and the bias is large, stubborn, and almost impossible to will away.</p>
+        <p>What lifts anchoring from a mild tendency to a genuine astonishment is that the anchor need carry no information whatever, and can be known by the person to carry none, and will drag the estimate all the same. In the experiment that fixed the phenomenon, Tversky and Kahneman sat their subjects before a wheel of fortune, secretly rigged to stop at either ten or sixty-five, and had each watch it spin before asking an unrelated question: what percentage of the nations in the United Nations are African? Those who had watched the wheel land on sixty-five guessed, on average, near forty-five percent; those who had watched it land on ten guessed near twenty-five. A number everyone in the room had just seen produced by a spinning wheel — a number with no more bearing on African geography than the weather — moved the answer by twenty points. The subjects were not fools and did not believe the wheel knew anything. The anchor worked beneath belief, where reasons do not reach.</p>
+        <p>Once the eye is trained, the drag is everywhere. Ask whether Gandhi died before or after the age of a hundred and forty and people guess his true age higher than if you had named nine; the absurd comparison is an anchor still. Roll dice in view of a judge and the sentence he hands down tilts toward the number the dice showed, though he would indignantly deny the dice had any part in justice. A house sells nearer its listing price than its worth, because the listing anchors the appraisal of the very professionals paid to see past it. Invited to bid on a bottle of wine after writing down the last two digits of an identification number, people who wrote high digits bid more than those who wrote low — a finding so improbable it had to be repeated before it was believed. The mind, asked for a magnitude, fastens on whatever magnitude is nearest to hand and cannot let go.</p>
+        <aside class="pull">The anchor works beneath belief, where reasons do not reach. A number you watched a wheel produce, and know to mean nothing, still drags your next estimate toward it — and knowing this does not appreciably loosen its grip.</aside>
+        <p>The mechanism is twofold. The deliberate mind does adjust, but adjustment is effortful, and the lazy auditor halts at the first answer it can call acceptable, which lies on the anchor's side of the truth. And beneath the adjusting, the anchor quietly rigs the evidence: entertaining the hypothesis that the figure might be sixty-five summons to mind the facts that would fit sixty-five, so that the very act of considering the anchor stacks the deck in its favor. Whatever the machinery, the consequence for the world is plain and is not lost on those who profit by it. The opening offer anchors the whole negotiation, which is why the party who names the first number, even an outrageous one, so often does better than the party who waits. The struck-through former price anchors the sale price beneath it, turning an ordinary tag into a bargain by the mere proximity of a larger number. The most expensive dish on the menu sells few portions and earns its place by making the second-most-expensive look reasonable. In a thousand transactions a day, the first number on the table quietly governs the last.</p>
+        <aside class="edge"><span class="lead">the edge</span> Anchoring is the bias that most rewards a second look, because so much of what it touches is not error at all. In the laboratory the anchor is stripped of meaning on purpose — a wheel, a die, a string of identification digits — the better to isolate a pure effect; but anchors in the wild are seldom pure noise, and weighting them is seldom irrational. The listing price of a house really does encode the seller's private knowledge of it; an opening offer really does signal something of the offerer's valuation and limits; the first figure a negotiator hears really is, on average, evidence about the range in play. To let such anchors move one's estimate is not a defect but Bayesian good sense, the rational updating on a genuine signal that the previous volume would have applauded. Even the insufficiency of adjustment wears a different face once one recalls that adjustment is costly and the anchor is often a decent prior: to stop at a good-enough estimate rather than grind toward a perfect one is the satisficing of the bounded mind, not a failure of it. And there is a deeper point still, which the closing plates will press: an estimate must begin somewhere. No mind computes magnitude from a blank, and the demand that judgment proceed uninfluenced by any starting value is a demand that it start from nowhere, which is no procedure at all. The genuine vice, then, is narrow — the planting of arbitrary anchors by those who would exploit a necessary operation, and the failure to discount an anchor one knows to be meaningless. The operation itself, the taking of a starting value and moving from it, is not the mind malfunctioning but the only way estimation could ever work.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE VI ===================== -->
+    <section class="plate reveal" id="plate-vi" data-label="Plate vi · The Kink">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">vi</div>
+        <p class="plate-kicker">Plate the Sixth &middot; The Behaviors &middot; № XXIV</p>
+        <h3 class="plate-title">The Kink</h3>
+        <p class="plate-gloss">prospect theory; loss aversion; the value function bent at the reference</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>why does losing a hundred pounds wound more than finding a hundred delights?</q></div>
+      <div class="plate-body">
+        <p>The heuristics so far have governed judgment — the estimation of how likely, how frequent, how large. The plate turns now to choice, and to the theory that did for the description of risky choice what the heuristics did for the description of judgment: it replaced an elegant account of how a rational agent ought to choose with a homelier account of how people actually do. This is prospect theory, set down by Kahneman and Tversky in nineteen seventy-nine, and it is the apparatus the volume on the choice named and deliberately withheld, promising it here. It rests on three departures from the expected-utility model, and the first is the foundation on which the other two stand.</p>
+        <p>The foundation is that people do not evaluate outcomes as final states of wealth, but as gains and losses from a reference point. The expected-utility agent, offered a prospect, asked what total fortune it would leave him holding and valued that; the actual chooser asks whether the prospect is a gain or a loss against where he stands now, and values the change. He does not think <em>I shall possess one million and forty thousand</em>; he thinks <em>I shall be forty thousand up</em>, or <em>ten thousand down</em>. The carrier of value is the movement, not the position — and this single shift, from levels to changes, is the seam the previous volume exposed under the name of framing, now load-bearing. For if value lives in changes from a reference, then everything depends on where the reference is set, and the same objective outcome can be a gain or a loss according to the point it is measured from.</p>
+        <p>The second departure is the asymmetry that gives the plate its name. The curve that maps gains and losses into value is not symmetric about the reference: it is markedly steeper on the side of losses than on the side of gains. A loss of a hundred wounds more than a gain of a hundred pleases, by a factor that the experiments place near two — losses loom roughly twice as large as equivalent gains. At the reference point the curve does not pass smoothly through; it bends, sharply, kinked downward, so that the first step into loss costs more value than the first step into gain confers. This is loss aversion, and it is the most consequential single fact behavioral economics has established, for from it a remarkable range of conduct follows.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ff3t ff3d">
+              <title id="ff3t">The prospect-theory value function</title>
+              <desc id="ff3d">An S-shaped curve through a reference point at the origin. To the right, over gains, it is concave and rises gently; to the left, over losses, it is convex and falls steeply, bending sharply at the reference. A gain and an equal loss are marked, the loss falling further below the axis than the gain rises above it.</desc>
+              <line class="ax" x1="40" y1="150" x2="404" y2="150"/>
+              <line class="ax" x1="220" y1="40" x2="220" y2="260"/>
+              <polygon points="404,150 396,146 396,154" fill="var(--ink)"/>
+              <polygon points="220,40 216,48 224,48" fill="var(--ink)"/>
+              <text class="lbl-ax" transform="rotate(-90 32 150)" x="32" y="150" text-anchor="middle">value</text>
+              <text class="lbl-ax" x="338" y="168" text-anchor="middle">gains →</text>
+              <text class="lbl-ax" x="108" y="168" text-anchor="middle">← losses</text>
+              <line class="guide" x1="280" y1="112" x2="220" y2="112"/>
+              <line class="guide" x1="160" y1="215" x2="220" y2="215"/>
+              <polyline class="curve" points="40,261 60,256 100,245 140,228 175,205 200,180 220,150 245,130 280,112 320,99 365,90 400,85"/>
+              <circle cx="280" cy="112" r="2.6" fill="var(--ink)"/>
+              <circle cx="160" cy="215" r="2.6" fill="var(--ink)"/>
+              <text class="lbl-sm" x="286" y="108" text-anchor="start">a gain</text>
+              <text class="lbl-sm" x="154" y="219" text-anchor="end">an equal loss</text>
+              <text class="lbl-sm" x="220" y="286" text-anchor="middle">at the same distance, the loss falls further than the gain climbs</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 3.</span> The value function of prospect theory — the emblem of the whole field. Value is plotted against gains and losses measured from the reference point at the centre, not against total wealth. Two features carry the theory. The curve <em>bends</em> at the reference, steeper going down than up: the marked loss sinks further below the axis than the equal gain rises above it, which is loss aversion drawn. And the curve <em>flattens</em> as it leaves the reference in either direction — concave over gains, convex over losses — so that the difference between ten and twenty matters more than between a thousand and a thousand-and-ten, whether won or lost. From the gentle gain-arm comes caution in gains; from the convex loss-arm comes a reckless willingness to gamble against a loss.</figcaption>
+        </figure>
+        <p>The third departure completes the curve's shape: sensitivity diminishes as one moves away from the reference in either direction. The value function is concave over gains, as the earlier plate on risk aversion already found — each further pound of winning adds a little less delight — and, in the discovery that surprised even its authors, convex over losses, each further pound of loss adding a little less pain. The consequence is strange and verifiable. Because the gain-arm is concave, people are risk-averse in gains, preferring a sure win to a gamble of equal expectation; but because the loss-arm is convex, they turn risk-seeking in losses, preferring the gamble to a sure loss, throwing good money after bad in the hope of clawing back to the reference. The same person who will not risk a certain gain will eagerly risk a certain loss — and from this curvature, joined to the weighting of probability that the next plate supplies, falls the celebrated fourfold pattern: cautious with likely gains and unlikely losses, bold with unlikely gains and likely losses. One shape of one curve organizes the buying of insurance and the buying of lottery tickets, the holding of losers and the selling of winners, the whole tangle that expected utility had declared incoherent.</p>
+        <aside class="pull">The carrier of value is the change, not the level — and the curve of changes is bent at the reference, steeper into loss than into gain. Losing a hundred wounds about twice as much as gaining a hundred pleases.</aside>
+        <p>Prospect theory matters beyond any single prediction, for it is the nearest thing the field possesses to a positive theory — not a bias to be added to a list but a structured replacement for the utility function, descriptively faithful and astonishingly general. It is the standing answer to the charge that behavioral economics only tears down. And yet it carries, at its very foundation, a difficulty it has never fully resolved.</p>
+        <aside class="edge"><span class="lead">the edge</span> Everything in prospect theory hangs on the reference point, and prospect theory does not say where the reference point comes from. The theory is a machine for turning gains and losses into value, exquisitely predictive once the reference is fixed — but the reference is the one thing the theory leaves unfixed. Usually it is taken to be the status quo, the chooser's present state; but it can as easily be an expectation he had formed, an aspiration he had set, a high-water mark he remembers, the outcome a neighbor received. And it moves: a windfall that is a gain today is folded into the reference by tomorrow, so that failing to repeat it next week registers as a loss. This freedom is the theory's hidden hazard. Tell the modeller the reference point and he will predict the choice with great accuracy; but if he is permitted to read the reference point off the choice after the fact — to infer, from the fact that you gambled, that you must have felt yourself in the domain of losses — then the theory has been bent back into the shape this table warned of in the plate on the tautology, explaining every outcome because it forbids none. The danger is not idle; a determined practitioner can rationalize almost any behavior by a suitable choice of reference. Prospect theory escapes the charge in practice, because in most settings the reference is independently visible and the predictions are sharp and have been confirmed against genuine risk. But it has not escaped it in principle. It is a powerful structure built on an input the structure itself does not determine — a great descriptive advance that has narrowed, without closing, the old gap between describing a choice and merely redescribing it.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE VII ===================== -->
+    <section class="plate reveal" id="plate-vii" data-label="Plate vii · The Weight">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">vii</div>
+        <p class="plate-kicker">Plate the Seventh &middot; The Behaviors &middot; № XXIV</p>
+        <h3 class="plate-title">The Weight</h3>
+        <p class="plate-gloss">the weighting of probability; the overweighting of rare events; lottery and insurance together</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>why do we pay too dearly for the slim chance of a fortune and the slim chance of a ruin alike?</q></div>
+      <div class="plate-body">
+        <p>The value function told how outcomes are felt; it remains to tell how probabilities are reckoned, and here prospect theory makes its second break with the orthodox account. The expected-utility agent multiplied the value of each outcome by its true probability and summed: a ten-percent chance counted for one-tenth. The actual chooser, prospect theory holds, does not use the probability but a distorted image of it — a decision weight, got by passing the probability through a function that bends it out of true. He does not weight a one-percent chance by one percent. He weights it by something larger, and a ninety-percent chance by something smaller, and the pattern of these distortions is as regular as the value function's kink.</p>
+        <p>The pattern is an inverse curve, an elongated S laid against the diagonal of honest weighting. At the low end, small probabilities are overweighted: the slim chance looms larger in the mind than in the world, so that a one-in-a-thousand prospect is felt as though it were one in a few hundred. At the high end, moderate and large probabilities are underweighted: the strong chance is given less than its due, the near-certainty discounted. Between, the curve crosses the diagonal once, near a third, where for a moment weight and probability agree. And at the very ends the curve does something the diagonal cannot, leaping to meet certainty and impossibility — for the step from a possibility to a sure thing, or from impossibility to a bare chance, carries a weight out of all proportion to the sliver of probability it spans.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ff4t ff4d">
+              <title id="ff4t">The probability weighting function</title>
+              <desc id="ff4d">Decision weight plotted against stated probability in a unit square, with a diagonal marking honest weighting. The weighting curve is an inverse-S: above the diagonal at low probabilities, where rare events are overweighted, crossing once near one-third, then below the diagonal at high probabilities, where likely events are underweighted.</desc>
+              <line class="ax" x1="60" y1="250" x2="404" y2="250"/>
+              <line class="ax" x1="60" y1="250" x2="60" y2="40"/>
+              <polygon points="404,250 396,246 396,254" fill="var(--ink)"/>
+              <polygon points="60,40 56,48 64,48" fill="var(--ink)"/>
+              <text class="lbl-ax" x="232" y="277" text-anchor="middle">stated probability →</text>
+              <text class="lbl-ax" transform="rotate(-90 28 145)" x="28" y="145" text-anchor="middle">decision weight</text>
+              <line class="guide" x1="60" y1="250" x2="380" y2="52"/>
+              <text class="lbl-sm" x="348" y="64" text-anchor="end">weighted truly</text>
+              <polyline class="curve" points="60,250 76,224 92,214 124,198 172,181 220,161 284,127 348,93 364,78 380,52"/>
+              <circle cx="172" cy="181" r="2.4" fill="var(--ink)"/>
+              <text class="lbl-sm" x="98" y="239" text-anchor="start">overweighted</text>
+              <text class="lbl-sm" x="288" y="143" text-anchor="start">underweighted</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 4.</span> The weighting function bends probability into decision weight. Where the curve floats above the diagonal, at the left, rare events are given more weight than they deserve; where it sags below, at the right, likely events are given less; the two regimes meet at the single crossing near one-third. The overweighted left end is the engine of much that follows. A slim chance of a great prize, its probability inflated, tempts us into the lottery; a slim chance of a great loss, equally inflated, drives us to insure. One curvature, read once for gains and once for losses, accounts for the buying of both — the very pairing expected utility had pronounced contradictory.</figcaption>
+        </figure>
+        <p>The reward for this complication is that behavior long thought incoherent falls into order. Consider the lottery and the insurance policy, which the older theory could not house under one roof: a single person who buys both seems at once a lover of risk and a hater of it, risk-seeking for the jackpot and risk-averse for the catastrophe. Prospect theory dissolves the contradiction at a stroke. Both the jackpot and the catastrophe are rare; both their probabilities are overweighted; and a person who feels a one-in-a-million chance as though it were larger will pay over the odds to chase the prize and over the odds to escape the ruin. The lottery and the policy are not two attitudes to risk but one attitude to small probabilities, applied once to a gain and once to a loss. And the same curve, behaving near certainty, resolves the paradox Maurice Allais had thrown at expected utility a generation before — for the leap in weight as a near-certainty becomes a certainty is exactly the disproportionate craving for sureness that Allais's choosers displayed and the orthodox theory forbade.</p>
+        <aside class="pull">The lottery and the insurance policy are not two attitudes to risk but one attitude to small probabilities — applied once to a hoped-for gain and once to a feared loss. The rare event, overweighted, sells both the ticket and the premium.</aside>
+        <p>With value function and weighting function in hand, prospect theory stands as the most complete descriptive account of risky choice that economics has — and its very completeness invites the hardest question of the volume.</p>
+        <aside class="edge"><span class="lead">the edge</span> Is the bending of probability a distortion of the mind, or a reasonable response to a world that hands out probabilities it cannot vouch for? When a person is told that some outcome has a one-percent chance, a wise scepticism is in order, for small probabilities are precisely the ones hardest to know and likeliest to be wrong, and to refuse to weight a shaky one-percent at a flat one percent — to hold something back against the chance that the figure itself is mistaken — is not folly but prudence about a number one did not compute and cannot check. Some of the overweighting of rare events may be exactly this, a rational hedge against the unreliability of the stated odds rather than a misperception of honest ones. There is a further unease, of the kind the previous plate raised about the reference point. The weighting curve is not deduced from any principle; it is fitted to the choices it is meant to explain, its bend and its crossing read off the data and then pronounced the cause of the data. And this points to the deepest reservation of all, which the closing plates must face squarely. Prospect theory, for all its descriptive triumph, tells us <em>that</em> the mind weights the rare event heavily and feels the loss twice over; it does not tell us <em>why</em>. It is an exquisitely accurate portrait of the anomalies, not a theory of the mind that would generate them from something deeper — a curve that fits, where the older theory had offered a reason, however wrong. A description that predicts is a great achievement and not to be belittled. But a description, however faithful, is not yet an understanding, and the gap between the two is where the critics of the whole enterprise have planted their flag.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE VIII ===================== -->
+    <section class="plate reveal" id="plate-viii" data-label="Plate viii · The Possession">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">viii</div>
+        <p class="plate-kicker">Plate the Eighth &middot; The Behaviors &middot; № XXIV</p>
+        <h3 class="plate-title">The Possession</h3>
+        <p class="plate-gloss">the endowment effect; status quo and sunk cost; money that is not fungible</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>why is the thing you own worth more, the instant it becomes the thing you might lose?</q></div>
+      <div class="plate-body">
+        <p>Loss aversion does not stay in the laboratory of gambles; it reaches into the having of things and the holding of money, and there it produces a family of departures so pervasive that economic life is built around them. The first and most studied is the endowment effect: the moment a thing becomes yours, you value it more than you did the moment before. In the experiment that named it, mugs were handed to half the people in a room and the room invited to trade. Standard theory was clear about what should happen — the mugs were distributed at random, tastes were not, so roughly half should change hands as they found their way to those who wanted them most. Almost none did. The owners, asked the least they would take to part with a mug, named about twice what the non-owners, asked the most they would pay to get one, would offer. The mug had not changed. Ownership had, and ownership had doubled its worth.</p>
+        <p>The cause is the kink of the previous plates. Once the mug is yours, it enters the reference point; parting with it is now a loss, and losses loom large, while acquiring one is a mere gain, and gains are discounted. The seller and the buyer are not disagreeing about the mug; they are standing on opposite sides of the reference, one facing a loss and one a gain, and loss aversion drives a wedge between what it takes to surrender a thing and what it takes to obtain it. This wedge has a consequence that reaches back into the foundations laid in earlier volumes. The Coase theorem had promised that when bargaining is cheap, the initial assignment of a right does not matter, since it will be traded to whoever values it most and the same efficient end will be reached either way. The endowment effect breaks the promise: whoever is handed the right values it more for being handed it, and will not trade it away, so the assignment sticks and the allocation we begin with is, very often, the allocation we keep. Where you start determines where you stay.</p>
+        <p>From the same root grow two more departures. There is the bias toward the status quo, the disproportionate pull of things as they are, because any change from the present state must be reckoned partly as a loss and the loss outweighs the matching gain — so the default option, whatever it happens to be, enjoys an advantage it has not earned, and inertia rules choices from insurance plans to the allocation of a pension. And there is the honoring of sunk costs, the refusal to treat money already spent and gone as the irrelevance the rational agent knows it to be. He finishes the tasteless meal because he paid for it, sits to the end of the tedious film, pours fresh money into the failing venture because so much has already gone in — for to abandon the thing is to confess the loss and feel its full weight, while to persist is to keep the loss unrealized a little longer, a comfort the convex loss-arm makes him pay for dearly.</p>
+        <aside class="pull">The mug had not changed; ownership had. Parting with what is yours is felt as a loss and obtaining what is not is felt as a gain — and since losses loom larger, a wedge opens between what it takes to sell and what it takes to buy.</aside>
+        <p>And money itself, which the theory treats as the most fungible thing there is — a pound the same pound whatever its history — the mind insists on sorting into accounts. People keep mental ledgers: the grocery money and the holiday fund and the winnings from the wager are held in separate compartments, spent by different rules, guarded with different zeal. A windfall is squandered where an equal wage would be saved; money labelled <em>winnings</em> is gambled with a freedom money labelled <em>savings</em> never sees; a household runs a balance on a costly card while keeping cash untouched in a jar marked for something else, though paying the card would plainly leave it richer. This is mental accounting, and it violates the plainest axiom of all, that a pound is a pound. The reference point and the loss it defines have, by this plate's end, shown themselves to be not a curiosity of the gambling table but the hidden architecture of how people own, hold, and spend.</p>
+        <aside class="edge"><span class="lead">the edge</span> Each of these departures softens, and some dissolve, when looked at with the charity the closing plates will urge. The endowment effect is not all confusion: to be offered money for what you own is to receive information — that someone, knowing something, wants it — and to raise your price accordingly is sound inference, not sentiment; and tellingly, the effect shrinks toward nothing among traders seasoned by markets, which marks it as a novice's reflex rather than a law of mind. The honoring of sunk costs, foolish in the single decision, can be wise across many: a person or a firm known to finish what it starts earns a reputation that pays, and persistence buys the option of a turnaround that quitting forecloses. And mental accounting, the apparent insult to fungibility, is on closer view one of the shrewdest things the untutored mind does. To wall the holiday fund off from the grocery money, to refuse on principle to raid one's own savings, is to build a private discipline against one's own weakness — the very weakness the volume on the choice described, the present self forever tempted to plunder the future's store. The compartments are the planner's defence against the doer; they are not fungibility misunderstood but fungibility deliberately renounced, because a self that knew its money to be fungible would spend it as a present-biased creature spends, and be poorer for the knowledge. What the theory books as irrationality is, here as so often, a homely technology for governing a self the theory does not admit exists.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE IX ===================== -->
+    <section class="plate reveal" id="plate-ix" data-label="Plate ix · The Conceit">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">ix</div>
+        <p class="plate-kicker">Plate the Ninth &middot; The Behaviors &middot; № XXIV</p>
+        <h3 class="plate-title">The Conceit</h3>
+        <p class="plate-gloss">overconfidence; the above-average self; the plan that always runs late</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>why is everyone so sure — and so much surer than they have any right to be?</q></div>
+      <div class="plate-body">
+        <p>Of all the biases, the one that costs the most is the one that feels the least like a bias, because it feels like competence: overconfidence, the steady overestimation of how much we know, how well we judge, and how reliably the future will unfold as we expect. It wears three faces. The first is the conviction of being above average — most drivers rate themselves better than most drivers, most managers more capable than their peers, most of us more honest, more skilled, and, with a fine irony, less biased than the people around us, in proportions that arithmetic forbids. The second is the planning fallacy, the serene underestimation of how long a task will take and how much it will cost, undimmed by a lifetime of tasks that ran late and over: the renovation that doubles its schedule, the software that ships a year behind, the dissertation eternally a month from done. We plan for the morning when everything goes right, a morning that statistically never comes.</p>
+        <p>The third face is the most precisely measured, and the most damning, for it concerns not what we believe but how sure we are of it. Ask people factual questions and have them mark their confidence, and a systematic gap opens between the confidence claimed and the accuracy delivered. The things they are ninety percent sure of turn out true some seventy or seventy-five percent of the time; the confidence intervals they draw around their estimates are far too narrow, so that the truth falls outside their stated range with a frequency that should have shamed the range. This is miscalibration, and it does not wander; it leans always toward too much certainty, and the leaning grows as the certainty grows.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ff5t ff5d">
+              <title id="ff5t">The calibration curve of overconfidence</title>
+              <desc id="ff5d">Proportion actually correct plotted against stated confidence, with a diagonal for perfect calibration. The overconfidence curve lies below the diagonal throughout and falls further below as confidence rises; at a claimed ninety percent confidence the actual accuracy is about seventy-five percent.</desc>
+              <line class="ax" x1="60" y1="250" x2="404" y2="250"/>
+              <line class="ax" x1="60" y1="250" x2="60" y2="40"/>
+              <polygon points="404,250 396,246 396,254" fill="var(--ink)"/>
+              <polygon points="60,40 56,48 64,48" fill="var(--ink)"/>
+              <text class="lbl-ax" x="232" y="277" text-anchor="middle">stated confidence →</text>
+              <text class="lbl-ax" transform="rotate(-90 28 145)" x="28" y="145" text-anchor="middle">actually correct</text>
+              <line class="guide" x1="60" y1="250" x2="380" y2="52"/>
+              <text class="lbl-sm" x="374" y="66" text-anchor="end">calibrated</text>
+              <line class="guide" x1="316" y1="92" x2="316" y2="151"/>
+              <polyline class="curve" points="60,250 124,218 188,195 252,175 316,151 380,123"/>
+              <circle cx="316" cy="92" r="2.6" fill="none" stroke="var(--ink)" stroke-width="1.3"/>
+              <text class="lbl-sm" x="312" y="86" text-anchor="end">claims 90%</text>
+              <circle cx="316" cy="151" r="2.6" fill="var(--ink)"/>
+              <text class="lbl-sm" x="322" y="155" text-anchor="start">right ~75%</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 5.</span> Confidence against accuracy. Were people calibrated, their sureness would track their correctness along the diagonal — what they are ninety percent sure of would be true nine times in ten. Instead the curve of actual accuracy sags below the diagonal everywhere, and the gap yawns wider as confidence rises: at a professed ninety percent, the truth obliges only about three times in four. Even the things people are <em>certain</em> of betray them once in five or six. The error is not that we are sometimes wrong, which is no error at all, but that we are wrong in a fixed direction — always surer than the record warrants.</figcaption>
+        </figure>
+        <p>Two further habits guard the conceit against correction. Confirmation bias sets us seeking the evidence that flatters our beliefs and sliding past the evidence that would test them, so that a hypothesis once formed is defended rather than examined and grows more certain on a diet of its own confirmations. And hindsight bias, once an event has happened, rewrites our memory of what we expected, persuading us that we knew it all along — which poisons the very learning that might have taught us humility, for a mind that believes it foresaw the last surprise sees no reason to brace for the next. Confidence, shielded from disconfirmation by the one and from the lessons of error by the other, compounds untouched.</p>
+        <aside class="pull">The error is not that we are sometimes wrong — that is no error at all. It is that we are wrong in a fixed direction: always surer than the record warrants, and surest exactly where the record is worst.</aside>
+        <p>The costs fall where the stakes are highest. The overconfident trader, certain he knows what the market does not, trades too often and too large, and the most active traders are reliably the worst rewarded; the overconfident chief executive overpays for the acquisition and overbuilds the capacity; the overconfident forecaster and general and planner march their institutions into the gap between the morning they imagined and the one that came. Overconfidence is the bias that scales — harmless in trivia, ruinous in command.</p>
+        <aside class="edge"><span class="lead">the edge</span> And yet the conceit, of all the biases the most obviously a flaw, may be the most useful, and is in part an artifact of how it is measured. Useful, because confidence does work the world does not reward in accuracy alone: the confident attempt what the modest decline, persist where the realist quits, and persuade where the calibrated hesitate, so that a measure of overconfidence is very likely selected for — the bold win contests and gather followers and seize the chances that a perfectly calibrated caution would forgo, and a species of accurate pessimists might have achieved less and dared nothing. An artifact, because the miscalibration is wrung in good part from questions chosen to deceive: the experimenter favours the tricky item, the plausible falsehood, the exception that trips the rule, and on a fair sample of ordinary questions people are far better calibrated than the laboratory's gauntlet suggests — the same lesson the format of the Linda problem taught. And rational, in any domain where the costs of doubt and the costs of certainty are unequal: where missing the opportunity hurts more than overreaching, a sensible agent should lean toward confidence, and what looks like a bias is a tilt the payoffs justify. None of this repeals the costs at the trading desk and the command post, which are real and have been counted. But it complicates the easy verdict. The most flagrant of the biases is also, in the environments that shaped it, among the most defensible — a flaw in the seminar room that was an asset on the savannah, and is an asset still wherever fortune favours the bold.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE X ===================== -->
+    <section class="plate reveal" id="plate-x" data-label="Plate x · The Arbitrage">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">x</div>
+        <p class="plate-kicker">Plate the Tenth &middot; The Behaviors &middot; № XXIV</p>
+        <h3 class="plate-title">The Arbitrage</h3>
+        <p class="plate-gloss">whether biases survive the market; the limits of arbitrage; behavioral finance</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if some traders are biased, will the clever ones not take their money and set the price right?</q></div>
+      <div class="plate-body">
+        <p>The biases have been catalogued one mind at a time, but economics cares less about minds than about prices, and a price is the work of a market, not a person. So the decisive question is not whether individuals are biased — the foregoing plates have settled that they are — but whether their biases survive the market, or are washed out of it before they reach the price. The orthodox tradition gave a confident answer, and it is the market's version of the defense that opened this volume. Grant that many traders are biased; still, the argument runs, the rational few will see the mispricing the biased create and pounce on it, buying what fear has made too cheap and selling what greed has made too dear, and in the act of profiting they will push the price back to its proper value. The biased lose money to the rational and are bled from the market; the rational, enriched, come to set the price. The market is efficient though its traders are not, for arbitrage launders the folly out of the price and leaves only the truth.</p>
+        <p>It is a beautiful argument, and it rests on an assumption that does not hold: that arbitrage is riskless, costless, and unlimited. It is none of these. The arbitrageur who sells an overpriced asset short bears the risk that its true value rises against him; worse, he bears the risk that the mispricing widens before it closes — that the overpriced grows dearer still, the bubble fatter, as the very biases he is betting against drive other traders to pile in. The market, in Keynes's warning, can stay irrational longer than the arbitrageur can stay solvent. And solvency is precisely what fails him, for the arbitrageur trades on borrowed conviction and others' capital, and his backers, seeing his losses mount as the mispricing worsens, withdraw their money at the very moment it is most needed — so that arbitrage capital drains away exactly when the mispricing is widest and the opportunity greatest. The corrective force the orthodox story relied upon is real but bounded, and where it reaches its bound the bias is not laundered out of the price. It is priced in.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ff6t ff6d">
+              <title id="ff6t">A bubble: price departing from fundamental value</title>
+              <desc id="ff6d">Price and fundamental value plotted over time. Fundamental value rises gently and straight. Price tracks it, then balloons far above into a bubble, peaks, and crashes back, briefly overshooting below before settling near value. The gap at the peak is the mispricing arbitrage failed to close.</desc>
+              <line class="ax" x1="60" y1="250" x2="404" y2="250"/>
+              <line class="ax" x1="60" y1="250" x2="60" y2="40"/>
+              <polygon points="404,250 396,246 396,254" fill="var(--ink)"/>
+              <polygon points="60,40 56,48 64,48" fill="var(--ink)"/>
+              <text class="lbl-ax" x="232" y="277" text-anchor="middle">time →</text>
+              <text class="lbl-ax" transform="rotate(-90 28 145)" x="28" y="145" text-anchor="middle">price</text>
+              <line class="guide" x1="60" y1="205" x2="390" y2="160"/>
+              <text class="lbl-sm" x="66" y="222" text-anchor="start">fundamental value</text>
+              <line class="guide" x1="263" y1="66" x2="263" y2="177"/>
+              <polyline class="curve" points="60,205 110,196 150,188 180,168 210,132 240,92 263,66 278,82 296,128 318,162 345,176 390,166"/>
+              <text class="lbl-sm" x="250" y="54" text-anchor="middle">the bubble</text>
+              <text class="lbl-sm" x="267" y="120" text-anchor="start">mispricing</text>
+              <text class="lbl-sm" x="322" y="140" text-anchor="start">the crash</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 6.</span> What the limits of arbitrage permit. The dashed line is the asset's fundamental value, rising quietly; the solid line is its price. Were arbitrage the perfect corrective the orthodox story imagined, the two would never part. Instead the price tears loose, balloons far above value into a bubble, and the gap stands open — the very gap a rational trader would close, left gaping because closing it early is ruinous and the capital to close it flees as it widens. The bubble peaks, then crashes through value and beyond before settling. The mispricing was not laundered from the price; it was the price, for a season long enough to enrich the bold and ruin the early-correct alike.</figcaption>
+        </figure>
+        <p>The evidence that biases reach the price is now a field of its own, behavioral finance, and it reads the markets for the fingerprints of the minds catalogued here. The premium that stocks have paid over bonds is far larger than risk alone can justify, and matches almost exactly what loss aversion, applied afresh each year to a portfolio watched too closely, would demand — the puzzle of the earlier volume's plate on risk, answered in the idiom of this one. Prices move far more than the news about fundamentals can warrant, an excess volatility that efficient valuation forbids. Momentum carries winners on and reversal drags them back, in patterns no fundamental tracks. And above it all stand the bubbles — the tulip, the company of the South Seas, the dot-com mania, the houses that could only rise — each a season in which price and value parted company before a watching world, and arbitrage stood by, unable or unwilling to close a gap that grew until it burst. The biases do not vanish at the threshold of the market. They tilt the cycle, swell the spread, and inflate the stock, reaching back to touch the volumes that thought prices were made of cooler stuff.</p>
+        <aside class="pull">The market can stay irrational longer than the arbitrageur can stay solvent — and his capital flees as the mispricing widens. Where the corrective reaches its bound, the bias is not laundered from the price. It is the price.</aside>
+        <p>And yet — for the honesty of the table requires the and-yet, and here it is sharper than anywhere — whether the markets are truly inefficient is among the hardest questions in all of economics to settle, and may be unsettleable in principle.</p>
+        <aside class="edge"><span class="lead">the edge</span> The efficient-markets tradition is not routed, and its rejoinders bite. Anomalies are slippery quarry: a great many of them shrink, and some vanish outright, in the years after they are published — which is not a failure of behavioral finance but a sighting of the orthodox mechanism at work, the arbitrageurs reading the journals and trading the anomaly into oblivion. Many more may never have been there at all, dredged up by sifting thousands of patterns until some glitter by chance, a whole zoo of spurious factors bred by the data-mining the discipline now struggles to cage. And for almost every anomaly a risk-based story stands ready to rival the behavioral one — the extra return is not a free lunch left by biased traders but the wage of some risk the simple models failed to measure. Beneath these particular quarrels lies a difficulty that may be fatal to the whole adjudication. To say that price departs from value, one must know value; but value is not observed, it is a theory — the discounted stream of future cash, with discount rates and growth rates no one can see — so that every test of whether a market is efficient is a joint test of efficiency and of some model of what the asset was worth, and a failure can always be blamed on the model rather than the market. This is Fama's deep point, and it cuts the ground from under tidy verdicts on both sides. Even the limits-of-arbitrage argument, the behavioral camp's own best weapon, turns in the hand: if the smart money genuinely cannot profit from a mispricing — too risky, too costly, too soon — then in what operational sense was it mispriced, since no one could have done better by knowing? The position the honest reader is left with is a contested middle. The strong claim that markets are perfectly efficient is dead; bubbles happen and prices overshoot. The opposite hope, that the biases hand out money to anyone who has read this volume, is deader; the limits of arbitrage that let mispricing survive are the same limits that stop you exploiting it. Somewhere between lies the truth, and the joint-hypothesis problem may ensure we never see exactly where.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE XI ===================== -->
+    <section class="plate reveal" id="plate-xi" data-label="Plate xi · The Nudge">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">xi</div>
+        <p class="plate-kicker">Plate the Eleventh &middot; The Behaviors &middot; № XXIV</p>
+        <h3 class="plate-title">The Nudge</h3>
+        <p class="plate-gloss">choice architecture and the nudge; libertarian paternalism and its quarrel</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if people predictably choose against themselves, may the choosing be arranged to help them — and who is to say what they truly want?</q></div>
+      <div class="plate-body">
+        <p>If the mind departs from its own interest in regular and predictable ways, a possibility opens that the older economics had bolted shut: the architecture of a choice can be arranged so that the predictable departure carries the chooser toward his good rather than away from it. This is the practical harvest of the whole field, and it begins from an observation that is harder to dodge than it first appears. Every choice must be presented somehow — in some order, with some option foremost, against some backdrop, under some default — and there is no neutral way to present it, no arrangement that fails to shape what is chosen. Someone designs the form, sets the menu, writes the default; that someone is a choice architect whether the title is claimed or not; and since the architecture cannot help influencing, the question is only whether it will influence by accident or by design, carelessly or for the chooser's benefit.</p>
+        <p>The instrument of choice is the nudge: any feature of the architecture that alters behavior predictably without forbidding any option or materially changing its costs. Its purest form is the default, and the default is mighty for a reason this volume has already given — the bias toward the status quo, the inertia that leaves the preset option in place because moving from it is felt as a loss and trouble besides. Set the default well, and most people will accept it, freely and at no cost to their liberty, for the door to every other option stands open. The most striking demonstration concerns the gift of organs after death. Where the law makes donation a thing one must opt into, by an act of registration, scarcely more than a tenth of a population enrolls; where it makes donation the default, from which one may freely opt out, enrollment climbs toward nine in ten. The people are not different and their feelings about donation are not different. Only the default is different, and the default decides.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ff7t ff7d">
+              <title id="ff7t">The default effect on enrollment</title>
+              <desc id="ff7d">Two bars comparing enrollment under two defaults. Under opt-in, where one must register, about fifteen percent enroll. Under opt-out, where one is enrolled unless declining, about ninety percent enroll. The difference is the work of the default alone.</desc>
+              <line class="ax" x1="90" y1="250" x2="380" y2="250"/>
+              <line class="ax" x1="90" y1="250" x2="90" y2="46"/>
+              <polygon points="380,250 372,246 372,254" fill="var(--ink)"/>
+              <polygon points="90,46 86,54 94,54" fill="var(--ink)"/>
+              <text class="lbl-ax" transform="rotate(-90 40 150)" x="40" y="150" text-anchor="middle">enrolled (%)</text>
+              <line class="ax" x1="86" y1="150" x2="90" y2="150"/>
+              <line class="ax" x1="86" y1="50" x2="90" y2="50"/>
+              <text class="lbl-sm" x="82" y="254" text-anchor="end">0</text>
+              <text class="lbl-sm" x="82" y="154" text-anchor="end">50</text>
+              <text class="lbl-sm" x="82" y="54" text-anchor="end">100</text>
+              <rect x="135" y="220" width="64" height="30" fill="var(--ink)" fill-opacity="0.12" stroke="var(--ink)" stroke-width="1.4"/>
+              <rect x="271" y="70" width="64" height="180" fill="var(--ink)" fill-opacity="0.12" stroke="var(--ink)" stroke-width="1.4"/>
+              <text class="lbl-sm" x="167" y="212" text-anchor="middle">~15%</text>
+              <text class="lbl-sm" x="303" y="62" text-anchor="middle">~90%</text>
+              <text class="lbl" x="167" y="270" text-anchor="middle">opt-in</text>
+              <text class="lbl" x="303" y="270" text-anchor="middle">opt-out</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 7.</span> The default decides. The two bars are the same decision — whether to be an organ donor — put to similar populations under opposite defaults. Where one must act to enroll, few do; where one must act to decline, almost all remain enrolled. No option is removed and no incentive is changed; the liberty to choose either way is untouched. What moves four-fifths of a population from one column to the other is nothing but which box was already ticked — inertia and the dread of a loss, the biases of the earlier plates, harnessed here toward an end most people, asked, say they favor.</figcaption>
+        </figure>
+        <p>From this the architects built a philosophy and a practice. The philosophy, libertarian paternalism, claims to square a circle: paternalist in steering people toward what is good for them, libertarian in leaving every option open and every exit free, it promises help without coercion, a guiding hand that never closes into a fist. The practice spread with remarkable speed — automatic enrollment that turned reluctant savers into savers by the simple expedient of enrolling them unless they refused, units of behavioral insight installed in governments to apply the same art to health and energy and the paying of taxes, a whole apparatus of gentle steering erected on the findings these plates have surveyed. It is, by any worldly measure, the field's great success, the place where the science of the actual mind reached out of the journals and changed how institutions treat the people in their care.</p>
+        <aside class="pull">No option is removed; the exit stays open. What moves four-fifths of a population from one column to the other is only which box was already ticked — the biases of the earlier plates, harnessed toward an end most people say they want.</aside>
+        <p>But the nudge carries a worry it has not dispelled, and the worry runs straight back to the deepest question of the volume on the choice. The nudge steers toward what the architect judges to be the chooser's good — and this volume has spent eleven plates establishing that the chooser's preferences are constructed, framed, anchored, and reference-bound, which is precisely why they could be nudged in the first place. But then which of his shifting preferences is the true one, the one the architect should serve? If his choices are too biased to reveal his good — if revealed preference is broken, as the volume on the choice confessed it might be — then the architect cannot read the chooser's real interest off the chooser's behavior; and if not off his behavior, then off what? The same demolition that licenses the nudge undermines the standard by which the nudge would be judged good. Classical welfare economics had a clean answer to what was good for a person: whatever he chose, for he was sovereign over his own ends. Behavioral economics has shown, more vividly than any critic before it, that what is chosen and what is good come apart — and in showing it has knocked away the only welfare standard economics had, without supplying another. One cannot simply say the architect should steer toward what the chooser would pick if unbiased, for there is no unique unbiased choice to pick — strip away which bias, against which reference point? — and the rational self who would choose it is a fiction, the very fiction the field congratulated itself on exposing. The nudge, the field's proudest achievement, rests on a theory of welfare the field itself has reduced to rubble.</p>
+        <aside class="edge"><span class="lead">the edge</span> The worry is real, but pressed to the end it proves too much, and the case against nudging has troubles of its own. Choice architecture is not optional: some option must be the default, some order must be chosen, and the refusal to nudge does not yield a neutral world but only an unconsidered one, in which the architecture shapes choices by accident instead of design — so the genuine alternative to thoughtful nudging is not freedom but thoughtless nudging, and it is hard to see the dignity in being steered carelessly rather than carefully. The objection that no one can know another's true good, taken at full strength, would forbid not only the nudge but every consumer protection, every piece of advice, every paternalism however mild, and indeed every default whatever — a counsel of paralysis that no one truly accepts. And often the architect knows enough: people themselves, in their reflective moments, say they wish to save more, to eat better, to have donated — so that the nudge can be defended as serving the chooser's own second-order wishes against the first-order impulses that betray them, the planner of the earlier plates assisted against the doer. Yet here the edge must turn honest against itself, for this defense relocates the problem rather than dissolving it. Which second-order wish, stated when, in what frame — for the meta-preferences are biased too, and a person's considered judgment about his own good is no more bedrock than the choices it was meant to correct. The truth is that the practice has outrun its justification. Nudging is frequently defensible and frequently does real good; the architecture is unavoidable and good faith is better than accident. But it leans on a criterion of welfare that this very science unsettled and has not resettled, and the question on which the whole edifice finally rests — what is good for a person, if not what he chooses — is the question the volume on the choice left open, and that this volume, for all it has learned about the mind, has not closed and cannot.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE XII ===================== -->
+    <section class="plate reveal" id="plate-xii" data-label="Plate xii · The Mind">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">xii</div>
+        <p class="plate-kicker">Plate the Twelfth &middot; The Behaviors &middot; № XXIV</p>
+        <h3 class="plate-title">The Mind</h3>
+        <p class="plate-gloss">what the catalogue amounts to; bias, welfare, and economics meeting the mind</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what does the whole catalogue of error amount to — and what is left of the good a person chooses?</q></div>
+      <div class="plate-body">
+        <p>The volume set out to study the ways the actual mind departs from the model of it, and the departures, gathered, make a long and orderly list. There was the founding distinction, that the errors are systematic and not random, and so do not cancel but compound. There was the divided mind that makes them, fast and slow, and the heuristics by which the fast mind answers hard questions with easy ones. There were the three heuristics of judgment — availability, which mistakes the recalled for the frequent; representativeness, which mistakes the similar for the probable; anchoring, which cannot let go of whatever number it started from. There was prospect theory, the great positive achievement, with its value bent at the reference and steeper into loss, and its probabilities bent out of true. There were the departures that follow — the endowment that ownership confers, the inertia of the status quo, the honoring of sunk costs, the compartments of mental accounting, the conceit of the overconfident. And there were the consequences, traced into the market that arbitrage cannot fully discipline and the policy that the nudge would reform. The actual mind, which a century of economics had abstracted away, has been drawn in detail, and the detail is the volume's gift.</p>
+        <p>The order beneath the list is the volume's argument, and it is worth stating plainly at the close. Every error catalogued here has a direction, and the directions are not a thousand separate quirks but the predictable issue of a few mechanisms — the substitution of easy questions for hard, the dominion of a reference point, the asymmetry of loss and gain. To know the mechanism is to forecast the error before it is made, and a thing forecast is a thing understood, at least in part. And because the errors lean the same way for everyone, they survive the aggregation that would have dissolved mere noise: they reach past the single mind into the price, the bubble, the savings rate of a nation, the very places the older economics had declared the irrational could not reach. This is why the catalogue is a contribution to economics and not only to psychology. The mind's departures are not confined to the mind. They are abroad in the world, in the numbers the discipline most cares about.</p>
+        <p>Set beside the volume on the choice, this one completes a single inquiry conducted from two sides. That volume built the rational chooser in his elegance and, honest at the seams, confessed the places he strained against the human original; this volume has walked those seams one by one, mapped the strain, measured its direction, and offered in prospect theory a positive account of the creature who strains. The one asked where the model breaks; the other has answered, here and here and here, and by this much and toward that side. Model and critique, they are not rivals but halves — the architecture and the anatomy of the same chooser, the one indispensable to stating what he is supposed to be, the other to recording what he is. Neither stands complete without the other, and the table has now set down both.</p>
+        <p>With this volume the family of the Behaviors closes. Four volumes have theorized the one figure on whom every price in this work depends: the choice, which is his model, the rational agent maximizing under constraint; the bias, which is his critique, the systematic record of how the living mind departs from that model; the game, which is his strategic extension, the chooser set against other choosers as canny as himself; and the norm, which is his social alternative, the chooser bending to the unwritten rule that no maximizing could derive. They are four ways of seeing the same creature — as optimizer, as erring mind, as strategist, as member — and no one of them is the whole truth, for the chooser is at once all four, and the disagreements among them are not errors to be resolved but facets to be held together. The Behaviors are the last family the table needed to give its prices a chooser worthy of the name, and they are now entire.</p>
+        <p>What, then, is the cost the volume's question asked after — the cost of the mind departing from the model in regular ways? It is reckoned on three ledgers, and the volume has totaled each. For the individual, bias is a private tax: the savings not made, the debts run up, the health neglected, the thousand small mistakes that a sharper creature would not make and that this one makes predictably, against his own interest, to the profit of whoever has read the pattern. For the market, bias is a public distortion that the limits of arbitrage permit to stand: prices that wander from values, volatility past what the news can warrant, bubbles that inflate before a watching world because the force that should correct them is bounded and its capital flees as it is needed. And for the polity, bias is at once an opportunity and a snare — the opportunity of the nudge, which can move millions toward their own professed good at no cost to their liberty, and the snare of a paternalism that presumes to know a good it can no longer read from choice. The mind's regular departures are not free. Someone pays, on every ledger, and the volume has named who.</p>
+        <p>The verdict the table owes must be double, for the truth is double. Behavioral economics is a triumph, and the triumph should not be grudged: it dragged the actual mind into a science that had defined it out of existence, it is rich with fact where the old theory was a beautiful abstraction, it predicts and explains anomalies the old theory had ruled impossible, and it has reached out of the seminar to change how governments and firms and citizens conduct themselves. No honest accounting can call it anything but one of the great advances of the discipline's modern history. And yet it is incomplete in a way that its critics have named justly and that this volume has conceded at every turn. It is, in the unkind phrase, a butterfly collection — a dazzling cabinet of biases pinned and labeled, where the theory it dethroned had offered a single principle from which all behavior flowed. Its finest unification, prospect theory, hangs on a reference point it cannot itself fix and describes the anomalies more than it explains them. Its reach into the markets is contested and, by the joint-hypothesis problem, perhaps permanently undecidable. It is a research program caught in mid-stride, magnificent in its findings and still wanting the parsimony, the single organizing idea, that would make of its catalogue a theory. It unseated a tidy fiction and has not yet built a cathedral to replace the temple it pulled down.</p>
+        <p>But the gravest thing the volume leaves is not an unfinished science; it is an unhealed wound in the foundations of value, and it is the same wound the volume on the choice first opened. Behavioral economics has demonstrated, more vividly and more rigorously than any moralist or critic before it, that what a person chooses and what is good for him come apart — that choice, framed and anchored and reference-bound, does not reliably reveal welfare. This is a finding of the first importance, and it is corrosive, for the welfare standard that economics had leaned upon for a century was exactly the identification of the chosen with the good: the doctrine of revealed preference, the sovereignty of the consumer, the reading of a person's interest off his purchases, which the volumes on utility and on the choice traced to its root. Knock away the premise that choice reveals welfare, and that whole apparatus falls — and behavioral economics has knocked it away. What it has not done, what it cannot yet do, is raise another in its place. There is no agreed criterion of a person's good once his choices are disqualified from defining it, because the rational self whose choices might have counted is a fiction, and there is no single, principled way to strip the biases out — strip which, against what reference, restoring what self that never existed? The field has sharpened the oldest question of the table to a fine point and left it standing: what is good for a person, if not what he chooses? Having met the actual mind at last, economics finds it harder to serve than the tractable phantom it replaced. We have learned, past doubt, that the model was wrong about the mind. We have not learned what the mind's good consists in, nor what it would be to do well by it.</p>
+        <p>And so the volume ends where the honest ones must, with the encounter incomplete. The actual mind has entered economics and brought its beautiful disorder in with it; the science is the richer for the meeting and the foundations are the shakier, and both are true at once. The chooser of the whole table is not the maximizer the table presumed — this much the catalogue has established beyond recall — and what, in the maximizer's place, he is, and what it would mean to reckon his welfare and respect his choosing, the table cannot yet say. The argument remains open.</p>
+      </div>
+    </section>
+  </main>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref">Volume XXIV &middot; The Bias</span>
+    </div>
+    <p class="colophon">Volume XXIV of <em>Numéraire, A Periodic Table of Economic Life</em> — <em>The Bias</em>, the twenty-fourth of twenty-six and the fourth and last of The Behaviors, with which that family is made complete. Twelve plates and seven engravings, each carried to the seam where the seminar and the essay usually part and held there with the rigor of the one and the grace of the other, and each scrupulous about the exact edge of what can be known. The bias is the systematic, predictable way the actual mind departs from the model of rational choice — error not random but directional, and so surviving the aggregation that would dissolve mere noise, to reach the price, the market, and the aggregate the older economics thought it could not touch. This volume assembles the catalogue: the divided mind and its heuristics; availability, representativeness, and the anchor that drags; prospect theory, with the value function bent at the reference and steeper into loss and the probabilities bent out of true; the endowment effect, the status quo, the sunk cost, the compartments of mental accounting, and the conceit of the overconfident; and the consequences, in a market that arbitrage cannot fully discipline and a policy the nudge would reform. It finds a triumph and an incompleteness at once — a science that met the actual mind at last, rich with fact and abroad in the world, and a research program in mid-stride that unseated a tidy fiction without yet raising a unified theory in its place — and it leaves unhealed the deepest wound, the same the volume on the choice opened: that what is chosen and what is good come apart, and economics, having shown it past doubt, has no measure of the good to set where choice once stood. It hands the chooser back to <em>The Choice</em>, the model it has been the critique of; across to <em>The Game</em>, which set him against others as canny as himself; and to <em>The Norm</em>, which watched him bend to the unwritten rule — completing, with these, the Behaviors as a family of four. The figures stand after Kahneman and Tversky, Thaler, Slovic and Lichtenstein, Allais, Keynes, Fama, and Gigerenzer. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<script>
+(function(){
+  var root=document.documentElement; root.classList.add('js');
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var bar=document.getElementById('progress');
+  var topbar=document.getElementById('topbar');
+  var title=document.querySelector('.vol-title');
+  var label=document.getElementById('tb-plate');
+  function onScroll(){
+    var doc=document.documentElement;
+    var h=doc.scrollHeight-window.innerHeight;
+    var p=h>0?Math.min(1,Math.max(0,window.scrollY/h)):0;
+    if(bar) bar.style.transform='scaleX('+p.toFixed(4)+')';
+    if(topbar){
+      var threshold=(title?title.offsetHeight:420)*0.72;
+      if(window.scrollY>threshold) topbar.classList.add('show'); else topbar.classList.remove('show');
+    }
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+  if('IntersectionObserver' in window){
+    var rev=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); rev.unobserve(e.target); } });
+    },{rootMargin:'0px 0px -10% 0px',threshold:0.06});
+    document.querySelectorAll('.reveal').forEach(function(el){ rev.observe(el); });
+    if(label){
+      var cur=new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting){ var t=e.target.getAttribute('data-label'); if(t) label.textContent=t; } });
+      },{rootMargin:'-44% 0px -50% 0px',threshold:0});
+      document.querySelectorAll('.plate[data-label]').forEach(function(el){ cur.observe(el); });
+    }
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-choice.html">← The Choice</a><a rel="next" href="the-game.html">The Game →</a></nav>
+</body>
+</html>

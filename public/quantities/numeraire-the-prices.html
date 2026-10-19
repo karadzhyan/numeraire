@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Numéraire — The Prices — Group I</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+
+  /* ---- masthead ---- */
+  .masthead{padding:clamp(3rem,8vh,6rem) 0 clamp(2rem,5vh,3.4rem);text-align:center;}
+  .orn{display:flex;justify-content:center;margin:0 auto 1.9rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;}
+  .edition{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+  .kicker{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;
+    font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--faintest);
+    margin:clamp(1.6rem,4vh,2.6rem) 0 0;}
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.3rem,6.5vw,4.6rem);line-height:1.02;letter-spacing:-.025em;margin:.5rem 0 0;text-wrap:balance;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:43rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  /* ---- legend ---- */
+  .legend{display:flex;flex-wrap:wrap;justify-content:center;gap:1.4rem 2.2rem;align-items:center;
+    margin:clamp(1.8rem,4vh,2.6rem) auto 0;padding-top:1.8rem;border-top:1px solid var(--hair);max-width:50rem;}
+  .legend-item{display:flex;align-items:center;gap:.55rem;font-size:.82rem;color:var(--faint);}
+  .legend-swatch{width:20px;height:20px;border:1px solid var(--hair);border-radius:2px;flex:0 0 auto;}
+  .legend-swatch.lit{background:var(--ink);border-color:var(--ink);}
+  .legend-anatomy{font-size:.82rem;color:var(--faint);}
+  .legend-anatomy b{font-family:"Fraunces",serif;font-weight:500;color:var(--soft);}
+  .legend-anatomy em{font-style:italic;}
+
+  /* ---- the argument of the group ---- */
+  .argument{max-width:46rem;margin:clamp(2.2rem,5vh,3.2rem) auto 0;padding-top:clamp(2rem,4vh,2.6rem);
+    border-top:1px solid var(--hair);}
+  .arg-lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--faintest);display:block;margin:0 0 1.2rem;}
+  .argument p{font-size:clamp(1rem,1.25vw,1.1rem);line-height:1.74;color:var(--soft);margin:0 0 1.05rem;text-wrap:pretty;}
+  .argument p:last-child{margin-bottom:0;}
+  .argument em{font-style:italic;}
+  .argument .lede{text-indent:0;}
+  .argument .lede::first-letter{
+    font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    float:left;font-size:3.1rem;line-height:.82;padding:.06em .12em 0 0;color:var(--ink);}
+
+  /* ---- the table ---- */
+  main{padding:clamp(2.6rem,6vh,4.4rem) 0 0;}
+  .group{margin:0 0 clamp(2.4rem,5vh,3.6rem);}
+  .group-head{display:flex;align-items:baseline;gap:.9rem;margin:0 0 1.25rem;}
+  .group-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-size:.86rem;color:var(--faintest);letter-spacing:.04em;flex:0 0 auto;}
+  .group-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);flex:0 0 auto;}
+  .group-rule{flex:1;height:1px;background:var(--hair);position:relative;top:-2px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(176px,1fr));gap:13px;}
+
+  .el{appearance:none;-webkit-appearance:none;background:var(--paper);border:1px solid var(--hair);border-radius:2px;
+    padding:15px 15px 17px;text-align:left;cursor:pointer;position:relative;min-height:150px;
+    display:flex;flex-direction:column;color:inherit;font-family:inherit;
+    transition:border-color .22s ease,background .22s ease,transform .22s ease,box-shadow .22s ease;}
+  .el:hover{border-color:var(--faintest);transform:translateY(-2px);}
+  .el-num{position:absolute;top:11px;right:13px;font-family:"Fraunces",serif;font-size:.72rem;color:var(--faintest);letter-spacing:.03em;}
+  .el-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2.15rem;line-height:1;margin-top:.5rem;letter-spacing:-.012em;}
+  .el-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1rem;margin-top:.55rem;line-height:1.12;}
+  .el-gloss{font-size:.77rem;color:var(--faint);line-height:1.34;margin-top:.3rem;}
+  .el-plates{margin-top:auto;padding-top:.7rem;font-family:"Fraunces",serif;font-size:.68rem;letter-spacing:.05em;color:var(--faintest);}
+  .el.lit{background:var(--ink);border-color:var(--ink);}
+  .el.lit .el-sym,.el.lit .el-name{color:var(--paper);}
+  .el.lit .el-num{color:rgba(240,235,225,.55);}
+  .el.lit .el-gloss{color:rgba(240,235,225,.66);}
+  .el.lit .el-plates{color:rgba(240,235,225,.5);}
+  .el.sel{box-shadow:inset 0 0 0 1.5px var(--ink);border-color:var(--ink);}
+  .el.lit.sel{box-shadow:inset 0 0 0 1.5px var(--paper);}
+
+  /* ---- detail panel ---- */
+  .detail{margin:clamp(2.4rem,5vh,3.6rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);scroll-margin-top:1.4rem;}
+  .d-head{display:flex;gap:1.3rem;align-items:flex-start;}
+  .d-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 500;font-size:2.7rem;line-height:1;
+    color:var(--ink);flex:0 0 auto;border:1px solid var(--hair);border-radius:2px;
+    width:86px;height:86px;display:flex;align-items:center;justify-content:center;}
+  .d-sym.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .d-titles{min-width:0;}
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);}
+  .d-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.7rem,3.6vw,2.5rem);margin:.22rem 0 .35rem;line-height:1.04;letter-spacing:-.016em;}
+  .d-status{font-size:.84rem;color:var(--faint);font-style:italic;}
+  .d-status.print{color:var(--soft);font-style:normal;}
+  .d-status.print::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .d-desc{font-size:1.05rem;line-height:1.72;color:var(--ink);max-width:42rem;margin:1.3rem 0 0;text-wrap:pretty;}
+  .d-openq{margin:1.5rem 0 0;max-width:40rem;}
+  .d-openq .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.5rem;}
+  .d-openq q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);quotes:none;}
+
+  .d-plates{margin:2.2rem 0 0;}
+  .d-plates h3{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.76rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faint);margin:0 0 1.3rem;}
+  .plate-list{list-style:none;margin:0;padding:0;max-width:42rem;}
+  .plate-list li{display:grid;grid-template-columns:2.3rem 1fr;column-gap:1rem;align-items:baseline;
+    padding:.72rem 0;border-top:1px solid var(--hair);}
+  .plate-list li:first-child{border-top:none;}
+  .pl-num{font-family:"Fraunces",serif;font-size:.9rem;color:var(--faintest);text-align:right;}
+  .pl-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.04rem;color:var(--ink);line-height:1.15;}
+  .pl-gloss{grid-column:2;font-size:.84rem;color:var(--faint);font-style:italic;margin-top:.18rem;line-height:1.36;}
+  .pl-tag{display:inline-block;margin-left:.6rem;font-family:"Newsreader",serif;font-style:normal;
+    font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--paper);background:var(--ink);
+    border-radius:2px;padding:.12em .5em;vertical-align:.12em;}
+  .pl-essaylink{color:inherit;text-decoration:none;border-bottom:1.5px solid var(--ink);padding-bottom:1px;transition:opacity .18s ease;}
+  .pl-essaylink:hover{opacity:.62;}
+  .pl-bridge{grid-column:2;font-size:.78rem;color:var(--faintest);margin-top:.3rem;}
+  .pl-bridge b{font-family:"Fraunces",serif;font-weight:500;font-style:normal;color:var(--faint);}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:62ch;}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}.rise.d4{animation-delay:.42s}
+    .group{opacity:0;transform:translateY(14px);animation:rise .9s cubic-bezier(.2,.6,.2,1) both;animation-delay:.56s;}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;}
+    .el{min-height:138px;padding:12px 12px 14px;}
+    .el-sym{font-size:1.9rem;}
+    .el-name{font-size:.92rem;}
+    .el-gloss{font-size:.72rem;}
+    .el-plates{font-size:.64rem;}
+    .d-head{gap:1rem;}
+    .d-sym{width:64px;height:64px;font-size:2rem;}
+    .argument .lede::first-letter{font-size:2.6rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-quantities">The Quantities edition · contents</a><a href="numeraire-the-table.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="rise d1">
+      <span class="imprint">Numéraire</span>
+      <div class="edition">Group I of <a href="numeraire-the-table.html" style="color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px;text-decoration-color:var(--faintest)">the table of twenty-six</a></div>
+    </div>
+    <div class="kicker rise d2">Where the Table Began · Five Volumes</div>
+    <h1 class="rise d2">The Prices</h1>
+    <p class="standfirst rise d3">The five prices that are not prices of things but of positions — labor, location, time, risk, and standing between. Each a verdict on a hidden contest, commonly mistaken for a fact of nature. <em>Where the table began; and, set last of the six, where it closes.</em></p>
+    <div class="legend rise d3">
+      <span class="legend-item"><span class="legend-swatch lit"></span>in print</span>
+      <span class="legend-item"><span class="legend-swatch"></span>in preparation</span>
+      <span class="legend-anatomy">Each tile is a <b>volume</b>; select one to open its <b>twelve plates</b>. Here Volume I, <em>The Wage</em>, stands <b>in print</b> — five of its twelve plates published — alone in all the table.</span>
+    </div>
+  </header>
+
+  <section class="argument rise d4" aria-label="The argument of the group">
+    <span class="arg-lead">The argument of the group — and the close of the table</span>
+    <p class="lede">Here the table began, and here it ends. The Prices was the opening family — the wage, the rent, the rate — and it carried, from the first page, the whole argument in miniature: that every ordinary price is a verdict on a hidden contest, commonly mistaken for a fact of nature. Having now passed through the quantities and the failures, the institutions, the aggregates, and the behaviors beneath them all, the argument returns to where it was first made — to be read, this time, whole.</p>
+    <p>What sets these five apart is that none is quite the price of a thing. The wage is the price of an hour of a life; the rent, of a position others must pass through; the rate, of time itself; the premium, of bearing what cannot be foreseen; the spread, of merely standing between. They are the prices of <em>places</em> in the structure of exchange — and each, looked at closely, rides the same unsettled seam. Is the wage the measure of a worker's worth, or of an employer's power? Is the rent earned by improving the land, or extracted from owning it? Is the rate the reward for patience, or for the control of money? Is the great fortune the wage of courage, or the residue of luck? Does the middleman's cut buy a service, or levy a toll? In every case the orthodox answer — that the price measures a real contribution — meets a heterodox shadow: that it measures, instead, a position held.</p>
+    <p>That seam, between the earned and the extracted, is the hidden contest the whole table was built to read honestly — and it runs, undisguised, through all five of these everyday verdicts. It is why the work opened here, with <em>The Wage</em>: the price most of us meet first, and argue over longest, and the one volume carried into print. A <em>numéraire</em> of honesty, sought across twenty-six volumes and six families, comes at last to rest on something plain — a way of seeing these five prices for what they are. Not facts of nature. Not the impartial verdicts of a market that merely <em>is</em>. But the outcomes of contests, some fair and some not, that the smoothness of a quoted price was always built to conceal. The circle closes where it opened; the table is whole; the argument, as it was on the first page, remains open.</p>
+  </section>
+
+  <main>
+    <section class="group">
+      <div class="group-head"><span class="group-num fr">Group I</span><span class="group-name">The Prices</span><span class="group-rule"></span></div>
+      <div class="grid">
+        <button class="el lit" data-id="wage" aria-label="The Wage — the price of labor — in print"><span class="el-num">01</span><span class="el-sym">Wg</span><span class="el-name">The Wage</span><span class="el-gloss">the price of labor</span><span class="el-plates">XII of XII in print</span></button>
+        <button class="el lit" data-id="rent" aria-label="The Rent — the price of position — twelve plates"><span class="el-num">02</span><span class="el-sym">Rn</span><span class="el-name">The Rent</span><span class="el-gloss">the price of position</span><span class="el-plates">XII of XII in print</span></button>
+        <button class="el lit" data-id="rate" aria-label="The Rate — the price of time — in print"><span class="el-num">03</span><span class="el-sym">Rt</span><span class="el-name">The Rate</span><span class="el-gloss">the price of time</span><span class="el-plates">XII of XII in print</span></button>
+        <button class="el lit" data-id="premium" aria-label="The Premium — the price of risk — in print"><span class="el-num">04</span><span class="el-sym">Pm</span><span class="el-name">The Premium</span><span class="el-gloss">the price of risk</span><span class="el-plates">XII of XII in print</span></button>
+        <button class="el lit" data-id="spread" aria-label="The Spread — the price of standing between — in print"><span class="el-num">05</span><span class="el-sym">Sp</span><span class="el-name">The Spread</span><span class="el-gloss">the price of standing between</span><span class="el-plates">XII of XII in print</span></button>
+      </div>
+    </section>
+  </main>
+
+  <section class="detail" id="detail" aria-live="polite"></section>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref">Group I · The Prices</span>
+    </div>
+    <p class="colophon">The first of the table's six families — and the last to be set. <em>The Wage</em>, <em>The Rent</em>, <em>The Rate</em>, <em>The Premium</em>, <em>The Spread</em>: the five fundamental prices, each the price not of a thing but of a position, and each riding the same unsettled seam between the earned and the extracted. With this group the table of twenty-six is complete in plan — six families, twenty-six volumes, three hundred and twelve plates conceived; Volume I, <em>The Wage</em>, Volume II, <em>The Rent</em>, Volume III, <em>The Rate</em>, the price of time, Volume IV, <em>The Premium</em>, the price of risk, and Volume V, <em>The Spread</em>, the price of standing between, each now complete in all twelve of its plates &mdash; the first five volumes of the table published in full, sixty plates set down in whole, and with them the first of the table’s six families, <em>The Prices</em>, entire. The work opened with the wage and returns to it here; the <em>numéraire</em> it set out to find was, in the end, a way of reading every such price for the contest it conceals. Set in Fraunces and Newsreader. The argument, as ever, remains open.</p>
+  </footer>
+
+</div>
+
+<script>
+const DATA = {
+  wage:{group:"The Prices",gi:"I",status:"in print · № I · 12 of 12 plates",print:true,
+    desc:"The price of the thing most people sell. From the marginal-productivity orthodoxy — that a worker is paid the value of the last hour worked — through monopsony's quiet inversion, to the modern question of how much of any wage measures the worker's worth, and how much measures the employer's power.",
+    plates:[
+      {n:"i",title:"The Bargain",gloss:"the wage as unequal exchange; Smith's asymmetry",inprint:true,essay:"numeraire-plate-the-bargain.html"},
+      {n:"ii",title:"The Margin",gloss:"the marginal-productivity orthodoxy",inprint:true,essay:"numeraire-plate-the-margin.html"},
+      {n:"iii",title:"The Subsistence",gloss:"the classical and Marxian alternatives",inprint:true,essay:"numeraire-plate-the-subsistence.html"},
+      {n:"iv",title:"The Skill",gloss:"human capital and the return to schooling",inprint:true,essay:"numeraire-plate-the-skill.html"},
+      {n:"v",title:"The Difference",gloss:"compensating differentials",inprint:true,essay:"numeraire-plate-the-difference.html"},
+      {n:"vi",title:"The Discrimination",gloss:"taste-based versus statistical",inprint:true,essay:"numeraire-plate-the-discrimination.html"},
+      {n:"vii",title:"The Floor",gloss:"the minimum wage in the competitive model",inprint:true,essay:"numeraire-plate-the-floor.html"},
+      {n:"viii",title:"The Monopsony",gloss:"employer power and the inversion",inprint:true,essay:"numeraire-plate-monopsony.html"},
+      {n:"ix",title:"The Union",gloss:"collective bargaining and countervailing power",inprint:true,essay:"numeraire-plate-the-union.html"},
+      {n:"x",title:"The Insurance",gloss:"search, the reservation wage, the safety net",inprint:true,essay:"numeraire-plate-the-insurance.html"},
+      {n:"xi",title:"The Machine",gloss:"automation and the future of the wage",inprint:true,essay:"numeraire-plate-the-machine.html"},
+      {n:"xii",title:"The Share",gloss:"labor's share and the great divergence",inprint:true,essay:"numeraire-plate-the-share.html"}
+    ]},
+  rent:{group:"The Prices",gi:"I",status:"in print · № II · 12 of 12 plates",
+    desc:"The price of position — land, location, spectrum, the platform's gate. Ricardo to Henry George to the digital landlord: the return to owning the spot that others must pass through, and the old, unsettled question of whether that return is earned or merely extracted.",
+    openq:"who earns the value of merely owning the spot that others must pass through?",
+    plates:[
+      {n:"i",title:"The Differential",gloss:"Ricardo, 1817; rent as the plain gift of the better land over the worse",inprint:true,essay:"numeraire-plate-the-differential.html"},
+      {n:"ii",title:"The Marginal Land",gloss:"the worst plot in use, which pays no rent itself and yet sets the price",bridge:"The Margin",inprint:true,essay:"numeraire-plate-the-marginal-land.html"},
+      {n:"iii",title:"The Scarcity",gloss:"the general law; the surplus accruing to whatever is fixed and cannot be made more of",inprint:true,essay:"numeraire-plate-the-scarcity.html"},
+      {n:"iv",title:"The Quasi-Rent",gloss:"Marshall; the passing rent earned by what cannot, just yet, be reproduced",inprint:true,essay:"numeraire-plate-the-quasi-rent.html"},
+      {n:"v",title:"The Unearned",gloss:"Mill and George; the increment the owner did nothing whatever to create",bridge:"The Tax",inprint:true,essay:"numeraire-plate-the-unearned.html"},
+      {n:"vi",title:"The Location",gloss:"von Thünen and Alonso; the rent of nearness, and the city as a gradient of price",inprint:true,essay:"numeraire-plate-the-location.html"},
+      {n:"vii",title:"The Agglomeration",gloss:"why the value pools, and keeps pooling, where others already are",bridge:"The Growth",inprint:true,essay:"numeraire-plate-the-agglomeration.html"},
+      {n:"viii",title:"The Monopoly Rent",gloss:"the return not to natural scarcity but to a barrier deliberately raised",bridge:"The Power",inprint:true,essay:"numeraire-plate-the-monopoly-rent.html"},
+      {n:"ix",title:"The Rent-Seeking",gloss:"Tullock and Krueger; the effort poured into capturing a rent rather than making value",bridge:"The Surplus",inprint:true,essay:"numeraire-plate-the-rent-seeking.html"},
+      {n:"x",title:"The Resource",gloss:"Hotelling; the rent of what the earth holds in fixed store and will not replace",bridge:"The Stock",inprint:true,essay:"numeraire-plate-the-resource.html"},
+      {n:"xi",title:"The Spectrum",gloss:"the radio wave, the patent, the landing slot; scarcity conjured by decree",bridge:"The Rule",inprint:true,essay:"numeraire-plate-the-spectrum.html"},
+      {n:"xii",title:"The Gate",gloss:"the digital landlord; the toll levied on the marketplace by whoever owns the gate",bridge:"The Spread",inprint:true,essay:"numeraire-plate-the-gate.html"}
+    ]},
+  rate:{group:"The Prices",gi:"I",status:"in print · № III · 12 of 12 plates",
+    desc:"The price of time. Why a dollar tomorrow is worth less than a dollar today, who fixes that discount, and how the entire architecture of interest — mortgages, bonds, the cost of a nation's debt — rests on a single number a central bank can move.",
+    openq:"who decides what an hour of waiting is worth?",
+    plates:[
+      {n:"i",title:"The Discount",gloss:"why a good tomorrow is worth less than the very same good today",inprint:true,essay:"numeraire-plate-the-discount.html"},
+      {n:"ii",title:"The Impatience",gloss:"Böhm-Bawerk and Fisher; the reasons we will not, after all, simply wait",inprint:true,essay:"numeraire-plate-the-impatience.html"},
+      {n:"iii",title:"The Roundabout",gloss:"the rate as the reward for the productivity of patient, indirect production",bridge:"The Stock",inprint:true,essay:"numeraire-plate-the-roundabout.html"},
+      {n:"iv",title:"The Loanable Funds",gloss:"saving against investment; the rate that clears the market for the future",inprint:true,essay:"numeraire-plate-the-loanable-funds.html"},
+      {n:"v",title:"The Liquidity Preference",gloss:"Keynes; the rate as the price of parting with money, not of waiting",bridge:"The Cycle",inprint:true,essay:"numeraire-plate-the-liquidity-preference.html"},
+      {n:"vi",title:"The Natural Rate",gloss:"Wicksell; the rate that would steady the economy, which money can pull away from",bridge:"The Level",inprint:true,essay:"numeraire-plate-the-natural-rate.html"},
+      {n:"vii",title:"The Yield Curve",gloss:"the term structure; the price of time stretched out across the years",bridge:"The Premium",inprint:true,essay:"numeraire-plate-the-yield-curve.html"},
+      {n:"viii",title:"The Real",gloss:"Fisher; the rate one is quoted against the rate one truly earns, once inflation is told",inprint:true,essay:"numeraire-plate-the-real.html"},
+      {n:"ix",title:"The Usury",gloss:"the long moral war against the price of time, from Aristotle to the Scholastics",inprint:true,essay:"numeraire-plate-the-usury.html"},
+      {n:"x",title:"The Zero Bound",gloss:"the floor that proved no floor; negative rates, and the strangeness of paying to be owed",bridge:"The Cycle",inprint:true,essay:"numeraire-plate-the-zero-bound.html"},
+      {n:"xi",title:"The Far Future",gloss:"the social discount rate; Stern against Nordhaus, and the worth of a distant generation",bridge:"The Externality",inprint:true,essay:"numeraire-plate-the-far-future.html"},
+      {n:"xii",title:"The Single Number",gloss:"the short rate the central bank sets, and the whole architecture that hangs from it",bridge:"The Money",inprint:true,essay:"numeraire-plate-the-single-number.html"}
+    ]},
+  premium:{group:"The Prices",gi:"I",status:"in print · № IV · 12 of 12 plates",
+    desc:"The price of risk. Insurance, the equity premium, the cost of bearing what cannot be foreseen — and the awkward question of how much of every great fortune is payment for skill, and how much is merely the reward for having borne uncertainty and survived.",
+    openq:"how much of a fortune is courage, and how much is luck?",
+    plates:[
+      {n:"i",title:"The Aversion",gloss:"why a certain sum is preferred to a gamble of the very same average",bridge:"The Utility",inprint:true,essay:"numeraire-plate-the-aversion.html"},
+      {n:"ii",title:"The St. Petersburg",gloss:"Bernoulli's paradox, and the first reckoning that risk is more than its average",inprint:true,essay:"numeraire-plate-the-st-petersburg.html"},
+      {n:"iii",title:"The Pool",gloss:"insurance; the law of large numbers turning many small fears into one calm average",bridge:"The Asymmetry",inprint:true,essay:"numeraire-plate-the-pool.html"},
+      {n:"iv",title:"The Reward",gloss:"the risk premium proper; the extra return demanded for holding the uncertain",inprint:true,essay:"numeraire-plate-the-reward.html"},
+      {n:"v",title:"The Diversification",gloss:"Markowitz; the one free lunch — shedding the risk one need not have borne",inprint:true,essay:"numeraire-plate-the-diversification.html"},
+      {n:"vi",title:"The Beta",gloss:"Sharpe; the risk that cannot be diversified away, and the only risk the market will pay for",inprint:true,essay:"numeraire-plate-the-beta.html"},
+      {n:"vii",title:"The Efficient Market",gloss:"Fama; if risk is all that is paid for, then no skill can reliably beat the price",inprint:true,essay:"numeraire-plate-the-efficient-market.html"},
+      {n:"viii",title:"The Puzzle",gloss:"Mehra and Prescott; the equity premium too vast for any sober fear to explain",bridge:"The Bias",inprint:true,essay:"numeraire-plate-the-puzzle.html"},
+      {n:"ix",title:"The Profit",gloss:"Knight; profit as the reward not for risk, which can be priced, but for the unforeseeable",bridge:"The Firm",inprint:true,essay:"numeraire-plate-the-profit.html"},
+      {n:"x",title:"The Black Swan",gloss:"the rare catastrophe the bell curve hides, and the premium routinely underprices",bridge:"The Cycle",inprint:true,essay:"numeraire-plate-the-black-swan.html"},
+      {n:"xi",title:"The Survivor",gloss:"skill against luck; the survivorship bias, and the failed gamblers we never see",bridge:"The Choice",inprint:true,essay:"numeraire-plate-the-survivor.html"},
+      {n:"xii",title:"The Fortune",gloss:"the verdict: how much of any great fortune is courage, and how much mere survival",bridge:"The Stock",inprint:true,essay:"numeraire-plate-the-fortune.html"}
+    ]},
+  spread:{group:"The Prices",gi:"I",status:"in print · № V · 12 of 12 plates",
+    desc:"The price of standing between. The broker's cut, the bid-ask, the platform's take rate — the economics of intermediation, and the line, never quite where either side claims it lies, between the middleman who creates value and the one who merely levies a toll on its passage.",
+    openq:"when does the middleman earn his cut, and when does he merely levy it?",
+    plates:[
+      {n:"i",title:"The Middleman",gloss:"the oldest suspicion in commerce, and the function that suspicion conceals",inprint:true,essay:"numeraire-plate-the-middleman.html"},
+      {n:"ii",title:"The Search",gloss:"why buyer and seller, left to themselves, so often fail to find each other",bridge:"The Wage",inprint:true,essay:"numeraire-plate-the-search.html"},
+      {n:"iii",title:"The Bid-Ask",gloss:"the two prices of one thing, and the gap the dealer quietly keeps",inprint:true,essay:"numeraire-plate-the-bid-ask.html"},
+      {n:"iv",title:"The Liquidity",gloss:"the service of immediacy; the right to trade now, and at a price",bridge:"The Money",inprint:true,essay:"numeraire-plate-the-liquidity.html"},
+      {n:"v",title:"The Holding",gloss:"the dealer's risk of carrying the thing while awaiting the other side",bridge:"The Premium",inprint:true,essay:"numeraire-plate-the-holding.html"},
+      {n:"vi",title:"The Informed",gloss:"Glosten and Milgrom; the spread widened against whoever trades knowing more",bridge:"The Asymmetry",inprint:true,essay:"numeraire-plate-the-informed.html"},
+      {n:"vii",title:"The Delegate",gloss:"Diamond; the bank as delegated monitor, standing between the saver and the borrower",bridge:"The Firm",inprint:true,essay:"numeraire-plate-the-delegate.html"},
+      {n:"viii",title:"The Arbitrage",gloss:"the trader who, standing between two prices, presses them into one",inprint:true,essay:"numeraire-plate-the-arbitrage.html"},
+      {n:"ix",title:"The Take Rate",gloss:"the platform's cut, and the venue that prices its own indispensability",bridge:"The Power",inprint:true,essay:"numeraire-plate-the-take-rate.html"},
+      {n:"x",title:"The Toll",gloss:"the rentier middleman; the cut that reflects not a service but a chokepoint held",bridge:"The Rent",inprint:true,essay:"numeraire-plate-the-toll.html"},
+      {n:"xi",title:"The Disintermediation",gloss:"the standing promise, never quite kept, to cut the middleman clean out",bridge:"The Contract",inprint:true,essay:"numeraire-plate-the-disintermediation.html"},
+      {n:"xii",title:"The Line",gloss:"the verdict: where service ends and toll begins, never quite where either claims",bridge:"The Surplus",inprint:true,essay:"numeraire-plate-the-line.html"}
+    ]}
+};
+
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+function render(id){
+  var tile=document.querySelector('.el[data-id="'+id+'"]');
+  var d=DATA[id]; if(!d||!tile) return;
+  var sym=tile.querySelector('.el-sym').textContent;
+  var name=tile.querySelector('.el-name').textContent;
+  var num=tile.querySelector('.el-num').textContent;
+  var lit=tile.classList.contains('lit');
+  var h='';
+  h+='<div class="d-head">';
+  h+='<div class="d-sym'+(lit?' lit':'')+'">'+esc(sym)+'</div>';
+  h+='<div class="d-titles">';
+  h+='<div class="d-family">'+esc(d.group)+' &middot; Group '+d.gi+' &middot; '+esc(num)+'</div>';
+  h+='<h2 class="d-name">'+esc(name)+'</h2>';
+  h+='<div class="d-status'+(d.print?' print':'')+'">'+esc(d.status)+'</div>';
+  h+='</div></div>';
+  h+='<p class="d-desc">'+esc(d.desc)+'</p>';
+  if(d.openq){
+    var lead=d.plates ? 'Its opening question' : 'The first plate would ask';
+    h+='<p class="d-openq"><span class="lead">'+lead+'</span><q>'+esc(d.openq)+'</q></p>';
+  }
+  if(d.plates){
+    var platesHead=d.print ? 'The twelve plates of this volume' : 'The twelve plates, as set';
+    h+='<div class="d-plates"><h3>'+platesHead+'</h3><ol class="plate-list">';
+    d.plates.forEach(function(p){
+      h+='<li'+(p.inprint?' class="inprint"':'')+'>';
+      h+='<span class="pl-num">'+p.n+'</span>';
+      h+='<span class="pl-title">'+(p.essay?'<a class="pl-essaylink" href="'+p.essay+'">'+esc(p.title)+'</a>':esc(p.title))+(p.inprint?'<span class="pl-tag">in print</span>':'')+'</span>';
+      h+='<span class="pl-gloss">'+esc(p.gloss)+'</span>';
+      if(p.bridge){h+='<span class="pl-bridge">a bridge to <b>'+esc(p.bridge)+'</b></span>';}
+      h+='</li>';
+    });
+    h+='</ol></div>';
+  }
+  document.getElementById('detail').innerHTML=h;
+  var prev=document.querySelector('.el.sel'); if(prev) prev.classList.remove('sel');
+  tile.classList.add('sel');
+}
+
+(function(){
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.el').forEach(function(b){
+    b.addEventListener('click',function(){
+      render(b.dataset.id);
+      document.getElementById('detail').scrollIntoView({behavior:reduce?'auto':'smooth',block:'nearest'});
+    });
+  });
+  var __h=(location.hash||'').replace(/^#/,'');
+  render(DATA[__h]?__h:'wage');
+  if(__h&&DATA[__h]){document.getElementById('detail').scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});}
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="numeraire-the-table.html">← Numéraire</a><a rel="next" href="numeraire-the-quantities.html">Numéraire →</a></nav>
+</body>
+</html>

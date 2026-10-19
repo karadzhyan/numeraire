@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Numéraire — Numéraire, The Money, Plate i</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:66rem; --measure:35rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(2.8rem,7vh,5rem) 0 clamp(1.4rem,3.5vh,2.2rem);text-align:center;}
+
+  .crumbs{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 400;
+    font-size:.8rem;letter-spacing:.04em;color:var(--faint);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:center;gap:.55rem;}
+  .crumbs a{text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .2s ease,color .2s ease;}
+  .crumbs a:hover{border-color:var(--num);color:var(--ink);}
+  .crumbs .sep{color:var(--faintest);}
+  .crumbs .here{color:var(--ink);}
+
+  .plate-mark{width:116px;height:116px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:.18rem;line-height:1;}
+  .plate-mark.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pm-vol{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.84rem;letter-spacing:.06em;color:rgba(240,235,225,.62);}
+  .pm-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;
+    font-size:2.5rem;letter-spacing:.02em;text-transform:uppercase;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.3rem,6.5vw,4.4rem);line-height:1.02;letter-spacing:-.025em;margin:1rem 0 0;text-wrap:balance;}
+  .status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:42rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .epi{max-width:38rem;margin:clamp(2.2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .epi q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.46;color:var(--ink);quotes:none;display:block;text-wrap:pretty;}
+  .epi .cite{display:block;margin-top:.95rem;font-size:.78rem;color:var(--faintest);letter-spacing:.05em;font-style:normal;}
+  .epi .cite em{font-style:italic;}
+
+  .essay{max-width:52rem;margin:clamp(3rem,7vh,5rem) auto 0;counter-reset:sn;}
+  .essay::after{content:"";display:block;clear:both;}
+  .essay > p,.essay > .pull{max-width:var(--measure);}
+  .essay p{font-size:1.075rem;line-height:1.8;color:var(--ink);margin:0 0 1.4rem;text-wrap:pretty;}
+  .essay em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.72;padding:.08em .14em 0 0;color:var(--ink);}
+
+  .divider{display:flex;justify-content:center;margin:2.4rem 0;}
+  .divider svg{width:96px;height:12px;overflow:visible;}
+  .divider line{stroke:var(--num);stroke-width:1;} .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.5vw,1.74rem);line-height:1.34;color:var(--ink);text-align:center;
+    margin:2.4rem auto;max-width:33rem;text-wrap:balance;}
+
+  .snref{font-family:"Fraunces",serif;font-size:.64em;line-height:0;vertical-align:super;
+    color:var(--soft);counter-increment:sn;margin-left:1px;font-style:normal;}
+  .snref::after{content:counter(sn);}
+  .sn{display:block;max-width:var(--measure);margin:.1rem 0 1.4rem;padding:.15rem 0 .15rem 1.05rem;
+    border-left:1px solid var(--hair);font-size:.84rem;line-height:1.52;color:var(--faint);}
+  .sn::before{content:counter(sn);font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--faintest);margin-right:.5em;font-size:.92em;}
+  .sn em{font-style:italic;}
+
+  @media (min-width:64rem){
+    .sn{float:right;clear:right;width:15rem;margin:.35rem 0 1.3rem;padding:0;border-left:none;}
+    .divider,.pull,.apparatus{clear:both;}
+  }
+
+  .apparatus{max-width:52rem;margin:clamp(3.2rem,7vh,5rem) auto 0;padding-top:2rem;border-top:1px solid var(--hair);clear:both;}
+  .app-h{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;}
+  .app-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.4rem;}
+  .app-list li{border-top:1px solid var(--hair);}
+  .app-list li:first-child,.app-list li:nth-child(2){border-top:none;}
+  .app-list a{display:block;text-decoration:none;padding:.95rem 0;}
+  .app-list a:hover .app-t{color:var(--soft);}
+  .app-rel{display:block;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faintest);margin-bottom:.3rem;}
+  .app-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.12rem;color:var(--ink);transition:color .2s ease;}
+  .app-g{display:block;font-size:.84rem;color:var(--faint);font-style:italic;line-height:1.4;margin-top:.22rem;}
+
+  footer{margin-top:clamp(3.5rem,8vh,6rem);padding:2.2rem 0 4rem;border-top:1px solid var(--hair);}
+  .crumbs.foot{justify-content:flex-start;margin-bottom:1.3rem;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .plate-mark{width:96px;height:96px;}
+    .pm-num{font-size:2.1rem;}
+    .essay p{font-size:1.04rem;line-height:1.74;}
+    .dropcap{font-size:3rem;}
+    .app-list{grid-template-columns:1fr;}
+    .app-list li:nth-child(2){border-top:1px solid var(--hair);}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="crumbs rise d1" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-money.html">The Money &middot; Vol XVI</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate i</span>
+    </nav>
+    <div class="plate-mark lit rise d2" aria-hidden="true">
+      <span class="pm-vol">Mo</span>
+      <span class="pm-num">i</span>
+    </div>
+    <h1 class="rise d3">The Numéraire</h1>
+    <div class="status rise d3">in print &middot; The Money &middot; plate i</div>
+    <p class="standfirst rise d4">Money does three things, and the third is the strangest: it is the unit of account, the rod in which every price is told and against which every other worth is measured. This plate asks what it means for one thing to be the measure of all the others — whether a yardstick can be cut from outside the world it measures, why the classical economists searched in vain for a standard that would hold still, and how the measure of value came, in the end, to be made of the very stuff it counts.</p>
+  </header>
+
+  <div class="epi rise d5">
+    <q>Money has become by convention a sort of representative of demand; and this is why it has the name <em>nomisma</em> — because it exists not by nature but by law.</q>
+    <span class="cite">Aristotle, <em>Nicomachean Ethics</em>, Book V &middot; c. 350 <span style="font-variant:small-caps">bce</span></span>
+  </div>
+
+  <article class="essay">
+
+    <p class="lede"><span class="dropcap">O</span>f the three things money is said to do, the quietest is the one the schoolbooks list last, and it is the one this volume has taken for its name. Money is a <em>medium of exchange</em>, the thing handed over; it is a <em>store of value</em>, the thing held back; and it is a <em>unit of account</em> — the <em>numéraire</em>, the rod against which every other worth is measured and in which every price is told. The first two offices money shares, in some degree, with a sack of grain or a bar of silver. The third it shares with nothing, for to be the measure of all values a thing must somehow stand outside the press of valuation even while it takes part in it — must be at once the yardstick and one of the lengths laid against it. No other object in economic life is asked to be both, and the quiet strain of that demand, hidden in plain sight at the foot of every price, is where the mystery of money begins.</p>
+
+    <p>Begin with the order of things, since it is contested and the contest decides much.<sup class="snref"></sup> The common account, the one the commodity theory tells, makes the medium of exchange the root: money is first the good one takes in trade and passes on, and its service as a measure rides along behind. But there is an older and stranger possibility — that the measure comes first, that before money is a thing handed over it is a unit things are reckoned in, a standard in which a debt is named and a price set, and that the coin is only what one reaches for to settle accounts already kept in the unit. The question is not antiquarian. If the measure is primary, then money begins as an abstraction, a way of counting, and the metal is incidental — and a thing that begins as a way of counting is a very different object from a commodity that won a popularity contest.</p>
+    <aside class="sn">Which of money's offices is the root from which the others grow is itself disputed, and the dispute is not idle. The commodity tradition makes the medium of exchange primary — money is the good that greases barter, and its other uses follow. But Keynes, opening his <em>Treatise on Money</em> of 1930, reversed the order: the primary concept, he held, is the money <em>of account</em> — the unit in which debts and prices are expressed — and money proper is merely the thing that answers to that description, the stuff that discharges a debt reckoned in the unit. On this view the measure is older than the medium, and the rod precedes the coin.</aside>
+
+    <p>Grant the measure its dignity and one sees at once how much it accomplishes.<sup class="snref"></sup> In a market without a common unit there is no such thing as <em>the</em> price of a good; there is only a swarm of separate exchange ratios — bread for wool, wool for iron, each struck on its own — and the swarm grows monstrous, for a hundred goods generate not a hundred prices but nearly five thousand pairwise ratios, more than any market could clear. The numéraire dissolves it. Choose one thing as the unit and every good has a single price in it; the thousands of ratios collapse to one figure apiece, and values that were merely tradeable become <em>commensurable</em> — rankable, addable, set on a single scale. Aristotle had seen it twenty-three centuries ago: money is the measure that makes all things commensurable, and does so not by nature but by convention. What he stated calmly conceals a vast claim — that the worth of anything whatever can be reduced, without remainder, to a quantity of one chosen thing.</p>
+    <aside class="sn">Without a common unit, a market of <em>n</em> goods has no single set of prices but n(n−1)/2 separate exchange ratios — bread against wool, wool against iron, iron against bread — a figure that passes four thousand for a mere hundred goods. The numéraire collapses that thicket to <em>n</em> prices, one for each good in the single unit, and so renders all values commensurable. Jevons noted the arithmetic; Aristotle, long before, had named the achievement and seen that it rested on convention. The difficulty neither dwelt on is that commensurability is also a claim — that everything can in truth be reduced to the one measure.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>Pressed to its limit, the idea of the measure becomes pure abstraction, and it is worth seeing in that bare state, for it shows what the measure is when nothing else clings to it.<sup class="snref"></sup> In the mathematical theory of general equilibrium the numéraire is the most innocent object imaginable: one commodity, chosen arbitrarily, whose price is fixed at one, every other price written as its ratio to that one. Nothing rides on the choice — pick gold or pick wheat, the real pattern of exchange is identical — and only relative prices are ever determined; the level as a whole floats free, so that to double every price at once changes nothing real. Here the unit of account is laid utterly bare, stripped of every other function: it does no exchanging, stores no value, bears no metal. It is a counting-stick and nothing more — the very emblem of the doctrine that money is a veil over a real economy that would run as it does whether reckoned in dollars or in shells.</p>
+    <aside class="sn">The word is Léon Walras's, from the <em>Éléments d'économie politique pure</em> of 1874, and in his system the numéraire is a pure normalization: one commodity arbitrarily chosen, its price set to one, all others expressed relative to it. Only relative prices are determined; the choice is free; multiplying every money price by the same factor leaves all real magnitudes untouched. It is the cleanest statement in all of economics of money as a mere veil — and, just so, a statement about an abstraction that no actual money has ever quite been.</aside>
+
+    <p>But the numéraire of the equations is not money, and the gap between them is the whole of the trouble.<sup class="snref"></sup> Walras's unit does no work in the world; it is a device for pinning relative prices to a scale, and it neither circulates nor is hoarded nor commands a premium in a panic. Actual money is asked to be that serene abstraction <em>and</em>, in the same breath, a concrete thing — a coin, a note, a balance — that one holds and hands over, that exists in some definite quantity, that is wanted more in fear and less in confidence, and that therefore has a price of its own. The single syllable "money" welds together two natures that do not sit easily in one body: a pure unit of account, which to do its work ought never to vary, and a traded asset, which by its nature cannot help but vary. Almost every confusion in the theory of money can be traced to the seam where these two are joined and the join then forgotten — to the moment when the rod that measures is quietly assumed to be as fixed as the abstraction, while in truth it is as restless as the commodity.</p>
+    <aside class="sn">The awkwardness has a name in the modern theory. Once the numéraire is a mere normalization, nothing in the pure model marks money out or explains why anyone holds it; Frank Hahn pressed the point that a thoroughly Walrasian economy has no room for money at all, since in equilibrium every trade clears without it. Money enters such models only when one adds back what the theory strips away — the frictions, the sequence of trades, the want of trust — conceding that money's reality lies in what the numéraire abstracts from.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>Consider what we ask of a measure, and set beside it what money is.<sup class="snref"></sup> A measure must be constant; a unit of length that swelled on Tuesdays and shrank on Fridays would be no unit at all, the whole point of a standard being that it holds while the things measured against it change, so that any difference may be charged to the thing and not the rule. This is what money cannot promise. As the unit of account the dollar is asked to stand perfectly still; as a held asset its purchasing power rises when prices fall and falls when they rise, so that the very rod in which all worth is told is forever lengthening and contracting in the hand. The merchant who prices his goods in money, the lender who writes a loan in it, the worker who signs a wage in it, all bind themselves against a yardstick that does not keep its length — and the slow theft and slow gift that follow are consequences not accidental to money but inherent in asking one object to be the measure and a thing measured at once.</p>
+    <aside class="sn">A measure that varies contradicts itself: a yardstick that stretched and shrank from day to day would measure nothing. Yet that is money's condition — asked, as the unit of account, to stand still, while as a held asset its purchasing power climbs in deflation and falls in inflation, the gauge forever altering underfoot. Every long contract is struck against a rod that does not keep its length, which is why inflation is not merely dear prices but a quiet corruption of the measure itself.</aside>
+
+    <p>The classical economists felt this difficulty in their bones, and the best of them spent themselves trying to escape it.<sup class="snref"></sup> If money would not hold still, perhaps some other standard might — some invariable measure of value, cut from outside the flux, against which the real changes in all other things could at last be read without distortion. Adam Smith reached for labor, the toil and trouble a thing could command, as the truest and most constant measure of worth. David Ricardo pursued an invariable measure through the whole of his <em>Principles</em>, returned to it again and again, and was still wrestling with it in an unfinished paper at his death — and his conclusion, reached honestly and against his own wish, was that no such measure can exist. For any commodity one might offer as the standard is itself a produced thing, made with labor and capital in some proportion, and its own value shifts whenever the conditions of its making shift; there is no good in the world whose worth is fixed, and so none that can serve as the fixed point against which the rest are weighed. The rod, wherever one cuts it, is cut from inside the forest it is meant to survey.</p>
+    <aside class="sn">Smith proposed labor — the toil a thing commands — as the real and invariable measure of value. Ricardo pursued such a measure through his <em>Principles</em> of 1817 and was still pursuing it, in an unfinished essay, at his death in 1823, concluding that none could exist: any commodity offered as the measure is itself produced, and its value shifts with the conditions of its making. There is no rod cut from outside the world of produced things — the measure is always of the same stuff as the measured, which is the result this whole plate turns upon.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>There is a further strangeness, and it cuts the other way, for if the measure cannot be made to hold still, neither need it be fastened to any thing at all.<sup class="snref"></sup> We picture the unit of account as riding on a particular coin — the dollar as the silver in it — but for most of European history the two came clean apart. Men kept their ledgers in pounds, shillings, and pence, a money of account handed down from Charlemagne, while paying in an unruly crowd of actual coins — florins, ducats, groats, écus — whose worth <em>in</em> the pound was declared by the authorities and revised whenever it suited them. The unit was indispensable and universally used; it answered to no coin one could carry; and a prince could alter the relation between the abstract pound and the concrete piece with a stroke, lightening every debt without touching a scrap of metal. The numéraire, it turns out, need not be incarnate at all — it can be a pure name, a column in a book, a convention floating above the jingling confusion it orders. And a measure that is in the end a name, kept by agreement and adjustable by power, is plainly no fact of nature.</p>
+    <aside class="sn">That the unit can come quite loose from any coin is not theory but the ordinary condition of medieval and early-modern Europe. Accounts and prices were kept in pounds, shillings, and pence — a money of account descended from Charlemagne — while payment was made in a jumble of real coins whose value <em>in</em> the unit was set by authority and shifted at need. Historians call these reckoning-units imaginary, or ghost, monies; Cipolla and Einaudi traced their long career. The measure existed, was used, was indispensable, and answered to nothing in anyone's purse.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>Gather these findings and the numéraire stands revealed as something quite other than it pretends.<sup class="snref"></sup> It presents itself as the fixed and external reference, the neutral bedrock against which all values are read — and it is no such thing. It is itself one of the goods, with a quantity that can be enlarged and a worth that drifts; there is no invariable version of it to be had; and where it is most purely a measure it is least a thing, a mere name kept by convention. A plain consequence follows: a price stated in money is never a reading against a fixed scale but a ratio struck between two goods — the thing priced and the money it is priced in — a figure that can move because either term has moved. When a loaf costs more this year than last, the price alone cannot say whether the loaf has grown scarcer or the money more abundant; the two causes wear one face. Every price quoted in money is thus contingent twice over: on the hidden contest that fixes the worth of the thing, and on the drifting worth of the rod that worth is told in. The first contingency this table was built to expose; the second is the one the measure most quietly conceals — by seeming to be a measure, and not a thing.</p>
+    <aside class="sn">It follows that a price in money is not a reading against a fixed external scale but a ratio between two goods — the thing priced, and the money it is priced in — so that the figure can move because either term moves. A loaf dearer this year may mean the loaf is scarcer or the money more plentiful, and the price alone cannot say which; an inflation and a real scarcity can be told apart only by looking past the prices to the quantities behind them. The measure hides the question by posing as its own answer.</aside>
+
+    <p>This is the deepest reason money wears so convincingly the look of a natural fact. We do not measure the wage or the rent against the dollar as we measure a length against a fixed standard kept in a vault, indifferent and outside the things it gauges; we measure them against another good, as restless as they are, whose own value is set in the same press of supply and demand and trust and power that sets theirs. The rod is made of the very stuff it measures — and in this there is an irony the work cannot escape and had better own. This whole undertaking is named for the numéraire, and announces as its aim to fix a numéraire of honesty against which the verdicts of the market may at last be truly read. The plate on the numéraire returns the awkward answer that no such fixed and external measure exists: there is no place to stand outside the system of values from which to weigh it. The honest measure, if there is one, is not a rod cut from beyond the world but the steady recollection that the rod is within it, moving with all it counts.</p>
+
+    <p class="pull">The measuring rod is made of the very stuff it measures; there is no place outside the world of values from which to weigh them.</p>
+
+    <p>Money's first and subtlest deception, then, is not that it hides the contests behind particular prices, though it does that too. It is that money offers itself as the neutral ground on which all such contests are scored — the fixed unit, the given measure, the one quantity in economic life that simply <em>is</em> — when it is in truth as made, as moving, and as contestable as anything it is used to price. A price is a verdict on a hidden contest, mistaken for a fact of nature; and the unit in which the verdict is handed down is itself a verdict of the same uncertain kind, mistaken for the fixed and natural measure of all the rest. The numéraire is the rod the whole table is named for, and it does not stand still. The argument remains open.</p>
+
+  </article>
+
+  <nav class="apparatus" aria-label="Related reading">
+    <h2 class="app-h">Related</h2>
+    <ul class="app-list">
+      <li><a href="the-barter.html"><span class="app-rel">In this volume</span><span class="app-t">The Barter</span><span class="app-g">plate ii — the origin myth of money, and why credit and the measure came first</span></a></li>
+      <li><a href="the-money.html"><span class="app-rel">In this volume</span><span class="app-t">The Quantity</span><span class="app-g">plate vi — what makes the rod's length change: the quantity of money and the level of prices</span></a></li>
+      <li><a href="the-money.html"><span class="app-rel">In this volume</span><span class="app-t">The Veil</span><span class="app-g">plate vii — the numéraire as pure normalization, and the claim that money is neutral</span></a></li>
+      <li><a href="numeraire-atlas.html"><span class="app-rel">In the table</span><span class="app-t">The Level</span><span class="app-g">volume XXI — the value of money over time, the rod's changing length writ large</span></a></li>
+    </ul>
+  </nav>
+
+  <footer>
+    <nav class="crumbs foot" aria-label="Return">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-money.html">The Money &middot; Vol XVI</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate i</span>
+    </nav>
+    <p class="colophon">The first plate of Volume XVI, <em>The Money</em> — the unit of account, and whether a measure of all values can stand outside the values it measures. Return to <a href="the-money.html">the volume</a>, or to <a href="numeraire-atlas.html">the complete table of volumes</a>. The passage from Aristotle is given from the public-domain <em>Nicomachean Ethics</em>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-money.html">← The Money</a><a rel="next" href="the-barter.html">The Barter →</a></nav>
+</body>
+</html>

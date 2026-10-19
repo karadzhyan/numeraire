@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Price-Maker — Numéraire, The Power, Plate i</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:66rem; --measure:35rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(2.8rem,7vh,5rem) 0 clamp(1.4rem,3.5vh,2.2rem);text-align:center;}
+
+  .crumbs{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 400;
+    font-size:.8rem;letter-spacing:.04em;color:var(--faint);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:center;gap:.55rem;}
+  .crumbs a{text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .2s ease,color .2s ease;}
+  .crumbs a:hover{border-color:var(--num);color:var(--ink);}
+  .crumbs .sep{color:var(--faintest);}
+  .crumbs .here{color:var(--ink);}
+
+  .plate-mark{width:116px;height:116px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:.18rem;line-height:1;}
+  .plate-mark.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pm-vol{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.84rem;letter-spacing:.06em;color:rgba(240,235,225,.62);}
+  .pm-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;
+    font-size:2.5rem;letter-spacing:.02em;text-transform:uppercase;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.3rem,6.5vw,4.4rem);line-height:1.02;letter-spacing:-.025em;margin:1rem 0 0;text-wrap:balance;}
+  .status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:42rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .epi{max-width:38rem;margin:clamp(2.2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .epi q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.46;color:var(--ink);quotes:none;display:block;text-wrap:pretty;}
+  .epi .cite{display:block;margin-top:.95rem;font-size:.78rem;color:var(--faintest);letter-spacing:.05em;font-style:normal;}
+  .epi .cite em{font-style:italic;}
+
+  .essay{max-width:52rem;margin:clamp(3rem,7vh,5rem) auto 0;counter-reset:sn;}
+  .essay::after{content:"";display:block;clear:both;}
+  .essay > p,.essay > .pull{max-width:var(--measure);}
+  .essay p{font-size:1.075rem;line-height:1.8;color:var(--ink);margin:0 0 1.4rem;text-wrap:pretty;}
+  .essay em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.72;padding:.08em .14em 0 0;color:var(--ink);}
+
+  .divider{display:flex;justify-content:center;margin:2.4rem 0;}
+  .divider svg{width:96px;height:12px;overflow:visible;}
+  .divider line{stroke:var(--num);stroke-width:1;} .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.5vw,1.74rem);line-height:1.34;color:var(--ink);text-align:center;
+    margin:2.4rem auto;max-width:33rem;text-wrap:balance;}
+
+  .snref{font-family:"Fraunces",serif;font-size:.64em;line-height:0;vertical-align:super;
+    color:var(--soft);counter-increment:sn;margin-left:1px;font-style:normal;}
+  .snref::after{content:counter(sn);}
+  .sn{display:block;max-width:var(--measure);margin:.1rem 0 1.4rem;padding:.15rem 0 .15rem 1.05rem;
+    border-left:1px solid var(--hair);font-size:.84rem;line-height:1.52;color:var(--faint);}
+  .sn::before{content:counter(sn);font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--faintest);margin-right:.5em;font-size:.92em;}
+  .sn em{font-style:italic;}
+
+  @media (min-width:64rem){
+    .sn{float:right;clear:right;width:15rem;margin:.35rem 0 1.3rem;padding:0;border-left:none;}
+    .divider,.pull,.apparatus{clear:both;}
+  }
+
+  .apparatus{max-width:52rem;margin:clamp(3.2rem,7vh,5rem) auto 0;padding-top:2rem;border-top:1px solid var(--hair);clear:both;}
+  .app-h{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;}
+  .app-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.4rem;}
+  .app-list li{border-top:1px solid var(--hair);}
+  .app-list li:first-child,.app-list li:nth-child(2){border-top:none;}
+  .app-list a{display:block;text-decoration:none;padding:.95rem 0;}
+  .app-list a:hover .app-t{color:var(--soft);}
+  .app-rel{display:block;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faintest);margin-bottom:.3rem;}
+  .app-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.12rem;color:var(--ink);transition:color .2s ease;}
+  .app-g{display:block;font-size:.84rem;color:var(--faint);font-style:italic;line-height:1.4;margin-top:.22rem;}
+
+  footer{margin-top:clamp(3.5rem,8vh,6rem);padding:2.2rem 0 4rem;border-top:1px solid var(--hair);}
+  .crumbs.foot{justify-content:flex-start;margin-bottom:1.3rem;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .plate-mark{width:96px;height:96px;}
+    .pm-num{font-size:2.1rem;}
+    .essay p{font-size:1.04rem;line-height:1.74;}
+    .dropcap{font-size:3rem;}
+    .app-list{grid-template-columns:1fr;}
+    .app-list li:nth-child(2){border-top:1px solid var(--hair);}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="crumbs rise d1" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-power.html">The Power &middot; Vol X</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate i</span>
+    </nav>
+    <div class="plate-mark lit rise d2" aria-hidden="true">
+      <span class="pm-vol">Pw</span>
+      <span class="pm-num">i</span>
+    </div>
+    <h1 class="rise d3">The Price-Maker</h1>
+    <div class="status rise d3">in print &middot; The Power &middot; plate i</div>
+    <p class="standfirst rise d4">Of all the things a seller can be, the most important distinction is the quietest: whether he must take the price the market hands him, or can set it himself by choosing how much to withhold. This plate draws that line, defines the market power that lies on the far side of it, and follows the mechanics — the marginal revenue that falls below the price, the markup over cost, the value quietly destroyed — by which the power to set a price comes to wear the face of a simple fact.</p>
+  </header>
+
+  <div class="epi rise d5">
+    <q>The price of monopoly is upon every occasion the highest which can be got. The natural price, or the price of free competition, on the contrary, is the lowest which can be taken.</q>
+    <span class="cite">Adam Smith, <em>The Wealth of Nations</em> &middot; 1776</span>
+  </div>
+
+  <article class="essay">
+
+    <p class="lede"><span class="dropcap">T</span>here are two kinds of seller in the world, and the difference between them is the whole of this volume. The first faces a price he cannot change: it is set in a market too large for him to sway, and he may sell as much as he likes at that price and nothing at all above it, so that the price comes to him as the weather comes, a fact to be met and not an act to be chosen. The second faces a demand that slopes — sell less and he may charge more, sell more and he must charge less — and so the price is no longer given to him but chosen by him, picked from a schedule by deciding how much to withhold. The first is a <em>price-taker</em> and has no power; the second is a <em>price-maker</em>, and power is precisely what the word names. Everything that follows is the study of the second kind of seller, and of the buyer who is his mirror.</p>
+
+    <p>The difference between the two sellers is a difference in the demand each one faces, and everything turns on it.<sup class="snref"></sup> The competitive seller is small — one wheat farmer among thousands, one stall in a vast market — and his smallness is the whole of his powerlessness. Because his own crop is a drop in the ocean of wheat, he may sell all of it, or none, without moving the price a hair; the market hands him a rate, and he may take it or walk away, but he cannot bend it. The price-maker is otherwise. Whether because he is large, or because what he sells is found nowhere else, his own decisions about how much to offer visibly move the price: withhold, and it rises; flood, and it falls. To possess power is neither more nor less than to face such a demand — one that answers to your own conduct — and to be able, by choosing how much to part with, to choose the price you will be paid. It is not the power to charge anything at all, for the buyers' willingness still hems him in; it is the narrower and realer power to set the price rather than receive it.</p>
+    <aside class="sn">The confusion to avoid is between the demand the market faces and the demand the firm faces. The market demand for wheat always slopes down — raise the price of all wheat and less is bought. But the single competitive farmer faces, for his own wheat, a flat line: he is so small a part of the whole that he may sell his entire crop at the going price without budging it, and could sell no more by asking a penny above. Power is a fact about the firm's own demand curve, not the market's — about whether one seller's choices move the price at all.</aside>
+
+    <p>What is strange, and consequential, is that this power leaves no trace on the thing it touches.<sup class="snref"></sup> Stand before the two sellers as an ordinary buyer and you will see no difference at all. Each displays a price; each, in effect, invites you to take it or leave it; the tag in the window of the competitive grocer and the tag in the window of the town's only grocer are printed in the same ink and make the same demand. Yet the first price is a fact the grocer is as subject to as you are — he found it in the market and could not change it if he tried — while the second is a decision the grocer made and could unmake tomorrow, a number he chose because it served him and not because the world compelled it. The buyer cannot tell them apart. The price that is a verdict and the price that is a fact wear, on the shelf, exactly the same face — and this, before any of the mechanics, is the first thing to understand about power: that it works invisibly, through a number that betrays nothing of whether it was set by the market or by a hand.</p>
+    <aside class="sn">Notice that the two prices are, to the buyer, indistinguishable. The competitive grocer and the village's only grocer both post a number and say, in effect, take it or leave it; the words are the same and the tag looks the same. But behind the first is a price the grocer could not change if he wished, and behind the second a price the grocer chose, and could lower tomorrow and still profit. Nothing on the label reveals which kind of price one is paying. Power leaves no mark on the number it sets.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>The mechanics, when one turns to them, explain why a price-maker's power always shows up in the same place.<sup class="snref"></sup> Suppose our price-maker, selling a hundred units at a pound apiece, considers selling one more. He cannot simply add a pound to his takings, for to move the hundred-and-first unit he must lower his price — and, if he charges everyone alike, lower it on all hundred-and-one. The extra sale brings in its own price, less the few pence now surrendered on every unit he was already selling. So the true addition to his revenue from one more sale — his marginal revenue — falls below the price he charges, and falls further the more he sells. This is the iron fact, first set down by Cournot in 1838, from which the rest follows: for anyone who must drop his price to sell more, marginal revenue lies below price; while for the price-taker, who need drop nothing, the two are one and the same.</p>
+    <aside class="sn">Antoine Augustin Cournot worked out the price-maker's arithmetic in 1838, the first man to bring the calculus to economics, and was ignored for forty years for his trouble. The crux is that the price-maker's marginal revenue — what one more sale adds to his takings — lies below the price he charges, because to sell that extra unit he must shade the price on all the units he was already selling. For a straight-line demand the marginal-revenue curve falls exactly twice as steeply; the space between the two is the silent tax a seller pays for the privilege of moving his own price.</aside>
+
+    <p>From that single fact the markup follows by a step.<sup class="snref"></sup> Any seller, powerful or not, does best to carry production to the point where the last unit's addition to revenue just covers its addition to cost — where marginal revenue equals marginal cost, for past that point each further unit loses money. The price-taker, whose marginal revenue is simply the price, therefore produces until price equals marginal cost: he sells the thing for what the last one cost to make, and keeps no margin upon it. But the price-maker's marginal revenue sits below his price, so when he sets marginal revenue equal to marginal cost his price comes to rest <em>above</em> marginal cost — above the cost of the last unit made. That gap, between the price charged and the cost of one more, is the markup, and it is the visible signature of power: it is zero where there is none, and it widens precisely as the buyers' alternatives grow fewer and their demand less willing to flee a higher price. Power, measured exactly, is the markup; and the markup, measured exactly, is the reciprocal of the buyer's freedom to go elsewhere.</p>
+    <aside class="sn">The size of the markup is the natural measure of power, and Abba Lerner made it one in 1934: his index is the fraction by which price exceeds marginal cost, (P − MC) divided by P, running from zero for the powerless price-taker toward one for the unchecked monopolist. It has a revealing twin form — the markup varies inversely with the elasticity of the firm's demand, so that power is, almost literally, the reciprocal of the buyer's alternatives. The fewer the substitutes and the more captive the customer, the steeper the demand and the fatter the margin.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>The markup is not merely a transfer of money; it is the source of a genuine waste, and the waste is what condemns power in the eyes of the science.<sup class="snref"></sup> Hold the price above the cost of one more, and you create a class of unlucky units: things that would cost, say, eight to make, and that some buyer would gladly pay nine for, but that go unmade because the seller will not sell below his price of twelve. Both parties wanted that trade; both are denied it; and the value it would have created — the buyer's nine over the maker's eight — simply never comes into the world. Multiply such forgone bargains across a whole market and you have the deadweight loss, the standing waste of power: not value moved from one purse to another but value annihilated, wanted by someone, costed by someone, and produced by no one. The competitive price, equal to the cost of one more, is the one price that leaves no such bargain on the table.</p>
+    <aside class="sn">The waste has a precise shape. Wherever the price stands above marginal cost, there are units some buyer values above what they would cost to make, yet below the price asked — and those units go unmade, the gains from making them lost to all. That forgone surplus is the deadweight loss, the little triangle on the diagram, and it is the efficiency cost of power: not a transfer from one pocket to another but value that never comes into being. The competitive condition, price equal to marginal cost, is precisely the one that leaves no such triangle.</aside>
+
+    <p>It is worth dwelling on what this accounting includes and what it quietly omits.<sup class="snref"></sup> The deadweight loss — the annihilated value — is what the economist means when he calls monopoly inefficient, and it is real. But it is usually the smaller part of what power does. The larger part is the transfer: the higher price, paid on every unit that <em>is</em> still sold, moves a great sum from the pockets of buyers into the pocket of the seller. By the strict efficiency reckoning this transfer is no loss at all, since the money is not destroyed but merely relocated, and a pound is a pound whoever holds it; and so the discipline, with a clear conscience, sets it to one side as a question of mere distribution. Yet the transfer is exactly what the plundered buyer feels as the wrong of monopoly, and the practice of counting only the destroyed value while waving the transferred value away is not a neutral act of measurement. It is a decision about whose injuries the science will record, dressed as a technicality.</p>
+    <aside class="sn">Beside the triangle sits a rectangle, usually much the larger: the surplus transferred from buyers to the seller, the money the higher price moves from the many to the one. By the strict efficiency accounting this is no social loss at all — a dollar is a dollar in whoever's hand — and so the discipline often sets it aside as a matter of mere distribution. But the rectangle is what most people mean by the injustice of monopoly, and the decision to count only the triangle, treating the transfer as someone else's department, is itself a choice about what an economics is for.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>Before going further it must be said that power is almost never the whole or nothing the textbook poles suggest.<sup class="snref"></sup> The pure price-taker, facing a perfectly flat demand, and the pure monopolist, facing the entire market alone, are the two ends of a line, and the striking thing is how little of the economy sits at either end. Nearly every actual seller faces a demand that slopes a little — the corner shop a touch nearer than its rival, the branded good a touch preferred, the customer a touch too settled to shop around — and so nearly every actual seller holds a little power and charges a little over his cost. The condition is general enough to have earned its own name, monopolistic competition, which a later plate takes up; the lesson here is only that the question to put to a market is never whether power is present but how much, and that the perfectly powerless seller of the model is, in the world, the rarest bird of all.</p>
+    <aside class="sn">Pure price-taking and pure monopoly are the two ends of a line along which almost nothing actually sits at the ends. The corner shop, the branded cereal, the only café on the square — each faces a demand that slopes a little, because each sells something a little distinct or serves a customer a little disinclined to walk further, and each therefore sets a price a little above its cost. The condition is so general it has its own name, monopolistic competition, taken up in a later plate; for now the point is only that some power is the normal possession of nearly every firm, and the true price-taker the rare exception.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>And so we are returned, by the road of the mechanics, to the difficulty the buyer met at the shelf.<sup class="snref"></sup> Power announces itself in one place only — the markup, the gap between the price and the cost of one more — and that gap is the single visible trace of an invisible contest: the seller's quiet withholding, the buyer's absent alternatives, the strength of the one and the need of the other resolved into a number. But the trace is faint to the point of secrecy, for to read the markup one must know the marginal cost, and the marginal cost is precisely what the seller knows and the buyer does not. The same price of twelve may sit a hair above a cost of eleven or a chasm above a cost of three, and the buyer, with only the twelve before him, cannot tell the lean margin from the fat. So power, having entered through the slope of a demand curve, hides in the gap between price and cost — and the gap is the one quantity the posted price is careful never to show.</p>
+    <aside class="sn">To know a firm's power one must know its markup, and to know its markup one must know its marginal cost — and that is precisely the number the firm keeps and the customer lacks. Here the matter rejoins the first volume's theme, that a price alone cannot say what it measures: the same figure may cover a thin margin over high costs or a fat one over low, and the buyer, seeing only the price, cannot tell the diligent from the rapacious. Power hides in the gap between price and cost, and the gap is the one thing the price will not show.</aside>
+
+    <p>This is what it means to say, as this work has said from the first, that a price is a verdict on a hidden contest mistaken for a fact of nature. The price-maker's plate supplies the mechanism of the mistake. The competitive price genuinely is a fact, a thing no one chose, the impersonal resultant of a market too large for any hand; but the price-maker's price only looks the same, while being in truth a decision — the seller's choice of how much to withhold, handed down as a posted number and wearing, on the shelf, the borrowed innocence of the competitive price beside it. The markup is the verdict made just barely legible; and because almost no real price is wholly free of a markup, almost no real price is wholly the fact of nature it appears to be. The remaining plates take the verdict apart — its forms, its sources, its measure, and the long effort to overrule it. But the thing they anatomize is the one defined here: the power to set a price, and to have the setting look like finding.</p>
+
+    <p class="pull">The competitive price is a fact no one chose; the price of power is a choice that has learned to look like a fact.</p>
+
+    <p>Nothing in this denies that a seller may deserve his margin — that he may have built something others did not, or borne a risk they would not, and earns by it a return no one should grudge. That is a question the later plates must weigh, for power has its uses and its rewards as well as its abuses. What the first plate fixes is only the anatomy: that to hold power in a market is to face a demand one's own acts can move, to set the price by choosing the quantity, and to mark it up over the cost of one more by very nearly as much as the buyer has nowhere else to go. A price is a verdict on a hidden contest, mistaken for a fact of nature; and the markup is the verdict's quiet signature, written in the one ink the price will not let us read. The argument remains open.</p>
+
+  </article>
+
+  <nav class="apparatus" aria-label="Related reading">
+    <h2 class="app-h">Related</h2>
+    <ul class="app-list">
+      <li><a href="the-single-seller.html"><span class="app-rel">In this volume</span><span class="app-t">The Single Seller</span><span class="app-g">plate ii — monopoly, power carried to its limit, and the cost of the one seller</span></a></li>
+      <li><a href="the-power.html"><span class="app-rel">In this volume</span><span class="app-t">The Markup</span><span class="app-g">plate vii — how power is measured, and why the price alone will not show it</span></a></li>
+      <li><a href="the-monopsony.html"><span class="app-rel">In The Wage</span><span class="app-t">The Monopsony</span><span class="app-g">the same power run in reverse: the single buyer of labor, setting the wage</span></a></li>
+      <li><a href="the-numeraire.html"><span class="app-rel">In The Money</span><span class="app-t">The Numéraire</span><span class="app-g">why a price alone cannot say what it measures — the cost it hides</span></a></li>
+    </ul>
+  </nav>
+
+  <footer>
+    <nav class="crumbs foot" aria-label="Return">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-power.html">The Power &middot; Vol X</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate i</span>
+    </nav>
+    <p class="colophon">The first plate of Volume X, <em>The Power</em> — what market power is: the seller who can set his price rather than take it. Return to <a href="the-power.html">the volume</a>, or to <a href="numeraire-atlas.html">the complete table of volumes</a>. The lines from Smith are taken from the public-domain <em>Wealth of Nations</em>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-power.html">← The Power</a><a rel="next" href="the-single-seller.html">The Single Seller →</a></nav>
+</body>
+</html>

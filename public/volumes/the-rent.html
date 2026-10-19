@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Rent — Numéraire, Volume II</title>
+<meta name="description" content="The Rent — Volume II of Numéraire, A Periodic Table of Economic Life. The price of position: the return to owning the spot that others must pass through — and whether that return is earned or merely extracted.">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem; --measure:40rem;
+    --wash:rgba(28,26,22,.066); --wash2:rgba(28,26,22,.12);
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.62;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  .measure{max-width:var(--measure);margin-left:auto;margin-right:auto;}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- ornaments ---- */
+  .orn{display:flex;justify-content:center;margin:0 auto;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .divider{display:flex;align-items:center;gap:1.1rem;max-width:30rem;margin:clamp(3rem,7vh,5rem) auto;color:var(--num);}
+  .divider .ln{flex:1;height:1px;background:var(--hair);}
+  .divider svg{display:block;width:12px;height:12px;overflow:visible;flex:0 0 auto;}
+  .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* ---- progress + running head ---- */
+  #progress{position:fixed;top:0;left:0;height:2px;width:100%;transform:scaleX(0);transform-origin:0 50%;background:var(--soft);opacity:.45;z-index:10000;}
+  #topbar{position:fixed;top:0;left:0;right:0;z-index:9998;transform:translateY(-100%);transition:transform .5s cubic-bezier(.2,.6,.2,1);
+    background:rgba(240,235,225,.86);-webkit-backdrop-filter:saturate(1.1) blur(8px);backdrop-filter:saturate(1.1) blur(8px);
+    border-bottom:1px solid var(--hair);}
+  #topbar.show{transform:translateY(0);}
+  .tb-in{max-width:var(--frame);margin:0 auto;padding:.62rem clamp(1.4rem,4vw,3.4rem);display:flex;justify-content:space-between;align-items:baseline;gap:1.2rem;}
+  .tb-l{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:.86rem;letter-spacing:.01em;}
+  .tb-l span{color:var(--faintest);font-weight:400;}
+  .tb-r{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);text-align:right;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+
+  /* ---- title page ---- */
+  .vol-title{padding:clamp(3.4rem,11vh,8rem) 0 clamp(1.6rem,5vh,3rem);text-align:center;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.16rem;letter-spacing:.02em;}
+  .vol-no{font-size:.84rem;color:var(--faint);letter-spacing:.16em;text-transform:uppercase;margin-top:.55rem;}
+  h1.vol-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 380;font-weight:380;
+    font-size:clamp(2.9rem,9vw,6rem);line-height:.98;letter-spacing:-.028em;margin:clamp(1.7rem,4.5vh,2.8rem) 0 0;text-wrap:balance;}
+  .vol-sym{width:78px;height:78px;margin:clamp(1.6rem,4vh,2.4rem) auto 0;border:1px solid var(--hair);border-radius:2px;
+    display:flex;align-items:center;justify-content:center;background:var(--ink);}
+  .vol-sym span{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2.3rem;line-height:1;color:var(--paper);letter-spacing:-.01em;}
+  .vol-coords{font-family:"Fraunces",serif;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);margin-top:1.1rem;}
+  .vol-gloss{font-style:italic;color:var(--soft);font-size:1.12rem;margin:.5rem 0 0;}
+  .vol-epigraph{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 400;font-style:italic;
+    font-size:clamp(1.14rem,1.7vw,1.34rem);line-height:1.42;color:var(--soft);max-width:33rem;margin:clamp(1.8rem,4vh,2.6rem) auto 0;text-wrap:pretty;}
+  .vol-epigraph .lead{display:block;font-style:normal;font-variation-settings:"opsz" 24,"wght" 400;
+    font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.7rem;}
+  .vol-status{display:inline-flex;align-items:center;gap:.5rem;margin:clamp(1.8rem,4vh,2.4rem) auto 0;font-size:.84rem;color:var(--soft);}
+  .vol-status::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ink);}
+
+  /* ---- the argument (preface) ---- */
+  .part-head{text-align:center;margin:0 0 clamp(1.6rem,3.5vh,2.3rem);}
+  .part-kicker{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faintest);}
+  .part-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-weight:400;
+    font-size:clamp(1.5rem,3.4vw,2.1rem);letter-spacing:-.012em;margin:.4rem 0 0;}
+  .argument p{font-size:1.05rem;line-height:1.74;margin:0 0 1.15rem;text-wrap:pretty;}
+  .argument p.lede::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 420;
+    float:left;font-size:3.5em;line-height:.78;padding:.05em .1em 0 0;color:var(--ink);}
+  .argument em,.plate-body em,.coda em{font-style:italic;}
+
+  /* ---- contents ---- */
+  .toc{list-style:none;margin:0 auto;padding:0;max-width:43rem;}
+  .toc li{border-top:1px solid var(--hair);}
+  .toc li:last-child{border-bottom:1px solid var(--hair);}
+  .toc a{display:grid;grid-template-columns:2.6rem 1fr;column-gap:1.1rem;align-items:baseline;
+    padding:.82rem .3rem;text-decoration:none;transition:background .2s ease;}
+  .toc a:hover{background:rgba(28,26,22,.035);}
+  .toc-n{font-family:"Fraunces",serif;font-size:.92rem;color:var(--faintest);text-align:right;}
+  .toc-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.06rem;color:var(--ink);line-height:1.16;}
+  .toc-g{grid-column:2;font-size:.85rem;font-style:italic;color:var(--faint);margin-top:.16rem;line-height:1.38;}
+
+  /* ---- plates ---- */
+  .plate{margin:clamp(3.2rem,8vh,6rem) 0 0;padding-top:clamp(2.4rem,5.5vh,3.4rem);border-top:1px solid var(--hair);scroll-margin-top:4rem;}
+  .plate-open{max-width:var(--measure);margin-inline:auto;}
+  .plate-no{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 360;font-size:clamp(2.6rem,7vw,4.1rem);
+    line-height:.9;color:var(--num);letter-spacing:.02em;}
+  .plate-kicker{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faintest);margin:.9rem 0 .2rem;}
+  .plate-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.8rem,4.4vw,2.7rem);line-height:1.04;letter-spacing:-.018em;margin:0;text-wrap:balance;}
+  .plate-gloss{font-style:italic;color:var(--soft);font-size:1.02rem;margin:.55rem 0 0;line-height:1.4;}
+
+  .ask{max-width:var(--measure);margin:clamp(1.5rem,3.5vh,2.2rem) auto clamp(1.8rem,4vh,2.4rem);}
+  .ask .lead{display:block;font-family:"Fraunces",serif;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.55rem;}
+  .ask q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:clamp(1.18rem,1.8vw,1.38rem);line-height:1.36;color:var(--soft);quotes:none;}
+
+  .plate-body{max-width:var(--measure);margin-inline:auto;}
+  .plate-body p{margin:0 0 1.18rem;text-wrap:pretty;}
+  .plate-body > p:first-of-type::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 430;
+    float:left;font-size:3.5em;line-height:.76;padding:.04em .12em 0 0;color:var(--ink);}
+  .plate-body h4{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.76rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faint);margin:2rem 0 .9rem;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 380;font-style:italic;
+    font-size:clamp(1.4rem,2.3vw,1.7rem);line-height:1.32;color:var(--soft);text-align:center;
+    max-width:33rem;margin:clamp(2rem,4.5vh,2.8rem) auto;text-wrap:balance;}
+
+  .edge{max-width:var(--measure);margin:1.7rem auto;padding:.1rem 0 .1rem 1.15rem;border-left:1px solid var(--hair);
+    color:var(--faint);font-size:.92rem;line-height:1.62;}
+  .edge .lead{display:block;font-family:"Fraunces",serif;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.4rem;}
+  .edge em{font-style:italic;color:var(--soft);}
+
+  /* ---- figures (engravings) ---- */
+  .fig{max-width:var(--measure);margin:clamp(2.1rem,4.5vh,2.9rem) auto;}
+  .fig-frame{border:1px solid var(--hair);border-radius:2px;padding:clamp(1rem,2.4vw,1.7rem) clamp(1rem,2.4vw,1.7rem) clamp(.8rem,2vw,1.3rem);background:rgba(255,253,247,.4);}
+  .fig svg{display:block;width:100%;height:auto;}
+  figcaption{margin:.95rem auto 0;max-width:38rem;font-size:.85rem;line-height:1.5;color:var(--faint);text-wrap:pretty;}
+  figcaption .fig-n{font-family:"Fraunces",serif;font-weight:500;letter-spacing:.04em;color:var(--soft);}
+  figcaption em{font-style:italic;}
+  .ax{stroke:var(--soft);stroke-width:1.1;fill:none;}
+  .tick{stroke:var(--soft);stroke-width:1;}
+  .curve{stroke:var(--ink);stroke-width:1.5;fill:none;stroke-linecap:round;}
+  .curve2{stroke:var(--ink);stroke-width:1.3;fill:none;stroke-linecap:round;}
+  .guide{stroke:var(--faintest);stroke-width:1;fill:none;stroke-dasharray:3 3.5;}
+  .core{stroke:var(--ink);stroke-width:3;fill:none;stroke-linecap:round;}
+  .fill-cs{fill:var(--wash);}
+  .fill-dwl{fill:var(--wash2);}
+  .fill-wedge{fill:var(--wash);}
+  .fill-lens{fill:var(--wash);}
+  .hatch-line{stroke:var(--faintest);stroke-width:.8;}
+  .lbl{font-family:"Fraunces",serif;font-size:11.5px;fill:var(--faint);font-variation-settings:"opsz" 24,"wght" 400;}
+  .lbl-i{font-family:"Newsreader",serif;font-style:italic;font-size:11px;fill:var(--soft);}
+  .lbl-sm{font-family:"Fraunces",serif;font-size:9.6px;fill:var(--faintest);letter-spacing:.02em;}
+  .lbl-ax{font-family:"Fraunces",serif;font-size:9.4px;fill:var(--faintest);letter-spacing:.12em;}
+
+  /* ---- coda + colophon ---- */
+  .coda{max-width:var(--measure);margin:clamp(3rem,7vh,5rem) auto 0;}
+  .coda p{margin:0 0 1.18rem;text-wrap:pretty;}
+  .coda p.lede::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 430;
+    float:left;font-size:3.5em;line-height:.76;padding:.04em .12em 0 0;color:var(--ink);}
+  footer{margin-top:clamp(3.6rem,8vh,6rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.4rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .colophon{font-size:.85rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+
+  /* ---- motion / reveal ---- */
+  @media (prefers-reduced-motion: no-preference){
+    html.js .reveal{opacity:0;transform:translateY(14px);}
+    html.js .reveal.in{opacity:1;transform:none;}
+    .reveal{transition:opacity .9s cubic-bezier(.2,.6,.2,1),transform .9s cubic-bezier(.2,.6,.2,1);}
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.18s}.rise.d3{animation-delay:.32s}.rise.d4{animation-delay:.46s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  /* ---- responsive ---- */
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .argument p,.plate-body p,.coda p{font-size:1.01rem;}
+    .plate-body > p:first-of-type::first-letter,.argument p.lede::first-letter,.coda p.lede::first-letter{font-size:3em;}
+    .f-bar{flex-direction:column;gap:.5rem;}
+    .toc a{grid-template-columns:2rem 1fr;column-gap:.8rem;}
+    figcaption{font-size:.82rem;}
+  }
+
+  /* ---- print: a volume, in print ---- */
+  @media print{
+    html,body{background:#fff;color:#000;}
+    body{font-size:11.5pt;line-height:1.5;}
+    body::before,#progress,#topbar{display:none !important;}
+    .frame{max-width:none;padding:0;}
+    .measure,.plate-open,.plate-body,.ask,.edge,.coda{max-width:34rem;}
+    a{text-decoration:none;}
+    .plate{break-before:page;border-top:none;padding-top:0;}
+    .fig,figure{break-inside:avoid;}
+    .plate-no{color:#bbb;}
+    .reveal{opacity:1 !important;transform:none !important;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#ne-contents">Complete contents</a><a href="../editions.html#volume-rent">The Rent · both editions</a><a href="../essays/numeraire-ii-the-rent.html">Expanded essays</a></div></nav>
+<div id="progress" aria-hidden="true"></div>
+<div id="topbar" aria-hidden="true"><div class="tb-in">
+  <span class="tb-l">Numéraire <span>· The Rent</span></span>
+  <span class="tb-r" id="tb-plate">Volume II</span>
+</div></div>
+
+<div class="frame">
+
+  <header class="vol-title">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="rise d1">
+      <span class="imprint">Numéraire</span>
+      <div class="vol-no">Volume II &middot; № II</div>
+    </div>
+    <h1 class="vol-name rise d2">The Rent</h1>
+    <div class="vol-sym rise d3" aria-hidden="true"><span>Rn</span></div>
+    <div class="vol-coords rise d3">Group I &middot; The Prices</div>
+    <p class="vol-gloss rise d3">the price of position</p>
+    <p class="vol-epigraph rise d4">
+      <span class="lead">The question of the volume</span>
+      Who earns the value of merely owning the spot that others must pass through?
+    </p>
+    <div class="vol-status rise d4">in print &middot; twelve plates</div>
+  </header>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <section class="argument reveal" aria-labelledby="arg-h">
+    <div class="part-head">
+      <div class="part-kicker">Numéraire &middot; Volume II</div>
+      <h2 class="part-title" id="arg-h">The Argument</h2>
+    </div>
+    <p class="lede">Of the prices this table examines, rent is the one the founders of economics feared most and understood first — and it is, in a phrase, the price of position. It is what an owner is paid for holding the spot that others must pass through: the fertile field, the central location, the mineral seam, the band of spectrum, the patent that stands athwart an industry, the platform's gate through which a market's traffic must flow. Rent has a character the other prices lack, for it is not, in the strict sense, the cost of producing anything. The wage pays for labor that must be coaxed forth; interest pays for the waiting that capital requires; profit, in part, rewards the risk and judgment of enterprise. Rent pays for nothing but ownership of the scarce and the well-placed. The land was there before its owner; the spot others must cross was made valuable by their need to cross it, not by the owner who merely holds the toll. This volume is the anatomy of that surplus — where it comes from, why it is owed to position rather than to effort, and how it has become, in our own age, the rising share of all that is paid.</p>
+    <p>The concept that organizes the volume is economic rent: the payment to a factor of production above what is needed to keep it in its present use — above its transfer earnings, in the modern phrase, its opportunity cost. A factor's total payment divides in two: the part that must be paid to retain it, which a competitive market fixes at the value of its next-best use, and the surplus over that, which is rent. And the size of the rent is governed by a single quantity, the elasticity of the factor's supply — the degree to which its quantity answers to its price. Where supply is perfectly inelastic, fixed and unrepeatable, the whole payment is rent, for the factor exists regardless of what it is paid and can be withdrawn to no better use; where supply is perfectly elastic, freely reproducible at constant cost, there is no rent at all, for any surplus calls forth fresh supply and is competed away. Rent is the return to inelasticity of supply — the exact mirror, this volume will show, of the market power that <em>The Power</em> located in the inelasticity of demand.</p>
+    <aside class="pull">The wage is what labor is paid to work; the rent is what an owner is paid to permit. The first is the price of an effort, the second the price of a permission.</aside>
+    <p>History gave the concept to David Ricardo, who found rent at the margin of cultivation and drew from it a conclusion that overturns the intuition of every tenant who ever thought rent a cost passed on in the price of bread: corn is not dear because a rent is paid, Ricardo wrote, but a rent is paid because corn is dear. Rent is price-determined, not price-determining — a residual left after the price has been set at the margin by the cost on the worst land in use, not a cost that enters the price. From this seed the argument grows. The classical economists, following Ricardo, came to see the landlord as a parasite upon progress, growing rich in his sleep; Henry George built upon them the most famous reform in the subject's history, the single tax on the unearned increment of land; Marshall refined the idea with his quasi-rent, the temporary return to what is fixed only for a season; and the moderns discovered that the scarcity which yields rent need not be natural at all, but can be manufactured — by monopoly, by patent, by license, by the zoning that makes urban land artificially dear, by the platform that makes itself the gate.</p>
+    <p>That discovery is the hinge of the volume and the bond that ties it to the four that precede it. For if scarcity can be contrived as well as inherited, then rent and power are two faces of one thing: rent is the revenue that power collects, and power is the means by which rent is made. <em>The Power</em> anatomized the manufacture of scarcity; <em>The Rent</em> anatomizes the surplus it yields. <em>The Share</em> found a rising portion of the national product flowing to pure profit — and pure profit is rent, the return to a protected position. <em>The Surplus</em> found real resources consumed in rent-seeking — the chase for the prize that scarcity dangles. <em>The Wage</em> found a premium to scarce skill — which, where the skill is inborn and inimitable, is talent-rent. Rent, it emerges, is the thread running through the whole distributional core: the surplus to scarcity and to position, by whatever name the accounts record it.</p>
+    <p>The plates trace this from the margin to the modern. They begin with Ricardo's differential rent and its generalization to inelastic supply; with George's unearned increment and the uniquely efficient tax it invites; with Marshall's quasi-rent and the clock that decides what counts as rent. They turn to the manufacture of scarcity — monopoly rent, the privilege of the protected position, the gate of the digital landlord — and to the social waste of seeking it, and to the rentier who lives by owning it. They follow rent into the natural endowments of oil and mineral and spectrum, into the ground of cities where land rent has roared back as the housing question, and into the scarce talent of the superstar. And before the synthesis, the plate the project's conscience requires: that the line between rent and return, between the unearned and the earned, is analytically unstable and politically charged, and that most real incomes are mixtures whose proportions cannot be cleanly read.</p>
+    <p>The thesis may be stated plainly, for the plates to earn. Rent is the clearest case in this table of a price that is pure surplus — a payment that measures not the cost of producing anything but the scarcity of owning something, the tribute that scarcity, natural or contrived, exacts from those who need what only the owner has. The great question of political economy, from Ricardo to Piketty, is how much of what is paid is rent and how much is return — and to read a rent as a return earned by its recipient is to mistake the tribute of ownership for the wage of contribution.</p>
+  </section>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <section class="contents reveal" aria-labelledby="toc-h">
+    <div class="part-head">
+      <div class="part-kicker">The twelve plates of this volume</div>
+      <h2 class="part-title" id="toc-h">The Plates</h2>
+    </div>
+    <ol class="toc">
+      <li><a href="#plate-i"><span class="toc-n">i</span><span class="toc-t">The Differential</span><span class="toc-g">Ricardo's rent at the margin; price-determined, not price-determining</span></a></li>
+      <li><a href="#plate-ii"><span class="toc-n">ii</span><span class="toc-t">The Scarcity</span><span class="toc-g">economic rent generalized; the return to inelastic supply</span></a></li>
+      <li><a href="#plate-iii"><span class="toc-n">iii</span><span class="toc-t">The Unearned</span><span class="toc-g">Henry George, the unearned increment, and the single tax</span></a></li>
+      <li><a href="#plate-iv"><span class="toc-n">iv</span><span class="toc-t">The Horizon</span><span class="toc-g">Marshall's quasi-rent; what counts as rent depends on the clock</span></a></li>
+      <li><a href="#plate-v"><span class="toc-n">v</span><span class="toc-t">The Privilege</span><span class="toc-g">monopoly rent; scarcity manufactured by power and law</span></a></li>
+      <li><a href="#plate-vi"><span class="toc-n">vi</span><span class="toc-t">The Seeking</span><span class="toc-g">rent-seeking; the waste of chasing the prize</span></a></li>
+      <li><a href="#plate-vii"><span class="toc-n">vii</span><span class="toc-t">The Rentier</span><span class="toc-g">the political economy of rent; Keynes's euthanasia</span></a></li>
+      <li><a href="#plate-viii"><span class="toc-n">viii</span><span class="toc-t">The Endowment</span><span class="toc-g">resource rents; Hotelling, and the curse of plenty</span></a></li>
+      <li><a href="#plate-ix"><span class="toc-n">ix</span><span class="toc-t">The Ground</span><span class="toc-g">land and location; von Thünen, Rognlie, and the housing question</span></a></li>
+      <li><a href="#plate-x"><span class="toc-n">x</span><span class="toc-t">The Talent</span><span class="toc-g">rent to scarce ability; the superstar and the inimitable</span></a></li>
+      <li><a href="#plate-xi"><span class="toc-n">xi</span><span class="toc-t">The Boundary</span><span class="toc-g">distinguishing rent from return; the earned and the unearned</span></a></li>
+      <li><a href="#plate-xii"><span class="toc-n">xii</span><span class="toc-t">The Tribute</span><span class="toc-g">the price that is pure surplus; toward The Rate, The Tax, The Stock</span></a></li>
+    </ol>
+  </section>
+
+  <main class="plates" id="plates">
+
+    <!-- ===================== PLATE I ===================== -->
+    <section class="plate reveal" id="plate-i" data-label="Plate i · The Differential">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">i</div>
+        <p class="plate-kicker">Plate the First &middot; The Prices &middot; № II</p>
+        <h3 class="plate-title">The Differential</h3>
+        <p class="plate-gloss">Ricardo's rent at the margin; price-determined, not price-determining</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>the best land yields a surplus the worst cannot — but is that surplus a cost of the corn, or a consequence of its price?</q></div>
+      <div class="plate-body">
+        <p>The theory of rent begins, as so much of economics does, with David Ricardo and a field of corn. Suppose land of varying quality, and a society whose growing population presses for more food. The best land is cultivated first; as demand rises, cultivation spreads to land successively worse — less fertile, or further from market — until it reaches the worst land worth using at all, the marginal land, which yields just enough to cover the cost of working it and no more. The price of corn must rise to cover the cost of production on that marginal land, for without that price the marginal land would not be cultivated and the corn would not be grown. But the better lands, producing the same corn at lower cost, now earn a surplus — the difference between their abundant yield and the bare cost that the price must cover — and that surplus, Ricardo saw, is rent. It is the differential between the productivity of good land and the productivity of the marginal land that pays no rent at all.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="fr1t fr1d">
+              <title id="fr1t">Ricardian differential rent</title>
+              <desc id="fr1d">Four plots of land of declining output, best to worst. A cost line set at the output of the marginal plot. The surplus of each better plot's output above the cost line is its rent; the marginal plot earns none.</desc>
+              <line class="ax" x1="60" y1="240" x2="404" y2="240"/>
+              <rect x="100" y="80" width="50" height="115" class="fill-cs"/>
+              <rect x="180" y="120" width="50" height="75" class="fill-cs"/>
+              <rect x="260" y="160" width="50" height="35" class="fill-cs"/>
+              <rect x="100" y="80" width="50" height="160" fill="none" stroke="var(--ink)" stroke-width="1.1"/>
+              <rect x="180" y="120" width="50" height="120" fill="none" stroke="var(--ink)" stroke-width="1.1"/>
+              <rect x="260" y="160" width="50" height="80" fill="none" stroke="var(--ink)" stroke-width="1.1"/>
+              <rect x="340" y="195" width="50" height="45" fill="none" stroke="var(--ink)" stroke-width="1.1"/>
+              <line x1="88" y1="195" x2="402" y2="195" stroke="var(--ink)" stroke-width="1" stroke-dasharray="5 3"/>
+              <polyline class="guide" fill="none" points="125,80 205,120 285,160 365,195"/>
+              <text class="lbl-sm" x="125" y="255" text-anchor="middle">best</text>
+              <text class="lbl-sm" x="205" y="255" text-anchor="middle">better</text>
+              <text class="lbl-sm" x="285" y="255" text-anchor="middle">poor</text>
+              <text class="lbl-sm" x="365" y="255" text-anchor="middle">marginal</text>
+              <text class="lbl-i" x="125" y="142" text-anchor="middle">rent</text>
+              <text class="lbl-i" x="205" y="166" text-anchor="middle">rent</text>
+              <text class="lbl" x="398" y="190" text-anchor="end">cost of cultivation</text>
+              <text class="lbl-sm" x="365" y="222" text-anchor="middle">no rent</text>
+              <text class="lbl-ax" x="232" y="278" text-anchor="middle">PLOTS OF LAND, BEST TO WORST →</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 1.</span> Ricardo's differential rent. Plots of declining quality yield declining output; the price of corn must cover the cost of working the marginal plot, which therefore earns no rent. Each better plot produces the same corn more cheaply, and the surplus of its output above that cost — the shaded portion — is its rent. Rent is the differential between the inframarginal land and the margin: a surplus, not a cost.</figcaption>
+        </figure>
+        <p>From this picture Ricardo drew the conclusion that is his enduring contribution, and it inverts the natural intuition completely. One supposes that rent, like any cost a landlord charges, must enter into the price of corn and raise it — that bread is dear in part because rent is paid. Ricardo showed the causation runs the other way. The price of corn is set at the margin, by the cost of production on the rent-free land; rent is the surplus that this price leaves on the better lands, a residual determined after the price is fixed. So rent does not raise the price of corn — it is the consequence of the price, not its cause. Corn is not dear because a rent is paid; a rent is paid because corn is dear. The same logic governs whether one extends cultivation to worse land — the extensive margin — or applies more labor and capital to land already in use until the last increment barely pays — the intensive margin. In both, the marginal application earns no rent, and rent is the surplus of the inframarginal over the marginal.</p>
+        <aside class="pull">Corn is not dear because rent is paid; rent is paid because corn is dear. The landlord's surplus is the child of the price, not its parent.</aside>
+        <p>The consequence for distribution was, to Ricardo, alarming, and it points straight to <em>The Share</em>'s principal problem. As population grows and cultivation is driven onto ever-worse land, the margin falls, the price of corn rises, and rent swells — for the gap between the good land and the worsening margin widens. The landlord gains; and since the price of corn sets the subsistence wage, and the surplus over wages is profit, the swelling of rent comes at the expense of profit, which Ricardo feared would fall toward the vanishing point of a stationary state. The landlord, contributing nothing, grows rich on the mere progress of society — the parasite on growth that the classical economists would condemn and Henry George would seek to tax. Rent, in Ricardo's hands, was already what it remains in this volume: the surplus that scarcity confers on the owner of a position, owed to the price rather than charged into it.</p>
+        <aside class="edge"><span class="lead">the edge</span> Ricardo's model assumes a rent-free margin always exists — some worst land, or last application of capital, that just covers its cost and pays no rent — and that lands are taken up in strict order of quality. Where all land is scarce, so that even the worst commands a price, or where land has competing uses, the pure differential story needs amending: rent then includes a scarcity premium on the margin itself, a pure return to fixity that the differential picture omits. The modern treatment of the next plate absorbs Ricardo's differential rent into the wider theory of rent as the return to inelastic supply, of which differential fertility is one source among several. Ricardo's deep insight — that rent is a residual, not a cost — survives the amendment intact; his particular model of rent as purely differential does not.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE II ===================== -->
+    <section class="plate reveal" id="plate-ii" data-label="Plate ii · The Scarcity">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">ii</div>
+        <p class="plate-kicker">Plate the Second &middot; The Prices &middot; № II</p>
+        <h3 class="plate-title">The Scarcity</h3>
+        <p class="plate-gloss">economic rent generalized; the return to inelastic supply</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if rent is the surplus owners reap from scarcity, what exactly is scarce — and how is the surplus measured?</q></div>
+      <div class="plate-body">
+        <p>Ricardo found rent in land, but the concept he discovered is not about land; it is about scarcity, and it generalizes to anything scarce. The modern definition strips away the corn and the acreage and states the matter plainly: economic rent is the payment to a factor of production above its transfer earnings — above the minimum needed to keep it in its present use, which a competitive market fixes at the value of its next-best alternative. Every factor's total payment thus divides in two: the transfer earnings, which must be paid lest the factor depart to that next-best use, and the rent, the surplus over and above. The wage of a worker who would do the same job for less contains a rent; the return to a machine that cannot be replaced this year contains a rent; the price of a downtown lot, of a patent, of a singer's hour, contains a rent. Land was merely the first and purest case.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="fr2t fr2d">
+              <title id="fr2t">Economic rent above the supply curve</title>
+              <desc id="fr2d">An upward-sloping supply curve and a horizontal market price. The area between the price and the supply curve, over the units supplied, is economic rent; the area beneath the supply curve is transfer earnings.</desc>
+              <line class="ax" x1="60" y1="252" x2="404" y2="252"/>
+              <line class="ax" x1="60" y1="252" x2="60" y2="44"/>
+              <polygon class="fill-cs" points="60,120 273,120 60,215"/>
+              <line class="curve" x1="60" y1="215" x2="340" y2="90"/>
+              <line x1="60" y1="120" x2="300" y2="120" stroke="var(--ink)" stroke-width="1.2"/>
+              <line class="guide" x1="273" y1="252" x2="273" y2="120"/>
+              <circle cx="273" cy="120" r="2.6" fill="var(--ink)"/>
+              <text class="lbl" x="52" y="123" text-anchor="end">P</text>
+              <text class="lbl" x="320" y="92">S</text>
+              <text class="lbl" x="273" y="267" text-anchor="middle">Q*</text>
+              <text class="lbl-i" x="120" y="152">rent</text>
+              <text class="lbl-sm" x="150" y="234" text-anchor="middle">transfer earnings</text>
+              <text class="lbl-ax" x="356" y="267" text-anchor="middle">QUANTITY</text>
+              <text class="lbl-ax" transform="rotate(-90 28 150)" x="28" y="150" text-anchor="middle">PRICE</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 2.</span> Economic rent generalized. With an upward-sloping supply, the units that would have been offered at a price below the market price still receive it; the surplus they earn — the area between the price and the supply curve — is rent, and the area beneath the supply curve is transfer earnings. Tilt the supply curve to the vertical, the case of a fixed and unrepeatable factor, and the whole payment becomes rent; lay it flat, the case of a freely reproducible one, and the rent vanishes.</figcaption>
+        </figure>
+        <p>What governs the size of the rent is a single quantity: the elasticity of the factor's supply, the degree to which its quantity responds to its price. The figure shows the three regimes in one. With an upward-sloping supply, the inframarginal units — those that would have been forthcoming at a lower price — nonetheless command the market price, and the surplus they earn over their own supply price is rent. Now tilt the supply curve toward the vertical: a factor fixed in quantity, that exists regardless of its price and can be withdrawn to no better use — pure land, a unique site, a Rembrandt. Its transfer earnings are nil, for it goes nowhere if paid less, and so its entire payment is rent. Lay the supply curve flat instead: a factor freely reproducible at constant cost, so that any surplus above that cost calls forth more of it and is competed away. Its rent is nil. Rent is the return to inelasticity of supply — large where the factor cannot be reproduced, vanishing where it can.</p>
+        <aside class="pull">Rent is the wage of scarcity. Where a thing can be made freely it earns none; where it cannot be made at all it earns nothing else.</aside>
+        <p>Stated so, rent reveals itself as the exact mirror of the market power that <em>The Power</em> anatomized. There, power was the inverse of the elasticity of demand — the seller's hold over a buyer who has nowhere else to go, no substitute to flee to. Here, rent is the return to the inelasticity of supply — the owner's surplus from a factor that has no replacement, that cannot be reproduced to compete the surplus away. The one exploits the scarcity of the buyer's alternatives; the other, the scarcity of the factor itself. And the deepest connection, which the fifth plate will press, is that scarcity on the supply side can be manufactured exactly as power on the demand side is — so that the rent of a monopolist and the rent of a landlord differ only in whether the scarcity behind them was made by nature or by contrivance. The price of position, in either case, is the surplus that the want of an alternative confers upon the one who holds the spot.</p>
+        <aside class="edge"><span class="lead">the edge</span> The decomposition of a payment into transfer earnings and rent is conceptually exact but rests on the opportunity cost — the factor's next-best use — which is unobservable and shifts with how broadly the use is defined. A plot's transfer earnings differ entirely if its alternative is taken to be farming, or housing, or lying idle; a singer's, if her alternative is another label, or another profession, or none. So the size of a rent is not a fact read off the market but a magnitude relative to a posited counterfactual, and the same payment can be mostly rent or mostly transfer earnings according to the alternative one imagines — a slipperiness the eleventh plate will confront directly. What is firm is the principle the figure draws: rent rises with the inelasticity of supply, and is greatest for what cannot be made again.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE III ===================== -->
+    <section class="plate reveal" id="plate-iii" data-label="Plate iii · The Unearned">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">iii</div>
+        <p class="plate-kicker">Plate the Third &middot; The Prices &middot; № II</p>
+        <h3 class="plate-title">The Unearned</h3>
+        <p class="plate-gloss">Henry George, the unearned increment, and the single tax</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if the value of land is made by the community and kept by the owner, who has earned it — and what should be done?</q></div>
+      <div class="plate-body">
+        <p>No book of economics has sold as Henry George's <em>Progress and Poverty</em> sold in 1879, and its question was the one the Gilded Age forced upon a prospering nation: why, amid such material progress, does poverty not merely persist but deepen? George's answer fixed on rent. As a society advances — as its population grows, its commerce thickens, its roads and ports and schools are built — the value of its land rises. But that rise is no work of the landowner, who has done nothing to produce it; it is the creation of the whole community, of the very crowding and building and prospering that make a place worth being. The landowner, holding the spot that all this activity must use, collects the rise as rent — an unearned increment, the fruit of the community's progress harvested by the one who merely owns the ground. And so the gains of progress flow to landowners, while labor and capital, however productive, find the advancing rent absorbing what they create. Poverty walks beside progress because the landlord stands at the gate.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="fr3t fr3d">
+              <title id="fr3t">A tax on the rent of fixed land</title>
+              <desc id="fr3d">A vertical supply curve of land meets a downward demand at the equilibrium rent. A tax takes a slice of the rent; because supply is vertical, the quantity does not change and no deadweight loss arises. The tax falls entirely on the owner.</desc>
+              <line class="ax" x1="60" y1="252" x2="404" y2="252"/>
+              <line class="ax" x1="60" y1="252" x2="60" y2="44"/>
+              <rect x="60" y="162" width="180" height="26" class="fill-wedge"/>
+              <rect x="60" y="188" width="180" height="64" class="fill-cs"/>
+              <line class="curve" x1="240" y1="252" x2="240" y2="60"/>
+              <line class="curve2" x1="80" y1="92" x2="390" y2="230"/>
+              <circle cx="240" cy="162" r="2.8" fill="var(--ink)"/>
+              <text class="lbl" x="244" y="78">S (fixed land)</text>
+              <text class="lbl" x="382" y="226" text-anchor="end">D</text>
+              <text class="lbl" x="52" y="165" text-anchor="end">R</text>
+              <text class="lbl-i" x="150" y="178" text-anchor="middle">tax → public</text>
+              <text class="lbl-i" x="150" y="224" text-anchor="middle">owner keeps</text>
+              <text class="lbl-i" x="300" y="120" text-anchor="middle">no deadweight loss</text>
+              <text class="lbl-i" x="300" y="134" text-anchor="middle">(quantity unchanged)</text>
+              <text class="lbl" x="240" y="267" text-anchor="middle">Q̄</text>
+              <text class="lbl-ax" transform="rotate(-90 28 150)" x="28" y="150" text-anchor="middle">RENT</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 3.</span> George's efficient tax. The supply of land is vertical — fixed, whatever the price — so a tax on its rent cannot change the quantity, and no gains from trade are destroyed: there is no deadweight loss. The tax falls entirely on the owner, taking a slice of a rent the owner did nothing to create. Contrast the tax wedge of <em>The Surplus</em>, where an upward-sloping supply meant the tax shrank the quantity and burned away surplus. A tax on pure rent is the rare tax with no excess burden.</figcaption>
+        </figure>
+        <p>From the diagnosis George drew a remedy of startling simplicity: a single tax on the value of land, taking the unearned increment for the public that created it, and abolishing every other tax — for all the others fall on production, on labor and enterprise and exchange, and so discourage the very activity a society wants. The land tax discourages nothing, and here George's moral argument is joined by an efficiency argument that economists who reject his politics have never been able to refute. Because land is fixed in supply, perfectly inelastic, a tax on its rent cannot change the quantity of land — you cannot make less of it in response to the tax — and so, as the figure shows, it produces no deadweight loss, none of the destroyed exchanges that a tax on produced goods inflicts. The tax falls wholly on the owner, on the rent, with no distortion of behavior whatever. It is the one tax that takes without wasting. Milton Friedman, no friend to George's broader vision, called the land-value tax the least bad tax; and a line of theorists from Stiglitz onward proved a striking theorem — that the land rent a city's public goods create can exactly equal the efficient outlay upon them, so that a tax on rent could finance the very investment that produced it.</p>
+        <aside class="pull">The community makes the value of the land; the landlord makes only the claim to it. George asked the community to take back what it had made.</aside>
+        <p>George's argument is the volume's animating question made into a program. Who earns the value of merely owning the spot that others must pass through? On George's reckoning, no one earns it — it is made by the passers-through, by the community whose presence and labor give the position its worth, and merely captured by the owner who holds the toll. The remedy follows from the diagnosis: take the unearned value for those who created it. That the land tax is efficient is, among economists, scarcely contested; that it has nonetheless been adopted almost nowhere is one of the most instructive facts in political economy, and the reasons are the rest of this volume.</p>
+        <aside class="edge"><span class="lead">the edge</span> George's tax is the rare policy that economists across the spectrum grant is efficient — a tax on a perfectly inelastic factor distorts nothing — and yet it has scarcely anywhere been imposed, for reasons that are themselves this volume's subjects. Pure land value is hard to separate from the improvements built upon it, an assessment problem of real difficulty. Current owners bought their land at prices that already capitalized its expected rent, so a sudden full tax would expropriate buyers who were not the original enclosers, a genuine transition unfairness. And, most tellingly, landowners are powerful and resist, turning the rent-seeking of the sixth plate to the defense of rent itself. The efficiency of the land tax is not in serious dispute; its near-universal absence is a monument to the politics of rent — proof that what is efficient and what is enacted part ways exactly where a concentrated and powerful interest collects the surplus.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE IV ===================== -->
+    <section class="plate reveal" id="plate-iv" data-label="Plate iv · The Horizon">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">iv</div>
+        <p class="plate-kicker">Plate the Fourth &middot; The Prices &middot; № II</p>
+        <h3 class="plate-title">The Horizon</h3>
+        <p class="plate-gloss">Marshall's quasi-rent; what counts as rent depends on the clock</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>the return to a machine looks like rent today and like profit tomorrow — which is it?</q></div>
+      <div class="plate-body">
+        <p>Alfred Marshall, the great systematizer, saw that rent's defining feature — a surplus owed to a supply that cannot expand — is a matter of degree and of time, and he named the intermediate case quasi-rent. Consider a factor that is fixed in the short run but variable in the long: a machine, a factory, a ship, a hard-won specialized skill. In the short run its quantity cannot change — no new factories rise overnight, no specialists are trained in a week — so when demand is strong it earns a surplus that behaves exactly like rent: the difference between the revenue it brings and the variable costs of operating it, a return to its temporary fixity. The figure shows this quasi-rent as the rectangle by which price exceeds variable cost. But in the long run the fixity dissolves. If the surplus is rich, new machines are built and new specialists trained, supply expands, and competition erodes the quasi-rent down to the normal return on capital. What was rent in the short run is competed away in the long.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="fr4t fr4d">
+              <title id="fr4t">Quasi-rent</title>
+              <desc id="fr4d">A flat variable-cost line and a higher short-run price, with the rectangle between them the quasi-rent earned by the fixed factor. An arrow shows the long-run price falling toward variable cost as entry erodes the quasi-rent.</desc>
+              <line class="ax" x1="60" y1="252" x2="404" y2="252"/>
+              <line class="ax" x1="60" y1="252" x2="60" y2="44"/>
+              <rect x="60" y="120" width="180" height="80" class="fill-cs"/>
+              <line class="curve2" x1="60" y1="200" x2="404" y2="200"/>
+              <line x1="60" y1="120" x2="300" y2="120" stroke="var(--ink)" stroke-width="1.2"/>
+              <line x1="60" y1="176" x2="300" y2="176" stroke="var(--ink)" stroke-width="1" stroke-dasharray="5 3"/>
+              <line class="guide" x1="240" y1="252" x2="240" y2="120"/>
+              <line x1="258" y1="126" x2="258" y2="170" stroke="var(--soft)" stroke-width="1.2"/>
+              <path d="M258,170 l-3,-7 l6,0 z" fill="var(--soft)"/>
+              <text class="lbl" x="248" y="116">P (short run)</text>
+              <text class="lbl" x="360" y="196">variable cost</text>
+              <text class="lbl-sm" x="306" y="174">long-run price</text>
+              <text class="lbl-i" x="150" y="164" text-anchor="middle">quasi-rent</text>
+              <text class="lbl-sm" x="266" y="150">entry</text>
+              <text class="lbl" x="240" y="267" text-anchor="middle">Q</text>
+              <text class="lbl-ax" x="356" y="267" text-anchor="middle">QUANTITY</text>
+              <text class="lbl-ax" transform="rotate(-90 28 150)" x="28" y="150" text-anchor="middle">PRICE · COST</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 4.</span> Marshall's quasi-rent: the surplus a factor fixed in the short run earns above its variable cost, the rectangle between price and cost. It is rent for as long as supply cannot expand. In the long run, entry — new machines, trained specialists, fresh firms — pushes the price down toward variable cost and competes the quasi-rent away. What is rent on one horizon is a normal return on another.</figcaption>
+        </figure>
+        <p>The lesson is that what counts as rent depends on the clock. In the very short run, the market period in which nothing can be altered, almost every factor is fixed, and almost all return is quasi-rent. As the horizon lengthens, factor after factor becomes variable, and the quasi-rents upon them are competed away. In the very long run, only the truly fixed earn rent — the unique location that cannot be moved, the inimitable talent that cannot be reproduced, and the scarcity that law or power perpetually renews. The sharp line between rent and ordinary profit thus dissolves into a question of horizon: the return to capital is a quasi-rent in the short run and a normal return in the long, the same payment wearing two names as the clock turns.</p>
+        <aside class="pull">Every rent is a quasi-rent that has found a way to last; every barrier is the reason the long run never comes.</aside>
+        <p>This recasts the whole inquiry into power and rent. A monopoly profit persists because the barrier of <em>The Power</em>'s third plate prevents the long-run entry that would otherwise compete it away — the quasi-rent is never erased, because the long run, for the protected firm, never arrives. <em>The Share</em>'s rising pure profit endures for the same reason: barriers hold off the adjustment that would dissolve it. So the durability of any rent is the durability of the obstacle to reproducing what earns it. Natural scarcity makes some rents permanent of their own accord — the long run cannot make more land or more genius. Artificial scarcity makes others permanent by force — the patent, the license, the zoning ordinance, each a device for ensuring that the long run, in which the rent would vanish, is indefinitely postponed. Every lasting rent is a quasi-rent that has found, in nature or in contrivance, a way to keep the long run at bay.</p>
+        <aside class="edge"><span class="lead">the edge</span> The quasi-rent illuminates but does not dissolve the difficulty; it relocates it into the choice of horizon, and the horizon is a choice, not a fact. On a long enough view almost nothing is truly fixed — land can be reclaimed, skill taught, a patent expired — so nearly all rent is quasi-rent destined for erosion; on a short enough view almost everything is fixed, so nearly all return is rent. Where one sets the horizon decides the answer, and the right horizon depends on the question being asked, which is why the same income can be honestly called rent or return, and why the eleventh plate finds the distinction so unstable. What endures as rent across every horizon is only what cannot be reproduced at all: the singular place, the inimitable gift, and the scarcity that power forever renews.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE V ===================== -->
+    <section class="plate reveal" id="plate-v" data-label="Plate v · The Privilege">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">v</div>
+        <p class="plate-kicker">Plate the Fifth &middot; The Prices &middot; № II</p>
+        <h3 class="plate-title">The Privilege</h3>
+        <p class="plate-gloss">monopoly rent; scarcity manufactured by power and law</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>scarcity can be inherited from nature or manufactured by law and power — does the rent know the difference?</q></div>
+      <div class="plate-body">
+        <p>Every rent so far has rested on a scarcity that nature imposed: the fixed acreage of fertile land, the unrepeatable site, the inimitable gift. But scarcity need not be found; it can be made. A monopolist creates scarcity by restricting output, as <em>The Power</em>'s first plate showed, and the profit it thereby earns is a rent — the return to a protected position, a surplus owed not to any cost of production but to the deliberate withholding of supply. And the monopolist's restriction is only the first of a whole armory of contrivances by which scarcity, and the rent it yields, can be manufactured. The patent and the copyright are monopolies the state grants by design, fencing off the use of an idea — a thing naturally boundless, costing nothing to share — so that its holder may collect a rent and invention be rewarded. The occupational license and the professional credential restrict the number who may practice a trade, conferring a scarcity rent on those already inside. The franchise, the charter, the import quota, the zoning ordinance, the regulatory barrier that an incumbent can clear and an entrant cannot — each manufactures a scarcity, and each scarcity yields a rent to whoever stands within the fence.</p>
+        <p>This divides the kingdom of rent in two. There is natural rent, the return to things genuinely scarce by nature — land, minerals, the gifts of birth — which exist in limited supply whatever anyone does. And there is artificial rent, or monopoly rent, the return to scarcities that law, power, or contrivance has made — the monopoly, the patent, the license, the barrier. The distinction is the hinge that joins this volume to <em>The Power</em>, for the pure profit that <em>The Share</em> watched rising, and the monopoly profit that <em>The Power</em> anatomized, are simply monopoly rent: the surplus that manufactured scarcity confers. The rentier collecting the rent of a patent and the landlord collecting the rent of an acre are doing the very same thing — drawing a surplus from the want of an alternative — and they differ only in whether the want was imposed by nature or arranged by man. The modern age has added a striking new manufacturer of position: the digital platform, which makes itself the gate through which a market's traffic must pass, a chokepoint contrived rather than inherited, and collects upon it — in commission, in fee, in data — the rent of a spot it has built for others to be made to cross. The digital landlord owns no land; it owns the passage, which it created and then placed itself astride.</p>
+        <aside class="pull">The landlord finds his scarcity; the monopolist makes his. The rent is the same; only the innocence differs.</aside>
+        <p>The division matters because the two rents call for opposite cures, and because they differ in their harm. Artificial scarcity is, in principle, removable: break the monopoly, expire the patent, abolish the license, lower the tariff, open the platform — and the manufactured scarcity dissolves, the rent with it. So artificial rent is the natural quarry of competition policy and deregulation, the work of <em>The Power</em>'s antitrust. Natural scarcity cannot be removed — no policy makes more land or more genius — so natural rent is the natural quarry of taxation, the work of George's single tax. And the two rents differ in innocence as well as in cure. Natural rent, however unearned, is at least harmless in its origin: the land sits there fixed, and taxing its rent destroys nothing, as the third plate showed. Artificial rent is unearned and harmful both, for the scarcity that produces it is the deliberate restriction of output that inflicts <em>The Power</em>'s deadweight loss — the exchanges forbidden to protect the rent. The monopolist's rent is thus doubly objectionable where the landlord's is only singly so: it is a surplus extracted, like the landlord's, from the want of an alternative, but the want was manufactured, and its manufacture destroyed value in the making.</p>
+        <aside class="edge"><span class="lead">the edge</span> The line between natural and artificial scarcity is itself contested, for almost every natural rent has an artificial component and almost every artificial one a natural pretext. The scarce talent is made scarcer by the license that thins the profession; the scarce location is made scarcer by the zoning that forbids the tower; the patent that rewards a true invention extends, by evergreening and thicket, into scarcity the invention never needed. And the keeper of each artificial scarcity always pleads a natural necessity — the patent to call forth invention, the license to protect the public, the brand to assure quality — so the question is never whether a scarcity is wholly made or wholly found, but how much of it is necessary and how much is privilege dressed as necessity. That question the fifth plate cannot settle and the eleventh will not pretend to.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE VI ===================== -->
+    <section class="plate reveal" id="plate-vi" data-label="Plate vi · The Seeking">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">vi</div>
+        <p class="plate-kicker">Plate the Sixth &middot; The Prices &middot; № II</p>
+        <h3 class="plate-title">The Seeking</h3>
+        <p class="plate-gloss">rent-seeking; the waste of chasing the prize</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if a rent is a prize, what does a society spend to win it — and what is lost in the spending?</q></div>
+      <div class="plate-body">
+        <p>A rent is a prize: a surplus available to whoever can capture the protected position that yields it. And where there is a prize, there is a contest for it. <em>The Surplus</em> and <em>The Power</em> both glimpsed this contest in the rectangle of monopoly profit; this plate gives it its name and its full consequence. When a monopoly, a license, a tariff, a franchise is there to be won, firms and individuals will spend real resources competing to win it — lobbying the legislature, litigating against rivals, bribing the official, queuing for the permit, cultivating the connection, building the excess capacity that deters a challenger. This is rent-seeking, the term Anne Krueger coined in 1974 studying the scramble for import licenses, and the phenomenon Gordon Tullock had anatomized in 1967. Its defining feature is that the resources it consumes produce nothing. They do not create value; they merely determine who shall capture a value that already exists, transferring the rent to the winner while dissipating it in the struggle. If the prize is worth a billion and the contestants spend, in aggregate, up to a billion chasing it, the entire rent is consumed in the chase — a pure social loss, laid on top of whatever deadweight loss the monopoly itself inflicts. The rectangle that <em>The Power</em> drew as a mere transfer becomes, through rent-seeking, a waste.</p>
+        <p>From this follows the deepest distinction in the political economy of rent: between productive activity, which creates new value, and extractive activity, which captures value already made. William Baumol put the matter in terms of where a society's enterprise flows. Entrepreneurial talent, he observed, goes wherever the returns are highest; and if rent-seeking — the capture of protected positions — pays better than production, then talent will flow into seeking rather than making. Murphy, Shleifer, and Vishny gave this its sharpest form in their study of the allocation of talent: a nation's ablest people choose between productive enterprise and the various trades of extraction, and where the rents to be grabbed are large and the protections of property weak, the talented become rent-seekers — lawyers of a certain kind, financiers of a certain kind, courtiers and lobbyists — and the economy stagnates for want of the value they would otherwise have made. Where the talented go decides whether a country grows. The rent-seeking society, in which the returns to capture exceed the returns to creation, is the society in which cronyism, corruption, and stagnation are not accidents but equilibria — and it is, as Acemoglu and Robinson argued and <em>The Growth</em> will pursue, the deep difference between the nations that prosper and the nations that fail: inclusive institutions reward the making of value, extractive institutions reward its capture, and rent-seeking is the microeconomics of the extractive state.</p>
+        <aside class="pull">Competition for a rent is a race in which the running is the whole cost, and the prize merely changes hands.</aside>
+        <p>The tragedy of rent-seeking is that it wears the costume of competition while inverting its nature. Ordinary market competition is positive-sum: the rivalry produces value as its by-product, the better mousetrap and the lower price falling out of the contest to win the customer. Rent-seeking competition is negative-sum: the rivalry produces nothing and consumes resources, the running of the race being its entire social cost. And it is self-perpetuating, for the rents fund the very power that protects them — the landowners who resist George's tax, the monopolist who lobbies to keep the monopoly, the licensed profession that defends its license, each spending a portion of the rent to preserve the scarcity that yields it. The chase for rent thus entrenches the conditions that make rent available, and a society can be trapped in it, its talent and capital absorbed in the division of a pie that, freed, they might have enlarged.</p>
+        <aside class="edge"><span class="lead">the edge</span> Not all that is called rent-seeking is unproductive, and the label is freely abused. Lobbying sometimes conveys real information to those who legislate; some litigation defends genuine rights; the financier's arbitrage that looks like pure extraction may be the price discovery that makes a market efficient. To distinguish the productive from the extractive is genuinely hard, for the same act — a patent filed, a suit brought, a donation made, a position traded — can protect real value or merely seize it, and frequently does both at once. The category is rigorous in principle and treacherous in application, and "rent-seeking," like "rent" itself, has decayed into an epithet for whatever activity one dislikes. The eleventh plate will resist that decay, for the concept is far too important to be spent on invective.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE VII ===================== -->
+    <section class="plate reveal" id="plate-vii" data-label="Plate vii · The Rentier">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">vii</div>
+        <p class="plate-kicker">Plate the Seventh &middot; The Prices &middot; № II</p>
+        <h3 class="plate-title">The Rentier</h3>
+        <p class="plate-gloss">the political economy of rent; Keynes's euthanasia</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what kind of person lives by owning the scarce — and was capitalism supposed to need him?</q></div>
+      <div class="plate-body">
+        <p>Behind every rent stands a person who collects it, and political economy has long had a name for the one who lives by collecting: the rentier. The rentier lives not by labor, which earns a wage, nor by enterprise, which earns a profit for its risk and judgment, but by ownership — of land, of capital, of financial claims upon others — drawing an income from holding what is scarce. The classical economists regarded this figure with a suspicion they did not extend to the active capitalist. The capitalist who organizes production, hazards his fortune, and directs the enterprise earns, they allowed, a return for a genuine function. The rentier merely owns, and collects. John Stuart Mill's verdict on the landlords was the characteristic one: they grow rich, he wrote, in their sleep, without working, risking, or economizing — the unearned increment of George's third plate, gathered by the one who holds the position while others do the work of making it valuable.</p>
+        <p>The most striking prophecy about this figure was made by Keynes, who looked forward, at the close of his <em>General Theory</em>, to what he called the euthanasia of the rentier. The interest the rentier collects, Keynes argued, is the reward of no genuine sacrifice but merely of the scarcity of capital — and that scarcity, he believed, was artificial, maintained only by a chronic shortfall of investment. Let capital be accumulated freely enough, and it would cease to be scarce; its return, the rate of interest, would fall toward zero; and the rentier, the functionless investor who lives on the scarcity of capital, would be painlessly euthanized — not expropriated, but quietly retired by abundance, as the thing he owned ceased to command a premium. Keynes thought this a consummation devoutly to be wished, and a likely one. It did not come. Capital did not become abundant enough, or its scarcity was maintained — by the dynamics of growth and population, by the patents and barriers of the fifth plate that keep manufactured scarcity alive, by the very concentration of ownership that lets the scarcity persist. The rentier was not euthanized. If anything, the rentier returned.</p>
+        <aside class="pull">Keynes thought the rentier would die of capital's abundance. Instead the rentier kept capital scarce, and lived.</aside>
+        <p>The return is the burden of Piketty's work, met already in <em>The Share</em>, and read aright it is a rentier's story. When the return on capital exceeds the growth rate of the economy — Piketty's famous inequality, r greater than g — the accumulated wealth of those who own grows faster than the income of those who work, and ownership, with the rent it commands, concentrates at the top across generations. The patrimonial capitalism Piketty feared is rentier capitalism: inherited and accumulated wealth commanding the economy's heights, its holders drawing return without producing. And around this finding a wider critique has gathered — of financialization, which makes the ownership of assets the master road to wealth; of the rents extracted through intellectual property, through real estate, through the platforms of the digital landlord; of an economy in which, the critics charge, too much of what is paid is rent for owning and too little is reward for making. The rentier framing rests, in the end, on the distinction this volume keeps returning to: between income earned by contribution and income drawn from the mere ownership of the scarce. The classical economists drew that line with confidence. The eleventh plate will find it has blurred.</p>
+        <aside class="edge"><span class="lead">the edge</span> The rentier is a powerful moral and political category but a slippery analytical one, because passive ownership and active enterprise are entangled — the same person both owns and decides, the same return rewards both the risk genuinely borne and the possession merely held — and because Keynes's premise, that capital's scarcity is artificial, is itself contested. If capital's return reflects a real productivity and the true reward of deferring consumption, the rentier is not functionless and his euthanasia would be a theft; if it reflects maintained scarcity and power, the rentier is precisely the parasite the classicals named. The truth is mixed and varies by case. The rentier critique is strongest where the rent is plainly artificial — the monopoly, the patent thicket, the financial extraction, the land held idle for its appreciation — and weakest where the return plainly rewards a real contribution. To call all owners rentiers is as careless as to call none.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE VIII ===================== -->
+    <section class="plate reveal" id="plate-viii" data-label="Plate viii · The Endowment">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">viii</div>
+        <p class="plate-kicker">Plate the Eighth &middot; The Prices &middot; № II</p>
+        <h3 class="plate-title">The Endowment</h3>
+        <p class="plate-gloss">resource rents; Hotelling, and the curse of plenty</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>the oil was made by no one and owned by someone — whose is the rent of the earth?</q></div>
+      <div class="plate-body">
+        <p>Land was the first gift of nature to yield a rent, but it is not the only one. The oil beneath the ground, the ore in the seam, the fish in the sea, the water in the aquifer, the band of spectrum through which signals pass — each is scarce, each was provided free by nature and produced by no one, and each yields to its owner a rent: the value of the resource above the cost of extracting it. These resource rents are land rent's cousins, and George's logic extends to them entire, for they too are the unearned return to a natural endowment, a windfall owed to ownership rather than effort. They carry, though, a peculiarity land does not, which Harold Hotelling captured in 1931 in the founding rule of resource economics. A deposit of oil is an asset, and its owner faces a choice land never poses: to extract now or to leave it for later. The owner will be indifferent between the two only if the resource left in the ground appreciates at the same rate as money left in the bank — so that, in equilibrium, the scarcity rent of an exhaustible resource, its price net of the cost of extraction, must rise over time at the rate of interest.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="fr5t fr5d">
+              <title id="fr5t">Hotelling's rule</title>
+              <desc id="fr5d">The scarcity rent of an exhaustible resource rises exponentially over time at the rate of interest, while extraction declines.</desc>
+              <line class="ax" x1="60" y1="252" x2="404" y2="252"/>
+              <line class="ax" x1="60" y1="252" x2="60" y2="44"/>
+              <line x1="60" y1="92" x2="376" y2="210" stroke="var(--soft)" stroke-width="1" stroke-dasharray="5 3"/>
+              <polyline class="curve" fill="none" points="60,222 110,210 160,192 210,168 260,138 310,102 360,68"/>
+              <text class="lbl-i" x="246" y="112" text-anchor="end">scarcity rent</text>
+              <text class="lbl-i" x="150" y="178">rises at rate r</text>
+              <text class="lbl-sm" x="338" y="206" text-anchor="end">extraction</text>
+              <text class="lbl-ax" x="356" y="270" text-anchor="middle">TIME →</text>
+              <text class="lbl-ax" transform="rotate(-90 28 150)" x="28" y="150" text-anchor="middle">RESOURCE RENT</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 5.</span> Hotelling's rule. The resource in the ground is an asset; its owner extracts now or holds for later according to whether its rent grows faster or slower than the rate of interest. In equilibrium the scarcity rent — the price net of extraction cost — must rise at exactly that rate, leaving the owner indifferent across time. Extraction falls as the rent climbs, and the resource is optimally depleted. The rent is the pure return to a natural endowment, the gift of the earth gathered by whoever holds the title.</figcaption>
+        </figure>
+        <p>The deeper drama of resource rents is political, and it carries a paradox economists call the resource curse. One might expect a nation blessed with oil or diamonds to prosper; the historical record shows, with disquieting frequency, the reverse — resource-rich countries growing more slowly, governed worse, more prone to corruption and conflict and authoritarian rule, than countries with no such bounty. The mechanisms are this volume's own. A great resource rent is a prize capturable without broad-based production, and so it draws the rent-seeking of the sixth plate to a fever — elites fight over the spoils rather than build. It funds a state that need not tax its citizens, and a state that need not tax need not answer to them, so that the resource rent corrodes accountability: no taxation, no representation, the rentier state floating free of those it rules. And it can hollow out the rest of the economy, the resource exports lifting the currency until manufacturing withers. The rent of the earth, captured carelessly, becomes a curse on the very abundance that yields it.</p>
+        <aside class="pull">Nature gave the oil to no one; the law gives its rent to someone. The whole question is to whom.</aside>
+        <p>Hence the central question of resource rents is the one the volume's title poses: who shall have them? Because the endowment is nature's and not anyone's making, its rent is unearned in the purest sense, and the Georgist conclusion presses hard — that it belongs to the public, to the people in whose territory it lies. The instruments of capture vary. Most nations vest the subsoil in the state and license extraction, keeping the rent for the commonwealth. The wisest, recognizing that an exhaustible resource consumed is gone forever, transform its rent into permanent wealth rather than spend it — the sovereign wealth fund, of which Norway's vast oil fund is the model, saving the rent of a finite endowment for the generations that will outlive it. The auction of spectrum sells the rent of the airwaves to the highest bidder and banks it for the public. And where rights are instead privatized cheaply, the public rent is given away — a transfer, often the fruit of rent-seeking, from the many who own the endowment in common to the few who capture its extraction. The rent of the earth is genuinely unearned; what becomes of it is decided not by nature but by institutions.</p>
+        <aside class="edge"><span class="lead">the edge</span> Hotelling's elegant rule, that scarcity rent climbs at the rate of interest, has fared poorly against the evidence — real resource prices have often fallen, not risen, over the long run, as discovery, substitution, and technology repeatedly outran depletion, the celebrated Simon–Ehrlich wager turning on exactly this. The rule assumes a known, fixed stock and a settled technology; reality offers neither, and a resource's scarcity is itself partly made and unmade by the search for substitutes and the advance of extraction. So resource rent is real but its path is not the clean exponential the theory draws; and the resource curse, though well documented, is not destiny, for Norway and Botswana escaped it where institutions captured the rent for the public while others squandered it. The rent of the earth is unearned beyond dispute; what it does to those who hold it is a question of institutions, not of nature.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE IX ===================== -->
+    <section class="plate reveal" id="plate-ix" data-label="Plate ix · The Ground">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">ix</div>
+        <p class="plate-kicker">Plate the Ninth &middot; The Prices &middot; № II</p>
+        <h3 class="plate-title">The Ground</h3>
+        <p class="plate-gloss">land and location; von Thünen, Rognlie, and the housing question</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>the classicals thought land rent would fade with industry — why has it returned as the housing crisis?</q></div>
+      <div class="plate-body">
+        <p>The classical economists expected land rent to dwindle. As industry rose and manufactures and services came to dominate, land seemed a shrinking share of a society's capital, Ricardo's landlord a fading power. For a time the expectation held. Then land rent came roaring back, in a form the classicals would not have predicted — not the rent of farmland but the rent of urban location, gathered as the value of housing. The decisive modern finding is Matthew Rognlie's, met already in <em>The Share</em>: the much-discussed rise in capital's share of income since the mid-twentieth century is almost entirely housing — the imputed rent of owner-occupied homes and the soaring value of the residential land beneath them. Net of housing, the long-run rise in capital's share nearly vanishes. Which means that Piketty's rising capital, the wealth that grows faster than the economy, is in large part rising land rent wearing a modern dress: Ricardo's landlord returned as the homeowner and the urban landowner, and the twenty-first century's capital revealed as the nineteenth century's land, under a roof.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="fr6t fr6d">
+              <title id="fr6t">The bid-rent curve</title>
+              <desc id="fr6d">Land rent is highest at the city center and falls with distance toward the edge, where it meets the rent of agricultural land.</desc>
+              <line class="ax" x1="60" y1="252" x2="404" y2="252"/>
+              <line class="ax" x1="60" y1="252" x2="60" y2="44"/>
+              <line x1="60" y1="222" x2="404" y2="222" stroke="var(--faint)" stroke-width="1" stroke-dasharray="5 3"/>
+              <path class="curve" d="M70,82 C150,170 240,205 360,222"/>
+              <circle cx="360" cy="222" r="2.6" fill="var(--ink)"/>
+              <text class="lbl" x="150" y="142">bid-rent</text>
+              <text class="lbl-i" x="158" y="98">made by the community</text>
+              <text class="lbl-sm" x="150" y="238" text-anchor="middle">agricultural rent</text>
+              <text class="lbl-sm" x="360" y="212" text-anchor="middle">city edge</text>
+              <text class="lbl-ax" x="356" y="270" text-anchor="middle">DISTANCE FROM CENTER →</text>
+              <text class="lbl-ax" transform="rotate(-90 28 150)" x="28" y="150" text-anchor="middle">LAND RENT</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 6.</span> The bid-rent curve of von Thünen and Alonso. Land rent is highest at the center, where access and the productivity of density are greatest, and falls with distance toward the edge, where it meets the rent of agriculture. The central rent is made by the community — by the infrastructure, the access, the agglomeration that density affords — and captured by whoever owns the ground: George's unearned increment, drawn as a curve. Forbid building, and the curve lifts higher still.</figcaption>
+        </figure>
+        <p>The economics of this rent was charted long ago. Johann von Thünen, in 1826, showed that the rent of agricultural land falls with distance from the market, since distant land bears higher costs of carriage, arranging land use in concentric rings. William Alonso brought the insight into the city in the bid-rent curve of the figure: land rent is highest at the center, where access is greatest and the productivity of density most concentrated, and declines with distance toward the edge, where it sinks to the rent that farming would pay. And the source of the central rent is precisely what George identified — the community. It is the infrastructure laid, the access afforded, the agglomeration of people and firms whose proximity makes each more productive, that gives central land its worth; the landowner, holding the spot that all this activity must use, captures the value the activity creates. A house's price reflects this directly, for it is the sum of two quite different things: the structure, a building that can be reproduced and costs what it costs to build, and the land, fixed and unrepeatable, whose price is pure rent. House prices rise, across the desirable cities of the world, chiefly because land prices rise. The housing crisis is, at its foundation, a land-rent crisis.</p>
+        <aside class="pull">The twenty-first century's capital turned out to be the nineteenth century's land, wearing a roof.</aside>
+        <p>And here the natural scarcity of location meets the artificial scarcity of the fifth plate. Land in a desirable city is genuinely scarce — there is only so much room near the center — but its scarcity is deepened, often enormously, by the restrictions that forbid building upon it: the zoning that caps height, the minimum lot size, the permitting that delays and deters. These manufacture an additional scarcity of housing atop the natural scarcity of land, and the rent rises accordingly — a regulatory barrier, in <em>The Power</em>'s sense, that enriches the incumbent owner at the expense of the would-be resident. Edward Glaeser and Joseph Gyourko showed that housing is dear not where land is naturally scarce but where it is legally hard to build, the gap between the price of a home and the cost of constructing it measuring a kind of regulatory tax. So the modern land rent is part natural and part contrived, and its remedies are correspondingly twofold: tax the rent, as George urged, or remove the contrivance and let the city build. The land question, which the classicals thought industry had closed, has reopened as the most fraught domestic politics of the age.</p>
+        <aside class="edge"><span class="lead">the edge</span> That the rising capital share is mostly housing is Rognlie's finding; what it means is contested. If the housing rent reflects the genuine scarcity of desirable location — the real productivity of access and agglomeration — it is a true rent, to be taxed or built away. If it reflects instead the financialization of housing, the treatment of homes as speculative assets, and the artificial scarcity that incumbent owners impose through the politics of land use, it is rent compounded by contrivance, and the remedy must reach the politics as well as the code. Almost certainly it is both, in proportions that vary by city and defy clean measure; and the homeowner who is, on Rognlie's accounting, the modern rentier is also, in their own eyes, a saver who bought a home — exactly the entanglement of earned and unearned the next plate must confront. The land question returned not as a clean abstraction but as a quarrel in every prosperous city on earth.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE X ===================== -->
+    <section class="plate reveal" id="plate-x" data-label="Plate x · The Talent">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">x</div>
+        <p class="plate-kicker">Plate the Tenth &middot; The Prices &middot; № II</p>
+        <h3 class="plate-title">The Talent</h3>
+        <p class="plate-gloss">rent to scarce ability; the superstar and the inimitable</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>the star earns a hundred times the journeyman for a talent only twice as great — what is the surplus, and is it earned?</q></div>
+      <div class="plate-body">
+        <p>Rent attaches not only to land and oil and monopoly but to people — to those whose talent is scarce and cannot be copied. The great performer, the celebrated surgeon, the star athlete, the sought-after executive: each earns a sum that towers over the competent practitioner of the same craft, and the tower is largely rent. For the surgeon who would operate for a tenth of her fee, or the player who would take the field for a fraction of his, collects the remainder not as the price of the labor — that is the transfer earnings, what would be needed to keep her at the work — but as a surplus owed to the scarcity of a gift that others cannot supply. Talent rent is the return to an ability inelastically supplied because it is, quite simply, rare.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="fr7t fr7d">
+              <title id="fr7t">The superstar convexity</title>
+              <desc id="fr7d">Reward rises convexly with talent or rank, pulling far above a proportional line at the top: a small advantage in talent yields a large advantage in reward.</desc>
+              <line class="ax" x1="60" y1="252" x2="404" y2="252"/>
+              <line class="ax" x1="60" y1="252" x2="60" y2="44"/>
+              <line x1="70" y1="228" x2="380" y2="150" stroke="var(--faint)" stroke-width="1" stroke-dasharray="5 3"/>
+              <path class="curve" d="M70,228 C200,218 300,180 380,60"/>
+              <text class="lbl" x="118" y="210">reward</text>
+              <text class="lbl-sm" x="288" y="172" text-anchor="end">proportional</text>
+              <text class="lbl-i" x="372" y="112" text-anchor="end">rent</text>
+              <text class="lbl-ax" x="356" y="270" text-anchor="middle">TALENT / RANK →</text>
+              <text class="lbl-ax" transform="rotate(-90 28 150)" x="28" y="150" text-anchor="middle">REWARD</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 7.</span> Rosen's superstars. When scale lets the best serve the whole market — the recording, the broadcast, the platform — a small advantage in talent translates into a large advantage in reward, the curve pulling far above the proportional line at the top. The surplus the star earns above the next-best alternative is rent: the return to a scarce and inimitable ability, amplified by scale. Whether artificial scarcity — the license, the credential, the image right — amplifies it further is the question the boundary plate presses.</figcaption>
+        </figure>
+        <p>Sherwin Rosen explained, in 1981, why such rents have grown so vast, and the explanation is the convexity the figure draws. Talent is scarce, and scale — the technology of recording, broadcasting, software, the platform — lets the most talented serve enormous markets at little extra cost. Where the best can reach everyone, a slight advantage in talent yields a large advantage in reward: the finest singer, once records exist, captures the market the merely excellent would have shared, and the mapping from talent to income bends sharply upward at the top. A small edge in ability becomes a fortune in reward, the convex curve rising far above the line that proportionality would draw. The surplus is rent, the return to a scarcity that scale has made lucrative; and it is, by this volume's definition, unearned in the technical sense — the talent a gift of birth, the scale a gift of technology, neither called forth by the extra reward.</p>
+        <aside class="pull">Scale turns a sliver of talent into a fortune; the fortune is rent, and whether it is deserved is a question scale cannot answer.</aside>
+        <p>Talent rent differs from the monopoly rent of the fifth plate in its source: the scarcity is natural, the gift genuinely rare, not artificially withheld. Yet the two are rarely pure, for natural talent is regularly fenced by artificial scarcity — the license that limits the number of physicians, the credential that guards a profession, the image right and the copyright that extend a star's monopoly over their own persona. And the case that most divides opinion, the pay of the corporate chief, sits exactly on this seam. Is a nine-figure salary the talent rent of a genuinely scarce executive ability, scaled across a vast enterprise, as Gabaix and Landier argue, with pay tracking the size of the firm a rare skill commands? Or is it, as Bebchuk and Fried contend, an extracted rent — the spoils of a captured boardroom, the executive setting his own reward through control of the very process meant to discipline it? The first is the natural rent of this plate; the second is the artificial rent of the fifth, the monopoly rent of a protected position, wearing the costume of talent. Which it is cannot be read from the size of the sum, and the boundary plate will find this the hardest case of all.</p>
+        <aside class="edge"><span class="lead">the edge</span> Talent rent is where the moral intuitions of this volume divide most sharply. The surplus the gifted earn above their next-best alternative is, by definition, rent — unearned in the precise sense that no extra effort summoned it, the talent a gift and the scale a windfall of technology. Yet it offends the intuition to call the violinist's or the surgeon's reward unearned as the absentee landlord's is, for the talent was cultivated, the skill honed, the work truly done. The only resolution the volume can offer is a distinction: the return to the costly cultivation of a gift is transfer earnings, earned; the surplus owed to the gift's innate scarcity and to the scale technology lends is rent, unearned in the strict sense — and the two are inseparably mixed in every star's pay, in proportions no accountant can divide. The chief executive's case is harder yet, for there the scarcity itself is in doubt, and the rent may be less the wage of a rare gift than the plunder of a captured board.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE XI ===================== -->
+    <section class="plate reveal" id="plate-xi" data-label="Plate xi · The Boundary">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">xi</div>
+        <p class="plate-kicker">Plate the Eleventh &middot; The Prices &middot; № II</p>
+        <h3 class="plate-title">The Boundary</h3>
+        <p class="plate-gloss">distinguishing rent from return; the earned and the unearned</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>rent is the surplus over what is earned — but can the earned ever be cleanly told from the unearned?</q></div>
+      <div class="plate-body">
+        <p>Every volume of this table reaches a plate where the central concept, having been sharpened to a fine edge, is held against the world and found difficult to apply. <em>The Surplus</em> confessed that its triangle was theory-laden; <em>The Share</em> that its ratio was a construct of the accounts; <em>The Power</em> that its markup could scarcely be measured. The conscience of <em>The Rent</em> demands the same confession, and it is the gravest of them, for it touches not only what can be measured but what can be deserved. Rent is defined with perfect clarity — the payment above transfer earnings, the return to inelastic supply — and yet to say of any actual income how much of it is rent is treacherous on the facts and, beneath the facts, undecidable on the merits. The boundary between rent and return, between the unearned and the earned, will not hold still.</p>
+        <p>It will not hold still, first, because the quantity that defines it cannot be seen. Transfer earnings are the factor's opportunity cost, the value of its next-best use — and the next-best use is a counterfactual, never observed, that shifts with how the question is framed. Is a plot's alternative use farming, or housing, or lying idle? Is a surgeon's alternative another hospital, or another profession, or none? The size of the rent depends entirely on the answer, and the answer is a supposition, not a measurement. It will not hold still, second, because of the horizon of the fourth plate: the same payment is rent in the short run and a normal return in the long, so that whether a thing is rent depends on the clock one consults, and the clock is a choice. And it will not hold still, third and most deeply, because real incomes are mixtures, and the strands cannot be pulled apart. The entrepreneur's return braids the reward of genuine risk and innovation, which is earned, with the rent of a protected position, which is not. The skilled worker's premium braids the return to costly training, which is earned, with the rent of an inborn and scarce talent, which is not. The homeowner's gain braids the upkeep of a building, which is earned, with the appreciation of land, which is not. No accountant can separate the threads, because they are not separate in the thing itself.</p>
+        <aside class="pull">Economics can show that a payment exceeds what was needed to call it forth. Whether the excess is deserved, no economics can say.</aside>
+        <p>This unsteadiness would be a lesser matter were the classification idle. It is not. To call an income rent is to call it unearned, and to call it unearned is to mark it as fair game — for the tax collector who follows George, for the reformer who would distinguish the deserving from the parasitic. To call the same income a return is to call it earned, and so deserved, and so to be left alone. The label carries a verdict, and the analytics that should ground the verdict often cannot. Worse, the very terms tempt abuse: "rent" and "rent-seeking" decay, in careless hands, into epithets for any income or activity one happens to dislike, the rigor of a real category spent on invective. The discipline the honest analyst must keep is to hold the clear cases apart from the contested. The rent of pure land, of a granted monopoly, of an occupational license — these are rent beyond reasonable dispute, surpluses to scarcities that called forth nothing. The return to risk genuinely borne, to invention genuinely made, to consumption genuinely deferred — these contain, at their core, something earned. Between them lies a wide contested middle, where most real income falls, and about which one must argue honestly rather than label freely.</p>
+        <p>And at the bottom of the difficulty lies something no measurement can reach, for "earned" and "unearned" are not, in the end, facts about the world but judgments we bring to it. Economics can establish that a payment exceeds the transfer earnings — that a surplus is there, owed to scarcity rather than to cost. It cannot establish whether the recipient deserves it. Whether the gifted deserve the rent of their gift, whether the saver deserves the return on his patience, whether the first claimant deserves the rent of the land he merely reached before others — these are questions of desert, of justice, that lie wholly beyond the reach of any price or quantity. This is the boundary economics cannot cross, and the honesty the volume owes its reader is to mark it clearly: the science can show you the surplus; it cannot tell you whose it ought to be.</p>
+        <aside class="edge"><span class="lead">the edge</span> The instability of the boundary is not a flaw to apologize for but the central finding to state plainly. Rent is a real and rigorous category — the surplus over transfer earnings, the return to inelastic supply — and yet its application to any actual income is contestable on the facts, the counterfactual being unseen and the horizon a choice, and undecidable on the merits, desert being a judgment and not a measurement. The mature use of the concept is therefore neither to deny that rent exists, as the apologists for every fortune would prefer, nor to brand all income rent, as the levelers would, but to keep the clear cases apart from the contested and to argue honestly about the rest — knowing that where the argument lands will turn, at last, on a theory of desert that lies beyond the edge of what prices can tell.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE XII ===================== -->
+    <section class="plate reveal" id="plate-xii" data-label="Plate xii · The Tribute">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">xii</div>
+        <p class="plate-kicker">Plate the Twelfth &middot; The Prices &middot; № II</p>
+        <h3 class="plate-title">The Tribute</h3>
+        <p class="plate-gloss">the price that is pure surplus; toward The Rate, The Tax, The Stock</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if rent is the tribute paid to ownership of the scarce, what does the price beneath our rents finally measure?</q></div>
+      <div class="plate-body">
+        <p>The volume may now gather what its plates have found. Rent is the return to scarcity — the surplus a factor earns because it cannot be reproduced, or is prevented from being. Ricardo found it at the margin of cultivation, a residual left by the price rather than a cost charged into it. The moderns generalized it to any factor in inelastic supply, the return to a scarcity of alternatives that is the exact mirror, on the supply side, of the market power that <em>The Power</em> located on the demand side. George found it unearned, the value made by the community and captured by the owner, and uniquely fit to be taxed, since a levy on a fixed thing destroys nothing. Marshall found it provisional where supply can adjust, a quasi-rent that the long run competes away — so that the durability of any rent is the durability of the barrier that holds the long run off. And the deepest modern insight, the hinge of the whole volume, is that the scarcity behind a rent may be natural or contrived: the rent of the landlord and the rent of the monopolist are one surplus, differing only in whether nature imposed the scarcity or power manufactured it. Rent is what power earns; power is how rent is made.</p>
+        <p>Seen so, rent reveals itself as the connective tissue of this table's entire account of distribution. The pure profit whose rising share <em>The Share</em> traced is rent — the return to a protected position. The monopoly profit <em>The Power</em> anatomized is monopoly rent — the surplus of manufactured scarcity. The resources <em>The Surplus</em> watched consumed in rent-seeking were spent chasing this prize. The premium <em>The Wage</em> found on scarce skill is, where the skill is inborn, talent-rent. Piketty's wealth that outgrows the economy is the rentier's rent compounding; Rognlie's rising capital is land rent returned as housing. By whatever name the national accounts record it — profit, return, capital's share, the top centile's income — a great and apparently growing part of what is paid is rent: the surplus that scarcity and position confer upon those who own. The four volumes that precede this one were each, in the end, partly about rent; this volume names the thing they were circling.</p>
+        <aside class="pull">Rent is not the wage of production but the tribute of ownership — the price of a permission, exacted by whoever holds the spot that others must cross.</aside>
+        <p>And so the volume answers the question it has carried. Who earns the value of merely owning the spot that others must pass through? No one earns it, in the sense the volume has made precise — the sense of calling something forth by one's effort or sacrifice. The value of the position is created by those who must pass through it: by the community whose presence makes the location worth holding, by the market's traffic that must flow through the monopolist's chokepoint or the platform's gate, by the demand that makes the scarce thing dear. The owner contributes nothing to that value; the owner merely holds the toll, and collects. Whether the collecting is deserved — whether the luck of holding the scarce thing entitles one to its tribute — is the question of desert that the eleventh plate placed beyond the reach of any price. But that the tribute is not earned in the sense of summoned-forth-by-labor is the volume's finding, plainly stated: rent is the price of a permission, not the wage of a production. It is the tribute that scarcity, natural or contrived, exacts from those who need what only the owner has.</p>
+        <p>This is the clearest instance in the whole table of the thesis the series was built to press. A competitive price, equal to the cost of the last unit made, measures the worth of producing a thing; it is, at least, the wage of a real contribution. A rent measures nothing of the kind. It measures the scarcity of owning, not the cost of making — the want of an alternative, the height of the barrier, the luck or the contrivance that put a thing beyond reproach. Rent is the price that is pure verdict: the surplus that the absence of a substitute confers on whoever holds the position, with no production behind it to justify the sum. The great unfinished question of political economy, from Ricardo through George to Piketty, is how much of what we pay and earn is this tribute, and how much is the genuine wage of contribution; and the volume has shown that the line between them, though real, is unstable on the facts and undecidable on the merits, so that the question remains, as it has always been, open.</p>
+        <p>The volume passes its findings on. To <em>The Rate</em>, the third element, it hands its hardest unfinished case: whether the interest that capital commands is itself a rent — the scarcity-price of capital, the rentier's reward that Keynes thought abundance would abolish — or a genuine return to the waiting that deferral requires, the question on which the rentier's whole moral standing turns. To <em>The Tax</em>, the seventeenth, it hands George's efficient levy on the unearned, the taxation of land and resource rents that takes without wasting, and the politics that has everywhere resisted it. To <em>The Stock</em>, the ninth, it hands the recognition that the price of any asset is the present value of its future rents — that asset values are rent capitalized, and a rising tide of wealth a rising tide of expected rent. To <em>The Power</em> it has already given, and from it received, the truth that scarcity is the common root of rent and of power. And to <em>The Growth</em> it hands the gravest stake of all: that a society which rewards the seeking of rent above the making of value will allocate its talent to capture and stagnate, while one that rewards creation will grow — so that the disposition of rent is not merely a question of justice but of whether a people prospers at all.</p>
+        <p>The conceit of the series completes, with this volume, perhaps its purest turn. Prices, the table insists, are not facts of nature but verdicts on hidden contests; and rent is the verdict in its nakedest form. It is a price wholly surplus, measuring not the cost of making anything but the scarcity of owning something — the tribute rendered to position, whether the position was a gift of nature or the spoils of power. To read a rent as a return earned by its recipient is to mistake the tribute of ownership for the wage of contribution, and to forget that the spot was there before the owner, that the value is the community's or the market's making, and that the rent is only the price of the permission to pass. The Rent makes the tribute visible. And it leaves the argument open, as it must — for the boundary between rent and return will not hold still, the natural and the contrived will not separate cleanly, the desert of the owner cannot be measured, and the question of how much of our common wealth is tribute and how much is wage is the oldest and most unfinished in the science. Rent is the price that is purest verdict — read, at last, for the tribute it is.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref">Volume II &middot; The Rent</span>
+    </div>
+    <p class="colophon">Volume II of <em>Numéraire, A Periodic Table of Economic Life</em> — <em>The Rent</em>, the second of twenty-six and the connective tissue of the table's account of distribution. Twelve plates and seven engravings carry the return to scarcity from Ricardo's differential rent and its generalization to inelastic supply, through George's unearned increment and the efficient single tax, Marshall's quasi-rent and the horizon that defines it, the privilege of manufactured scarcity and the waste of seeking it, the rentier whom Keynes thought capitalism would outgrow, the rents of oil and mineral and spectrum, the ground of cities where land rent returned as the housing question, and the scarce talent of the superstar — to the boundary, never clean, between the earned and the unearned, and the verdict that rent is the tribute scarcity exacts, the clearest case in the table of a price that is pure surplus. It is the revenue of <em>The Power</em> and the rising portion of <em>The Share</em>, and it hands on to <em>The Rate</em>, <em>The Tax</em>, and <em>The Stock</em>. The figures stand after Ricardo, George, Marshall, von Thünen, Hotelling, Alonso, and Rosen. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var root=document.documentElement; root.classList.add('js');
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var bar=document.getElementById('progress');
+  var topbar=document.getElementById('topbar');
+  var title=document.querySelector('.vol-title');
+  var label=document.getElementById('tb-plate');
+  function onScroll(){
+    var doc=document.documentElement;
+    var h=doc.scrollHeight-window.innerHeight;
+    var p=h>0?Math.min(1,Math.max(0,window.scrollY/h)):0;
+    if(bar) bar.style.transform='scaleX('+p.toFixed(4)+')';
+    if(topbar){
+      var threshold=(title?title.offsetHeight:420)*0.72;
+      if(window.scrollY>threshold) topbar.classList.add('show'); else topbar.classList.remove('show');
+    }
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+  if('IntersectionObserver' in window){
+    var rev=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); rev.unobserve(e.target); } });
+    },{rootMargin:'0px 0px -10% 0px',threshold:0.06});
+    document.querySelectorAll('.reveal').forEach(function(el){ rev.observe(el); });
+    if(label){
+      var cur=new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting){ var t=e.target.getAttribute('data-label'); if(t) label.textContent=t; } });
+      },{rootMargin:'-44% 0px -50% 0px',threshold:0});
+      document.querySelectorAll('.plate[data-label]').forEach(function(el){ cur.observe(el); });
+    }
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-wage.html">← The Wage</a><a rel="next" href="the-rate.html">The Rate →</a></nav>
+</body>
+</html>

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Talent — The Rent, plate v</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1;
+    --ink:#1c1a16;
+    --soft:#534e45;
+    --faint:#6e685d;
+    --faintest:#9a9384;
+    --num:#c4bcab;
+    --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16);
+    --frame:68rem;
+    --read:37rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.6rem,4vw,4rem);}
+  p{margin:0;}
+  i,em{font-style:italic;}
+  a{color:inherit;}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:4px;border-radius:1px;}
+  .fr{font-family:"Fraunces",Georgia,serif;font-feature-settings:"liga" 1,"dlig" 0;}
+
+  /* ---- heavy entrance ---- */
+  .hero{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:space-between;}
+  .bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.5rem;padding:2.5rem 0 0;}
+  .mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.3rem;letter-spacing:-.01em;}
+  .edition{font-size:.9rem;color:var(--faint);letter-spacing:.06em;}
+  .hero-foot{padding-bottom:clamp(3.5rem,8vh,7rem);text-align:center;}
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(3.4rem,12vw,11rem);line-height:.95;letter-spacing:-.03em;margin:0;}
+  .standfirst{font-size:clamp(1.16rem,1.5vw,1.36rem);line-height:1.55;color:var(--soft);
+    margin:clamp(1.6rem,3vh,2.4rem) auto 0;max-width:45rem;text-wrap:pretty;}
+
+  /* ---- reading column ---- */
+  .read{max-width:var(--read);margin:0 auto;}
+  .read p{font-size:1.07rem;line-height:1.74;color:var(--ink);margin:0;text-indent:1.4em;text-wrap:pretty;}
+  .sec-head + p,.pull + p,.opening,.plate + p,.coda + p{text-indent:0;}
+
+  .sec-head{text-align:center;margin:clamp(4rem,9vh,7.5rem) 0 clamp(1.8rem,3.5vh,2.6rem);}
+  .sec-head.first{margin-top:clamp(5rem,11vh,9rem);}
+  .sec-num{display:block;font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;
+    font-size:.98rem;letter-spacing:.06em;color:var(--faintest);margin-bottom:.85rem;}
+  .sec-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.6rem,2.6vw,2.05rem);line-height:1.12;letter-spacing:-.012em;margin:0;}
+
+  .opening::first-letter{
+    font-family:"Fraunces",serif;font-weight:500;float:left;font-size:5.3rem;line-height:.72;
+    padding:.36rem .55rem 0 0;color:var(--ink);
+  }
+
+  .pull{max-width:50rem;margin:clamp(4.5rem,9vh,7rem) auto;text-align:center;}
+  .pull p{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:clamp(2rem,4.2vw,3.1rem);line-height:1.08;letter-spacing:-.02em;color:var(--ink);
+    margin:0;text-indent:0;text-wrap:balance;}
+
+  .ref{font-size:.62em;vertical-align:.5em;line-height:0;color:var(--faint);font-style:normal;}
+  .ref a{text-decoration:none;}
+  .ref a:hover{color:var(--ink);}
+
+  /* ---- plates (diagrams) ---- */
+  .plate{max-width:var(--read);margin:clamp(3.4rem,7vh,5.2rem) auto;}
+  .plate.wide{max-width:44rem;}
+  .plate figure{margin:0;}
+  .plate svg{display:block;width:100%;height:auto;overflow:visible;}
+  .plate text{font-family:"Fraunces",Georgia,serif;fill:var(--soft);paint-order:stroke;stroke:var(--paper);stroke-width:2.6px;stroke-linejoin:round;}
+  .plate .axis{stroke:var(--soft);stroke-width:1.1;}
+  .plate .curve{fill:none;stroke:var(--ink);stroke-width:1.6;}
+  .plate .curve.sec{stroke:var(--soft);stroke-width:1.4;}
+  .plate .guide{stroke:var(--faintest);stroke-width:1;stroke-dasharray:2.4 3.4;fill:none;}
+  .plate .level{stroke:var(--faintest);stroke-width:1;stroke-dasharray:1 4;}
+  .plate .floor{stroke:var(--ink);stroke-width:1.2;stroke-dasharray:5 4;}
+  .plate .dot{fill:var(--ink);}
+  .plate .dot.open{fill:var(--paper);stroke:var(--ink);stroke-width:1.4;}
+  .plate .lbl{font-size:14px;fill:var(--soft);}
+  .plate .tick{font-size:13px;fill:var(--faint);}
+  .plate .reg{font-size:12.5px;fill:var(--faint);font-style:italic;}
+  .plate figcaption{font-size:.82rem;line-height:1.56;color:var(--faint);margin:1.2rem auto 0;
+    max-width:33rem;text-align:center;text-wrap:pretty;}
+  .plate figcaption .pn{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;
+    color:var(--faintest);letter-spacing:.05em;text-transform:uppercase;font-size:.74rem;}
+
+  /* ---- coda ---- */
+  .coda{max-width:46rem;margin:clamp(5rem,10vh,8rem) auto 0;text-align:center;}
+  .coda p{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400,"ital" 0;font-style:italic;
+    font-size:clamp(1.5rem,2.6vw,2.05rem);line-height:1.3;color:var(--soft);margin:0;text-wrap:balance;}
+
+  /* ---- notes ---- */
+  .notes{max-width:var(--read);margin:clamp(5rem,11vh,9rem) auto 0;padding-top:2.4rem;border-top:1px solid var(--hair);}
+  .notes h3{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.92rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.6rem;}
+  .note{display:flex;gap:.9rem;scroll-margin-top:2rem;font-size:.86rem;line-height:1.56;color:var(--faint);margin:0 0 1rem;text-wrap:pretty;}
+  .note .nn{flex:0 0 auto;font-family:"Fraunces",serif;color:var(--faintest);min-width:1.1rem;}
+  .note i{font-style:italic;}
+
+  /* ---- colophon ---- */
+  footer{margin-top:clamp(6rem,13vh,10rem);padding:2.6rem 0 4.5rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.5rem;margin-bottom:1.8rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.1rem;}
+  .f-ref{font-size:.82rem;color:var(--faintest);letter-spacing:.18em;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:60ch;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .r{opacity:0;transform:translateY(12px);animation:rise 1.1s cubic-bezier(.2,.6,.2,1) both;}
+    .r1{animation-delay:.06s}.r2{animation-delay:.2s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .read p{font-size:1.04rem;}
+    .opening::first-letter{font-size:4.4rem;}
+    .f-bar{flex-direction:column;gap:.7rem;}
+    .plate .lbl,.plate .reg,.plate .tick{font-size:11px;}
+  }
+
+  /* ===== revision: airier rhythm + new plate types ===== */
+  .read p{line-height:1.82;}
+  .sec-head{margin:clamp(5.5rem,12.5vh,9.5rem) 0 clamp(2.2rem,4vh,3rem);}
+  .sec-head.first{margin-top:clamp(5rem,11vh,8.5rem);}
+  .sec-head::before{content:"";display:block;width:2.4rem;height:1px;background:var(--num);margin:0 auto 1.7rem;opacity:.85;}
+  .pull{margin:clamp(5.5rem,11vh,8.5rem) auto;}
+  .plate{margin:clamp(4.4rem,9vh,6.6rem) auto;}
+  .coda{margin-top:clamp(6rem,12vh,9rem);}
+
+  /* centered closing ornament */
+  .orn{display:flex;justify-content:center;margin:clamp(5rem,10vh,7.5rem) auto 0;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;}
+  .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* ledger plate: sources -> remedies */
+  .ledger figure{margin:0;}
+  .ledger-grid{display:grid;grid-template-columns:1fr 1fr;position:relative;
+    border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);}
+  .ledger-grid::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:1px;background:var(--hair);}
+  .ledger-grid .lh{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;
+    font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);padding:1.15rem 1.5rem .55rem;}
+  .ledger-grid .lh.r{text-align:right;} .ledger-grid .lh.l{text-align:left;}
+  .ledger-grid .cell{padding:1.3rem 1.5rem;border-top:1px solid var(--hair);}
+  .ledger-grid .src{text-align:right;} .ledger-grid .rem{text-align:left;}
+  .ledger-grid .cell b{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 500;font-weight:500;
+    font-size:1.13rem;display:block;color:var(--ink);letter-spacing:-.01em;line-height:1.15;}
+  .ledger-grid .cell span{display:block;font-size:.81rem;color:var(--faint);margin-top:.34rem;line-height:1.42;}
+  .ledger-coda{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.16rem;line-height:1.42;color:var(--soft);text-align:center;margin:1.7rem auto 0;max-width:33rem;text-wrap:balance;}
+  @media (max-width:620px){
+    .ledger-grid{grid-template-columns:1fr;}
+    .ledger-grid::before{display:none;}
+    .ledger-grid .lh{display:none;}
+    .ledger-grid .src,.ledger-grid .rem{text-align:left;}
+    .ledger-grid .src{border-bottom:none;}
+    .ledger-grid .rem{border-top:none;padding-top:.1rem;padding-left:2.4rem;position:relative;}
+    .ledger-grid .rem::before{content:"\2192";position:absolute;left:1.1rem;top:.1rem;color:var(--faintest);}
+    .ledger-grid .cell{padding-bottom:.5rem;}
+    .ledger-grid .rem{padding-bottom:1.3rem;}
+  }
+
+  /* ===== frontispiece: annotated contents ===== */
+  .sec-head{scroll-margin-top:2.5rem;}
+  .contents{max-width:40rem;margin:0 auto;padding:clamp(3rem,8vh,7rem) 0 clamp(3rem,7vh,6rem);}
+  .contents .orn{margin:0 auto 2.4rem;}
+  .contents-eyebrow{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faintest);text-align:center;margin:0 0 3rem;}
+  .contents-list{list-style:none;margin:0 auto;padding:0;max-width:33rem;counter-reset:none;}
+  .contents-list li{margin:0 0 1.7rem;}
+  .contents-list li:last-child{margin-bottom:0;}
+  .contents-list a{display:grid;grid-template-columns:2.6rem 1fr;column-gap:1.1rem;
+    text-decoration:none;align-items:baseline;}
+  .contents-list .cn{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;
+    font-size:.96rem;color:var(--faintest);text-align:right;letter-spacing:.02em;}
+  .contents-list .ct{font-family:"Fraunces",serif;font-variation-settings:"opsz" 58,"wght" 500;
+    font-size:1.2rem;color:var(--ink);letter-spacing:-.012em;line-height:1.18;transition:color .25s ease;}
+  .contents-list .cg{grid-column:2;font-style:italic;font-size:.92rem;color:var(--faint);
+    margin-top:.22rem;line-height:1.42;text-wrap:pretty;}
+  .contents-list a:hover .ct{color:var(--soft);}
+  @media (max-width:600px){
+    .contents-list a{grid-template-columns:1.9rem 1fr;column-gap:.85rem;}
+    .contents-list .ct{font-size:1.1rem;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-founding">The Founding Atlas · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+
+  <section class="hero">
+    <div class="bar r r1">
+      <span class="mark">Numéraire</span>
+      <span class="edition">The Rent · № II · v</span>
+    </div>
+    <div class="hero-foot r r2">
+      <h1>The Talent</h1>
+      <p class="standfirst">Consider two sopranos: the finest of her generation, and the hundredth-finest. To an ordinary ear their talents differ by a hair; their incomes differ by a factor of a thousand. This is the puzzle of the superstar, and it is the first of the volume's modern bottlenecks — the scarce gift that cannot be reproduced. Following Sherwin Rosen's economics of superstars, this plate shows that where buyers crave the best and the best can serve a vast market cheaply, the market acts as a lens, magnifying the faint gradations of a gift into the gross gradations of a fortune; and that the premium so earned is rent, of the purest kind, a surplus far above what the talent would have required to show itself. But it holds against that clean rent a darker reading — that the size of the premium is set less by the size of the talent than by the structure of the contest: the winner-take-all tournament in which a hair's lead takes the whole purse, the finite slots of public attention assigned partly by luck, the machinery of reach owned by those who stand at the gate. The plate asks, of the star's vast reward, how much is the honest rent of a valued scarcity and how much the extractive rent of a manufactured position.</p>
+    </div>
+  </section>
+
+  <nav class="contents" aria-label="Contents">
+    <div class="orn" aria-hidden="true"><svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg></div>
+    <p class="contents-eyebrow">The argument in seven movements</p>
+    <ol class="contents-list">
+      <li><a href="#s1"><span class="cn">I</span><span class="ct">The Hundredth-Best Soprano</span><span class="cg">a hair of talent, a chasm of reward</span></a></li>
+      <li><a href="#s2"><span class="cn">II</span><span class="ct">Rosen's Two Conditions</span><span class="cg">why demand crowds to the top</span></a></li>
+      <li><a href="#s3"><span class="cn">III</span><span class="ct">The Technology of Reach</span><span class="cg">how the market for a gift went global</span></a></li>
+      <li><a href="#s4"><span class="cn">IV</span><span class="ct">The Rent to a Gift</span><span class="cg">the premium is rent, of the purest kind</span></a></li>
+      <li><a href="#s5"><span class="cn">V</span><span class="ct">Which Scarcity?</span><span class="cg">the gift, the tournament, the manufactured slot</span></a></li>
+      <li><a href="#s6"><span class="cn">VI</span><span class="ct">The Music Lab</span><span class="cg">success that feeds on itself</span></a></li>
+      <li><a href="#s7"><span class="cn">VII</span><span class="ct">The Honest Rent and the Manufactured One</span><span class="cg">reading the premium</span></a></li>
+    </ol>
+  </nav>
+
+  <article class="read">
+
+    <div class="sec-head first" id="s1"><span class="sec-num fr">I</span><h2 class="sec-title">The Hundredth-Best Soprano</h2></div>
+
+    <p class="opening">Consider two sopranos. One is the finest of her generation; the other, by the judgement of the critics, the hundredth-finest. To an ordinary listener in an ordinary hall the difference between them is faint — a shade more warmth in the tone, a fractionally surer way with a high note, the sort of distinction years of training teach one to hear and most of us never will. Their talents, set side by side, differ by a hair. Their incomes differ by a factor of a thousand. The first sings to full houses at the great opera houses of the world and sells recordings by the million; the second teaches, and sings where she can, and earns the honest middling living of a skilled professional. A hair of difference in the gift; a chasm of difference in the reward. This is the puzzle of the superstar, and it sits awkwardly with much of what the volume of the wage assumed.</p>
+
+    <p>The theory of wages in its plainest form says that a person is paid the value of what they add, and that talent, like everything else, earns its marginal product. Fair enough; but it does not begin to explain how a sliver of extra talent can add a thousand times as much value as the talent just below it. To see how, one must look not at the singer but at the market she sings to — at its peculiar structure, which takes the faint gradations of the gift and stretches them into the vast gradations of the purse. The economist who first showed how this stretching works was Sherwin Rosen, in a paper of 1981 that gave the phenomenon its name and its mechanism: the economics of superstars.</p>
+
+    <div class="sec-head" id="s2"><span class="sec-num fr">II</span><h2 class="sec-title">Rosen's Two Conditions</h2></div>
+
+    <p>Rosen's account turns on two conditions, and where both hold, superstars appear. The first is that buyers want the best, and count lesser talent a poor substitute for it — not a cheaper version of the same thing, but a different and inferior thing. A listener who can hear the finest soprano does not regard two performances by a merely good one as making up for it; quality of this kind does not add up. One transcendent evening is worth more than any number of ordinary ones, and no discount on the ordinary will close the gap. This is what economists call imperfect substitution, and it means that demand does not spread itself evenly across the talented; it crowds toward the top.<sup class="ref"><a href="#n1">1</a></sup></p>
+
+    <p>The second condition is that the best performer can serve a vast market at little extra cost. A soprano singing live can fill one hall on one night; but a soprano on a recording can sing to millions at once, and the cost of pressing the millionth disc is no greater than the first. Rosen called this joint consumption — the same performance consumed by any number of people, the marginal cost of an extra listener near nothing. Put the two conditions together and the superstar is the inevitable result: because buyers crave the best, demand piles onto the top talent; because the top talent can serve everyone, nothing stops it from taking almost the whole market. A singer a shade better than her rivals captures not a shade more of the market but very nearly all of it, and earns accordingly. The reward, plotted against the talent, does not rise in a straight line; it curves upward, gently at first and then steeply, so that near the summit the smallest increment of gift commands the largest increment of fortune.<sup class="ref"><a href="#n2">2</a></sup></p>
+
+    <div class="plate">
+      <figure>
+        <svg viewBox="0 0 660 400" role="img" aria-label="A convex curve mapping talent on the horizontal axis to reward on the vertical axis. Near the top, two talent points very close together correspond to two reward levels far apart, marked by a slim horizontal gap and a vast vertical gap.">
+          <line class="axis" x1="80" y1="340" x2="620" y2="340"/>
+          <path d="M624,340 L614,336 L614,344 Z" style="fill:var(--soft)"/>
+          <line class="axis" x1="80" y1="340" x2="80" y2="70"/>
+          <path d="M80,66 L76,76 L84,76 Z" style="fill:var(--soft)"/>
+          <line x1="518" y1="340" x2="518" y2="203" style="stroke:var(--faintest);stroke-width:1;stroke-dasharray:4 4"/>
+          <line x1="554" y1="340" x2="554" y2="119" style="stroke:var(--faintest);stroke-width:1;stroke-dasharray:4 4"/>
+          <line x1="80" y1="203" x2="518" y2="203" style="stroke:var(--faintest);stroke-width:1;stroke-dasharray:4 4"/>
+          <line x1="80" y1="119" x2="554" y2="119" style="stroke:var(--faintest);stroke-width:1;stroke-dasharray:4 4"/>
+          <path d="M110,332 C390,331 510,310 565,80" style="fill:none;stroke:var(--ink);stroke-width:1.7"/>
+          <circle class="dot" cx="518" cy="203" r="4"/>
+          <circle class="dot" cx="554" cy="119" r="4"/>
+          <line x1="96" y1="119" x2="96" y2="203" style="stroke:var(--soft);stroke-width:1.2"/>
+          <path d="M96,114 L92,124 L100,124 Z" style="fill:var(--soft)"/>
+          <path d="M96,208 L92,198 L100,198 Z" style="fill:var(--soft)"/>
+          <line x1="518" y1="356" x2="554" y2="356" style="stroke:var(--soft);stroke-width:1.2"/>
+          <path d="M514,356 L524,352 L524,360 Z" style="fill:var(--soft)"/>
+          <path d="M558,356 L548,352 L548,360 Z" style="fill:var(--soft)"/>
+          <text class="reg" x="104" y="166">a vast margin of reward</text>
+          <text class="reg" x="536" y="374" text-anchor="middle">a slim margin of talent</text>
+          <text class="lbl" x="560" y="114">the best</text>
+          <text class="lbl" x="510" y="223" text-anchor="end">the next-best</text>
+          <text class="lbl" x="596" y="333" text-anchor="end">talent &rarr;</text>
+          <text class="lbl" transform="translate(50,205) rotate(-90)" text-anchor="middle">reward</text>
+        </svg>
+        <figcaption><span class="pn">Plate v.a&nbsp;&middot;&nbsp;</span>The lens. Reward, plotted against talent, does not climb in a straight line; it curves, gently along the broad range of the ordinary and then steeply near the summit. The consequence is read off at the top of the curve: two performers separated by the slimmest margin of talent are separated by a vast margin of reward. The best takes nearly the whole market, because buyers crave the best and the best can serve them all; the next-best, scarcely distinguishable, takes a sliver. The market is a lens that magnifies the faint differences of the gift into the gross differences of the purse — and the magnification, not the gift, is most of what the great fortune measures.</figcaption>
+      </figure>
+    </div>
+
+    <div class="sec-head" id="s3"><span class="sec-num fr">III</span><h2 class="sec-title">The Technology of Reach</h2></div>
+
+    <p>The second of Rosen's conditions is the gift of technology, and it has been growing for a century and a half. Before the phonograph, the best singer in the world and the best singer in a provincial town were not really competing, because neither could be heard beyond the room she stood in; the market for song was carved into ten thousand local markets, and each supported its own performers. The reach of a single performance was the reach of a human voice, and within that narrow compass the merely good earned a decent living, for the transcendent could not reach the provincial listener to displace her. What the gramophone began, the radio extended, and the film and the broadcast and at last the stream completed: the demolition of those local walls. Reach expanded until one performance could touch the whole world at once — and as it expanded, the income the very best could command swelled in step, while the merely good, no longer shielded by distance, found their audiences captured from afar.<sup class="ref"><a href="#n3">3</a></sup></p>
+
+    <div class="plate">
+      <figure>
+        <svg viewBox="0 0 660 400" role="img" aria-label="Two lines beginning together at the left, where reach is small. As reach widens rightward through eras marked the hall, the record, broadcast, and the stream, the star's income curves steeply upward while the local performer's income stays flat and low.">
+          <line class="axis" x1="80" y1="340" x2="620" y2="340"/>
+          <path d="M624,340 L614,336 L614,344 Z" style="fill:var(--soft)"/>
+          <line class="axis" x1="80" y1="340" x2="80" y2="70"/>
+          <path d="M80,66 L76,76 L84,76 Z" style="fill:var(--soft)"/>
+          <line x1="160" y1="340" x2="160" y2="347" style="stroke:var(--faint);stroke-width:1"/>
+          <line x1="300" y1="340" x2="300" y2="347" style="stroke:var(--faint);stroke-width:1"/>
+          <line x1="430" y1="340" x2="430" y2="347" style="stroke:var(--faint);stroke-width:1"/>
+          <line x1="545" y1="340" x2="545" y2="347" style="stroke:var(--faint);stroke-width:1"/>
+          <path d="M110,300 C330,296 450,212 562,88" style="fill:none;stroke:var(--ink);stroke-width:1.7"/>
+          <line x1="110" y1="300" x2="562" y2="322" style="stroke:var(--soft);stroke-width:1.3;stroke-dasharray:5 4"/>
+          <text class="lbl" x="430" y="120">the star</text>
+          <text class="reg" x="372" y="304">the local performer</text>
+          <text class="tick" x="160" y="361" text-anchor="middle">the hall</text>
+          <text class="tick" x="300" y="361" text-anchor="middle">the record</text>
+          <text class="tick" x="430" y="361" text-anchor="middle">broadcast</text>
+          <text class="tick" x="545" y="361" text-anchor="middle">the stream</text>
+          <text class="lbl" x="598" y="332" text-anchor="end">wider reach &rarr;</text>
+          <text class="lbl" transform="translate(50,205) rotate(-90)" text-anchor="middle">income</text>
+        </svg>
+        <figcaption><span class="pn">Plate v.b&nbsp;&middot;&nbsp;</span>The widening stage. At the left, when a performance reached only as far as a voice carries, the star and the local performer earned much alike, each bounded by a local audience. Then reach widened — the record, the broadcast, the stream, each tearing down another wall of distance — and the two fates parted. The star's income curved upward without limit, for the same gift now served a market without edges; the local performer's stagnated and sank, her audience captured from afar by a voice she could not match. The gift did not grow. The market it could reach did, and the rent on the gift grew with it. Technology widens not the talent but the toll the talent can take.</figcaption>
+      </figure>
+    </div>
+
+    <p>Alfred Marshall, whose quasi-rent furnished the last plate, saw the beginning of this and named its cause. Writing in 1890, he observed that men of exceptional ability had lately grown able to earn far higher incomes than before, and that one reason was the broadening of the markets within which their abilities could be applied — improvements in communication letting a person of the first rank exert their gift over a far wider field than their predecessors could reach.<sup class="ref"><a href="#n4">4</a></sup> He was describing the dawn of what Rosen would formalise: that the rent on a scarce gift rises not only with the scarcity of the gift but with the size of the market the gift can serve, and that a technology which widens the market widens the rent. The gift need not grow at all. It need only be made to reach further.</p>
+
+    <div class="sec-head" id="s4"><span class="sec-num fr">IV</span><h2 class="sec-title">The Rent to a Gift</h2></div>
+
+    <p>It is worth pausing to fix what kind of income this is, in the vocabulary the volume has built. The superstar's vast earnings are, in the strict sense, rent — and rent of the purest kind. Recall the test from the first plate: rent is the part of a payment above what is needed to keep the factor at its work, the surplus over its transfer earnings. Apply it here. What would the great soprano require to go on singing rather than do the next-best thing open to her? Very much less than she is paid — for she sings, by all accounts, because she was made to sing, and would do it for a fraction of the fortune the market hands her. The fortune above that fraction is rent: a surplus extracted not by effort or sacrifice but by the sheer scarcity of a gift that cannot be manufactured, reproduced, or competed away. Her talent is a bottleneck, in the precise sense of the last plate — a thing in fixed supply that others must pass through to get what they want — and it is the most natural bottleneck there is after land itself, for like land it was given, not made.<sup class="ref"><a href="#n5">5</a></sup></p>
+
+    <p>So the star's premium belongs squarely among the rents. But it belongs to a peculiar branch of the family, and the peculiarity is the whole interest of the case. The rent of land is paid for a thing whose scarcity is fixed by nature and plain to see. The rent of talent is paid for a scarcity that is partly natural and partly, on closer inspection, manufactured — and the proportion between the two is the question on which every quarrel about what stars deserve secretly turns.</p>
+
+    <div class="sec-head" id="s5"><span class="sec-num fr">V</span><h2 class="sec-title">Which Scarcity?</h2></div>
+
+    <p>For the talent is genuinely scarce — but is it scarce enough to explain the reward? Here the account of the superstar acquires a second author and a darker tone. In 1995 Robert Frank and Philip Cook argued that many of the markets in which superstars flourish are not quite the pure quality-markets Rosen described but tournaments — contests in which reward depends not on how good one is in absolute terms but on how one ranks against the rest, and in which the prize for ranking first is enormously greater than the prize for ranking second. In a tournament, a hair's breadth of advantage takes the whole purse. The winner need not be twice as good as the runner-up, or even perceptibly better; she need only be adjudged first, and the structure of the prize does the rest, converting an imperceptible edge into an unbridgeable gap in pay. And if the edge is that small, then what decides who has it may be very small things indeed — a lucky break, a timely champion, an early lead that gathered its own momentum.<sup class="ref"><a href="#n6">6</a></sup></p>
+
+    <p>There is, moreover, a second scarcity at work beneath the scarcity of the gift, and it is frankly manufactured. The public's attention is finite; only so many performers can be famous at once, for fame consists precisely in being known to nearly everyone, and nearly everyone has room in their head for only a handful. The slots are few, and what fills them is not talent alone but the machinery that directs attention — the marketing, the gatekeepers, the recommendation engines, the herd instinct by which we attend to what others are already attending to. Two near-identical talents may meet utterly different fates, one swept into the small circle of the famous and the other left outside it, not because the first was better but because some early advantage, magnified by the dynamics of attention, carried her through a door that then closed behind her. The rent she earns is in part a rent not to her gift but to her position — to the occupancy of one of the few scarce slots in the public mind.<sup class="ref"><a href="#n7">7</a></sup></p>
+
+    <div class="plate wide ledger">
+      <figure>
+        <div class="ledger-grid">
+          <div class="lh r">Read as the rent of a gift</div>
+          <div class="lh l">Read as the rent of a position</div>
+          <div class="cell src"><b>A rare, real ability</b><span>that audiences truly prize</span></div>
+          <div class="cell rem"><b>A slot in their attention</b><span>and only a few slots exist</span></div>
+          <div class="cell src"><b>The honest return to a gift</b><span>no training can manufacture</span></div>
+          <div class="cell rem"><b>The prize in a tournament</b><span>where a hair's lead takes the purse</span></div>
+          <div class="cell src"><b>Earned by being the best</b><span>at something people want</span></div>
+          <div class="cell rem"><b>Assigned partly by luck</b><span>an early break that snowballed</span></div>
+          <div class="cell src"><b>Delivered cheaply to millions</b><span>one performance, shared by all</span></div>
+          <div class="cell rem"><b>Amplified by those who own the reach</b><span>label, studio, platform</span></div>
+          <div class="cell src"><b>A signal that draws talent</b><span>to where it is most valued</span></div>
+          <div class="cell rem"><b>A lure that draws too many</b><span>most of whom will fail</span></div>
+        </div>
+        <p class="ledger-coda">Both readings are true of every star at once. The gift is real, and the audience's pleasure is real; but the size of the reward is set far more by the structure of the contest — the craving for the best, the cheapness of reproduction, the winner-take-all purse, the luck of the early break — than by the size of the gift. The talent earns a rent; the structure decides how vast.</p>
+        <figcaption><span class="pn">Plate v.c&nbsp;&middot;&nbsp;</span>The premium's two faces. Hold any superstar's income to the light and it shows two aspects, inseparable. On one face it is the clean rent of a genuine, non-reproducible gift that people truly value — earned, efficient, deserved. On the other it is the rent of a scarce position in the public's attention, a position the holder reached partly by luck and holds partly by the machinery of reach, whose enormous purse is the artefact of a tournament rather than the measure of a talent. The whole argument over what stars deserve is an argument about which face one is looking at.</figcaption>
+      </figure>
+    </div>
+
+    <div class="sec-head" id="s6"><span class="sec-num fr">VI</span><h2 class="sec-title">The Music Lab</h2></div>
+
+    <p>That attention feeds on itself — that success breeds success — is not a metaphor but a measurable fact, and one experiment has caught it with unusual clarity. In 2006 a team of social scientists built an online music market, filled it with unknown songs, and split their thousands of participants into separate worlds.<sup class="ref"><a href="#n8">8</a></sup> In some worlds people chose songs knowing nothing of what others had chosen; in others they could see how many times each song had already been downloaded. Where choices were private, the songs sorted themselves by some rough consensus of quality, and the sorting was much the same from world to world. Where choices were visible, two things happened: the outcomes grew far more unequal — the hits more enormous, the failures more total — and they grew unpredictable, so that the same song might be a triumph in one world and a flop in another, its fate decided by the small accidents of which copies happened to be downloaded first and then snowballed. Quality still mattered; the very best songs rarely flopped and the very worst rarely soared. But across the wide middle, where most songs and most performers live, success was largely manufactured by its own early momentum.</p>
+
+    <p>The pattern had a name long before the experiment measured it. The sociologist Robert Merton called it the Matthew effect, after the verse in the gospel that promises that to those who have, more shall be given — the tendency of early advantage, in science and reputation and sales alike, to compound into a lead far out of proportion to its origin.<sup class="ref"><a href="#n9">9</a></sup> The lesson reaches well beyond music. Wherever attention is visible and feeds on itself — which now means very nearly everywhere — a large part of who becomes the superstar is settled not by the magnitude of the gift but by the accidents of early advantage, amplified into permanence. And a rent assigned by luck and momentum is harder to defend as earned than a rent assigned by merit, even when, as here, real merit is somewhere in the mix.</p>
+
+    <div class="sec-head" id="s7"><span class="sec-num fr">VII</span><h2 class="sec-title">The Honest Rent and the Manufactured One</h2></div>
+
+    <p>What, then, is the star's vast premium — the honest wage of a rare gift, or the inflated prize of a manufactured tournament? The honest answer is that it is always both, and inseparably. The talent is real; the pleasure it gives is real; and a market that delivers the finest soprano to millions at the cost of a stream is doing something genuinely efficient, spreading a scarce excellence as widely as it can be spread. The premium that calls such talent forth and sorts it to where it is most valued is not simply a distortion to be deplored; much of it is the proper rent of a scarcity worth paying for. Steelman it fully and it is formidable: the reward signals where rare ability lies and draws it into use; it repays the long investment of becoming excellent; and it reflects a real and widely shared gain, the joy of the best made available to all.<sup class="ref"><a href="#n10">10</a></sup></p>
+
+    <p>And yet the bounds are as real as the defence. The magnitude of the premium is set far more by the structure of the market than by the magnitude of the talent: by the craving for the best, the cheapness of reproduction, the winner-take-all shape of the purse, and the luck of the early break — none of which is a measure of desert. A great deal of the reward is pure rent in the unflattering sense, a surplus far above what the talent would have required to show itself; and pure rent on that scale draws a familiar waste behind it — the swarm of aspirants who pour into the tournament chasing a prize only a few can win, most of whom will spend their best years losing. It is a dissipation the volume will meet again, in its own right, three plates on.<sup class="ref"><a href="#n11">11</a></sup> And the machinery that assigns the scarce slots of fame is owned by someone — the label, the studio, the platform — who takes a cut of the rent for controlling the reach, so that part of what looks like the reward of talent is the toll of whoever stands at the gate of attention: a figure the volume will return to when it reaches the platforms near its end.<sup class="ref"><a href="#n12">12</a></sup></p>
+
+    <p>So the premium cannot be praised or condemned whole. It must be read, case by case, for how much of it is the clean rent of a valued and genuine scarcity and how much the extractive rent of a tournament and a manufactured position — and the reading is hard precisely because the star really is gifted, and the gift really is scarce, and the structure that inflates the gift's reward hides behind the gift itself. The argument over what the talented deserve is, at bottom, an argument over that proportion.<sup class="ref"><a href="#n13">13</a></sup></p>
+
+    <div class="orn" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="coda"><p>The gift is the rarest thing in this plate, and the least of what the fortune measures. A great talent is genuinely scarce, genuinely valued, and genuinely a bottleneck through which the world's wish for the best must pass; and to that extent its reward is rent as clean as any in the volume — the honest return to a thing that cannot be made. But the size of that reward is the work of the market's machinery far more than of the gift: the lens that magnifies a hair of difference, the technology that hands one voice the whole world, the tournament that gives the runner-up nothing, the luck that decides who runs first, the gatekeeper who owns the road to the crowd. Strip those away and the gift remains, and would still deserve its rent; but the rent would be a smaller and a stranger thing. What the superstar is paid for is only partly the gift. The rest is for standing, however deservingly, at the one place everyone is looking.</p></div>
+
+    <section class="notes">
+      <p class="note" id="n1"><span class="nn fr">1</span><span>Sherwin Rosen, &ldquo;The Economics of Superstars,&rdquo; <i>American Economic Review</i> 71 (1981): 845&ndash;58. The first of Rosen's two conditions is imperfect substitution: buyers prefer the most talented and do not regard a greater quantity of lesser talent as making up for it, so demand concentrates on the top rather than spreading evenly across the talented.</span></p>
+      <p class="note" id="n2"><span class="nn fr">2</span><span>Rosen's second condition is joint consumption (a scale economy): the same performance can be consumed by any number of people at a marginal cost near zero, so one performer can serve a vast market. Where both conditions hold, Rosen showed, earnings are a convex (sharply rising) function of talent — small differences in ability map to large differences in reward, and the top captures a disproportionate share. The diagram renders that convexity.</span></p>
+      <p class="note" id="n3"><span class="nn fr">3</span><span>The technology of reach: before mechanical reproduction, the market for a performance was fragmented by distance into many local markets, each supporting its own performers; the reach of a performance was the reach of a voice. Recording, broadcast, and streaming progressively removed the walls of distance, letting the best serve everyone and displacing the merely good. As reach widened, the absolute reward at the very top swelled, since the same gift now commanded a market without edges.</span></p>
+      <p class="note" id="n4"><span class="nn fr">4</span><span>Alfred Marshall, <i>Principles of Economics</i> (1890), Book VI, anticipated the point: men of exceptional ability had grown able to earn far higher incomes than their predecessors, partly because improvements in communication let those of the first rank apply their gifts over far wider fields. Rosen explicitly credited the observation to Marshall; the 1981 paper formalises what Marshall had described in prose.</span></p>
+      <p class="note" id="n5"><span class="nn fr">5</span><span>That the premium is rent follows from the test of the first plate (plate i): rent is the surplus of a payment over the factor's transfer earnings — what it would require to stay at its work. A great performer who would sing for a fraction of the fortune she earns is earning, in the excess, pure rent to a non-reproducible gift. The gift is a bottleneck in the sense of the previous plate (plate iv) — a thing in fixed supply that others must pass through — and, like land, it was given rather than made.</span></p>
+      <p class="note" id="n6"><span class="nn fr">6</span><span>Robert H. Frank and Philip J. Cook, <i>The Winner-Take-All Society</i> (1995). Their refinement of Rosen stresses that reward in many such markets tracks relative rank, not absolute performance, and that the prize for finishing first vastly exceeds the prize for finishing second. In such a tournament a negligible edge takes the whole purse — so the magnitude of the reward gap reflects the structure of the prize, not the size of any talent gap, and what decides the edge may be largely luck.</span></p>
+      <p class="note" id="n7"><span class="nn fr">7</span><span>The manufactured scarcity of attention: fame requires being known to nearly everyone, and the public can hold only a few performers in mind at once, so the number of available slots is small and fixed independently of how much talent exists. What fills the slots is partly the machinery of attention — marketing, gatekeepers, recommendation systems, and the herd tendency to attend to what others already attend to. To that extent the star's reward is a rent to occupying a scarce position, not to the gift that nominally earned it.</span></p>
+      <p class="note" id="n8"><span class="nn fr">8</span><span>Matthew J. Salganik, Peter Sheridan Dodds, and Duncan J. Watts, &ldquo;Experimental Study of Inequality and Unpredictability in an Artificial Cultural Market,&rdquo; <i>Science</i> 311 (2006): 854&ndash;56 — the &ldquo;Music Lab.&rdquo; When participants could see others' download counts, success grew both more unequal and less predictable than when choices were independent; quality predicted success only weakly, most strongly at the extremes and least across the broad middle, where early momentum largely determined outcomes.</span></p>
+      <p class="note" id="n9"><span class="nn fr">9</span><span>Robert K. Merton, &ldquo;The Matthew Effect in Science,&rdquo; <i>Science</i> 159 (1968): 56&ndash;63, named for the gospel verse (Matthew 25:29) promising that to those who have, more shall be given. Merton described how early advantage and prior recognition compound — in science, reputation, and sales alike — into leads far out of proportion to their origins. Cumulative advantage is the general name for the dynamic the Music Lab measured.</span></p>
+      <p class="note" id="n10"><span class="nn fr">10</span><span>The efficiency defence, stated at full strength: the superstar premium signals where rare ability lies and draws it to its most valued use; it repays the long and costly investment of becoming excellent; and it reflects a genuine, widely shared gain, since joint consumption lets one supreme performance be enjoyed by millions at negligible marginal cost. To the extent the premium is the rent of a real and valued scarcity, it is not a distortion but the efficient price of excellence.</span></p>
+      <p class="note" id="n11"><span class="nn fr">11</span><span>The bounds: because the premium's size tracks the market's structure rather than the talent's, much of it is pure rent — a surplus far above the transfer earnings the gift would have required. Rent of that scale invites over-entry: the prize draws far more aspirants than can win, and the resources the losers sink in the chase are a social waste, a dissipation Frank and Cook emphasised and that the volume takes up in its own right at plate vii (rent-seeking).</span></p>
+      <p class="note" id="n12"><span class="nn fr">12</span><span>The gate of attention is owned. The label, studio, broadcaster, or platform that controls access to the audience captures a share of the rent for granting passage — so part of what appears as the reward of talent is the toll of the intermediary who commands the reach. This figure, the owner of the bottleneck of attention, returns as the central character of the modern-platform plate (plate xi).</span></p>
+      <p class="note" id="n13"><span class="nn fr">13</span><span>The synthesis: the star's premium is neither pure desert nor pure artefact but a compound of both, and judging it means estimating the proportion — how much is the clean rent of a genuine, valued scarcity, and how much the extractive rent of a tournament and a manufactured slot. The estimate is hard because the talent is real and the structure that inflates its reward hides behind it; the volume's recurring distinction between earned and unearned rent is nowhere harder to draw, or more worth drawing, than here.</span></p>
+    </section>
+
+  </article>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref">The Rent · plate v</span>
+    </div>
+    <p class="colophon">The fifth plate of <i>The Rent</i> — the rent to scarce ability, and the first of the volume's modern bottlenecks. It takes up the puzzle of the superstar: how a hair's difference in talent can yield a thousandfold difference in reward. Following Sherwin Rosen's economics of superstars (1981), it shows that where buyers crave the best and the best can serve a vast market cheaply, the market acts as a lens, magnifying the faint gradations of a gift into the gross gradations of a fortune — and that the premium so earned is rent, of the purest kind, a surplus far above what the talent would have required to show itself. But it holds against that clean rent a darker reading: that the size of the premium is set less by the size of the talent than by the structure of the contest — the winner-take-all tournament in which a hair's lead takes the whole purse (Frank and Cook), the finite slots of public attention assigned partly by luck and cumulative advantage (the Matthew effect, and the Music Lab experiment that measured it), and the machinery of reach owned by labels and platforms who take their cut. The plate asks, of the star's vast reward, how much is the honest rent of a valued scarcity and how much the extractive rent of a manufactured position — and, in the house manner, leaves the proportion to the reader. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-rent-bottleneck.html">← The Bottleneck</a><a rel="next" href="the-rent-license.html">The License →</a></nav>
+</body>
+</html>

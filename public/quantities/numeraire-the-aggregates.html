@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Numéraire — The Aggregates — Group V</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+
+  /* ---- masthead ---- */
+  .masthead{padding:clamp(3rem,8vh,6rem) 0 clamp(2rem,5vh,3.4rem);text-align:center;}
+  .orn{display:flex;justify-content:center;margin:0 auto 1.9rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;}
+  .edition{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+  .kicker{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;
+    font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--faintest);
+    margin:clamp(1.6rem,4vh,2.6rem) 0 0;}
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.3rem,6.5vw,4.6rem);line-height:1.02;letter-spacing:-.025em;margin:.5rem 0 0;text-wrap:balance;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:43rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  /* ---- legend ---- */
+  .legend{display:flex;flex-wrap:wrap;justify-content:center;gap:1.4rem 2.2rem;align-items:center;
+    margin:clamp(1.8rem,4vh,2.6rem) auto 0;padding-top:1.8rem;border-top:1px solid var(--hair);max-width:50rem;}
+  .legend-item{display:flex;align-items:center;gap:.55rem;font-size:.82rem;color:var(--faint);}
+  .legend-swatch{width:20px;height:20px;border:1px solid var(--hair);border-radius:2px;flex:0 0 auto;}
+  .legend-swatch.lit{background:var(--ink);border-color:var(--ink);}
+  .legend-anatomy{font-size:.82rem;color:var(--faint);}
+  .legend-anatomy b{font-family:"Fraunces",serif;font-weight:500;color:var(--soft);}
+  .legend-anatomy em{font-style:italic;}
+
+  /* ---- the argument of the group ---- */
+  .argument{max-width:46rem;margin:clamp(2.2rem,5vh,3.2rem) auto 0;padding-top:clamp(2rem,4vh,2.6rem);
+    border-top:1px solid var(--hair);}
+  .arg-lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--faintest);display:block;margin:0 0 1.2rem;}
+  .argument p{font-size:clamp(1rem,1.25vw,1.1rem);line-height:1.74;color:var(--soft);margin:0 0 1.05rem;text-wrap:pretty;}
+  .argument p:last-child{margin-bottom:0;}
+  .argument em{font-style:italic;}
+  .argument .lede{text-indent:0;}
+  .argument .lede::first-letter{
+    font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    float:left;font-size:3.1rem;line-height:.82;padding:.06em .12em 0 0;color:var(--ink);}
+
+  /* ---- the table ---- */
+  main{padding:clamp(2.6rem,6vh,4.4rem) 0 0;}
+  .group{margin:0 0 clamp(2.4rem,5vh,3.6rem);}
+  .group-head{display:flex;align-items:baseline;gap:.9rem;margin:0 0 1.25rem;}
+  .group-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-size:.86rem;color:var(--faintest);letter-spacing:.04em;flex:0 0 auto;}
+  .group-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);flex:0 0 auto;}
+  .group-rule{flex:1;height:1px;background:var(--hair);position:relative;top:-2px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(176px,1fr));gap:13px;}
+
+  .el{appearance:none;-webkit-appearance:none;background:var(--paper);border:1px solid var(--hair);border-radius:2px;
+    padding:15px 15px 17px;text-align:left;cursor:pointer;position:relative;min-height:150px;
+    display:flex;flex-direction:column;color:inherit;font-family:inherit;
+    transition:border-color .22s ease,background .22s ease,transform .22s ease,box-shadow .22s ease;}
+  .el:hover{border-color:var(--faintest);transform:translateY(-2px);}
+  .el-num{position:absolute;top:11px;right:13px;font-family:"Fraunces",serif;font-size:.72rem;color:var(--faintest);letter-spacing:.03em;}
+  .el-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2.15rem;line-height:1;margin-top:.5rem;letter-spacing:-.012em;}
+  .el-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1rem;margin-top:.55rem;line-height:1.12;}
+  .el-gloss{font-size:.77rem;color:var(--faint);line-height:1.34;margin-top:.3rem;}
+  .el-plates{margin-top:auto;padding-top:.7rem;font-family:"Fraunces",serif;font-size:.68rem;letter-spacing:.05em;color:var(--faintest);}
+  .el.lit{background:var(--ink);border-color:var(--ink);}
+  .el.lit .el-sym,.el.lit .el-name{color:var(--paper);}
+  .el.lit .el-num{color:rgba(240,235,225,.55);}
+  .el.lit .el-gloss{color:rgba(240,235,225,.66);}
+  .el.sel{box-shadow:inset 0 0 0 1.5px var(--ink);border-color:var(--ink);}
+  .el.lit.sel{box-shadow:inset 0 0 0 1.5px var(--paper);}
+
+  /* ---- detail panel ---- */
+  .detail{margin:clamp(2.4rem,5vh,3.6rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);scroll-margin-top:1.4rem;}
+  .d-head{display:flex;gap:1.3rem;align-items:flex-start;}
+  .d-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 500;font-size:2.7rem;line-height:1;
+    color:var(--ink);flex:0 0 auto;border:1px solid var(--hair);border-radius:2px;
+    width:86px;height:86px;display:flex;align-items:center;justify-content:center;}
+  .d-sym.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .d-titles{min-width:0;}
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);}
+  .d-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.7rem,3.6vw,2.5rem);margin:.22rem 0 .35rem;line-height:1.04;letter-spacing:-.016em;}
+  .d-status{font-size:.84rem;color:var(--faint);font-style:italic;}
+  .d-status.print{color:var(--soft);font-style:normal;}
+  .d-status.print::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .d-desc{font-size:1.05rem;line-height:1.72;color:var(--ink);max-width:42rem;margin:1.3rem 0 0;text-wrap:pretty;}
+  .d-openq{margin:1.5rem 0 0;max-width:40rem;}
+  .d-openq .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.5rem;}
+  .d-openq q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);quotes:none;}
+
+  .d-plates{margin:2.2rem 0 0;}
+  .d-plates h3{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.76rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faint);margin:0 0 1.3rem;}
+  .plate-list{list-style:none;margin:0;padding:0;max-width:42rem;}
+  .plate-list li{display:grid;grid-template-columns:2.3rem 1fr;column-gap:1rem;align-items:baseline;
+    padding:.72rem 0;border-top:1px solid var(--hair);}
+  .plate-list li:first-child{border-top:none;}
+  .pl-num{font-family:"Fraunces",serif;font-size:.9rem;color:var(--faintest);text-align:right;}
+  .pl-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.04rem;color:var(--ink);line-height:1.15;}
+  .pl-gloss{grid-column:2;font-size:.84rem;color:var(--faint);font-style:italic;margin-top:.18rem;line-height:1.36;}
+  .pl-tag{display:inline-block;margin-left:.6rem;font-family:"Newsreader",serif;font-style:normal;
+    font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--paper);background:var(--ink);
+    border-radius:2px;padding:.12em .5em;vertical-align:.12em;}
+  .pl-bridge{grid-column:2;font-size:.78rem;color:var(--faintest);margin-top:.3rem;}
+  .pl-bridge b{font-family:"Fraunces",serif;font-weight:500;font-style:normal;color:var(--faint);}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:62ch;}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}.rise.d4{animation-delay:.42s}
+    .group{opacity:0;transform:translateY(14px);animation:rise .9s cubic-bezier(.2,.6,.2,1) both;animation-delay:.56s;}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;}
+    .el{min-height:138px;padding:12px 12px 14px;}
+    .el-sym{font-size:1.9rem;}
+    .el-name{font-size:.92rem;}
+    .el-gloss{font-size:.72rem;}
+    .el-plates{font-size:.64rem;}
+    .d-head{gap:1rem;}
+    .d-sym{width:64px;height:64px;font-size:2rem;}
+    .argument .lede::first-letter{font-size:2.6rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-quantities">The Quantities edition · contents</a><a href="numeraire-the-table.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="rise d1">
+      <span class="imprint">Numéraire</span>
+      <div class="edition">Group V of <a href="numeraire-the-table.html" style="color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px;text-decoration-color:var(--faintest)">the table of twenty-six</a></div>
+    </div>
+    <div class="kicker rise d2">The Fifth Group · Four Volumes</div>
+    <h1 class="rise d2">The Aggregates</h1>
+    <p class="standfirst rise d3">The leap from the part to the whole — the economy in aggregate, which behaves like nothing inside it. How large the pie grows, why it lurches, in what unit it is reckoned, and how it divides. <em>What is prudent for the one, here, can be ruinous for the all.</em></p>
+    <div class="legend rise d3">
+      <span class="legend-item"><span class="legend-swatch lit"></span>in print</span>
+      <span class="legend-item"><span class="legend-swatch"></span>in preparation</span>
+      <span class="legend-anatomy">Each tile is a <b>volume</b>; select one to open its <b>twelve plates</b>. None is yet in print — Volume I, <em>The Wage</em>, holds that distinction — but each is now set.</span>
+    </div>
+  </header>
+
+  <section class="argument rise d4" aria-label="The argument of the group">
+    <span class="arg-lead">The argument of the group</span>
+    <p class="lede">With this group the table changes scale. The first four worked at the level of the part — a single price, a quantity, a failure, an institution. Here we step back to the whole: the economy in aggregate, the sum that obeys none of the rules of its parts. And the founding scandal of the field, the thing macroeconomics exists to explain and has never settled, is exactly that — that the whole is not the sum of its parts.</p>
+    <p>The fallacy of composition runs through every volume. One worker, by accepting less, can find work; all workers, lowering their wages together, only lower the demand for their own labor. One household grows richer by saving more; a nation that all saves at once may merely shrink its own income, and save no more for the trying. One person can step out of cash before the inflation arrives; everyone cannot. What is prudent for the one is, again and again, ruinous for the all — and the four aggregates are the four faces of that stubborn whole: how large the pie grows over the long run, why it lurches over the short, in what unit it is measured, and how, in the end, it is cut.</p>
+    <p>The group opens and closes on a single figure: the wage. Its first scandal is the willing worker who cannot find work — a wage that will not clear. Its last question, whether the division between labor and capital is set by productivity or by power, runs, as its own description admits, straight back to <em>The Wage</em> — the table's first volume, and the only one in print. The whole began there; here it returns, at the scale of the nation.</p>
+    <p>And the honest finding that orders the group is the hardest the table has had to make. This is the least settled province of the discipline: the one where the same data has fit incompatible theories for a century, where the forecasts fail most publicly, where measurement and conviction are most thoroughly entangled. The <em>numéraire</em> of honesty is thinnest exactly where the stakes run highest — over unemployment, inflation, growth, and the division of the whole, on which the discipline's claim to know is at once least secure and most consequential.</p>
+  </section>
+
+  <main>
+    <section class="group">
+      <div class="group-head"><span class="group-num fr">Group V</span><span class="group-name">The Aggregates</span><span class="group-rule"></span></div>
+      <div class="grid">
+        <button class="el" data-id="cycle" aria-label="The Cycle — boom, bust, idleness — twelve plates"><span class="el-num">19</span><span class="el-sym">Cy</span><span class="el-name">The Cycle</span><span class="el-gloss">boom, bust, idleness</span><span class="el-plates">XII plates · in prep.</span></button>
+        <button class="el" data-id="growth" aria-label="The Growth — why nations are rich — twelve plates"><span class="el-num">20</span><span class="el-sym">Gr</span><span class="el-name">The Growth</span><span class="el-gloss">why nations are rich</span><span class="el-plates">XII plates · in prep.</span></button>
+        <button class="el" data-id="level" aria-label="The Level — money's value over time — twelve plates"><span class="el-num">21</span><span class="el-sym">Lv</span><span class="el-name">The Level</span><span class="el-gloss">money's value over time</span><span class="el-plates">XII plates · in prep.</span></button>
+        <button class="el" data-id="share" aria-label="The Share — labor against capital — twelve plates"><span class="el-num">22</span><span class="el-sym">Sh</span><span class="el-name">The Share</span><span class="el-gloss">labor against capital</span><span class="el-plates">XII plates · in prep.</span></button>
+      </div>
+    </section>
+  </main>
+
+  <section class="detail" id="detail" aria-live="polite"></section>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref">Group V · The Aggregates</span>
+    </div>
+    <p class="colophon">The fifth of the table's six groups — the macroeconomics, brought from sketch to structure. <em>The Cycle</em>, <em>The Growth</em>, <em>The Level</em>, <em>The Share</em> — each now set in twelve plates, none yet in print; Volume I, <em>The Wage</em>, still holds that distinction. Together they are the four faces of the whole: its size over the long run, its wobble over the short, the value of the unit it is measured in, and the division of all of it — bound throughout by the one law its parts do not obey, that the sum behaves unlike its summands. The group opens on the willing worker who cannot find work and closes on whether labor's slice is set by productivity or by power; both run back to <em>The Wage</em>, where the table began. The discipline of the group is candour about how little, on the questions that matter most, is truly settled. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+
+<script>
+const DATA = {
+  cycle:{group:"The Aggregates",gi:"V",status:"in preparation · № XIX · twelve plates set",
+    desc:"Why whole economies lurch between boom and idleness, and why involuntary unemployment — people who want work at the going wage and cannot find it — is the central scandal that macroeconomics exists to explain, and has never fully settled.",
+    openq:"why can a willing worker, at the going wage, fail to find a job?",
+    plates:[
+      {n:"i",title:"Say's Law",gloss:"the old faith that supply makes its own demand, and that a general glut cannot last"},
+      {n:"ii",title:"The General Theory",gloss:"Keynes, 1936; demand that can fall short, and an idleness that can persist"},
+      {n:"iii",title:"The Multiplier",gloss:"Kahn and Keynes; the spending that, recirculating, comes to amplify itself"},
+      {n:"iv",title:"The Thrift",gloss:"the paradox; why a nation that all tries to save may end up the poorer for it",bridge:"The Stock"},
+      {n:"v",title:"The Synthesis",gloss:"Hicks's IS–LM; the diagram that tamed Keynes, and the bastard Keynesianism Robinson named",bridge:"The Rate"},
+      {n:"vi",title:"The Phillips Curve",gloss:"the apparent bargain: a little more inflation bought with a little less unemployment",bridge:"The Level"},
+      {n:"vii",title:"The Expectations",gloss:"Friedman and Phelps; the bargain that vanishes the very moment it is foreseen"},
+      {n:"viii",title:"The Lucas Critique",gloss:"rational expectations, and the estimated models that break the instant policy leans upon them",bridge:"The Choice"},
+      {n:"ix",title:"The Real Cycle",gloss:"Kydland and Prescott; the heresy that a slump might be the efficient response to a real shock"},
+      {n:"x",title:"The Sticky Price",gloss:"the New Keynesian reply; the small frictions that give demand its grip on the world again",bridge:"The Wage"},
+      {n:"xi",title:"The Liquidity Trap",gloss:"the zero floor beneath interest, and the slump that ordinary money cannot reach",bridge:"The Rate"},
+      {n:"xii",title:"The Scar",gloss:"hysteresis, secular stagnation; the slump that, left too long, hardens into the trend",bridge:"The Growth"}
+    ]},
+  growth:{group:"The Aggregates",gi:"V",status:"in preparation · № XX · twelve plates set",
+    desc:"The only economic question that finally matters: why some nations are rich and others, no less capable, remain poor. Accumulation, ideas, and the institutions that decide whether a society's effort compounds over generations or merely repeats.",
+    openq:"why did some nations grow rich, while others no less able did not?",
+    plates:[
+      {n:"i",title:"The Wealth of Nations",gloss:"Smith, 1776; the division of labor, limited only by the extent of the market it serves"},
+      {n:"ii",title:"The Trap",gloss:"Malthus; population devouring every surplus, and the long millennia in which none escaped"},
+      {n:"iii",title:"The Escape",gloss:"the takeoff after 1800; the hockey-stick that broke ten thousand years of flatness"},
+      {n:"iv",title:"The Accumulation",gloss:"Harrod and Domar; growth balanced precariously on a knife-edge of saving and capital",bridge:"The Stock"},
+      {n:"v",title:"The Solow Model",gloss:"1956; diminishing returns, and the unsettling promise that the poor should catch the rich"},
+      {n:"vi",title:"The Residual",gloss:"the measure of our ignorance; the greater part of growth that neither capital nor labor explains"},
+      {n:"vii",title:"The Human Capital",gloss:"Schultz and Becker; the worker reconceived as an asset that schooling builds up",bridge:"The Wage"},
+      {n:"viii",title:"The Idea",gloss:"Romer; the good that, once made, all may use at once — and growth made at last endogenous",bridge:"The Commons"},
+      {n:"ix",title:"The Convergence Club",gloss:"the awkward fact that the poor have not, for the most part, caught up at all"},
+      {n:"x",title:"The Institutions",gloss:"Acemoglu and Robinson; the rules that decide whether effort compounds or is simply seized",bridge:"The Rule"},
+      {n:"xi",title:"The Geography",gloss:"Sachs and Diamond; the rival claim that latitude, soil, and disease set the deeper course"},
+      {n:"xii",title:"The Slowdown",gloss:"the rich world's fading growth, and whether the great ideas are merely getting harder to find",bridge:"The Cycle"}
+    ]},
+  level:{group:"The Aggregates",gi:"V",status:"in preparation · № XXI · twelve plates set",
+    desc:"The value of money itself across time — inflation as the silent tax that falls hardest on those who can least move out of cash, deflation as the silent trap, and the strange, awesome power of a central bank to move a number that touches every price at once.",
+    openq:"who should hold the power to change the value of every price at once?",
+    plates:[
+      {n:"i",title:"The Neutrality",gloss:"the long-run claim that more money moves only the prices, and nothing real beneath them"},
+      {n:"ii",title:"The Inflation Tax",gloss:"seigniorage; the silent levy the printing of money lays on everyone who holds cash",bridge:"The Tax"},
+      {n:"iii",title:"The Redistribution",gloss:"inflation as the quiet transfer from creditor to debtor, from the saver to the owing",bridge:"The Rate"},
+      {n:"iv",title:"The Shoe Leather",gloss:"the small but real costs of even a gentle and fully anticipated inflation"},
+      {n:"v",title:"The Spiral",gloss:"Fisher, 1933; falling prices and heavy debt feeding upon each other, downward",bridge:"The Cycle"},
+      {n:"vi",title:"The Grease",gloss:"why a little inflation is sought, not shunned: a buffer from deflation, an ease on the sticky wage",bridge:"The Wage"},
+      {n:"vii",title:"The Expectations",gloss:"why inflation, once it is widely expected, becomes so costly and so slow to stop"},
+      {n:"viii",title:"The Time Inconsistency",gloss:"Kydland and Prescott; why a hand free to reset the rules tomorrow cannot be believed today",bridge:"The Contract"},
+      {n:"ix",title:"The Independence",gloss:"the printing press taken from the politician's hands — and the question of legitimacy that lingers",bridge:"The Rule"},
+      {n:"x",title:"The Target",gloss:"inflation targeting; the single number by which a central bank steers a whole economy"},
+      {n:"xi",title:"The Discretion",gloss:"Taylor's formula against the judgment of the wise; the rule, and the exceptions it must allow",bridge:"The Rate"},
+      {n:"xii",title:"The Surge",gloss:"the inflation of the 2020s, and the humbling of all who had said it could not return",bridge:"The Cycle"}
+    ]},
+  share:{group:"The Aggregates",gi:"V",status:"in preparation · № XXII · twelve plates set",
+    desc:"How the national pie divides between those who work and those who own — labor's long-falling share, the great divergence of pay from productivity, and the question that runs straight back to The Wage: whether the split is set by productivity, or by power.",
+    openq:"is the split between labor and capital set by productivity, or by power?",
+    plates:[
+      {n:"i",title:"Ricardo's Question",gloss:"the principal problem of political economy: how the whole of the produce divides",bridge:"The Rent"},
+      {n:"ii",title:"The Three Classes",gloss:"land, labor, capital; rent, wages, profit; the classical carving of the whole"},
+      {n:"iii",title:"The Surplus Seized",gloss:"Marx; profit as the unpaid hours of labor, and distribution remade into open conflict",bridge:"The Surplus"},
+      {n:"iv",title:"The Marginal Product",gloss:"Clark, 1899; the serene claim that each factor is paid exactly and only what it adds",bridge:"The Wage"},
+      {n:"v",title:"The Adding-Up",gloss:"Euler and Wicksteed; the worry that the shares, each so reckoned, might not sum to the whole"},
+      {n:"vi",title:"The Elasticity",gloss:"the single parameter of substitution that decides whether capital's slice swells or shrinks",bridge:"The Stock"},
+      {n:"vii",title:"The Stylized Facts",gloss:"Kaldor; the long constancy of labor's share, once mistaken for a law of nature"},
+      {n:"viii",title:"The Cambridge Stakes",gloss:"why the measure of capital was never only a measure, but a politics",bridge:"The Stock"},
+      {n:"ix",title:"The Great Divergence",gloss:"pay and productivity, joined for a century, parting ways after 1980",bridge:"The Wage"},
+      {n:"x",title:"The Falling Share",gloss:"labor's slice in long, broad decline across the rich world since the 1980s"},
+      {n:"xi",title:"The Superstar",gloss:"Autor and others; the falling share traced to the quiet rise of market power",bridge:"The Power"},
+      {n:"xii",title:"The Reckoning",gloss:"productivity or power; the split weighed once more, and the loop closed back to The Wage",bridge:"The Wage"}
+    ]}
+};
+
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+function render(id){
+  var tile=document.querySelector('.el[data-id="'+id+'"]');
+  var d=DATA[id]; if(!d||!tile) return;
+  var sym=tile.querySelector('.el-sym').textContent;
+  var name=tile.querySelector('.el-name').textContent;
+  var num=tile.querySelector('.el-num').textContent;
+  var lit=tile.classList.contains('lit');
+  var h='';
+  h+='<div class="d-head">';
+  h+='<div class="d-sym'+(lit?' lit':'')+'">'+esc(sym)+'</div>';
+  h+='<div class="d-titles">';
+  h+='<div class="d-family">'+esc(d.group)+' &middot; Group '+d.gi+' &middot; '+esc(num)+'</div>';
+  h+='<h2 class="d-name">'+esc(name)+'</h2>';
+  h+='<div class="d-status'+(d.print?' print':'')+'">'+esc(d.status)+'</div>';
+  h+='</div></div>';
+  h+='<p class="d-desc">'+esc(d.desc)+'</p>';
+  if(d.openq){
+    var lead=d.plates ? 'Its opening question' : 'The first plate would ask';
+    h+='<p class="d-openq"><span class="lead">'+lead+'</span><q>'+esc(d.openq)+'</q></p>';
+  }
+  if(d.plates){
+    h+='<div class="d-plates"><h3>The twelve plates, as set</h3><ol class="plate-list">';
+    d.plates.forEach(function(p){
+      h+='<li'+(p.inprint?' class="inprint"':'')+'>';
+      h+='<span class="pl-num">'+p.n+'</span>';
+      h+='<span class="pl-title">'+esc(p.title)+(p.inprint?'<span class="pl-tag">in print</span>':'')+'</span>';
+      h+='<span class="pl-gloss">'+esc(p.gloss)+'</span>';
+      if(p.bridge){h+='<span class="pl-bridge">a bridge to <b>'+esc(p.bridge)+'</b></span>';}
+      h+='</li>';
+    });
+    h+='</ol></div>';
+  }
+  document.getElementById('detail').innerHTML=h;
+  var prev=document.querySelector('.el.sel'); if(prev) prev.classList.remove('sel');
+  tile.classList.add('sel');
+}
+
+(function(){
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.el').forEach(function(b){
+    b.addEventListener('click',function(){
+      render(b.dataset.id);
+      document.getElementById('detail').scrollIntoView({behavior:reduce?'auto':'smooth',block:'nearest'});
+    });
+  });
+  var __h=(location.hash||'').replace(/^#/,'');
+  render(DATA[__h]?__h:'cycle');
+  if(__h&&DATA[__h]){document.getElementById('detail').scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});}
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="numeraire-the-institutions.html">← Numéraire</a><a rel="next" href="numeraire-the-behaviors.html">Numéraire →</a></nav>
+</body>
+</html>

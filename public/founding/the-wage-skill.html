@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Skill — The Wage, plate iv</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1;
+    --ink:#1c1a16;
+    --soft:#534e45;
+    --faint:#6e685d;
+    --faintest:#9a9384;
+    --num:#c4bcab;
+    --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16);
+    --frame:68rem;
+    --read:37rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.6rem,4vw,4rem);}
+  p{margin:0;}
+  i,em{font-style:italic;}
+  a{color:inherit;}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:4px;border-radius:1px;}
+  .fr{font-family:"Fraunces",Georgia,serif;font-feature-settings:"liga" 1,"dlig" 0;}
+
+  /* ---- heavy entrance ---- */
+  .hero{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:space-between;}
+  .bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.5rem;padding:2.5rem 0 0;}
+  .mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.3rem;letter-spacing:-.01em;}
+  .edition{font-size:.9rem;color:var(--faint);letter-spacing:.06em;}
+  .hero-foot{padding-bottom:clamp(3.5rem,8vh,7rem);text-align:center;}
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(3.4rem,12vw,11rem);line-height:.95;letter-spacing:-.03em;margin:0;}
+  .standfirst{font-size:clamp(1.16rem,1.5vw,1.36rem);line-height:1.55;color:var(--soft);
+    margin:clamp(1.6rem,3vh,2.4rem) auto 0;max-width:45rem;text-wrap:pretty;}
+
+  /* ---- reading column ---- */
+  .read{max-width:var(--read);margin:0 auto;}
+  .read p{font-size:1.07rem;line-height:1.74;color:var(--ink);margin:0;text-indent:1.4em;text-wrap:pretty;}
+  .sec-head + p,.pull + p,.opening,.plate + p,.coda + p{text-indent:0;}
+
+  .sec-head{text-align:center;margin:clamp(4rem,9vh,7.5rem) 0 clamp(1.8rem,3.5vh,2.6rem);}
+  .sec-head.first{margin-top:clamp(5rem,11vh,9rem);}
+  .sec-num{display:block;font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;
+    font-size:.98rem;letter-spacing:.06em;color:var(--faintest);margin-bottom:.85rem;}
+  .sec-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.6rem,2.6vw,2.05rem);line-height:1.12;letter-spacing:-.012em;margin:0;}
+
+  .opening::first-letter{
+    font-family:"Fraunces",serif;font-weight:500;float:left;font-size:5.3rem;line-height:.72;
+    padding:.36rem .55rem 0 0;color:var(--ink);
+  }
+
+  .pull{max-width:50rem;margin:clamp(4.5rem,9vh,7rem) auto;text-align:center;}
+  .pull p{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:clamp(2rem,4.2vw,3.1rem);line-height:1.08;letter-spacing:-.02em;color:var(--ink);
+    margin:0;text-indent:0;text-wrap:balance;}
+
+  .ref{font-size:.62em;vertical-align:.5em;line-height:0;color:var(--faint);font-style:normal;}
+  .ref a{text-decoration:none;}
+  .ref a:hover{color:var(--ink);}
+
+  /* ---- plates (diagrams) ---- */
+  .plate{max-width:var(--read);margin:clamp(3.4rem,7vh,5.2rem) auto;}
+  .plate.wide{max-width:44rem;}
+  .plate figure{margin:0;}
+  .plate svg{display:block;width:100%;height:auto;overflow:visible;}
+  .plate text{font-family:"Fraunces",Georgia,serif;fill:var(--soft);paint-order:stroke;stroke:var(--paper);stroke-width:2.6px;stroke-linejoin:round;}
+  .plate .axis{stroke:var(--soft);stroke-width:1.1;}
+  .plate .curve{fill:none;stroke:var(--ink);stroke-width:1.6;}
+  .plate .curve.sec{stroke:var(--soft);stroke-width:1.4;}
+  .plate .guide{stroke:var(--faintest);stroke-width:1;stroke-dasharray:2.4 3.4;fill:none;}
+  .plate .level{stroke:var(--faintest);stroke-width:1;stroke-dasharray:1 4;}
+  .plate .floor{stroke:var(--ink);stroke-width:1.2;stroke-dasharray:5 4;}
+  .plate .dot{fill:var(--ink);}
+  .plate .dot.open{fill:var(--paper);stroke:var(--ink);stroke-width:1.4;}
+  .plate .lbl{font-size:14px;fill:var(--soft);}
+  .plate .tick{font-size:13px;fill:var(--faint);}
+  .plate .reg{font-size:12.5px;fill:var(--faint);font-style:italic;}
+  .plate figcaption{font-size:.82rem;line-height:1.56;color:var(--faint);margin:1.2rem auto 0;
+    max-width:33rem;text-align:center;text-wrap:pretty;}
+  .plate figcaption .pn{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;
+    color:var(--faintest);letter-spacing:.05em;text-transform:uppercase;font-size:.74rem;}
+
+  /* ---- coda ---- */
+  .coda{max-width:46rem;margin:clamp(5rem,10vh,8rem) auto 0;text-align:center;}
+  .coda p{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400,"ital" 0;font-style:italic;
+    font-size:clamp(1.5rem,2.6vw,2.05rem);line-height:1.3;color:var(--soft);margin:0;text-wrap:balance;}
+
+  /* ---- notes ---- */
+  .notes{max-width:var(--read);margin:clamp(5rem,11vh,9rem) auto 0;padding-top:2.4rem;border-top:1px solid var(--hair);}
+  .notes h3{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.92rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.6rem;}
+  .note{display:flex;gap:.9rem;scroll-margin-top:2rem;font-size:.86rem;line-height:1.56;color:var(--faint);margin:0 0 1rem;text-wrap:pretty;}
+  .note .nn{flex:0 0 auto;font-family:"Fraunces",serif;color:var(--faintest);min-width:1.1rem;}
+  .note i{font-style:italic;}
+
+  /* ---- colophon ---- */
+  footer{margin-top:clamp(6rem,13vh,10rem);padding:2.6rem 0 4.5rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.5rem;margin-bottom:1.8rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.1rem;}
+  .f-ref{font-size:.82rem;color:var(--faintest);letter-spacing:.18em;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:60ch;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .r{opacity:0;transform:translateY(12px);animation:rise 1.1s cubic-bezier(.2,.6,.2,1) both;}
+    .r1{animation-delay:.06s}.r2{animation-delay:.2s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .read p{font-size:1.04rem;}
+    .opening::first-letter{font-size:4.4rem;}
+    .f-bar{flex-direction:column;gap:.7rem;}
+    .plate .lbl,.plate .reg,.plate .tick{font-size:11px;}
+  }
+
+  /* ===== revision: airier rhythm + new plate types ===== */
+  .read p{line-height:1.82;}
+  .sec-head{margin:clamp(5.5rem,12.5vh,9.5rem) 0 clamp(2.2rem,4vh,3rem);}
+  .sec-head.first{margin-top:clamp(5rem,11vh,8.5rem);}
+  .sec-head::before{content:"";display:block;width:2.4rem;height:1px;background:var(--num);margin:0 auto 1.7rem;opacity:.85;}
+  .pull{margin:clamp(5.5rem,11vh,8.5rem) auto;}
+  .plate{margin:clamp(4.4rem,9vh,6.6rem) auto;}
+  .coda{margin-top:clamp(6rem,12vh,9rem);}
+
+  /* centered closing ornament */
+  .orn{display:flex;justify-content:center;margin:clamp(5rem,10vh,7.5rem) auto 0;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;}
+  .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* ledger plate: sources -> remedies */
+  .ledger figure{margin:0;}
+  .ledger-grid{display:grid;grid-template-columns:1fr 1fr;position:relative;
+    border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);}
+  .ledger-grid::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:1px;background:var(--hair);}
+  .ledger-grid .lh{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;
+    font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);padding:1.15rem 1.5rem .55rem;}
+  .ledger-grid .lh.r{text-align:right;} .ledger-grid .lh.l{text-align:left;}
+  .ledger-grid .cell{padding:1.3rem 1.5rem;border-top:1px solid var(--hair);}
+  .ledger-grid .src{text-align:right;} .ledger-grid .rem{text-align:left;}
+  .ledger-grid .cell b{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 500;font-weight:500;
+    font-size:1.13rem;display:block;color:var(--ink);letter-spacing:-.01em;line-height:1.15;}
+  .ledger-grid .cell span{display:block;font-size:.81rem;color:var(--faint);margin-top:.34rem;line-height:1.42;}
+  .ledger-coda{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.16rem;line-height:1.42;color:var(--soft);text-align:center;margin:1.7rem auto 0;max-width:33rem;text-wrap:balance;}
+  @media (max-width:620px){
+    .ledger-grid{grid-template-columns:1fr;}
+    .ledger-grid::before{display:none;}
+    .ledger-grid .lh{display:none;}
+    .ledger-grid .src,.ledger-grid .rem{text-align:left;}
+    .ledger-grid .src{border-bottom:none;}
+    .ledger-grid .rem{border-top:none;padding-top:.1rem;padding-left:2.4rem;position:relative;}
+    .ledger-grid .rem::before{content:"\2192";position:absolute;left:1.1rem;top:.1rem;color:var(--faintest);}
+    .ledger-grid .cell{padding-bottom:.5rem;}
+    .ledger-grid .rem{padding-bottom:1.3rem;}
+  }
+
+  /* ===== frontispiece: annotated contents ===== */
+  .sec-head{scroll-margin-top:2.5rem;}
+  .contents{max-width:40rem;margin:0 auto;padding:clamp(3rem,8vh,7rem) 0 clamp(3rem,7vh,6rem);}
+  .contents .orn{margin:0 auto 2.4rem;}
+  .contents-eyebrow{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faintest);text-align:center;margin:0 0 3rem;}
+  .contents-list{list-style:none;margin:0 auto;padding:0;max-width:33rem;counter-reset:none;}
+  .contents-list li{margin:0 0 1.7rem;}
+  .contents-list li:last-child{margin-bottom:0;}
+  .contents-list a{display:grid;grid-template-columns:2.6rem 1fr;column-gap:1.1rem;
+    text-decoration:none;align-items:baseline;}
+  .contents-list .cn{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;
+    font-size:.96rem;color:var(--faintest);text-align:right;letter-spacing:.02em;}
+  .contents-list .ct{font-family:"Fraunces",serif;font-variation-settings:"opsz" 58,"wght" 500;
+    font-size:1.2rem;color:var(--ink);letter-spacing:-.012em;line-height:1.18;transition:color .25s ease;}
+  .contents-list .cg{grid-column:2;font-style:italic;font-size:.92rem;color:var(--faint);
+    margin-top:.22rem;line-height:1.42;text-wrap:pretty;}
+  .contents-list a:hover .ct{color:var(--soft);}
+  @media (max-width:600px){
+    .contents-list a{grid-template-columns:1.9rem 1fr;column-gap:.85rem;}
+    .contents-list .ct{font-size:1.1rem;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-founding">The Founding Atlas · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+
+  <section class="hero">
+    <div class="bar r r1">
+      <span class="mark">Numéraire</span>
+      <span class="edition">The Wage · № I · iv</span>
+    </div>
+    <div class="hero-foot r r2">
+      <h1>The Skill</h1>
+      <p class="standfirst">The most consoling theory of the wage is that you are paid for what you can do — and that what you can do, you can improve. Skill, on this account, is capital you build in yourself; the higher wage of the trained worker is the return on that investment. It is the theory that turns the worker into a small capitalist and the wage into a yield, and it is, within limits, true. This plate traces those limits — and asks what the comforting language of skill quietly leaves out: that a high skill raises the ceiling of the bargain without ever guaranteeing the wage will reach it.</p>
+    </div>
+  </section>
+
+  <nav class="contents" aria-label="Contents">
+    <div class="orn" aria-hidden="true"><svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg></div>
+    <p class="contents-eyebrow">The argument in seven movements</p>
+    <ol class="contents-list">
+      <li><a href="#s1"><span class="cn">I</span><span class="ct">The Investment</span><span class="cg">skill recast as capital built in the self</span></a></li>
+      <li><a href="#s2"><span class="cn">II</span><span class="ct">The Return to Schooling</span><span class="cg">what a year of education is worth, and why earnings curve</span></a></li>
+      <li><a href="#s3"><span class="cn">III</span><span class="ct">General and Specific</span><span class="cg">who pays for skill, and who keeps the return</span></a></li>
+      <li><a href="#s4"><span class="cn">IV</span><span class="ct">The Signal</span><span class="cg">whether the diploma builds the worker or only reveals them</span></a></li>
+      <li><a href="#s5"><span class="cn">V</span><span class="ct">The Premium and Its Rise</span><span class="cg">the race between education and technology</span></a></li>
+      <li><a href="#s6"><span class="cn">VI</span><span class="ct">The Limits</span><span class="cg">ability, position, and the firm behind the wage</span></a></li>
+      <li><a href="#s7"><span class="cn">VII</span><span class="ct">The Worth and the Person</span><span class="cg">what skill explains, and what it excuses</span></a></li>
+    </ol>
+  </nav>
+
+  <article class="read">
+
+    <div class="sec-head first" id="s1"><span class="sec-num fr">I</span><h2 class="sec-title">The Investment</h2></div>
+
+    <p class="opening">The plate on the margin left a question open. The wage, it argued, tends to the value of the worker's marginal product — but the marginal product of a surgeon is many times that of a porter, and the theory said nothing about why. What makes one worker's last hour worth so much more than another's? The dominant answer of the last half-century is a single transforming idea: that skill is capital.</p>
+
+    <p>Before the 1960s, economists meant by capital the machines, the buildings, the land — the physical equipment of production. Theodore Schultz and Gary Becker proposed that the most important capital of a modern economy is lodged instead in people: in their knowledge, their training, their health, their skills. Education and training, on this view, are not consumption, to be enjoyed and used up; they are <em>investment</em> — outlays made now, in money and in forgone earnings, that raise a worker's productivity, and so their earnings, later, exactly as a firm's investment in a machine raises its output and its returns.<sup class="ref"><a href="#n1">1</a></sup> The worker becomes a small capitalist whose capital is themselves, and the wage of a skilled worker is in part a yield — the return on the years and the money sunk into acquiring what they know.</p>
+
+    <p>Jacob Mincer turned the idea into an instrument. He wrote down a spare equation relating a worker's earnings to their years of schooling and their years of experience, and showed that this short formula captured a remarkable share of the variation in what people are paid.<sup class="ref"><a href="#n2">2</a></sup> The human-capital earnings function became one of the most estimated relationships in all of economics, and its two coefficients — the return to a year of school, the return to a year of experience — became the basic measuring rods of the worth side of the wage.</p>
+
+    <div class="sec-head" id="s2"><span class="sec-num fr">II</span><h2 class="sec-title">The Return to Schooling</h2></div>
+
+    <p>What, then, is a year of schooling worth? The answer, repeated across decades and countries and datasets with unusual constancy, is that each additional year of education is associated with something like seven to ten percent higher earnings.<sup class="ref"><a href="#n3">3</a></sup> A half-century of estimates has not shifted the order of magnitude; it is among the most robust regularities the discipline possesses. And by the logic of the margin, this is just what one should expect if schooling raises the value of the work: more education, a higher marginal product, a higher wage.</p>
+
+    <p>Experience tells a subtler story, and it is the more revealing of the two.</p>
+
+    <div class="plate">
+      <figure>
+        <svg viewBox="0 0 640 420" role="img" aria-label="Three concave earnings curves plotted against years of experience, one each for high-school, college, and postgraduate education. Each rises steeply early and then flattens, and the higher-education curves sit above and rise more steeply, so the gaps between the curves — the skill premium — widen across a career.">
+          <line class="axis" x1="90" y1="350" x2="594" y2="350"/>
+          <path d="M598,350 L588,346 L588,354 Z" style="fill:var(--soft)"/>
+          <line class="axis" x1="90" y1="350" x2="90" y2="70"/>
+          <path d="M90,66 L86,76 L94,76 Z" style="fill:var(--soft)"/>
+          <path class="curve" d="M90,232 C 200,148 330,118 560,124" style="fill:none"/>
+          <path class="curve" d="M90,262 C 210,188 340,166 560,170" style="fill:none"/>
+          <path class="curve" d="M90,300 C 200,250 330,234 560,238" style="fill:none"/>
+          <text class="tick" x="553" y="116" text-anchor="end">postgraduate</text>
+          <text class="tick" x="553" y="162" text-anchor="end">college</text>
+          <text class="tick" x="553" y="230" text-anchor="end">high school</text>
+          <line class="guide" x1="215" y1="350" x2="215" y2="355"/>
+          <line class="guide" x1="340" y1="350" x2="340" y2="355"/>
+          <line class="guide" x1="465" y1="350" x2="465" y2="355"/>
+          <text class="tick" x="215" y="367" text-anchor="middle">10</text>
+          <text class="tick" x="340" y="367" text-anchor="middle">20</text>
+          <text class="tick" x="465" y="367" text-anchor="middle">30</text>
+          <text class="reg" x="340" y="384" text-anchor="middle">years of experience</text>
+          <text class="lbl" transform="translate(62,210) rotate(-90)" text-anchor="middle">earnings</text>
+        </svg>
+        <figcaption><span class="pn">Plate iv.a&nbsp;&middot;&nbsp;</span>The experience-earnings profiles, after Mincer. Each curve traces what a worker earns as experience accumulates, at a given level of schooling. Two facts stand out. The curves rise and then flatten — experience builds human capital fast at first and ever more slowly after, the same diminishing returns the margin showed for labour itself. And they fan apart: the gap between the schooled and the unschooled, the skill premium, widens across a career. More schooling buys a higher starting wage, a steeper climb, and a higher ceiling. It is the worth side of the wage made visible — skill lifting the value of the work.</figcaption>
+      </figure>
+    </div>
+
+    <p>Earnings do not rise with experience in a straight line. They climb steeply in the early years and then flatten, sometimes turning down near the end — the concave profile Mincer's curves made famous. The shape is exactly what the investment view predicts: a worker accumulates human capital fastest when young, through formal training and the steep early learning of a job, and ever more slowly thereafter, as the returns to further learning diminish and old skills begin to depreciate.<sup class="ref"><a href="#n4">4</a></sup> It is the law of diminishing returns from the plate on the margin, now turned on the worker's own self-improvement: each year of experience, like each additional worker, adds a little less than the year before.</p>
+
+    <p>The profiles also fan apart, and this is the fact that matters most for the volume. The gap between the earnings of the schooled and the unschooled does not merely exist; it widens across a career. More schooling buys not only a higher starting wage but a steeper climb and a higher ceiling. Skill, in the language of the opening plates, raises the top of the bargaining range — and raises it by more the longer the worker remains in the market. The worth side of the wage, which the margin described in the abstract, takes on here its concrete human shape: education and experience, lifting the value of the work.</p>
+
+    <div class="sec-head" id="s3"><span class="sec-num fr">III</span><h2 class="sec-title">General and Specific</h2></div>
+
+    <p>Becker drew a distinction within human capital that proved unexpectedly deep, and that quietly connects this plate to the one on the single buyer. Some skills are <em>general</em>: useful to many employers — literacy and numeracy, a professional qualification, the ability to write or to code. Others are <em>specific</em>: useful only, or chiefly, to the employer who provided them — familiarity with this firm's idiosyncratic systems, its customers, its particular way of doing things.<sup class="ref"><a href="#n5">5</a></sup></p>
+
+    <p>The distinction settles who pays for the training and who keeps its return, and the logic is elegant. General skills the worker must pay for, typically by accepting lower wages while training, because an employer who paid could never recoup it: the newly skilled worker, now more productive everywhere, could simply leave for a rival willing to pay the full value of skills it had not funded. So the worker bears the cost of general training and pockets the return — the higher, portable wage the skill commands anywhere.</p>
+
+    <p>Specific skills are different, and the difference bears on power. Because a firm-specific skill is worth little to any other employer, the worker cannot credibly threaten to take it elsewhere, nor can the employer easily be undercut for the worker's labor; the investment and its return are therefore shared between them. The sharing binds the two together — it is one reason wages tend to rise with tenure, why long-serving workers are loath to leave and their employers loath to lose them.<sup class="ref"><a href="#n6">6</a></sup> But notice what specific capital does to the bargaining range. It lowers the worker's outside option — the floor of their personal bargain — without lowering the value of their work to <em>this</em> employer. The gap between the two widens, and into it steps the very employer power the eighth plate described: a worker who would forfeit the value of their specific skills by leaving is, to that extent, captive, and a captive worker can be paid less than they are worth. Skill, which raises the ceiling, can in its specific form also deepen the well of monopsony power that holds the wage down.</p>
+
+    <div class="sec-head" id="s4"><span class="sec-num fr">IV</span><h2 class="sec-title">The Signal</h2></div>
+
+    <p>Against the whole edifice stands a rival so simple, and so corrosive, that economics has never fully digested it. What if education does not raise productivity at all — but merely reveals it?</p>
+
+    <p>Michael Spence set out the logic in 1973. Suppose workers differ in some ability employers cannot observe directly and cannot cheaply test. Suppose, too, that the more able find school easier — that earning a credential costs the talented less, in effort and in struggle, than it costs the rest. Then education can serve as a <em>signal</em>: the able acquire the diploma because it is cheap for them to acquire, the less able do not because it is dear, and employers, unable to see ability directly, rationally pay for the credential as a proxy for it. On this account the schooling need not have taught the worker anything useful at all. It has only sorted the able from the rest — and the wage premium for education is the price of a sorting device, not the return on a skill.<sup class="ref"><a href="#n7">7</a></sup></p>
+
+    <div class="plate wide ledger">
+      <figure>
+        <div class="ledger-grid">
+          <div class="lh r">Human capital</div>
+          <div class="lh l">Signalling</div>
+          <div class="cell src"><b>Schooling builds skill</b><span>it raises real productivity</span></div>
+          <div class="cell rem"><b>Schooling reveals it</b><span>the ability was already there</span></div>
+          <div class="cell src"><b>The premium is a return</b><span>on the skill the worker built</span></div>
+          <div class="cell rem"><b>The premium is a price</b><span>paid for a credible signal</span></div>
+          <div class="cell src"><b>Teach more, produce more</b><span>the social return is real</span></div>
+          <div class="cell rem"><b>Teach more, sort harder</b><span>partly a positional race</span></div>
+          <div class="cell src"><b>Shown by tests, experiments</b><span>schooling raises measured skill</span></div>
+          <div class="cell rem"><b>Shown by the sheepskin</b><span>the jump on finishing the degree</span></div>
+        </div>
+        <p class="ledger-coda">Both fit the plain fact that the educated earn more. They part on whether the schooling made them so — and the honest answer is some of each, which is why the question will not die.</p>
+        <figcaption><span class="pn">Plate iv.b&nbsp;&middot;&nbsp;</span>Two readings of one premium. Does schooling make workers more productive, or only reveal which of them already were? Human capital says the diploma is built skill; signalling, after Spence, says it is a credible sign of an ability that schooling sorted but did not create. They agree the educated earn more and disagree on why — and the disagreement is not idle, for if the premium is built skill, educating more people enriches everyone, while if it is mostly a signal, it is partly an arms race: dear to each and barren to the whole.</figcaption>
+      </figure>
+    </div>
+
+    <p>The two theories are maddeningly hard to tell apart, because they make the same prediction about the individual: the educated earn more, whether schooling built their productivity or merely flagged it. They diverge only on the deeper question — whether the schooling did anything — and the evidence is genuinely mixed. For signalling: the &ldquo;sheepskin effect,&rdquo; the disproportionate jump in earnings that comes from <em>completing</em> a degree rather than from the same years of study left unfinished, which is hard to square with learning and easy to square with the credential.<sup class="ref"><a href="#n8">8</a></sup> For human capital: the many natural experiments in which schooling, when forced on people who would not have chosen it, does raise their later earnings and their measured skills. The honest verdict is that the premium is some of each — part built skill, part revealed sorting — in proportions no one has pinned down. But the stakes of the split are high. To the extent the premium is real skill, educating more people enriches the whole society; to the extent it is mere signal, mass education is partly a positional arms race, costly to each and barren to all, in which everyone runs harder to hold the same place.</p>
+
+    <div class="sec-head" id="s5"><span class="sec-num fr">V</span><h2 class="sec-title">The Premium and Its Rise</h2></div>
+
+    <p>If the skill premium is a price — and whether it rewards built skill or revealed ability, it is at least that — then like any price it is set by supply and demand, and like any price it moves. Its movement over the last half-century is one of the central facts of modern inequality, and it has a name: the race between education and technology.</p>
+
+    <p>The framing goes back to Tinbergen and was built into a full account by Goldin and Katz.<sup class="ref"><a href="#n9">9</a></sup> The demand for skilled labor, they argued, has risen more or less steadily for a century, pulled up by technologies — most recently the computer — that complement educated workers while substituting for the routine work of the less educated.<sup class="ref"><a href="#n10">10</a></sup> The supply of skilled labor has risen too, as each generation went to school longer than the last. The skill premium is the price that clears this market, and it rises or falls with which side of the race is winning: when the supply of the educated outruns the demand for them, the premium falls; when demand outruns supply, it climbs.</p>
+
+    <div class="plate">
+      <figure>
+        <svg viewBox="0 0 640 384" role="img" aria-label="A line chart of the US college wage premium from 1980 to the early 2020s. It rises steeply from about 40 percent in 1980 to about 68 percent in 2000, continues up to a peak near 79 percent in the mid-2010s, then plateaus and edges down to about 75 percent by 2022.">
+          <line class="guide" x1="80" y1="112" x2="600" y2="112"/>
+          <line class="guide" x1="80" y1="181" x2="600" y2="181"/>
+          <line class="guide" x1="80" y1="251" x2="600" y2="251"/>
+          <text class="tick" x="70" y="116" text-anchor="end">75%</text>
+          <text class="tick" x="70" y="185" text-anchor="end">50%</text>
+          <text class="tick" x="70" y="255" text-anchor="end">25%</text>
+          <line class="axis" x1="80" y1="320" x2="604" y2="320"/>
+          <line class="axis" x1="80" y1="320" x2="80" y2="64"/>
+          <polyline class="curve" points="100,209 211,164 322,131 433,106 489,101 566,112" style="fill:none"/>
+          <circle class="dot" cx="100" cy="209" r="4.2"/>
+          <circle class="dot" cx="322" cy="131" r="4.2"/>
+          <circle class="dot" cx="489" cy="101" r="4.2"/>
+          <circle class="dot" cx="566" cy="112" r="4.2"/>
+          <text class="tick" x="108" y="205">~40%</text>
+          <text class="tick" x="330" y="127">~68%</text>
+          <text class="tick" x="489" y="91" text-anchor="middle">~79%</text>
+          <text class="tick" x="572" y="126" text-anchor="end">~75%</text>
+          <text class="reg" x="150" y="232">the rise</text>
+          <text class="reg" x="512" y="139">the plateau</text>
+          <text class="tick" x="100" y="338" text-anchor="middle">1980</text>
+          <text class="tick" x="322" y="338" text-anchor="middle">2000</text>
+          <text class="tick" x="545" y="338" text-anchor="middle">2020</text>
+          <text class="lbl" transform="translate(40,192) rotate(-90)" text-anchor="middle">college wage premium</text>
+        </svg>
+        <figcaption><span class="pn">Plate iv.c&nbsp;&middot;&nbsp;</span>The race between education and technology. The college wage premium — how much more a graduate earns than a high-school worker — roughly doubled between 1980 and 2000 as the demand for skill, driven by new technology, outran its supply. Since about 2000 it has plateaued and lately edged down: technical change stopped favouring the college-educated while their numbers kept growing, and tight labour markets lifted the wages of those without degrees. As the cost of a degree went on rising, the net return eroded. The premium is not an escalator. It is a price, set by the scarcity of skill — and scarcity can fall.</figcaption>
+      </figure>
+    </div>
+
+    <p>For most of the twentieth century, supply won, and the premium drifted down or held steady. Then, around 1980, the race reversed. The growth of college-going slowed while skill-biased technology accelerated; demand pulled ahead of supply; and the college wage premium roughly doubled in two decades — from around forty percent to near seventy by the year 2000. That rising premium is one of the principal engines of the great widening of the American wage distribution, the worth-side counterpart to the power-side story of the union's collapse: the ceiling rose, and rose fastest for those already near the top of it.</p>
+
+    <p>But a price set by a race can stop rising when the race changes, and this one has. Since about 2000 the college premium has plateaued, and lately slipped — to around seventy-five percent by the early 2020s, a little below where it stood at the turn of the century. The reasons fit the framework precisely: the supply of graduates kept growing, while the demand for them stopped racing ahead, the technical change of the new century proving, on the evidence, roughly neutral between the educated and the rest rather than relentlessly favoring the educated as the previous decades' had. Tight labor markets, meanwhile, lifted the wages of workers without degrees. And as the premium flattened, the cost of a degree went on climbing, so that the net return to college — the premium set against the rising price of obtaining it — has quietly eroded.<sup class="ref"><a href="#n11">11</a></sup> The lesson is the one the plate keeps circling back to: the reward to a skill is not a fixed property of the skill. It is a price, set by how scarce the skill is — and scarcity can fall.</p>
+
+    <div class="sec-head" id="s6"><span class="sec-num fr">VI</span><h2 class="sec-title">The Limits</h2></div>
+
+    <p>Three limits hem the theory in, and naming them is the price of taking it seriously.</p>
+
+    <p>The first is a problem of measurement that haunts the headline number. The return to schooling — the seven to ten percent a year — is a correlation, and those who get more schooling are no random sample: they tend to be more able, more driven, better placed, in ways that would have raised their earnings even without the extra years. Some of the measured return to education is therefore really a return to the ability that produced the education, not to the education itself — the problem of ability bias. The cleaner studies, which lean on twins, or on compulsory-schooling laws, or on other accidents that push people into more education for reasons unrelated to their ability, generally do find a genuine causal return — schooling does raise earnings — but a smaller one than the raw correlation reports.<sup class="ref"><a href="#n12">12</a></sup> The worth side is real, but it has been somewhat oversold.</p>
+
+    <p>The second limit is the one the whole volume presses. Skill raises the ceiling of the bargaining range; it does not fix where, beneath that ceiling, the wage falls. A highly skilled worker has a high marginal product — a high ceiling — and may still be paid well below it if they face a single dominant employer, or lack the power to claim it, or belong to a group for whom the floor is set low. Skill tells you how high your ceiling stands. It is silent on whether you reach it. The two questions are independent, and running them together — supposing that the skilled are well paid and the well paid skilled — is among the most common errors in all thinking about wages.</p>
+
+    <p>The third limit has surfaced from the data only lately, and it is quietly devastating to the purest form of the theory. If the wage were simply the return to a worker's own human capital, two workers with identical skills would earn the same wherever they worked. They do not. A large body of evidence now shows that the same worker earns systematically more at some firms than at others — that a substantial part of what anyone is paid is a premium attaching to their employer rather than to themselves.<sup class="ref"><a href="#n13">13</a></sup> Where you work, it emerges, can matter as much as what you know. And a wage that depends on which firm happened to hire you is no pure return to skill; it is, in part, a share of the rents that firm commands — which is to say, once more, a question of power, and not only of worth.</p>
+
+    <div class="sec-head" id="s7"><span class="sec-num fr">VII</span><h2 class="sec-title">The Worth and the Person</h2></div>
+
+    <p>Human capital is the most humane-sounding of all the theories of the wage, and that is exactly what makes it the most dangerous when it overreaches. It says that your pay reflects your skills, and that your skills are yours to improve — that the wage is, in the end, a measure of what you have made of yourself. There is real truth in this, and real dignity. Education and training genuinely do raise the value of work; the return to schooling is no illusion; a person can, by learning, lift their own ceiling. A volume that denied as much would be false to the evidence.</p>
+
+    <p>But the same comforting logic, pressed too far, becomes an instrument for naturalizing every wage as deserved. If pay is the return to skill, then low pay is low skill — a deficiency in the worker, rather than in their bargaining position, or their employer, or the structure of their market. The language of human capital can quietly convert the verdict of power into the verdict of worth: the underpaid are simply the under-skilled, and the remedy is forever more training and never more power.<sup class="ref"><a href="#n14">14</a></sup> This is where the volume must hold the line. Skill raises the ceiling — genuinely, measurably, and to the worker's lasting credit. It does not set the wage. The wage is where the bargain comes to rest beneath that ceiling, and where it rests is decided by the things this plate has kept brushing up against and the plates to come will name outright: the single buyer, the missing union, the discrimination that lowers the floor, the firm that keeps the rents.</p>
+
+    <p>To ask of any wage how much is skill is to ask only how high the ceiling stands. The harder question — the volume's question — is how much of the room beneath that ceiling the worker was able to claim.</p>
+
+    <div class="orn" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="coda"><p>Skill tells you how high the ceiling is. It does not tell you whether you reach it — and the distance between the two is measured not in what you know, but in what you can command.</p></div>
+
+    <section class="notes">
+      <h3>Notes</h3>
+      <p class="note" id="n1"><span class="nn fr">1</span><span>Theodore W. Schultz, &ldquo;Investment in Human Capital,&rdquo; <i>American Economic Review</i> (1961); Gary S. Becker, <i>Human Capital</i> (1964) — the recasting of education, training, and health as investment in productive capacity embodied in people.</span></p>
+      <p class="note" id="n2"><span class="nn fr">2</span><span>Jacob Mincer, <i>Schooling, Experience, and Earnings</i> (1974), formalizing the human-capital earnings function relating the logarithm of earnings to years of schooling and a quadratic in experience — the &ldquo;Mincer equation.&rdquo;</span></p>
+      <p class="note" id="n3"><span class="nn fr">3</span><span>That each year of schooling is associated with roughly 7&ndash;10 percent higher earnings is among the most replicated findings in labour economics; for a survey, David Card, &ldquo;The Causal Effect of Education on Earnings,&rdquo; in <i>Handbook of Labor Economics</i> (1999).</span></p>
+      <p class="note" id="n4"><span class="nn fr">4</span><span>The concave experience-earnings profile follows from the accumulation of human capital, formal and on-the-job, at a diminishing rate, with later depreciation: Mincer (1974); Becker (1964); and Yoram Ben-Porath, &ldquo;The Production of Human Capital and the Life Cycle of Earnings,&rdquo; <i>Journal of Political Economy</i> (1967).</span></p>
+      <p class="note" id="n5"><span class="nn fr">5</span><span>Becker, <i>Human Capital</i> (1964), distinguishing general training (raising productivity for many employers) from firm-specific training (raising it only for the current one), and deriving who bears the cost and reaps the return of each.</span></p>
+      <p class="note" id="n6"><span class="nn fr">6</span><span>Because firm-specific capital is shared, it ties worker to firm, helping to explain rising wage-tenure profiles and arrangements of deferred compensation: Edward Lazear, &ldquo;Why Is There Mandatory Retirement?&rdquo; <i>Journal of Political Economy</i> (1979). The accompanying fall in the worker's outside option is a source of the employer power analyzed in plate viii, <i>Monopsony</i>.</span></p>
+      <p class="note" id="n7"><span class="nn fr">7</span><span>A. Michael Spence, &ldquo;Job Market Signaling,&rdquo; <i>Quarterly Journal of Economics</i> (1973); the closely related screening view in Kenneth Arrow, &ldquo;Higher Education as a Filter,&rdquo; <i>Journal of Public Economics</i> (1973), and Joseph Stiglitz (1975). Spence shared the 2001 Nobel for this work.</span></p>
+      <p class="note" id="n8"><span class="nn fr">8</span><span>The &ldquo;sheepskin effect&rdquo; — the disproportionate earnings gain from <i>completing</i> a credential, over and above the gain from the years of study themselves: Thomas Hungerford &amp; Gary Solon, &ldquo;Sheepskin Effects in the Returns to Education,&rdquo; <i>Review of Economics and Statistics</i> (1987).</span></p>
+      <p class="note" id="n9"><span class="nn fr">9</span><span>Jan Tinbergen, <i>Income Distribution: Analysis and Policies</i> (1975), framing the skill premium as a race between the demand for and the supply of educated labour; developed at length in Claudia Goldin &amp; Lawrence Katz, <i>The Race between Education and Technology</i> (2008).</span></p>
+      <p class="note" id="n10"><span class="nn fr">10</span><span>Skill-biased technological change: Lawrence Katz &amp; Kevin Murphy, &ldquo;Changes in Relative Wages, 1963&ndash;1987,&rdquo; <i>Quarterly Journal of Economics</i> (1992); on its routine-biased form, David Autor, Frank Levy &amp; Richard Murnane, &ldquo;The Skill Content of Recent Technological Change,&rdquo; <i>Quarterly Journal of Economics</i> (2003).</span></p>
+      <p class="note" id="n11"><span class="nn fr">11</span><span>On the plateau and recent decline of the US college wage premium: it rose from roughly 40 percent around 1980 to about 68 percent by 2000, peaked near 79 percent in the mid-2010s, and slipped to about 75 percent by 2022 — analyses by the Federal Reserve Banks of San Francisco (Bengali, Valletta &amp; Zhao) and Cleveland (Cline &amp; Kaymak) attribute the plateau to a leveling of relative demand against continued growth in the supply of graduates, with tight post-2009 and post-2020 labour markets lifting the wages of non-graduates (Autor, Dube &amp; McGrew, 2023). Meanwhile the cost of a four-year degree rose some 40 percent over 2000&ndash;2023, eroding the net return.</span></p>
+      <p class="note" id="n12"><span class="nn fr">12</span><span>On ability bias and the causal return to schooling: twins studies, e.g. Orley Ashenfelter &amp; Alan Krueger, &ldquo;Estimates of the Economic Return to Schooling from a New Sample of Twins,&rdquo; <i>American Economic Review</i> (1994); instruments from compulsory-schooling laws, Joshua Angrist &amp; Alan Krueger, &ldquo;Does Compulsory School Attendance Affect Schooling and Earnings?&rdquo; <i>Quarterly Journal of Economics</i> (1991); surveyed in Card (1999). The causal return is real but generally below the raw correlation.</span></p>
+      <p class="note" id="n13"><span class="nn fr">13</span><span>On firm-specific wage premiums — that identical workers are paid differently across firms: John Abowd, Francis Kramarz &amp; David Margolis, &ldquo;High Wage Workers and High Wage Firms,&rdquo; <i>Econometrica</i> (1999); David Card, Jörg Heining &amp; Patrick Kline, &ldquo;Workplace Heterogeneity and the Rise of West German Wage Inequality,&rdquo; <i>Quarterly Journal of Economics</i> (2013). A growing share of wage inequality is attributable to which firm a worker is at, not to the worker's own characteristics.</span></p>
+      <p class="note" id="n14"><span class="nn fr">14</span><span>On the slide from a positive claim (skill raises the marginal product, and so the ceiling) to a normative one (the wage is therefore deserved), cf. plate ii, note 11. By attributing the wage wholly to the worker's own investment, the human-capital framing can naturalize as worth what is in part an outcome of power; the wage's position beneath the ceiling is the business of plates vi, viii, and ix.</span></p>
+    </section>
+
+  </article>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref">The Wage · plate iv</span>
+    </div>
+    <p class="colophon">The fourth plate of <i>The Wage</i>: human capital — the theory that recasts skill as capital built in the worker, and the wage of the skilled as the return on it. The plate grants the theory its power as the account of why the ceiling of the bargain stands higher for some than for others — the return to schooling, the concave path of earnings, the race between education and technology — then fixes its boundary: skill raises the ceiling but does not decide where, beneath it, the wage lands, and the language of skill can launder the verdict of power as the verdict of worth. It is the worth-side companion to the plates on the single buyer and the union. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-wage-subsistence.html">← The Subsistence</a><a rel="next" href="the-wage-difference.html">The Difference →</a></nav>
+</body>
+</html>

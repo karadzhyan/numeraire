@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Ascent — Numéraire, The Growth, Plate i</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:66rem; --measure:35rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(2.8rem,7vh,5rem) 0 clamp(1.4rem,3.5vh,2.2rem);text-align:center;}
+
+  .crumbs{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 400;
+    font-size:.8rem;letter-spacing:.04em;color:var(--faint);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:center;gap:.55rem;}
+  .crumbs a{text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .2s ease,color .2s ease;}
+  .crumbs a:hover{border-color:var(--num);color:var(--ink);}
+  .crumbs .sep{color:var(--faintest);}
+  .crumbs .here{color:var(--ink);}
+
+  .plate-mark{width:116px;height:116px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:.18rem;line-height:1;}
+  .plate-mark.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pm-vol{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.84rem;letter-spacing:.06em;color:rgba(240,235,225,.62);}
+  .pm-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;
+    font-size:2.5rem;letter-spacing:.02em;text-transform:uppercase;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.1rem,6vw,4rem);line-height:1.03;letter-spacing:-.025em;margin:1rem 0 0;text-wrap:balance;}
+  .status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:42rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .epi{max-width:38rem;margin:clamp(2.2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .epi q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.46;color:var(--ink);quotes:none;display:block;text-wrap:pretty;}
+  .epi .cite{display:block;margin-top:.95rem;font-size:.78rem;color:var(--faintest);letter-spacing:.05em;font-style:normal;}
+  .epi .cite em{font-style:italic;}
+
+  .essay{max-width:52rem;margin:clamp(3rem,7vh,5rem) auto 0;counter-reset:sn;}
+  .essay::after{content:"";display:block;clear:both;}
+  .essay > p,.essay > .pull{max-width:var(--measure);}
+  .essay p{font-size:1.075rem;line-height:1.8;color:var(--ink);margin:0 0 1.4rem;text-wrap:pretty;}
+  .essay em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.72;padding:.08em .14em 0 0;color:var(--ink);}
+
+  .divider{display:flex;justify-content:center;margin:2.4rem 0;}
+  .divider svg{width:96px;height:12px;overflow:visible;}
+  .divider line{stroke:var(--num);stroke-width:1;} .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.5vw,1.74rem);line-height:1.34;color:var(--ink);text-align:center;
+    margin:2.4rem auto;max-width:33rem;text-wrap:balance;}
+
+  .snref{font-family:"Fraunces",serif;font-size:.64em;line-height:0;vertical-align:super;
+    color:var(--soft);counter-increment:sn;margin-left:1px;font-style:normal;}
+  .snref::after{content:counter(sn);}
+  .sn{display:block;max-width:var(--measure);margin:.1rem 0 1.4rem;padding:.15rem 0 .15rem 1.05rem;
+    border-left:1px solid var(--hair);font-size:.84rem;line-height:1.52;color:var(--faint);}
+  .sn::before{content:counter(sn);font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--faintest);margin-right:.5em;font-size:.92em;}
+  .sn em{font-style:italic;}
+
+  @media (min-width:64rem){
+    .sn{float:right;clear:right;width:15rem;margin:.35rem 0 1.3rem;padding:0;border-left:none;}
+    .divider,.pull,.apparatus{clear:both;}
+  }
+
+  .apparatus{max-width:52rem;margin:clamp(3.2rem,7vh,5rem) auto 0;padding-top:2rem;border-top:1px solid var(--hair);clear:both;}
+  .app-h{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;}
+  .app-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.4rem;}
+  .app-list li{border-top:1px solid var(--hair);}
+  .app-list li:first-child,.app-list li:nth-child(2){border-top:none;}
+  .app-list a{display:block;text-decoration:none;padding:.95rem 0;}
+  .app-list a:hover .app-t{color:var(--soft);}
+  .app-rel{display:block;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faintest);margin-bottom:.3rem;}
+  .app-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.12rem;color:var(--ink);transition:color .2s ease;}
+  .app-g{display:block;font-size:.84rem;color:var(--faint);font-style:italic;line-height:1.4;margin-top:.22rem;}
+
+  footer{margin-top:clamp(3.5rem,8vh,6rem);padding:2.2rem 0 4rem;border-top:1px solid var(--hair);}
+  .crumbs.foot{justify-content:flex-start;margin-bottom:1.3rem;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .plate-mark{width:96px;height:96px;}
+    .pm-num{font-size:2.1rem;}
+    .essay p{font-size:1.04rem;line-height:1.74;}
+    .dropcap{font-size:3rem;}
+    .app-list{grid-template-columns:1fr;}
+    .app-list li:nth-child(2){border-top:1px solid var(--hair);}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="crumbs rise d1" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-growth.html">The Growth &middot; Vol XX</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate i</span>
+    </nav>
+    <div class="plate-mark lit rise d2" aria-hidden="true">
+      <span class="pm-vol">Gr</span>
+      <span class="pm-num">i</span>
+    </div>
+    <h1 class="rise d3">The Ascent</h1>
+    <div class="status rise d3">in print &middot; The Growth &middot; plate i</div>
+    <p class="standfirst rise d4">For all but the last sliver of its existence, humanity was poor — the great-grandchild no richer than the great-grandparent, the whole species held near subsistence. Then, around 1800, in a few places, output per person began to rise and did not stop, and the modern condition was born. This plate sets out that fact before any explanation of it: the great enrichment, the strangest and largest event in the economic history of the species — and the central thing the rest of the volume must explain.</p>
+  </header>
+
+  <div class="epi rise d5">
+    <q>No bounds have been fixed to the improvement of the human faculties; the perfectibility of man is absolutely indefinite.</q>
+    <span class="cite">Condorcet, <em>Sketch for a Historical Picture of the Progress of the Human Mind</em> (1795)</span>
+  </div>
+
+  <article class="essay">
+
+    <p class="lede"><span class="dropcap">F</span>or ten thousand years, almost nothing happened. Empires rose and fell, religions spread, art and philosophy reached heights never surpassed — and through it all the ordinary person stayed poor, as poor in the age of Newton as in the age of Pericles, living on the rough equivalent of a few dollars a day. Then, in the space of a few generations, in a few places, the oldest fact of human life quietly ended. Output per person began to rise, and kept rising, and the descendants of the poor became rich beyond any prior reckoning. Nothing else economics studies is remotely so large; beside it, the booms and slumps of the previous volume are weather passing over a climate that had, for the first time, begun to change.</p>
+
+    <p>The difficulty, for anyone raised inside the enrichment, is to feel how strange it is.<sup class="snref"></sup> Begin with the flatness it ended. For the whole of recorded history before about 1800, the material condition of the average human being hardly moved: a peasant under the Caesars and a peasant in the France of Louis XVI ate much the same food, wore much the same cloth, and died at much the same age. Improvement, where it came, was swallowed; the good harvest fed more children rather than richer ones — the grim arithmetic Malthus would make famous — and the wheel turned back to where it had begun. Against ten thousand years of that, the last two centuries are a detonation. Output per person in the countries that grew has risen perhaps twenty or thirty times over; lives have lengthened by decades; the famines and the routine death of children that haunted every prior age have, in the enriched world, all but vanished. The dry phrase "economic growth" names the most dramatic change in the material conditions of human life that has ever occurred.</p>
+    <aside class="sn">The flatness of the long past is hard to credit. By the most careful reconstructions, the average person in the year 1 lived on the equivalent of a dollar or two a day, and the average person in 1800 lived on much the same — eighteen centuries in which the material condition of ordinary life scarcely budged. Then, in the two centuries since, output per head in the countries that grew rose perhaps twentyfold. Drawn to scale, the line of human living standards runs flat across the whole width of the page and then, at the very last, turns and shoots upward almost vertically — the shape historians have taken to calling, for want of a better word, the hockey stick.</aside>
+
+    <p>This reframes the central question of the subject, and the reframing is the first thing to get right.<sup class="snref"></sup> Economics has long posed its great development question in one direction: why are some nations poor? But the history runs the other way. Poverty was not an aberration to be explained; it was the condition of essentially every human being who ever lived. What needs explaining is not the poverty, which was universal, but its opposite — the sudden, sustained, compounding wealth that a handful of societies began to enjoy and that has, unevenly, spread since. The question that organizes this volume, then, is not why some places are poor, but why any place is rich — the question Adam Smith set at the head of the whole science when he made his subject the wealth, and not the poverty, of nations: why the oldest fact of human life ended at all, why it ended where it did, and why it ended when it did. Get the question backward, and every answer will be wrong; for one will be hunting the causes of a disease that was in truth the natural state, and overlooking the causes of the cure.</p>
+    <aside class="sn">We are in the habit of asking why poor countries are poor, as though poverty were the riddle and wealth the natural state of things. The history inverts the question. Poverty was the natural state of things — the condition of essentially everyone who ever lived until about ten generations ago — and it is wealth, sustained and rising wealth, that is the strange exception crying out to be explained. The right question is not why some nations are poor but why any nation is rich: why, after so long, and in so few places, the oldest fact of human life was at last undone.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>To see what was genuinely new, one must distinguish a height from a slope.<sup class="snref"></sup> The world before 1800 was not without its prosperities. Rome at its zenith, the cities of Song China, the Dutch republic in its golden century — each climbed to a comfort that the surrounding ages could not match, and each, in time, subsided. But these were levels: a society would rise to some plateau of wealth and there remain, or from there decline, the gains held for a while and then surrendered. What began with the great enrichment was not another, higher plateau but something the world had never seen — a rising slope that did not level off, growth that became, for the first time, perpetual. The standard of living did not merely jump; it began to compound, doubling within a lifetime and doubling again within the next, as though the rising were now the normal condition and the standing still the thing that would have to be explained. The novelty was not wealth, which the old world had known, but growth without end.</p>
+    <aside class="sn">It is worth being exact about what is new. The ancient world had its rich cities and golden ages; Rome at its height, Song China, the Dutch republic in its glory all reached levels of comfort that would not be matched for centuries after they fell. But these were levels — heights attained and then held or lost — not trends. What began around 1800 was different in kind: not a higher plateau but a rising slope, growth that did not stop, a standard of living that doubled and doubled again as a matter of course. The novelty was not that a society grew rich, which had happened before, but that growth itself became permanent.</aside>
+
+    <p>Yet the ascent was not the world's all at once, and its unevenness is as important as its fact.<sup class="snref"></sup> It began in a corner of northwestern Europe, spread to the lands of European settlement, reached parts of Asia late and in a rush, and has touched some regions barely or not at all. The very same two centuries that multiplied the wealth of some nations many times over left others close to the subsistence that had always been universal — and so tore open, between rich lands and poor, a gulf of a kind the old world, uniformly destitute, had never contained. A peasant of 1700, wherever he lived, was poor in much the same way as every other; the citizen of a rich country today is richer than one of a poor country by a factor the ancient world could not have imagined. The enrichment, in other words, did not merely lift humanity; it divided it, and in dividing it called into being the categories — the developed and the undeveloped, the first world and the third — through which we now sort the earth.</p>
+    <aside class="sn">The ascent was never humanity's all at once; it was a few societies' first, and the rest followed at varying distances, or have not yet followed at all. The same two centuries that lifted some nations twentyfold left others almost where they had always been, and so opened a chasm between rich and poor lands that the uniformly poor world of the past had never known. This is the great divergence, the subject of a later plate; here it is enough to note its paradox — that the enrichment, in reaching some places before others, did not merely raise the world but sorted it, inventing the very categories of the developed and the undeveloped.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>And here, at the largest scale the subject affords, the governing error of the whole work waits to be made.<sup class="snref"></sup> For the enrichment is now so complete, so much the medium in which the fortunate live, that they take it for the natural condition of mankind. We speak of "developed" and "developing" nations as though wealth were a stage that every society climbs in the fullness of time, as a child grows tall; we feel, without quite saying it, that the prosperity of the rich world is simply how things are. It is the master mistake of these volumes, on the grandest possible canvas. A price is a verdict on a hidden contest, mistaken for a fact of nature — and the wealth of the modern world is the same verdict, taken for the same kind of fact. But two centuries weigh nothing against the ten millennia the enrichment broke; the wealth that feels eternal is, in the long reckoning, brand new — not the natural order but a recent and precarious exception to a poverty that had every appearance of permanence. To call it natural is to forget that it was made — and that what was made can fail to be made elsewhere, and can yet be unmade where it stands.</p>
+    <aside class="sn">The deception is one of familiarity. A person born into an enriched society swims in its abundance as a fish swims in water, and comes to feel that wealth is simply how things are — that some nations are developed as some animals are large, by their nature. But two centuries is nothing against the span the enrichment broke, and the wealth that feels eternal is younger than many of the buildings in an old city. To take it for the natural order is to forget that it is an achievement, and a recent one, wrung from a poverty that had every appearance of permanence and was undone only by the contests the rest of this volume will trace.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>The claim that the enrichment is the central fact must be made honestly, against everything that can fairly be said to qualify it.<sup class="snref"></sup> And much can. The measure is crude: output per head says nothing of how a life is lived, and a rising figure can mask a coarsening world. The gains were shared with a cruelty that shadows the whole story — between nations and within them, the ascent of some was built, in part, on the enslavement, the conquest, and the plunder of others, so that what the ledgers record as growth was, for millions, catastrophe. And the enrichment has run up a debt against the planet that bears it, a bill in carbon and exhaustion not yet fully presented. Each is true, and none to be waved away. But none unmakes the fact. The descendants of the poor, in the places the enrichment reached, live longer, eat better, and bury fewer of their children than any people who came before. That this is unevenly shared, and in part ill-gotten, and perhaps not sustainable, are facts about the contest over its fruits and its costs — grave ones, taken up in later plates — not refutations of the enrichment itself.</p>
+    <aside class="sn">The skeptic has several true things to say. The figures are coarse, and output per head is a poor measure of a life. The gains were shared with brutal unevenness, and the enrichment of some rested in part on the enslavement and plunder of others, so that the ascent of the few was, for the many, a descent. And the whole edifice runs up a bill — in carbon, in exhaustion — that has not yet come due. All of this is so. But none of it unmakes the central fact: that the descendants of the poor, where the enrichment reached, live longer and eat better and bury fewer children than any people before them. That the fact is unevenly shared, and partly ill-gotten, and perhaps unsustainable, are truths about the contest over its fruits, not denials of the fact.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>Set the fact and its qualifications side by side, and the plate's real claim emerges.<sup class="snref"></sup> The wealth of the modern world is at once the largest thing economics has to explain and the thing most easily mistaken for a feature of the landscape. It is not a property of certain peoples or a gift of certain places; it is recent, contingent, and made — the residue of contests over the rules a society keeps, the ideas it generates and rewards, and the power that decides who may keep what they produce. And the poverty that still grips much of the earth is not the natural lot of the places that suffer it. It is the old condition, the condition that once gripped everyone, persisting where the escape has not yet been won. The map of the world's rich and poor is not a map of soil and climate and blood. It is a record of contests — a few of them won, and a great many lost.</p>
+    <aside class="sn">Hold both halves together and the plate's claim comes clear. The wealth of the modern world is the largest thing economics has to study and the easiest to mistake for a law of nature; to see it truly is to see it as recent, contingent, and made — the outcome of contests over the rules, the ideas, and the power that let a few societies escape what bound the rest. And the poverty that persists is not nature's sentence on the places that suffer it but the old human condition, the condition of everyone, lingering where the escape has not yet been won. The map of rich and poor is not a map of the earth's gifts. It is a record of contests, some won and many lost.</aside>
+
+    <p>Why insist so hard on this? Because almost everything that matters follows from it.<sup class="snref"></sup> If the wealth of nations were a fact of nature — written in the climate, or the soil, or the supposed character of peoples — then the poverty of billions would be a sentence handed down by the world itself, beyond appeal, and the only honest counsel would be resignation. But a price is a verdict on a hidden contest, mistaken for a fact of nature; and so, at the scale of nations, is wealth. If the prosperity of the rich is the outcome of contests over institutions and ideas — contests that were fought, and won, and might have gone otherwise — then the poverty of the poor is no more eternal than those contests, and what was achieved in some places is, in principle, achievable in others. This is not a fine point of doctrine. It is the whole difference between a world whose vast inequality is the verdict of nature, fixed and final, and one in which that inequality is the verdict of contests still open — and so, however hard, still subject to being refought.</p>
+    <aside class="sn">Nothing turns on this more than the fate of the poor. If wealth were natural to some peoples and denied to others — by climate, by blood, by some fixed unfitness — then the poverty of billions would be a sentence beyond appeal, and nothing could be done. But if wealth is the residue of contests over institutions and ideas, then the poverty of nations is no more permanent than the contests that produced it, and what was made in some places can, in principle, be made in others. The reframing is not a scholar's nicety. It is the difference between a world whose injustice is fated and one whose injustice might be undone.</aside>
+
+    <p class="pull">Poverty was never the riddle. It was the rule. The riddle is the wealth — recent, uneven, and made — that a few nations wrung from it.</p>
+
+    <p>This plate has done only the first and most necessary thing: it has named the fact. It has not explained it — has not said where the rising productivity came from, why the slope began in one corner of the world, what settlement of power and rule lay beneath it, or whether the ascent can or should go on. Those are the questions of the plates to come, and the volume is the attempt to answer them. But the explanations are worth nothing until the thing to be explained is seen for what it is: not the natural prosperity of favored lands, but the strangest and largest event in the economic history of the species — the moment when the poverty of almost everyone quietly began to end. The booms and the slumps of the cycle were the economy's weather. This is its climate, and the long contest that set it. The argument remains open.</p>
+
+  </article>
+
+  <nav class="apparatus" aria-label="Related reading">
+    <h2 class="app-h">Related</h2>
+    <ul class="app-list">
+      <li><a href="the-residual.html"><span class="app-rel">In this volume</span><span class="app-t">The Residual</span><span class="app-g">plate ii — the next plate: where the enrichment comes from, the productivity that drives it, and the engine the theory could not name</span></a></li>
+      <li><a href="the-growth.html"><span class="app-rel">In this volume</span><span class="app-t">The Divergence</span><span class="app-g">plate v — why the ascent reached some places first and others late or not at all, and the gulf it tore open</span></a></li>
+      <li><a href="the-growth.html"><span class="app-rel">In this volume</span><span class="app-t">The Snare</span><span class="app-g">plate vii — the Malthusian trap the ascent escaped, where for ten thousand years every gain became another mouth</span></a></li>
+      <li><a href="the-demand.html"><span class="app-rel">In The Cycle</span><span class="app-t">The Demand</span><span class="app-g">the economy's short-run swing — the passing weather that plays over the long-run climate this volume traces</span></a></li>
+    </ul>
+  </nav>
+
+  <footer>
+    <nav class="crumbs foot" aria-label="Return">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-growth.html">The Growth &middot; Vol XX</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate i</span>
+    </nav>
+    <p class="colophon">The first plate of Volume XX, <em>The Growth</em> — the great enrichment, the most consequential fact in economic history: the escape, around 1800 and in a few places, from the near-universal poverty that bound all of prior time; the magnitude and the suddenness of the ascent; the inversion of the central question, from why nations are poor to why any are rich; and the argument that the wealth of the modern world, so easily mistaken for a fact of nature, is a recent and contingent thing — the verdict of contests over institutions, ideas, and power that the rest of the volume will trace. Return to <em><a href="the-growth.html">The Growth</a></em>, or to <a href="numeraire-atlas.html">the complete table of volumes</a>. The epigraph is from Condorcet's <em>Sketch for a Historical Picture of the Progress of the Human Mind</em>; the work of Smith, Malthus, and the modern students of growth is discussed in the text. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-growth.html">← The Growth</a><a rel="next" href="the-residual.html">The Residual →</a></nav>
+</body>
+</html>

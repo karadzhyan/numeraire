@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Rule — Numéraire, Volume XVIII</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem; --measure:40rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.9rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(3rem,8vh,6rem) 0 clamp(1.6rem,4vh,2.6rem);text-align:center;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;text-decoration:none;}
+  .imprint:hover{color:var(--soft);}
+  .vol-dateline{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+
+  .vol-sym{width:114px;height:114px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;align-items:center;justify-content:center;
+    font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 500;font-size:3.1rem;line-height:1;letter-spacing:-.01em;}
+  .vol-sym.lit{background:var(--ink);color:var(--paper);}
+  .vol-elnum{font-family:"Fraunces",serif;font-size:.74rem;color:var(--faintest);letter-spacing:.18em;text-transform:uppercase;margin-top:1rem;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.3rem,6.5vw,4.6rem);line-height:1.02;letter-spacing:-.025em;margin:.7rem 0 0;text-wrap:balance;}
+  .vol-status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .vol-status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:44rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .vol-q{max-width:46rem;margin:clamp(2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .vol-q .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.7rem;}
+  .vol-q q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.3rem,2.4vw,1.72rem);line-height:1.32;color:var(--ink);quotes:none;text-wrap:balance;}
+
+  .front{margin:clamp(3rem,7vh,5rem) auto 0;max-width:var(--measure);}
+  .front-eyebrow{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);text-align:center;
+    display:flex;align-items:center;gap:.9rem;justify-content:center;margin:0 0 2.1rem;}
+  .front-eyebrow::before,.front-eyebrow::after{content:"";height:1px;width:2.4rem;background:var(--hair);}
+  .front p{font-size:1.07rem;line-height:1.76;color:var(--ink);margin:0 0 1.35rem;text-wrap:pretty;}
+  .front p:last-child{margin-bottom:0;}
+  .front em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.74;padding:.1em .12em 0 0;color:var(--ink);}
+  .front-orn{display:flex;justify-content:center;margin:2rem 0;}
+  .front-orn svg{width:96px;height:12px;overflow:visible;}
+  .front-orn line{stroke:var(--num);stroke-width:1;} .front-orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  main{padding:clamp(3rem,7vh,5rem) 0 0;}
+  .plates-head{display:flex;align-items:baseline;gap:.9rem;margin:0 0 1.6rem;}
+  .plates-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-size:.86rem;color:var(--faintest);letter-spacing:.04em;flex:0 0 auto;}
+  .plates-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);flex:0 0 auto;}
+  .plates-rule{flex:1;height:1px;background:var(--hair);position:relative;top:-2px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:13px;}
+
+  .el{appearance:none;-webkit-appearance:none;background:var(--paper);border:1px solid var(--hair);border-radius:2px;
+    padding:14px 15px 16px;text-align:left;cursor:pointer;position:relative;min-height:152px;
+    display:flex;flex-direction:column;color:inherit;font-family:inherit;
+    transition:border-color .22s ease,background .22s ease,transform .22s ease,box-shadow .22s ease;}
+  .el:hover{border-color:var(--faintest);transform:translateY(-2px);}
+  .el-rn{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-size:.78rem;color:var(--faintest);letter-spacing:.18em;text-transform:uppercase;}
+  .pl-hero{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 500;font-size:1.34rem;line-height:1.06;margin-top:.5rem;letter-spacing:-.012em;}
+  .el-gloss{font-size:.79rem;color:var(--faint);line-height:1.36;margin-top:.5rem;font-style:italic;}
+  .pl-flag{margin-top:auto;padding-top:.7rem;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--faintest);}
+  .el.lit{background:var(--ink);border-color:var(--ink);}
+  .el.lit .pl-hero{color:var(--paper);}
+  .el.lit .el-rn{color:rgba(240,235,225,.5);}
+  .el.lit .el-gloss{color:rgba(240,235,225,.62);}
+  .el.lit .pl-flag{color:rgba(240,235,225,.7);}
+  .el.sel{box-shadow:inset 0 0 0 1.5px var(--ink);border-color:var(--ink);}
+  .el.lit.sel{box-shadow:inset 0 0 0 1.5px var(--paper);}
+
+  .detail{margin:clamp(2.4rem,5vh,3.6rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);scroll-margin-top:1.4rem;}
+  .d-head{display:flex;gap:1.3rem;align-items:flex-start;}
+  .d-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 500;font-size:1.5rem;line-height:1;
+    color:var(--ink);flex:0 0 auto;border:1px solid var(--hair);border-radius:2px;letter-spacing:.04em;
+    width:86px;height:86px;display:flex;align-items:center;justify-content:center;text-transform:uppercase;}
+  .d-sym.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .d-titles{min-width:0;}
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);}
+  .d-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.7rem,3.6vw,2.5rem);margin:.22rem 0 .35rem;line-height:1.04;letter-spacing:-.016em;}
+  .d-status{font-size:.84rem;color:var(--faint);font-style:italic;}
+  .d-status.print{color:var(--soft);font-style:normal;}
+  .d-status.print::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .d-desc{font-size:1.05rem;line-height:1.72;color:var(--ink);max-width:42rem;margin:1.3rem 0 0;text-wrap:pretty;}
+
+  .d-openq{margin:1.6rem 0 0;max-width:40rem;}
+  .d-openq .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.5rem;}
+  .d-openq q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);quotes:none;}
+
+  .d-excerpt{margin:1.8rem 0 0;max-width:42rem;border-left:1px solid var(--hair);padding:.2rem 0 .2rem 1.5rem;}
+  .d-excerpt .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.8rem;}
+  .d-excerpt p{font-size:1.04rem;line-height:1.74;color:var(--ink);margin:0;text-wrap:pretty;}
+  .d-excerpt .x-cap{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 500;font-size:1.15rem;}
+  .d-readplate{margin:1.6rem 0 0;}
+  .d-readplate a{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:.94rem;
+    letter-spacing:.01em;text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:2px;transition:border-color .2s ease,color .2s ease;}
+  .d-readplate a:hover{color:var(--soft);border-color:var(--soft);}
+  .d-readplate .arr{margin-left:.4rem;}
+
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;text-decoration:none;}
+  .f-mark:hover{color:var(--soft);}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;}
+    .el{min-height:138px;padding:12px 12px 14px;}
+    .pl-hero{font-size:1.18rem;}
+    .el-gloss{font-size:.74rem;}
+    .vol-sym{width:92px;height:92px;font-size:2.5rem;}
+    .d-head{gap:1rem;}
+    .d-sym{width:64px;height:64px;font-size:1.25rem;}
+    .front p{font-size:1.04rem;}
+    .dropcap{font-size:3rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="rise d1">
+      <a class="imprint" href="numeraire-atlas.html">Numéraire</a>
+      <div class="vol-dateline">The Eighteenth Volume &middot; The Institutions</div>
+    </div>
+    <div class="vol-sym lit rise d2" aria-hidden="true">Ru</div>
+    <div class="vol-elnum rise d2">Element 18 &middot; Group IV</div>
+    <h1 class="rise d3">The Rule</h1>
+    <div class="vol-status rise d3">in print &middot; № XVIII &middot; 2 of 12 plates</div>
+    <p class="standfirst rise d4">We speak of the market as though it were a fact of nature — a force that simply exists, that the State may leave alone or interfere with, that has laws of its own we can only obey. But there is no market without rules: without property, contract, money, and a power to enforce them, there is not a free market but a brawl. This volume is about the rules themselves — the institutions that make economic life possible, and that, being made, could always have been made otherwise.</p>
+    <div class="vol-q rise d5">
+      <span class="lead">The question of the volume</span>
+      <q>the rules of the game look like the neutral ground of all economic life — but who laid them, and in whose interest do they hold?</q>
+    </div>
+  </header>
+
+  <section class="front" aria-label="The argument of the volume">
+    <div class="front-eyebrow">The argument</div>
+
+    <p><span class="dropcap">W</span>e speak of the market as though it were a part of nature. It has its laws, we say, as the tides have theirs; it is a force that the State may shelter us from or expose us to, that may be left alone or interfered with, but that exists, in itself, prior to all human arrangement — a wilderness of exchange that was there before anyone thought to govern it. The picture is vivid, intuitive, and almost entirely false. There is no market without rules, and the rules are not part of the landscape. Before two people can trade, something must already have decided what each of them owns and may sell, what a promise between them is worth and whether it will be kept, what they will use for money, and who will come if one of them simply seizes the other's goods. Property, contract, money, enforcement — these are the market, and every one of them is a human institution, made and maintained at cost, enforceable only by power. Strip them away and you do not find a free market underneath. You find a brawl. This volume is about the rules themselves: the institutions that make economic life possible, and that, because they were made, could always have been made otherwise.</p>
+
+    <p>What is an institution? In the broadest and most useful sense, it is a rule of the game — a constraint, devised by human beings, on what one may do and on what will befall one for doing otherwise. Some institutions are formal and written: the laws that say what may be owned and sold, the contracts the courts will enforce, the constitutions that distribute power, the deeds and statutes and codes. Others are informal and unwritten: the customs and conventions and norms that can govern conduct as firmly as any law, and that the volume on norms will take up in their own right. Together, formal and informal, they compose the structure within which all economic action runs its course — the channels that direct it, the walls that bound it, the rewards and penalties that give it its shape. North gave the metaphor its canonical form: institutions are the rules of the game, and the firms and households and states that act within them are the players. The metaphor carries the argument entire. A game is constituted by its rules; there is no game beneath them to which they are merely added; and to change the rules is to change the game, and everyone's prospects in it.</p>
+
+    <p>From this a conclusion follows that unsettles a great deal of loose talk. The market is itself an institution — perhaps the most elaborate that human beings have ever constructed — and the familiar image of a natural market, existing before the State and merely interfered with by it, is a fiction. Property must be defined: what may be owned at all, and by whom, and with what power to exclude — questions to which nature returns no answer, having set no fences and recorded no deeds. Contract must be made binding, by a law that selects which promises will count and a power that compels their performance. Money must be established and its value upheld. None of this maintains itself; all of it is the standing work of rules backed by force. Polanyi saw, against the laissez-faire faith of his age, that the self-regulating market was not the state of nature from which regulation is a departure but a deliberate, and at times violent, construction — that markets are made, and unmade, by policy. The choice a society faces is therefore never the one it is so often told it faces, between the market and the State, between rules and no rules. It is always and only a choice among different sets of rules; and that choice is political to its marrow.</p>
+
+    <div class="front-orn" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>Two rules among the many are foundational, in that the rest presuppose them. The first is property — the bundle of rights that settles what is mine, what is yours, and what each may do with his own. Its necessity is plain: no one will sow what another may reap, or build what another may seize, or save toward a future another may confiscate, and so without secure property the springs of effort run dry. Yet property is no fact of nature but a social grant, defined by a community and enforced by a power, and what counts as property has shifted beyond recognition across history — human beings were once the most prized property of all; land was once beyond sale; ideas, long free, are now fenced; and the right to foul the common air, once nobody's to give, is now being parceled and sold. Each such change is a decision, contested and reversible, about who may exclude whom from what, and the sum of those decisions is the property system a society treats, at any given moment, as simply the way things are. The second foundational rule is the rule of law itself: the principle that the rules are known, general, stable, and impartially enforced, and that they bind even those who make them. The difference between a society in which the law constrains the powerful and one in which the powerful command the law is, as the volume on growth found, very nearly the difference between wealth and want.</p>
+
+    <p>But rules are only words until some power enforces them, and with the enforcer the central problem of institutions arrives. The power that can compel obedience is the State — the holder, in Weber's formula, of the monopoly of legitimate force — and it stands behind every title and every contract as the guarantor that theft will be punished and promises made good. Hobbes saw in this the cure for the war of all against all, and so it is. But the cure carries the disease within it, for the power strong enough to enforce the rules is strong enough to break them, to rewrite them for its own profit, to become the supreme predator it was raised to restrain. The deepest institutional problem any society must solve is therefore double-edged: to make a power great enough to protect property and constrained enough not to plunder it — to leash the sovereign with a constitution, to bind the maker of rules by rules he cannot unmake at will. And over all of this lies a further question, of how institutions come to be at all: whether they are designed or grown. Hayek insisted that the most valuable of them — language, money, the common law, the market — are the result of human action but not of human design, evolved orders carrying more knowledge than any planner could possess, and that the constructivist dream of remaking society from reason is a recipe for destroying what it does not understand. The volume keeps both truths in view: some institutions are built and some are grown, and much of wisdom lies in telling the two apart.</p>
+
+    <p>And so the volume arrives where the whole work has been tending from the start. A price is a verdict on a hidden contest, mistaken for a fact of nature — and the rules are that hidden contest, settled and set down in law. For behind every price stands the structure of property and contract and enforcement that makes the price possible; and behind that structure stands a contest, won long ago or raging still, over whose interests the rules shall serve. The rules of the game are neither neutral nor natural. They are the frozen outcome of struggles over power, written by those who had the power to write them, and serving — beneath whatever impartial face they wear — the ends of their authors. To take the rules for the neutral background of economic life, the way things simply must be, is the master mistake in its purest and most consequential form: it mistakes the deepest verdict of all — the settlement of who shall rule, and whose purposes the whole economy shall serve — for a fact of nature, like gravity, that no one chose and no one can be blamed for. A price is a verdict on a hidden contest, mistaken for a fact of nature; the rule is that same verdict, raised to the level of the system itself. The twelve plates anatomize it: property and the rule of law, the sovereign who enforces and the leash that binds him, the bandit who becomes a king, the order that is grown against the order that is built, the dead hand of inherited rules and the varieties of arrangement that prosperity allows — and, at the last, the question beneath all the others: where good rules come from, and whether a people can ever make them on purpose. To study the rule is to study the contest at its deepest source. The argument remains open.</p>
+  </section>
+
+  <main>
+    <div class="plates-head">
+      <span class="plates-num fr">№ XVIII</span>
+      <span class="plates-name">The twelve plates</span>
+      <span class="plates-rule"></span>
+    </div>
+    <div class="grid" id="grid">
+      <button class="el lit" data-id="frame" aria-label="Plate i — The Frame — in print"><span class="el-rn">Plate i</span><span class="pl-hero">The Frame</span><span class="el-gloss">the market is built, not found: there is no economy without the rules</span><span class="pl-flag">in print</span></button>
+      <button class="el lit" data-id="stakes" aria-label="Plate ii — The Stakes — in print"><span class="el-rn">Plate ii</span><span class="pl-hero">The Stakes</span><span class="el-gloss">the rules are no neutral ground but the prize of the contest, and made by its winners</span><span class="pl-flag">in print</span></button>
+      <button class="el" data-id="title" aria-label="Plate iii — The Title"><span class="el-rn">Plate iii</span><span class="pl-hero">The Title</span><span class="el-gloss">property as a social grant, not a fact of nature: what may be owned, and why</span></button>
+      <button class="el" data-id="leviathan" aria-label="Plate iv — The Leviathan"><span class="el-rn">Plate iv</span><span class="pl-hero">The Leviathan</span><span class="el-gloss">the power that enforces the rules — without which they are only words — and the danger in it</span></button>
+      <button class="el" data-id="bandit" aria-label="Plate v — The Bandit"><span class="el-rn">Plate v</span><span class="pl-hero">The Bandit</span><span class="el-gloss">Olson's stationary bandit: how the order-keeper is born from the order-breaker</span></button>
+      <button class="el" data-id="blindfold" aria-label="Plate vi — The Blindfold"><span class="el-rn">Plate vi</span><span class="pl-hero">The Blindfold</span><span class="el-gloss">the rule of law: rules equal, known, and binding even on those who make them</span></button>
+      <button class="el" data-id="leash" aria-label="Plate vii — The Leash"><span class="el-rn">Plate vii</span><span class="pl-hero">The Leash</span><span class="el-gloss">constitutions and checks: how to bind the power that makes the rules</span></button>
+      <button class="el" data-id="weave" aria-label="Plate viii — The Weave"><span class="el-rn">Plate viii</span><span class="pl-hero">The Weave</span><span class="el-gloss">Hayek's spontaneous order: the institutions that are grown, not built</span></button>
+      <button class="el" data-id="inheritance" aria-label="Plate ix — The Inheritance"><span class="el-rn">Plate ix</span><span class="pl-hero">The Inheritance</span><span class="el-gloss">path dependence and the dead hand: why bad rules persist</span></button>
+      <button class="el" data-id="bench" aria-label="Plate x — The Bench"><span class="el-rn">Plate x</span><span class="pl-hero">The Bench</span><span class="el-gloss">law and economics: judging the rules by what they cost and yield</span></button>
+      <button class="el" data-id="varieties" aria-label="Plate xi — The Varieties"><span class="el-rn">Plate xi</span><span class="pl-hero">The Varieties</span><span class="el-gloss">many roads to prosperity: why there is no single right code of rules</span></button>
+      <button class="el" data-id="origin" aria-label="Plate xii — The Origin"><span class="el-rn">Plate xii</span><span class="pl-hero">The Origin</span><span class="el-gloss">where do good institutions come from? the question beneath the wealth of nations</span></button>
+    </div>
+  </main>
+
+  <section class="detail" id="detail" aria-live="polite"></section>
+
+  <footer>
+    <div class="f-bar">
+      <a class="f-mark" href="numeraire-atlas.html">Numéraire</a>
+      <span class="f-ref">Volume XVIII &middot; The Institutions</span>
+    </div>
+    <p class="colophon">Volume XVIII, <em>The Rule</em>, opens with two plates in print — <em>The Frame</em> and <em>The Stakes</em>, the made background of economic life and the contest written into it. The eighteenth element of the table, and the thirteenth of its volumes to appear; it joins <a href="the-firm.html">The Firm</a> and <a href="the-money.html">The Money</a> among the institutions — the third of that family, and the most general of the three, for where those volumes anatomize particular institutions, the firm and the money, this one anatomizes the rules as such: the property, the law, and the enforcing power on which the firm and the money, and every price besides, depend. Return to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+
+<script>
+const PLATES = {
+  frame:{rn:"i",title:"The Frame",family:"in print",lit:true,url:"the-frame.html",
+    desc:`We are forever tempted to think of the market as a natural thing — a force like weather, which the State may shelter us from or expose us to, but which exists, in itself, prior to all human arrangement. The temptation is an error, and a deep one. A market is a structure of rules: it requires property, so that there is something to trade and someone entitled to trade it; contract, so that a promise to deliver tomorrow means something today; money, so that values can be compared and debts discharged; and, beneath all of these, a power willing to enforce them against the thief and the cheat. Every one of these is a human institution — made, maintained, and enforceable only by effort and at cost. Strip them away and you do not arrive at a free market; you arrive at a brawl. This plate sets out the foundational claim of the volume: that the economy has no existence apart from its rules, and that the rules are not given by nature.`,
+    excerpt:`<span class="x-cap">T</span>here is no such thing as a free market, if by free one means a market free of rules. The phrase conjures a state of nature — exchange as it would occur if only the State would stand aside — but no such state exists, and never has. Before two people can trade, something must already have settled what each of them owns, what counts as a fair promise between them, what they will use for money, and who will be called if one of them simply takes the other's goods and runs. These are not features of the landscape; they are rules, made by human beings and enforced by human power, and a market is nothing but the elaborate structure they compose. The question is never whether the market shall have rules. It is only whose rules, and in whose service.`},
+  stakes:{rn:"ii",title:"The Stakes",family:"in print",lit:true,url:"the-stakes.html",
+    desc:`If the rules are made, then someone makes them — and the someone who makes them is rarely disinterested. This is the hinge of the volume, and of the whole work. The rules of economic life — what may be owned, which bargains are enforced, what the powerful may and may not do to the weak — present themselves as a neutral framework, the impartial ground on which the game of exchange is played. But a framework that decides what may be owned and what may be taken is not neutral; it is the most consequential prize there is, and the contest to control it is the deepest contest in any society. To write the rules is to decide, in advance and wholesale, who will win the countless bargains the rules govern. So the rules are fought over as nothing else is fought over, and the rules that prevail bear, however well disguised, the imprint of whoever had the power to set them. This plate argues that the rules of the game are themselves the stakes of a deeper game — and that to mistake them for neutral is to lose that game without knowing it was played.`,
+    excerpt:`<span class="x-cap">T</span>he most valuable thing a contest can win is not a prize awarded under the rules, but the power to write the rules themselves. A victory under fixed rules is won once and must be won again tomorrow; a victory over the rules is won for as long as the rules endure, and decides a thousand contests not yet begun. This is why, in every society, the fiercest struggles are not over particular goods but over the institutions that allocate all goods — over who shall own, who shall owe, who shall be bound and who set free. And it is why the rules, when we meet them, so seldom look like the spoils of a fight. The winner's last and cleverest move is to make the rules he has written look like the rules things have always had.`},
+  title:{rn:"iii",title:"The Title",family:"in preparation",lit:false,
+    desc:`Property is the first institution, the one without which exchange cannot begin: there must be a settled answer to what is mine and what is yours before anything can pass between us. Yet nothing is property in itself. Property is a bundle of rights — to use, to exclude, to sell, to bequeath — that a community defines and a power enforces, and the same field that is one man's freehold under one set of rules is common land under another and the king's under a third. What may be owned has changed past recognition across history: human beings were once the most valuable property of all; land was once unsellable; ideas, long free, are now fenced; and the right to foul the air, once unlimited, is being made into a tradable thing. To call property natural is to forget that every property right is a social decision about who may exclude whom — and that the decision could always have gone otherwise.`,
+    openq:`if what may be owned is a choice a society makes and remakes, then whose interests does each new fence serve?`},
+  leviathan:{rn:"iv",title:"The Leviathan",family:"in preparation",lit:false,
+    desc:`Rules unenforced are wishes, and enforcement requires a power that can compel. That power is the State — in Weber's phrase, the holder of a monopoly on the legitimate use of force — and it stands behind every property right and every contract as the silent guarantor that the thief will be caught and the promise made good. Without it, the rules are parchment; with it, they bind. But the State is the deepest paradox in the architecture of institutions, for the power great enough to enforce the rules is great enough to break them. The sovereign who guards the fence can also seize the field; the law that binds the subject may not bind the king. Hobbes saw the Leviathan as the cure for the war of all against all, and so it is — but a cure that, ungoverned, becomes the disease. Every society that has grown rich has had to solve, somehow, the problem the Leviathan poses: how to be ruled without being robbed.`,
+    openq:`if rules need an enforcer, and the enforcer is strong enough to rewrite them, what is to stop the guardian from becoming the thief?`},
+  bandit:{rn:"v",title:"The Bandit",family:"in preparation",lit:false,
+    desc:`Where do the rules come from, when there were none? Mancur Olson offered an answer as bleak as it is illuminating. Imagine a land plagued by roving bandits, each plundering what he can and moving on; the people, knowing that whatever they produce will be stolen, produce as little as they must, and all are poor. Now imagine one bandit grows strong enough to settle down — to claim a territory, drive off his rivals, and take from its people not everything, all at once, but a steady share, year upon year. This stationary bandit, purely from self-interest, will do what no roving bandit would: protect his subjects from other predators, and even let them keep enough to make producing worthwhile — for a prosperous, orderly people yield a richer and more lasting tribute than a plundered one. The order that property needs, on this telling, is born not from virtue but from the enlightened greed of a predator who has learned that it pays to tax rather than to loot. The first guardian of the rules was a bandit who stayed.`,
+    openq:`if the keeper of the peace begins as the most successful of thieves, how far is any state from the banditry it replaced?`},
+  blindfold:{rn:"vi",title:"The Blindfold",family:"in preparation",lit:false,
+    desc:`It is not enough that rules exist and are enforced; what divides a free and prosperous order from a despotism is the character of the rules and the manner of their enforcement. The rule of law names that character: rules known in advance, so that one may plan; general, so that they fall alike on all; stable, so that today's permission is not tomorrow's crime; and enforced without regard to the rank or the face of the person they touch — justice, in the old image, wears a blindfold. Its deepest demand is the hardest of all: that the rules bind even those who make them, that the sovereign too stands beneath the law. The distance between the rule of law and its counterfeit — rule by law, in which the powerful wield the rules as weapons while standing above them — is, as the study of growth discovered, very nearly the distance between the wealth of nations and their poverty. A society is rich, in the end, not because its rules are clever, but because they hold, and hold for everyone alike.`,
+    openq:`is the rule of law a thing a society can simply choose, or only the hard-won residue of a long contest no decree can shortcut?`},
+  leash:{rn:"vii",title:"The Leash",family:"in preparation",lit:false,
+    desc:`The central problem of institutions, having raised a power to enforce the rules, is to keep that power from devouring them — to build a State strong enough to protect property and weak enough not to plunder it. The solution, where it has been found, is constitutional: to bind the rule-maker with rules of a higher order, dividing power so that it checks itself, subjecting the ruler to courts he cannot command, and making the abuse of authority costly. The prize is more than safety; it is trust. A sovereign who can credibly bind himself — who has tied his own hands so that he cannot simply confiscate or default — can be lent to, invested in, and relied upon, and so grows richer than the absolute monarch whose very unlimited power makes him no one's safe debtor; the settlement that followed England's revolution, by which the Crown submitted to Parliament and its debts became sacrosanct, is the classic case. To leash the sovereign is not to weaken a society but to let it commit — and a power that can promise is worth more than a power that can only command.`,
+    openq:`how does a power great enough to enforce every promise bind itself to the one promise it most wishes to break — to spare what it has sworn to protect?`},
+  weave:{rn:"viii",title:"The Weave",family:"in preparation",lit:false,
+    desc:`Not every institution was designed; many of the most important were never planned by anyone at all. Language has rules of great subtlety that no committee wrote; money emerged from barter with no founding decree; the common law was woven, case by case, by judges deciding particular quarrels, into a fabric none of them intended; the market itself is the unplanned confluence of countless private dealings. Hayek made this the center of his thought: that the most valuable institutions are, in Ferguson's phrase, the result of human action but not of human design — grown rather than built, and embodying, in their evolved intricacy, more knowledge than any single mind could hold or any planner could marshal. Against the constructivist confidence that society may be redesigned from the top by reason, he set the humility of the gardener, who tends a growth he did not create and could not replace. Yet not all good institutions are grown; constitutions are written, reforms enacted, rules designed on purpose and made to work. The art is to know which institutions may be built, and which must be left to weave themselves.`,
+    openq:`if the wisest institutions are grown and not built, how much may we deliberately reform before we tear a fabric we did not know was whole?`},
+  inheritance:{rn:"ix",title:"The Inheritance",family:"in preparation",lit:false,
+    desc:`Institutions are inherited far more than they are chosen. Each generation is born into a structure of rules it did not make and cannot easily remake — and the rules, once established, have a way of perpetuating themselves long after the conditions that produced them have passed. Part of the reason is path dependence: a society organized around one set of rules finds the cost of switching prohibitive, even when a better set is known, much as the world keeps an awkward keyboard because too much is built around it to change. Part is power: the rules that prevail created winners, and the winners use the advantage the rules gave them to defend the rules, so that bad institutions are guarded most fiercely by those they have enriched. This is the dead hand of the past, and it explains a melancholy fact — that societies trapped in ruinous institutions so rarely climb out, not because no one sees the better way, but because those who could change the rules are precisely those the rules have served.`,
+    openq:`if the rules are kept in place by the very people they have enriched, what force short of upheaval can ever change them?`},
+  bench:{rn:"x",title:"The Bench",family:"in preparation",lit:false,
+    desc:`If rules can be good or bad, by what measure? One influential answer, the work of the law-and-economics movement, is to judge them by their consequences — by the wealth they create or destroy, the conduct they encourage or deter, the costs they impose and on whom. On this view a legal rule is a kind of price, shaping behavior as prices do, and the question to ask of it is not only whether it is just but whether it is efficient: whether it puts resources and risks where they do the most good and the least harm. Some have gone further, arguing that the common law, evolved over centuries by judges deciding case after case, has tended of its own accord toward efficient rules, as though Coase's logic were quietly at work in the law's long sifting. The claim is contested, and the reduction of justice to efficiency troubles many; but the insight endures — that every rule casts an economic shadow, that the law is among the most powerful of the instruments by which a society arranges its production and its distribution, and that a rule indifferent to its own consequences is a luxury no one can afford.`,
+    openq:`if a rule can be weighed by what it costs and yields, does efficiency exhaust what we want from the law — or only what we can measure?`},
+  varieties:{rn:"xi",title:"The Varieties",family:"in preparation",lit:false,
+    desc:`It is tempting, having seen that good institutions make the difference between wealth and poverty, to conclude that there is a single right set of rules toward which all societies should converge. The comparative record refuses the conclusion. The rich nations have reached their wealth by strikingly different institutional roads: the liberal market economies, with their fluid labor, arm's-length finance, and reliance on open competition, sit beside the coordinated market economies, with their patient capital, negotiated wages, and dense webs of cooperation among firm and worker and bank — and both are prosperous, each coherent in its own way, neither obviously the model for the other. Institutions, it seems, come in interlocking systems, where each part fits the rest, so that a rule transplanted from one system into another may wither or do harm. There is no single code of the wealth of nations, only a handful of different settlements, each a workable answer to the problem of how a people may produce and share. The lesson is pluralism, and a caution against the confident export of any one nation's rules as the rules.`,
+    openq:`if prosperity has been reached by many different sets of rules, what is left of the idea that some institutions are simply the right ones?`},
+  origin:{rn:"xii",title:"The Origin",family:"in preparation",lit:false,
+    desc:`The volume, and in a sense the whole work, ends at a question it cannot answer. If institutions explain so much — if the wealth of nations, the fate of the poor, the justice of every bargain rest on the rules a society keeps — then everything turns on a further question: where do good institutions come from, and why do some peoples have them and others not? Here the inquiry runs into a wall. The institutional account explains prosperity by good rules, but the good rules must themselves be explained, and the explanations lead back into the tangle of history, geography, accident, and earlier institutions, with no firm bottom. Worse, the practical record humbles every confident answer: good institutions have proved nearly impossible to transplant, and the earnest schemes to build them where they are missing have failed more often than they have succeeded. Perhaps institutions, like the spontaneous orders among them, are grown more than made — the slow deposit of a particular history that cannot be hurried or copied. This last plate does not solve the riddle; it marks it, for the deepest question in the study of the wealth of nations is also the one to which we have the least settled reply.`,
+    openq:`if good rules are the source of prosperity, and no one knows how to make them where they are absent, how much does knowing their importance really help?`}
+};
+
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+function render(id){
+  var tile=document.querySelector('.el[data-id="'+id+'"]');
+  var d=PLATES[id]; if(!d||!tile) return;
+  var h='';
+  h+='<div class="d-head">';
+  h+='<div class="d-sym'+(d.lit?' lit':'')+'">'+esc(d.rn)+'</div>';
+  h+='<div class="d-titles">';
+  h+='<div class="d-family">The Rule &middot; Plate '+esc(d.rn)+' &middot; '+esc(d.family)+'</div>';
+  h+='<h2 class="d-name">'+esc(d.title)+'</h2>';
+  h+='<div class="d-status'+(d.lit?' print':'')+'">'+esc(d.family)+'</div>';
+  h+='</div></div>';
+  h+='<p class="d-desc">'+esc(d.desc)+'</p>';
+  if(d.lit && d.excerpt){
+    h+='<div class="d-excerpt"><span class="lead">From the opening</span><p>'+d.excerpt+'</p></div>';
+  }
+  if(d.url){h+='<p class="d-readplate"><a href="'+d.url+'">Read the plate<span class="arr" aria-hidden="true">&#8594;</span></a></p>';}
+  if(!d.lit && d.openq){
+    h+='<p class="d-openq"><span class="lead">This plate will ask</span><q>'+esc(d.openq)+'</q></p>';
+  }
+  document.getElementById('detail').innerHTML=h;
+  var prev=document.querySelector('.el.sel'); if(prev) prev.classList.remove('sel');
+  tile.classList.add('sel');
+}
+
+(function(){
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.el').forEach(function(b){
+    b.addEventListener('click',function(){
+      render(b.dataset.id);
+      document.getElementById('detail').scrollIntoView({behavior:reduce?'auto':'smooth',block:'nearest'});
+    });
+  });
+  render('frame');
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-escape.html">← The Escape</a><a rel="next" href="the-frame.html">The Frame →</a></nav>
+</body>
+</html>

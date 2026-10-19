@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Difference — The Wage, Plate v · Numéraire</title>
+<meta name="description" content="compensating differentials; the wage attached to a job&#x27;s conditions, and the choice behind the apparent price.">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- reading-progress hairline ---- */
+  .progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--ink);z-index:10000;}
+
+  /* ---- masthead ---- */
+  .masthead{padding:clamp(2.8rem,8vh,5.6rem) 0 clamp(1.6rem,4vh,2.6rem);text-align:center;}
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;}
+  .edition{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+  .edition b{font-family:"Fraunces",serif;font-weight:500;font-style:normal;color:var(--soft);letter-spacing:.04em;}
+
+  .symbox{width:84px;height:84px;border:1px solid var(--ink);border-radius:2px;background:var(--ink);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;margin:clamp(1.4rem,3.4vh,2.2rem) auto 0;}
+  .symbox .sb-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2rem;line-height:1;color:var(--paper);letter-spacing:-.01em;}
+  .symbox .sb-num{font-family:"Fraunces",serif;font-size:.66rem;color:rgba(240,235,225,.58);margin-top:.28rem;letter-spacing:.04em;}
+
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-top:1.15rem;}
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.5rem,7vw,5rem);line-height:1.0;letter-spacing:-.028em;margin:.55rem 0 0;text-wrap:balance;}
+  .subtitle{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.05rem,1.7vw,1.32rem);color:var(--faint);margin:.5rem 0 0;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.64;color:var(--soft);
+    max-width:43rem;margin:clamp(1.3rem,3vh,1.9rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+  .status{font-size:.84rem;color:var(--soft);margin:clamp(1.2rem,2.6vh,1.7rem) auto 0;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .backrow{margin-top:clamp(1.3rem,3vh,1.9rem);padding-top:1.5rem;border-top:1px solid var(--hair);max-width:50rem;margin-left:auto;margin-right:auto;}
+  .backlink{display:inline-block;font-size:.82rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .backlink:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- generic block furniture ---- */
+  main{padding:0;}
+  .eyebrow{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.2rem;}
+
+  .block-argument{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .argument{max-width:40rem;margin:0 auto;}
+  .argument p{font-size:1.08rem;line-height:1.74;color:var(--ink);margin:0 0 1.2rem;text-wrap:pretty;}
+  .argument p:last-child{margin-bottom:0;}
+  .argument .closer{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 400;font-style:italic;color:var(--soft);font-size:1.06rem;}
+
+  /* ---- table of plates ---- */
+  .block-toc{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .toc ol{list-style:none;margin:0;padding:0;max-width:44rem;}
+  .toc li{display:grid;grid-template-columns:2.5rem 1fr;column-gap:1rem;align-items:baseline;
+    padding:.85rem 0;border-top:1px solid var(--hair);}
+  .toc li:first-child{border-top:none;}
+  .t-num{font-family:"Fraunces",serif;font-size:.92rem;color:var(--faintest);text-align:right;}
+  .t-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.08rem;color:var(--ink);line-height:1.15;text-decoration:none;}
+  a.t-title{border-bottom:1px solid var(--num);padding-bottom:1px;}
+  a.t-title:hover{border-bottom-color:var(--ink);}
+  .t-gloss{grid-column:2;font-size:.85rem;color:var(--faint);font-style:italic;margin-top:.22rem;line-height:1.4;}
+  .t-q{grid-column:2;font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:.95rem;color:var(--soft);margin-top:.42rem;line-height:1.36;}
+  .t-q .lead{font-family:"Fraunces",serif;font-style:normal;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-right:.5rem;}
+  .t-tag{display:inline-block;margin-left:.6rem;font-family:"Newsreader",serif;font-size:.64rem;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--paper);background:var(--ink);border-radius:2px;padding:.12em .5em;vertical-align:.14em;}
+  .t-read{grid-column:2;margin-top:.42rem;}
+  .t-read a{font-size:.8rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .t-read a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- the plates (essays) ---- */
+  .plates-open{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.8rem,6vh,4rem);}
+  .plates-open .eyebrow{text-align:center;}
+  .plate{max-width:54rem;margin:clamp(2.8rem,6.5vh,4.4rem) auto 0;padding-top:clamp(2.2rem,4.6vh,3rem);
+    border-top:1px solid var(--hair);position:relative;scroll-margin-top:1.4rem;}
+  .plate:first-of-type{border-top:none;margin-top:clamp(1.6rem,3.5vh,2.4rem);padding-top:0;}
+  .plate-head{margin:0 0 1.7rem;}
+  .plate-kicker{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .plate-kicker .pk-tag{margin-left:.6rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .plate-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.8rem,4.2vw,2.7rem);line-height:1.03;letter-spacing:-.02em;margin:.32rem 0 .42rem;}
+  .plate-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.02rem;color:var(--faint);max-width:36rem;line-height:1.45;}
+
+  .epigraph{max-width:34rem;margin:1.4rem 0 1.9rem;padding-left:1.1rem;border-left:1px solid var(--num);}
+  .epigraph p{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:1.04rem;line-height:1.42;color:var(--soft);margin:0;}
+  .epigraph cite{display:block;font-style:normal;font-family:"Newsreader",serif;font-size:.78rem;
+    letter-spacing:.03em;color:var(--faintest);margin-top:.55rem;}
+
+  .plate-body{max-width:37rem;}
+  .plate-body p{font-size:1.05rem;line-height:1.75;color:var(--ink);margin:0 0 1.18rem;text-wrap:pretty;}
+  .plate-body p:last-child{margin-bottom:0;}
+  .plate-body em{font-style:italic;}
+  .plate-body .lead-para::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 500;
+    float:left;font-size:3.5rem;line-height:.78;padding:.08em .14em 0 0;color:var(--ink);}
+  .plate-body h4{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);margin:1.9rem 0 .9rem;}
+
+  .break{display:flex;justify-content:center;margin:1.9rem 0;}
+  .break span{font-family:"Fraunces",serif;font-size:1.05rem;letter-spacing:.4em;color:var(--faintest);padding-left:.4em;}
+
+  /* sidenotes — inline by default, true margin notes on wide screens */
+  .sn-ref{font-family:"Fraunces",serif;font-size:.64rem;vertical-align:super;line-height:0;color:var(--soft);margin-left:.06em;}
+  .sidenote{font-family:"Newsreader",serif;font-size:.82rem;line-height:1.52;color:var(--faint);
+    border-left:2px solid var(--hair);padding-left:.9rem;margin:.7rem 0 1.05rem;}
+  .sidenote .sn-num{font-family:"Fraunces",serif;color:var(--faintest);font-size:.7rem;margin-right:.38rem;}
+  .sidenote em{font-style:italic;}
+  @media (min-width:1040px){
+    .sidenote{float:right;clear:right;width:14.5rem;margin:.25rem -17.5rem 1.15rem 0;
+      border-left:none;border-top:1px solid var(--hair);padding:.42rem 0 0;}
+  }
+
+  /* ---- coda ---- */
+  .coda{max-width:40rem;margin:clamp(2.8rem,6vh,4rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);}
+  .coda p{font-size:1.06rem;line-height:1.74;color:var(--ink);margin:0 0 1.15rem;text-wrap:pretty;}
+  .coda p:last-child{margin-bottom:0;}
+  .coda .q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .f-ref a{text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .f-ref a:hover{border-bottom-color:var(--soft);}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .progress{transition:width .08s linear;}
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}.rise.d4{animation-delay:.4s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    h1{font-size:clamp(2.2rem,11vw,3rem);}
+    .symbox{width:72px;height:72px;}
+    .symbox .sb-sym{font-size:1.7rem;}
+    .plate-body .lead-para::first-letter{font-size:3rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+
+  /* ---- standalone plate (leaf) ---- */
+  .leaf-head{max-width:54rem;margin:0 auto;padding:clamp(2.2rem,6.5vh,4.4rem) 0 0;text-align:center;}
+  .leaf-loc{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.08em;color:var(--faintest);margin-bottom:1.7rem;}
+  .leaf-loc a{text-decoration:none;color:var(--faint);border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .leaf-loc a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+  .leaf-loc .sep{margin:0 .5rem;color:var(--num);}
+  .leaf-kicker{font-family:"Fraunces",serif;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .leaf-kicker .pk-tag{margin-left:.55rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .leaf-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.2rem,5.6vw,3.7rem);line-height:1.02;letter-spacing:-.024em;margin:.42rem 0 0;text-wrap:balance;}
+  .leaf-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.06rem;color:var(--faint);
+    max-width:34rem;margin:.72rem auto 0;line-height:1.5;text-wrap:pretty;}
+  .epigraph.leaf-epigraph{margin:1.95rem auto 1.4rem;text-align:left;}
+  .leaf-body-wrap{max-width:54rem;margin:clamp(1.8rem,4vh,2.8rem) auto 0;}
+
+  .leaf-nav{max-width:54rem;margin:clamp(3rem,7vh,5.2rem) auto 0;padding-top:clamp(1.8rem,4vh,2.6rem);
+    border-top:1px solid var(--hair);display:grid;grid-template-columns:1fr auto 1fr;gap:1.3rem;align-items:start;}
+  .ln-cell{text-decoration:none;display:block;}
+  .ln-cell .lab{display:block;font-family:"Fraunces",serif;font-size:.64rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--faintest);margin-bottom:.36rem;}
+  .ln-cell .ttl{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1rem;
+    color:var(--soft);line-height:1.22;}
+  a.ln-cell:hover .ttl{color:var(--ink);}
+  .ln-prev{text-align:left;} .ln-home{text-align:center;} .ln-next{text-align:right;}
+
+  @media (max-width:600px){
+    .leaf-nav{grid-template-columns:1fr;gap:1.4rem;}
+    .ln-prev,.ln-home,.ln-next{text-align:center;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#ne-contents">Complete contents</a><a href="../editions.html#volume-wage">The Wage · both editions</a><a href="../volumes/the-wage.html">Collected volume</a></div></nav>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="frame">
+
+  <header class="leaf-head">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="leaf-loc rise d1" aria-label="Location in the series"><a href="numeraire-atlas-updated.html">Numéraire</a><span class="sep">·</span><a href="numeraire-i-the-wage.html">Volume I · The Wage</a></nav>
+    <div class="leaf-kicker rise d2">Plate v <span class="pk-tag">in print</span></div>
+    <h1 class="leaf-title rise d2">The Difference</h1>
+    <div class="leaf-gloss rise d3">compensating differentials; the wage attached to a job's conditions, and the choice behind the apparent price.</div>
+    <div class="epigraph leaf-epigraph rise d3">
+      <p>The price of a working life includes the conditions borne for its wage; reading that price requires knowing the alternatives among which the worker could choose.</p>
+      <cite>— the argument of this plate, after Richard Thaler and Sherwin Rosen, 1976</cite>
+    </div>
+  </header>
+
+  <main class="leaf-body-wrap">
+    <article class="plate">
+      <div class="plate-body">
+<p class="lead-para">Two workers of equal skill can be paid very differently because one holds a worse job. One files papers in a warm room; the other roofs houses in January. One knows next week's hours; the other waits each evening to learn whether there will be work in the morning. A wage arrives attached to a set of conditions, and the worker takes the whole bundle: the money, the danger, the tedium, the security, the time surrendered. The theory of compensating differentials asks what happens when people can choose among these bundles. A disadvantage must then be paid for, or the job that carries it will go unfilled; an advantage may command its own price in wages forgone. The difference in pay can therefore arise even when the workers contribute equally. The fourth plate located a wage difference in the skill a person brings. This plate locates one in the life a job requires, and asks how confidently we can recover the price of that life from the pay.</p>
+
+<p>Adam Smith gave the argument its enduring shape by treating money as one part of the advantages and disadvantages of an employment. Dirty or dangerous work must offer something to draw workers away from cleaner, safer alternatives. Irregular work must pay enough during the working days to help carry the idle ones. A disagreeable trade and a pleasing one can offer different wages while leaving the worker who is willing to move between them equally well placed. Smith also considered the expense of learning an occupation, the trust it demands, and the uncertain chance of succeeding in it. The learning belongs largely to the preceding plate; the uncertainty gives this one its first qualification. People may overrate their prospects in the lottery professions, crowding toward a prize that few will collect. Even before the modern apparatus arrives, the equalizing argument rests on a demanding picture of the chooser: able to compare the alternatives, able to enter them, and sufficiently well informed about what each will bring. The compensation is something competition must induce under those conditions; its appearance in a particular wage is a question to be investigated.<sup class="sn-ref">1</sup></p>
+<div class="sidenote"><span class="sn-num">1.</span> Adam Smith, <em>The Wealth of Nations</em> (1776), Book I, chapter X, part I, distinguishes the circumstances that make money wages differ across employments. His discussion of the lottery professions also considers mistaken estimates of success. The comparison concerns the whole employment, including its burdens and advantages, under the conditions that permit workers to choose among occupations.</div>
+
+<p>Sherwin Rosen's account of implicit prices gives the bundle a market of its own. Workers differ in the compensation they require for danger; firms differ in the cost of removing it. Ventilation, guard rails, slower production, and a safer process can be expensive, while a dangerous workplace may have to offer more money to recruit. A firm therefore compares the cost of another increment of safety with the wage expense it would save. A worker compares the extra wage with the extra risk accepted. Their choices sort workers and employers across a schedule of jobs, each combining pay with conditions. At an interior choice, the local wage gain for accepting a little more risk matches the worker's valuation of that increment, and what the firm gains per worker by making the job less safe. This is the hedonic view of wages: the market places an implicit price on a quality that never appears as a separate item on the pay slip. The worker sells labor and acquires a working environment in the same transaction.<sup class="sn-ref">2</sup></p>
+<div class="sidenote"><span class="sn-num">2.</span> Richard Thaler and Sherwin Rosen, <em>The Value of Saving a Life: Evidence from the Labor Market</em> (1976), pp. 265–269 and 279–282, apply Rosen's hedonic framework to job safety. Workers with given productive characteristics choose among risk-and-wage packages; firms weigh safety costs against wage costs. The observed schedule reflects both sides of that market.</div>
+
+<p>The wage premium for a small risk of death makes the implicit price especially consequential. Suppose, as an illustration, that an additional annual risk of one death in ten thousand requires an additional five hundred dollars of annual compensation. Across ten thousand otherwise comparable workers, the extra compensation totals five million dollars and the extra expected deaths total one. The ratio is the value of a statistical life in this illustration. It scales up the price of a small change in risk; it supplies no offer that any particular person would accept for certain death. The underlying choice remains a slight change in the probability of surviving, at the worker's income and under the alternatives available to that worker. Changing those circumstances can change the amount demanded. The arithmetic thus makes a real tradeoff visible while keeping its limits visible too: a market observation about money and small risks, made by particular people, can be used to appraise a safety improvement. Carrying that observation into a public decision requires judgment about whose risks, whose resources, and which improvements the comparison concerns.<sup class="sn-ref">3</sup></p>
+<div class="sidenote"><span class="sn-num">3.</span> The numbers here are illustrative: $500 divided by 0.0001 equals $5 million. Thaler and Rosen study compensation for small changes in mortality risk. The unit called a statistical life aggregates probability changes; it neither identifies a person who will die nor prices the surrender of an entire life. No current regulatory valuation is asserted.</div>
+
+<div class="break"><span>⁂</span></div>
+
+<p>The difficulty begins when the observer tries to read this tradeoff from jobs whose occupants differ as much as their conditions. The theory compares otherwise similar workers facing different packages. A table of actual occupations also compares education, experience, ability, location, hours, and access to employers, much of it imperfectly measured. A dangerous job held by a worker with few valuable alternatives may pay less than a safe job held by someone with scarce skills, even though danger raises the pay within each worker's available set. The premium and the low wage can coexist. There is a further difficulty inside the idealized market itself. Workers who most dislike a risk will choose differently from those who tolerate it, and firms that can cheaply provide safety will offer different jobs from those for which safety is expensive. The observed wage schedule collects these different choices. Its slope at one point describes the tradeoff made there; moving far along it changes the people and firms whose choices are being observed. Reading the whole schedule as one person's willingness to bear risk would give the line a meaning the sorting process has not supplied.<sup class="sn-ref">4</sup></p>
+<div class="sidenote"><span class="sn-num">4.</span> The identification problem is part of the original analysis, not an objection added after the model. Thaler and Rosen, pp. 279–283, distinguish the observed wage-risk schedule from the underlying preferences and safety technologies that jointly produce it. Their homogeneous-worker assumption holds productive characteristics fixed while allowing attitudes toward risk to differ; a comparison across occupations must also address differences in those productive characteristics.</div>
+
+<p>A compensating payment also depends on the worker's knowledge and the alternatives the worker can actually reach. A danger that has never been disclosed cannot enter the comparison in the same way as a danger understood and weighed. A safer employer across the country may be an available entry in a database while remaining beyond the reach of someone whose family, savings, or obligations make moving impossible. The premium that would induce a worker with many offers to accept a burden can exceed what a worker with few offers is able to obtain. This is where the differential returns to the bargain with which the volume began. The ability to refuse gives an unpleasant job a reason to improve its terms. Search costs, employer power, and unequal resources can weaken that reason. These are additional mechanisms to distinguish from the sorting of workers in a competitive market: each can help produce a low wage attached to a bad job, and the same observed combination does not tell us how much came from each. The investigation must recover the choice that was available, as well as the choice that was made.<sup class="sn-ref">5</sup></p>
+<div class="sidenote"><span class="sn-num">5.</span> The eighth plate, <a href="numeraire-i-viii-the-monopsony.html">The Monopsony</a>, develops the wage-setting power created by limited alternatives; the tenth, <a href="numeraire-i-x-the-insurance.html">The Insurance</a>, develops the worker's reservation wage and ability to continue searching. Those mechanisms qualify the setting in which a compensating differential is negotiated. They should be distinguished from unobserved skill and from sorting along a competitive hedonic schedule.</div>
+
+<p>The wage must therefore be read together with the conditions bought and borne for it. Part of a high wage can be payment for danger, and part of a lower one can be exchanged for time, stability, or ease. Establishing such a payment requires a comparison that holds enough else steady to show what is being compensated. Establishing that the compensation is adequate asks something further about knowledge, resources, and freedom to choose. The difference between those inquiries matters to every attempt to treat earnings as a verdict on the person who receives them. The pay slip leaves the working life largely invisible, although that life helps determine the figure printed on it. The next plate holds the work and the qualifications steady and changes the employer's reading of the worker. There the difference in pay will turn on a person's identity, on the treatment attached to it, and on how much of that treatment an observed gap can reveal.</p>
+      </div>
+    </article>
+  </main>
+
+  <nav class="leaf-nav" aria-label="Plate navigation">
+    <a class="ln-cell ln-prev" href="numeraire-i-iv-the-skill.html"><span class="lab">← Previous plate</span><span class="ttl">Plate iv · The Skill</span></a>
+    <a class="ln-cell ln-home" href="numeraire-i-the-wage.html"><span class="lab">The volume</span><span class="ttl">The Wage · contents</span></a>
+    <a class="ln-cell ln-next" href="numeraire-i-vi-the-discrimination.html"><span class="lab">Next plate →</span><span class="ttl">Plate vi · The Discrimination</span></a>
+  </nav>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref"><a href="numeraire-i-the-wage.html">The Wage</a> · <a href="numeraire-atlas-updated.html">the table</a></span>
+    </div>
+    <p class="colophon">Plate v of <em>The Wage</em>, Volume the First of <em>Numéraire</em> — a periodic table of economic life. Adapted for the Utility edition from the earlier <a href="../founding/the-wage-difference.html">Founding plate</a>, whose full text and figures remain available. This leaf may be read on its own or as part of the volume. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<script>
+(function(){
+  var bar=document.getElementById('progress');
+  function onScroll(){
+    var h=document.documentElement;
+    var max=(h.scrollHeight-h.clientHeight);
+    var p=max>0?(h.scrollTop||document.body.scrollTop)/max:0;
+    bar.style.width=(p*100).toFixed(2)+'%';
+  }
+  document.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="numeraire-i-iv-the-skill.html">← The Skill</a><a rel="next" href="numeraire-i-vi-the-discrimination.html">The Discrimination →</a></nav>
+</body>
+</html>

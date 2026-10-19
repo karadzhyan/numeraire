@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Move — Numéraire, The Game, Plate i</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:66rem; --measure:35rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(2.8rem,7vh,5rem) 0 clamp(1.4rem,3.5vh,2.2rem);text-align:center;}
+
+  .crumbs{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 400;
+    font-size:.8rem;letter-spacing:.04em;color:var(--faint);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:center;gap:.55rem;}
+  .crumbs a{text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .2s ease,color .2s ease;}
+  .crumbs a:hover{border-color:var(--num);color:var(--ink);}
+  .crumbs .sep{color:var(--faintest);}
+  .crumbs .here{color:var(--ink);}
+
+  .plate-mark{width:116px;height:116px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:.18rem;line-height:1;}
+  .plate-mark.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pm-vol{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.84rem;letter-spacing:.06em;color:rgba(240,235,225,.62);}
+  .pm-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;
+    font-size:2.5rem;letter-spacing:.02em;text-transform:uppercase;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.1rem,6vw,4rem);line-height:1.03;letter-spacing:-.025em;margin:1rem 0 0;text-wrap:balance;}
+  .status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:42rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .epi{max-width:38rem;margin:clamp(2.2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .epi q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.46;color:var(--ink);quotes:none;display:block;text-wrap:pretty;}
+  .epi .cite{display:block;margin-top:.95rem;font-size:.78rem;color:var(--faintest);letter-spacing:.05em;font-style:normal;}
+  .epi .cite em{font-style:italic;}
+
+  .essay{max-width:52rem;margin:clamp(3rem,7vh,5rem) auto 0;counter-reset:sn;}
+  .essay::after{content:"";display:block;clear:both;}
+  .essay > p,.essay > .pull{max-width:var(--measure);}
+  .essay p{font-size:1.075rem;line-height:1.8;color:var(--ink);margin:0 0 1.4rem;text-wrap:pretty;}
+  .essay em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.72;padding:.08em .14em 0 0;color:var(--ink);}
+
+  .divider{display:flex;justify-content:center;margin:2.4rem 0;}
+  .divider svg{width:96px;height:12px;overflow:visible;}
+  .divider line{stroke:var(--num);stroke-width:1;} .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.5vw,1.74rem);line-height:1.34;color:var(--ink);text-align:center;
+    margin:2.4rem auto;max-width:33rem;text-wrap:balance;}
+
+  .snref{font-family:"Fraunces",serif;font-size:.64em;line-height:0;vertical-align:super;
+    color:var(--soft);counter-increment:sn;margin-left:1px;font-style:normal;}
+  .snref::after{content:counter(sn);}
+  .sn{display:block;max-width:var(--measure);margin:.1rem 0 1.4rem;padding:.15rem 0 .15rem 1.05rem;
+    border-left:1px solid var(--hair);font-size:.84rem;line-height:1.52;color:var(--faint);}
+  .sn::before{content:counter(sn);font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--faintest);margin-right:.5em;font-size:.92em;}
+  .sn em{font-style:italic;}
+
+  @media (min-width:64rem){
+    .sn{float:right;clear:right;width:15rem;margin:.35rem 0 1.3rem;padding:0;border-left:none;}
+    .divider,.pull,.apparatus{clear:both;}
+  }
+
+  .apparatus{max-width:52rem;margin:clamp(3.2rem,7vh,5rem) auto 0;padding-top:2rem;border-top:1px solid var(--hair);clear:both;}
+  .app-h{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;}
+  .app-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.4rem;}
+  .app-list li{border-top:1px solid var(--hair);}
+  .app-list li:first-child,.app-list li:nth-child(2){border-top:none;}
+  .app-list a{display:block;text-decoration:none;padding:.95rem 0;}
+  .app-list a:hover .app-t{color:var(--soft);}
+  .app-rel{display:block;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faintest);margin-bottom:.3rem;}
+  .app-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.12rem;color:var(--ink);transition:color .2s ease;}
+  .app-g{display:block;font-size:.84rem;color:var(--faint);font-style:italic;line-height:1.4;margin-top:.22rem;}
+
+  footer{margin-top:clamp(3.5rem,8vh,6rem);padding:2.2rem 0 4rem;border-top:1px solid var(--hair);}
+  .crumbs.foot{justify-content:flex-start;margin-bottom:1.3rem;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .plate-mark{width:96px;height:96px;}
+    .pm-num{font-size:2.1rem;}
+    .essay p{font-size:1.04rem;line-height:1.74;}
+    .dropcap{font-size:3rem;}
+    .app-list{grid-template-columns:1fr;}
+    .app-list li:nth-child(2){border-top:1px solid var(--hair);}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="crumbs rise d1" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-game.html">The Game &middot; Vol XXV</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate i</span>
+    </nav>
+    <div class="plate-mark lit rise d2" aria-hidden="true">
+      <span class="pm-vol">Gm</span>
+      <span class="pm-num">i</span>
+    </div>
+    <h1 class="rise d3">The Move</h1>
+    <div class="status rise d3">in print &middot; The Game &middot; plate i</div>
+    <p class="standfirst rise d4">The chooser of the previous volume stood alone, weighing options against a world that held still. But most choices that matter are made against other choosers — rivals, bidders, opponents — who are watching and reacting as we watch and react to them. This plate marks the difference between a decision and a game, and argues that behind much of what economic life presents as a fixed fact there stands, in truth, a move: the choice of an agent anticipating others who are anticipating him.</p>
+  </header>
+
+  <div class="epi rise d5">
+    <q>Were it a matter of taking a deer, every one well knew that he must keep faithfully to his post; but should a hare pass within reach of one of them, he would give chase without scruple, and, having seized his prey, care little that he had made his companions miss theirs.</q>
+    <span class="cite">Jean-Jacques Rousseau, <em>Discourse on Inequality</em> (1755)</span>
+  </div>
+
+  <article class="essay">
+
+    <p class="lede"><span class="dropcap">T</span>here is a kind of choosing that cannot be done alone, even when only one hand makes the move. When you decide which road to take and the traffic is heavy, you are not choosing against the road; you are choosing against the other drivers, each of whom is choosing against you. When a firm sets its price, it sets it against the prices it expects its rivals to set — prices those rivals are, at that very moment, setting against the price they expect from it. The thing chosen is no longer a thing but a guess about a guess, and the situation has a name as old as parlor games and as new as the cold war: it is a game, and its outcome belongs to no one who plays it.</p>
+
+    <p>The previous volume in this group anatomized the chooser, but it left him, in the end, alone with his options. The world he faced held still: the prices were posted, the odds were fixed, the consequence of each course waited only to be weighed, and his whole task was to rank what lay before him and reach for the best. That is choice against nature — against a backdrop that neither knows nor cares that it is chosen against, and will not alter its face in reply.<sup class="snref"></sup> But step into almost any choice that carries weight, and the backdrop comes alive. The other drivers, the rival firms, the party across the table, the bidders in the room are not fixed features of the situation but choosers in their own right, watching the chooser as he watches them, and shaping their moves to what they expect of his. The world has stopped being a constant to optimize against and become an agent that optimizes back. This is the strategic situation, and the difference it makes is total: one no longer merely calculates but must anticipate, for the thing one reasons about is reasoning in return.</p>
+    <aside class="sn">The distinction is the hinge on which this volume turns. The chooser of the foregoing volume optimized against a parameter — a world of fixed prices, fixed odds, fixed constraints, indifferent to him as the weather, which he could study and adapt to but never alter. The strategic chooser optimizes against an agent — a world that contains other choosers, who watch him, react to him, and shape their moves to his as he shapes his to theirs. Against nature, one calculates; against other minds, one must also anticipate, for the thing one is calculating about is itself calculating back.</aside>
+
+    <p>To bring such situations under study, the theory pares them to a spare and powerful frame.<sup class="snref"></sup> A game consists of players — the parties who choose; strategies — the moves open to each; and payoffs — the outcome each player receives for every possible combination of the players' moves taken together. That last phrase carries the whole weight, for it is the hanging of each one's fortune on everyone's choices that divides a game from a solitary decision. In a decision, my reward depends on my move and on the indifferent world; in a game, it depends on my move and on yours, and yours on mine. Von Neumann and Morgenstern, who founded the systematic theory in 1944, fixed the picture by which it is still taught: the payoff matrix, a grid with a cell for every way the choices can combine, each cell recording what every player walks away with — a small map of a whole world of consequence, in which I must choose a row while you choose a column, and neither can read his fate from his own choice alone.</p>
+    <aside class="sn">Stripped to its frame, a game is three things: the players, who choose; the strategies, the courses open to each; and the payoffs, the reward each reaps for every possible combination of the players' choices. The one feature that makes it a game and not a solitary problem is that the last depends on all the choices together — my payoff on your move as much as on mine. Von Neumann and Morgenstern, in 1944, gave this skeleton its standard picture: the payoff matrix, a grid in which every cell records what each player carries off should the play arrive there, and in which one chooses a row while another chooses a column.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>The moment one tries to choose well in such a world, a strange difficulty opens underfoot.<sup class="snref"></sup> To fix my best move, I must form a view of what you will do; but you are no more a settled quantity than I am, and your move turns on your view of mine — which turns on your view of my view of you, and on mine of yours of mine, in a regress of mutual anticipation that climbs without ever reaching a last rung. Each of us is a mirror held up to the other, and between two facing mirrors the images recede without end. Against nature there is no such trouble: the weather does not trouble to guess what I will plant, and I may reason about it as a thing that does not reason back. It is the presence of a second mind, anticipating me as I anticipate it, that sets the mirrors facing — and how a real person ever halts the endless reflection and simply acts is a question to which the theory will return, and never wholly answer.</p>
+    <aside class="sn">To play well I must forecast your move; but your move depends on your forecast of mine, which depends on your forecast of my forecast of yours, and the ladder climbs without a top. This is the peculiar vertigo of strategic thought, the regress of mutual anticipation that has no natural floor to stand on. Decision against nature knows nothing of it — the weather does not trouble itself to guess what I will wear. It is the presence of another mind, anticipating as I anticipate, that opens the hall of facing mirrors; and how a real player ever stops climbing and simply acts is among the deepest questions the theory raises.</aside>
+
+    <p>The idea is younger than most in these volumes, and its lineage is worth a word.<sup class="snref"></sup> Cournot, in 1838, built the first true model of strategic interaction — two sellers of spring water, each fixing how much to bring to market in light of the other — and located the point of mutual adjustment between them, a hundred years before the field that would claim him had a name. The general theory waited for the twentieth century. Von Neumann proved a foundational result for games of pure opposition in 1928, drawing his intuitions partly from the parlor games he loved, and from poker above all, whose bluffs taught him that concealment and deception were not lapses from rational play but parts of it. The cold war lent the abstractions a terrible concreteness: in the strategy shops of the nuclear age the theory was turned to the study of deterrence, and a grid of payoffs might stand for the survival of cities. From the card table to the marketplace to the struggle of living things, the same bare structure has since been found again and again.</p>
+    <aside class="sn">The idea had ancestors. Cournot, in 1838, built the first strategic model — two producers, each setting his output in view of the other's — and found the rest-point between them, a full century before the theory had a name. Von Neumann proved his minimax theorem for pure conflict in 1928, and the parlor games that fascinated him — chess, and above all poker, with its bluffs — supplied the early intuitions. The cold war supplied the urgency: at think tanks like RAND the theory was pressed into the service of deterrence, and the abstractions of the seminar acquired the weight of cities. From parlor to economics to biology, the same skeleton has since been found beneath an astonishing range of life.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>Not all games are alike in the blend of conflict and concord they contain, and one division among them matters more than the rest.<sup class="snref"></sup> At one pole stands the game of pure conflict — the zero-sum game, in which the players' interests are exactly opposed, one's gain being precisely the other's loss, so that the whole fought over is fixed in size and nothing is left to cooperate about. Chess is such a contest; so, near enough, is poker played for a pot. The early theory conquered these completely, and their clean hostility lends them to elegant solution. But the games of trade and politics are almost never of this kind. They are mixed-motive games, in which interests run partly together and partly apart, and the total at stake is not fixed but made — swelled or squandered by what the players do — so that they must cooperate to enlarge the prize even as they contend over its division. Here, in the mixed-motive game, lives the surplus of the foregoing volumes: a thing the parties make together and then divide against one another, conflict and common interest knotted into one act.</p>
+    <aside class="sn">A zero-sum game is one of pure opposition: whatever one player gains, another exactly loses, the total fixed, so that the players are locked in unalloyed conflict with nothing to cooperate about. Chess is such a game, and so, roughly, is poker for money; von Neumann's early theory mastered them completely. But the games that fill economic life are not of this kind. They are mixed-motive: interests partly opposed and partly shared, the sum of the winnings not fixed but dependent on what the players do — they may, together, make the pie larger or smaller before quarreling over its slices. Schelling called the subject the study of interdependent decision, and held that most of it concerns this mixture of conflict with common interest, not the pure conflict the early theory had solved.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>It must be granted at once that not every economic situation is a game, and the most important exception is the one the previous volume quietly assumed.<sup class="snref"></sup> The farmer who carries his wheat to a great market plays against no one: his crop is a drop in an ocean of grain, far too slight to move the price, and so he meets it as a fixed and external fact, adapting as one adapts to the weather, without a thought for a rival. For him the parametric picture is no illusion but the plain truth, and the apparatus of strategy would only mislead. Yet two things must be said in reply. The first is that the price he takes as given is itself the outcome of an immense game played by all the buyers and sellers at once, as the volume on the surplus has argued — a fact to him, a contest in its making. The second, and deeper, is that his situation is the limiting case, not the rule: it is reached only where the players are so many that each is negligible, the single circumstance in which strategy thins into mere calculation. Across the great body of economic life the players are few enough, or large enough, that none can treat the others as weather. Price-taking is the special case; the game is the general one.</p>
+    <aside class="sn">The fair objection is that not every economic situation is a game. The wheat farmer who brings his crop to a vast market plays against no one: his own sales are too slight to stir the price, which he meets as a fixed and external fact and adapts to without a thought for any rival, exactly as the previous volume described. For such an agent the parametric picture is not an error but the truth. The reply is twofold. First, the price he takes as given is itself the resultant of a great game played by all the buyers and sellers together, as the volume on the surplus argued. And second, his case is the limit, not the rule — the special situation, reached only when the players are so many each is negligible, in which strategy dissolves into calculation.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>We may now say plainly what this plate adds to the argument these volumes share.<sup class="snref"></sup> A price is a verdict on a hidden contest, mistaken for a fact of nature — and the hidden contest, regarded in its most general form, is a game: a situation of strategic interdependence, in which interested parties each move in anticipation of the others. The clause mistaken for a fact of nature names with precision the error of parametric sight, which takes the move of another player, or the settled outcome of many, for a fixed and given feature of the world. The small farmer commits no error in seeing the price so, for to him it truly is a parameter; the rest of us, who treat the going price, the prevailing structure, the customary terms as facts of nature, commit it without pause. To undo the error is to learn to see the move behind the seeming fact — to ask, of any regularity the economic world presents, who the players are, what strategies they command, and whether the thing before us is a single move or the resting place of a contest among many.</p>
+    <aside class="sn">Here is the plate's contribution to the argument of the whole. The thesis that runs through these volumes — that a price is a verdict on a contest concealed behind the appearance of a natural fact — finds in the game its most general object; for the contest, at its most abstract, is just a situation of strategic interdependence, in which interested parties each move in anticipation of the others. To take the going price, the prevailing structure, the customary terms for facts of nature is to commit the error of parametric sight: to mistake the move of another player, or the settled outcome of many, for a fixed feature of the world. To correct it is to learn to see the move behind the seeming fact.</aside>
+
+    <p>And this recasts the lone chooser of the previous volume in a humbler light.<sup class="snref"></sup> He was not a fiction, but a figure exact only for the negligible agent and approximate for everyone else; the fuller truth is that almost every choice of consequence is made against other choosers, and its outcome produced among them all, belonging to none. The thought humbles, for it means no party to a strategic situation is the author of his own result — the outcome is made between the players, not by any one. And it clarifies, for it puts the source of economic outcomes where it truly lies: not in nature, which would make them facts to be accepted, and not in a single commanding will, which would make them decrees to be obeyed, but in the interlocking choices of the many, which makes them settlements — contingent, alterable, and the proper object of a science. The game is the unit of strategic life, and the move — a choice made in the knowledge that others are choosing too — is the atom of which that life is built.</p>
+    <aside class="sn">The lone chooser of the previous volume was not false, only partial — an abstraction exact for the negligible agent and rough for everyone else. The fuller truth is that almost every choice that matters is made against other choosers, and its outcome is the joint work of all of them, the property of none. This is at once humbling and clarifying. Humbling, because no party to a strategic situation fully commands his own fate, the result being produced between them rather than by any one. Clarifying, because it locates the source of economic outcomes where it belongs — not in nature, and not in a single sovereign will, but in the interlocking choices of the many.</aside>
+
+    <p class="pull">Behind the fact stands a move; behind the move, a player; behind the player, the others he is straining to outguess.</p>
+
+    <p>So this first plate of the volume sets the board and names the pieces; the next will say where the play comes to rest. The game is the contest — the situation of mutual anticipation, the hidden struggle a price is the verdict upon. The equilibrium, which the following plate takes up, is the verdict itself — the resting point at which the anticipations close and the struggle, for a moment, holds still. A price is a verdict on a hidden contest, mistaken for a fact of nature; the game is that contest in its general form, and to have seen the game behind the fact is already to have undone half the mistake. What the strategic situation is, this plate has shown; how it settles, the next must. The argument remains open.</p>
+
+  </article>
+
+  <nav class="apparatus" aria-label="Related reading">
+    <h2 class="app-h">Related</h2>
+    <ul class="app-list">
+      <li><a href="the-standoff.html"><span class="app-rel">In this volume</span><span class="app-t">The Standoff</span><span class="app-g">plate ii — the next plate: the equilibrium, the resting point at which the game's mutual anticipation comes to rest</span></a></li>
+      <li><a href="the-choice.html"><span class="app-rel">In The Choice</span><span class="app-t">The Maximizer</span><span class="app-g">the chooser alone, against a world that holds still: the parametric decision this plate sets the strategic against</span></a></li>
+      <li><a href="the-divide.html"><span class="app-rel">In The Surplus</span><span class="app-t">The Divide</span><span class="app-g">the mixed-motive game made flesh: the surplus the parties make together and then divide against one another</span></a></li>
+      <li><a href="the-game.html"><span class="app-rel">In this volume</span><span class="app-t">The Regress</span><span class="app-g">plate xii — the ladder of mutual anticipation this plate opens, climbed to its vertiginous top: the common knowledge an equilibrium rests on</span></a></li>
+    </ul>
+  </nav>
+
+  <footer>
+    <nav class="crumbs foot" aria-label="Return">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-game.html">The Game &middot; Vol XXV</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate i</span>
+    </nav>
+    <p class="colophon">The first plate of Volume XXV, <em>The Game</em> — the difference between a decision and a game, the strategic situation in which one's best move depends on another's, and the recognition that behind much of what economic life presents as a fixed fact there stands a move in a contest of mutual anticipation. Return to <em><a href="the-game.html">The Game</a></em>, or to <a href="numeraire-atlas.html">the complete table of volumes</a>. The epigraph is from Rousseau's <em>Discourse on Inequality</em>; the founding work of von Neumann and Morgenstern, and the strategic models of Cournot and Schelling, are discussed in the text. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-game.html">← The Game</a><a rel="next" href="the-standoff.html">The Standoff →</a></nav>
+</body>
+</html>

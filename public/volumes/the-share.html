@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Share — Numéraire, Volume XXII</title>
+<meta name="description" content="The Share — Volume XXII of Numéraire, A Periodic Table of Economic Life. How the national product divides between those who work and those who own — and whether the split is set by productivity, or by power.">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem; --measure:40rem;
+    --wash:rgba(28,26,22,.066); --wash2:rgba(28,26,22,.12);
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.62;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  .measure{max-width:var(--measure);margin-left:auto;margin-right:auto;}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- ornaments ---- */
+  .orn{display:flex;justify-content:center;margin:0 auto;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .divider{display:flex;align-items:center;gap:1.1rem;max-width:30rem;margin:clamp(3rem,7vh,5rem) auto;color:var(--num);}
+  .divider .ln{flex:1;height:1px;background:var(--hair);}
+  .divider svg{display:block;width:12px;height:12px;overflow:visible;flex:0 0 auto;}
+  .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* ---- progress + running head ---- */
+  #progress{position:fixed;top:0;left:0;height:2px;width:100%;transform:scaleX(0);transform-origin:0 50%;background:var(--soft);opacity:.45;z-index:10000;}
+  #topbar{position:fixed;top:0;left:0;right:0;z-index:9998;transform:translateY(-100%);transition:transform .5s cubic-bezier(.2,.6,.2,1);
+    background:rgba(240,235,225,.86);-webkit-backdrop-filter:saturate(1.1) blur(8px);backdrop-filter:saturate(1.1) blur(8px);
+    border-bottom:1px solid var(--hair);}
+  #topbar.show{transform:translateY(0);}
+  .tb-in{max-width:var(--frame);margin:0 auto;padding:.62rem clamp(1.4rem,4vw,3.4rem);display:flex;justify-content:space-between;align-items:baseline;gap:1.2rem;}
+  .tb-l{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:.86rem;letter-spacing:.01em;}
+  .tb-l span{color:var(--faintest);font-weight:400;}
+  .tb-r{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);text-align:right;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+
+  /* ---- title page ---- */
+  .vol-title{padding:clamp(3.4rem,11vh,8rem) 0 clamp(1.6rem,5vh,3rem);text-align:center;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.16rem;letter-spacing:.02em;}
+  .vol-no{font-size:.84rem;color:var(--faint);letter-spacing:.16em;text-transform:uppercase;margin-top:.55rem;}
+  h1.vol-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 380;font-weight:380;
+    font-size:clamp(2.9rem,9vw,6rem);line-height:.98;letter-spacing:-.028em;margin:clamp(1.7rem,4.5vh,2.8rem) 0 0;text-wrap:balance;}
+  .vol-sym{width:78px;height:78px;margin:clamp(1.6rem,4vh,2.4rem) auto 0;border:1px solid var(--hair);border-radius:2px;
+    display:flex;align-items:center;justify-content:center;background:var(--ink);}
+  .vol-sym span{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2.3rem;line-height:1;color:var(--paper);letter-spacing:-.01em;}
+  .vol-coords{font-family:"Fraunces",serif;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);margin-top:1.1rem;}
+  .vol-gloss{font-style:italic;color:var(--soft);font-size:1.12rem;margin:.5rem 0 0;}
+  .vol-epigraph{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 400;font-style:italic;
+    font-size:clamp(1.14rem,1.7vw,1.34rem);line-height:1.42;color:var(--soft);max-width:33rem;margin:clamp(1.8rem,4vh,2.6rem) auto 0;text-wrap:pretty;}
+  .vol-epigraph .lead{display:block;font-style:normal;font-variation-settings:"opsz" 24,"wght" 400;
+    font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.7rem;}
+  .vol-status{display:inline-flex;align-items:center;gap:.5rem;margin:clamp(1.8rem,4vh,2.4rem) auto 0;font-size:.84rem;color:var(--soft);}
+  .vol-status::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ink);}
+
+  /* ---- the argument (preface) ---- */
+  .part-head{text-align:center;margin:0 0 clamp(1.6rem,3.5vh,2.3rem);}
+  .part-kicker{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faintest);}
+  .part-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-weight:400;
+    font-size:clamp(1.5rem,3.4vw,2.1rem);letter-spacing:-.012em;margin:.4rem 0 0;}
+  .argument p{font-size:1.05rem;line-height:1.74;margin:0 0 1.15rem;text-wrap:pretty;}
+  .argument p.lede::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 420;
+    float:left;font-size:3.5em;line-height:.78;padding:.05em .1em 0 0;color:var(--ink);}
+  .argument em,.plate-body em,.coda em{font-style:italic;}
+
+  /* ---- contents ---- */
+  .toc{list-style:none;margin:0 auto;padding:0;max-width:43rem;}
+  .toc li{border-top:1px solid var(--hair);}
+  .toc li:last-child{border-bottom:1px solid var(--hair);}
+  .toc a{display:grid;grid-template-columns:2.6rem 1fr;column-gap:1.1rem;align-items:baseline;
+    padding:.82rem .3rem;text-decoration:none;transition:background .2s ease;}
+  .toc a:hover{background:rgba(28,26,22,.035);}
+  .toc-n{font-family:"Fraunces",serif;font-size:.92rem;color:var(--faintest);text-align:right;}
+  .toc-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.06rem;color:var(--ink);line-height:1.16;}
+  .toc-g{grid-column:2;font-size:.85rem;font-style:italic;color:var(--faint);margin-top:.16rem;line-height:1.38;}
+
+  /* ---- plates ---- */
+  .plate{margin:clamp(3.2rem,8vh,6rem) 0 0;padding-top:clamp(2.4rem,5.5vh,3.4rem);border-top:1px solid var(--hair);scroll-margin-top:4rem;}
+  .plate-open{max-width:var(--measure);margin-inline:auto;}
+  .plate-no{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 360;font-size:clamp(2.6rem,7vw,4.1rem);
+    line-height:.9;color:var(--num);letter-spacing:.02em;}
+  .plate-kicker{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faintest);margin:.9rem 0 .2rem;}
+  .plate-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.8rem,4.4vw,2.7rem);line-height:1.04;letter-spacing:-.018em;margin:0;text-wrap:balance;}
+  .plate-gloss{font-style:italic;color:var(--soft);font-size:1.02rem;margin:.55rem 0 0;line-height:1.4;}
+
+  .ask{max-width:var(--measure);margin:clamp(1.5rem,3.5vh,2.2rem) auto clamp(1.8rem,4vh,2.4rem);}
+  .ask .lead{display:block;font-family:"Fraunces",serif;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.55rem;}
+  .ask q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:clamp(1.18rem,1.8vw,1.38rem);line-height:1.36;color:var(--soft);quotes:none;}
+
+  .plate-body{max-width:var(--measure);margin-inline:auto;}
+  .plate-body p{margin:0 0 1.18rem;text-wrap:pretty;}
+  .plate-body > p:first-of-type::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 430;
+    float:left;font-size:3.5em;line-height:.76;padding:.04em .12em 0 0;color:var(--ink);}
+  .plate-body h4{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.76rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faint);margin:2rem 0 .9rem;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 380;font-style:italic;
+    font-size:clamp(1.4rem,2.3vw,1.7rem);line-height:1.32;color:var(--soft);text-align:center;
+    max-width:33rem;margin:clamp(2rem,4.5vh,2.8rem) auto;text-wrap:balance;}
+
+  .edge{max-width:var(--measure);margin:1.7rem auto;padding:.1rem 0 .1rem 1.15rem;border-left:1px solid var(--hair);
+    color:var(--faint);font-size:.92rem;line-height:1.62;}
+  .edge .lead{display:block;font-family:"Fraunces",serif;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.4rem;}
+  .edge em{font-style:italic;color:var(--soft);}
+
+  /* ---- figures (engravings) ---- */
+  .fig{max-width:var(--measure);margin:clamp(2.1rem,4.5vh,2.9rem) auto;}
+  .fig-frame{border:1px solid var(--hair);border-radius:2px;padding:clamp(1rem,2.4vw,1.7rem) clamp(1rem,2.4vw,1.7rem) clamp(.8rem,2vw,1.3rem);background:rgba(255,253,247,.4);}
+  .fig svg{display:block;width:100%;height:auto;}
+  figcaption{margin:.95rem auto 0;max-width:38rem;font-size:.85rem;line-height:1.5;color:var(--faint);text-wrap:pretty;}
+  figcaption .fig-n{font-family:"Fraunces",serif;font-weight:500;letter-spacing:.04em;color:var(--soft);}
+  figcaption em{font-style:italic;}
+  .ax{stroke:var(--soft);stroke-width:1.1;fill:none;}
+  .tick{stroke:var(--soft);stroke-width:1;}
+  .curve{stroke:var(--ink);stroke-width:1.5;fill:none;stroke-linecap:round;}
+  .curve2{stroke:var(--ink);stroke-width:1.3;fill:none;stroke-linecap:round;}
+  .guide{stroke:var(--faintest);stroke-width:1;fill:none;stroke-dasharray:3 3.5;}
+  .core{stroke:var(--ink);stroke-width:3;fill:none;stroke-linecap:round;}
+  .fill-cs{fill:var(--wash);}
+  .fill-dwl{fill:var(--wash2);}
+  .fill-wedge{fill:var(--wash);}
+  .fill-lens{fill:var(--wash);}
+  .hatch-line{stroke:var(--faintest);stroke-width:.8;}
+  .lbl{font-family:"Fraunces",serif;font-size:11.5px;fill:var(--faint);font-variation-settings:"opsz" 24,"wght" 400;}
+  .lbl-i{font-family:"Newsreader",serif;font-style:italic;font-size:11px;fill:var(--soft);}
+  .lbl-sm{font-family:"Fraunces",serif;font-size:9.6px;fill:var(--faintest);letter-spacing:.02em;}
+  .lbl-ax{font-family:"Fraunces",serif;font-size:9.4px;fill:var(--faintest);letter-spacing:.12em;}
+
+  /* ---- coda + colophon ---- */
+  .coda{max-width:var(--measure);margin:clamp(3rem,7vh,5rem) auto 0;}
+  .coda p{margin:0 0 1.18rem;text-wrap:pretty;}
+  .coda p.lede::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 430;
+    float:left;font-size:3.5em;line-height:.76;padding:.04em .12em 0 0;color:var(--ink);}
+  footer{margin-top:clamp(3.6rem,8vh,6rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.4rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .colophon{font-size:.85rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+
+  /* ---- motion / reveal ---- */
+  @media (prefers-reduced-motion: no-preference){
+    html.js .reveal{opacity:0;transform:translateY(14px);}
+    html.js .reveal.in{opacity:1;transform:none;}
+    .reveal{transition:opacity .9s cubic-bezier(.2,.6,.2,1),transform .9s cubic-bezier(.2,.6,.2,1);}
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.18s}.rise.d3{animation-delay:.32s}.rise.d4{animation-delay:.46s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  /* ---- responsive ---- */
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .argument p,.plate-body p,.coda p{font-size:1.01rem;}
+    .plate-body > p:first-of-type::first-letter,.argument p.lede::first-letter,.coda p.lede::first-letter{font-size:3em;}
+    .f-bar{flex-direction:column;gap:.5rem;}
+    .toc a{grid-template-columns:2rem 1fr;column-gap:.8rem;}
+    figcaption{font-size:.82rem;}
+  }
+
+  /* ---- print: a volume, in print ---- */
+  @media print{
+    html,body{background:#fff;color:#000;}
+    body{font-size:11.5pt;line-height:1.5;}
+    body::before,#progress,#topbar{display:none !important;}
+    .frame{max-width:none;padding:0;}
+    .measure,.plate-open,.plate-body,.ask,.edge,.coda{max-width:34rem;}
+    a{text-decoration:none;}
+    .plate{break-before:page;border-top:none;padding-top:0;}
+    .fig,figure{break-inside:avoid;}
+    .plate-no{color:#bbb;}
+    .reveal{opacity:1 !important;transform:none !important;}
+  }
+  /* ---- live embed (operable figure) ---- */
+  .lab-embed{max-width:var(--measure);margin:clamp(2.1rem,4.5vh,2.9rem) auto;}
+  .lab-embed .le-controls{display:flex;flex-wrap:wrap;gap:.55rem 1.4rem;margin:1rem 0 0;}
+  .lab-embed .le-ctrl{flex:1 1 12.5rem;min-width:10.5rem;}
+  .lab-embed .le-cl{display:flex;justify-content:space-between;align-items:baseline;font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.01em;color:var(--soft);margin:0 0 .25rem;}
+  .lab-embed .le-cl .v{color:var(--ink);font-variant-numeric:tabular-nums;font-feature-settings:"tnum";}
+  .lab-embed input[type=range]{width:100%;height:2px;accent-color:#785e34;cursor:pointer;margin:.15rem 0;}
+  .lab-embed .le-readouts{display:flex;flex-wrap:wrap;gap:.9rem 1.6rem;margin:1.05rem 0 .2rem;padding:.85rem 0 0;border-top:1px solid var(--hair);}
+  .lab-embed .le-ro{min-width:4.3rem;}
+  .lab-embed .le-ro .k{display:block;font-family:"Fraunces",serif;font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin:0 0 .16rem;}
+  .lab-embed .le-ro .v{font-family:"Fraunces",serif;font-weight:430;font-size:1.32rem;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums;font-feature-settings:"tnum";}
+  .lab-embed .le-ro.hot .v{color:#785e34;}
+  .lab-embed .le-tag{display:inline-block;font-family:"Fraunces",serif;font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:#785e34;border:1px solid rgba(120,94,52,.34);border-radius:2px;padding:.08rem .38rem;vertical-align:.1em;margin:0 .12rem;}
+  .lab-embed .le-mr{stroke:var(--ink);stroke-width:1.7;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+  .lab-embed .le-mc{stroke:#785e34;stroke-width:1.7;fill:none;stroke-linecap:round;}
+  .lab-embed .le-opt{stroke:var(--faintest);stroke-width:1.1;fill:none;stroke-dasharray:3 3.5;}
+  .lab-embed .le-q{stroke:var(--soft);stroke-width:1.2;fill:none;}
+  .lab-embed .le-gain{fill:#785e34;opacity:.13;stroke:none;}
+  .lab-embed .le-loss{fill:#9d3b2e;opacity:.20;stroke:none;}
+  .lab-embed .le-pt{fill:var(--ink);}
+  .lab-embed .le-lblk{font-family:"Fraunces",serif;font-size:9.6px;fill:#785e34;letter-spacing:.02em;}
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#ne-contents">Complete contents</a><a href="../editions.html#volume-share">The Share · both editions</a><a href="../essays/numeraire-xxii-the-share.html">Expanded essays</a></div></nav>
+<div id="progress" aria-hidden="true"></div>
+<div id="topbar" aria-hidden="true"><div class="tb-in">
+  <span class="tb-l">Numéraire <span>· The Share</span></span>
+  <span class="tb-r" id="tb-plate">Volume XXII</span>
+</div></div>
+
+<div class="frame">
+
+  <header class="vol-title">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="rise d1">
+      <span class="imprint">Numéraire</span>
+      <div class="vol-no">Volume XXII &middot; № XXII</div>
+    </div>
+    <h1 class="vol-name rise d2">The Share</h1>
+    <div class="vol-sym rise d3" aria-hidden="true"><span>Sh</span></div>
+    <div class="vol-coords rise d3">Group V &middot; The Aggregates</div>
+    <p class="vol-gloss rise d3">labor against capital</p>
+    <p class="vol-epigraph rise d4">
+      <span class="lead">The question of the volume</span>
+      Is the split between labor and capital set by productivity, or by power?
+    </p>
+    <div class="vol-status rise d4">in print &middot; twelve plates</div>
+  </header>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <section class="argument measure reveal" aria-labelledby="arg-h">
+    <div class="part-head">
+      <div class="part-kicker">Numéraire &middot; Volume XXII</div>
+      <h2 class="part-title" id="arg-h">The Argument</h2>
+    </div>
+    <p class="lede">There is a question older than economics and, for the classical economists who founded the subject, prior to all its others: not how a society's resources are allocated, but how its product is divided. David Ricardo put it as plainly as it has ever been put. To determine the laws that regulate the distribution of the produce of the earth among the three classes of the community — the landlord who takes rent, the capitalist who takes profit, the laborer who takes wages — was, he wrote, the principal problem in political economy. Allocation, the matter that would later consume the discipline, he treated as a detail; distribution was the thing. This volume returns the old question to the center, at the scale of a whole economy, and finds it as open, and as charged, as Ricardo left it.</p>
+    <p>The object is the functional distribution of income: the division of everything a nation produces among the factors that produce it — in the modern shorthand, between labor and capital, the wage bill on the one side and profit, interest, and rent on the other. It is to be distinguished from the personal distribution, the spread of income across households, though the two will prove, by the volume's end, to have re-fused. Labor's share of the national product is the single number this volume circles, and it is the number into which the two volumes that point here empty themselves. <em>The Wage</em> asked what sets the price of labor; <em>The Surplus</em> asked who keeps the value an exchange creates. <em>The Share</em> is the ratio of the one to the whole — the national, aggregated answer to the question both of those volumes hand on: of all the value labor helps to create, what portion does labor receive?</p>
+    <p>For most of the twentieth century the answer seemed reassuringly fixed. Labor's share hovered near two-thirds, decade upon decade, steady enough that economists enshrined its constancy as one of the deep regularities of growth, and Keynes called it a bit of a miracle. The constancy underwrote a comfortable picture: labor and capital rising together, each taking its settled cut of a growing pie, the division a fact of nature about which there was little to say. This volume is, in large part, the dismantling of that picture — first the discovery that the constancy was in part an artifact of the very mathematics used to describe it, and then the plain fact that, artifact or not, it has ended. Since around 1980, across the advanced world, labor's share has fallen.</p>
+    <aside class="pull">The fall is the macroeconomic shadow of everything the two preceding volumes examined seam by seam — and it forces, for a whole economy at once, the question those volumes could only pose: is the division of the product a reading of productivity, or a settlement of power?</aside>
+    <p>The plates trace the two answers and the contest between them. They begin with the classical question and the myth of the constant share, and with the production function whose mathematics made the share look constant by assumption. They set out the orthodox theory — that each factor earns its marginal product, so that the shares are technologically given and, the orthodoxy added, deserved — and then the most remarkable episode in the modern history of the subject, the capital controversy, in which that theory was shown, by its own most rigorous practitioners, to rest on a notion of aggregate capital that cannot in general be made coherent. With the orthodox account of the share unmoored in theory, the volume turns to the alternatives it leaves room for: the classical and Sraffian determination, in which technology fixes everything but the division, leaving one degree of freedom to be filled from outside; and the conflict theory, in which that degree of freedom is filled by the balance of power between labor and capital — by unemployment, by combination, by the degree of monopoly. Then the empirical decline itself, and its leading modern explanation, the rise of market power and the superstar firm, which recasts the falling labor share as the rising share not of capital but of pure profit. Then the re-merging of the functional and the personal, in the work of Piketty and the return of concentrated wealth. And then, before the synthesis, the plate the project's conscience requires: that the labor share is not a fact read off the world but a construct assembled from accounting choices, each of which quietly embeds the theory it is meant to test.</p>
+    <p>The thesis may be stated plainly, so the plates can earn it. The functional distribution of income is not a technological datum but a settlement — the largest and most consequential verdict in this entire table, the aggregate of every bargain struck in every market the other volumes describe. Where the orthodox conditions hold, it tracks the marginal products and wears the face of nature; where they fail, as the capital controversy showed they must in general, it is filled by power, and the share moves with the strength of the parties rather than the technology of production. To read it as a fact of nature is to naturalize the distribution of power that produced it. The share is the verdict the whole series was built to make legible — and it remains, as in honesty it must, an open argument.</p>
+  </section>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <section class="contents reveal" aria-labelledby="toc-h">
+    <div class="part-head">
+      <div class="part-kicker">The twelve plates of this volume</div>
+      <h2 class="part-title" id="toc-h">The Plates</h2>
+    </div>
+    <ol class="toc">
+      <li><a href="#plate-i"><span class="toc-n">i</span><span class="toc-t">The Question</span><span class="toc-g">distribution as the principal problem; Ricardo's three classes</span></a></li>
+      <li><a href="#plate-ii"><span class="toc-n">ii</span><span class="toc-t">The Constant</span><span class="toc-g">Bowley's Law, Kaldor's facts, and the miracle of the steady share</span></a></li>
+      <li><a href="#plate-iii"><span class="toc-n">iii</span><span class="toc-t">The Cobb–Douglas</span><span class="toc-g">why the share looked constant; substitution and its elasticity</span></a></li>
+      <li><a href="#plate-iv"><span class="toc-n">iv</span><span class="toc-t">The Marginal Product</span><span class="toc-g">the orthodox theory; Clark, Wicksteed, and the adding-up</span></a></li>
+      <li><a href="#plate-v"><span class="toc-n">v</span><span class="toc-t">The Two Cambridges</span><span class="toc-g">the capital controversy, and the unmaking of aggregate capital</span></a></li>
+      <li><a href="#plate-vi"><span class="toc-n">vi</span><span class="toc-t">The Frontier</span><span class="toc-g">the Sraffian surplus; the wage–profit tradeoff and the open degree of freedom</span></a></li>
+      <li><a href="#plate-vii"><span class="toc-n">vii</span><span class="toc-t">The Conflict</span><span class="toc-g">the reserve army, Kalecki, and distribution as the balance of power</span></a></li>
+      <li><a href="#plate-viii"><span class="toc-n">viii</span><span class="toc-t">The Decline</span><span class="toc-g">labor's falling share since 1980, and the contest of explanations</span></a></li>
+      <li><a href="#plate-ix"><span class="toc-n">ix</span><span class="toc-t">The Superstar</span><span class="toc-g">market power, markups, and the rise of pure profit</span></a></li>
+      <li><a href="#plate-x"><span class="toc-n">x</span><span class="toc-t">The Person</span><span class="toc-g">from functional to personal; Piketty, wealth, and r &gt; g</span></a></li>
+      <li><a href="#plate-xi"><span class="toc-n">xi</span><span class="toc-t">The Measure</span><span class="toc-g">what the share is made of; self-employment, housing, depreciation</span></a></li>
+      <li><a href="#plate-xii"><span class="toc-n">xii</span><span class="toc-t">The Verdict</span><span class="toc-g">the largest verdict of all; toward The Power, The Rent, The Growth</span></a></li>
+    </ol>
+  </section>
+
+  <main class="plates" id="plates">
+
+    <!-- ===================== PLATE I ===================== -->
+    <section class="plate reveal" id="plate-i" data-label="Plate i · The Question">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">i</div>
+        <p class="plate-kicker">Plate the First &middot; The Aggregates &middot; № XXII</p>
+        <h3 class="plate-title">The Question</h3>
+        <p class="plate-gloss">distribution as the principal problem; Ricardo's three classes</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>of everything a nation produces, what governs the portion that goes to those who merely own?</q></div>
+      <div class="plate-body">
+        <p>The discipline that now spends its days on allocation — how scarce means are matched to competing ends — was founded on a different question, which its founders thought the deeper of the two. David Ricardo stated it at the opening of his great work and repeated it in his letters with the emphasis of a man naming his life's subject: to determine the laws that regulate the distribution of the produce of the earth among the three classes of the community is, he wrote, the principal problem in political economy. Not how the produce is made, nor how it is exchanged, but how it is <em>divided</em> — among the landlord who takes rent, the capitalist who takes profit, and the laborer who takes wages. For Ricardo the question of distribution was not a corollary of the theory of value; it was the point of having a theory at all.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 200" role="img" aria-labelledby="fs1t fs1d">
+              <title id="fs1t">The functional division of the product</title>
+              <desc id="fs1d">A bar representing the whole national product, divided into three segments: wages to labor, profit to capital, and rent to land. The modern volume collapses the three into labor against capital.</desc>
+              <defs>
+                <pattern id="hatchSh1" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                  <line class="hatch-line" x1="0" y1="0" x2="0" y2="6"/>
+                </pattern>
+              </defs>
+              <rect x="60" y="74" width="205" height="50" class="fill-cs"/>
+              <rect x="265" y="74" width="77" height="50" fill="url(#hatchSh1)"/>
+              <rect x="342" y="74" width="38" height="50" class="fill-dwl"/>
+              <rect x="60" y="74" width="320" height="50" fill="none" stroke="var(--ink)" stroke-width="1.3"/>
+              <line x1="265" y1="74" x2="265" y2="124" stroke="var(--ink)" stroke-width="1"/>
+              <line x1="342" y1="74" x2="342" y2="124" stroke="var(--ink)" stroke-width="1"/>
+              <text class="lbl-ax" x="220" y="56" text-anchor="middle">THE NATIONAL PRODUCT</text>
+              <text class="lbl" x="162" y="103" text-anchor="middle">wages</text>
+              <text class="lbl" x="303" y="103" text-anchor="middle">profit</text>
+              <text class="lbl-sm" x="162" y="142" text-anchor="middle">to labor</text>
+              <text class="lbl-sm" x="303" y="142" text-anchor="middle">to capital</text>
+              <text class="lbl" x="380" y="142" text-anchor="end">rent &middot; to land</text>
+              <line x1="361" y1="124" x2="361" y2="135" stroke="var(--faintest)" stroke-width="1"/>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 1.</span> Ricardo's question: how the produce of the earth divides among the three classes — wages to the laborer, profit to the capitalist, rent to the landowner. The modern volume collapses the three into two — labor's share against capital's — and asks what fixes the division.</figcaption>
+        </figure>
+        <p>The modern subject keeps the question but simplifies its terms. Land, which loomed so large for Ricardo's agrarian Britain, is folded into capital, and the three-class division becomes a two-way split: labor's share of the national product against the share of capital — wages and salaries on one side, profit, interest, and rent on the other. The figure shows the division as a single bar, the whole of what a nation makes carved into the portions its makers and owners carry off. The labor share is the fraction of that bar painted as wages, and the whole of this volume is an inquiry into what determines where the dividing lines fall — and, more pointedly, into whether they fall where they do because of what each factor contributes, or because of the power each can bring to bear.</p>
+        <p>It is worth pausing on why distribution, and not allocation, sat at the center for the classics, because the reason is the volume's reason too. Allocation is a question about efficiency — about getting the most from given means — and on efficiency, as <em>The Surplus</em> argued at length, a competitive economy does remarkably well. Distribution is a question about justice and about power, and on those a competitive economy is, as that volume also argued, silent: it can be perfectly efficient and grotesquely unequal in the same breath. The classics kept distribution central because they understood that the size of the product and its division are different questions, and that the second is the one over which societies actually fight. This volume is the table's fullest reckoning with that second question, asked of the whole economy at once — and it receives that question, already sharpened, from the two volumes that name it as their destination.</p>
+        <aside class="edge"><span class="lead">the edge</span> The collapse of Ricardo's three classes into two is a simplification with consequences, and the volume will pay for it twice. Land and the pure rent of ownership do not in fact behave like produced capital — a point <em>The Rent</em> presses and the ninth and tenth plates here recover — and lumping them together can hide that much of what the accounts call "capital's share" is rent rather than a return to any productive asset. The two-factor framing is a convenience, not a truth, and the volume's later plates will have to take it apart again.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE II ===================== -->
+    <section class="plate reveal" id="plate-ii" data-label="Plate ii · The Constant">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">ii</div>
+        <p class="plate-kicker">Plate the Second &middot; The Aggregates &middot; № XXII</p>
+        <h3 class="plate-title">The Constant</h3>
+        <p class="plate-gloss">Bowley's Law, Kaldor's facts, and the miracle of the steady share</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>for a century labor's share scarcely moved — was that a law of nature, or a coincidence awaiting its break?</q></div>
+      <div class="plate-body">
+        <p>For the first half of the twentieth century, the answer to Ricardo's question appeared to be that there was no question — that the division of the product was simply, mysteriously, fixed. Arthur Bowley, assembling the statistics of British national income, found labor's share so steady across the decades that the regularity took his name: Bowley's Law, the constancy of the share of wages in the national product. The finding was striking precisely because nothing in theory required it; the share might have drifted anywhere, and instead it sat, decade upon decade, near the same two-thirds.</p>
+        <p>Nicholas Kaldor raised the observation to a principle. Among the half-dozen "stylized facts" of economic growth that he catalogued in the late 1950s — the regularities any theory of growth ought to reproduce — were the rough constancy of the rate of profit, of the ratio of capital to output, and, crowning them, of the shares of labor and capital in national income. The facts were stylized, idealizations meant to be roughly rather than exactly true, but they hardened into foundations. The workhorse models of modern growth were built to honor them; and the constancy of the share in particular did a great deal of quiet ideological work, for it made distribution look like a parameter of nature rather than an outcome of struggle. If labor's share is fixed, then labor and capital rise together, each taking its appointed cut of an expanding pie, and there is nothing much to fight about — and nothing much for economics to say.</p>
+        <aside class="pull">Keynes called the steadiness of labor's share a bit of a miracle. A miracle is exactly the kind of thing that turns out, on inspection, not to have happened as described.</aside>
+        <p>John Maynard Keynes, contemplating the stability of labor's share in 1939, called it a bit of a miracle — and the phrase is more apt than he intended, for miracles, examined closely, tend to dissolve into ordinary events misdescribed. The constancy would prove vulnerable on three fronts, each developed in a later plate. It may have been, in part, an artifact of the mathematics economists used to measure it, a constancy assumed by the production function and then "discovered" in the data it had been fitted to — the burden of the next plate. It was, even taken at face value, the constancy of a particular era and a particular set of institutions — the mid-century decades of strong unions, regulated finance, and managed trade — rather than a timeless law. And it has, in any case, ended: since around 1980 the labor share has fallen across the advanced economies, which settles the matter, for whatever held the share roughly steady for a season was plainly contingent, and not a law at all. The miracle expired; and its expiry is the event this volume exists to explain.</p>
+        <aside class="edge"><span class="lead">the edge</span> Even at its height the constancy was always rougher than the slogan, and the careful statisticians knew it: the share wobbled, the measurement was crude, and the strong claim of an exactly constant share was an idealization that Kaldor himself offered as approximate. What the plate establishes is not that the share was ever truly fixed but that the <em>belief</em> in its fixity organized the field — and that the belief has not survived the evidence of the last four decades. The interesting question was never whether the share is exactly constant, which it is not, but what moves it when it moves; and to that question the constancy doctrine gave, by construction, no answer at all.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE III ===================== -->
+    <section class="plate reveal" id="plate-iii" data-label="Plate iii · The Cobb–Douglas">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">iii</div>
+        <p class="plate-kicker">Plate the Third &middot; The Aggregates &middot; № XXII</p>
+        <h3 class="plate-title">The Cobb–Douglas</h3>
+        <p class="plate-gloss">why the share looked constant; substitution and its elasticity</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what kind of economy keeps the share constant no matter how much capital it piles up?</q></div>
+      <div class="plate-body">
+        <p>The constancy of the previous plate has a mathematical twin, and the resemblance is so close as to be nearly an identity. In 1928 Charles Cobb and Paul Douglas proposed the production function that bears their names — output as a product of capital and labor each raised to a fixed power — and fitted it to the data of American manufacturing. Under competitive factor pricing, that function has a property that should give the reader of the last plate pause: the share of each factor is exactly the exponent attached to it, and so is constant, no matter how much capital is accumulated relative to labor. Pile capital ever higher; the labor share does not budge. The Cobb–Douglas function does not merely permit a constant share — it guarantees one.</p>
+        <p>This is the first crack in the miracle. If the function economists chose to describe the economy has constant shares built into its very form, then finding constant shares in data fitted with that function is perilously close to finding what one assumed. The suspicion was sharpened by Henry Phelps Brown and, more recently and more sharply, by Jesus Felipe and John McCombie: because the national accounts satisfy an identity — value added is, by definition, the sum of the wage bill and profits — a Cobb–Douglas regression can appear to fit the aggregate data, and to "confirm" both marginal-productivity pricing and constant shares, even when no aggregate production function of that kind exists at all. The good fit may register the accounting identity rather than any law of technology. The constancy of the share, in short, was not so much a discovery about the world as a property of the curve drawn through it.</p>
+        <aside class="pull">The constancy was not a discovery about the world so much as a property of the curve drawn through it.</aside>
+        <p>To see what is at stake one must let the function generalize. The Cobb–Douglas is the special case, in a wider family, where the elasticity of substitution between capital and labor — the ease with which one can be swapped for the other as their relative price changes — is exactly one. The figure shows why that single number governs everything. If the elasticity is one, capital deepening leaves the share untouched, and the economy keeps its constant share by construction. If the elasticity exceeds one, capital and labor are easy substitutes, and accumulating capital — even as its marginal product falls — raises capital's share and lowers labor's. If the elasticity is below one, they are complements, and accumulation does the reverse, raising labor's share. Whether the relentless accumulation of capital shifts the division toward capital or toward labor is thus not a matter of principle but of a single empirical parameter — and the answer decides how to read the modern decline.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="fs2t fs2d">
+              <title id="fs2t">The elasticity of substitution and the labor share</title>
+              <desc id="fs2d">Labor share against capital per worker, for three values of the elasticity of substitution. At sigma equal to one the share is flat; above one it falls as capital deepens; below one it rises. All three pass through a common point.</desc>
+              <line class="ax" x1="60" y1="252" x2="404" y2="252"/>
+              <line class="ax" x1="60" y1="252" x2="60" y2="44"/>
+              <line class="guide" x1="220" y1="160" x2="220" y2="252"/>
+              <line class="curve" x1="60" y1="160" x2="380" y2="160"/>
+              <line class="curve2" x1="60" y1="112" x2="380" y2="208"/>
+              <line class="curve2" x1="60" y1="208" x2="380" y2="112"/>
+              <circle cx="220" cy="160" r="2.6" fill="var(--ink)"/>
+              <text class="lbl" x="384" y="116" text-anchor="end">σ &lt; 1</text>
+              <text class="lbl" x="384" y="156" text-anchor="end">σ = 1</text>
+              <text class="lbl" x="384" y="212" text-anchor="end">σ &gt; 1</text>
+              <text class="lbl-sm" x="220" y="269" text-anchor="middle">more capital per worker →</text>
+              <text class="lbl-ax" transform="rotate(-90 28 150)" x="28" y="150" text-anchor="middle">LABOR SHARE</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 2.</span> How capital deepening moves the labor share depends on the elasticity of substitution σ. At σ = 1 — Cobb–Douglas — the share does not move at all, which is why that function made constancy look like a law. Above one, easy substitution lets cheap capital crowd labor's share down; below one, it lifts it. The recent decline is consistent with σ &gt; 1.</figcaption>
+        </figure>
+        <p>This is precisely the reading that Loukas Karabarbounis and Brent Neiman offered, in 2014, for the global decline of the labor share. The relative price of investment goods has fallen steeply for decades — machines, and above all computers, have grown cheap — and if capital and labor are gross substitutes, with an elasticity above one, then cheap capital is substituted in for labor, and capital's share rises as labor's falls. The decline, on this account, is not a failure of competition or a shift of power but the orderly response of a competitive economy to a change in relative prices, working through an elasticity that happens to exceed one. It is the orthodoxy's own explanation of the fall — and, like the orthodoxy, it stands or falls on a parameter the profession has not agreed upon.</p>
+        <aside class="edge"><span class="lead">the edge</span> The value of the elasticity of substitution is genuinely uncertain and hotly contested; estimates fall on both sides of one, depending on the time horizon, the level of aggregation, and what is counted as capital, and the Karabarbounis–Neiman explanation lives or dies on its being above one over the long run. Worse, the Felipe–McCombie critique suggests that an aggregate elasticity of substitution may not be a well-defined technological object at all, behind the accounting identity that lets such functions seem to fit — which is exactly the doubt the next plate raises to a demonstration.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE IV ===================== -->
+    <section class="plate reveal" id="plate-iv" data-label="Plate iv · The Marginal Product">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">iv</div>
+        <p class="plate-kicker">Plate the Fourth &middot; The Aggregates &middot; № XXII</p>
+        <h3 class="plate-title">The Marginal Product</h3>
+        <p class="plate-gloss">the orthodox theory; Clark, Wicksteed, and the adding-up</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if each factor is paid what its last unit adds, do the payments exhaust the product — or fall short, or overrun?</q></div>
+      <div class="plate-body">
+        <p>The orthodox theory of the functional distribution is the second plate of <em>The Wage</em> raised to the scale of the whole economy. John Bates Clark extended the marginal principle from the wage of labor to the return of every factor: each is paid the value of its marginal product, so that capital's share is the marginal product of capital times the quantity of capital, divided by output, and labor's share is the corresponding expression for labor. The division of the product is, on this account, a matter of pure technology — the partial derivatives of the production function, evaluated at the quantities employed — and Clark, never shy of the moral implication, drew it out: each factor, and so each class, receives precisely what it contributes to the product. Distribution is not robbery but desert; the share is earned.</p>
+        <p>An obvious worry attends the theory, and its resolution is one of the prettier facts in economics. If every factor is paid the value of its last unit's contribution, why should those payments happen to use up exactly the whole product — no more, leaving the firm insolvent, and no less, leaving an unexplained surplus? Philip Wicksteed posed this "adding-up problem" in 1894, and the answer is a theorem of pure mathematics, due to Euler. If the production function exhibits constant returns to scale — if doubling every input exactly doubles output, the natural assumption for an economy that can replicate its activities — then the sum of each input multiplied by its marginal product equals total output, identically. Pay each factor its marginal product under constant returns, and the product is exhausted to the penny: the shares are the output elasticities of the factors, and they sum to one, with nothing left over and nothing wanting. The theory is, in this precise sense, internally consistent.</p>
+        <aside class="pull">Euler's theorem makes the shares add to one. It does not make them add to justice.</aside>
+        <p>The achievement is genuine, and it should be granted before it is qualified: here is a complete and consistent account in which the entire product is explained by the contributions of the factors that made it, the arithmetic closing exactly. But the authority the theory has carried rests on two foundations, and both will give way. The first is competition — that factors are paid their marginal products requires the price-taking, frictionless markets that <em>The Wage</em>'s monopsony plate and this volume's plate on market power both deny; where employers or firms have power, factors are paid less than their products, and the adding-up leaves a residue of pure profit the theory cannot name. The second foundation is deeper and stranger: to speak of "the marginal product of capital" at all, one must be able to measure the quantity of capital whose product is in question — and that, the next plate shows, cannot in general be done. Clark's mathematics is sound. His leap from <em>paid its marginal product</em> to <em>paid what it deserves</em> is a moral claim wearing a theorem's clothes; and even the theorem, at the level of the aggregate, rests on a measurement that the most rigorous critics of the theory were about to prove impossible.</p>
+        <aside class="edge"><span class="lead">the edge</span> Euler's theorem is exact, and the marginal-productivity theory of distribution is internally consistent under constant returns and competition; this is not in dispute. What is in dispute is its application to a real economy — which is neither perfectly competitive nor, it will turn out, possessed of a measurable aggregate capital — and, above all, the moral gloss that makes "paid its marginal product" mean "paid its just deserts." The marginal product of labor depends on how much capital labor is given to work with, which depends on the distribution of ownership; to justify that distribution by the marginal products it produces is to argue in a circle the theory never acknowledges.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE V ===================== -->
+    <section class="plate reveal" id="plate-v" data-label="Plate v · The Two Cambridges">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">v</div>
+        <p class="plate-kicker">Plate the Fifth &middot; The Aggregates &middot; № XXII</p>
+        <h3 class="plate-title">The Two Cambridges</h3>
+        <p class="plate-gloss">the capital controversy, and the unmaking of aggregate capital</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>to know what capital earns, you must know how much capital there is — but can that quantity be measured at all?</q></div>
+      <div class="plate-body">
+        <p>The orthodox theory of the share rests, at the aggregate, on a quantity it cannot define, and the demonstration of this — conducted between Cambridge in England and Cambridge in Massachusetts across the 1950s and 1960s — is the most consequential and least known episode in the modern theory of distribution. The difficulty is deceptively simple to state. To say that capital earns its marginal product, one must speak of the <em>quantity</em> of capital whose marginal product is in question. But capital is not a substance; it is a heterogeneous heap of produced things — looms, furnaces, buildings, code — that can be added into a single magnitude only by valuing them, in money. And the value of a capital good is the present worth of the future earnings it yields, which depends on the rate of profit used to discount them. The quantity of capital thus depends on the rate of profit — and the rate of profit is precisely what the marginal product of capital was supposed to determine. The theory must know the rate of profit before it can measure the capital whose marginal product is meant to explain the rate of profit. It reasons in a circle.</p>
+        <p>Joan Robinson opened the attack in the 1950s; Piero Sraffa supplied, in 1960, the rigorous apparatus; and the younger economists of the English Cambridge — Pasinetti, Garegnani, and others — pressed it home. The defenders, at the Massachusetts Institute of Technology, were the most formidable in the profession: Paul Samuelson and Robert Solow. Samuelson tried to rescue the aggregate by constructing a "surrogate production function," an as-if aggregate that would behave as the simple theory required. And then the English Cambridge produced the results that broke it — results so counterintuitive that they had to be demonstrated by explicit example before they were believed.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="fs3t fs3d">
+              <title id="fs3t">Reswitching of techniques</title>
+              <desc id="fs3d">Two wage-profit frontiers, for techniques alpha and beta, crossing at two switch points. Beta pays the higher wage at both low and high rates of profit, alpha in between, so the chosen technique switches from beta to alpha and back to beta as the rate of profit rises.</desc>
+              <line class="ax" x1="60" y1="252" x2="404" y2="252"/>
+              <line class="ax" x1="60" y1="252" x2="60" y2="44"/>
+              <line class="curve" x1="60" y1="66" x2="380" y2="246"/>
+              <polyline class="curve2" fill="none" points="60,47 92,74 124,99 140,111 156,122 188,143 220,161 252,178 284,192 316,204 348,214 380,222"/>
+              <circle cx="140" cy="111" r="2.6" fill="var(--ink)"/>
+              <circle cx="284" cy="192" r="2.6" fill="var(--ink)"/>
+              <text class="lbl" x="366" y="246">α</text>
+              <text class="lbl" x="366" y="214">β</text>
+              <text class="lbl-i" x="92" y="60">β cheaper</text>
+              <text class="lbl-i" x="208" y="138">α cheaper</text>
+              <text class="lbl-i" x="330" y="200">β again</text>
+              <text class="lbl-sm" x="140" y="101" text-anchor="middle">switch</text>
+              <text class="lbl-sm" x="284" y="182" text-anchor="middle">switch</text>
+              <text class="lbl-ax" x="360" y="270" text-anchor="middle">RATE OF PROFIT  r</text>
+              <text class="lbl-ax" transform="rotate(-90 28 150)" x="28" y="150" text-anchor="middle">WAGE  w</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 3.</span> Each technique's wage–profit frontier gives the highest wage compatible with each rate of profit; the economy operates on the outer envelope. Here technique β pays more at both low and high rates of profit, with α in between — so as the rate of profit rises, the cost-minimizing technique runs from β to α and back to β. Techniques cannot be ranked by capital intensity along the rate of profit, and the marginal-product story of capital's return cannot be saved.</figcaption>
+        </figure>
+        <p>The first result is reswitching. A technique of production — a particular recipe of inputs — may be the most profitable choice at a low rate of profit, give way to a different technique as the rate of profit rises, and then <em>return</em> as the most profitable choice when the rate of profit rises higher still. The figure shows it: technique β is chosen at both ends of the range, α in the middle, the economy switching from one to the other and back. The second result, capital-reversing, is its companion: a lower rate of profit, which the simple theory says should coax the economy toward more "capital-intensive" methods, can instead be associated with <em>less</em> capital per worker. Together these break the spine of the marginal-productivity theory. That theory needs the demand for capital to slope downward — a lower price of capital (a lower rate of profit) calling forth a greater quantity — exactly as the demand for any factor is supposed to. Reswitching and capital-reversing show that the relationship need not be monotonic at all: one cannot line techniques up from less to more capital-intensive as the rate of profit falls, because the same technique can sit at both ends of the line. There is no well-behaved demand curve for aggregate capital, and so no reading of capital's share off its scarcity.</p>
+        <aside class="pull">The same technique can be the most profitable at both a high and a low rate of profit — and with that single fact, the demand curve for capital, and the theory built upon it, dissolves.</aside>
+        <p>What is remarkable is that the defenders conceded. Samuelson, in a 1966 paper with the wry title of a summing-up, granted that reswitching is logically possible, that the phenomena his critics described were real, and that the simple parable told by the founders of the marginal theory — capital as a single substance whose return measures its scarcity — could not be universally valid. It was as clean a surrender as the discipline has witnessed, and its implication for this volume is exact and large. If there is no coherent aggregate quantity of capital, then there is no aggregate marginal product of capital, and the claim that capital's share of the national product is fixed by technology — that the division between wages and profits is read off the production function — has no general foundation. The orthodox account of the share, so consoling and so elegant, was shown by its own most rigorous practitioners to rest on a quantity that cannot in general be made to exist.</p>
+        <p>The doors this opens are the subject of the plates that follow. If technology does not fix the division between wages and profits, then something else must — and the candidates are the ones this table has been assembling all along: the classical surplus, with its open degree of freedom; the balance of power between organized labor and organized capital; the degree of monopoly in the product market. The capital controversy did not prove that distribution is governed by power. It proved that the theory which said distribution is governed by technology cannot, in general, be true — and that is enough to make the question of power live again. <em>The Wage</em> and <em>The Surplus</em> both flagged this controversy at their edges; here it stands at the center, the hinge on which the whole inquiry into the share turns from technology toward power.</p>
+        <aside class="edge"><span class="lead">the edge</span> The logical results of the capital controversy are not in dispute — reswitching and capital-reversing are possible, and Samuelson conceded as much. What remains contested is their <em>empirical</em> importance: defenders of applied aggregate models argue that such perversities, while logically possible, may be rare or small in practice, so that aggregate production functions remain useful approximations even if they are not exact truths. The critics reply that an approximation resting on an incoherent concept is no foundation for a theory of justice in distribution, whatever its convenience for forecasting. Both can be right at once: the aggregate production function may be a serviceable empirical device and a worthless moral one — useful for predicting output, useless for proving that capital earns what it deserves.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE VI ===================== -->
+    <section class="plate reveal" id="plate-vi" data-label="Plate vi · The Frontier">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">vi</div>
+        <p class="plate-kicker">Plate the Sixth &middot; The Aggregates &middot; № XXII</p>
+        <h3 class="plate-title">The Frontier</h3>
+        <p class="plate-gloss">the Sraffian surplus; the wage–profit tradeoff and the open degree of freedom</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if technology fixes the frontier but not the point upon it, what chooses the point?</q></div>
+      <div class="plate-body">
+        <p>If technology cannot pin the division between wages and profits — and the capital controversy has just shown that, in general, it cannot — then the question becomes what does, and the classical tradition, made rigorous by Piero Sraffa, gives the cleanest answer the subject possesses. In his treatise of 1960 on the production of commodities by means of commodities, the same work <em>The Surplus</em> drew upon, Sraffa showed that once the technical methods of production are given — the recipe of inputs for each output — the system determines all relative prices and one of the two distributive variables, but only once the <em>other</em> distributive variable is supplied from outside. Fix the real wage, and the rate of profit and all prices follow; fix the rate of profit, and the real wage and all prices follow. The technology determines everything but the division itself. There is exactly one degree of freedom, and the economy's own mechanics do not close it.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="fs4t fs4d">
+              <title id="fs4t">The wage-profit frontier</title>
+              <desc id="fs4d">A downward-sloping frontier between the real wage and the rate of profit for a given technique. At a zero rate of profit the whole net product goes to labor; at a zero wage the whole surplus goes to capital. A point upon the frontier is marked; which point is chosen lies outside the technology.</desc>
+              <line class="ax" x1="60" y1="252" x2="404" y2="252"/>
+              <line class="ax" x1="60" y1="252" x2="60" y2="44"/>
+              <path class="curve" d="M60,78 C150,150 235,205 342,250"/>
+              <line class="guide" x1="60" y1="165" x2="190" y2="165"/>
+              <line class="guide" x1="190" y1="165" x2="190" y2="252"/>
+              <circle cx="190" cy="165" r="2.8" fill="var(--ink)"/>
+              <line x1="150" y1="150" x2="232" y2="186" stroke="var(--soft)" stroke-width="1"/>
+              <text class="lbl" x="50" y="168" text-anchor="end">w*</text>
+              <text class="lbl" x="190" y="269" text-anchor="middle">r*</text>
+              <text class="lbl-sm" x="66" y="74">all to labor</text>
+              <text class="lbl-sm" x="342" y="244" text-anchor="end">all to capital</text>
+              <text class="lbl-i" x="238" y="140">the point is chosen</text>
+              <text class="lbl-i" x="252" y="156">by power, not technique</text>
+              <text class="lbl-ax" x="360" y="270" text-anchor="middle">RATE OF PROFIT  r</text>
+              <text class="lbl-ax" transform="rotate(-90 28 150)" x="28" y="150" text-anchor="middle">REAL WAGE  w</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 4.</span> For a given technique, the real wage and the rate of profit trade off along a downward frontier: at r = 0 the whole net product goes to labor, at w = 0 the whole surplus to capital. Technology fixes the frontier; it does not fix the point upon it. That single degree of freedom is filled from outside — by the bargain, by custom, by the balance of power. The division is, in the exact sense, open.</figcaption>
+        </figure>
+        <p>The figure gives the degree of freedom its shape. For a given technique there is a frontier — a downward-sloping tradeoff between the real wage and the rate of profit, the one rising only as the other falls. At one extreme, a rate of profit of zero, the whole net product accrues to labor as wages; at the other, a wage of zero, the whole surplus accrues to capital as profit; and between these limits the division slides continuously. The frontier is a zero-sum boundary: given the technique, every gain to labor is a loss to capital, and conversely. Technology, having drawn this frontier, falls silent. It does not say where on the frontier the economy will sit — and since, by the previous plate, no aggregate marginal product can be appealed to, the point must be selected by something the technology does not contain.</p>
+        <aside class="pull">Technology draws the frontier. Power picks the point. The share is what power picks.</aside>
+        <p>What selects the point is, in this tradition, social and institutional. One may take the real wage as given — set by the historical and customary condition of the working class, by what struggle and convention have made the accepted standard of life, the socially determined subsistence of <em>The Wage</em>'s third plate — and let the rate of profit fall out as the residual. Or one may take the rate of profit as given — anchored, some Sraffians argue, by the rate of interest that monetary authorities set — and let the real wage fall out instead. Either way, a distributive variable is fixed from outside the economy's technology, by forces of power, custom, or policy, and the whole division follows from it. This is the formal vindication of everything Smith and Ricardo intuited: the frontier is technology's contribution, the point upon it is power's, and the share is what power, operating within the limits technology sets, finally chooses. It is worth noting, too, that Sraffa built his analysis around a constructed "standard commodity," a composite designed to serve as an invariable measure of value against which the wage–profit tradeoff could be read without distortion — which is to say he was hunting, like this whole series, for an honest numéraire.</p>
+        <aside class="edge"><span class="lead">the edge</span> The Sraffian framework is at once a critique and a reconstruction, and its empirical operationalization is debated; it establishes that distribution has a degree of freedom, but does not, by itself, deliver a determinate number — for that one needs a theory of what fixes the free variable, and the candidates (the bargained real wage, the monetary rate of profit, custom, the degree of monopoly) are several and unsettled. What the frontier establishes with certainty is the liberating negative: that no purely technological theory can pin the share, and so the question <em>productivity or power?</em> is not a confusion to be dissolved but a genuine question with room for both — technology in the drawing of the frontier, power in the choosing of the point.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE VII ===================== -->
+    <section class="plate reveal" id="plate-vii" data-label="Plate vii · The Conflict">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">vii</div>
+        <p class="plate-kicker">Plate the Seventh &middot; The Aggregates &middot; № XXII</p>
+        <h3 class="plate-title">The Conflict</h3>
+        <p class="plate-gloss">the reserve army, Kalecki, and distribution as the balance of power</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if the share is open, what closes it — and whose advantage decides?</q></div>
+      <div class="plate-body">
+        <p>Grant the previous plate — that distribution has a degree of freedom technology leaves open — and the most natural candidate to fill it is the one Smith named at the very start: the balance of power between those who hire and those who work, now writ across a whole economy. Marx gave the mechanism its enduring image. Unemployment, he argued, is not merely a personal misfortune but a systemic instrument: a "reserve army of labor," a standing pool of the unemployed, disciplines those in work, tempers their demands, and holds the wage — and the wage share — down. Some slack in the labor market is not a malfunction from capital's point of view; it is a source of capital's bargaining power. It follows that the share should move with the tightness of the labor market: when unemployment is low and the reserve army thin, labor's hand strengthens and its share rises; when unemployment is high, the reverse.</p>
+        <p>Michał Kalecki drew the political conclusion with a clarity that still startles. In a famous essay of 1943 on the politics of full employment, he reasoned that if governments learned to maintain genuine full employment, the discipline of the sack would vanish, workers' confidence and bargaining power would swell, and the wage share would climb — and that, precisely for this reason, the owning and rentier interests would come to oppose full-employment policy, not on economic grounds but on grounds of class power, generating a political cycle in which booms are cut short before labor grows too strong. The level of unemployment a society chooses to tolerate is, on this view, not a technical datum handed down by the natural rate but a distributional decision in disguise — a verdict on the share, enforced through the macroeconomy. And Kalecki gave the share a second determinant that the rest of this volume will magnify: the "degree of monopoly," the markup of prices over costs that firms' market power allows. The greater that markup, the smaller the wage share — distribution as a function of how much power firms wield in their markets.</p>
+        <aside class="pull">Unemployment is not only a misfortune; it is, for the share, a discipline — and the level a society tolerates is itself a verdict on distribution.</aside>
+        <p>This is the bargaining theory of <em>The Wage</em> and the division of <em>The Surplus</em> lifted to the aggregate. The point on the frontier — labor's share of the whole product — is settled, on this account, by the institutions and the balance of organized power: by the density of unions and the reach of collective bargaining, by minimum wages and employment protections, by the level of unemployment the central bank and the government permit, and by capital's own outside option, the ever-present threat to move production somewhere cheaper. When those forces favor labor, the share rises; when they favor capital, it falls. And the matter does not stop at fairness, for distribution feeds back into growth. The post-Keynesian economists Amit Bhaduri and Stephen Marglin distinguished "wage-led" from "profit-led" economies: in the first, a higher wage share, by financing mass consumption, raises demand and growth; in the second, a higher profit share, by financing investment, does. Whether redistributing toward labor expands or contracts the pie is thus itself contingent — a question this volume hands on to <em>The Growth</em>.</p>
+        <aside class="edge"><span class="lead">the edge</span> The conflict theory is compelling and historically resonant — the share does move with unemployment and with union density in the data — but it resists precise quantification, and the wage-led-versus-profit-led question is empirically contested, with answers that differ by country and method. The reserve-army and Kaleckian mechanisms are real, but they coexist with the substitution and market-power forces of the neighboring plates; the honest position is that the share is over-determined, pushed at once by relative prices, by the degree of monopoly, and by the balance of organized power, and that disentangling their separate contributions is among the hardest problems in the macroeconomics of distribution.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE VIII ===================== -->
+    <section class="plate reveal" id="plate-viii" data-label="Plate viii · The Decline">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">viii</div>
+        <p class="plate-kicker">Plate the Eighth &middot; The Aggregates &middot; № XXII</p>
+        <h3 class="plate-title">The Decline</h3>
+        <p class="plate-gloss">labor's falling share since 1980, and the contest of explanations</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>the miracle ended around 1980 — and the explanations, like this volume's plates, disagree.</q></div>
+      <div class="plate-body">
+        <p>The theoretical plates have established that the share <em>could</em> move — that no law of technology pins it, and that power may fill the degree of freedom that technology leaves open. The empirical plates now establish that it <em>has</em> moved, and decisively. Since around 1980, across the United States and most of the advanced economies, labor's share of the national product has fallen — by several points of the whole, the precise figure depending on choices the eleventh plate will scrutinize. Loukas Karabarbounis and Brent Neiman documented the decline as a global phenomenon, present in the majority of countries and the majority of industries; Michael Elsby and his colleagues traced its American course, with much of the drop concentrated after 2000. The miracle Keynes named has plainly expired.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="fs5t fs5d">
+              <title id="fs5t">The decline of the labor share</title>
+              <desc id="fs5d">Labor's share of national income, roughly steady from the late 1940s to about 1980, then declining through 2020.</desc>
+              <line class="ax" x1="60" y1="252" x2="404" y2="252"/>
+              <line class="ax" x1="60" y1="252" x2="60" y2="44"/>
+              <line class="guide" x1="170" y1="118" x2="170" y2="252"/>
+              <polyline class="curve" fill="none" points="60,124 95,120 130,123 170,118 205,128 250,145 300,160 350,172 380,180"/>
+              <line class="tick" x1="55" y1="118" x2="60" y2="118"/>
+              <line class="tick" x1="55" y1="180" x2="60" y2="180"/>
+              <text class="lbl-sm" x="50" y="121" text-anchor="end">≈64%</text>
+              <text class="lbl-sm" x="50" y="183" text-anchor="end">≈58%</text>
+              <text class="lbl-i" x="300" y="150" text-anchor="end">the decline</text>
+              <text class="lbl" x="170" y="266" text-anchor="middle">~1980</text>
+              <text class="lbl" x="66" y="268">1948</text>
+              <text class="lbl" x="380" y="268" text-anchor="middle">2020</text>
+              <text class="lbl-ax" transform="rotate(-90 28 150)" x="28" y="150" text-anchor="middle">LABOR SHARE</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 5.</span> Labor's share of national income, roughly steady through the post-war decades, has fallen across the advanced economies since about 1980 — by several points of the national product, depending on the measure. The figure is schematic; its exact magnitude, as the eleventh plate insists, turns on choices no diagram can make for you.</figcaption>
+        </figure>
+        <p>The decline is broad — spread across countries and across industries — and that breadth is itself a clue, for it argues that common, global forces are at work rather than the peculiarities of any one nation's laws. The candidate explanations are, almost exactly, the plates of this volume and its companions, each a different answer to the question of what filled the open degree of freedom and pushed the point down the frontier. There is the cheapening of capital working through an elasticity of substitution above one, the orderly-competitive story of the third plate. There is globalization — the entry of hundreds of millions of low-wage workers into the world economy, the offshoring of labor-intensive production, the "China shock" — which weakened the outside option of labor in the rich countries and shifted the bargain against it. There is automation, the machine of <em>The Wage</em> and <em>The Surplus</em>, displacing labor from the tasks capital learned to do. There is the decline of unions and the broad erosion of worker bargaining power, the conflict story of the seventh plate, which some economists now argue is the largest single factor. There is the rise of market power, the subject of the next plate. And there is measurement, the subject of the eleventh — the possibility that some of the decline is an artifact of how the share is counted.</p>
+        <aside class="pull">That the share has fallen is no longer in doubt. Why it has fallen is the most consequential open question in macroeconomics.</aside>
+        <p>These explanations are not rivals to be adjudicated so much as forces to be weighed, for they operate at once and reinforce one another, and the share is, as the seventh plate's edge warned, over-determined. Cheaper capital and weaker unions and fiercer import competition and greater corporate power all push the same way, and disentangling their contributions — assigning the fall its percentages of cause — is the hardest and most contested work in the field. What is not contested is the direction and the rough magnitude: labor's portion of the product has shrunk, and with it the comfortable mid-century picture of labor and capital rising in lockstep. The question Ricardo placed at the center of the subject, and that the constancy doctrine had lulled the profession into ignoring, is once again the live question — and the explanations on offer divide, almost without remainder, into those that credit productivity and those that credit power.</p>
+        <aside class="edge"><span class="lead">the edge</span> Even the existence and size of the decline are sensitive to the measurement choices of the eleventh plate; the consensus that there is a meaningful fall is robust, but its magnitude varies by country, sector, and method, and a minority of careful economists hold it to be smaller, or more concentrated in particular industries (or in housing), than the headline figures suggest. The real disagreement, however, is not over whether the share fell but over <em>why</em> — and that decomposition maps almost exactly onto the disagreements this entire table was built to catalogue.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE IX ===================== -->
+    <section class="plate reveal" id="plate-ix" data-label="Plate ix · The Superstar">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">ix</div>
+        <p class="plate-kicker">Plate the Ninth &middot; The Aggregates &middot; № XXII</p>
+        <h3 class="plate-title">The Superstar</h3>
+        <p class="plate-gloss">market power, markups, and the rise of pure profit</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if the labor share fell, did capital gain it — or did something else?</q></div>
+      <div class="plate-body">
+        <p>The instinctive reading of a falling labor share is that capital's share must have risen to meet it — that the loss to labor is the gain to the owners of machines and buildings. The most important recent work on distribution suggests this reading is largely wrong, and that what rose was something the two-factor framing of the first plate cannot name: not the return to capital, but pure profit, the rent of market power. Jan De Loecker, Jan Eeckhout, and Gabriel Unger estimated that the average markup of price over marginal cost in the American economy rose from about a fifth above cost in 1980 to something over half above cost by the 2010s, the increase concentrated in the most powerful firms. A rising markup is, by definition, a rising share of revenue that goes neither to labor nor to the replacement and return of capital, but to profit in excess of both — economic rent, the surplus that <em>The Surplus</em> taught us to watch.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="fs6t fs6d">
+              <title id="fs6t">The rise of markups</title>
+              <desc id="fs6d">The average markup of price over marginal cost, roughly flat into the 1980s, rising steeply thereafter.</desc>
+              <line class="ax" x1="60" y1="252" x2="404" y2="252"/>
+              <line class="ax" x1="60" y1="252" x2="60" y2="44"/>
+              <line class="guide" x1="170" y1="200" x2="170" y2="252"/>
+              <polyline class="curve" fill="none" points="60,202 100,204 135,200 170,201 210,182 250,160 300,134 350,110 380,98"/>
+              <line class="tick" x1="55" y1="200" x2="60" y2="200"/>
+              <line class="tick" x1="55" y1="100" x2="60" y2="100"/>
+              <text class="lbl-sm" x="50" y="203" text-anchor="end">1.2×</text>
+              <text class="lbl-sm" x="50" y="103" text-anchor="end">1.6×</text>
+              <text class="lbl-i" x="300" y="120" text-anchor="end">pure profit rising</text>
+              <text class="lbl" x="170" y="266" text-anchor="middle">~1980</text>
+              <text class="lbl" x="66" y="268">1960</text>
+              <text class="lbl" x="380" y="268" text-anchor="middle">2016</text>
+              <text class="lbl-ax" transform="rotate(-90 28 150)" x="28" y="150" text-anchor="middle">MARKUP  (price ÷ marginal cost)</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 6.</span> The average markup of price over marginal cost, roughly flat into the 1980s, has risen steeply since — on the most-cited estimates from about 1.2 to over 1.5. A rising markup is the rising share of pure profit. Read against Fig. 5, the falling labor share looks less like capital's gain than like the gain of market power itself. (The magnitude is contested: marginal cost is hard to read from accounts.)</figcaption>
+        </figure>
+        <p>The mechanism by which this lowers the labor share was anatomized by David Autor and his colleagues under a vivid name: the rise of the superstar firm. Industry after industry has grown more concentrated, "winner-take-most," dominated by a handful of extraordinarily productive giants that operate at unusually low labor shares — vast sales spread over relatively few workers, with much of the value flowing to profit, to intellectual property, to the platform itself. As economic activity reallocates toward these superstars, the labor share of the whole economy falls, even if the labor share within the typical firm holds steady; it is the shift of weight toward the low-labor-share giants, the between-firm reallocation, that drags the aggregate down. The fall of labor's share and the rise of corporate concentration are, on this account, one phenomenon seen from two sides.</p>
+        <aside class="pull">The labor share did not fall into capital's hands. It fell, in good part, into the hands of pure profit — the rent of market power.</aside>
+        <p>The reframing this forces is the deepest point of the plate, and it dissolves the very dichotomy the volume began with. When the return to capital is measured properly — using the genuine, and falling, cost of capital rather than treating all non-labor income as capital's — it emerges, in Simcha Barkai's work, that <em>both</em> the labor share and the true capital share declined over recent decades, while the share of pure profit rose substantially. The portion that labor lost did not, for the most part, become capital's; it became rent — the profit of market power, accruing to the owners of brands, patents, networks, and platforms. The contest, properly seen, is therefore not labor against capital at all but labor, together with productive capital, against the rentier: against those who collect the surplus that power, not contribution, commands. This carries the inquiry straight to <em>The Power</em>, the table's tenth element, and to <em>The Rent</em>, its second; and it joins the markup on prices to the markdown on wages of <em>The Wage</em>'s eighth plate, for a firm with power in its product market often wields power in its labor market too, and the two are a single scissors, cutting the labor share from both blades at once.</p>
+        <aside class="edge"><span class="lead">the edge</span> The markup estimates are contested on method — inferring marginal cost from accounting data is treacherous, and critics argue that part of the measured rise reflects growing fixed and intangible costs under competitive pricing rather than market power as such. The superstar-reallocation account is more cleanly identified, but its weight against the other causes of the eighth plate is debated. What is increasingly accepted is the qualitative reframing: that much of the rise in the so-called capital share is pure profit, or rent, rather than a return to productive capital. The magnitude remains open; the dissolution of the simple labor-versus-capital story is, by now, hard to resist.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE X ===================== -->
+    <section class="plate reveal" id="plate-x" data-label="Plate x · The Person">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">x</div>
+        <p class="plate-kicker">Plate the Tenth &middot; The Aggregates &middot; № XXII</p>
+        <h3 class="plate-title">The Person</h3>
+        <p class="plate-gloss">from functional to personal; Piketty, wealth, and r &gt; g</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>the share is a fact about factors — why should a person care which factor wins?</q></div>
+      <div class="plate-body">
+        <p>Everything so far has concerned the functional distribution — the division of the product between labor and capital as <em>factors</em>, abstract categories of production. But people do not live as factors; they live as persons, in households, and what they care about is the personal distribution: how income and wealth are spread across the population, how far the top stands above the bottom. For much of the twentieth century these were treated as two separate inquiries, the functional belonging to the theory of production and the personal to the sociology of inequality. The signal achievement of recent work is to have shown that they are one inquiry, because the bridge between them is a single fact: capital is owned far more unequally than labor is supplied.</p>
+        <p>That fact is the hinge. Labor income, however unequal, is spread across the great mass of people who work; capital income flows overwhelmingly to the top, for the ownership of wealth is concentrated at a height that the distribution of wages never approaches. It follows immediately that a shift in the functional share — from labor toward capital, or toward the pure profit of the ninth plate — is a shift of income toward the already-rich, and so a rise in personal inequality, by sheer arithmetic of who owns what. The falling labor share is not merely a fact about factors; it is rising personal inequality wearing a macroeconomic disguise. To explain the explosion of top income shares since 1980, one cannot avoid the falling labor share; to explain the falling labor share's bite, one cannot avoid the concentration of capital ownership. The two distributions have re-fused.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="fs7t fs7d">
+              <title id="fs7t">The U-curve of top income shares</title>
+              <desc id="fs7d">The share of income going to the top one percent over the twentieth century: high before 1929, compressed to a mid-century low, and rising again since about 1980 toward its earlier peak.</desc>
+              <line class="ax" x1="60" y1="252" x2="404" y2="252"/>
+              <line class="ax" x1="60" y1="252" x2="60" y2="44"/>
+              <polyline class="curve" fill="none" points="60,120 81,113 105,90 141,135 171,173 230,180 260,180 290,165 320,135 350,120 380,113"/>
+              <line class="tick" x1="55" y1="105" x2="60" y2="105"/>
+              <line class="tick" x1="55" y1="180" x2="60" y2="180"/>
+              <text class="lbl-sm" x="50" y="108" text-anchor="end">≈20%</text>
+              <text class="lbl-sm" x="50" y="183" text-anchor="end">≈10%</text>
+              <text class="lbl-i" x="105" y="80" text-anchor="middle">pre-war peak</text>
+              <text class="lbl-i" x="232" y="200" text-anchor="middle">the great compression</text>
+              <text class="lbl-i" x="372" y="104" text-anchor="end">the return</text>
+              <text class="lbl" x="66" y="268">1913</text>
+              <text class="lbl" x="380" y="268" text-anchor="middle">2020</text>
+              <text class="lbl-ax" transform="rotate(-90 28 150)" x="28" y="150" text-anchor="middle">TOP 1% SHARE</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 7.</span> The share of income flowing to the top one percent traces a great U across the twentieth century — high before 1929, compressed to a mid-century low by depression, war, progressive taxation, and strong unions, then rising again since about 1980 toward its old peak. Because capital is far more concentrated than labor, a shift of the functional share toward capital concentrates personal income at the top. The figure is schematic, after Piketty, Saez, and Atkinson; levels and timing differ by country and series.</figcaption>
+        </figure>
+        <p>It is Thomas Piketty who, in 2014, gathered this into a synthesis on the grand scale, with two centuries of data behind it. The U-curve of the figure is its emblem: top income and wealth shares stood high before the First World War, were compressed to a mid-century low by the shocks of depression, war, and inflation and by the policy response of progressive taxation, strong unions, and the welfare state, and have climbed again since about 1980 toward their old summits. Around this history Piketty wrapped a theory. Capital's share, he wrote, is the product of the rate of return on capital and the capital–income ratio — the stock of wealth measured in years of national income — and that ratio tends, in the long run, toward the saving rate divided by the growth rate, so that when growth is slow, wealth piles up to a high multiple of income. And his famous inequality, that the rate of return on capital has historically exceeded the rate of growth, implies that accumulated and inherited wealth grows faster than the economy, concentrating ownership and returning society toward the patrimonial capitalism of the nineteenth century, in which inheritance, not earnings, commands the heights. The mid-century compression, on this telling, was the anomaly — the product of catastrophe and reform — and the rising inequality of our own age the resumption of capitalism's deeper tendency.</p>
+        <p>The figure above tracks one slice of the distribution &mdash; the top hundredth &mdash; across a century. This one shows the whole of it at a single moment, and lets you set how unequal it is. The straight line is perfect equality: the poorest tenth of people would hold a tenth of the income, the poorest half exactly half. The bowed curve is a real distribution, in which the poorest hold less than their number and the richest far more; the further it sags from the straight line, the more unequal the society, and the shaded crescent between the two &mdash; its size as a fraction of the whole lower triangle &mdash; is precisely the Gini coefficient. Drag the inequality up and watch the curve bow, the crescent swell, and the share left to the bottom collapse.</p>
+        <figure class="fig lab-embed" id="lz-fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-label="interactive figure: the Lorenz curve and the Gini coefficient as inequality rises">
+              <line x1="58" y1="250" x2="414" y2="250" class="ax"/>
+              <polygon points="414,250 406,246 406,254" fill="var(--soft)"/>
+              <line x1="58" y1="250" x2="58" y2="30" class="ax"/>
+              <polygon points="58,30 54,38 62,38" fill="var(--soft)"/>
+              <text x="312" y="270" class="lbl-ax">PEOPLE, POOREST FIRST</text>
+              <text class="lbl-ax" transform="rotate(-90 24 140)" x="24" y="140" text-anchor="middle">SHARE OF INCOME</text>
+              <polygon id="lz-gini" class="le-gain" points=""/>
+              <line id="lz-eq" class="le-q" x1="0" y1="0" x2="0" y2="0"/>
+              <path id="lz-cur" class="le-mr" d=""/>
+              <text id="lz-leq" class="lbl-sm" x="0" y="0">perfect equality</text>
+              <text id="lz-lcur" class="lbl-sm" x="0" y="0">Lorenz curve</text>
+              <text id="lz-lg" class="le-lblk" x="0" y="0" text-anchor="middle">Gini</text>
+            </svg>
+          </div>
+          <div class="le-controls">
+            <div class="le-ctrl">
+              <div class="le-cl"><span>Inequality (Gini)</span><span class="v" id="lz-q-v"></span></div>
+              <input type="range" id="lz-q" min="0" max="88" value="40" step="1" aria-label="inequality, the Gini coefficient">
+            </div>
+          </div>
+          <div class="le-readouts">
+            <div class="le-ro hot"><span class="k">Richest tenth holds</span><span class="v" id="lz-ro-top">&mdash;</span></div>
+            <div class="le-ro"><span class="k">Poorest half holds</span><span class="v" id="lz-ro-bot">&mdash;</span></div>
+            <div class="le-ro"><span class="k">Poorest fifth holds</span><span class="v" id="lz-ro-bot5">&mdash;</span></div>
+            <div class="le-ro"><span class="k">Richest hundredth</span><span class="v" id="lz-ro-top1">&mdash;</span></div>
+          </div>
+          <figcaption><span class="fig-n">Fig. 7a.</span> The personal distribution, made live <span class="le-tag">operable</span>. The straight line is perfect equality; the bowed curve is the Lorenz curve, and the shaded crescent between them, as a fraction of the lower triangle, is the Gini coefficient. Drag the inequality and watch the share left to the poorest half collapse as the curve sags. The same instrument, gathered with twelve others, stands in the <a href="numeraire-laboratory.html">laboratory</a>.</figcaption>
+        </figure>
+        <aside class="pull">Because capital is owned at the top, the falling labor share is a rising personal inequality wearing a macroeconomic disguise.</aside>
+        <p>Two corrections keep the plate honest, and both lead back into the volume. The first is that Piketty's engine quietly depends on the same contested parameter as the third plate's: for capital's share to <em>rise</em> as wealth accumulates, the return on capital must not fall too quickly as capital grows abundant — which requires an elasticity of substitution above one, exactly the disputed assumption of Karabarbounis and Neiman. If capital and labor are complements rather than easy substitutes, accumulation would erode the return faster than the stock rose, and capital's share would fall, not climb. The second correction is Matthew Rognlie's, and it is sharper still: the measured rise in capital's share over recent decades is concentrated almost entirely in <em>housing</em> — in the imputed rents of owner-occupied homes and the soaring value of residential land — so that, net of housing, the long-run rise in the share of productive capital is small. If so, the story is less Piketty's tale of machines out-earning workers than a Ricardian tale of land and scarcity, which hands the question to <em>The Rent</em>. And there is a third complication the next plate will press: a large part of top incomes, especially in America, is recorded not as capital income at all but as <em>labor</em> income — the soaring pay of executives, financiers, and the "working rich," the superstar dynamics Sherwin Rosen described, in which scale lets the best-placed performers command the whole market. The top of the distribution scrambles the categories: its income is booked as wages but functions, often, as the rent of position and power.</p>
+        <aside class="edge"><span class="lead">the edge</span> Piketty's synthesis is monumental and his data transformative, but his central mechanism — a rising rate of return outracing growth and driving ever-greater concentration — is genuinely contested, resting on an elasticity of substitution above one that the evidence does not clearly support, while Rognlie's demonstration that the capital-share rise is largely housing reframes the story toward land rent rather than productive capital. The U-curve itself is robust in broad outline, though its levels and timing vary by country and series, and by whether one measures income or wealth, before tax or after. What is secure is the linkage this plate exists to draw: that the functional and the personal distributions are not separate questions, because the concentration of ownership turns a shift in the factor share into a shift in the personal one — so the question of the share is, in the last analysis, a question about who we become.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE XI ===================== -->
+    <section class="plate reveal measure" id="plate-xi" data-label="Plate xi · The Measure">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">xi</div>
+        <p class="plate-kicker">Plate the Eleventh &middot; The Aggregates &middot; № XXII</p>
+        <h3 class="plate-title">The Measure</h3>
+        <p class="plate-gloss">what the share is made of; self-employment, housing, depreciation</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>the labor share is a single clean number — so why can no two economists agree on what it is?</q></div>
+      <div class="plate-body">
+        <p>The volume has spent ten plates explaining why the labor share moves; the conscience of the project requires an eleventh, which concedes that the number itself is, to a disconcerting degree, a construction rather than a measurement. The labor share looks like the kind of fact one reads off the national accounts — wages divided by output, quoted to the decimal. It is in truth assembled from a long series of accounting choices, several of them arbitrary, and several of them quietly deciding in advance the very questions the rest of the volume has been trying to answer. Change the conventions and the level of the share moves by many points; over some periods, the conventions can change even the direction of its trend. An honest account of distribution must report not a number but a range, and must say which choices produced it.</p>
+        <p>Consider the largest of these choices. The first is the treatment of the self-employed — farmers, shopkeepers, doctors, partners, the drivers of the gig economy — whose earnings mix the return to their labor and the return to their tools, premises, and goodwill in proportions the accounts cannot separate, and so record as a single "mixed income." Whether one counts that income as labor, as capital, or splits it by some rule changes both the level of the labor share and, because self-employment's prevalence shifts over time, its trend; Douglas Gollin showed that adjusting for it makes labor shares across countries far more alike than the raw figures suggest, so that much of the apparent international variation in the share was an artifact of this single accounting decision. The second choice is owner-occupied housing: the accounts impute a rent that homeowners notionally pay themselves and book it as capital income, and as house prices and the housing stock have swollen, this imputed housing return has grown — accounting, on Rognlie's reckoning, for most of the measured rise in capital's share. Whether the rent a household pays itself for its own home belongs in the contest between labor and capital at all is a question the convention answers silently, by including it.</p>
+        <aside class="pull">The labor share is not measured so much as constructed — and every choice in its construction is a small theory of what labor and capital are.</aside>
+        <p>A third choice is depreciation. Output and income may be measured gross, before the wearing-out of capital is deducted, or net, after; and because capital has shifted toward short-lived assets — computers and software that must be replaced in a handful of years — the deduction for capital consumption has risen, so that the <em>net</em> labor share has fallen further than the gross. Which is the truer measure is not obvious: net income is what is actually available to be distributed, since depreciation is income to no one, but it is harder to measure and easier to manipulate. A fourth is the treatment of intellectual property and intangibles — brands, patents, code, data — whose reclassification as investment rather than expense, in the statistical revisions of recent years, altered measured output, measured capital, and the share at a stroke, and whose very nature blurs the factor categories, for the value embodied in a firm's software is at once the congealed labor of its programmers and the capital of its owners. And beneath all these lies the deepest difficulty, which the previous plate already exposed: the labor–capital dichotomy itself is fraying. The premium to a worker's skill is a return to human capital; a founder's equity is a reward for labor that becomes a holding of capital; an executive's nine-figure pay is booked as wages but functions as a rent extracted through the governance of the firm. The categories the whole volume rests upon are leaking into one another precisely at the top, where the stakes are highest.</p>
+        <aside class="edge"><span class="lead">the edge</span> This plate is itself the edge, so its admission is plain: an honest measure of distribution is a bracketed range, not a point, and its width is set by defensible disagreements over self-employment, housing, and depreciation that can move the share by many percentage points and, over some spans, reverse its trend. The discipline's better practice now reports the share under several conventions and shows how the story changes with each; the worse practice quotes one figure and calls it the fact. This volume sides with the former, and with the humility it enforces — for a number that cannot be stated without first deciding what labor and capital <em>are</em> is not a measurement prior to theory, but a small theory in numerical disguise.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE XII ===================== -->
+    <section class="plate reveal" id="plate-xii" data-label="Plate xii · The Verdict">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">xii</div>
+        <p class="plate-kicker">Plate the Twelfth &middot; The Aggregates &middot; № XXII</p>
+        <h3 class="plate-title">The Verdict</h3>
+        <p class="plate-gloss">the largest verdict of all; toward The Power, The Rent, The Growth</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>of all the value a nation creates, what portion goes to those who do the work — and what, in the end, decides it?</q></div>
+      <div class="plate-body">
+        <p>Ricardo placed the division of the product at the center of the subject, and this volume has circled back to him by the long road of the modern theory. The road's lesson can now be stated. The share of the national product that goes to labor was thought, for the better part of a century, to be roughly constant — a benevolent miracle, a sign that labor and capital rose together and that the division was a settled fact of nature. The constancy was in part an artifact of the very function economists fitted to the data, which had constant shares built into its form; and it has, in any case, ended, the share falling across the advanced world since around 1980. The orthodox theory that would have explained the constancy — each factor paid its marginal product, the division read off the production function, the whole arrangement technologically given and, the orthodoxy added, deserved — was shown by its own most rigorous practitioners, in the capital controversy, to rest on a notion of aggregate capital that cannot in general be made coherent. There is no well-defined marginal product of capital in the aggregate, and so no technological law that fixes capital's share.</p>
+        <p>What that demolition leaves is a frontier and a freedom. Technology, in the classical-Sraffian reckoning, draws the wage–profit frontier — the menu of divisions a given state of the arts permits — but it does not choose the point upon it. That single degree of freedom is filled from outside, by the balance of power: by the size of the reserve army of the unemployed and the level of slack a society tolerates, by the strength of unions and the reach of collective bargaining, by the threat of capital to move and the worker's freedom to refuse, by the degree of monopoly firms wield in their markets. The long decline of the labor share is the macroeconomic record of that balance shifting against labor — and its leading modern explanation, the rise of market power and the superstar firm, recasts the fall not as capital's gain but as the rising share of pure profit, the rent of power, so that the contest is revealed to be not labor against capital but labor, together with productive capital, against the rentier. And because the ownership of capital and the collection of rent are concentrated at the very top, the falling labor share is, at the same time and by the same arithmetic, the return of an inequality among persons not seen since before the First World War.</p>
+        <aside class="pull">Technology draws the frontier; power chooses the point upon it. The share is what power chooses, within the limits technology sets — and to call it nature is to naturalize the power that produced it.</aside>
+        <p>So the question the volume opened with — is the split between labor and capital set by productivity, or by power? — can be answered, and the answer is the one this whole table keeps arriving at: by both, but not equally, and not in the way the orthodoxy supposed. Productivity, through technology, draws the frontier of the possible; power chooses the point upon it. Where the orthodox conditions hold — true competition, a coherent production function — the share tracks the marginal products and wears the face of nature. Where they fail, as the capital controversy proved they must in general and as monopsony and market power show they do in fact, the share is filled by the strength of the parties, and its movements record not changing contributions but changing power. To read the falling labor share as a law of technology — as the orderly response of a competitive economy to cheaper machines — is to mistake one possible reading for the only one, and to perform, perhaps without intending it, the oldest ideological service economics can render: the naturalization of a distribution of power as a fact of nature. The constancy doctrine performed that service by making the division seem fixed; the marginal-productivity gloss performed it by making the division seem deserved. Undoing both is the purpose of this volume.</p>
+        <p>And here, at the scale of a whole economy, the two volumes that pointed to this one converge. <em>The Wage</em> asked what sets the price of labor, and found that the wage sits within a range that bargaining power decides, the equality of wage and marginal product a property of a frictionless world that no real labor market reaches. <em>The Surplus</em> asked who keeps the value an exchange creates, and found that economics can size the surplus with precision but falls silent on its keeping, which power decides. <em>The Share</em> is the ratio of the one to the other, aggregated and made national: the wage is what labor <em>receives</em>; the product, surplus and all, is what labor helps to <em>create</em>; and the share is the distance between them, summed across the whole economy. That distance — between what labor makes and what labor gets — is the single contest this entire table was built to read, and the labor share is its largest and most legible measure. It is, in the strict sense the series intends, the greatest of all the prices: the price of an entire class's labor, set against the whole of what that labor helps to produce, and quoted, like every price, as a verdict on a hidden contest rather than a fact of nature.</p>
+        <p>The verdict, being the largest, hands on the most. It hands to <em>The Power</em>, the tenth element, the structures — monopoly, monopsony, concentration, and the law that permits or restrains them — that confer the strength which fills the open degree of freedom. It hands to <em>The Rent</em>, the second, the rising portion of the product that is neither wage nor return to productive capital but pure rent, and the land and housing in which Rognlie found so much of it hiding. It hands to <em>The Tax</em>, the seventeenth, the truth that the distribution struck in the market is not the final word, for the state redraws it through taxation and transfer, and the mid-century compression was in no small part its work. It hands to <em>The Growth</em>, the twentieth, the question whether a pie divided more toward labor grows faster or slower — whether the size and the division are, as the old separation assumed, independent, or whether, as the wage-led and profit-led theories insist, they are bound together. And it hands to <em>The Norm</em>, the twenty-sixth, the question economics cannot answer from inside itself: not what the share <em>is</em>, but what it <em>ought</em> to be — what portion a society believes those who labor are owed.</p>
+        <p>This volume has answered the positive question and declined the normative one, as its discipline must. What portion of the product goes to labor is set, within the limits technology draws, by power — by the bargain struck and re-struck in every market the other volumes describe, summed into a single national figure. What portion <em>should</em> go to labor is a question of justice, and the table can only clear the ground for it, by refusing to let an outcome of power masquerade as a dictate of nature. The share is not nature's; it is ours. It is not given; it is chosen — if not by any of us deliberately, then by all of us together, through the institutions we build and tolerate. And it is not closed but open, as in honesty it must remain — for technology underdetermines it, power fills the gap, the very number is a construct laden with the theory it is meant to test, and the question of what we owe one another is not the kind of question a production function was ever going to settle. That is the whole of what this table has to teach, said once, at the scale of a nation: that the price of labor, like every price, is a verdict on a contest — and that the contest, and so the verdict, remains open.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref">Volume XXII &middot; The Share</span>
+    </div>
+    <p class="colophon">Volume XXII of <em>Numéraire, A Periodic Table of Economic Life</em> — <em>The Share</em>, the twenty-second of twenty-six and the keystone of the table's account of distribution. Twelve plates, seven engravings, and a living figure carry the functional division of income from Ricardo's three classes, through the constancy that proved an artifact and the orthodoxy that proved incoherent, to the capital controversy at its hinge, the Sraffian frontier and the conflict theory it opens onto, the long decline since 1980, the rise of market power and pure profit, the re-merging of the functional with the personal, and the measurement that confesses the number a construct — and so to the verdict that distribution is a settlement of power within the limits technology draws, and not a fact of nature. It is the volume to which both <em>The Wage</em> and <em>The Surplus</em> hand their question, and where the price of labor and the value labor creates are at last set against one another. The figures stand after Ricardo, Cobb and Douglas, Sraffa, Kalecki, Piketty, and the modern students of markups, superstar firms, and the long history of inequality. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var root=document.documentElement; root.classList.add('js');
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var bar=document.getElementById('progress');
+  var topbar=document.getElementById('topbar');
+  var title=document.querySelector('.vol-title');
+  var label=document.getElementById('tb-plate');
+  function onScroll(){
+    var doc=document.documentElement;
+    var h=doc.scrollHeight-window.innerHeight;
+    var p=h>0?Math.min(1,Math.max(0,window.scrollY/h)):0;
+    if(bar) bar.style.transform='scaleX('+p.toFixed(4)+')';
+    if(topbar){
+      var threshold=(title?title.offsetHeight:420)*0.72;
+      if(window.scrollY>threshold) topbar.classList.add('show'); else topbar.classList.remove('show');
+    }
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+  if('IntersectionObserver' in window){
+    var rev=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); rev.unobserve(e.target); } });
+    },{rootMargin:'0px 0px -10% 0px',threshold:0.06});
+    document.querySelectorAll('.reveal').forEach(function(el){ rev.observe(el); });
+    if(label){
+      var cur=new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting){ var t=e.target.getAttribute('data-label'); if(t) label.textContent=t; } });
+      },{rootMargin:'-44% 0px -50% 0px',threshold:0});
+      document.querySelectorAll('.plate[data-label]').forEach(function(el){ cur.observe(el); });
+    }
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
+})();
+</script>
+<script>
+(function(){
+  function $(id){return document.getElementById(id);}
+  function setA(id,a,v){var e=$(id); if(e)e.setAttribute(a,v);}
+  function setT(id,t){var e=$(id); if(e)e.textContent=t;}
+  function txtP(id,px,py){var e=$(id); if(!e)return; e.setAttribute('x',px.toFixed(1)); e.setAttribute('y',py.toFixed(1));}
+  var L=58,R=414,T=30,B=250;
+  function X(v){return L+(v/100)*(R-L);}
+  function Y(v){return B-(v/100)*(B-T);}
+  function lin(id,x1,y1,x2,y2){var e=$(id); if(!e)return; e.setAttribute('x1',X(x1).toFixed(1)); e.setAttribute('y1',Y(y1).toFixed(1)); e.setAttribute('x2',X(x2).toFixed(1)); e.setAttribute('y2',Y(y2).toFixed(1));}
+  function pathPts(id,pts){ var d=pts.map(function(p,i){return (i?'L':'M')+X(p[0]).toFixed(1)+' '+Y(p[1]).toFixed(1);}).join(' '); setA(id,'d',d); }
+  function poly(id,pts){ setA(id,'points', pts.map(function(p){return X(p[0]).toFixed(1)+','+Y(p[1]).toFixed(1);}).join(' ')); }
+  function Lz(x,p){ return 100*Math.pow(x/100, p); }
+  function pct(v){ return v<1 ? v.toFixed(1)+'%' : Math.round(v)+'%'; }
+  function draw(){
+    if(!$('lz-q')) return;
+    var g=(+$('lz-q').value)/100; if(g>0.97)g=0.97;
+    setT('lz-q-v', g.toFixed(2));
+    var p=(1+g)/(1-g);
+    lin('lz-eq', 0,0, 100,100);
+    var pts=[]; for(var i=0;i<=100;i+=2){ pts.push([i, Lz(i,p)]); }
+    pathPts('lz-cur', pts);
+    var reg=[[0,0],[100,100]];
+    for(var b=100;b>=0;b-=2){ reg.push([b, Lz(b,p)]); }
+    poly('lz-gini', reg);
+    txtP('lz-leq', X(44), Y(56)); setA('lz-leq','text-anchor','start');
+    txtP('lz-lcur', X(74), Y(Lz(74,p))+13); setA('lz-lcur','text-anchor','middle');
+    txtP('lz-lg', X(56), Y((56+Lz(56,p))/2)+2);
+    setT('lz-ro-top', pct(100*(1-Math.pow(0.9,p))));
+    setT('lz-ro-bot', pct(100*Math.pow(0.5,p)));
+    setT('lz-ro-bot5', pct(100*Math.pow(0.2,p)));
+    setT('lz-ro-top1', pct(100*(1-Math.pow(0.99,p))));
+  }
+  var q=$('lz-q'); if(q){ q.addEventListener('input',draw); draw(); }
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-level.html">← The Level</a><a rel="next" href="the-choice.html">The Choice →</a></nav>
+</body>
+</html>

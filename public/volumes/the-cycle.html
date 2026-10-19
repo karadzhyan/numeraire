@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Cycle — Numéraire, Volume XIX</title>
+<meta name="description" content="The Cycle — Volume XIX of Numéraire, A Periodic Table of Economic Life, and the first of The Aggregates. The business cycle: why a market economy lurches through boom and bust rather than growing smoothly — comovement and the fallacy of composition, impulse and propagation, the neutrality of money, the credit cycle and the Minsky moment, debt-deflation, the demand-deficient slump, stabilization and its limits, and the cycle as a creature of expectation.">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem; --measure:40rem;
+    --wash:rgba(28,26,22,.066); --wash2:rgba(28,26,22,.12);
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.62;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  .measure{max-width:var(--measure);margin-left:auto;margin-right:auto;}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- ornaments ---- */
+  .orn{display:flex;justify-content:center;margin:0 auto;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .divider{display:flex;align-items:center;gap:1.1rem;max-width:30rem;margin:clamp(3rem,7vh,5rem) auto;color:var(--num);}
+  .divider .ln{flex:1;height:1px;background:var(--hair);}
+  .divider svg{display:block;width:12px;height:12px;overflow:visible;flex:0 0 auto;}
+  .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* ---- progress + running head ---- */
+  #progress{position:fixed;top:0;left:0;height:2px;width:100%;transform:scaleX(0);transform-origin:0 50%;background:var(--soft);opacity:.45;z-index:10000;}
+  #topbar{position:fixed;top:0;left:0;right:0;z-index:9998;transform:translateY(-100%);transition:transform .5s cubic-bezier(.2,.6,.2,1);
+    background:rgba(240,235,225,.86);-webkit-backdrop-filter:saturate(1.1) blur(8px);backdrop-filter:saturate(1.1) blur(8px);
+    border-bottom:1px solid var(--hair);}
+  #topbar.show{transform:translateY(0);}
+  .tb-in{max-width:var(--frame);margin:0 auto;padding:.62rem clamp(1.4rem,4vw,3.4rem);display:flex;justify-content:space-between;align-items:baseline;gap:1.2rem;}
+  .tb-l{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:.86rem;letter-spacing:.01em;}
+  .tb-l span{color:var(--faintest);font-weight:400;}
+  .tb-r{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);text-align:right;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+
+  /* ---- title page ---- */
+  .vol-title{padding:clamp(3.4rem,11vh,8rem) 0 clamp(1.6rem,5vh,3rem);text-align:center;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.16rem;letter-spacing:.02em;}
+  .vol-no{font-size:.84rem;color:var(--faint);letter-spacing:.16em;text-transform:uppercase;margin-top:.55rem;}
+  h1.vol-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 380;font-weight:380;
+    font-size:clamp(2.9rem,9vw,6rem);line-height:.98;letter-spacing:-.028em;margin:clamp(1.7rem,4.5vh,2.8rem) 0 0;text-wrap:balance;}
+  .vol-sym{width:78px;height:78px;margin:clamp(1.6rem,4vh,2.4rem) auto 0;border:1px solid var(--hair);border-radius:2px;
+    display:flex;align-items:center;justify-content:center;background:var(--ink);}
+  .vol-sym span{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2.3rem;line-height:1;color:var(--paper);letter-spacing:-.01em;}
+  .vol-coords{font-family:"Fraunces",serif;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);margin-top:1.1rem;}
+  .vol-gloss{font-style:italic;color:var(--soft);font-size:1.12rem;margin:.5rem 0 0;}
+  .vol-epigraph{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 400;font-style:italic;
+    font-size:clamp(1.14rem,1.7vw,1.34rem);line-height:1.42;color:var(--soft);max-width:33rem;margin:clamp(1.8rem,4vh,2.6rem) auto 0;text-wrap:pretty;}
+  .vol-epigraph .lead{display:block;font-style:normal;font-variation-settings:"opsz" 24,"wght" 400;
+    font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.7rem;}
+  .vol-status{display:inline-flex;align-items:center;gap:.5rem;margin:clamp(1.8rem,4vh,2.4rem) auto 0;font-size:.84rem;color:var(--soft);}
+  .vol-status::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ink);}
+
+  /* ---- the argument (preface) ---- */
+  .part-head{text-align:center;margin:0 0 clamp(1.6rem,3.5vh,2.3rem);}
+  .part-kicker{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faintest);}
+  .part-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-weight:400;
+    font-size:clamp(1.5rem,3.4vw,2.1rem);letter-spacing:-.012em;margin:.4rem 0 0;}
+  .argument p{font-size:1.05rem;line-height:1.74;margin:0 0 1.15rem;text-wrap:pretty;}
+  .argument p.lede::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 420;
+    float:left;font-size:3.5em;line-height:.78;padding:.05em .1em 0 0;color:var(--ink);}
+  .argument em,.plate-body em,.coda em{font-style:italic;}
+
+  /* ---- contents ---- */
+  .toc{list-style:none;margin:0 auto;padding:0;max-width:43rem;}
+  .toc li{border-top:1px solid var(--hair);}
+  .toc li:last-child{border-bottom:1px solid var(--hair);}
+  .toc a{display:grid;grid-template-columns:2.6rem 1fr;column-gap:1.1rem;align-items:baseline;
+    padding:.82rem .3rem;text-decoration:none;transition:background .2s ease;}
+  .toc a:hover{background:rgba(28,26,22,.035);}
+  .toc-n{font-family:"Fraunces",serif;font-size:.92rem;color:var(--faintest);text-align:right;}
+  .toc-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.06rem;color:var(--ink);line-height:1.16;}
+  .toc-g{grid-column:2;font-size:.85rem;font-style:italic;color:var(--faint);margin-top:.16rem;line-height:1.38;}
+
+  /* ---- plates ---- */
+  .plate{margin:clamp(3.2rem,8vh,6rem) 0 0;padding-top:clamp(2.4rem,5.5vh,3.4rem);border-top:1px solid var(--hair);scroll-margin-top:4rem;}
+  .plate-open{max-width:var(--measure);margin-inline:auto;}
+  .plate-no{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 360;font-size:clamp(2.6rem,7vw,4.1rem);
+    line-height:.9;color:var(--num);letter-spacing:.02em;}
+  .plate-kicker{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faintest);margin:.9rem 0 .2rem;}
+  .plate-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.8rem,4.4vw,2.7rem);line-height:1.04;letter-spacing:-.018em;margin:0;text-wrap:balance;}
+  .plate-gloss{font-style:italic;color:var(--soft);font-size:1.02rem;margin:.55rem 0 0;line-height:1.4;}
+
+  .ask{max-width:var(--measure);margin:clamp(1.5rem,3.5vh,2.2rem) auto clamp(1.8rem,4vh,2.4rem);}
+  .ask .lead{display:block;font-family:"Fraunces",serif;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.55rem;}
+  .ask q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:clamp(1.18rem,1.8vw,1.38rem);line-height:1.36;color:var(--soft);quotes:none;}
+
+  .plate-body{max-width:var(--measure);margin-inline:auto;}
+  .plate-body p{margin:0 0 1.18rem;text-wrap:pretty;}
+  .plate-body > p:first-of-type::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 430;
+    float:left;font-size:3.5em;line-height:.76;padding:.04em .12em 0 0;color:var(--ink);}
+  .plate-body h4{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.76rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faint);margin:2rem 0 .9rem;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 380;font-style:italic;
+    font-size:clamp(1.4rem,2.3vw,1.7rem);line-height:1.32;color:var(--soft);text-align:center;
+    max-width:33rem;margin:clamp(2rem,4.5vh,2.8rem) auto;text-wrap:balance;}
+
+  .edge{max-width:var(--measure);margin:1.7rem auto;padding:.1rem 0 .1rem 1.15rem;border-left:1px solid var(--hair);
+    color:var(--faint);font-size:.92rem;line-height:1.62;}
+  .edge .lead{display:block;font-family:"Fraunces",serif;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.4rem;}
+  .edge em{font-style:italic;color:var(--soft);}
+
+  /* ---- figures (engravings) ---- */
+  .fig{max-width:var(--measure);margin:clamp(2.1rem,4.5vh,2.9rem) auto;}
+  .fig-frame{border:1px solid var(--hair);border-radius:2px;padding:clamp(1rem,2.4vw,1.7rem) clamp(1rem,2.4vw,1.7rem) clamp(.8rem,2vw,1.3rem);background:rgba(255,253,247,.4);}
+  .fig svg{display:block;width:100%;height:auto;}
+  figcaption{margin:.95rem auto 0;max-width:38rem;font-size:.85rem;line-height:1.5;color:var(--faint);text-wrap:pretty;}
+  figcaption .fig-n{font-family:"Fraunces",serif;font-weight:500;letter-spacing:.04em;color:var(--soft);}
+  figcaption em{font-style:italic;}
+  .ax{stroke:var(--soft);stroke-width:1.1;fill:none;}
+  .tick{stroke:var(--soft);stroke-width:1;}
+  .curve{stroke:var(--ink);stroke-width:1.5;fill:none;stroke-linecap:round;}
+  .curve2{stroke:var(--ink);stroke-width:1.3;fill:none;stroke-linecap:round;}
+  .guide{stroke:var(--faintest);stroke-width:1;fill:none;stroke-dasharray:3 3.5;}
+  .core{stroke:var(--ink);stroke-width:3;fill:none;stroke-linecap:round;}
+  .fill-cs{fill:var(--wash);}
+  .fill-dwl{fill:var(--wash2);}
+  .fill-wedge{fill:var(--wash);}
+  .fill-lens{fill:var(--wash);}
+  .hatch-line{stroke:var(--faintest);stroke-width:.8;}
+  .lbl{font-family:"Fraunces",serif;font-size:11.5px;fill:var(--faint);font-variation-settings:"opsz" 24,"wght" 400;}
+  .lbl-i{font-family:"Newsreader",serif;font-style:italic;font-size:11px;fill:var(--soft);}
+  .lbl-sm{font-family:"Fraunces",serif;font-size:9.6px;fill:var(--faintest);letter-spacing:.02em;}
+  .lbl-ax{font-family:"Fraunces",serif;font-size:9.4px;fill:var(--faintest);letter-spacing:.12em;}
+
+  /* ---- coda + colophon ---- */
+  .coda{max-width:var(--measure);margin:clamp(3rem,7vh,5rem) auto 0;}
+  .coda p{margin:0 0 1.18rem;text-wrap:pretty;}
+  .coda p.lede::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 430;
+    float:left;font-size:3.5em;line-height:.76;padding:.04em .12em 0 0;color:var(--ink);}
+  footer{margin-top:clamp(3.6rem,8vh,6rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.4rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .colophon{font-size:.85rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+
+  /* ---- motion / reveal ---- */
+  @media (prefers-reduced-motion: no-preference){
+    html.js .reveal{opacity:0;transform:translateY(14px);}
+    html.js .reveal.in{opacity:1;transform:none;}
+    .reveal{transition:opacity .9s cubic-bezier(.2,.6,.2,1),transform .9s cubic-bezier(.2,.6,.2,1);}
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.18s}.rise.d3{animation-delay:.32s}.rise.d4{animation-delay:.46s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  /* ---- responsive ---- */
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .argument p,.plate-body p,.coda p{font-size:1.01rem;}
+    .plate-body > p:first-of-type::first-letter,.argument p.lede::first-letter,.coda p.lede::first-letter{font-size:3em;}
+    .f-bar{flex-direction:column;gap:.5rem;}
+    .toc a{grid-template-columns:2rem 1fr;column-gap:.8rem;}
+    figcaption{font-size:.82rem;}
+  }
+
+  /* ---- print: a volume, in print ---- */
+  @media print{
+    html,body{background:#fff;color:#000;}
+    body{font-size:11.5pt;line-height:1.5;}
+    body::before,#progress,#topbar{display:none !important;}
+    .frame{max-width:none;padding:0;}
+    .measure,.plate-open,.plate-body,.ask,.edge,.coda{max-width:34rem;}
+    a{text-decoration:none;}
+    .plate{break-before:page;border-top:none;padding-top:0;}
+    .fig,figure{break-inside:avoid;}
+    .plate-no{color:#bbb;}
+    .reveal{opacity:1 !important;transform:none !important;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#ne-contents">Complete contents</a><a href="../editions.html#volume-cycle">The Cycle · both editions</a><a href="../essays/numeraire-xix-the-cycle.html">Expanded essays</a></div></nav>
+<div id="progress" aria-hidden="true"></div>
+<div id="topbar" aria-hidden="true"><div class="tb-in">
+  <span class="tb-l">Numéraire <span>· The Cycle</span></span>
+  <span class="tb-r" id="tb-plate">Volume XIX</span>
+</div></div>
+
+<div class="frame">
+
+  <header class="vol-title">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="rise d1">
+      <span class="imprint">Numéraire</span>
+      <div class="vol-no">Volume XIX &middot; № XIX</div>
+    </div>
+    <h1 class="vol-name rise d2">The Cycle</h1>
+    <div class="vol-sym rise d3" aria-hidden="true"><span>Cy</span></div>
+    <div class="vol-coords rise d3">Group V &middot; The Aggregates</div>
+    <p class="vol-gloss rise d3">the rhythm of boom and bust</p>
+    <p class="vol-epigraph rise d4">
+      <span class="lead">The question of the volume</span>
+      Why does a market economy not grow smoothly, but lurch through boom and bust?
+    </p>
+    <div class="vol-status rise d4">in print &middot; twelve plates</div>
+  </header>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <section class="argument measure reveal" aria-labelledby="arg-h">
+    <div class="part-head">
+      <div class="part-kicker">Numéraire &middot; Volume XIX</div>
+      <h2 class="part-title" id="arg-h">The Argument</h2>
+    </div>
+    <p class="lede">With this volume the atlas changes scale. Until now its subject has been the single market and the single decision — the price of an hour or an acre, the choice of one buyer, the failure of one exchange, the institution that governs one transaction. This group, the aggregates, lifts the eye from the part to the whole: from the price to the price level, from the firm's output to the nation's, from the one to the all. And the first fact one meets at this scale, the most insistent and the most disputed, is that the whole does not hold still. A market economy does not grow smoothly, adding a little each year; it surges and stalls, booms and slumps, in a rough and recurring rhythm — the business cycle, the subject of this volume and the oldest unsolved problem of the economics of the whole.</p>
+    <p>The cycle is, first, a set of facts, established by patient measurement before any theory. Activity of every kind — output, employment, investment, trade, the use of factories and the hiring of hands — rises and falls together, in waves that last not days but years, with no fixed period yet an unmistakable shape: a long expansion, a peak, a contraction the unlucky call a recession and the very unlucky a depression, a trough, and a recovery that begins the round again. The most striking of these facts is the comovement — that a thousand different industries, making unrelated things, and millions of workers, with unrelated lives, move up and down in near-unison, as if conducted. This is the deep puzzle. If the shocks that buffet an economy were many and unrelated — a bad harvest here, a clever invention there — they would mostly cancel in the aggregate, and the whole would be smooth though every part jiggled. That the parts instead synchronize, that they rise and fall as one, tells us the cycle is not the sum of independent jiggles but a property of the system that binds them — of the web of spending and lending and expectation through which each part's fortune is tied to every other's.</p>
+    <p>How a system turns shocks into cycles was framed, by Frisch and Slutsky, as a question of impulse and propagation. The impulses are the shocks — the disturbances that strike the economy from without or erupt within it; the propagation is the machinery by which the economy's own structure receives a shock and rings with it, like a bell struck once that sounds a fading note, or a rocking horse hit by random blows that rocks in its own rhythm rather than theirs. The cycle's character — its length, its shape, its persistence — is thus the economy's own, imposed upon whatever disturbs it. And the disturbances come from three great sources, which the volume's middle plates take in turn. There are real shocks — to technology, to harvests, to the price of oil, to the productivity of work — the impulses the classical tradition holds primary. There are monetary and financial shocks — to the quantity of money, the supply of credit, the willingness to lend — the impulses the Keynesian and monetarist traditions hold decisive. And there are shocks of belief — waves of optimism and fear, confidence and panic — the impulses that are, uniquely, self-fulfilling, and that make the cycle in part a creature of collective psychology.</p>
+    <p>Over the interpretation of these facts runs the deepest and most consequential division in all of economics, and the volume cannot pretend it is settled. On one side stands the conviction, descended from Keynes, that the cycle is a failure — that a market economy can come to rest with its factories idle and its workers wanting work they cannot find, stuck in a slump from which it will not quickly free itself, because the price system that clears a single market can fail to coordinate the whole; and that the state can and should act to lift it, spending when the private economy will not, easing money when credit has frozen. On the other side stands the conviction, descended from the classical economists and revived in our age, that the cycle is not a failure but a response — the economy's efficient adjustment to real shocks it cannot avoid, in which the fall in output is the right answer to worse conditions and not a coordination one could improve upon; and that the state, acting to smooth the cycle, is as likely to worsen it as to help, lacking the knowledge and the timing the task would require. Whether the recession is a sickness to be cured or a healing to be left alone is the contest beneath this volume, and it has divided the discipline for a century.</p>
+    <p>Between these poles the modern study of the cycle has built, if not a peace, a working synthesis. It grants the classical point that expectations are forward-looking and that policy anticipated is policy weakened, and the Keynesian point that prices and wages are sticky enough that demand, in the short run, moves real output and real employment and not merely the price level. From the marriage comes the prevailing view: that money and demand are non-neutral in the short run and neutral in the long, so that a central bank can soften a slump but not raise prosperity forever; that the cycle is driven by shocks of many kinds, amplified by credit and belief; and that stabilization is possible but perilous, bounded by lags, by expectations, and by the temptations of those who wield it. The stakes of getting this right are not academic. The slumps the cycle brings are, after war and plague, among the greatest destroyers of human welfare — the idleness, the lost output, the ruined firms, the unemployment the next group will show falls hardest on those least able to bear it — and the question of whether and how they can be tamed is among the most important any society faces.</p>
+    <p>The thesis of the volume is that the cycle is the price a market economy pays for being a system of separate decisions coordinated only by prices, credit, and expectation — an emergent rhythm that no participant intends and none can still alone. It is not a flaw bolted onto an otherwise smooth machine but a property of decentralized coordination under uncertainty, in which the same mechanisms that allocate resources gracefully in the small can, in the large, amplify a disturbance into a self-reinforcing wave: spending that depends on income that depends on spending, lending that swells in confidence and collapses in fear, expectations that bring about the very outcomes they foresee. A recession, on this view, is a coordination failure made flesh — a moment when each actor, individually prudent, draws back, and the drawing-back of all confirms the fear that prompted each. Whether such failures can be cured without causing worse, whether the cycle is malady or medicine, the volume will weigh without finally deciding. The aggregate, like every price before it, turns out to be a verdict on a hidden contest — here the contest between the parts and the whole, between the prudence of each and the prosperity of all. The argument remains open.</p>
+  </section>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <section class="contents reveal" aria-labelledby="toc-h">
+    <div class="part-head">
+      <div class="part-kicker">The twelve plates of this volume</div>
+      <h2 class="part-title" id="toc-h">The Plates</h2>
+    </div>
+    <ol class="toc">
+      <li><a href="#plate-i"><span class="toc-n">i</span><span class="toc-t">The Wave</span><span class="toc-g">the recurring fluctuation of the whole — expansion, peak, recession, trough</span></a></li>
+      <li><a href="#plate-ii"><span class="toc-n">ii</span><span class="toc-t">The Whole</span><span class="toc-g">the cycle as a systemic thing — comovement, the fallacy of composition, the paradox of thrift</span></a></li>
+      <li><a href="#plate-iii"><span class="toc-n">iii</span><span class="toc-t">The Boom</span><span class="toc-g">the self-reinforcing expansion — the multiplier, the accelerator, optimism feeding itself</span></a></li>
+      <li><a href="#plate-iv"><span class="toc-n">iv</span><span class="toc-t">The Shock</span><span class="toc-g">what starts a cycle — impulse and propagation, and the kinds of shock — Frisch, Slutsky</span></a></li>
+      <li><a href="#plate-v"><span class="toc-n">v</span><span class="toc-t">The Neutral</span><span class="toc-g">is money a veil? sticky prices, the short-run real effects of money, and the long-run return</span></a></li>
+      <li><a href="#plate-vi"><span class="toc-n">vi</span><span class="toc-t">The Credit</span><span class="toc-g">the financial cycle — pro-cyclical credit, leverage, and the Minsky moment</span></a></li>
+      <li><a href="#plate-vii"><span class="toc-n">vii</span><span class="toc-t">The Turn</span><span class="toc-g">why booms end — the reversal of belief, the panic, the run, and debt-deflation — Fisher</span></a></li>
+      <li><a href="#plate-viii"><span class="toc-n">viii</span><span class="toc-t">The Slump</span><span class="toc-g">the demand-deficient recession — coordination failure, involuntary unemployment, the output gap — Keynes</span></a></li>
+      <li><a href="#plate-ix"><span class="toc-n">ix</span><span class="toc-t">The Cure</span><span class="toc-g">can the cycle be tamed? fiscal and monetary stabilization, and the automatic stabilizers</span></a></li>
+      <li><a href="#plate-x"><span class="toc-n">x</span><span class="toc-t">The Lag</span><span class="toc-g">the limits of policy — long and variable lags, rational expectations, time inconsistency — Friedman, Lucas</span></a></li>
+      <li><a href="#plate-xi"><span class="toc-n">xi</span><span class="toc-t">The Spirits</span><span class="toc-g">the cycle as a creature of belief — self-fulfilling expectations, multiple equilibria, animal spirits</span></a></li>
+      <li><a href="#plate-xii"><span class="toc-n">xii</span><span class="toc-t">The Return</span><span class="toc-g">the cycle made whole — opening The Aggregates, toward The Growth, The Level, The Money</span></a></li>
+    </ol>
+  </section>
+
+  <main class="plates" id="plates">
+
+    <section class="plate reveal" id="plate-i" data-label="Plate i · The Wave">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">i</div>
+        <p class="plate-kicker">Plate the First &middot; The Aggregates &middot; № XIX</p>
+        <h3 class="plate-title">The Wave</h3>
+        <p class="plate-gloss">the recurring fluctuation of the whole — expansion, peak, recession, trough</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what is it that recurs, when the whole economy refuses to hold still?</q></div>
+      <div class="plate-body">
+        <p>Before the cycle was a theory it was a set of facts, and the facts came from counting. In the decades around the turn of the twentieth century a generation of patient empiricists — Wesley Mitchell foremost among them, and the National Bureau of Economic Research he helped to found — set themselves to measure what everyone could feel: that business does not proceed at an even pace but moves in long swells of prosperity and depression. They catalogued the turning points, dated the expansions and contractions, and gave the recurring shape its anatomy. An <em>expansion</em>, in which output, employment, and trade climb together; a <em>peak</em>, where the climb exhausts itself; a <em>recession</em>, in which activity falls — a fall the unlucky call a recession and the very unlucky a depression; a <em>trough</em>, the bottom; and a <em>recovery</em> that begins the round again. The rule of thumb names a recession after two quarters of falling output, but the fuller definition the daters use is richer: a significant decline in activity, spread across the economy, lasting more than a few months.</p>
+        <p>The most arresting of the facts is the comovement. It is not one industry that slumps while others thrive, nor one region; it is nearly all of them, together. Output and employment, investment and consumption, freight and retail and the hiring of hands — series that have no obvious reason to share a fate move up and down in rough unison, as though some unseen conductor set the tempo for the whole orchestra. Within the chorus there is structure: some series lead the turn (new orders, housing starts, the stock market), some lag it (unemployment, which keeps rising for a while after the trough), and investment swings far more violently than consumption, a clue the next plates will follow. But the dominant fact is the synchrony itself — that the parts rise and fall as one.</p>
+        <aside class="pull">The cycle is not a clock; it is a tide — it returns without keeping time.</aside>
+        <p>This synchrony is the puzzle the whole volume exists to explain. An economy is struck constantly by small, unrelated disturbances — a failed harvest, a clever invention, a firm's good or bad luck. Were the cycle merely the sum of these, the disturbances would mostly cancel in the aggregate, and the whole would glide smoothly while every part jiggled. That the parts instead move together tells us the cycle is not a sum of independent jiggles but a property of the system that binds them — of the web of spending and lending and expectation through which each actor's fortune is tied to every other's. The figure draws the basic picture: actual output as a wave around a rising trend, cresting at a peak, breaking into a recession, bottoming at a trough, recovering — the shape that recurs.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="f1t f1d">
+              <title id="f1t">The phases of the business cycle</title>
+              <desc id="f1d">Output traces a wave around a rising trend line: up through an expansion to a peak, down through a recession to a trough, then into recovery. The recession period, from peak to trough, is shaded.</desc>
+              <rect x="150" y="40" width="120" height="210" class="fill-cs"/>
+              <line x1="64" y1="250" x2="414" y2="250" class="ax"/>
+              <polygon points="414,250 406,246 406,254" fill="var(--soft)"/>
+              <line x1="64" y1="250" x2="64" y2="40" class="ax"/>
+              <polygon points="64,40 60,48 68,48" fill="var(--soft)"/>
+              <text x="180" y="278" class="lbl-sm">time &#8594;</text>
+              <text x="26" y="156" class="lbl-ax" text-anchor="middle" transform="rotate(-90 26 156)">output</text>
+              <line x1="64" y1="200" x2="404" y2="120" class="guide"/>
+              <text x="398" y="114" class="lbl-sm" text-anchor="end">trend</text>
+              <polyline points="64,200 150,150 210,166 270,182 330,137 404,96" class="curve"/>
+              <text x="210" y="58" class="lbl-sm" text-anchor="middle">recession</text>
+              <text x="138" y="150" class="lbl-sm" text-anchor="end">peak</text>
+              <text x="282" y="178" class="lbl-sm">trough</text>
+              <text x="84" y="214" class="lbl-sm">expansion</text>
+              <text x="330" y="210" class="lbl-sm">recovery</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 1.</span> The wave of activity around its trend. Output runs up through an <em>expansion</em> to a <em>peak</em>, contracts through a <em>recession</em> (shaded) to a <em>trough</em>, then <em>recovers</em> — a shape that recurs without keeping time. The straight trend is not observed but estimated, and how much of a contraction is a passing deviation and how much is ground never regained is among the hardest questions of measurement.</figcaption>
+        </figure>
+        <aside class="edge"><span class="lead">the edge</span> The trend is a fiction of the analyst, not a line in the world: to speak of a deviation from trend one must first estimate the trend, and the split between the two is contested at the root. A recession may be a temporary dip the economy will make up, or it may permanently lower the path — the wound of lost investment and skills that never heals, which later plates will meet as hysteresis. And the word <em>cycle</em> itself may promise more order than the data hold: the swings recur but keep no fixed period, so what looks like a wave is better thought of as a recurrent but irregular thing, a rhythm without a metronome.</aside>
+      </div>
+    </section>
+
+    <section class="plate reveal" id="plate-ii" data-label="Plate ii · The Whole">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">ii</div>
+        <p class="plate-kicker">Plate the Second &middot; The Aggregates &middot; № XIX</p>
+        <h3 class="plate-title">The Whole</h3>
+        <p class="plate-gloss">the cycle as a systemic thing — comovement, the fallacy of composition, the paradox of thrift</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>can what is prudent for each be ruinous for all at once?</q></div>
+      <div class="plate-body">
+        <p>The deepest obstacle to understanding the cycle is a habit of mind so natural we scarcely notice it: the assumption that what is true of one is true of all. The economists call its violation the fallacy of composition, and the macroeconomy is its great theatre. One person can leave a crowded theatre quickly; if all rush the exit at once, none can. One firm can win customers by cutting its prices; if every firm cuts, the advantage vanishes and only the lower prices remain. One household can grow richer by saving more of its income; and here the fallacy turns from a curiosity into the engine of the slump. For a household's saving is some firm's lost sale, and a firm's lost sale is some worker's lost wage, and that worker is another household whose income has fallen. What is sound for the one can be calamitous for the all, because in the aggregate my spending is your income and your spending is mine.</p>
+        <p>This is the paradox of thrift, glimpsed by Mandeville and Hobson and made central by Keynes. Suppose every household, prudently, resolves to save more. Each cuts its spending; but that spending was income to others, so incomes fall across the economy; and as incomes fall, households find they can save no more than before — perhaps less — having succeeded only in making everyone poorer. The collective attempt to save more, in a slack economy, can leave total saving unchanged and total output diminished. Thrift, the homeliest of private virtues, becomes in the aggregate and at the wrong moment a public vice. The paradox is not a trick; it is what follows once one takes seriously that the economy is a circle, each person's outlay another's receipt, and that the circle can shrink as easily as it can grow.</p>
+        <aside class="pull">Thrift is a virtue in one purse and a calamity in all of them at once.</aside>
+        <p>What the paradox reveals is that the whole has a behavior the parts do not — that aggregate demand, the total of all spending, is a thing in its own right, and that it can be too little. The output a nation produces must be bought by someone's spending: by households consuming, firms investing, governments purchasing, foreigners importing. When that spending falters and no force gathers it up again, output falls to meet it, and the economy comes to rest below what its factories and its workers could produce. This is the systemic character of the cycle. It is not that each part fails on its own; it is that the parts, each behaving sensibly, fail to coordinate — that the system lacks an assured mechanism to lift them together. The whole is not the sum of optimizing parts; it is the parts plus the web of dependence among them, and the cycle lives in the web.</p>
+        <aside class="edge"><span class="lead">the edge</span> To speak of <em>aggregate demand</em> is already to commit a kind of abstraction — to treat the unfathomably various spending of millions as a single magnitude — and a powerful tradition insists this is precisely where macroeconomics goes wrong, that every aggregate must be built up from the choices of individuals lest it conceal a fallacy of the theorist's own. The paradox of thrift, moreover, holds only in a particular regime: when output is demand-determined, with idle capacity, more thrift contracts the whole; but at full employment, where resources are fully used, the saving that one forgoes consuming does fund the investment that grows the economy. Which regime an economy is in — slump or full stretch — is not a detail but the very question that divides the schools.</aside>
+      </div>
+    </section>
+
+    <section class="plate reveal" id="plate-iii" data-label="Plate iii · The Boom">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">iii</div>
+        <p class="plate-kicker">Plate the Third &middot; The Aggregates &middot; № XIX</p>
+        <h3 class="plate-title">The Boom</h3>
+        <p class="plate-gloss">the self-reinforcing expansion — the multiplier, the accelerator, optimism feeding itself</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>how does an expansion gather a momentum of its own?</q></div>
+      <div class="plate-body">
+        <p>An expansion is not merely a period in which good things happen; it is a process in which good things cause further good things, and the first mechanism of that self-reinforcement is the multiplier. Richard Kahn and then Keynes saw its logic. Let some new spending enter the economy — a burst of investment, a public works program, a rise in exports. The income it creates goes to someone, who spends a fraction of it — the marginal propensity to consume — and saves the rest; that spending is fresh income to another, who again spends a fraction; and so on, in a converging series. The total rise in output exceeds the initial injection, multiplied by a factor that grows with the fraction re-spent: a dollar of new investment, if four-fifths of each round is spent, lifts output by five. Spending, in the aggregate, partly creates the income out of which it is paid.</p>
+        <p>The second mechanism is the accelerator, and it concerns investment. A firm invests to add capacity; but capacity is added only when output is <em>growing</em>. To keep producing at a steady rate a firm need only replace worn machines; to produce more it must build. Investment therefore depends not on the level of demand but on its rate of change — and this couples investment violently to the cycle. When output is rising, investment is high; when output merely stops rising, investment collapses, for there is nothing new to build. Paul Samuelson showed that the multiplier and the accelerator, set to interact, can generate cycles of their own accord: rising output spurs investment (accelerator), investment raises output further (multiplier), the faster growth spurs yet more investment — a self-feeding ascent, until the growth of demand slows, the accelerator throws investment into reverse, and the same logic runs downhill.</p>
+        <aside class="pull">A boom is a prophecy that funds its own fulfilment — until the funding runs ahead of the fact.</aside>
+        <p>Above the mechanical there is the psychological, which is where the boom becomes most dangerous. Rising profits and prices breed confidence; confidence loosens the purse and the credit line; the spending and lending that confidence unleashes validate the optimism that prompted them, and so good times manufacture the belief in good times. The expansion thus carries, invisibly, the cause of its own reversal. Capacity is built ahead of the demand that will use it; debts are taken on against expected gains; expectations climb ahead of anything the economy can deliver. The boom is the phase in which the seeds of the bust are sown — in over-building, over-borrowing, and over-belief — though no one, in the warmth of it, can say which boom is the sound kind and which the kind that ends in ruin.</p>
+        <aside class="edge"><span class="lead">the edge</span> The multiplier-accelerator model, left to itself, can produce oscillations that explode without limit — and since real economies do not explode, something must bound them; Hicks supplied ceilings of full capacity above and floors of zero gross investment below, between which the cycle bounces. The clean mechanics also flatter the eye: in practice the multiplier's size is fiercely disputed and the accelerator is blurred by spare capacity and expectations of the future rather than the mere present. And not every boom is an excess to be repented — some expansions are healthy recoveries of ground lost in a slump. To tell a sustainable boom from a bubble, in the living moment rather than the retrospective chart, is a thing almost no one does reliably, as the plates on credit and belief will press.</aside>
+      </div>
+    </section>
+
+    <section class="plate reveal" id="plate-iv" data-label="Plate iv · The Shock">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">iv</div>
+        <p class="plate-kicker">Plate the Fourth &middot; The Aggregates &middot; № XIX</p>
+        <h3 class="plate-title">The Shock</h3>
+        <p class="plate-gloss">what starts a cycle — impulse and propagation, and the kinds of shock — Frisch, Slutsky</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what sets the wave in motion, and what gives it its shape?</q></div>
+      <div class="plate-body">
+        <p>How can disturbances that are themselves irregular produce something as regular as a cycle? The answer, framed by Ragnar Frisch and anticipated by Eugen Slutsky, separates two things a careless eye runs together: the impulse and the propagation. Slutsky's demonstration of 1927 was startling and remains so. Take a series of purely random numbers — the economic equivalent of unrelated, meaningless shocks — and form running sums or averages of them. The smoothed series, built from pure randomness, displays cycles: swells and recessions of no fixed period but unmistakable shape. Order, it seemed, could be manufactured from disorder merely by the act of accumulation.</p>
+        <p>Frisch supplied the image that has organized thinking ever since. Picture a rocking horse, or a pendulum, struck at random intervals by a child wielding a club. The blows are irregular, arriving without pattern; yet the horse does not jerk arbitrarily — it rocks, smoothly, at its own natural frequency, each blow setting off a swing that decays until the next blow renews it. The shocks supply the energy; the structure of the horse supplies the rhythm. So with the economy. The impulse is the shock — where the disturbance comes from; the propagation is the machinery by which the economy's own structure receives a one-time blow and rings with it over years, converting an instantaneous disturbance into a drawn-out, oscillating, fading response. The cycle's character — its length, its shape, its persistence — is the economy's own, imposed upon whatever happens to strike it.</p>
+        <aside class="pull">Strike a bell once and it sounds a fading note: the cycle is the economy ringing at a frequency of its own.</aside>
+        <p>The propagation mechanisms are the very couplings the earlier plates described — the multiplier and accelerator, the slow adjustment of the capital stock, prices that lag, debts that take years to work off, the spread of disturbance along the chains that link supplier to buyer. Through them a single shock becomes a wave; and because the wave is damped — fading as the structure dissipates the energy of the blow — a cycling economy needs a continuing stream of fresh shocks to keep it moving, which the figure shows as a single impulse decaying toward stillness. The impulses themselves come from the three great sources the volume will take in turn: real shocks, to technology and harvests and the price of oil and the productivity of work; monetary and financial shocks, to the quantity of money, the supply of credit, the willingness to lend; and shocks of belief, the waves of confidence and fear that are, uniquely, capable of bringing about the very conditions they anticipate.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="f2t f2d">
+              <title id="f2t">Impulse and propagation</title>
+              <desc id="f2d">A single shock at one moment sets off a response that oscillates around the trend line with diminishing amplitude — a damped wave that fades toward zero. The economy's structure, not the shock, gives the wave its rhythm.</desc>
+              <line x1="64" y1="160" x2="414" y2="160" class="ax"/>
+              <polygon points="414,160 406,156 406,164" fill="var(--soft)"/>
+              <line x1="64" y1="250" x2="64" y2="40" class="ax"/>
+              <polygon points="64,40 60,48 68,48" fill="var(--soft)"/>
+              <text x="348" y="180" class="lbl-sm">time &#8594;</text>
+              <text x="26" y="150" class="lbl-ax" text-anchor="middle" transform="rotate(-90 26 150)">deviation from trend</text>
+              <line x1="96" y1="160" x2="96" y2="112" class="guide"/>
+              <polygon points="96,106 91,114 101,114" fill="var(--soft)"/>
+              <text x="96" y="100" class="lbl-sm" text-anchor="middle">shock</text>
+              <polyline points="64,160 110,160 128,98 152,160 176,198 200,160 221,138 244,160 264,174 286,160 305,151 325,160 346,165 368,160 404,160" class="curve"/>
+              <text x="240" y="126" class="lbl-sm">propagation</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 2.</span> One blow, a fading rhythm. A single <em>shock</em> displaces output, and the economy's own structure — capital that adjusts slowly, spending that depends on income, prices that lag — converts the blow into a damped oscillation that rings and dies. The cycle's frequency is the economy's, not the shock's; absent fresh disturbances, the wave fades to nothing, which is why a perpetually cycling economy needs a perpetual stream of shocks.</figcaption>
+        </figure>
+        <aside class="edge"><span class="lead">the edge</span> The framework is a language more than a finished mechanism, and its central difficulty is empirical: we observe outcomes, never the shocks themselves, and to separate impulse from propagation requires identifying assumptions that are themselves disputed. Whether cycles are mostly the damped echoes of frequent external shocks, as Frisch and Slutsky would have it, or have an endogenous, self-generating character that needs no external blow — the view of Minsky and of the nonlinear cycle theorists such as Goodwin — remains unsettled. The rocking horse is a beautiful image, but it presumes the horse is stable and the child external; an economy that builds its own instability, and strikes its own blows, would rock to a different tune.</aside>
+      </div>
+    </section>
+
+    <section class="plate reveal" id="plate-v" data-label="Plate v · The Neutral">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">v</div>
+        <p class="plate-kicker">Plate the Fifth &middot; The Aggregates &middot; № XIX</p>
+        <h3 class="plate-title">The Neutral</h3>
+        <p class="plate-gloss">is money a veil? sticky prices, the short-run real effects of money, and the long-run return</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>can a change in the quantity of money move anything real, or only the numbers on the price tags?</q></div>
+      <div class="plate-body">
+        <p>The classical tradition answered with a doctrine of striking elegance: money is a veil. Double every price in the economy and double the stock of money to match, and nothing real has changed — the same goods are made, the same hands employed, the same bargains struck, only the figures on the tags are larger. Money, on this view, is a unit of account and a lubricant of exchange, not a force on the real machinery. David Hume put it as a thought experiment: let the money in every pocket double overnight, and in time every price will double, leaving the real economy exactly where it was. The quantity theory made it formal — that the money stock times its velocity equals the price level times real output — and drew the classical dichotomy: real things (output, employment, relative prices) are set by real forces; the price level alone is set by money. Inflation is a monetary phenomenon, and money is neutral.</p>
+        <p>The doctrine is true — in the long run. Its failure in the short run is the hinge on which modern macroeconomics turns, and the failure has a name: prices and wages are sticky. They do not all leap at once to their new level when money changes; they are bound by contracts, by the costs of changing posted prices, by the difficulty of coordinating who moves first, by a stubborn habit of reckoning in money rather than in goods. And if prices do not adjust at once, then a change in money is <em>not</em> immediately swallowed by a change in all prices — so it spills into real quantities. A monetary expansion, meeting sticky prices, raises real spending, real output, real employment. The central bank, by this leverage, can lift a slack economy or cool an overheated one. The figure assembles the standard apparatus: a downward-sloping aggregate-demand schedule; a short-run aggregate-supply schedule that slopes upward because, with prices sticky, firms meet higher demand by producing more; and a vertical long-run supply line at potential output, where in the fullness of time every price has adjusted.</p>
+        <aside class="pull">Money moves the real world while no one is looking, and only the price tags once everyone has caught up.</aside>
+        <p>The reconciliation is the figure's lesson. Let aggregate demand shift rightward — a monetary easing, a surge of spending. In the short run the economy slides up the sticky-price supply line: output rises above potential and prices rise too, a genuine boom in real activity. But the boom is borrowed. As wages and prices catch up to the new quantity of money, the short-run supply line gives way, output drifts back to potential, and the economy comes to rest on the vertical long-run line — at the same real output as before, but a permanently higher price level. Money bought a temporary expansion, paid for in lasting inflation, not in lasting prosperity. Knut Wicksell had supplied the dynamic logic a generation earlier: when the interest rate the market charges falls below the natural rate that would balance saving and investment, spending and prices climb in a cumulative process, and the central bank's whole art is to keep the one rate tracking the other.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="f3t f3d">
+              <title id="f3t">Aggregate demand and supply, short run and long</title>
+              <desc id="f3d">A downward-sloping aggregate-demand line and an upward-sloping short-run aggregate-supply line cross at an initial equilibrium on a vertical long-run supply line at potential output. A rightward shift of demand raises output and prices in the short run; in the long run output returns to potential at a higher price level.</desc>
+              <line x1="64" y1="250" x2="414" y2="250" class="ax"/>
+              <polygon points="414,250 406,246 406,254" fill="var(--soft)"/>
+              <line x1="64" y1="250" x2="64" y2="40" class="ax"/>
+              <polygon points="64,40 60,48 68,48" fill="var(--soft)"/>
+              <text x="160" y="278" class="lbl-sm">output &#8594;</text>
+              <text x="26" y="150" class="lbl-ax" text-anchor="middle" transform="rotate(-90 26 150)">price level</text>
+              <line x1="234" y1="250" x2="234" y2="64" class="guide"/>
+              <text x="238" y="72" class="lbl-sm">LRAS</text>
+              <line x1="130" y1="200" x2="350" y2="110" class="curve"/>
+              <text x="352" y="104" class="lbl-sm">SRAS</text>
+              <line x1="120" y1="100" x2="360" y2="222" class="curve2"/>
+              <text x="112" y="98" class="lbl-sm" text-anchor="end">AD</text>
+              <line x1="170" y1="100" x2="400" y2="222" class="curve2"/>
+              <text x="176" y="96" class="lbl-sm">AD&#8242;</text>
+              <circle cx="234" cy="158" r="3.2" fill="var(--ink)"/>
+              <text x="226" y="162" class="lbl-sm" text-anchor="end">1</text>
+              <circle cx="260" cy="147" r="3.2" fill="var(--ink)"/>
+              <text x="268" y="146" class="lbl-sm">2</text>
+              <circle cx="234" cy="133" r="3.2" fill="var(--ink)"/>
+              <text x="226" y="130" class="lbl-sm" text-anchor="end">3</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 3.</span> Why money moves output now and only prices later. From the initial equilibrium <em>(1)</em>, a rightward shift of aggregate demand — a monetary or spending expansion — raises both output and the price level in the short run, along the sticky-price supply line to <em>(2)</em>. As wages and prices catch up, supply gives way and output returns to potential at a higher price level <em>(3)</em>: non-neutral in the short run, neutral in the long.</figcaption>
+        </figure>
+        <aside class="edge"><span class="lead">the edge</span> Everything turns on the degree and the duration of stickiness, and both are disputed. If prices adjust briskly, neutrality nearly holds and demand management does little; if they crawl, demand governs output for years and the stakes of policy are immense. Worse, no one is sure <em>why</em> prices are as sticky as they appear: the menu costs of reprinting a tag seem far too trivial to explain rigidities that last quarters, and the real answer may lie in the difficulty of coordinating who moves first, or in contracts, or in deeper rigidities of the real wage. And the anchors of the whole story — <em>potential output</em>, the <em>natural rate</em> — are not observed but estimated, with wide error, so that even the long-run resting place to which the economy is said to return is, in the living moment, a matter of educated guess.</aside>
+      </div>
+    </section>
+
+    <section class="plate reveal" id="plate-vi" data-label="Plate vi · The Credit">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">vi</div>
+        <p class="plate-kicker">Plate the Sixth &middot; The Aggregates &middot; № XIX</p>
+        <h3 class="plate-title">The Credit</h3>
+        <p class="plate-gloss">the financial cycle — pro-cyclical credit, leverage, and the Minsky moment</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>why does the supply of credit swell in the sunshine and vanish in the storm?</q></div>
+      <div class="plate-body">
+        <p>Finance is not a neutral conduit through which saving flows to investment; it is an amplifier, and it amplifies in one direction at a time. Credit is pro-cyclical: it swells in booms and shrivels in busts, magnifying the swing it ought, in a tranquil world, to smooth. The reason lies in collateral and confidence. In good times asset prices rise, so the property and securities that back a loan are worth more; borrowers look creditworthy, defaults are rare, and lenders — flush, competitive, lulled — extend more on easier terms. In bad times the machinery runs backward: asset prices fall, collateral shrinks, the same borrowers look fragile, and credit is withdrawn precisely when it is most needed. Ben Bernanke and Mark Gertler gave the mechanism its modern name, the financial accelerator: because the willingness to lend depends on the borrower's net worth, and net worth rises and falls with the cycle, a modest shock to fundamentals is magnified through balance sheets into a large swing in credit and spending.</p>
+        <p>Hyman Minsky drew the deeper and more unsettling lesson: that stability is destabilizing. A long stretch of calm and prosperity does not entrench itself; it breeds the confidence that undoes it. As good times persist, the memory of disaster fades, risk comes to seem a fool's worry, and borrowers and lenders alike grow bolder. Minsky charted the drift through three postures of finance. In <em>hedge</em> finance, a borrower's income comfortably covers both interest and principal. In <em>speculative</em> finance, income covers the interest but not the principal, which must be perpetually rolled over. In <em>Ponzi</em> finance, income covers neither, and the borrower survives only so long as asset prices keep rising to permit refinancing. Over a long boom the financial structure migrates, unseen, from the safety of hedge toward the fragility of Ponzi — and the system grows brittle in exact proportion to how secure it feels.</p>
+        <aside class="pull">Stability is not the cycle's cure but its incubator: the long calm is when the fragility is built.</aside>
+        <p>Then comes the moment the fragility is called. Some event — a rise in interest rates, a prominent default, a stumble in the asset whose ascent the whole edifice required — punctures the belief that prices will keep climbing. The realization spreads that debts cannot be served, and the rush to sell and to deleverage begins: the <em>Minsky moment</em>, after which the financial accelerator runs in reverse at full speed, asset prices collapsing, collateral evaporating, credit freezing. The figure draws the asymmetry that is the signature of the credit cycle — leverage climbing by slow, quickening stages through the boom, then crashing far more steeply than it rose. And because financial busts impair the balance sheets of borrowers and banks alike, the recessions they bring are the deepest and most stubborn — the slow, grinding recoveries of a balance-sheet recession, in which everyone is repairing their finances at once and no one is spending.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="f4t f4d">
+              <title id="f4t">The leverage cycle and the Minsky moment</title>
+              <desc id="f4d">Leverage rises slowly and with quickening pace through a long boom, from hedge to speculative to Ponzi finance, reaching a peak — the Minsky moment — after which it collapses far more steeply than it rose, in a violent deleveraging.</desc>
+              <line x1="64" y1="250" x2="414" y2="250" class="ax"/>
+              <polygon points="414,250 406,246 406,254" fill="var(--soft)"/>
+              <line x1="64" y1="250" x2="64" y2="40" class="ax"/>
+              <polygon points="64,40 60,48 68,48" fill="var(--soft)"/>
+              <text x="180" y="278" class="lbl-sm">time &#8594;</text>
+              <text x="26" y="150" class="lbl-ax" text-anchor="middle" transform="rotate(-90 26 150)">leverage (debt)</text>
+              <polyline points="64,236 120,229 170,214 210,190 245,158 275,120 300,90 312,84 326,140 345,195 370,222 404,232" class="curve"/>
+              <circle cx="312" cy="84" r="3.4" fill="var(--ink)"/>
+              <text x="300" y="72" class="lbl-sm" text-anchor="end">the Minsky moment</text>
+              <text x="168" y="236" class="lbl-sm">the boom builds</text>
+              <text x="336" y="238" class="lbl-sm">the crash</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 4.</span> Built slowly, undone fast. Through a long calm, leverage climbs by stages — Minsky's <em>hedge</em>, <em>speculative</em>, and <em>Ponzi</em> finance — each step quickening as confidence breeds risk-taking. At the <em>Minsky moment</em> the recognition that debts cannot be served reverses everything, and the structure unwinds in a deleveraging far steeper than the build-up. Stability, on this reading, is what breeds the instability.</figcaption>
+        </figure>
+        <aside class="edge"><span class="lead">the edge</span> The financial cycle is related to the business cycle but not identical to it — it runs longer and deeper, and which of the two leads the other is contested. Spotting the danger in real time is the perennial defeat: every great boom arrives with a persuasive account of why <em>this time is different</em>, and the leverage that looks reckless in hindsight looked merely confident at the time. Even granting the diagnosis, the cure divides the experts — the <em>lean versus clean</em> debate. Should a central bank lean against a credit boom before it crests, raising rates and risking a needless slowdown on the strength of a bubble it cannot prove? Or stand back and clean up after the bust, cutting rates and lending freely — at the cost of teaching the reckless that they will be rescued? The question has no settled answer.</aside>
+      </div>
+    </section>
+
+    <section class="plate reveal" id="plate-vii" data-label="Plate vii · The Turn">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">vii</div>
+        <p class="plate-kicker">Plate the Seventh &middot; The Aggregates &middot; № XIX</p>
+        <h3 class="plate-title">The Turn</h3>
+        <p class="plate-gloss">why booms end — the reversal of belief, the panic, the run, and debt-deflation — Fisher</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>why does the wave crest, and why is the falling so much faster than the rising?</q></div>
+      <div class="plate-body">
+        <p>Every boom carries the cause of its own ending, and the ending, when it comes, is swifter than the rise. The fragilities accumulate quietly through the expansion — capacity built ahead of demand, leverage drifting toward Ponzi, prices and expectations climbing past anything the economy can deliver — until they reach a limit, and some trigger reverses the belief that had sustained them. The trigger may be small and almost arbitrary: a rise in interest rates, a single conspicuous default, a piece of news that punctures the story. What matters is the asymmetry it sets off. Expansions are long and gradual; contractions are short and violent. The wave crests slowly and breaks fast — because fear travels faster than confidence, and because the mechanics of the downturn, unlike those of the boom, are self-accelerating in a way that feeds on speed itself.</p>
+        <p>The clearest case of that self-acceleration is the run, which the volumes on money and on the spread have met from the inside. When belief reverses, the rush for the exits becomes the catastrophe: everyone tries at once to sell the asset, to withdraw the deposit, to call in the loan, and the simultaneity is fatal. Liquidity — the power to sell without moving the price — evaporates exactly when it is most wanted; fire sales drive prices below any sober estimate of worth; the solvent are dragged down with the insolvent because no one can tell them apart in the panic. A run is a coordination failure in its purest form, of the kind Diamond and Dybvig modeled: each depositor is rational to flee because the others are fleeing, and the flight of all destroys the institution that, had they stayed, was sound. The crisis is the financial accelerator running in reverse at maximum velocity.</p>
+        <aside class="pull">The more the debtors pay, the more they owe: deflation turns the act of escape into the trap.</aside>
+        <p>Irving Fisher, who had lost a fortune in the crash of 1929, drew from it in 1933 the cruelest mechanism of all: debt-deflation. In an economy thick with debt, debts are fixed in money terms while prices are free to fall — and when prices fall, the real weight of every debt grows heavier, for each dollar owed must now be earned from cheaper goods. So the distressed sell assets to pay down what they owe; the selling drives prices lower; the lower prices raise the real burden of the remaining debt; which forces yet more selling. Fisher's terrible summary was that the more the debtors pay, the more they owe — the collective stampede to deleverage deepening the very distress it flees, a paradox of deleveraging that is kin to the paradox of thrift. By this spiral an ordinary downturn becomes a depression, as it did in the years he was writing, deflation and debt devouring each other while the real economy starved.</p>
+        <aside class="edge"><span class="lead">the edge</span> Whether the turn is endogenous — the boom inevitably breeding its own reversal, as Minsky and the Austrian theorists of over-investment held — or whether it waits upon an external shock, as the impulse-propagation view implies, is among the oldest unsettled questions of the subject. The turning points themselves defy prediction, and for a reason close to logical: a crash that everyone foresaw would already have happened, so the forecasters paid to call the top almost never do. And debt-deflation requires that prices actually fall; in a modern economy where inflation expectations are anchored and prices resist falling, the spiral may be blunted — purchased, perhaps, at the price of a longer and shallower stagnation in place of a sharp collapse, the slump stretched thin rather than steep.</aside>
+      </div>
+    </section>
+
+    <section class="plate reveal" id="plate-viii" data-label="Plate viii · The Slump">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">viii</div>
+        <p class="plate-kicker">Plate the Eighth &middot; The Aggregates &middot; № XIX</p>
+        <h3 class="plate-title">The Slump</h3>
+        <p class="plate-gloss">the demand-deficient recession — coordination failure, involuntary unemployment, the output gap — Keynes</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>can an economy come to rest with willing hands idle and willing buyers absent, and stay there?</q></div>
+      <div class="plate-body">
+        <p>Here is the scandal that called modern macroeconomics into being. An economy can settle into a lasting state in which its factories run below capacity and its workers stand involuntarily idle — willing to work at the going wage, and unable to find anyone to hire them — and it can <em>stay</em> there, with no automatic force returning it to full employment. This was the claim with which Keynes, in <em>The General Theory</em> of 1936, broke a century of orthodoxy. The classical doctrine had held that markets clear: that a glut of anything, labor included, drives down its price until the glut is gone, so that unemployment must be voluntary, frictional, or brief. Keynes denied it for the economy as a whole. A slump, he argued, is demand-deficient — there is simply not enough spending to buy what full employment would produce — and the shortfall can persist, because the price system that clears a single market has no sure way to summon the demand the whole economy lacks.</p>
+        <p>The mechanism is the Keynesian cross, the multiplier seen from the side of the slump. When there is slack, output is governed by aggregate demand: firms produce what they can sell. Let planned spending fall — investment collapses, or households resolve to save more, the paradox of thrift made flesh — and output falls with it, until the lower output generates just enough saving to match the lower investment. But that resting point can lie well below full employment. The figure draws it: a forty-five-degree line along which expenditure would equal output, and a flatter aggregate-expenditure line whose slope is the propensity to consume; where they cross is the equilibrium the economy actually reaches. That crossing can sit to the left of full-employment output, and the gap between them — the recessionary gap — is idle capacity and idle people, output that could be produced and is not. Nothing in the geometry forces the gap to close on its own.</p>
+        <aside class="pull">The slump is a coordination failure made flesh: each waits for demand that only the others can provide.</aside>
+        <p>Why does the economy not cure itself? The classical answer was that wages and prices fall until employment is restored. Keynes's reply was twofold and devastating. First, wages and prices may simply not fall — they are sticky, bound by contracts and resistance and the difficulty of all moving together. Second, and more profound, even if they did fall it might not help, and could hurt: a general cut in wages cuts incomes, and incomes are demand, so the cure drains the very spending the economy needs; and falling prices raise the real burden of debt, igniting Fisher's deflationary spiral. So wage-and-price flexibility, the classical remedy, can deepen the slump rather than lift it. The economy is stuck not because any individual behaves foolishly but because they cannot coordinate a return — each firm waits to hire until demand revives, each household waits to spend until employment is secure, and the demand that would justify the hiring is the spending that waits upon the jobs. Involuntary unemployment is the human face of that failure: the output gap, measured in idle lives.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="f5t f5d">
+              <title id="f5t">The Keynesian cross and the recessionary gap</title>
+              <desc id="f5d">A 45-degree line where expenditure equals output meets a flatter aggregate-expenditure line; their crossing fixes equilibrium output. That equilibrium lies to the left of full-employment output, and the distance between them is the recessionary gap.</desc>
+              <line x1="64" y1="250" x2="414" y2="250" class="ax"/>
+              <polygon points="414,250 406,246 406,254" fill="var(--soft)"/>
+              <line x1="64" y1="250" x2="64" y2="40" class="ax"/>
+              <polygon points="64,40 60,48 68,48" fill="var(--soft)"/>
+              <text x="108" y="278" class="lbl-sm">output / income &#8594;</text>
+              <text x="26" y="150" class="lbl-ax" text-anchor="middle" transform="rotate(-90 26 150)">expenditure</text>
+              <line x1="64" y1="250" x2="260" y2="54" class="guide"/>
+              <text x="198" y="62" class="lbl-sm" text-anchor="end">AE = Y</text>
+              <line x1="64" y1="190" x2="404" y2="90" class="curve"/>
+              <text x="398" y="84" class="lbl-sm" text-anchor="end">AE</text>
+              <line x1="149" y1="165" x2="149" y2="250" class="guide"/>
+              <circle cx="149" cy="165" r="3.2" fill="var(--ink)"/>
+              <text x="158" y="182" class="lbl-sm">equilibrium</text>
+              <line x1="230" y1="250" x2="230" y2="84" class="guide"/>
+              <text x="230" y="264" class="lbl-sm" text-anchor="middle">full employment</text>
+              <text x="189" y="240" class="lbl-sm" text-anchor="middle">the gap</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 5.</span> An economy at rest below its capacity. Output settles where planned expenditure crosses the <em>AE = Y</em> line — but that equilibrium can fall short of <em>full employment</em>, leaving a <em>recessionary gap</em> of idle capacity and involuntary unemployment. Nothing in the diagram forces the gap to close: the economy can come to rest, and stay, with willing hands idle and willing buyers absent.</figcaption>
+        </figure>
+        <aside class="edge"><span class="lead">the edge</span> The Keynesian cross holds prices fixed — a drastic simplification, repaired in the aggregate-supply apparatus and in the New Keynesian models that ask precisely how sticky prices are and why. Whether unemployment is truly <em>involuntary</em>, moreover, or is better read as search, mismatch, or chosen withdrawal from the labor force, the classical and new-classical traditions have never conceded; the word carries a theory of its own. And the multiplier at the figure's heart — how much output rises per dollar of new spending — is among the most contested numbers in all of economics, its estimates running from less than one to well above it depending on how much slack there is, whether the central bank accommodates, and how open the economy is to the world.</aside>
+      </div>
+    </section>
+
+    <section class="plate reveal" id="plate-ix" data-label="Plate ix · The Cure">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">ix</div>
+        <p class="plate-kicker">Plate the Ninth &middot; The Aggregates &middot; № XIX</p>
+        <h3 class="plate-title">The Cure</h3>
+        <p class="plate-gloss">can the cycle be tamed? fiscal and monetary stabilization, and the automatic stabilizers</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if the slump is a failure to coordinate, can the state coordinate the cure?</q></div>
+      <div class="plate-body">
+        <p>If the slump is a shortfall of demand that the private economy cannot make good, the remedy follows with a certain logic: supply the demand. This is the practical heart of the Keynesian revolution, and its boldest claim is that the state, which sees and acts upon the whole, can coordinate what the parts cannot. Fiscal policy is the first instrument. When households and firms will not spend, the government spends in their place — building, employing, transferring — or it cuts taxes to put spending power in private hands, and the multiplier makes each dollar of injection raise output by more than a dollar. In a deep slump the spending need not come at the expense of private activity, for the resources it employs were standing idle; the worker hired onto a public project was not otherwise at work. Monetary policy is the second instrument. The central bank cuts the interest rate, easing the terms of credit, coaxing forward the investment and consumption that a lower cost of borrowing makes worthwhile. Between them, fiscal and monetary stabilization are the great practical fruit of the revolution — and the reason, perhaps, that the world has not since seen a depression of the old severity.</p>
+        <p>Some of the stabilization, and not the least of it, happens with no hand on any dial. The automatic stabilizers are built into the fiscal structure: when the economy slumps, tax receipts fall of their own accord and unemployment benefits and welfare payments rise, cushioning household incomes and propping demand without any decision being taken; when the economy booms, the same machinery runs in reverse, receipts swelling and supports receding, quietly restraining the expansion. Because they require no forecast and no vote, the automatic stabilizers act at once, where discretionary policy must wait on recognition and decision; they are stabilization made structural — a thermostat rather than a hand repeatedly adjusting the flame. A great part of what keeps modern downturns shallower than their forebears is this silent, continuous leaning against the wind.</p>
+        <aside class="pull">Stabilization is the wager that the state, seeing the whole, can supply the coordination the parts cannot.</aside>
+        <p>The case for active stabilization rests on a premise the next plate will contest: that the cycle is a costly failure which policy, well-aimed, can improve upon. Where the instruments still bite, the case is strong. But there is a circumstance that blunts the chief of them — the zero lower bound, the floor below which the central bank cannot easily push interest rates, reached precisely in the deepest slumps when stimulus is most wanted. There the conventional lever loses its grip, and the burden falls back upon fiscal policy and upon unconventional measures — the large-scale asset purchases of quantitative easing, the promises about future policy that go by the name of forward guidance — improvised at the frontier of what the tools can do. The slump of the 1930s, the response to the crisis of 2008, the emergency of the pandemic: each in turn tested the toolkit, extended it, and left the question of stabilization's reach an open and urgent one.</p>
+        <aside class="edge"><span class="lead">the edge</span> The case for stabilization meets serious and unsettled objections. Crowding out: government borrowing may raise interest rates and displace the private investment it hoped to supplement — a force weak when resources are idle and the central bank obliging, strong when they are not. Debt: stimulus is paid for in public borrowing, the costs deferred to a future that must service it. The zero lower bound saps monetary policy at the worst moment. And the political economy is treacherous — stimulus is far easier to begin than to end, the spending outlasting the slump that justified it, the discipline to withdraw it rarely found. These are not quibbles but the very fissures through which the counter-revolution of the next plate makes its entrance.</aside>
+      </div>
+    </section>
+
+    <section class="plate reveal" id="plate-x" data-label="Plate x · The Lag">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">x</div>
+        <p class="plate-kicker">Plate the Tenth &middot; The Aggregates &middot; № XIX</p>
+        <h3 class="plate-title">The Lag</h3>
+        <p class="plate-gloss">the limits of policy — long and variable lags, rational expectations, time inconsistency — Friedman, Lucas</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if the cure is known, why might it fail, or do harm?</q></div>
+      <div class="plate-body">
+        <p>Against the confidence of the stabilizers rose a counter-revolution, and its opening argument was about time. Milton Friedman insisted that monetary policy works with long and variable lags: the effect of a change in policy arrives not at once but months or years later, and the delay is itself unpredictable. A stimulus aimed at today's slump may land in tomorrow's boom, adding fuel where none is wanted and amplifying the very cycle it meant to damp. From this Friedman drew a conclusion hostile to the activist hand: that discretion is more likely to destabilize than to stabilize, and that an economy is better served by a steady, announced rule — money growing at a constant rate, the k-percent rule — than by the well-meant interventions of those who cannot see the lag they act across. And the apparent tradeoff that had seemed to give policymakers a menu to choose from — the Phillips curve, the inverse relation between inflation and unemployment — was, Friedman and Edmund Phelps argued independently, a mirage that vanishes the moment one looks at the long run.</p>
+        <p>Their reasoning produced the expectations-augmented Phillips curve, the figure of this plate. The short-run tradeoff is real, but it exists only because inflation is <em>unexpected</em>. A burst of surprise inflation, by raising prices before wages catch up, briefly cheapens labor and so lowers unemployment — but only until workers and firms perceive the inflation and build it into their wage demands and price-setting. Once the inflation is expected, the spell breaks: unemployment returns to its natural rate, now accompanied by higher inflation. There is, in consequence, no permanent tradeoff to exploit; the long-run Phillips curve is vertical, anchored at the natural rate of unemployment, and a policymaker who tries to hold unemployment below it merely ratchets inflation upward with each turn. The stagflation of the 1970s — high inflation and high unemployment together, an impossibility on the naive curve — confirmed the critique in the most public way and shattered the old confidence.</p>
+        <aside class="pull">There is no lasting bargain between inflation and idleness: buy employment with surprise, and the surprise is spent but once.</aside>
+        <p>The deeper blow came from the rational-expectations revolution of Robert Lucas and Thomas Sargent. If people form expectations rationally — using all the information they have, including their understanding of how policy behaves — then any <em>systematic</em> policy is anticipated and, being anticipated, neutralized; only surprises move real output, and surprises cannot be manufactured to order. The Lucas critique sharpened the point into a methodological scandal: the historical relationships on which policymakers rely will themselves shift when policy shifts, because expectations adjust, so a model that treats those relationships as fixed will mislead exactly when it is used to guide a change. Finn Kydland and Edward Prescott added the problem of time inconsistency: a government free to choose afresh each period will promise low inflation and then, once expectations are set, be tempted to inflate for a quick boom — and being foreseen to yield to that temptation, will be saddled with an inflation bias it never wanted, an argument for binding rules and an independent central bank over unfettered discretion. The same pair pressed the most radical claim of all in their real-business-cycle theory: that the cycle, in its essentials, is the efficient response of a well-functioning economy to real shocks — chiefly to technology — and is therefore no failure at all, and nothing a wise policy would try to smooth away.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="f6t f6d">
+              <title id="f6t">The expectations-augmented Phillips curve</title>
+              <desc id="f6d">Two downward-sloping short-run Phillips curves sit one above the other, crossed by a vertical long-run curve at the natural rate of unemployment. Exploiting the short-run tradeoff moves the economy down one curve, but as expected inflation rises the curve shifts up and unemployment returns to its natural rate at higher inflation.</desc>
+              <line x1="64" y1="250" x2="414" y2="250" class="ax"/>
+              <polygon points="414,250 406,246 406,254" fill="var(--soft)"/>
+              <line x1="64" y1="250" x2="64" y2="40" class="ax"/>
+              <polygon points="64,40 60,48 68,48" fill="var(--soft)"/>
+              <text x="138" y="278" class="lbl-sm">unemployment &#8594;</text>
+              <text x="26" y="150" class="lbl-ax" text-anchor="middle" transform="rotate(-90 26 150)">inflation</text>
+              <line x1="234" y1="250" x2="234" y2="56" class="guide"/>
+              <text x="240" y="64" class="lbl-sm">LRPC</text>
+              <text x="234" y="264" class="lbl-sm" text-anchor="middle">natural rate</text>
+              <line x1="130" y1="160" x2="346" y2="214" class="curve"/>
+              <text x="350" y="216" class="lbl-sm">SRPC&#8321;</text>
+              <line x1="130" y1="108" x2="346" y2="162" class="curve"/>
+              <text x="350" y="160" class="lbl-sm">SRPC&#8322;</text>
+              <circle cx="234" cy="186" r="3.2" fill="var(--ink)"/>
+              <circle cx="180" cy="173" r="3.2" fill="var(--ink)"/>
+              <circle cx="234" cy="134" r="3.2" fill="var(--ink)"/>
+              <line x1="228" y1="184" x2="184" y2="174" class="guide"/>
+              <polygon points="180,173 188,170 188,177" fill="var(--soft)"/>
+              <line x1="184" y1="170" x2="230" y2="138" class="guide"/>
+              <polygon points="234,134 227,138 231,142" fill="var(--soft)"/>
+              <text x="240" y="192" class="lbl-sm">A</text>
+              <text x="172" y="170" class="lbl-sm" text-anchor="end">B</text>
+              <text x="240" y="130" class="lbl-sm">C</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 6.</span> The vanishing tradeoff. From <em>A</em>, at the natural rate, a policymaker buys lower unemployment by accepting higher inflation, sliding down the short-run curve to <em>B</em>. But once that inflation is expected, the short-run curve shifts up and unemployment returns to the natural rate at higher inflation — point <em>C</em>. The long-run curve is vertical: no lasting trade of idleness for inflation is on offer.</figcaption>
+        </figure>
+        <aside class="edge"><span class="lead">the edge</span> The counter-revolution may have overshot its mark. Strict rational expectations and the doctrine of policy ineffectiveness sit uneasily beside the plain real effects of monetary policy and the depth of demand-driven slumps; the New Keynesian synthesis re-admits sticky prices and a genuine role for stabilization, but within the rational-expectations frame the critics built. Real-business-cycle theory's reliance on large, unobserved technology shocks invites the awkward question of what <em>negative</em> technological regress could have caused a given recession — to many, a label for ignorance dressed as a mechanism. And while the lags are real, so is the cost of standing still: a rule that forbids response in a true emergency carries its own grave risk, as the crises of 2008 and 2020 reminded even those most suspicious of the activist hand.</aside>
+      </div>
+    </section>
+
+    <section class="plate reveal" id="plate-xi" data-label="Plate xi · The Spirits">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">xi</div>
+        <p class="plate-kicker">Plate the Eleventh &middot; The Aggregates &middot; № XIX</p>
+        <h3 class="plate-title">The Spirits</h3>
+        <p class="plate-gloss">the cycle as a creature of belief — self-fulfilling expectations, multiple equilibria, animal spirits</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>can a belief, merely by being shared, make itself come true?</q></div>
+      <div class="plate-body">
+        <p>There is a class of economic outcomes that do not merely respond to belief but are constituted by it — outcomes that occur because they are expected, and that would not occur were they not. The run is the sharpest instance: a bank is sound until enough depositors expect it to fail, and their expectation, by sending them to the door, makes it fail. The cycle has the same character on a larger canvas. If firms and households come to expect a recession, they cut their investment, their hiring, their spending — and the cutting <em>is</em> the recession, arriving on schedule to confirm the forecast that summoned it. Such expectations are self-fulfilling; the belief furnishes its own evidence. And to the degree the cycle runs on them, it is not a response to fundamentals at all but a creature of what the participants happen, together, to believe — a fact that unsettles every theory built on shocks to the real machinery.</p>
+        <p>The formal home of this idea is the theory of multiple equilibria. When actions are strategic complements — when each person's best move rises with what the others are expected to do, so that one invests if others invest and hires if others hire — the economy can possess more than one self-consistent resting point. There is a good equilibrium, in which all are optimistic and active and output is high, and a bad equilibrium, in which all are cautious and idle and output is low, and each is fully self-sustaining; the choice between them turns on nothing in the fundamentals but on belief alone. The figure draws the mechanism: a best-response curve that bends into an S and so crosses the line of self-consistent belief three times — a low stable equilibrium, a high stable equilibrium, and between them an unstable tipping point. Extrinsic signals correlated with nothing real — what the theorists call sunspots — can coordinate beliefs and tip the economy from one to the other. A recession, on this reading, can be a coordination upon the bad equilibrium, and curable by anything that shifts the shared belief, which is much of what stabilization, and the central banker's careful cultivation of confidence, is really trying to do.</p>
+        <aside class="pull">A shared belief can be its own evidence: expect the bad equilibrium together, and together you arrive.</aside>
+        <p>Beneath the formalism lies the oldest name for the thing — animal spirits, Keynes's phrase for the spontaneous urge to action rather than inaction on which investment depends. Most of the consequences of an investment unfold over a future that cannot be known, not merely risked; no calculation can reach them, and so the decision to build, to commit, to wager on tomorrow rests in the end on confidence, on mood, on the conventions by which people pretend to a knowledge they do not have. When the spirits are high, investment flows and the high spirits are vindicated; when they fail, investment dries and the gloom confirms itself. George Akerlof and Robert Shiller revived the term for a whole psychology of the macroeconomy — confidence and its swings, the sense of fairness, the stories people tell themselves, the recurrent bouts of exuberance — and argued that no account of the cycle that omits them can be complete. The cycle, in this light, is partly the swinging of a collective mood, amplified by the very complementarity that makes optimism and pessimism each able to confirm itself. It is the thread that ties this volume to <em>The Bias</em>, where the herding and the exuberance are anatomized; to <em>The Norm</em>, where convention is the anchor that belief clings to; and to <em>The Game</em>, where coordination is the prize and the trap.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="f7t f7d">
+              <title id="f7t">Multiple equilibria and self-fulfilling beliefs</title>
+              <desc id="f7d">An S-shaped best-response curve crosses the 45-degree consistency line three times: a low stable equilibrium, an unstable tipping point in the middle, and a high stable equilibrium. Which one prevails turns on shared belief alone.</desc>
+              <line x1="64" y1="250" x2="414" y2="250" class="ax"/>
+              <polygon points="414,250 406,246 406,254" fill="var(--soft)"/>
+              <line x1="64" y1="250" x2="64" y2="40" class="ax"/>
+              <polygon points="64,40 60,48 68,48" fill="var(--soft)"/>
+              <text x="128" y="278" class="lbl-sm">expected activity &#8594;</text>
+              <text x="26" y="150" class="lbl-ax" text-anchor="middle" transform="rotate(-90 26 150)">best response</text>
+              <line x1="64" y1="250" x2="254" y2="60" class="guide"/>
+              <text x="72" y="236" class="lbl-sm">45&#176;</text>
+              <polyline points="64,227 83,222 102,212 121,201 140,182 159,155 178,128 197,109 216,98 235,90 254,85" class="curve"/>
+              <circle cx="102" cy="212" r="3.4" fill="var(--ink)"/>
+              <circle cx="159" cy="155" r="3.4" fill="var(--ink)"/>
+              <circle cx="216" cy="98" r="3.4" fill="var(--ink)"/>
+              <text x="108" y="226" class="lbl-sm">bad equilibrium</text>
+              <text x="196" y="184" class="lbl-sm">unstable</text>
+              <text x="224" y="96" class="lbl-sm">good equilibrium</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 7.</span> Two futures, chosen by belief. When each person's best move rises with what others are expected to do, the response curve bends into an S and meets the line of self-consistent belief three times — a <em>bad</em> equilibrium and a <em>good</em> one, each self-sustaining, with an <em>unstable</em> tipping point between. A shared mood, hopeful or fearful, can settle the economy in either: the expectation makes itself true.</figcaption>
+        </figure>
+        <aside class="edge"><span class="lead">the edge</span> The elegance of multiple-equilibria and sunspot models is also their peril: almost any outcome can be explained after the fact as a shift between equilibria or a change of mood, and an account that explains everything risks forbidding nothing — the mark of a theory that cannot be tested. <em>Animal spirits</em> courts the same danger, invoked to name whatever the fundamentals will not explain, and so apt to become a label for ignorance rather than a mechanism with content. The challenge, only partly met, is to discipline the role of belief — to say <em>when</em> multiplicity arises and when it does not, <em>what</em> selects among the equilibria a model permits, and <em>how</em> expectations are actually formed — rather than surrendering the cycle to the weather of the collective mind and calling the surrender an explanation.</aside>
+      </div>
+    </section>
+
+    <section class="plate reveal" id="plate-xii" data-label="Plate xii · The Return">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">xii</div>
+        <p class="plate-kicker">Plate the Twelfth &middot; The Aggregates &middot; № XIX</p>
+        <h3 class="plate-title">The Return</h3>
+        <p class="plate-gloss">the cycle made whole — opening The Aggregates, toward The Growth, The Level, The Money</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what, then, is the cycle — and what does it cost a free economy to be one?</q></div>
+      <div class="plate-body">
+        <p>Eleven plates have circled a single object, and it is time to say plainly what the circling has found. The cycle is the recurring fluctuation of the whole — and it is not a flaw bolted onto an otherwise smooth machine, to be filed away once the right repair is made, but a property of the machine's very design. It is what a system of separate decisions, coordinated only by prices, credit, and expectation, does when it grows large and the future is unknown: it does not glide, it surges and stalls. The wave and its phases; the fallacy of composition that turns private prudence into public danger; the boom that funds its own ascent; the shock the structure rings with; the neutrality of money that holds in the long run and fails in the short; the credit that swells and vanishes; the turn and the run and the deflationary spiral; the demand-deficient slump in which willing hands stand idle; the cure the state may attempt and the limits that hedge it; the belief that makes itself true — each was a facet of one emergent thing.</p>
+        <p>Where, in the end, does the cycle come from? From three sources, and the honest answer is that it comes from all of them at once. There are real shocks — to technology, to harvests, to the price of oil, to the productivity of labor — propagated by the slow adjustment of capital. There are monetary and financial shocks — to the quantity of money, sticky against the prices that should absorb it; to the supply of credit, swelling in confidence and collapsing in fear; to the leverage that builds toward a Minsky moment and unwinds in a crash. And there are shocks of belief — the self-fulfilling expectation, the coordination upon a bad equilibrium, the swing of animal spirits. No single engine drives the cycle; it is overdetermined, the work of all three, and most dangerous where they reinforce one another — where a real shock frightens belief, and frightened belief freezes credit, and frozen credit deepens the real shock.</p>
+        <p>Whatever the impulse, the shape is the economy's own. A disturbance enters, and the couplings that bind the parts convert it into a wave: the multiplier and the accelerator, the prices that lag, the balance sheets that amplify, the expectations that run ahead. This is the lasting wisdom of the framework of impulse and propagation — that the cause of a cycle and its character are different things, the one supplied by the shock and the other by the structure, so that the rhythm an economy displays is a signature of its own, imposed upon whatever happens to strike it. To understand a cycle is to understand both: where the blow came from, and why the bell rings as it does.</p>
+        <p>Over all of this runs the contest the volume has refused to settle, because the discipline has not settled it. On one side, the conviction descended from Keynes: the cycle is a failure, demand governs output when there is slack, the slump can persist, and the state should act. On the other, the conviction descended from the classics and revived by Lucas and the real-business-cycle theorists: the cycle is a response, expectations neutralize systematic policy, markets clear, and intervention is as apt to harm as to help. Between them the New Keynesian synthesis has built a working peace rather than a verdict — conceding the classical insistence on forward-looking expectations and the Keynesian insistence on sticky prices, and concluding that money and demand are non-neutral in the short run and neutral in the long, that stabilization is possible but bounded, and that the deepest question — whether a recession is a sickness or a healing — remains, beneath the technical apparatus, open.</p>
+        <p>It would be a failure of nerve, though, to end in mere irresolution, for the study of the cycle has achieved a great deal that is not in doubt. It learned to measure the thing — to build the national accounts that let a society see its own output whole, and to date the turnings that had once been only felt. It produced the framework of impulse and propagation that organizes all the rest. It came to understand the short-run power of money, and with it the central bank's capacity to lean against the wind. And above all it forged the tools of stabilization — fiscal and monetary, discretionary and automatic — that have, for the better part of a century, kept the world from any repetition of the Depression's depth. The slumps still come; but they have not, since, been suffered to become catastrophes of that order, and the difference is counted in lives not ruined. The science is real, and it has saved much.</p>
+        <p>And yet the humility the volume has practiced at every edge is not false modesty but the truth of the matter. Macroeconomics cannot foretell the turning points — the very crashes it best explains in hindsight it almost never calls in advance. The great divide is unresolved at the root. Every serious crisis surprises it, the largest of the recent age least foreseen of all. Its central magnitudes — potential output, the natural rate, the multiplier — are not measured but estimated, with errors wide enough to swallow the decisions they inform. And its models share an unnerving habit: those that perform handsomely in tranquil times tend to break precisely in the storms for which one most wants them. After a century of effort the cycle remains, in part, a mystery — understood in its mechanisms, unmastered in its arrival.</p>
+        <p>This volume opens <em>The Aggregates</em>, and with them the atlas's turn from the part to the whole — from the price of a thing to the level of all prices, from the output of a firm to the output of a nation, from the single market to the macroeconomy that contains it. The cycle is the short-run fluctuation; its companions in this group complete the picture of the whole. Its nearest neighbor is <em>The Growth</em>, the long-run trend around which the cycle merely oscillates — and the larger prize by far, since what growth does to human welfare across the generations dwarfs anything the cycle does within them. There is <em>The Level</em>, the price level and its inflation, the nominal companion to this volume's real concerns and the other axis of the Phillips curve met here. There is <em>The Money</em>, the institution that is at once the engine of the monetary cycle and the object of the run. And there are the threads backward — to <em>The Rate</em>, where Wicksell's natural rate first appeared; to <em>The Spread</em> and <em>The Bias</em>, where the liquidity that evaporates in a panic and the exuberance that inflates a bubble are studied at close range — and forward to <em>The Share</em>, where the question of how the cycle's burdens divide, falling hardest on those least able to bear them, awaits its proper treatment.</p>
+        <p>What, then, does it cost a free economy to be a cyclical one? The cycle is the price the market pays for its own freedom and interdependence — for coordinating the plans of millions through prices and credit and expectation rather than by command. The same decentralization that makes the market a marvel of allocation, achieving without a planner what no planner could achieve, is what leaves it prone to the failures of the whole: to the recession that is a coordination failure made flesh, the moment when each actor, drawing back in individual prudence, confirms by the drawing-back of all the very fear that prompted it. Whether such failures can be cured without summoning worse, whether the cycle in the end is malady or medicine, this volume has weighed and declined to decide — not from timidity but because the contest is genuine and the evidence has not closed it. The aggregate, like every price the atlas has examined before it, turns out to be a verdict on a hidden contest: here the contest between the parts and the whole, between the prudence of each and the prosperity of all, between the freedom to choose and the fluctuations that freedom brings. The argument remains open.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref">Volume XIX &middot; The Cycle</span>
+    </div>
+    <p class="colophon">Volume XIX of <em>Numéraire, A Periodic Table of Economic Life</em> — <em>The Cycle</em>, the nineteenth of twenty-six and the first of <em>The Aggregates</em>. Twelve plates and seven engravings, each worked at the seam where the seminar and the essay usually part, with the rigor of the one and the grace of the other, and each scrupulous about the exact edge of what can be known. The cycle is the recurring fluctuation of the whole — the wave around its trend and the phases of its turning; the comovement that makes private prudence a public danger, by the fallacy of composition and the paradox of thrift; the boom that funds its own ascent; the shock the structure rings with, by impulse and propagation; the neutrality of money that holds in the long run and fails in the short; the credit that swells and vanishes, toward the Minsky moment; the turn, the run, and Fisher's debt-deflation; the demand-deficient slump in which willing hands stand idle; the cure the state may attempt, in fiscal and monetary stabilization and the automatic stabilizers; the lags and rational expectations and time inconsistency that hedge it; and the animal spirits and multiple equilibria that make belief its own evidence. It opens the atlas's turn from the part to the whole, and hands the inquiry onward to <em>The Growth</em>, <em>The Level</em>, and <em>The Money</em>. The figures stand after Frisch and Slutsky, Wicksell, Keynes, Samuelson and Hicks, Fisher, Diamond and Dybvig, Minsky, Bernanke and Gertler, Friedman and Phelps, Lucas and Sargent, Kydland and Prescott, and Akerlof and Shiller. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<script>
+(function(){
+  var root=document.documentElement; root.classList.add('js');
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var bar=document.getElementById('progress');
+  var topbar=document.getElementById('topbar');
+  var title=document.querySelector('.vol-title');
+  var label=document.getElementById('tb-plate');
+  function onScroll(){
+    var doc=document.documentElement;
+    var h=doc.scrollHeight-window.innerHeight;
+    var p=h>0?Math.min(1,Math.max(0,window.scrollY/h)):0;
+    if(bar) bar.style.transform='scaleX('+p.toFixed(4)+')';
+    if(topbar){
+      var threshold=(title?title.offsetHeight:420)*0.72;
+      if(window.scrollY>threshold) topbar.classList.add('show'); else topbar.classList.remove('show');
+    }
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+  if('IntersectionObserver' in window){
+    var rev=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); rev.unobserve(e.target); } });
+    },{rootMargin:'0px 0px -10% 0px',threshold:0.06});
+    document.querySelectorAll('.reveal').forEach(function(el){ rev.observe(el); });
+    if(label){
+      var cur=new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting){ var t=e.target.getAttribute('data-label'); if(t) label.textContent=t; } });
+      },{rootMargin:'-44% 0px -50% 0px',threshold:0});
+      document.querySelectorAll('.plate[data-label]').forEach(function(el){ cur.observe(el); });
+    }
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-rule.html">← The Rule</a><a rel="next" href="the-growth.html">The Growth →</a></nav>
+</body>
+</html>

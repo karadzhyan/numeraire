@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Island — Numéraire, The Firm, Plate i</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:66rem; --measure:35rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(2.8rem,7vh,5rem) 0 clamp(1.4rem,3.5vh,2.2rem);text-align:center;}
+
+  .crumbs{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 400;
+    font-size:.8rem;letter-spacing:.04em;color:var(--faint);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:center;gap:.55rem;}
+  .crumbs a{text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .2s ease,color .2s ease;}
+  .crumbs a:hover{border-color:var(--num);color:var(--ink);}
+  .crumbs .sep{color:var(--faintest);}
+  .crumbs .here{color:var(--ink);}
+
+  .plate-mark{width:116px;height:116px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:.18rem;line-height:1;}
+  .plate-mark.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pm-vol{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.84rem;letter-spacing:.06em;color:rgba(240,235,225,.62);}
+  .pm-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;
+    font-size:2.5rem;letter-spacing:.02em;text-transform:uppercase;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.1rem,6vw,4rem);line-height:1.03;letter-spacing:-.025em;margin:1rem 0 0;text-wrap:balance;}
+  .status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:42rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .epi{max-width:38rem;margin:clamp(2.2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .epi q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.46;color:var(--ink);quotes:none;display:block;text-wrap:pretty;}
+  .epi .cite{display:block;margin-top:.95rem;font-size:.78rem;color:var(--faintest);letter-spacing:.05em;font-style:normal;}
+  .epi .cite em{font-style:italic;}
+
+  .essay{max-width:52rem;margin:clamp(3rem,7vh,5rem) auto 0;counter-reset:sn;}
+  .essay::after{content:"";display:block;clear:both;}
+  .essay > p,.essay > .pull{max-width:var(--measure);}
+  .essay p{font-size:1.075rem;line-height:1.8;color:var(--ink);margin:0 0 1.4rem;text-wrap:pretty;}
+  .essay em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.72;padding:.08em .14em 0 0;color:var(--ink);}
+
+  .divider{display:flex;justify-content:center;margin:2.4rem 0;}
+  .divider svg{width:96px;height:12px;overflow:visible;}
+  .divider line{stroke:var(--num);stroke-width:1;} .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.5vw,1.74rem);line-height:1.34;color:var(--ink);text-align:center;
+    margin:2.4rem auto;max-width:33rem;text-wrap:balance;}
+
+  .snref{font-family:"Fraunces",serif;font-size:.64em;line-height:0;vertical-align:super;
+    color:var(--soft);counter-increment:sn;margin-left:1px;font-style:normal;}
+  .snref::after{content:counter(sn);}
+  .sn{display:block;max-width:var(--measure);margin:.1rem 0 1.4rem;padding:.15rem 0 .15rem 1.05rem;
+    border-left:1px solid var(--hair);font-size:.84rem;line-height:1.52;color:var(--faint);}
+  .sn::before{content:counter(sn);font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--faintest);margin-right:.5em;font-size:.92em;}
+  .sn em{font-style:italic;}
+
+  @media (min-width:64rem){
+    .sn{float:right;clear:right;width:15rem;margin:.35rem 0 1.3rem;padding:0;border-left:none;}
+    .divider,.pull,.apparatus{clear:both;}
+  }
+
+  .apparatus{max-width:52rem;margin:clamp(3.2rem,7vh,5rem) auto 0;padding-top:2rem;border-top:1px solid var(--hair);clear:both;}
+  .app-h{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;}
+  .app-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.4rem;}
+  .app-list li{border-top:1px solid var(--hair);}
+  .app-list li:first-child,.app-list li:nth-child(2){border-top:none;}
+  .app-list a{display:block;text-decoration:none;padding:.95rem 0;}
+  .app-list a:hover .app-t{color:var(--soft);}
+  .app-rel{display:block;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faintest);margin-bottom:.3rem;}
+  .app-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.12rem;color:var(--ink);transition:color .2s ease;}
+  .app-g{display:block;font-size:.84rem;color:var(--faint);font-style:italic;line-height:1.4;margin-top:.22rem;}
+
+  footer{margin-top:clamp(3.5rem,8vh,6rem);padding:2.2rem 0 4rem;border-top:1px solid var(--hair);}
+  .crumbs.foot{justify-content:flex-start;margin-bottom:1.3rem;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .plate-mark{width:96px;height:96px;}
+    .pm-num{font-size:2.1rem;}
+    .essay p{font-size:1.04rem;line-height:1.74;}
+    .dropcap{font-size:3rem;}
+    .app-list{grid-template-columns:1fr;}
+    .app-list li:nth-child(2){border-top:1px solid var(--hair);}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="crumbs rise d1" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-firm.html">The Firm &middot; Vol XIV</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate i</span>
+    </nav>
+    <div class="plate-mark lit rise d2" aria-hidden="true">
+      <span class="pm-vol">Fm</span>
+      <span class="pm-num">i</span>
+    </div>
+    <h1 class="rise d3">The Island</h1>
+    <div class="status rise d3">in print &middot; The Firm &middot; plate i</div>
+    <p class="standfirst rise d4">The market coordinates without a coordinator — yet most of economic life goes on inside firms, where the price mechanism is switched off and command rules. Why should such islands of planning exist at all, in an economy supposedly run by prices? In 1937 a young Ronald Coase asked the question almost no one had asked, and answered it: because using the market is itself costly, and where it costs too much, the firm takes over.</p>
+  </header>
+
+  <div class="epi rise d5">
+    <q>Here are a million human beings who would all perish if supplies ceased to flow toward this great city; and yet all sleep, untroubled. What secret power presides over so complicated a regularity?</q>
+    <span class="cite">Frédéric Bastiat, <em>Economic Harmonies</em> (1850)</span>
+  </div>
+
+  <article class="essay">
+
+    <p class="lede"><span class="dropcap">T</span>here is a marvel at the center of economics, and it is easy to grow so used to it that one forgets to be amazed. No one is in charge of feeding a great city, and yet it is fed; no commissar assigns the bakers their flour or the grocers their fruit, and yet the bread is on the shelf and the apples in the bin, in roughly the right amounts, day after day. The price system does this, coordinating the labor of millions who never meet and have no common plan. But if the market is so good at coordinating without a coordinator, a strange question arises, and for a long time almost no one thought to ask it: why, then, is there any planning at all?</p>
+
+    <p>For there is planning everywhere, and we pass our working lives inside it. The marvel of the market is real, and the great liberal economists were right to be moved by it; but a moment's looking shows that vast tracts of economic life are not conducted in the market at all.<sup class="snref"></sup> They are conducted inside firms — the factory, the bank, the agency, the shop — and a firm is precisely a place where the price system has been switched off. The worker on the line does not sell each motion to the next station for a negotiated fee; the clerk does not bid for the file on the next desk. They are told what to do, and they do it. Within the firm, in other words, resources are moved not by prices but by orders, by the conscious direction of someone in charge — by exactly the kind of planning that, spread across a whole economy, the market is forever praised for rendering needless. The reigning theory could explain the bread arriving in the city. It could not explain why so much of the bread's making happened inside a bakery rather than across a market, and for the longest time it did not think to ask.</p>
+    <aside class="sn">The marvel had a name by Coase's day, though its fullest statement came later, in Hayek's account of the price system as a device for marshalling knowledge no single mind could hold — each person knowing only his own corner, prices carrying just enough of the rest for him to act on. Economics had built a rich theory of this coordination by price. What it had not built was any theory of the firm, which it treated as a featureless point that simply turned inputs into outputs. The thing was assumed, never explained.</aside>
+
+    <p>It was a young Englishman, Ronald Coase, who in 1937 at last asked the question and gave it an answer that has shaped the subject ever since.<sup class="snref"></sup> If the market is so efficient, he reasoned, then in a world of pure markets there would be no firms: every person would be a business of one, buying each input and selling each output at a price, the whole economy a seamless tissue of exchange with no islands of command in it anywhere. That such islands exist, and are vast, must mean the market is not, after all, costless to use. And it is not. To buy a thing rather than to command it, one must find out what it should cost and who will supply it, strike and write a bargain over it, and then watch to see the bargain kept — and these costs of transacting, trifling for a single purchase, mount ruinously when every step of a long production must be haggled afresh, again and again, with everyone involved. The firm is the escape. In place of a thousand separate market contracts it puts a single, deliberately open-ended one — the contract of employment — under which a person agrees, for a wage, to do as she is later told. The endless renegotiation falls away, and direction takes its place.</p>
+    <aside class="sn">The costs Coase pointed to were of three broad kinds, much refined since. There is the cost of discovering what the prices even are — of searching out who sells, and at what. There is the cost of striking each bargain — the negotiation, the drafting, the haggling, repeated for every exchange. And there is the cost of making sure the bargain is kept — the monitoring, the enforcing, the going to law when it is not. A long-term employment contract, vague by design, lets the firm sidestep the lot: one agreement signed, and a thousand future tasks settled thereafter by a word.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>What the firm does, then, is to supersede the price mechanism with something older and simpler: authority.<sup class="snref"></sup> Where the market moves a resource by posting a price that draws it, the firm moves it by an instruction that sends it; and inside the firm's walls the whole apparatus of bidding and pricing simply goes quiet, replaced by the manager's word. This is a stranger fact than familiarity allows. It means that the market economy, far from being market all the way down, is honeycombed with small command economies — islands of conscious planning set in the unconscious order of prices — and that we spend the better part of our lives not in the market but in one or another of these islands, taking direction. The thing the market was supposed to make needless, planning, turns out to be everywhere within the market, hidden inside its firms; and it is there not in spite of the market's efficiency but because of the market's cost. Where using prices is dear, planning is cheap, and the island rises out of the sea.</p>
+    <aside class="sn">Coase's own way of putting it was that within the firm the price mechanism is superseded. Outside, a thing moves because its price tells it where to go; inside, it moves because someone with authority says so. The phrase Robertson had coined, and Coase borrowed, catches it exactly: the firm is an island of conscious power in an ocean of unconscious co-operation. Which is to say that the market economy is dotted with little zones of planning — the very planning the market was thought to spare us — and that they exist because the market is not free to use.</aside>
+
+    <p>The mark of the firm, on this account, is the substitution of obedience for exchange, and its instrument is the strange contract by which a person is hired.<sup class="snref"></sup> When you engage a plumber you buy a defined job; when a firm engages an employee it buys something far less defined — the right to direct her, within limits, at tasks not yet named. The wage is the price not of a particular piece of work but of submitting to be directed, and it is here that this volume and the volume on the wage prove to be regarding one thing from two sides. Coase's deeper accomplishment was to have brought the firm inside economics at last. Before him it sat outside the theory, a brute given; after him it was itself a result, an institution that arises, like everything else in the subject, wherever it is the cheaper way of getting something done. And the tool he forged to do it — the recognition that using the market has costs of its own — proved one of the most fertile in the century, the same idea he would turn, decades afterward, upon the factory's smoke and the neighbor's complaint, in the volume on the externality.</p>
+    <aside class="sn">This is the seam where the present volume meets the one on the wage. The employment contract is peculiar precisely in being incomplete: the worker does not sell a named task at a named price but agrees, within bounds, to be directed — to accept what Simon would call a zone inside which the employer's word, and not a fresh negotiation, decides. The wage buys obedience, not output. And the achievement was to bring the firm inside economics rather than leaving it at the door: the firm is no exception to the logic of cost but a creature of it, arising wherever authority is the cheaper way.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>The theory has not gone unchallenged, and honesty requires its troubles be set down beside its triumph.<sup class="snref"></sup> For all its power, Coase's answer was for many years more a name than a measure: to say that firms arise to save transaction costs is to label the gap, not to fill it, until one can say which costs, how large, and when — and the work of giving the idea teeth fell to a later generation, and belongs to the plate on the boundary. A graver doubt strikes at the notion of authority itself. Is the employer's command truly different in kind from a customer's custom? He can tell the worker what to do, certainly; but if she refuses, all he can finally do is dismiss her — just as a displeased customer can do no more than take his trade elsewhere. On this view, pressed hard by Alchian and Demsetz, the firm is no realm of power at all but a particularly dense cluster of ordinary market contracts, and the bright boundary Coase drew between commanding and buying dissolves into a mere difference of degree. The quarrel is unsettled, and the plate on the nexus takes it up.</p>
+    <aside class="sn">Two large objections have shadowed the theory ever since. The first is that transaction costs long named the answer without measuring it — a label affixed to whatever the market did badly, until Williamson and others made it precise. The second cuts deeper: that the authority Coase set at the firm's heart may be a fiction. The employer, said Alchian and Demsetz, commands the worker no more than a customer commands his grocer; each can only withdraw — fire, or shop elsewhere. If so, the firm is no island of power but a dense knot of ordinary contracts, and Coase's bright line between market and firm fades to a smudge.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>There is a last puzzle, and it is the deepest the firm has to offer.<sup class="snref"></sup> If planning inside a firm works — and it plainly does, for firms exist, endure, and grow enormous — then why does planning across a whole economy fail, as in the twentieth century it so catastrophically did? The corporation and the command state do the same thing: allocate resources by direction, not by price. Yet the one coordinates the labor of hundreds of thousands, while the other, attempting as much for a nation, collapsed into shortage and waste. The difference, the liberal critics of planning saw, lies partly in what surrounds the planner. The firm plans on a small patch within a vast market it did not make: it can look up the price of all it chooses not to produce, reckon against those prices, and feel at once, in profit or loss, the verdict of a competition it cannot suspend. The central planner has no such ocean to read; having abolished the market, he is blind to the very prices that would have told him whether his plan was wise. The island can plan only because the ocean prices everything around it — a thought the volume on the rules must finish.</p>
+    <aside class="sn">The puzzle sharpens if one sets the firm beside the planned economy it so resembles. A great corporation may employ more people, and move more goods by command, than some nations contain, and yet it works; the centrally planned state, attempting the same at large, did not. What is the difference? Part of the answer, Hayek would say, is that the firm plans within a sea of market prices it did not set and cannot escape — it can read the cost of all it does not make, and is disciplined by the competition it swims among. The island depends on the ocean.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>Step back from the particulars and the firm rebukes a habit of thought this work has been at pains to expose.<sup class="snref"></sup> We are inclined to treat the market as a kind of natural medium, an economic atmosphere present everywhere and for free, against which any planning shows up as an intrusion. The firm teaches otherwise. The price system is not free; it is a contrivance with running costs, and like any contrivance it is used only where it pays. Where the cost of pricing a thing — of finding its price, bargaining it, policing it — comes to more than the thing saved, the price system is quietly set aside, and direction by authority takes its place. The market, then, has a boundary, and beyond that boundary it simply does not operate; the economy is not one great market but a patchwork of market and organization, priced here and planned there, by whichever is cheaper at each seam. A price is not the universal solvent of economic life. It is a tool with a reach, and the firm is what occupies the territory the tool cannot afford to enter.</p>
+    <aside class="sn">Here the firm bends the table's master thought to a new use. A price has been treated throughout as a verdict on a hidden contest, dressed as a fact of nature; the firm adds that the very machinery of such verdicts — the price system itself — is costly to run, and therefore reaches only so far. Beyond the point where pricing costs more than it is worth, the verdicts cease to be rendered by price at all, and authority takes over the judging. The market is not the air, present everywhere by nature. It is a built thing, with a price of admission, switched off wherever that price climbs too high.</aside>
+
+    <p>And this recasts how we should read the prices we do see.<sup class="snref"></sup> Take the plainest example, a finished good with a number on it — a car in a showroom, say, marked at its price. We are tempted to read that number as a pure fact of the market, the clean resultant of supply meeting demand. But the car was built inside a firm, from components built inside other firms, by a long chain of orders and schedules and standing arrangements in which, for step after step, no price was struck at all. The showroom number is only the final, priced surface of an immense submerged organization — the visible peak of an iceberg most of which is planning. To take it for the whole story of how the car came to be is to mistake the market for the economy entire, and the seen for the unseen beneath it. The price is real; but it is the last word of a process most of which spoke no prices, and the contest it appears to settle was, for most of its length, settled not by price but by command.</p>
+    <aside class="sn">Consider once more the finished car, and the number on its windscreen. We read it as the market's verdict, the meeting of supply and demand. But the car was assembled inside a firm, from parts mostly made inside firms, by schedules and orders and standing routines in which no price figured at any step. The windscreen number is the thin priced crust over a vast unpriced planning — the visible tip of an iceberg of command. To mistake it for the whole of how the car came to be is to mistake the market for the economy, and the tip for the iceberg.</aside>
+
+    <p class="pull">The market is not the air, present everywhere by nature; it is a built thing, with a price of admission, and the firm is what rises where that price climbs too high.</p>
+
+    <p>So the first plate of this volume leaves us with a chastened picture of the very thing the whole table anatomizes. A price is a verdict on a hidden contest, mistaken for a fact of nature — and the firm shows that the machinery for rendering such verdicts is itself costly, partial, and bounded, switched off across great stretches of economic life in favor of the older expedient of command. We had thought the market the natural and total form of economic order, prices the medium in which all of it swims. It is not so. The market is one institution among others for getting the world's work coordinated, taken up where it is cheap and forsaken where it is dear; and the line between where it rules and where authority rules — the boundary of the firm — is no fact of nature but a contested, shifting choice, redrawn with every decision to make a thing rather than buy it. That boundary, and the forces that fix it, are the subject of the plate that follows. Where this one asked why the islands of planning exist at all, the next asks how far they spread. The argument remains open.</p>
+
+  </article>
+
+  <nav class="apparatus" aria-label="Related reading">
+    <h2 class="app-h">Related</h2>
+    <ul class="app-list">
+      <li><a href="the-boundary.html"><span class="app-rel">In this volume</span><span class="app-t">The Boundary</span><span class="app-g">plate ii — the next question: having asked why the islands exist, it asks how far they spread, where making gives way to buying</span></a></li>
+      <li><a href="the-firm.html"><span class="app-rel">In this volume</span><span class="app-t">The Command</span><span class="app-g">plate iii — the authority that displaces the price: the wage paid not for a task but for obedience</span></a></li>
+      <li><a href="the-firm.html"><span class="app-rel">In this volume</span><span class="app-t">The Nexus</span><span class="app-g">plate iv — the challenge to Coase's authority: whether the firm is a hierarchy at all, or only a knot of contracts</span></a></li>
+      <li><a href="the-theorem.html"><span class="app-rel">In The Externality</span><span class="app-t">The Theorem</span><span class="app-g">Coase's other paper, the same transaction-cost lens turned decades later upon the factory's smoke</span></a></li>
+    </ul>
+  </nav>
+
+  <footer>
+    <nav class="crumbs foot" aria-label="Return">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-firm.html">The Firm &middot; Vol XIV</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate i</span>
+    </nav>
+    <p class="colophon">The first plate of Volume XIV, <em>The Firm</em> — Coase's question, why firms exist at all, and his answer in the cost of using the market. Return to <a href="the-firm.html">the volume</a>, or to <a href="numeraire-atlas.html">the complete table of volumes</a>. The epigraph is from Bastiat's <em>Economic Harmonies</em>; the modern authorities — Coase, Hayek, Simon, Alchian and Demsetz — are given in paraphrase. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-firm.html">← The Firm</a><a rel="next" href="the-boundary.html">The Boundary →</a></nav>
+</body>
+</html>

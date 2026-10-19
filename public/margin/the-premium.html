@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Premium — Numéraire, Volume IV</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem; --measure:40rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.9rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(3rem,8vh,6rem) 0 clamp(1.6rem,4vh,2.6rem);text-align:center;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;text-decoration:none;}
+  .imprint:hover{color:var(--soft);}
+  .vol-dateline{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+
+  .vol-sym{width:114px;height:114px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;align-items:center;justify-content:center;
+    font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 500;font-size:3.1rem;line-height:1;letter-spacing:-.01em;}
+  .vol-sym.lit{background:var(--ink);color:var(--paper);}
+  .vol-elnum{font-family:"Fraunces",serif;font-size:.74rem;color:var(--faintest);letter-spacing:.18em;text-transform:uppercase;margin-top:1rem;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.3rem,6.5vw,4.6rem);line-height:1.02;letter-spacing:-.025em;margin:.7rem 0 0;text-wrap:balance;}
+  .vol-status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .vol-status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:44rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .vol-q{max-width:46rem;margin:clamp(2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .vol-q .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.7rem;}
+  .vol-q q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.3rem,2.4vw,1.72rem);line-height:1.32;color:var(--ink);quotes:none;text-wrap:balance;}
+
+  .front{margin:clamp(3rem,7vh,5rem) auto 0;max-width:var(--measure);}
+  .front-eyebrow{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);text-align:center;
+    display:flex;align-items:center;gap:.9rem;justify-content:center;margin:0 0 2.1rem;}
+  .front-eyebrow::before,.front-eyebrow::after{content:"";height:1px;width:2.4rem;background:var(--hair);}
+  .front p{font-size:1.07rem;line-height:1.76;color:var(--ink);margin:0 0 1.35rem;text-wrap:pretty;}
+  .front p:last-child{margin-bottom:0;}
+  .front em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.74;padding:.1em .12em 0 0;color:var(--ink);}
+  .front-orn{display:flex;justify-content:center;margin:2rem 0;}
+  .front-orn svg{width:96px;height:12px;overflow:visible;}
+  .front-orn line{stroke:var(--num);stroke-width:1;} .front-orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  main{padding:clamp(3rem,7vh,5rem) 0 0;}
+  .plates-head{display:flex;align-items:baseline;gap:.9rem;margin:0 0 1.6rem;}
+  .plates-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-size:.86rem;color:var(--faintest);letter-spacing:.04em;flex:0 0 auto;}
+  .plates-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);flex:0 0 auto;}
+  .plates-rule{flex:1;height:1px;background:var(--hair);position:relative;top:-2px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:13px;}
+
+  .el{appearance:none;-webkit-appearance:none;background:var(--paper);border:1px solid var(--hair);border-radius:2px;
+    padding:14px 15px 16px;text-align:left;cursor:pointer;position:relative;min-height:152px;
+    display:flex;flex-direction:column;color:inherit;font-family:inherit;
+    transition:border-color .22s ease,background .22s ease,transform .22s ease,box-shadow .22s ease;}
+  .el:hover{border-color:var(--faintest);transform:translateY(-2px);}
+  .el-rn{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-size:.78rem;color:var(--faintest);letter-spacing:.18em;text-transform:uppercase;}
+  .pl-hero{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 500;font-size:1.34rem;line-height:1.06;margin-top:.5rem;letter-spacing:-.012em;}
+  .el-gloss{font-size:.79rem;color:var(--faint);line-height:1.36;margin-top:.5rem;font-style:italic;}
+  .pl-flag{margin-top:auto;padding-top:.7rem;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--faintest);}
+  .el.lit{background:var(--ink);border-color:var(--ink);}
+  .el.lit .pl-hero{color:var(--paper);}
+  .el.lit .el-rn{color:rgba(240,235,225,.5);}
+  .el.lit .el-gloss{color:rgba(240,235,225,.62);}
+  .el.lit .pl-flag{color:rgba(240,235,225,.7);}
+  .el.sel{box-shadow:inset 0 0 0 1.5px var(--ink);border-color:var(--ink);}
+  .el.lit.sel{box-shadow:inset 0 0 0 1.5px var(--paper);}
+
+  .detail{margin:clamp(2.4rem,5vh,3.6rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);scroll-margin-top:1.4rem;}
+  .d-head{display:flex;gap:1.3rem;align-items:flex-start;}
+  .d-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 500;font-size:1.5rem;line-height:1;
+    color:var(--ink);flex:0 0 auto;border:1px solid var(--hair);border-radius:2px;letter-spacing:.04em;
+    width:86px;height:86px;display:flex;align-items:center;justify-content:center;text-transform:uppercase;}
+  .d-sym.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .d-titles{min-width:0;}
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);}
+  .d-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.7rem,3.6vw,2.5rem);margin:.22rem 0 .35rem;line-height:1.04;letter-spacing:-.016em;}
+  .d-status{font-size:.84rem;color:var(--faint);font-style:italic;}
+  .d-status.print{color:var(--soft);font-style:normal;}
+  .d-status.print::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .d-desc{font-size:1.05rem;line-height:1.72;color:var(--ink);max-width:42rem;margin:1.3rem 0 0;text-wrap:pretty;}
+
+  .d-openq{margin:1.6rem 0 0;max-width:40rem;}
+  .d-openq .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.5rem;}
+  .d-openq q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);quotes:none;}
+
+  .d-excerpt{margin:1.8rem 0 0;max-width:42rem;border-left:1px solid var(--hair);padding:.2rem 0 .2rem 1.5rem;}
+  .d-excerpt .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.8rem;}
+  .d-excerpt p{font-size:1.04rem;line-height:1.74;color:var(--ink);margin:0;text-wrap:pretty;}
+  .d-excerpt .x-cap{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 500;font-size:1.15rem;}
+  .d-readplate{margin:1.6rem 0 0;}
+  .d-readplate a{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:.94rem;
+    letter-spacing:.01em;text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:2px;transition:border-color .2s ease,color .2s ease;}
+  .d-readplate a:hover{color:var(--soft);border-color:var(--soft);}
+  .d-readplate .arr{margin-left:.4rem;}
+
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;text-decoration:none;}
+  .f-mark:hover{color:var(--soft);}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;}
+    .el{min-height:138px;padding:12px 12px 14px;}
+    .pl-hero{font-size:1.18rem;}
+    .el-gloss{font-size:.74rem;}
+    .vol-sym{width:92px;height:92px;font-size:2.5rem;}
+    .d-head{gap:1rem;}
+    .d-sym{width:64px;height:64px;font-size:1.25rem;}
+    .front p{font-size:1.04rem;}
+    .dropcap{font-size:3rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="rise d1">
+      <a class="imprint" href="numeraire-atlas.html">Numéraire</a>
+      <div class="vol-dateline">The Fourth Volume &middot; The Prices</div>
+    </div>
+    <div class="vol-sym lit rise d2" aria-hidden="true">Pm</div>
+    <div class="vol-elnum rise d2">Element 04 &middot; Group I</div>
+    <h1 class="rise d3">The Premium</h1>
+    <div class="vol-status rise d3">in print &middot; № IV &middot; 2 of 12 plates</div>
+    <p class="standfirst rise d4">The premium is the price of risk: the extra return that must be offered to induce anyone to bear an uncertain prospect rather than a sure one. This volume anatomizes it — the aversion that makes the cautious pay to shed risk and the bold demand to be paid for bearing it, the insurance and diversification that tame it, the equity premium that puzzles those who measure it. Its question is the oldest one about every great fortune: how much of the reward for bearing risk is the wage of courage and skill, and how much the mere luck of having survived.</p>
+    <div class="vol-q rise d5">
+      <span class="lead">The question of the volume</span>
+      <q>the premium looks like the just wage of courage, the fee the fearful pay the brave — but how much of a great fortune is the reward for skill, and how much the mere luck of having borne risk and survived?</q>
+    </div>
+  </header>
+
+  <section class="front" aria-label="The argument of the volume">
+    <div class="front-eyebrow">The argument</div>
+
+    <p><span class="dropcap">E</span>very price the table has weighed so far has been the price of something one can point to — an hour of labor, an acre of land, a year of waiting. The price this volume weighs is stranger, for its object cannot be pointed to at all: it is the price of not knowing. Risk is the shadow across every economic act whose reward lies in the future — nearly all of them. The merchant who ships across an ocean, the farmer who sows before the weather is known, the investor who buys a share — each commits the present to a future he cannot see, and must reckon with the chance that it will disappoint. A prospect that might pay much and might pay nothing is worth less than a certainty of the same average value; and the difference is the premium, the extra return that makes a person bear uncertainty rather than flee it. This volume is the anatomy of that premium — the price of bearing what cannot be foreseen.</p>
+
+    <p>The premium shows two faces. Most people will pay to be rid of uncertainty, surrendering a small certain sum to escape a large uncertain loss: that is the principle of insurance, a fixed yearly payment to a company that makes the household whole if the rare disaster strikes. And most must be paid to take uncertainty on, demanding a higher return for a riskier prospect: that is why a speculative bond yields more than a government's, and why, over a long run, the bold tend to end richer than the timid. Both express one fact — that risk is a cost, a thing people will spend to avoid and must be paid to accept. The mathematics began with gamblers: Pascal and Fermat, dividing the stakes of an interrupted game, founded the calculus of probability and with it the expected value, the average of the possible outcomes each weighted by its chance. Yet people plainly do not maximize expected value — or no one would buy insurance at a price designed, by its nature, to exceed the expected loss.</p>
+
+    <p>The reason was supplied by Daniel Bernoulli in 1738. A sure thousand, he saw, is worth more than an even chance at two thousand, because the satisfaction money brings rises slower than the money itself: the second thousand adds less than the first, so the gain from doubling is outweighed by the equal chance of nothing. From this one insight — the diminishing marginal utility of wealth — flows the whole theory of risk-aversion. A risk-averse person values a gamble below its expected value, and the amount he marks it down is the premium he will pay to avoid it. Around that price an architecture has grown: insurers who pool thousands of independent risks until, by the law of large numbers, the average becomes nearly certain; investors who diversify so that failures cancel successes; markets in which the reward for risky shares over safe bonds has, in the record, puzzled those who measure it. Risk can be pooled, spread, and traded; but it cannot be destroyed, only moved, and at every move it carries its price.</p>
+
+    <p>All of this presumes the odds are known — that they can be set as a number, however rough. Frank Knight, in 1921, drew the distinction that has shadowed the subject since. Risk proper is measurable: the odds can be estimated, the danger insured, the premium calculated. But there is a deeper not-knowing — true uncertainty — where the odds themselves are unknown and unknowable, and no frequency can be assigned. The genuinely novel venture, the unprecedented crisis, the technology that has never existed: these cannot be insured, because they cannot be priced, and whoever bears them bears something no premium was set to cover. Knight made this the very source of profit — the entrepreneur's reward as the compensation for an uncertainty that could not be reduced to a calculable risk. Keynes said it more bluntly of the things that matter most: about the prospect of a war, or the rate of interest twenty years hence, we simply do not know. The premium for measurable risk can be computed; the premium for uncertainty is whatever the bold can be induced to accept, and the event, in the end, allows them to keep.</p>
+
+    <div class="front-orn" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>And here the volume's question opens. The premium presents itself as the most reasonable of prices, even the most admirable: it is what the cautious pay the courageous to carry a burden they would shun — the price at which fear hires nerve. But a price is a verdict on a hidden contest, mistaken for a fact of nature; and the price of risk, beneath its look of a simple fee for a simple service, settles several contests at once. The first is over who actually bears the risk, as against who collects the premium for it — very often not the same. The second is over the line, never cleanly drawn, between the skill that earns a reward and the luck that merely received one. The third is over who, in a society, is in a position to bear risk at all, and who is forced instead to pay others to bear it for them. The premium looks like the wage of courage; it may be something nearer a toll, levied by those who can afford to gamble upon those who cannot.</p>
+
+    <p>Consider the second contest, for it presses hardest on the title-page's question: how much of a great fortune is courage, and how much is luck? The premium is paid, in the end, to those who bore a risk and survived — and survival, in a world of chance, is not the same as wisdom. For every bold wager that founded an empire, a hundred just as bold were ruined; and the ruined write no memoirs, so we see only the survivors and mistake the selection for a verdict on their gifts. A price is a verdict on a hidden contest, mistaken for a fact of nature; and the price of risk, read off the fortunes of those who lived to enjoy it, cannot easily tell the genius who foresaw from the gambler who was spared. Nor is risk-bearing open to all alike: the rich can afford to be brave, having a cushion against the bad outcome, while the poor cannot, for a single failure ruins them — so they buy safety, and the premium they forgo goes to those whose wealth lets them outlast the variance. The price of risk flows, quietly, from those who cannot bear it to those who can.</p>
+
+    <p>None of this means the premium is unearned, or that risk-bearing is a fraud. Someone must carry the future's uncertainty, and carrying it is a genuine cost: the sleepless proprietor who has staked everything, the investor who watches a fortune swing, the insurer who may be ruined by a single catastrophe all bear a real weight, and a society that offered them nothing for it would find its ships unsailed and its ventures unfunded. Skill in bearing risk is real, too — the judgment to tell a sound gamble from a reckless one, the nerve to hold when others flee, are not nothing, and the steadiest fortunes are less often the luckiest than the best managed. The premium does necessary work, calling forth the risk-bearing a productive economy cannot do without. The argument of this volume is not that the premium is undeserved, but that it is a verdict — that beneath the clean price of a clean service lies the unsettled question of who bore the risk, who was skilled and who was spared, and who could afford to play at all.</p>
+
+    <p>The twelve plates trace the price of risk from concept to conscience. The Peril opens with the price itself; The Fortune asks the question beneath it, of skill, luck, and the survivors who cannot tell them apart. The Odds sets out the calculus of probability the gamblers bequeathed, and The Aversion the diminishing utility by which Bernoulli explained why we shun a fair bet. The Policy anatomizes the pooling that tames the average, The Hedge the diversification that cancels risk for free, The Equity the puzzle of why market risk has paid so well. The Tail weighs the rare catastrophe the everyday premium forgets, The Uncertainty the Knightian not-knowing no premium can cover, The Bearer the gap between who holds the risk and who is paid for it. The Bubble examines risk mispriced by the madness of crowds, and The Reckoning closes on the deepest question: how a just society should share the risks no one can escape and someone must bear. Other volumes border this one — the rate, whose discount on the future is risk's near twin; the utility, whose diminishing returns explain the aversion; the stock, whose cushion decides who can bear risk and who must pay to be spared it. Through them all runs one suspicion: that the price of courage and the price of luck are harder to tell apart than the world's fortunes would have us believe. The argument remains open.</p>
+
+  </section>
+
+  <main>
+    <div class="plates-head">
+      <span class="plates-num fr">№ IV</span>
+      <span class="plates-name">The twelve plates</span>
+      <span class="plates-rule"></span>
+    </div>
+
+    <div class="grid" id="grid">
+      <button class="el lit" data-id="peril" aria-label="Plate i — The Peril — in print"><span class="el-rn">Plate i</span><span class="pl-hero">The Peril</span><span class="el-gloss">the price of risk: why a prospect that might pay much and might pay nothing is worth less than a sure thing of equal average value, and what the premium is</span><span class="pl-flag">in print</span></button>
+      <button class="el lit" data-id="fortune" aria-label="Plate ii — The Fortune — in print"><span class="el-rn">Plate ii</span><span class="pl-hero">The Fortune</span><span class="el-gloss">the contest beneath the premium: how much of a great fortune is the wage of courage and skill, and how much the mere luck of having borne risk and survived?</span><span class="pl-flag">in print</span></button>
+      <button class="el" data-id="odds" aria-label="Plate iii — The Odds"><span class="el-rn">Plate iii</span><span class="pl-hero">The Odds</span><span class="el-gloss">the calculus of chance: probability and expected value, from Pascal and Fermat to the fair bet — the average of outcomes each weighted by its likelihood</span></button>
+      <button class="el" data-id="aversion" aria-label="Plate iv — The Aversion"><span class="el-rn">Plate iv</span><span class="pl-hero">The Aversion</span><span class="el-gloss">Bernoulli's answer: the diminishing utility of wealth, why a sure sum beats a fair gamble, and the premium as the price aversion sets on risk</span></button>
+      <button class="el" data-id="policy" aria-label="Plate v — The Policy"><span class="el-rn">Plate v</span><span class="pl-hero">The Policy</span><span class="el-gloss">insurance and the pooling of risk: the law of large numbers, by which many independent dangers, gathered together, become a near-certainty an insurer can price</span></button>
+      <button class="el" data-id="hedge" aria-label="Plate vi — The Hedge"><span class="el-rn">Plate vi</span><span class="pl-hero">The Hedge</span><span class="el-gloss">diversification: the spreading of wealth across many uncorrelated risks so that failures cancel successes, lowering risk without lowering return</span></button>
+      <button class="el" data-id="equity" aria-label="Plate vii — The Equity"><span class="el-rn">Plate vii</span><span class="pl-hero">The Equity</span><span class="el-gloss">the equity premium: why shares have paid so much more than safe bonds over the long run — a reward for bearing market risk so large it puzzles those who measure it</span></button>
+      <button class="el" data-id="tail" aria-label="Plate viii — The Tail"><span class="el-rn">Plate viii</span><span class="pl-hero">The Tail</span><span class="el-gloss">tail risk: the rare, vast catastrophe the everyday premium forgets — fat tails, the hundred-year flood, and the danger of pricing risk from a calm past</span></button>
+      <button class="el" data-id="uncertainty" aria-label="Plate ix — The Uncertainty"><span class="el-rn">Plate ix</span><span class="pl-hero">The Uncertainty</span><span class="el-gloss">Knight's distinction: measurable risk, which can be insured and priced, against true uncertainty, which cannot — and the profit that is its reward</span></button>
+      <button class="el" data-id="bearer" aria-label="Plate x — The Bearer"><span class="el-rn">Plate x</span><span class="pl-hero">The Bearer</span><span class="el-gloss">who actually bears the risk: the gap between the one who carries the danger and the one who collects the premium — risk-shifting, moral hazard, the socialized loss</span></button>
+      <button class="el" data-id="bubble" aria-label="Plate xi — The Bubble"><span class="el-rn">Plate xi</span><span class="pl-hero">The Bubble</span><span class="el-gloss">risk mispriced by the crowd: speculative manias, the madness of crowds, and the premium that vanishes precisely when the danger is greatest</span></button>
+      <button class="el" data-id="reckoning" aria-label="Plate xii — The Reckoning"><span class="el-rn">Plate xii</span><span class="pl-hero">The Reckoning</span><span class="el-gloss">the capstone: how a just society should share the risks no one can escape — insurance as solidarity or market, and who should bear the perils of a complex economy</span></button>
+    </div>
+  </main>
+
+  <section class="detail" id="detail" aria-live="polite"></section>
+
+  <footer>
+    <div class="f-bar">
+      <a class="f-mark" href="numeraire-atlas.html">Numéraire</a>
+      <span class="f-ref">Volume IV &middot; The Prices</span>
+    </div>
+    <p class="colophon">Volume IV, <em>The Premium</em>, opens with two plates in print — <em>The Peril</em> and <em>The Fortune</em>, the price of risk and the contest over whether bearing it is rewarded for skill or for luck. The fourth element of the table, and the twenty-second of its volumes to appear; it joins <a href="the-wage.html">The Wage</a>, <a href="the-rent.html">The Rent</a>, and <a href="the-rate.html">The Rate</a> among the prices — the wage the price of labor, the rent the return to ownership, the rate the price of time, and now the premium the price of risk. It borders <a href="the-rate.html">The Rate</a> most closely, for the discount the future suffers for being uncertain is the near twin of the discount it suffers for being late; <a href="the-utility.html">The Utility</a>, whose diminishing marginal returns explain the aversion that sets the premium; and <a href="the-stock.html">The Stock</a>, the cushion of wealth that decides who can afford to bear risk and who must pay to be spared it. The thesis is that the premium, which wears the look of the just wage of courage, is in truth a verdict — on who really bears the risk and who is merely paid for it, on the skill that foresaw and the luck that was spared, and on who could afford to gamble at all. One price of the prices remains to open, the spread, the price of standing between. Return to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+
+<script>
+const PLATES = {
+  peril:{rn:"i",title:"The Peril",family:"in print",lit:true,url:"the-peril.html",
+    desc:`The volume opens with the price of risk itself. A prospect that might pay handsomely and might pay nothing is worth less, today, than a certainty of the same average value, and the gap between them is the premium — the extra return that must be offered to make anyone bear an uncertainty rather than flee it. This plate sets out that price in its two aspects: the cautious, who will pay to be rid of risk, and the bold, who must be paid to take it on. It explains the certainty equivalent — the sure sum a person would accept in place of a gamble — and the risk-aversion that places it below the gamble's average. Risk, the plate shows, is a cost like any other, a thing the world will spend to avoid and must be compensated to accept; the premium is what that cost commands, and the whole architecture of insurance and investment is built upon it.`,
+    excerpt:`<span class="x-cap">E</span>very price so far has been the price of a thing — of labor, of land, of time. This one is the price of a shadow: the price of not knowing. A venture that might pay handsomely and might pay nothing is worth less, today, than a sure thing of the same average value, and the gap between them is the premium — the extra return that must be offered to persuade someone to bear a risk rather than avoid it. Most people will pay to be rid of uncertainty: that is why they buy insurance, accepting a small sure loss to escape a large unsure one. And most people must be paid to take it on: that is why a risky bond yields more than a safe one, and why, over the long run, the bold are richer than the cautious. The premium is the price of bearing what cannot be foreseen — and someone, always, is bearing it.`},
+  fortune:{rn:"ii",title:"The Fortune",family:"in print",lit:true,url:"the-fortune.html",
+    desc:`If the premium is the price of risk, the deepest question is what, exactly, it rewards — and here the volume meets the riddle on its title-page. This plate gives the thesis on which the volume turns. The premium is paid out, in the end, to those who bore a risk and survived; but survival in a world of chance is not the same as skill. For every bold venture that founded a fortune, many equally bold were ruined and left no record, so that the survivors are mistaken for the wise, and luck is read as judgment. The plate sets out the contest the premium conceals: between the skill that genuinely foresees and the luck that is merely spared, and between those who can afford to bear risk and those who must pay others to bear it for them. The price of risk, it argues, cannot easily tell the brave apart from the fortunate — and a great deal, in how we honor wealth and explain success, turns on whether we can.`,
+    excerpt:`<span class="x-cap">B</span>ehind every great fortune, the saying goes, lies a great crime; but more often there lies a great risk that happened to come good. The successful entrepreneur, the celebrated investor, the founder whose bet paid off — each is honored for the courage and the skill with which he bore uncertainty and prevailed. Yet for every one who bore that risk and won, others bore the same risk and were ruined, and they do not write memoirs. The premium that rewards the survivor is real; the question is what it rewards. Is it the wisdom to have seen what others missed, or merely the luck to have been on the winning side of a gamble many played and most lost? The price of risk, paid out to those who bore it and lived, cannot easily tell the brave apart from the fortunate — and a great deal turns on whether we can.`},
+  odds:{rn:"iii",title:"The Odds",family:"in preparation",lit:false,
+    desc:`Before risk could be priced it had to be measured, and the measuring began at the gaming table. This plate sets out the calculus of probability and the idea of expected value. Pascal and Fermat, puzzling over how to divide the stakes of a game broken off before its end, founded the mathematics of chance; from it came the expected value of a prospect — the average of its possible outcomes, each weighted by its probability — and the notion of a fair bet, one whose price equals its expected value. The plate traces how this apparatus turned uncertainty from a matter of omen and fortune into a thing of numbers, and how it underlies every later pricing of risk. It also marks the apparatus's first great surprise: that people, faced with real gambles, persistently refuse to value them at their expected worth — a refusal the next plate must explain.`,
+    openq:`the calculus of chance gives every gamble an expected value — so why will no one actually pay it?`},
+  aversion:{rn:"iv",title:"The Aversion",family:"in preparation",lit:false,
+    desc:`Why will a person decline a fair bet, or pay more than the expected loss to be insured against it? Daniel Bernoulli answered in 1738, resolving the St. Petersburg paradox with a single idea: the satisfaction wealth brings rises more slowly than wealth itself, so that the second thousand is worth less than the first. This plate sets out the diminishing marginal utility of money and the risk-aversion that follows from it. Because losses bite harder than equal gains please, a risk-averse person values a gamble below its average, and the gap is the premium — what he will surrender to escape the risk, or demand to bear it. The plate traces how Bernoulli's insight became the foundation of the modern theory of choice under uncertainty, and how it grounds the premium in the curvature of utility rather than in any quality of the risk itself.`,
+    openq:`if the premium measures the curvature of a person's utility, is it a price of risk at all, or only of fear?`},
+  policy:{rn:"v",title:"The Policy",family:"in preparation",lit:false,
+    desc:`Risk borne alone is terrifying; risk pooled with thousands of others is tame. This plate sets out the principle of insurance. A single house may or may not burn, and the owner cannot know which; but a company that insures a hundred thousand houses can predict, by the law of large numbers, almost exactly how many will burn in a year, and charge each a small premium to cover the loss of the few. The plate traces the history and logic of risk-pooling — from the marine underwriters of Lloyd's to the mutual societies and the modern insurer — and the conditions it requires: risks numerous, independent, and not chosen by the insured. It shows how pooling converts individual uncertainty into collective near-certainty, and where the mechanism strains: when risks are correlated and fall together, when the insured know more than the insurer, when the very fact of being insured changes how carefully people behave.`,
+    openq:`pooling tames risk only when dangers are many and independent — so what becomes of the premium when they are neither?`},
+  hedge:{rn:"vi",title:"The Hedge",family:"in preparation",lit:false,
+    desc:`There is a way to reduce risk that costs nothing in expected return, and this plate sets it out. To hold one venture is to ride its fortunes entirely; to hold many, whose fates are unconnected, is to let the failures of some cancel the successes of others, smoothing the whole without lowering its average. Shakespeare's merchant knew it — his ventures not trusted to one ship nor one place — and Harry Markowitz made it exact, showing how the risk of a portfolio depends not on the riskiness of its parts alone but on how they move together. The plate traces the logic of diversification: why the only risk the market rewards is the risk that cannot be diversified away, the risk common to everything, and why the rest — the hazard peculiar to a single venture — earns no premium, since anyone can shed it for free. It marks both the power of the idea and its limit: in a true crisis, when all things fall together, diversification fails just when it is most wanted.`,
+    openq:`diversification erases the risk peculiar to one venture for free — so the premium can reward only the risk that no one can escape?`},
+  equity:{rn:"vii",title:"The Equity",family:"in preparation",lit:false,
+    desc:`Over the long run, the owners of shares have earned far more than the holders of safe government bonds — a gap, the equity premium, so wide that it has become one of the famous puzzles of the field. This plate sets it out. Some premium is to be expected: shares are riskier than bonds, their value swinging with the fortunes of the economy, and the risk-averse must be paid to hold them. But the size of the historical premium is hard to square with any reasonable measure of how much risk investors actually bear or how strongly they dislike it — the reward seems too large for the danger. The plate traces the puzzle and the attempts to resolve it: rare disasters that haunt expectations, the peculiar terror of losses that arrive precisely when one can least afford them, the possibility that the past was simply luckier than the future will be. It is the clearest case of a premium whose level no one can fully explain.`,
+    openq:`the reward for bearing market risk has been larger than the risk seems to warrant — so is the premium overpriced fear, or underpriced danger?`},
+  tail:{rn:"viii",title:"The Tail",family:"in preparation",lit:false,
+    desc:`Most of the time the world is calm, and the premium is priced for calm weather. This plate sets out the risk that lives in the tail of the distribution — the rare, enormous catastrophe that the ordinary reckoning of risk neglects because it has seldom or never been seen. It explains why real dangers so often have "fat tails," in which extreme events are far likelier than a tidy bell curve would suggest; why pricing risk from a placid stretch of history understates it; and why the rare disaster, when it comes, can erase in a day the premiums collected over decades. The plate traces the episodes — the financial crises, the natural catastrophes, the models that worked until they catastrophically did not — in which the tail arrived and the price of risk was revealed to have been a fiction of fair weather. The everyday premium, it shows, is a wager that the storm will hold off; and the wager is not always won.`,
+    openq:`the everyday premium is priced for calm weather — so who bears the rare catastrophe it forgets, and who is paid as if it could not come?`},
+  uncertainty:{rn:"ix",title:"The Uncertainty",family:"in preparation",lit:false,
+    desc:`Not all not-knowing is alike, and this plate sets out the distinction that divides the subject. Frank Knight separated risk, where the odds are known and the danger can be insured, from uncertainty, where the odds themselves are unknown and unknowable — the genuinely novel, for which no frequency exists and no premium can be calculated. The first can be priced and laid off; the second must simply be borne. Knight argued that this is the very source of profit: the entrepreneur is paid not for bearing a calculable risk, which competition would price away, but for bearing an uncertainty that cannot be measured, insured, or escaped. The plate traces the distinction and its consequences — why the deepest risks are precisely the ones the market cannot price, why Keynes insisted that about the things that matter most we simply do not know, and why the confident machinery of risk-pricing rests on a foundation of true uncertainty it cannot reach.`,
+    openq:`the risks that can be priced can be laid off — so is profit just the wage for bearing the uncertainty that cannot?`},
+  bearer:{rn:"x",title:"The Bearer",family:"in preparation",lit:false,
+    desc:`The premium is paid to whoever bears the risk — but who that is, in fact, is rarely so clear as the contract pretends. This plate follows the risk to its final bearer. Again and again, the one who collects the premium has contrived to shift the danger onto someone else: the financier whose bets are backed, in the last resort, by the taxpayer; the firm whose risks fall on its workers and suppliers; the executive who keeps the gains and socializes the losses. The plate sets out the mechanics of risk-shifting and the moral hazard it breeds — for a party insulated from the consequences of a risk will take more of it than he should — and the deep question the volume's thesis presses here: that the premium is just only if the one who is paid is truly the one who bears, and that a great part of modern finance consists in severing the two, drawing the reward while passing the peril to those who never agreed to hold it.`,
+    openq:`the premium is just only if the one who is paid is the one who bears — so what is it when the risk is shifted onto those who never agreed to hold it?`},
+  bubble:{rn:"xi",title:"The Bubble",family:"in preparation",lit:false,
+    desc:`If the premium is the price of risk, then in a speculative mania the price goes badly wrong. This plate sets out the bubble — the episode in which a rising market persuades a crowd that risk has vanished, so that the premium for bearing it shrinks to nothing just as the danger grows greatest. It traces the long history of manias, from the tulip and the South Sea to the housing crash, and the psychology that drives them: the contagion of optimism, the story that this time is different, the herd that mistakes the absence of recent disaster for the absence of risk. The plate shows how the price of risk, far from a sober reading of the odds, is swayed by confidence and fear into systematic error — too low at the peak, when caution is most needed, and too high in the wreckage, when the danger has already passed. The premium, it argues, is not only contested but unstable, a price the crowd is forever misjudging.`,
+    openq:`in a mania the premium for risk shrinks just as the danger swells — so is the price of risk ever a sober reading of the odds, or always a mood?`},
+  reckoning:{rn:"xii",title:"The Reckoning",family:"in preparation",lit:false,
+    desc:`The volume ends at the largest question the premium poses: not what the price of risk is, but how a society ought to distribute the risks that no one can escape and someone must bear. This final plate sets out the ethics of risk. It asks whether the great hazards of a modern life — illness, unemployment, old age, calamity — should be left to private insurance, priced by the market and denied to the worst risks, or pooled by the whole community as a matter of solidarity, on the principle that the misfortune of the few is the proper charge of the many. It weighs the welfare state as a vast machine for sharing risk, the market's efficiency against its exclusions, and the deep question of whether the distribution of risk in a society is a fact of nature to be accepted or a choice to be made. The price of risk, the plate concludes, is in the end a measure of how much a people will bear for one another.`,
+    openq:`the risks no one can escape must fall somewhere — so should a society price them by the market, or share them as the charge of all?`}
+};
+
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+function render(id){
+  var tile=document.querySelector('.el[data-id="'+id+'"]');
+  var d=PLATES[id]; if(!d||!tile) return;
+  var h='';
+  h+='<div class="d-head">';
+  h+='<div class="d-sym'+(d.lit?' lit':'')+'">'+esc(d.rn)+'</div>';
+  h+='<div class="d-titles">';
+  h+='<div class="d-family">The Premium &middot; Plate '+esc(d.rn)+' &middot; '+esc(d.family)+'</div>';
+  h+='<h2 class="d-name">'+esc(d.title)+'</h2>';
+  h+='<div class="d-status'+(d.lit?' print':'')+'">'+esc(d.family)+'</div>';
+  h+='</div></div>';
+  h+='<p class="d-desc">'+esc(d.desc)+'</p>';
+  if(d.lit && d.excerpt){
+    h+='<div class="d-excerpt"><span class="lead">From the opening</span><p>'+d.excerpt+'</p></div>';
+  }
+  if(d.url){h+='<p class="d-readplate"><a href="'+d.url+'">Read the plate<span class="arr" aria-hidden="true">&#8594;</span></a></p>';}
+  if(!d.lit && d.openq){
+    h+='<p class="d-openq"><span class="lead">This plate will ask</span><q>'+esc(d.openq)+'</q></p>';
+  }
+  document.getElementById('detail').innerHTML=h;
+  var prev=document.querySelector('.el.sel'); if(prev) prev.classList.remove('sel');
+  tile.classList.add('sel');
+}
+
+(function(){
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.el').forEach(function(b){
+    b.addEventListener('click',function(){
+      render(b.dataset.id);
+      document.getElementById('detail').scrollIntoView({behavior:reduce?'auto':'smooth',block:'nearest'});
+    });
+  });
+  render('peril');
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-usury.html">← The Usury</a><a rel="next" href="the-peril.html">The Peril →</a></nav>
+</body>
+</html>

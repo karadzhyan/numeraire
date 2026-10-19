@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Rate — Numéraire, Volume III</title>
+<meta name="description" content="The Rate — Volume III of Numéraire, A Periodic Table of Economic Life. The price of time: why tomorrow is worth less than today, who fixes the discount, and whether interest is the wage of waiting or the rent of scarce capital.">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem; --measure:40rem;
+    --wash:rgba(28,26,22,.066); --wash2:rgba(28,26,22,.12);
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.62;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  .measure{max-width:var(--measure);margin-left:auto;margin-right:auto;}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- ornaments ---- */
+  .orn{display:flex;justify-content:center;margin:0 auto;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .divider{display:flex;align-items:center;gap:1.1rem;max-width:30rem;margin:clamp(3rem,7vh,5rem) auto;color:var(--num);}
+  .divider .ln{flex:1;height:1px;background:var(--hair);}
+  .divider svg{display:block;width:12px;height:12px;overflow:visible;flex:0 0 auto;}
+  .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* ---- progress + running head ---- */
+  #progress{position:fixed;top:0;left:0;height:2px;width:100%;transform:scaleX(0);transform-origin:0 50%;background:var(--soft);opacity:.45;z-index:10000;}
+  #topbar{position:fixed;top:0;left:0;right:0;z-index:9998;transform:translateY(-100%);transition:transform .5s cubic-bezier(.2,.6,.2,1);
+    background:rgba(240,235,225,.86);-webkit-backdrop-filter:saturate(1.1) blur(8px);backdrop-filter:saturate(1.1) blur(8px);
+    border-bottom:1px solid var(--hair);}
+  #topbar.show{transform:translateY(0);}
+  .tb-in{max-width:var(--frame);margin:0 auto;padding:.62rem clamp(1.4rem,4vw,3.4rem);display:flex;justify-content:space-between;align-items:baseline;gap:1.2rem;}
+  .tb-l{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:.86rem;letter-spacing:.01em;}
+  .tb-l span{color:var(--faintest);font-weight:400;}
+  .tb-r{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);text-align:right;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+
+  /* ---- title page ---- */
+  .vol-title{padding:clamp(3.4rem,11vh,8rem) 0 clamp(1.6rem,5vh,3rem);text-align:center;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.16rem;letter-spacing:.02em;}
+  .vol-no{font-size:.84rem;color:var(--faint);letter-spacing:.16em;text-transform:uppercase;margin-top:.55rem;}
+  h1.vol-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 380;font-weight:380;
+    font-size:clamp(2.9rem,9vw,6rem);line-height:.98;letter-spacing:-.028em;margin:clamp(1.7rem,4.5vh,2.8rem) 0 0;text-wrap:balance;}
+  .vol-sym{width:78px;height:78px;margin:clamp(1.6rem,4vh,2.4rem) auto 0;border:1px solid var(--hair);border-radius:2px;
+    display:flex;align-items:center;justify-content:center;background:var(--ink);}
+  .vol-sym span{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2.3rem;line-height:1;color:var(--paper);letter-spacing:-.01em;}
+  .vol-coords{font-family:"Fraunces",serif;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);margin-top:1.1rem;}
+  .vol-gloss{font-style:italic;color:var(--soft);font-size:1.12rem;margin:.5rem 0 0;}
+  .vol-epigraph{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 400;font-style:italic;
+    font-size:clamp(1.14rem,1.7vw,1.34rem);line-height:1.42;color:var(--soft);max-width:33rem;margin:clamp(1.8rem,4vh,2.6rem) auto 0;text-wrap:pretty;}
+  .vol-epigraph .lead{display:block;font-style:normal;font-variation-settings:"opsz" 24,"wght" 400;
+    font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.7rem;}
+  .vol-status{display:inline-flex;align-items:center;gap:.5rem;margin:clamp(1.8rem,4vh,2.4rem) auto 0;font-size:.84rem;color:var(--soft);}
+  .vol-status::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ink);}
+
+  /* ---- the argument (preface) ---- */
+  .part-head{text-align:center;margin:0 0 clamp(1.6rem,3.5vh,2.3rem);}
+  .part-kicker{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faintest);}
+  .part-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-weight:400;
+    font-size:clamp(1.5rem,3.4vw,2.1rem);letter-spacing:-.012em;margin:.4rem 0 0;}
+  .argument p{font-size:1.05rem;line-height:1.74;margin:0 0 1.15rem;text-wrap:pretty;}
+  .argument p.lede::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 420;
+    float:left;font-size:3.5em;line-height:.78;padding:.05em .1em 0 0;color:var(--ink);}
+  .argument em,.plate-body em,.coda em{font-style:italic;}
+
+  /* ---- contents ---- */
+  .toc{list-style:none;margin:0 auto;padding:0;max-width:43rem;}
+  .toc li{border-top:1px solid var(--hair);}
+  .toc li:last-child{border-bottom:1px solid var(--hair);}
+  .toc a{display:grid;grid-template-columns:2.6rem 1fr;column-gap:1.1rem;align-items:baseline;
+    padding:.82rem .3rem;text-decoration:none;transition:background .2s ease;}
+  .toc a:hover{background:rgba(28,26,22,.035);}
+  .toc-n{font-family:"Fraunces",serif;font-size:.92rem;color:var(--faintest);text-align:right;}
+  .toc-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.06rem;color:var(--ink);line-height:1.16;}
+  .toc-g{grid-column:2;font-size:.85rem;font-style:italic;color:var(--faint);margin-top:.16rem;line-height:1.38;}
+
+  /* ---- plates ---- */
+  .plate{margin:clamp(3.2rem,8vh,6rem) 0 0;padding-top:clamp(2.4rem,5.5vh,3.4rem);border-top:1px solid var(--hair);scroll-margin-top:4rem;}
+  .plate-open{max-width:var(--measure);margin-inline:auto;}
+  .plate-no{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 360;font-size:clamp(2.6rem,7vw,4.1rem);
+    line-height:.9;color:var(--num);letter-spacing:.02em;}
+  .plate-kicker{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faintest);margin:.9rem 0 .2rem;}
+  .plate-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.8rem,4.4vw,2.7rem);line-height:1.04;letter-spacing:-.018em;margin:0;text-wrap:balance;}
+  .plate-gloss{font-style:italic;color:var(--soft);font-size:1.02rem;margin:.55rem 0 0;line-height:1.4;}
+
+  .ask{max-width:var(--measure);margin:clamp(1.5rem,3.5vh,2.2rem) auto clamp(1.8rem,4vh,2.4rem);}
+  .ask .lead{display:block;font-family:"Fraunces",serif;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.55rem;}
+  .ask q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:clamp(1.18rem,1.8vw,1.38rem);line-height:1.36;color:var(--soft);quotes:none;}
+
+  .plate-body{max-width:var(--measure);margin-inline:auto;}
+  .plate-body p{margin:0 0 1.18rem;text-wrap:pretty;}
+  .plate-body > p:first-of-type::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 430;
+    float:left;font-size:3.5em;line-height:.76;padding:.04em .12em 0 0;color:var(--ink);}
+  .plate-body h4{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.76rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faint);margin:2rem 0 .9rem;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 380;font-style:italic;
+    font-size:clamp(1.4rem,2.3vw,1.7rem);line-height:1.32;color:var(--soft);text-align:center;
+    max-width:33rem;margin:clamp(2rem,4.5vh,2.8rem) auto;text-wrap:balance;}
+
+  .edge{max-width:var(--measure);margin:1.7rem auto;padding:.1rem 0 .1rem 1.15rem;border-left:1px solid var(--hair);
+    color:var(--faint);font-size:.92rem;line-height:1.62;}
+  .edge .lead{display:block;font-family:"Fraunces",serif;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.4rem;}
+  .edge em{font-style:italic;color:var(--soft);}
+
+  /* ---- figures (engravings) ---- */
+  .fig{max-width:var(--measure);margin:clamp(2.1rem,4.5vh,2.9rem) auto;}
+  .fig-frame{border:1px solid var(--hair);border-radius:2px;padding:clamp(1rem,2.4vw,1.7rem) clamp(1rem,2.4vw,1.7rem) clamp(.8rem,2vw,1.3rem);background:rgba(255,253,247,.4);}
+  .fig svg{display:block;width:100%;height:auto;}
+  figcaption{margin:.95rem auto 0;max-width:38rem;font-size:.85rem;line-height:1.5;color:var(--faint);text-wrap:pretty;}
+  figcaption .fig-n{font-family:"Fraunces",serif;font-weight:500;letter-spacing:.04em;color:var(--soft);}
+  figcaption em{font-style:italic;}
+  .ax{stroke:var(--soft);stroke-width:1.1;fill:none;}
+  .tick{stroke:var(--soft);stroke-width:1;}
+  .curve{stroke:var(--ink);stroke-width:1.5;fill:none;stroke-linecap:round;}
+  .curve2{stroke:var(--ink);stroke-width:1.3;fill:none;stroke-linecap:round;}
+  .guide{stroke:var(--faintest);stroke-width:1;fill:none;stroke-dasharray:3 3.5;}
+  .core{stroke:var(--ink);stroke-width:3;fill:none;stroke-linecap:round;}
+  .fill-cs{fill:var(--wash);}
+  .fill-dwl{fill:var(--wash2);}
+  .fill-wedge{fill:var(--wash);}
+  .fill-lens{fill:var(--wash);}
+  .hatch-line{stroke:var(--faintest);stroke-width:.8;}
+  .lbl{font-family:"Fraunces",serif;font-size:11.5px;fill:var(--faint);font-variation-settings:"opsz" 24,"wght" 400;}
+  .lbl-i{font-family:"Newsreader",serif;font-style:italic;font-size:11px;fill:var(--soft);}
+  .lbl-sm{font-family:"Fraunces",serif;font-size:9.6px;fill:var(--faintest);letter-spacing:.02em;}
+  .lbl-ax{font-family:"Fraunces",serif;font-size:9.4px;fill:var(--faintest);letter-spacing:.12em;}
+
+  /* ---- coda + colophon ---- */
+  .coda{max-width:var(--measure);margin:clamp(3rem,7vh,5rem) auto 0;}
+  .coda p{margin:0 0 1.18rem;text-wrap:pretty;}
+  .coda p.lede::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 430;
+    float:left;font-size:3.5em;line-height:.76;padding:.04em .12em 0 0;color:var(--ink);}
+  footer{margin-top:clamp(3.6rem,8vh,6rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.4rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .colophon{font-size:.85rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+
+  /* ---- motion / reveal ---- */
+  @media (prefers-reduced-motion: no-preference){
+    html.js .reveal{opacity:0;transform:translateY(14px);}
+    html.js .reveal.in{opacity:1;transform:none;}
+    .reveal{transition:opacity .9s cubic-bezier(.2,.6,.2,1),transform .9s cubic-bezier(.2,.6,.2,1);}
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.18s}.rise.d3{animation-delay:.32s}.rise.d4{animation-delay:.46s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  /* ---- responsive ---- */
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .argument p,.plate-body p,.coda p{font-size:1.01rem;}
+    .plate-body > p:first-of-type::first-letter,.argument p.lede::first-letter,.coda p.lede::first-letter{font-size:3em;}
+    .f-bar{flex-direction:column;gap:.5rem;}
+    .toc a{grid-template-columns:2rem 1fr;column-gap:.8rem;}
+    figcaption{font-size:.82rem;}
+  }
+
+  /* ---- print: a volume, in print ---- */
+  @media print{
+    html,body{background:#fff;color:#000;}
+    body{font-size:11.5pt;line-height:1.5;}
+    body::before,#progress,#topbar{display:none !important;}
+    .frame{max-width:none;padding:0;}
+    .measure,.plate-open,.plate-body,.ask,.edge,.coda{max-width:34rem;}
+    a{text-decoration:none;}
+    .plate{break-before:page;border-top:none;padding-top:0;}
+    .fig,figure{break-inside:avoid;}
+    .plate-no{color:#bbb;}
+    .reveal{opacity:1 !important;transform:none !important;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#ne-contents">Complete contents</a><a href="../editions.html#volume-rate">The Rate · both editions</a><a href="../essays/numeraire-iii-the-rate.html">Expanded essays</a></div></nav>
+<div id="progress" aria-hidden="true"></div>
+<div id="topbar" aria-hidden="true"><div class="tb-in">
+  <span class="tb-l">Numéraire <span>· The Rate</span></span>
+  <span class="tb-r" id="tb-plate">Volume III</span>
+</div></div>
+
+<div class="frame">
+
+  <header class="vol-title">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="rise d1">
+      <span class="imprint">Numéraire</span>
+      <div class="vol-no">Volume III &middot; № III</div>
+    </div>
+    <h1 class="vol-name rise d2">The Rate</h1>
+    <div class="vol-sym rise d3" aria-hidden="true"><span>Rt</span></div>
+    <div class="vol-coords rise d3">Group I &middot; The Prices</div>
+    <p class="vol-gloss rise d3">the price of time</p>
+    <p class="vol-epigraph rise d4">
+      <span class="lead">The question of the volume</span>
+      Who decides what an hour of waiting is worth?
+    </p>
+    <div class="vol-status rise d4">in print &middot; twelve plates</div>
+  </header>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <section class="argument reveal" aria-labelledby="arg-h">
+    <div class="part-head">
+      <div class="part-kicker">Numéraire &middot; Volume III</div>
+      <h2 class="part-title" id="arg-h">The Argument</h2>
+    </div>
+    <p class="lede">With this volume the table completes the oldest trinity in economics. The classical economists divided the fruits of production among three factors — land, labor, and capital — and named for each its price: the rent of land, the wage of labor, and the rate of interest that capital commands. <em>The Rent</em> and <em>The Wage</em> have taken their two; this volume takes the third, the rate, the price of capital. But the rate is more than a factor price, and the gloss it travels under says so: it is the price of time. For interest is paid not for a thing but for a delay — for the use of resources across an interval, for the patience of the lender and the impatience of the borrower — and time touches everything. Every mortgage and every bond, every pension and every project that bears fruit only later, the very debt of nations, and the present worth of all that the future holds: each is priced by the rate. It is the most pervasive price in the table, and, as we shall see, the one most visibly set rather than found.</p>
+    <p>The puzzle the rate poses is deceptively plain: why is a dollar tomorrow worth less than a dollar today? That it is worth less is the meaning of a positive rate of interest, for to part with a dollar now and be repaid only the same dollar later is to lend for nothing, and few will; the lender requires a premium, the borrower pays it, and that premium, reckoned as a fraction of the sum per period, is the rate. So the present commands a premium over the future, and the future trades at a discount. The whole architecture of finance is built upon this single fact and its arithmetic: a sum due in the future is worth, today, that sum divided by one plus the rate, compounded once for each period of delay — its present value, the future shrunk to the present by the rate. The question of the volume is why the present should command this premium at all, and who, in the end, decides how large it shall be.</p>
+    <aside class="pull">To lend is to give up the present for a claim on the future; the rate is the price of the exchange. It is the only price in the table whose commodity is time itself.</aside>
+    <p>Two great traditions answer the question of what determines the rate, and they could hardly differ more. The first is real, and runs from the classical economists through Irving Fisher. On this view the rate is fixed by deep forces of the real economy — by thrift, the willingness of savers to defer consumption, and by productivity, the return that capital earns in production. Fisher gave it its most elegant form: the rate is settled where impatience meets opportunity, where the subjective rate at which people discount the future equals the objective rate at which investment can turn present resources into future ones. The rate, so understood, is a natural fact, the price that balances a society's patience against the productivity of its capital, and the central bank can only track it. The second tradition is monetary, and it is Keynes's. Interest, Keynes insisted, is not the reward for saving at all but the reward for parting with liquidity — the price of surrendering the safety and convenience of money — and it is set not in the workshop but in the money market, by the demand to hold money against the supply the central bank provides. The rate, so understood, is a monetary thing, manipulable, a number a central bank sets. The volume's own brief states the modern resolution in a phrase: the whole architecture of interest rests on a single number a central bank can move.</p>
+    <p>Between these traditions the volume will not simply choose, for the truth, as Knut Wicksell saw, contains both. There is a natural rate, real, fixed by thrift and productivity, the rate the economy would settle at of its own accord; and there is a market rate, monetary, set by the banks and the central bank; and the gap between them drives prices up or down. In the long run the natural rate rules, and the central bank can only find it; in the short run the central bank sets the market rate, and the economy must follow. So the rate is at once a fact of nature and an act of policy, and the question the volume's title poses — who decides what an hour of waiting is worth? — has, fittingly, a double answer: the deep forces of patience and productivity propose, and a committee of the central bank disposes.</p>
+    <p>One older question shadows the whole inquiry, handed up by <em>The Rent</em>. Is interest a genuine reward for a real service — for waiting, for the productivity of capital — or is it a rent, the scarcity-price of capital, the rentier's premium that Keynes hoped abundance would one day abolish? The volume will find, as <em>The Rent</em> found of all rents, that the truth is mixed: interest is partly the real price of time and partly the surplus of a maintained scarcity, in proportions that the long, strange decline of the real rate toward zero throws into the sharpest relief.</p>
+    <p>The plates trace all this from the arithmetic to the ethics. They begin with the rate as the price of intertemporal exchange and the market of saving and investment that sets it; with Fisher's reconciliation of impatience and opportunity, and the old quarrel over whether interest is earned at all. They turn to Keynes and liquidity, to Wicksell's natural rate and its modern ghost, the elusive r-star, to the gap that inflation opens between the real rate and the nominal, and to the term structure in which the market encodes its forecast of the future. They follow the rate's long secular ebb toward zero and the stagnation it portends; the discounting of the future on which investment, asset values, and the very economics of climate depend; and the central bank's lever, by which the most important price in the economy is, in the modern world, administered. And the synthesis: that the rate is the price of the future, the weight a society places on its own tomorrow — partly given by nature, partly chosen by policy, and partly, still, the tribute of a scarcity.</p>
+    <p>The thesis may be stated plainly, for the plates to earn. The rate is the price of time, and like every price in this table it is a verdict, not a fact of nature — but uniquely, it is a verdict upon the future, the rate at which the present appraises what is yet to come. It is in part the deep real rate that thrift and productivity would set, in part the rate a central bank chooses, and in part the rentier's premium upon a scarce thing; and to mistake it for a simple fact of nature, the inevitable price of capital, is to forget that it is set, contested, and freighted with a civilization's care — or carelessness — for its own future.</p>
+  </section>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <section class="contents reveal" aria-labelledby="toc-h">
+    <div class="part-head">
+      <div class="part-kicker">The twelve plates of this volume</div>
+      <h2 class="part-title" id="toc-h">The Plates</h2>
+    </div>
+    <ol class="toc">
+      <li><a href="#plate-i"><span class="toc-n">i</span><span class="toc-t">The Exchange</span><span class="toc-g">interest as the price of time; the present for the future</span></a></li>
+      <li><a href="#plate-ii"><span class="toc-n">ii</span><span class="toc-t">The Balance</span><span class="toc-g">saving and investment; the loanable-funds market</span></a></li>
+      <li><a href="#plate-iii"><span class="toc-n">iii</span><span class="toc-t">The Tangent</span><span class="toc-g">Fisher; impatience and opportunity; the rate determined</span></a></li>
+      <li><a href="#plate-iv"><span class="toc-n">iv</span><span class="toc-t">The Reward</span><span class="toc-g">the nature of interest; waiting, productivity, or rent?</span></a></li>
+      <li><a href="#plate-v"><span class="toc-n">v</span><span class="toc-t">The Liquidity</span><span class="toc-g">Keynes; interest as the price of parting with money</span></a></li>
+      <li><a href="#plate-vi"><span class="toc-n">vi</span><span class="toc-t">The Anchor</span><span class="toc-g">Wicksell's natural rate; the rate the economy wants; r-star</span></a></li>
+      <li><a href="#plate-vii"><span class="toc-n">vii</span><span class="toc-t">The Veil</span><span class="toc-g">real versus nominal; the Fisher equation; inflation</span></a></li>
+      <li><a href="#plate-viii"><span class="toc-n">viii</span><span class="toc-t">The Curve</span><span class="toc-g">the term structure; the yield curve; the market's forecast</span></a></li>
+      <li><a href="#plate-ix"><span class="toc-n">ix</span><span class="toc-t">The Ebb</span><span class="toc-g">the secular decline of the real rate; secular stagnation</span></a></li>
+      <li><a href="#plate-x"><span class="toc-n">x</span><span class="toc-t">The Discount</span><span class="toc-g">discounting the future; investment, assets, and climate</span></a></li>
+      <li><a href="#plate-xi"><span class="toc-n">xi</span><span class="toc-t">The Lever</span><span class="toc-g">the central bank; monetary policy; the rate as a policy variable</span></a></li>
+      <li><a href="#plate-xii"><span class="toc-n">xii</span><span class="toc-t">The Future</span><span class="toc-g">the price of the future; toward The Money, The Cycle, The Stock</span></a></li>
+    </ol>
+  </section>
+
+  <main class="plates" id="plates">
+
+    <!-- ===================== PLATE I ===================== -->
+    <section class="plate reveal" id="plate-i" data-label="Plate i · The Exchange">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">i</div>
+        <p class="plate-kicker">Plate the First &middot; The Prices &middot; № III</p>
+        <h3 class="plate-title">The Exchange</h3>
+        <p class="plate-gloss">interest as the price of time; the present for the future</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what is one paying for, when one pays interest?</q></div>
+      <div class="plate-body">
+        <p>Strip interest of its mystery and a single idea remains: an interest rate is an exchange rate between two dates. To lend is to surrender command over goods today in return for a claim on goods tomorrow; to borrow is the reverse. The rate is the price at which present command trades for future command — and a positive rate means simply that the present is dearer, that a dollar in hand is worth more than the promise of a dollar a year hence. The future, accordingly, trades at a discount: a sum due later is worth, today, that sum divided by one plus the rate, compounded once for each period of waiting. This is present value, the operation that runs through all of finance, and it is nothing but the future appraised in the currency of the present, shrunk by the rate. Where <em>The Wage</em> priced labor and <em>The Rent</em> priced position, this volume prices time itself, and time is the one commodity that enters every transaction which does not settle at once.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ft1t ft1d">
+              <title id="ft1t">The intertemporal budget line</title>
+              <desc id="ft1d">Consumption now against consumption later; a budget line of slope minus one plus the rate, the endowment point on it, and a chosen point to the left where the consumer lends.</desc>
+              <line class="ax" x1="60" y1="252" x2="404" y2="252"/>
+              <line class="ax" x1="60" y1="252" x2="60" y2="44"/>
+              <line class="curve2" x1="60" y1="75" x2="300" y2="252"/>
+              <path class="curve" d="M84,98 C108,116 138,140 208,214"/>
+              <circle cx="175" cy="160" r="2.8" fill="var(--faint)"/>
+              <circle cx="118" cy="118" r="2.8" fill="var(--ink)"/>
+              <line x1="170" y1="155" x2="126" y2="123" stroke="var(--soft)" stroke-width="1.1"/>
+              <path d="M126,123 l8,1 l-3,-6 z" fill="var(--soft)"/>
+              <text class="lbl" x="183" y="160">E (endowment)</text>
+              <text class="lbl" x="112" y="115" text-anchor="end">C</text>
+              <text class="lbl-sm" x="150" y="140" text-anchor="end">lends</text>
+              <text class="lbl-i" x="250" y="206">slope = −(1 + r)</text>
+              <text class="lbl-sm" x="206" y="224">indifference</text>
+              <text class="lbl-ax" x="340" y="269" text-anchor="middle">CONSUMPTION NOW</text>
+              <text class="lbl-ax" transform="rotate(-90 28 150)" x="28" y="150" text-anchor="middle">CONSUMPTION LATER</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 1.</span> The rate as a relative price. A person with income now and later may move along the budget line by lending or borrowing; its slope is minus one plus the rate, the terms on which the market lets present consumption be traded for future. From the endowment E the consumer here moves left to C, consuming less now and more later — that is, lending. The rate is the price that governs the trade, and a higher rate tilts the line steeper, making the future cheaper to buy with present restraint.</figcaption>
+        </figure>
+        <p>The figure renders the idea as a relative price, in the smallest economy that contains time: two periods, now and later. A person endowed with some income in each may, by lending or borrowing, move along a budget line whose slope is minus one plus the rate — the rate at which the market permits present consumption to be exchanged for future. Lend a dollar today and the line carries you up by one plus the rate tomorrow; borrow against tomorrow and it carries you the other way. The chooser settles where the line touches the highest indifference curve, the point at which the personal willingness to trade present for future just matches the market's terms. If that point lies, as here, to the left of the endowment, the person consumes less than their income now and more later — they save, they lend. The rate is the price that governs this exchange across time, and everything the volume goes on to ask is, at bottom, a question about it: why it is positive, what fixes its height, and who, in the modern world, sets it.</p>
+        <aside class="pull">A rate of interest is an exchange rate — not between two currencies but between two dates.</aside>
+        <p>From this one relation the whole architecture of finance unfolds. A bond is a promise of future payments, and its price is their present value at the going rate. A mortgage is the same in reverse, a present sum exchanged for a stream of future ones. A pension, an insurance reserve, a sovereign's debt, the appraisal of any project that costs now and pays later — each is the discounting of a future flow to a present worth, and each turns on the rate. Raise the rate, and every future dollar shrinks; lower it, and the future swells toward the present. This is why the rate is the most pervasive price in the table: it does not price one good among many but the dimension of time through which all goods that do not settle at once must pass.</p>
+        <aside class="edge"><span class="lead">the edge</span> The two-period picture is the simplest that can hold time at all, and the real economy has not two dates but a continuum, not one rate but a whole term structure of them — the eighth plate's subject — and not the frictionless market drawn here but default risk, illiquidity, and rationing that drive a wedge between the rate a saver receives and the rate a borrower pays, to which the fifth element, <em>The Spread</em>, is wholly devoted. The single rate of this opening plate is therefore an abstraction: the pure price of time, stripped of risk and friction, which no actual contract quite charges. But the abstraction earns its place, for beneath every real rate, however encrusted with term and risk, lies this bare exchange of present for future — and it is that pure rate the volume must first understand before it complicates it.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE II ===================== -->
+    <section class="plate reveal" id="plate-ii" data-label="Plate ii · The Balance">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">ii</div>
+        <p class="plate-kicker">Plate the Second &middot; The Prices &middot; № III</p>
+        <h3 class="plate-title">The Balance</h3>
+        <p class="plate-gloss">saving and investment; the loanable-funds market</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if the rate is a price, what is the market that sets it?</q></div>
+      <div class="plate-body">
+        <p>A price is set in a market, and the classical economists located the rate of interest in the market for loanable funds — the pool of resources made available for lending and sought for borrowing. On the supply side stands saving: the funds that households and firms, choosing to consume less than their income, release to others. The higher the rate, the greater the reward for that abstinence, and so, in the conventional telling, the more is saved — an upward-sloping supply. On the demand side stands investment: the funds that firms borrow to build, to equip, to expand. The higher the rate, the higher the hurdle a project must clear to be worth financing, and so the fewer projects qualify — a downward-sloping demand. The rate settles where the two meet, at the level that makes the flow of saving exactly equal to the flow of investment.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ft2t ft2d">
+              <title id="ft2t">The market for loanable funds</title>
+              <desc id="ft2d">An upward-sloping saving curve and a downward-sloping investment curve cross at the equilibrium interest rate.</desc>
+              <line class="ax" x1="60" y1="252" x2="404" y2="252"/>
+              <line class="ax" x1="60" y1="252" x2="60" y2="44"/>
+              <line class="curve" x1="60" y1="230" x2="360" y2="90"/>
+              <line class="curve2" x1="60" y1="90" x2="360" y2="230"/>
+              <line class="guide" x1="60" y1="160" x2="210" y2="160"/>
+              <line class="guide" x1="210" y1="160" x2="210" y2="252"/>
+              <circle cx="210" cy="160" r="2.8" fill="var(--ink)"/>
+              <text class="lbl" x="364" y="92">S — saving</text>
+              <text class="lbl" x="364" y="228">I — investment</text>
+              <text class="lbl" x="52" y="163" text-anchor="end">r*</text>
+              <text class="lbl" x="210" y="267" text-anchor="middle">Q*</text>
+              <text class="lbl-ax" x="356" y="285" text-anchor="middle">LOANABLE FUNDS</text>
+              <text class="lbl-ax" transform="rotate(-90 28 150)" x="28" y="150" text-anchor="middle">INTEREST RATE</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 2.</span> The loanable-funds market. Saving rises with the rate, investment falls with it, and the rate settles where the two cross — the level that makes what is saved equal to what is invested. It is the real theory of interest in its plainest form: the rate balances the thrift of those who would defer consumption against the productivity of those who would borrow to build. More thrift shifts saving outward and lowers the rate; more investment demand shifts the other curve and raises it.</figcaption>
+        </figure>
+        <p>This is the real theory of interest in its plainest dress, and its message is that the rate balances two deep forces: the thrift of a society, its willingness to wait, and the productivity of its capital, the return that waiting can earn. A more patient, more frugal people saves more at every rate, pushing the supply curve outward and the rate down; a burst of productive opportunity — a new technology, a frontier to settle — shifts investment outward and drives the rate up. The rate, on this account, is no arbitrary figure but the reading of a society's patience against its prospects, and the comparative statics are intuitive: aging populations that save heavily, or a dearth of profitable projects, push the rate low, while youthful, investment-hungry economies bid it high. The ninth plate will find in exactly these forces the explanation of the rate's long modern decline.</p>
+        <aside class="pull">The rate is the price that persuades the patient to lend and the productive to borrow, and clears the market between them.</aside>
+        <p>The loanable-funds market thus gives the rate a real anchor, in saving and investment, that the later plates on money and policy must reckon with. But the figure's very tidiness conceals the assumption that will become the hinge of the whole subject — and the next plates will first deepen it, in Fisher's hands, before Keynes calls it into doubt.</p>
+        <aside class="edge"><span class="lead">the edge</span> The loanable-funds account is the natural first model, but it rests on an assumption Keynes would make notorious: that saving and investment are brought into equality by the rate alone, so that whatever is saved is borrowed and invested, and demand never chronically falls short. Should saving and investment instead fail to match at full employment — should the rate that would equate them lie below zero, or be set elsewhere, in the money market, by forces of its own — then the smooth clearing of this cross breaks down, and saving may pile up uninvested while the economy settles below its capacity. That possibility, the core of the Keynesian revolution and of the secular stagnation the ninth plate examines, is the great qualification this tidy diagram omits. Loanable funds describes the rate the economy would reach if it always cleared; whether it always clears, the rest of the volume cannot assume.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE III ===================== -->
+    <section class="plate reveal" id="plate-iii" data-label="Plate iii · The Tangent">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">iii</div>
+        <p class="plate-kicker">Plate the Third &middot; The Prices &middot; № III</p>
+        <h3 class="plate-title">The Tangent</h3>
+        <p class="plate-gloss">Fisher; impatience and opportunity; the rate determined</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what reconciles a society's impatience with the productivity of its capital?</q></div>
+      <div class="plate-body">
+        <p>Irving Fisher gave the real theory its most beautiful form, in a book whose subtitle is its whole thesis: the theory of interest as determined by impatience to spend income and opportunity to invest it. Fisher saw that two distinct things press upon the rate, and that the rate is the figure at which they are reconciled. The first is impatience — the subjective preference for present over future enjoyment, the rate at which a person discounts a satisfaction merely for being deferred. The second is opportunity — the objective power of investment to transform present resources into a larger future yield, the return that roundabout and time-consuming methods of production can earn. Impatience is a fact of psychology; opportunity is a fact of technology; and the rate of interest, Fisher showed, is the price at which the two are brought into agreement.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ft3t ft3d">
+              <title id="ft3t">Fisher's two-period diagram</title>
+              <desc id="ft3d">A concave production frontier transforming present into future resources, a budget line tangent to it at the production point, and an indifference curve tangent to the budget line at the consumption point. Production and consumption separate.</desc>
+              <line class="ax" x1="60" y1="252" x2="404" y2="252"/>
+              <line class="ax" x1="60" y1="252" x2="60" y2="44"/>
+              <path class="curve" d="M298,232 Q150,150 96,104"/>
+              <line class="curve2" x1="85" y1="103" x2="320" y2="252"/>
+              <path class="guide" d="M95,110 Q145,150 215,216"/>
+              <circle cx="174" cy="159" r="2.8" fill="var(--ink)"/>
+              <circle cx="130" cy="131" r="2.8" fill="var(--ink)"/>
+              <line x1="169" y1="156" x2="139" y2="137" stroke="var(--soft)" stroke-width="1.1"/>
+              <path d="M139,137 l8,1 l-3,-6 z" fill="var(--soft)"/>
+              <text class="lbl" x="258" y="206">PPF</text>
+              <text class="lbl" x="180" y="156">P</text>
+              <text class="lbl" x="124" y="128" text-anchor="end">C</text>
+              <text class="lbl-sm" x="150" y="150" text-anchor="end">lend</text>
+              <text class="lbl-i" x="276" y="240" text-anchor="end">slope −(1+r)</text>
+              <text class="lbl-sm" x="214" y="222">indifference</text>
+              <text class="lbl-ax" x="356" y="269" text-anchor="middle">NOW</text>
+              <text class="lbl-ax" transform="rotate(-90 28 150)" x="28" y="150" text-anchor="middle">LATER</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 3.</span> Fisher's diagram. The concave frontier shows present resources transformed into future ones by investment, at a diminishing return. The firm produces at P, where the frontier is tangent to a budget line of slope minus one plus the rate — the point of greatest present value, fixed without reference to anyone's taste. The owner then consumes at C, where an indifference curve is tangent to the same line, lending the distance from P to C. Production and consumption separate; the rate is the common slope, equal at once to the return on the last investment and the impatience of the last act of saving.</figcaption>
+        </figure>
+        <p>The figure is Fisher's, and it contains a result of great reach. The concave frontier shows how present resources may be turned into future ones by investing, the curve bending as the most productive opportunities are taken first and the return to further investment falls. A firm seeking the greatest wealth produces at the point P, where this frontier is tangent to the steepest budget line it can reach — the point of maximum present value — and, crucially, it chooses P without consulting anyone's impatience, for present value is maximized at P whatever the owner's taste for present versus future enjoyment. The owner then takes that maximized wealth to the capital market and consumes at C, where a personal indifference curve is tangent to the same budget line, borrowing or lending the gap between what is produced and what is consumed. This is Fisher's separation theorem: the decision of what to produce, governed by the rate and the frontier, separates cleanly from the decision of what to consume, governed by the rate and one's preferences. It is the foundation of all corporate finance — the reason a firm should maximize the present value of its projects and leave its shareholders to arrange their own consumption through the market, regardless of how patient or impatient they happen to be.</p>
+        <aside class="pull">The rate is the common tangent of two curves — the one our impatience draws, the other our machines.</aside>
+        <p>And the rate itself stands revealed as that common tangent. At P, the slope of the frontier equals one plus the rate, so the return on the last worthwhile investment just equals the rate. At C, the slope of the indifference curve equals one plus the rate, so the impatience of the last act of saving just equals the rate. The rate is therefore equal, in equilibrium, to both the marginal return on investment and the marginal rate of time preference — the precise figure at which the productivity of capital and the impatience of savers are made to agree. Raise a society's impatience, and the indifference curves steepen, pulling the rate up; enrich its opportunities, and the frontier steepens, pulling the rate up; and the rate comes to rest where waiting is exactly as dear to the saver as it is fruitful to the investor. This is the natural rate the sixth plate will name, the deep real figure that, on this theory, the rate of interest expresses.</p>
+        <aside class="edge"><span class="lead">the edge</span> Fisher's diagram is the most elegant statement of the real theory, but it carries the Cambridge difficulty that <em>The Share</em> exposed. The slope of the production frontier — the marginal return on investment — presumes that the productivity of capital can be defined and measured independently of the rate; and the reswitching debate showed that, in general, it cannot, for capital must be valued, and its value depends on the very rate one is trying to explain. The circularity that troubled the aggregate production function troubles the Fisherian frontier too: the rate appears on both sides, as the thing determined and as an input to the measurement of the productivity that determines it. The figure is exact for a single physical project with a clear present cost and future yield — a vineyard, a forest, the wine Fisher liked to imagine laid down to age — and grows treacherous when the capital whose productivity it invokes is the heterogeneous, value-laden aggregate of a whole economy. The real theory illuminates the forces bearing on the rate; it does not pin the rate down as cleanly as the diagram suggests.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE IV ===================== -->
+    <section class="plate reveal" id="plate-iv" data-label="Plate iv · The Reward">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">iv</div>
+        <p class="plate-kicker">Plate the Fourth &middot; The Prices &middot; № III</p>
+        <h3 class="plate-title">The Reward</h3>
+        <p class="plate-gloss">the nature of interest; waiting, productivity, or rent?</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>is interest the wage of waiting, the fruit of productivity — or the rent of a scarcity?</q></div>
+      <div class="plate-body">
+        <p>That the rate is settled where impatience meets opportunity does not yet say what interest <em>is</em> — what, in justice, the lender is paid for. Three answers have contended for two centuries, and the contest is not idle, for on it hangs the moral standing of all who live by lending. The first is the theory of abstinence, given by Nassau Senior and refined by Marshall: interest is the reward for waiting, the compensation a saver receives for the sacrifice of present enjoyment foregone. To save is to abstain, and abstinence, on this view, is a real cost that deserves a real reward. The socialists scorned it — Lassalle mocked the notion that the idle rich, in declining to consume their surplus, perform a painful "abstinence" deserving tribute, when the worker who has nothing to save abstains from nothing and is paid nothing for it. Is waiting a genuine sacrifice, or merely the comfortable forbearance of those who have more than they need?</p>
+        <p>The second answer is the theory of productivity, pressed by Böhm-Bawerk: capital is productive, for roundabout and time-consuming methods of production yield more than direct ones — the net flung wide catches more fish than the hand — and the return to this productivity is interest. But productivity, the critics noted, explains why borrowers are willing to pay interest, not what fixes its rate; and the Cambridge controversy of <em>The Share</em> showed that the productivity of capital cannot, in general, be measured apart from the rate it is meant to explain. The third answer, Böhm-Bawerk's deeper one and Fisher's, is time preference: men prefer present goods to future ones — because they expect to be richer later and so value future goods less, because they see the future through a defective telescope that shrinks it, and because present goods can always be invested to yield more. Positive impatience alone, even without productivity, would generate a positive rate. This is the psychological root the third plate already invoked.</p>
+        <aside class="pull">Is the lender paid for a sacrifice, for a service, or merely for holding a key that scarcity has made valuable?</aside>
+        <p>And there is a fourth answer, the one <em>The Rent</em> handed up, which casts a shadow over the other three. Perhaps interest is none of these honorable things — not the wage of a sacrifice, nor the fruit of a productivity — but a rent: the scarcity-price of capital, the premium that accrues to whoever owns a thing kept artificially scarce. Keynes thought so. The reward to the owner of capital, he wrote, is the reward for not hoarding, and it reflects the scarcity of capital, a scarcity no more intrinsically justified than the scarcity of land. Make capital abundant — let it be accumulated freely enough — and its return would sink toward zero, the rentier euthanized not by force but by plenty. On this reading the positive rate we observe is, in part, the surplus of a maintained scarcity, and the lender is paid less for any service than for holding a key that scarcity has made valuable. Whether interest is reward, return, or rent is therefore the question of the volume's title in another guise — who, and what, decides what the waiting is worth — and the plate cannot close it, for the answers are not rivals but ingredients.</p>
+        <aside class="edge"><span class="lead">the edge</span> The question of what interest is has never been settled, and the reason is that its answers are not exclusive but inseparably mingled, exactly as <em>The Rent</em> found of every income. There is a real element: time preference is a genuine fact of the mind, and capital is in some measure genuinely productive, so a part of interest is the true price of a real thing, the price of time. And there is a rent element: to the degree that the scarcity of capital is maintained rather than natural — by the institutions that guard it, the inequality that concentrates it, the very rate that rewards its holding — a part of interest is the surplus of that scarcity. Which part dominates is a question not of pure theory but of fact, and the fact has been shifting: the long decline of the real rate toward zero, the ninth plate's subject, is the slow erosion of the scarcity element — the partial, unfinished vindication of Keynes's prophecy that abundance would in time dissolve the rentier's claim.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE V ===================== -->
+    <section class="plate reveal" id="plate-v" data-label="Plate v · The Liquidity">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">v</div>
+        <p class="plate-kicker">Plate the Fifth &middot; The Prices &middot; № III</p>
+        <h3 class="plate-title">The Liquidity</h3>
+        <p class="plate-gloss">Keynes; interest as the price of parting with money</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what if interest is not the reward for saving at all, but the price of giving up money?</q></div>
+      <div class="plate-body">
+        <p>Keynes overturned the whole real theory with a single reconception. Interest, he argued, is not the reward for saving — not the price that coaxes thrift from the patient — but the reward for parting with liquidity. Money is the one perfectly liquid asset, instantly spendable, perfectly safe in nominal terms; to give it up, even temporarily, even for a bond that pays, is to surrender that liquidity and to bear the risk that one might want the money back at a bad time. Interest is the compensation for that surrender. The demand to hold money rather than lend it — liquidity preference — springs from three motives: the transactions motive, money kept to make ordinary payments; the precautionary, money kept against the unforeseen; and the speculative, money held in waiting when one expects the price of bonds to fall, that is, the rate to rise. And against this demand stands the supply of money, which the central bank controls. The rate, Keynes concluded, is set not in the market for saving and investment but in the market for money — by liquidity preference against the money supply.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ft4t ft4d">
+              <title id="ft4t">Liquidity preference and the trap</title>
+              <desc id="ft4d">A downward-sloping money-demand curve that flattens at low rates, met by a vertical money supply set by the central bank; the flat tail is the liquidity trap.</desc>
+              <line class="ax" x1="60" y1="252" x2="404" y2="252"/>
+              <line class="ax" x1="60" y1="252" x2="60" y2="44"/>
+              <polyline class="curve" fill="none" points="90,82 130,120 175,160 230,192 290,208 360,214"/>
+              <line class="curve2" x1="175" y1="252" x2="175" y2="60"/>
+              <line class="guide" x1="60" y1="160" x2="175" y2="160"/>
+              <circle cx="175" cy="160" r="2.8" fill="var(--ink)"/>
+              <text class="lbl" x="232" y="180">L — liquidity preference</text>
+              <text class="lbl" x="179" y="75">Mˢ</text>
+              <text class="lbl" x="52" y="163" text-anchor="end">r*</text>
+              <text class="lbl-sm" x="356" y="206" text-anchor="end">liquidity trap</text>
+              <text class="lbl-ax" x="356" y="269" text-anchor="middle">QUANTITY OF MONEY</text>
+              <text class="lbl-ax" transform="rotate(-90 28 150)" x="28" y="150" text-anchor="middle">INTEREST RATE</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 4.</span> Keynes's liquidity preference. The demand to hold money rises as the rate falls — for then little is forgone by holding it — and the rate settles where this demand meets the supply the central bank sets. At very low rates the curve goes flat: money and near-yieldless bonds become perfect substitutes, the demand for money turns insatiable, and adding money no longer lowers the rate. This is the liquidity trap, where the central bank's lever, pressed, moves nothing — the predicament of the zero lower bound that haunts the ninth plate.</figcaption>
+        </figure>
+        <p>This reversal had consequences that shook economics. If the rate is fixed in the money market, then it is no longer the obedient servant that equates saving and investment; it may sit at a level that leaves investment short of the saving a full-employment economy would generate, and the shortfall shows up not as a falling rate but as falling income and idle hands. Saving, in Keynes's world, adjusts to investment through changes in income rather than the other way about — whence the paradox of thrift, that a general effort to save more, if it does not call forth more investment, merely shrinks income and saves nothing in the end. And the rate, lodged in the money market, becomes a thing the central bank can move — but also a thing that can get stuck. The figure shows the worst case. At very low rates, money and bonds yield almost alike, so the demand for money flattens into perfect elasticity: people will absorb any quantity of money rather than hold bonds that pay nothing. There the central bank may pour money in and the rate will not fall — the liquidity trap, the zero lower bound made visible, where the lever moves and the machine does not. The most important price in the economy, on this view, is not only set by a committee but can be jammed.</p>
+        <aside class="pull">Interest, said Keynes, is not the reward for saving but the reward for not hoarding — the price of parting with the one perfectly liquid thing.</aside>
+        <p>For a generation the liquidity theory and the loanable-funds theory were fought over as deadly rivals, the monetary against the real. They are better seen as two windows on the same rate — the one looking through the market for funds, the other through the market for money — and the rate, in a full accounting, must clear both at once. The next plate draws the reconciliation.</p>
+        <aside class="edge"><span class="lead">the edge</span> The lasting Keynesian insight is not that the real theory is wrong but that it is incomplete in the short run, when prices and wages adjust slowly and money therefore bites. In that interval the rate can sit, for a long and painful while, away from the natural rate the real forces would set, and drag the economy with it. The classics held the interval brief and self-correcting; the secular-stagnation theorists fear it chronic. A fuller model, the synthesis John Hicks drew and the natural-rate framework of the next plate, holds both theories together — the rate must clear the money market and the funds market alike, and in general equilibrium it does both. Which theory governs in practice is thus a question of horizon and of how fast the economy heals, not of which is true; and that question, the ninth plate will show, has lately grown harder, not easier, to answer.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE VI ===================== -->
+    <section class="plate reveal" id="plate-vi" data-label="Plate vi · The Anchor">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">vi</div>
+        <p class="plate-kicker">Plate the Sixth &middot; The Prices &middot; № III</p>
+        <h3 class="plate-title">The Anchor</h3>
+        <p class="plate-gloss">Wicksell's natural rate; the rate the economy wants; r-star</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if the central bank can set the market rate, is there any rate it is not free to choose?</q></div>
+      <div class="plate-body">
+        <p>The real theory and the monetary theory seem to contradict: the one says the rate is fixed by thrift and productivity, the other that the central bank sets it. Knut Wicksell, writing in 1898, showed they are reconciled, and the reconciliation is the foundation of all modern monetary policy. There are, Wicksell said, two rates, not one. The natural rate is the real rate of the loanable-funds market and of Fisher's diagram — the rate that would equate saving and investment at full employment, the rate that matches the productivity of capital, the rate the economy would settle at of its own accord. The market rate is the money rate that banks actually charge, which credit and the central bank can push about. In a frictionless world the two coincide. But let the banks hold the market rate below the natural rate, and something remarkable follows: investment, cheaply financed, outruns saving; demand outruns supply; and prices begin to rise — not once, but continuously, cumulatively, climbing for as long as the gap is held open. Hold the market rate above the natural rate, and prices fall as cumulatively. The natural rate is the still point; depart from it in either direction and prices will not rest.</p>
+        <p>This is Wicksell's cumulative process, and it dissolves the quarrel of the previous plates. The natural rate is real, fixed by the deep forces Fisher described; the market rate is monetary, set by the banks and, in our day, the central bank; and the gap between them is what drives inflation and deflation. Both theories are right, each about a different rate. In the long run the natural rate rules, for prices cannot rise or fall forever, and the market rate must return to it; in the short run the central bank sets the market rate and the economy follows, for a while. So the answer to the plate's question is now plain. The central bank can indeed set the market rate — but it is not free to set it where it likes, for any rate it chooses other than the natural rate sets prices moving, up if too low, down if too high. The market rate is the central bank's to move; the natural rate is the master it must serve.</p>
+        <aside class="pull">The central bank holds the market rate; but the natural rate holds the central bank.</aside>
+        <p>Wicksell's natural rate lives on, in modern monetary policy, under a starrier name: r-star, the neutral real rate of interest, the rate at which monetary policy neither stimulates nor restrains, neither stokes inflation nor chokes growth. The whole apparatus of a modern central bank may be described as the effort to set the market rate equal to this r-star — to find the natural rate and track it. John Taylor's celebrated rule makes the effort explicit, prescribing a policy rate that begins from the neutral rate and leans against inflation and the output gap as they appear. When the central bank judges r-star correctly and sets its rate there, prices are stable and the economy runs at potential; when it errs, inflation or recession follows, exactly as Wicksell foretold. The most modern of monetary frameworks is, at its heart, the oldest: keep the market rate at the natural rate, and the price level will keep still.</p>
+        <aside class="edge"><span class="lead">the edge</span> Wicksell's natural rate is the linchpin of modern monetary theory and a quantity no one can observe, inferred only from the behavior of the inflation it is meant to explain — so the framework courts a quiet circularity: the natural rate is the rate at which inflation is stable, and we know inflation is stable when the market rate equals the natural rate. In practice the central bank estimates r-star from models heavy with assumptions and revised with every new datum, navigating, in its own chairman's phrase, by stars that are obscured. When r-star is itself shifting — falling for decades, as the ninth plate shows, and then perhaps turning — the target moves faster than the estimate can follow, and a policy right for yesterday's natural rate is wrong for today's. The natural rate is indispensable for thinking about interest and nearly useless for measuring it in real time: a north star that is always partly behind cloud.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE VII ===================== -->
+    <section class="plate reveal" id="plate-vii" data-label="Plate vii · The Veil">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">vii</div>
+        <p class="plate-kicker">Plate the Seventh &middot; The Prices &middot; № III</p>
+        <h3 class="plate-title">The Veil</h3>
+        <p class="plate-gloss">real versus nominal; the Fisher equation; inflation</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>the rate is quoted in money, but money's worth is changing — which rate is real?</q></div>
+      <div class="plate-body">
+        <p>Every rate is quoted in money, and money's worth does not hold still. A loan at five percent returns five percent more dollars; but if prices have risen three percent over the year, those dollars buy only about two percent more goods, and it is goods, not dollars, that the lender ultimately wants. Here lies the distinction on which all of monetary economics turns: between the nominal rate, the money rate written in the contract, and the real rate, the rate reckoned in purchasing power, in command over goods. Fisher gave their relation its enduring form: the nominal rate is, near enough, the real rate plus the expected rate of inflation. The real rate is what governs real decisions — whether to save, whether to invest, for these concern goods — while the nominal rate is merely what is quoted and paid. And in the long run, Fisher argued, expected inflation passes straight through into nominal rates, lifting them point for point and leaving the real rate untouched: money, in the long run, is a veil, its changing worth altering the figures on the contracts but not the real exchange of present goods for future that lies beneath.</p>
+        <p>But a veil may conceal a theft, and inflation's deepest work is redistribution. When inflation runs higher than was expected when a loan was struck, the dollars repaid are worth less than either party foresaw, and real wealth passes silently from the lender to the borrower — from the creditor, repaid in shrunken money, to the debtor, discharging the debt in coin worth less than he received. This is the inflation tax, levied on every holder of money and every owner of a nominal claim, and it falls hardest on the patient and the thrifty — on savers, bondholders, pensioners, the very rentiers of <em>The Rent</em>, whose fixed claims inflation quietly erodes. It is why creditors dread inflation and why debtors, governments above all, have so often courted it: a state that owes in its own currency can inflate its debt away, taxing its bondholders by stealth rather than its citizens by vote. Against this stands money illusion, the pervasive confusion of the nominal for the real that Fisher diagnosed — the worker who feels enriched by a raise that inflation has already eaten, the saver who mistakes a high nominal return for a high real one. The veil deceives even as it redistributes.</p>
+        <aside class="pull">The borrower and the lender contract in money; but the bargain is settled in goods, and inflation rewrites the contract after it is signed.</aside>
+        <p>The distinction turns lethal at the lower bound. The nominal rate cannot easily fall below zero, for no one will lend at a loss when cash, yielding nothing, can simply be held. So when inflation is very low, or negative, the real rate — the nominal rate minus inflation — can be stuck high even as a stricken economy cries out for it to fall. Deflation is the nightmare: as prices drop, money gains value, the real rate climbs, and the real burden of every nominal debt swells. Fisher, ruined himself in the Crash, drew the conclusion in 1933 as debt deflation, the gravest spiral in economics. Falling prices raise the real weight of debt; debtors, desperate to service it, slash spending and dump assets; the selling drives prices lower still; the real debt grows heavier; and the economy collapses inward, each turn of the screw tightening the next. It is to forestall exactly this — to keep a buffer of inflation between the economy and the deflationary abyss — that modern central banks target not zero inflation but a small positive rate. The real rate, which the previous plate's natural rate concerns, can be held hostage by the price level; and money, which is a veil in the long run, becomes in the short run a lever of vast and silent redistribution.</p>
+        <aside class="edge"><span class="lead">the edge</span> The distinction between the real and the nominal rate is clean in theory and treacherous in practice, because the real rate that governs decisions depends on <em>expected</em> inflation, which cannot be observed — inferred only from surveys, from index-linked bonds, from models. There is thus not one real rate but several: the ex-ante rate, nominal minus the inflation anticipated, which guides decisions; and the ex-post rate, nominal minus the inflation that actually arrived, known only in hindsight. They differ by exactly the inflation surprise — and that surprise is precisely the wealth quietly transferred between creditor and debtor. So money is never a perfect veil: in the long run expected inflation may pass cleanly into nominal rates and leave the real exchange untouched, but in the short run, where the surprises live, the changing worth of money moves real wealth on a vast scale — from the patient to the indebted, from the saver to the state — by the margin of its own unpredictability.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE VIII ===================== -->
+    <section class="plate reveal" id="plate-viii" data-label="Plate viii · The Curve">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">viii</div>
+        <p class="plate-kicker">Plate the Eighth &middot; The Prices &middot; № III</p>
+        <h3 class="plate-title">The Curve</h3>
+        <p class="plate-gloss">the term structure; the yield curve; the market's forecast</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>why is there not one rate but a whole structure of them, rising with the distance to repayment?</q></div>
+      <div class="plate-body">
+        <p>The volume has spoken of the rate as though it were a single number, but it is not. A loan for three months, a note for two years, a bond for ten, a bond for thirty — each carries its own rate, and the array of them, plotted against the time to repayment, is the term structure of interest, the yield curve. Usually it slopes upward, the longer loan paying the higher rate; sometimes it lies flat; and sometimes, ominously, it inverts, the short rates rising above the long. Why the rate should vary with maturity at all is the question, and the dominant answer is the expectations hypothesis: the long rate is an average of the short rates the market expects to prevail over the life of the long loan. For if a two-year bond paid much less than the expected sequence of one-year bonds, no one would hold it; arbitrage between borrowing short and lending long ties the long rate to the average of expected future short rates. The yield curve, on this view, is the market's forecast of the path of short rates — and so, indirectly, of the economy that will shape them.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ft5t ft5d">
+              <title id="ft5t">The yield curve</title>
+              <desc id="ft5d">A normal upward-sloping yield curve and an inverted downward-sloping one, plotted as yield against maturity.</desc>
+              <line class="ax" x1="60" y1="252" x2="404" y2="252"/>
+              <line class="ax" x1="60" y1="252" x2="60" y2="44"/>
+              <path class="curve" d="M70,200 C150,150 260,120 370,110"/>
+              <path class="curve2" d="M70,130 C160,150 270,172 370,180"/>
+              <text class="lbl" x="340" y="104" text-anchor="middle">normal</text>
+              <text class="lbl" x="340" y="194" text-anchor="middle">inverted</text>
+              <text class="lbl-ax" x="356" y="269" text-anchor="middle">MATURITY →</text>
+              <text class="lbl-ax" transform="rotate(-90 28 150)" x="28" y="150" text-anchor="middle">YIELD</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 5.</span> The term structure. A normal curve rises with maturity; an inverted curve falls. The upward slope is part expectation of higher future short rates and part term premium — the extra yield demanded for locking funds away in longer, price-volatile bonds. The inverted curve is the rarer and graver shape: it says the market expects short rates to fall, which it expects because it foresees the central bank cutting them in a downturn. An inversion is thus the market forecasting a recession — and it has done so, in recent decades, before nearly every one.</figcaption>
+        </figure>
+        <p>To the pure expectations hypothesis the moderns add a second force, the term premium. A long bond exposes its holder to greater risk — its price swings more violently when rates move, and it locks funds away for longer — so investors demand extra yield to hold it, a premium that bends the curve upward even when no rise in short rates is expected. Between expectation and premium, the normal upward slope is explained; and the deviations from it become legible. A steep curve signals expected tightening or a fat premium; a flat curve, expected stability; and an inverted curve — the short rates above the long — signals that the market expects short rates to fall. Why would it expect them to fall? Because it foresees the central bank cutting them, and the central bank cuts them in a downturn. The inverted yield curve is therefore the market's forecast of recession, and it is among the most reliable in all of finance: in the United States, an inversion has preceded nearly every recession of the past half-century, with few false alarms. The price of time, arrayed across the distances to repayment, encodes the market's collective premonition of the future.</p>
+        <aside class="pull">The yield curve is the market's forecast, written in the price of time across the distances to repayment — and when it bends downward, it is forecasting a storm.</aside>
+        <p>That a mere array of bond prices should forecast the economy is a striking instance of this table's recurring theme: a price, or here a structure of prices, aggregating the dispersed expectations of countless traders into a single readable shape. The yield curve is the future, as the market sees it, made visible — and the central bank reads it as anxiously as anyone, for it shows what the market expects the bank itself to do.</p>
+        <aside class="edge"><span class="lead">the edge</span> The yield curve's record as a herald of recession is impressive but not a law, and its very fame may undermine it, in the way of all watched signals: once everyone heeds the inversion, it shapes the behavior it predicts, and the central bank, seeing the curve invert, may act precisely to falsify it. The expectations it encodes are, moreover, expectations of the central bank's own future choices as much as of the economy's — so the curve is partly the market forecasting the policymaker forecasting the economy, a hall of mirrors in which prediction and cause blur. And the term premium that bends the curve is itself unobservable, estimated only by models, so that how much of any given slope is expectation and how much is premium remains a contested art. The curve is the richest forecast the market offers and the least transparent: a true signal whose meaning shifts as the watchers and the watched adjust to one another.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE IX ===================== -->
+    <section class="plate reveal" id="plate-ix" data-label="Plate ix · The Ebb">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">ix</div>
+        <p class="plate-kicker">Plate the Ninth &middot; The Prices &middot; № III</p>
+        <h3 class="plate-title">The Ebb</h3>
+        <p class="plate-gloss">the secular decline of the real rate; secular stagnation</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>for forty years the price of time fell toward zero — what pulled it down, and what does its fall portend?</q></div>
+      <div class="plate-body">
+        <p>One of the great facts of modern macroeconomics is that the price of time has been falling. From the towering real rates of the early 1980s, when a safe loan might earn five percent above inflation, the real rate of interest sank, decade upon decade, until by the 2010s it hovered near zero and in places below it — lenders, in real terms, paying to be allowed to lend. Paul Schmelzing's long reckoning suggests the descent is older still, a downward drift in the real return on safe assets traceable across five centuries. Whatever its full length, the recent decline is undisputed, and it has a name and a theory: secular stagnation, coined by Alvin Hansen in 1938 and revived by Lawrence Summers in 2013. The idea is that desired saving has come chronically to exceed desired investment at any positive rate, so that the natural rate of the sixth plate — the rate that would balance them at full employment — has fallen toward zero, and perhaps below it. The economy, in this condition, wants a negative real rate and cannot have one, for the lower bound forbids it; and so it languishes, demand chronically short, growth chronically slow, leaning on bubbles to sustain what spending it can.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ft6t ft6d">
+              <title id="ft6t">The secular decline of the real rate</title>
+              <desc id="ft6d">The real interest rate falling over recent decades from a high level toward zero, with a small uptick at the end.</desc>
+              <line class="ax" x1="60" y1="252" x2="404" y2="252"/>
+              <line class="ax" x1="60" y1="252" x2="60" y2="44"/>
+              <line x1="60" y1="234" x2="404" y2="234" stroke="var(--faint)" stroke-width="1" stroke-dasharray="5 3"/>
+              <polyline class="curve" fill="none" points="70,90 110,110 150,104 190,140 230,166 270,194 310,216 340,224 360,212 380,198"/>
+              <text class="lbl" x="120" y="94">real rate</text>
+              <text class="lbl-i" x="214" y="150">the long ebb</text>
+              <text class="lbl-sm" x="384" y="190" text-anchor="end">post-2021</text>
+              <text class="lbl-sm" x="52" y="237" text-anchor="end">0%</text>
+              <text class="lbl-ax" x="356" y="269" text-anchor="middle">TIME →</text>
+              <text class="lbl-ax" transform="rotate(-90 28 150)" x="28" y="150" text-anchor="middle">REAL INTEREST RATE</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 6.</span> The long ebb. The real rate of interest fell across four decades from the heights of the early 1980s toward zero, then turned up after 2021. The descent is the comparative statics of the second plate writ large: forces that lift saving or depress investment push the natural rate down. Whether the recent reversal is the end of the ebb or a pause within it is, at the time of writing, unknown — and the most consequential open question in the economics of the rate.</figcaption>
+        </figure>
+        <p>What pulled the rate down is the second plate's diagram, driven by the deep currents of the age. On the saving side, the world grew more thrifty: populations aged, and the old save against long retirements; the emerging economies, China above all, ran vast surpluses that flooded the global capital market — Ben Bernanke's saving glut; and inequality widened, putting more of each nation's income in the hands of the rich, who save the larger share — the saving glut of the rich, in the phrase of Mian, Straub, and Sufi, tying the rate's decline to <em>The Share</em> and <em>The Rent</em>. On the investment side, demand for capital weakened: capital goods grew cheaper, so a given real investment cost fewer dollars; the leading firms turned asset-light, building empires of intangibles that need little physical capital; and a hunger for safe assets, outrunning their supply, bid down the yield on the safest of all. Saving rose, investment flagged, and the natural rate sank between them. The consequences reached everywhere the rate reaches. The lower bound began to bind, and monetary policy ran short of room, driving central banks to the unconventional tools of the next plate. And low rates inflated the present value of every asset — stocks, bonds, and houses alike — so that the very decline that starved new savers of yield enriched old owners with capital gains, a redistribution from the young who must save to the old who already own, and a strange, partial undoing of Keynes's euthanasia: the rentier, far from dying of low rates, was enriched by the appreciation they conferred.</p>
+        <aside class="pull">For forty years the price of time fell toward zero; whether it has found a floor or merely paused, no one yet knows.</aside>
+        <p>Then, after 2021, the rate turned up. A surge of inflation, the aftermath of pandemic and war and fiscal rescue, drove central banks to raise rates faster than in forty years, and the long descent reversed — for now. Whether the reversal is the end of the ebb or a pause within it divides the economists. Some hold the old forces intact: the aging, the inequality, the glut of saving will reassert themselves, and the rate will resume its fall toward zero. Others see a regime changed: deglobalization unwinding the saving glut, fiscal deficits and rearmament absorbing saving, and the vast investment demands of the green transition and of artificial intelligence lifting the natural rate durably higher. The question is among the most consequential in all of economics, for on it depends whether the world returns to the trap of the lower bound or escapes it — and, like the deepest questions of this subject, it will be answered only in retrospect.</p>
+        <aside class="edge"><span class="lead">the edge</span> The secular decline of the real rate is among the best-documented facts in macroeconomics and among the worst understood, for its candidate causes — aging, the saving glut, cheaper capital, inequality, the hunger for safe assets — are many, entangled, and each hard to size, so that economists agree the rate fell while disputing why. The disagreement is not academic, for the remedies diverge: if the cause is excess saving by the aging and the rich, the answer may be fiscal, public investment and redistribution to absorb the glut; if a dearth of opportunity, the answer is to create it; if a shortage of safe assets, to supply more. And the post-2021 reversal has thrown the whole debate open, confronting those who thought the decline permanent with rates that climbed faster than any model foretold. Whether the long ebb has ended or merely paused cannot now be known — only, as such things are, in the looking back.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE X ===================== -->
+    <section class="plate reveal" id="plate-x" data-label="Plate x · The Discount">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">x</div>
+        <p class="plate-kicker">Plate the Tenth &middot; The Prices &middot; № III</p>
+        <h3 class="plate-title">The Discount</h3>
+        <p class="plate-gloss">discounting the future; investment, assets, and climate</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>the rate decides what the future is worth today — so what is our grandchildren's welfare worth to us?</q></div>
+      <div class="plate-body">
+        <p>The first plate named present value, the future shrunk to the present by the rate; this plate follows that operation to its limits, where it governs the appraisal of all things that span time, and at last collides with ethics. A future sum, recall, is worth today that sum divided by one plus the rate, compounded for each year of delay — and the figure shows how mercilessly the compounding bites. At a low rate the future fades slowly; at a high rate it collapses toward nothing within a generation. From this single curve descends the whole practice of investment appraisal: a project is worth building if the present value of its future returns exceeds its cost, so that a high discount rate condemns the long-horizon project, whose payoffs lie in the heavily discounted distance, while a low rate redeems it. And from it descends the pricing of every asset, for an asset is a claim on future cash flows, and its price is their present value — which is why the falling rate of the previous plate inflated the price of everything, the same flows discounted at a lower rate swelling in worth. A perpetual stream worth its annual payment divided by the rate approaches infinity as the rate approaches zero: the arithmetic behind the soaring stocks, bonds, and houses of the low-rate age, and the link this plate forges to <em>The Stock</em> and to the capitalized rent of <em>The Rent</em>.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ft7t ft7d">
+              <title id="ft7t">The discounting of the future</title>
+              <desc id="ft7d">The present value of one dollar received in the future, plotted against the years of delay, for discount rates of two, five, and eight percent. Higher rates decay faster.</desc>
+              <line class="ax" x1="60" y1="252" x2="404" y2="252"/>
+              <line class="ax" x1="60" y1="252" x2="60" y2="44"/>
+              <polyline class="curve" fill="none" points="60,70 142,108 225,136 307,159 390,177"/>
+              <polyline class="curve2" fill="none" points="60,70 142,148 225,190 307,213 390,225"/>
+              <polyline fill="none" stroke="var(--soft)" stroke-width="1.4" points="60,70 142,174 225,215 307,230 390,236"/>
+              <text class="lbl-sm" x="52" y="74" text-anchor="end">$1</text>
+              <text class="lbl-sm" x="52" y="250" text-anchor="end">0</text>
+              <text class="lbl" x="320" y="151">r = 2%</text>
+              <text class="lbl" x="252" y="185">r = 5%</text>
+              <text class="lbl" x="166" y="168" text-anchor="end">r = 8%</text>
+              <text class="lbl-ax" x="356" y="269" text-anchor="middle">YEARS INTO THE FUTURE →</text>
+              <text class="lbl-ax" transform="rotate(-90 28 150)" x="28" y="150" text-anchor="middle">PRESENT VALUE OF $1</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 7.</span> The discounting curve. The present value of a dollar promised in the future falls with the delay, and falls the faster the higher the rate. At two percent a dollar fifty years off is still worth thirty-seven cents; at eight percent, barely two. The rate is thus the weight the present places on the future — and over the long horizons of climate, infrastructure, and posterity, that weight decides everything.</figcaption>
+        </figure>
+        <p>It is over the longest horizons that the discount rate becomes a question not of finance but of justice, and the economics of climate change is where the question grew unavoidable. To weigh the costs of acting now against the damages of warming a century hence, one must discount those future damages to the present — and the rate one chooses all but determines the answer. The Stern Review, in 2006, discounted the future lightly, at little over one percent, and found the damages vast in present value and urgent action warranted; William Nordhaus discounted more steeply, nearer the returns observed in markets, and found a gentler, slower path optimal. The whole disagreement reduced to the discount rate. And the rate, in this setting, is partly an ethical choice, as Frank Ramsey saw in 1928 when he decomposed it: the social discount rate is the pure rate of time preference, plus a term reflecting how much we value smoothing consumption across richer and poorer generations, times the rate at which we expect to grow richer. The charged element is the first, the pure rate of time preference — the rate at which we discount the welfare of future people simply because they live later. Ramsey called discounting future utility in this way ethically indefensible, a practice arising merely from the weakness of the imagination. Stern, following him, set it almost to zero, counting the unborn nearly as much as ourselves; Nordhaus set it higher, discounting as people are observed to discount. The quarrel over climate policy is, at its root, a quarrel over how much the future counts — an ethical question wearing the dress of a technical parameter.</p>
+        <aside class="pull">The discount rate is the exchange rate between our welfare and our grandchildren's — and we set it ourselves.</aside>
+        <p>So the rate, which began as the price of a future dollar, ends as the weight a civilization places on its own tomorrow. A high rate is an impatient society's, discounting the future steeply, consuming now and providing little for those to come; a low rate is a patient one's, honoring the future nearly as itself, investing and bequeathing. The interest rate encodes, in a single number, a people's relationship to time — its thrift, its foresight, its care for posterity. And nowhere is this plainer than in the discounting of the distant future, where the rate ceases to be a market datum and becomes a confession of how much the welfare of the unborn weighs against our own.</p>
+        <aside class="edge"><span class="lead">the edge</span> The discounting of the future is mathematically inevitable and morally fraught, and the deepest difficulty is that exponential discounting, applied across the centuries that climate demands, yields conclusions that affront moral intuition: at five percent, a catastrophe a hundred years hence — the loss of nearly everything — is worth under one percent of its weight today, and the welfare of people two centuries off all but vanishes from the sum. Some propose that the rate itself should fall with the horizon, so the far future is not annihilated by compounding; others insist consistency demands a constant rate and that our discomfort is mere innumeracy. The truth the plate must leave open is that no purely technical resolution exists, because the question — how the welfare of the unborn weighs against our own — is not a question of fact but of value. Economics can compute the present value of the future at whatever rate we choose; which rate we ought to choose it cannot say, for that is the oldest question of justice between the generations, and it lies, like the boundary of <em>The Rent</em>, beyond the edge of what prices can decide.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE XI ===================== -->
+    <section class="plate reveal" id="plate-xi" data-label="Plate xi · The Lever">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">xi</div>
+        <p class="plate-kicker">Plate the Eleventh &middot; The Prices &middot; № III</p>
+        <h3 class="plate-title">The Lever</h3>
+        <p class="plate-gloss">the central bank; monetary policy; the rate as a policy variable</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if the rate is set by a committee, how do they move it — and what holds their hand?</q></div>
+      <div class="plate-body">
+        <p>In the modern economy the short-term rate of interest is not discovered in a market but set by a central bank — the Federal Reserve, the European Central Bank, their peers around the world — meeting a handful of times a year to name a number. The bank can do this because it is the monopoly supplier of the base money in which banks settle with one another; controlling the supply of reserves, it controls the overnight rate at which reserves are lent, and that policy rate is the anchor of all the rest. Its instruments have grown over time: open-market purchases and sales of government securities that add or drain reserves; the interest the bank pays on reserves, which sets a floor beneath the overnight rate; the rate at which it lends to banks, which sets a ceiling; forward guidance, by which it shapes expectations of its own future path and so, through the expectations hypothesis of the eighth plate, moves the long rates directly; and, when the short rate has fallen to the floor, the purchase of long-term bonds outright — quantitative easing — to press the long rates down when the short ones can fall no further.</p>
+        <p>From the overnight rate the bank's influence travels outward along a chain economists call the transmission mechanism. The policy rate moves the whole term structure, through expectation and arbitrage; the term structure moves the cost of every loan — the mortgage, the corporate bond, the price at which a nation services its debt; those costs move investment and consumption, and, through the discounting of the tenth plate, the prices of assets and the wealth and spending they support; the rate moves the exchange rate, and with it exports; and all of this moves, at the end of the chain, output and employment and inflation. The bank pulls the lever of the rate, and the whole economy, after long and variable lags, responds. By this lever it pursues its mandate — price stability, in most charters, and in some, like the Federal Reserve's, full employment beside it — leaning the rate against inflation and the output gap much as Taylor's rule prescribes. And it pursues that mandate at arm's length from the politicians, for a reason the theory of time-inconsistency, owed to Kydland and Prescott, made clear: a government that controlled the rate would be forever tempted to hold it too low, to flatter the economy before an election or to inflate away its debts, and the markets, anticipating the temptation, would build the inflation in. Only a central bank credibly committed to stability, and insulated from that temptation, can anchor expectations and keep inflation tame. The independence of the central bank is the institutional answer to the temptation of the lever.</p>
+        <aside class="pull">The most important price in the economy is not discovered in a market but decided in a room — and yet the room is not free to decide it as it likes.</aside>
+        <p>Here the theme of the whole series reaches, for the rate, its sharpest point. The most important price in the economy — the price of time, on which all of finance and much of the real economy turns — is not found in a market at all but named by a committee. It is the most visibly administered price in the table, the clearest case of a price decided rather than discovered, and the volume's title-question — who decides what an hour of waiting is worth? — finds here its most literal answer: a dozen people, around a table, several times a year. And yet the sixth plate has already taught the crucial qualification. The committee is not free. It must set the market rate at the natural rate it cannot see, on pain of inflation if it sets it too low or recession if too high; it is the servant of a star it can only estimate. And at the lower bound, where the natural rate has sunk below zero, the lever reaches the limit of its travel, and the bank, pressing it, finds the machine will not move — driving it to the unconventional expedients of quantitative easing, of negative rates, of guidance and balance-sheet expansion, all the apparatus improvised when the ordinary lever ran out of range. The rate is set in a room; but the room is bound by nature and, at the bound, defeated by it.</p>
+        <aside class="edge"><span class="lead">the edge</span> The central bank's power over the rate is real but easy to misjudge, in both directions at once. It is greater than the textbook allows, for the bank sets not merely the overnight rate but, through guidance and asset purchases, reaches far along the curve, and through the expectations it shapes governs the economy's whole sense of the future path of policy — a power the more remarkable for resting, in the end, on credibility and words as much as on the mechanical control of reserves. And it is less than the headlines suppose, for the committee is itself the servant of the natural rate it cannot observe, bound to track an unseen star, and powerless at the lower bound to push the rate where a stricken economy may need it to go. The bank is neither the omnipotent author of the rate its critics fear nor the passive reader of a natural rate the real theory imagines, but a powerful and fallible navigator — setting the most consequential price in the economy by the light of stars it can only estimate, and learning, at the lower bound, the limits of its own lever.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE XII ===================== -->
+    <section class="plate reveal" id="plate-xii" data-label="Plate xii · The Future">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">xii</div>
+        <p class="plate-kicker">Plate the Twelfth &middot; The Prices &middot; № III</p>
+        <h3 class="plate-title">The Future</h3>
+        <p class="plate-gloss">the price of the future; toward The Money, The Cycle, The Stock</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if the rate is the price of the future, what does the number beneath all our discounting finally measure?</q></div>
+      <div class="plate-body">
+        <p>The volume may now gather what its plates have found. The rate is the price of time — the exchange rate between present and future, the premium the present commands and the discount the future suffers. Three traditions sought to fix it, and the volume has reconciled rather than chosen among them. The real tradition, from the classical economists through Fisher, found the rate where impatience meets opportunity, in the balance of a society's thrift against the productivity of its capital — the natural rate, the rate the economy would settle at of its own accord. The monetary tradition, Keynes's, found the rate in the market for money, the price of parting with liquidity, a number the central bank can move. And an older question, handed up by <em>The Rent</em>, asked whether interest is any honest payment at all, or merely the rent of a scarce thing, the rentier's premium. Wicksell showed how the first two fit together: there is a natural rate, real, that rules the long run, and a market rate, monetary, that the central bank sets in the short — and the gap between them drives prices up or down. The volume's title-question is thereby answered in full. Who decides what an hour of waiting is worth? The deep forces of patience and productivity propose the natural rate; a committee of the central bank disposes the market rate, within the bounds the natural rate sets; and the rentier's scarcity premium persists in whatever gap remains. Nature, contrivance, and power all have a hand upon it.</p>
+        <p>To the rent question the volume can now return its answer, and it is the answer <em>The Rent</em> gave of every income: mixed. Interest is in part a real return — to the genuine impatience of savers and the genuine productivity of capital, a true price of time and no rent at all. And it is in part a rent — the surplus of a scarcity maintained, the premium that accrues to the owner of capital while capital stays scarce. Which part dominates is not fixed but shifting, and the long ebb of the rate toward zero is the measure of the shift: as capital grew abundant and its scarcity eased, the rent element thinned, and the real rate sank toward the zero at which Keynes foresaw the rentier's painless end. Yet the rate did not reach zero, and the rentier did not die — because other scarcities endure, of safe assets and of land and of monopoly, the scarcities <em>The Rent</em> anatomized; and because the low rates, by inflating the value of every asset, enriched the owners of capital even as they starved the lenders of yield. The euthanasia was begun and then reversed. Interest remains what <em>The Rent</em> would predict: neither pure reward nor pure rent, but a contested compound of both, in proportions the age keeps rewriting.</p>
+        <aside class="pull">The rate is the hinge of the whole economy: it joins saving to investment, money to the real, the present to the future, and wealth to its own increase.</aside>
+        <p>For the rate is the hinge on which the whole of economics turns. It allocates a society's resources across time, steering what is consumed now and what is laid up for later. It discounts the future, fixing what is worth building and what every asset is worth, and so the weight the present places on tomorrow. It is the lever of monetary policy, the channel through which money reaches the real economy and the business cycle is fought. It is the return that, when it outruns growth — Piketty's inequality, met in <em>The Share</em> and <em>The Rent</em> — drives the accumulation of wealth and the widening of its distribution. And it prices, one by one, every bond and mortgage and the debt of every nation. No other price reaches so far, for no other price is the price of time itself, through which all that does not settle at once must pass. This is why the rate has been, in the modern world, the chosen instrument of those who would steer the economy: to move the price of time is to move everything that time touches.</p>
+        <p>And here the conceit of the series finds, in the rate, its gravest expression. Every price, the table insists, is a verdict on a hidden contest, not a fact of nature. The rate is a verdict too — but uniquely, a verdict upon the future, the rate at which the present appraises what is yet to come. It is partly the deep real rate that thrift and productivity would set, which is as near to a fact of nature as any price in the table; partly the rate a central bank chooses, the most visibly contrived price there is, named in a room by a dozen people; and partly the rentier's premium upon a scarcity, the spoils of a kind of power. To read it as a simple fact of nature — the inevitable price of capital — is to forget all three: that it is set, by people, in a room; that it is contested, between the real and the monetary, the earned and the extracted; and that it is freighted, as no other price is, with a civilization's care, or carelessness, for its own future. For in the end the rate is the price we put upon tomorrow — high if we are impatient and heedless of those to come, low if we are patient and provident for them — and the discounting of the distant future, where the rate decides the fate of the unborn, only makes plain what the rate has always quietly been: a measure of how much the future is worth to us.</p>
+        <p>The volume passes its findings on. To <em>The Money</em>, the sixteenth element, it hands the rate as a monetary phenomenon and the central bank that sets it — the institution, the creation of money, the whole apparatus of which the rate is the chief lever — for the price of time is, in the modern world, inseparable from the nature of money. To <em>The Cycle</em>, the nineteenth, it hands the rate as the lever of the business cycle, Wicksell's cumulative process and the yield curve that forecasts the slump, the rate by which booms are cooled and recessions fought. To <em>The Growth</em>, the twentieth, it hands the long ebb and the secular stagnation it portends, the rate's bearing on investment and on the pace of advance itself. To <em>The Stock</em>, the ninth, it hands the discounting on which all asset values rest — the rate as the denominator beneath every price, the engine that turned its own decline into a great inflation of wealth. And to <em>The Rent</em> and <em>The Share</em> it returns what it borrowed: the rentier's question answered, and the return on capital revealed as the motor of accumulation. With this volume the classical trinity of factor prices is complete — the wage of labor, the rent of land, the rate of capital — and the table's account of how the present values the future is laid down.</p>
+        <p>The rate is the price of time, and it remains, as the series insists, an open argument. It is open because the natural rate that anchors everything cannot be seen, only estimated, a star forever partly behind cloud. It is open because the line between the real return and the rent will not hold still, and shifts with the scarcity of capital from age to age. It is open because the long ebb of the rate may have ended, after 2021, or may merely have paused, and which we shall know only in the looking back. And it is open, most deeply, because the gravest question the rate poses — how much the future is worth to us — is not a question of fact but of value, the question of justice between the generations, which no price can settle and every rate, in setting itself, presumes to answer. The rate is the price of the future: set in a room, anchored in nature, freighted with a scarcity, and freighted above all with a civilization's regard for its own tomorrow — discovered and decided at once, and never, finally, closed.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref">Volume III &middot; The Rate</span>
+    </div>
+    <p class="colophon">Volume III of <em>Numéraire, A Periodic Table of Economic Life</em> — <em>The Rate</em>, the third of twenty-six and the last of the classical prices of the factors, after the wage of labor and the rent of land. Twelve plates and seven engravings carry the price of time from the intertemporal exchange and the loanable-funds market, through Fisher's reconciliation of impatience and opportunity, the old quarrel over whether interest is reward or rent, Keynes's liquidity and Wicksell's natural rate, the veil that inflation draws between the real rate and the nominal, the yield curve in which the market encodes its forecast, the long secular ebb of the rate toward zero, the discounting on which investment, asset values, and the economics of climate depend, and the central bank's lever — to the verdict that the rate is the price of the future, the weight a civilization places upon its own tomorrow, partly given by nature, partly chosen by policy, and partly the tribute of a scarcity. It completes the factor-price trinity of <em>The Wage</em> and <em>The Rent</em>, and hands on to <em>The Money</em>, <em>The Cycle</em>, <em>The Stock</em>, and <em>The Growth</em>. The figures stand after Fisher, Keynes, and Wicksell, and the modern students of r-star, the yield curve, and the discounting of the distant future. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var root=document.documentElement; root.classList.add('js');
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var bar=document.getElementById('progress');
+  var topbar=document.getElementById('topbar');
+  var title=document.querySelector('.vol-title');
+  var label=document.getElementById('tb-plate');
+  function onScroll(){
+    var doc=document.documentElement;
+    var h=doc.scrollHeight-window.innerHeight;
+    var p=h>0?Math.min(1,Math.max(0,window.scrollY/h)):0;
+    if(bar) bar.style.transform='scaleX('+p.toFixed(4)+')';
+    if(topbar){
+      var threshold=(title?title.offsetHeight:420)*0.72;
+      if(window.scrollY>threshold) topbar.classList.add('show'); else topbar.classList.remove('show');
+    }
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+  if('IntersectionObserver' in window){
+    var rev=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); rev.unobserve(e.target); } });
+    },{rootMargin:'0px 0px -10% 0px',threshold:0.06});
+    document.querySelectorAll('.reveal').forEach(function(el){ rev.observe(el); });
+    if(label){
+      var cur=new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting){ var t=e.target.getAttribute('data-label'); if(t) label.textContent=t; } });
+      },{rootMargin:'-44% 0px -50% 0px',threshold:0});
+      document.querySelectorAll('.plate[data-label]').forEach(function(el){ cur.observe(el); });
+    }
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-rent.html">← The Rent</a><a rel="next" href="the-premium.html">The Premium →</a></nav>
+</body>
+</html>

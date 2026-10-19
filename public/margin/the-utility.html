@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Utility — Numéraire, Volume VIII</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem; --measure:40rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.9rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(3rem,8vh,6rem) 0 clamp(1.6rem,4vh,2.6rem);text-align:center;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;text-decoration:none;}
+  .imprint:hover{color:var(--soft);}
+  .vol-dateline{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+
+  .vol-sym{width:114px;height:114px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;align-items:center;justify-content:center;
+    font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 500;font-size:3.1rem;line-height:1;letter-spacing:-.01em;}
+  .vol-sym.lit{background:var(--ink);color:var(--paper);}
+  .vol-elnum{font-family:"Fraunces",serif;font-size:.74rem;color:var(--faintest);letter-spacing:.18em;text-transform:uppercase;margin-top:1rem;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.3rem,6.5vw,4.6rem);line-height:1.02;letter-spacing:-.025em;margin:.7rem 0 0;text-wrap:balance;}
+  .vol-status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .vol-status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:44rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .vol-q{max-width:46rem;margin:clamp(2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .vol-q .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.7rem;}
+  .vol-q q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.3rem,2.4vw,1.72rem);line-height:1.32;color:var(--ink);quotes:none;text-wrap:balance;}
+
+  .front{margin:clamp(3rem,7vh,5rem) auto 0;max-width:var(--measure);}
+  .front-eyebrow{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);text-align:center;
+    display:flex;align-items:center;gap:.9rem;justify-content:center;margin:0 0 2.1rem;}
+  .front-eyebrow::before,.front-eyebrow::after{content:"";height:1px;width:2.4rem;background:var(--hair);}
+  .front p{font-size:1.07rem;line-height:1.76;color:var(--ink);margin:0 0 1.35rem;text-wrap:pretty;}
+  .front p:last-child{margin-bottom:0;}
+  .front em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.74;padding:.1em .12em 0 0;color:var(--ink);}
+  .front-orn{display:flex;justify-content:center;margin:2rem 0;}
+  .front-orn svg{width:96px;height:12px;overflow:visible;}
+  .front-orn line{stroke:var(--num);stroke-width:1;} .front-orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  main{padding:clamp(3rem,7vh,5rem) 0 0;}
+  .plates-head{display:flex;align-items:baseline;gap:.9rem;margin:0 0 1.6rem;}
+  .plates-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-size:.86rem;color:var(--faintest);letter-spacing:.04em;flex:0 0 auto;}
+  .plates-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);flex:0 0 auto;}
+  .plates-rule{flex:1;height:1px;background:var(--hair);position:relative;top:-2px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:13px;}
+
+  .el{appearance:none;-webkit-appearance:none;background:var(--paper);border:1px solid var(--hair);border-radius:2px;
+    padding:14px 15px 16px;text-align:left;cursor:pointer;position:relative;min-height:152px;
+    display:flex;flex-direction:column;color:inherit;font-family:inherit;
+    transition:border-color .22s ease,background .22s ease,transform .22s ease,box-shadow .22s ease;}
+  .el:hover{border-color:var(--faintest);transform:translateY(-2px);}
+  .el-rn{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-size:.78rem;color:var(--faintest);letter-spacing:.18em;text-transform:uppercase;}
+  .pl-hero{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 500;font-size:1.34rem;line-height:1.06;margin-top:.5rem;letter-spacing:-.012em;}
+  .el-gloss{font-size:.79rem;color:var(--faint);line-height:1.36;margin-top:.5rem;font-style:italic;}
+  .pl-flag{margin-top:auto;padding-top:.7rem;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--faintest);}
+  .el.lit{background:var(--ink);border-color:var(--ink);}
+  .el.lit .pl-hero{color:var(--paper);}
+  .el.lit .el-rn{color:rgba(240,235,225,.5);}
+  .el.lit .el-gloss{color:rgba(240,235,225,.62);}
+  .el.lit .pl-flag{color:rgba(240,235,225,.7);}
+  .el.sel{box-shadow:inset 0 0 0 1.5px var(--ink);border-color:var(--ink);}
+  .el.lit.sel{box-shadow:inset 0 0 0 1.5px var(--paper);}
+
+  .detail{margin:clamp(2.4rem,5vh,3.6rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);scroll-margin-top:1.4rem;}
+  .d-head{display:flex;gap:1.3rem;align-items:flex-start;}
+  .d-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 500;font-size:1.5rem;line-height:1;
+    color:var(--ink);flex:0 0 auto;border:1px solid var(--hair);border-radius:2px;letter-spacing:.04em;
+    width:86px;height:86px;display:flex;align-items:center;justify-content:center;text-transform:uppercase;}
+  .d-sym.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .d-titles{min-width:0;}
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);}
+  .d-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.7rem,3.6vw,2.5rem);margin:.22rem 0 .35rem;line-height:1.04;letter-spacing:-.016em;}
+  .d-status{font-size:.84rem;color:var(--faint);font-style:italic;}
+  .d-status.print{color:var(--soft);font-style:normal;}
+  .d-status.print::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .d-desc{font-size:1.05rem;line-height:1.72;color:var(--ink);max-width:42rem;margin:1.3rem 0 0;text-wrap:pretty;}
+
+  .d-openq{margin:1.6rem 0 0;max-width:40rem;}
+  .d-openq .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.5rem;}
+  .d-openq q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);quotes:none;}
+
+  .d-excerpt{margin:1.8rem 0 0;max-width:42rem;border-left:1px solid var(--hair);padding:.2rem 0 .2rem 1.5rem;}
+  .d-excerpt .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.8rem;}
+  .d-excerpt p{font-size:1.04rem;line-height:1.74;color:var(--ink);margin:0;text-wrap:pretty;}
+  .d-excerpt .x-cap{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 500;font-size:1.15rem;}
+  .d-readplate{margin:1.6rem 0 0;}
+  .d-readplate a{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:.94rem;
+    letter-spacing:.01em;text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:2px;transition:border-color .2s ease,color .2s ease;}
+  .d-readplate a:hover{color:var(--soft);border-color:var(--soft);}
+  .d-readplate .arr{margin-left:.4rem;}
+
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;text-decoration:none;}
+  .f-mark:hover{color:var(--soft);}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;}
+    .el{min-height:138px;padding:12px 12px 14px;}
+    .pl-hero{font-size:1.18rem;}
+    .el-gloss{font-size:.74rem;}
+    .vol-sym{width:92px;height:92px;font-size:2.5rem;}
+    .d-head{gap:1rem;}
+    .d-sym{width:64px;height:64px;font-size:1.25rem;}
+    .front p{font-size:1.04rem;}
+    .dropcap{font-size:3rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="rise d1">
+      <a class="imprint" href="numeraire-atlas.html">Numéraire</a>
+      <div class="vol-dateline">The Eighth Volume &middot; The Quantities</div>
+    </div>
+    <div class="vol-sym lit rise d2" aria-hidden="true">Ut</div>
+    <div class="vol-elnum rise d2">Element 08 &middot; Group II</div>
+    <h1 class="rise d3">The Utility</h1>
+    <div class="vol-status rise d3">in print &middot; № VIII &middot; 2 of 12 plates</div>
+    <p class="standfirst rise d4">Every price is supposed to measure a want — the satisfaction a good brings the one who buys it. But want cannot be seen: no instrument reads pleasure, no scale weighs desire, and the quantity on which the whole science of value rests is inferred only from the choices it supposedly drives. This volume anatomizes utility, the ghost in the machine: the subjective theory of value that placed it at the center, the unobservability that makes a price's claim to measure it run in a circle, and the welfare, the happiness, and the justice that economics tried, and failed, to read from it.</p>
+    <div class="vol-q rise d5">
+      <span class="lead">The question of the volume</span>
+      <q>if want can never be seen, only inferred from the choices it supposedly drives, then what does a price measure — the satisfaction it claims to, or merely the willingness, and the power, to pay?</q>
+    </div>
+  </header>
+
+  <section class="front" aria-label="The argument of the volume">
+    <div class="front-eyebrow">The argument</div>
+
+    <p><span class="dropcap">E</span>conomics is built on a quantity it cannot see. Beneath every demand curve, every market price, every calculation of gain and loss, lies the idea of utility — the satisfaction a good affords, the want it answers, the pleasure or the use it brings the one who has it. Utility is what the consumer is supposed to maximize, what the price is supposed to reflect, what the whole apparatus of value is built to track. It is the bedrock on which the modern theory of value rests: a thing is worth what it is worth to someone, and what it is worth to him is the utility it yields. Remove the concept and demand has no foundation, welfare no meaning, and price no anchor in anything human. And yet, as this volume will show, utility has a peculiarity that unsettles everything built upon it — it can be felt by the one who has it, and seen by no one at all.</p>
+
+    <p>The elevation of utility to this central place was the work of a revolution in thought, and a recent one. For most of the history of economics, value was held to come from the side of production: a thing was worth the labor that made it, as Smith and Ricardo broadly taught, or the cost of bringing it forth. The diamond's great price and water's small one were a standing embarrassment to this view, since water is useful beyond measure and diamonds barely at all. In the eighteen-seventies, working separately, William Stanley Jevons in England, Carl Menger in Austria, and Léon Walras in Switzerland overturned it: value, they argued, comes not from the cost of a thing but from the want it satisfies — from its utility to the person who wants one more of it. Jeremy Bentham had prepared the ground a century before, by making pleasure and pain the springs of all human action and the foundation of morals. With the marginalists, want became the source of worth, and value passed from the object into the mind that desires it.</p>
+
+    <p>But the want they had enthroned at the center of value has a property that no amount of theory can wish away: it cannot be observed. Satisfaction is felt, not seen; it registers on no instrument, leaves no residue, casts no shadow that another can measure. One may know one's own pleasure with perfect intimacy and never glimpse another's at all, save by guess and sympathy. The utility on which every price is said to rest is thus a ghost in the machine — the cause of every choice and the content of no observation, driving the visible world of demand from somewhere wholly hidden. This is not a difficulty at the edges of the science but a flaw at its foundation, for a theory that explains prices by utility owes some account of how the utility might be known; and the honest answer, that it cannot be known directly at all, threatens to make the whole explanation a tissue of the unobservable. The want that governs everything can be read nowhere.</p>
+
+    <p>Economics met this embarrassment not by finding the want but by ceasing to look for it. If utility cannot be measured, perhaps it need not be: one may simply watch what people choose and let the choice stand for the want. This was the path from the cardinal utility of the early marginalists, who imagined satisfaction came in countable units, to the ordinal utility of Vilfredo Pareto, who showed that most of the theory needs only that wants be ranked, not measured, and finally to the revealed preference of Paul Samuelson, who proposed to dispense with utility as an inner state altogether and define it by the choosing: if a man takes A when he might have had B, then A is, by definition, preferred. The maneuver bought rigor by retreating from the mind to the deed. But it carried a difficulty of its own, which this volume will not let pass: that to infer the want from the choice and then explain the choice by the want is to argue in a circle, and a circle, however elegant, explains nothing it did not assume.</p>
+
+    <div class="front-orn" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>And there is a further trouble, graver than circularity, which returns us to the argument of the whole work. Even if a price faithfully tracked the choices people make, it would not thereby measure their wants — for what governs a market choice is not how much a person wants a thing but how much he is willing, and able, to pay for it. Willingness to pay is want filtered through means: the rich man's idle fancy commands more dollars than the poor man's desperate need, and so speaks louder in the only language the market hears. A price is a verdict on a hidden contest, mistaken for a fact of nature; and the price that claims to measure utility measures, in truth, willingness to pay — want weighted by the wealth behind it — so that what looks like a reading of satisfaction is a reading of the distribution of money. The demand curve sums dollars, not desires; and a thing is "worth" what someone will give for it, which depends on what he has to give.</p>
+
+    <p>This is the quiet scandal beneath the doctrine that price measures utility: the doctrine launders a distribution of purchasing power into a measure of value, and calls the result the worth of things. A famine can rage while grain is carried out of the stricken land — as Amartya Sen showed, famines have struck where food was ample but the hungry had lost the means to buy it — because the starving, having no money, generate no demand, while the well-fed elsewhere, having money, do; and the market, faithfully measuring willingness to pay, records that the grain is worth more in the mouths that are already full. A price is a verdict on a hidden contest, mistaken for a fact of nature; and the contest, here, is over who holds the means to make his wants count. Utility was offered as the bedrock natural fact beneath every price, the subjective ground that would explain value once and for all. It turns out to encode, beneath its show of measuring desire, the wholly unnatural question of how the means of desiring are shared out.</p>
+
+    <p>None of this makes utility useless, and the volume will not pretend that it does. The concept organizes the whole theory of demand; it lets us speak, however carefully, of people being made better or worse off; and the retreat to ranking rather than measuring rescued much of its work from the charge of weighing the immeasurable. But it leaves utility able to bear far less than it is often asked to carry. It cannot compare one person's satisfaction with another's, as Lionel Robbins insisted, and so cannot of itself justify taking from the rich to give to the poor; it cannot be summed into a coherent will for a whole society, as Kenneth Arrow proved; and it may not, in the end, track the happiness it was first invented to name. The volume's task is to mark, with care, the exact edge of what this central and indispensable quantity can and cannot be made to tell us — to honor its uses without crediting its pretensions.</p>
+
+    <p>The twelve plates follow utility from the want at its root to the worth at its end. They set out the want itself — the subjective theory that made desire the source of value — and the ghost, the unobservability that makes a price's claim to measure it run in a circle; the calculus by which Bentham dreamed of counting pleasure, and the wager through which Bernoulli and his heirs measured it by the willingness to bet; the gulf between persons that no utility can bridge, and the welfare economics built to do without the crossing; the leveller, the case for equality that diminishing want seems to promise and cannot prove, and the sum that Arrow showed could never be coherently taken; the happiness utility may have lost in gaining its rigor, and the currency it claims to be when it renders all goods in one coin; the axioms beneath the modern theory, and the choices that break them; and, at the last, the worth of a thing, and what utility was ever supposed to mean. Other volumes meet this one at every turn: the volume on the margin, which traced how value came to be reckoned at the last unit; the choice, which studies the chooser utility is built to describe; the surplus, the gain a want fulfilled leaves over its price; the stock, the purchasing power whose distribution every price quietly records. Utility is the quantity at the center of the science, indispensable and unseen — the want every price is built to measure, and the ghost no instrument can read. The argument remains open.</p>
+
+  </section>
+
+  <main>
+    <div class="plates-head">
+      <span class="plates-num fr">№ VIII</span>
+      <span class="plates-name">The twelve plates</span>
+      <span class="plates-rule"></span>
+    </div>
+
+    <div class="grid" id="grid">
+      <button class="el lit" data-id="want" aria-label="Plate i — The Want — in print"><span class="el-rn">Plate i</span><span class="pl-hero">The Want</span><span class="el-gloss">the subjective theory of value: worth springs not from labor or cost but from desire — utility, the capacity to satisfy want, on which every price is said to rest</span><span class="pl-flag">in print</span></button>
+      <button class="el lit" data-id="ghost" aria-label="Plate ii — The Ghost — in print"><span class="el-rn">Plate ii</span><span class="pl-hero">The Ghost</span><span class="el-gloss">utility cannot be observed, only inferred from the choices it supposedly drives — so a price measures not want but willingness to pay, want weighted by money</span><span class="pl-flag">in print</span></button>
+      <button class="el" data-id="calculus" aria-label="Plate iii — The Calculus"><span class="el-rn">Plate iii</span><span class="pl-hero">The Calculus</span><span class="el-gloss">Bentham's felicific calculus and the dream of cardinal utility — measuring pleasure in units, and the missing unit in which happiness might be counted</span></button>
+      <button class="el" data-id="wager" aria-label="Plate iv — The Wager"><span class="el-rn">Plate iv</span><span class="pl-hero">The Wager</span><span class="el-gloss">utility under risk: Bernoulli's resolution of the St. Petersburg paradox, and the expected-utility theory of von Neumann and Morgenstern</span></button>
+      <button class="el" data-id="gulf" aria-label="Plate v — The Gulf"><span class="el-rn">Plate v</span><span class="pl-hero">The Gulf</span><span class="el-gloss">the interpersonal comparison of utility, and its impossibility: Robbins's stricture that one mind's satisfaction cannot be weighed against another's</span></button>
+      <button class="el" data-id="welfare" aria-label="Plate vi — The Welfare"><span class="el-rn">Plate vi</span><span class="pl-hero">The Welfare</span><span class="el-gloss">Pareto efficiency and the welfare theorems — doing welfare economics without comparing persons, and the justice on which the criterion stays silent</span></button>
+      <button class="el" data-id="leveller" aria-label="Plate vii — The Leveller"><span class="el-rn">Plate vii</span><span class="pl-hero">The Leveller</span><span class="el-gloss">diminishing marginal utility of income and the utilitarian case for equality (Edgeworth, Pigou) — and why it cannot be proved on economics' own terms</span></button>
+      <button class="el" data-id="sum" aria-label="Plate viii — The Sum"><span class="el-rn">Plate viii</span><span class="pl-hero">The Sum</span><span class="el-gloss">Arrow's impossibility theorem: no rule for aggregating individual wants into a coherent social ranking can meet a few reasonable conditions at once</span></button>
+      <button class="el" data-id="happiness" aria-label="Plate ix — The Happiness"><span class="el-rn">Plate ix</span><span class="pl-hero">The Happiness</span><span class="el-gloss">does the utility revealed by choice track felt happiness? the divorce of preference from well-being, and the Easterlin paradox of income and happiness</span></button>
+      <button class="el" data-id="currency" aria-label="Plate x — The Currency"><span class="el-rn">Plate x</span><span class="pl-hero">The Currency</span><span class="el-gloss">utility as the common currency that makes all goods commensurable — the foundation of cost-benefit analysis, and the values that resist being priced</span></button>
+      <button class="el" data-id="axiom" aria-label="Plate xi — The Axiom"><span class="el-rn">Plate xi</span><span class="pl-hero">The Axiom</span><span class="el-gloss">the axioms beneath modern utility — completeness, transitivity, independence — and the systematic violations (Allais, Ellsberg) that experiment reveals</span></button>
+      <button class="el" data-id="worth" aria-label="Plate xii — The Worth"><span class="el-rn">Plate xii</span><span class="pl-hero">The Worth</span><span class="el-gloss">the capstone: what utility finally is — pleasure, preference, or well-being — and whether a science that cannot see want should keep the ghost or do without it</span></button>
+    </div>
+  </main>
+
+  <section class="detail" id="detail" aria-live="polite"></section>
+
+  <footer>
+    <div class="f-bar">
+      <a class="f-mark" href="numeraire-atlas.html">Numéraire</a>
+      <span class="f-ref">Volume VIII &middot; The Quantities</span>
+    </div>
+    <p class="colophon">Volume VIII, <em>The Utility</em>, opens with two plates in print — <em>The Want</em> and <em>The Ghost</em>, the desire that value was made to rest upon and the unobservability that makes a price's claim to measure it run in a circle. The eighth element of the table, and the twentieth of its volumes to appear; it completes the quantities, taking its place beside <a href="the-margin.html">The Margin</a>, <a href="the-surplus.html">The Surplus</a>, and <a href="the-stock.html">The Stock</a> — the margin at which value is reckoned, the surplus a want fulfilled leaves over its price, the stock of purchasing power whose distribution every price records, and now the want itself, the ghost the whole science is built to track and no instrument can read. Where the volume on <a href="the-choice.html">The Choice</a> studies the chooser, this one studies the satisfaction his choosing is meant to reveal — and finds that it cannot be seen, only inferred from the choosing, so that a price measures not desire but willingness to pay, want weighted by the wealth behind it. Return to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+
+<script>
+const PLATES = {
+  want:{rn:"i",title:"The Want",family:"in print",lit:true,url:"the-want.html",
+    desc:`The volume opens with the idea that remade economics: that value is not a quality residing in things but a relation between things and human wants. Against the classical doctrine that a good is worth the labor or the cost that went into it, the marginalists held that worth springs from desire — that a thing is valuable because, and insofar as, it is wanted, and wanted at the margin where one more unit still serves a need. This plate sets out the subjective theory of value: Bentham's grounding of all choice in pleasure and pain; the inversion by which Jevons, Menger, and Walras moved value from the object to the subject; and the elevation of utility — the capacity of a thing to satisfy want — into the quantity on which every price was henceforth said to rest. Value, the plate argues, left the world of things and entered the mind.`,
+    excerpt:`<span class="x-cap">V</span>alue, the marginalists taught, is not a property of things but a relation between things and wants. A loaf of bread is worth nothing to the man who cannot eat another bite, and everything to the starving; the diamond is dear not because it costs much to find but because it is wanted and scarce. What a thing is worth, on this view, is fixed not by the labor it took to make nor the cost of its making but by the want it satisfies — by its utility, the service it renders to desire. This was the great inversion of the nineteenth century: value moved from the object to the subject, from the sweat in a thing to the wanting of it. And at the center of the new science stood utility, the measure of want, on which every price was now said to rest.`},
+  ghost:{rn:"ii",title:"The Ghost",family:"in print",lit:true,url:"the-ghost.html",
+    desc:`If value rests on utility, everything turns on whether utility can be known — and here the science meets its deepest embarrassment, for utility cannot be observed. Want is private; satisfaction registers on no instrument; one cannot see, weigh, or read another's pleasure. This plate gives the thesis on which the volume turns: that the quantity economics is built to track is a ghost, inferred only from the choices it supposedly drives, so that the claim of a price to measure want runs in a circle — preference read off choice, choice explained by preference. Worse, what a price actually tracks is not want but willingness to pay, want backed by money; so the rich man's whim outweighs the poor man's need, and a price, far from measuring satisfaction, renders a verdict on the distribution of purchasing power, mistaken for a fact about desire.`,
+    excerpt:`<span class="x-cap">U</span>tility has one fatal peculiarity: no one has ever seen it. Want is private and silent; satisfaction leaves no mark on any dial; pleasure and pain, however vivid to the one who feels them, are invisible to everyone else. The quantity on which the whole science of value was built can be felt but not observed, suffered but not weighed — a ghost in the machine, driving every choice and registering on no instrument. So economics faced a question it has never fully answered: if want cannot be seen, how can a price be said to measure it? The answer it settled on was to stop trying to measure want at all, and to watch instead the choices that want produces — to infer the unseen cause from its visible effect. But the inference, as we shall see, runs in a circle.`},
+  calculus:{rn:"iii",title:"The Calculus",family:"in preparation",lit:false,
+    desc:`Jeremy Bentham dreamed of measuring it. If pleasure and pain are the masters of mankind, he reasoned, then good legislation is a matter of arithmetic: sum the pleasures a policy brings and subtract the pains, and let the greatest happiness of the greatest number decide. This plate sets out the felicific calculus and the ambition of cardinal utility — the notion that satisfaction comes in measurable quantities, units of pleasure that might in principle be added across goods, across moments, even across persons. It traces the dimensions Bentham proposed by which a pleasure might be weighed — its intensity, its duration, its certainty, its nearness — the appeal of a science that would put ethics on the footing of measurement, and the difficulty that has dogged the project from the start: that no one has ever found the unit, the util, in which happiness might actually be counted. The dream of measuring want is as old as utility itself, and as unfulfilled.`,
+    openq:`if pleasure and pain govern us, can they be measured — and what is the unit in which one happiness is added to another?`},
+  wager:{rn:"iv",title:"The Wager",family:"in preparation",lit:false,
+    desc:`Utility found its firmest measure not in pleasure but in risk. The puzzle was old: why will no one pay much to enter a wager whose average winnings are infinite? Daniel Bernoulli's answer, in 1738, was that men value not money but the satisfaction money brings, and that this satisfaction grows ever more slowly as wealth mounts — the first statement of diminishing marginal utility, devised to resolve the St. Petersburg paradox. This plate follows the idea to its modern form in the expected-utility theory of John von Neumann and Oskar Morgenstern, who showed that a person whose choices among gambles obey a few consistency axioms acts exactly as if maximizing the expected value of some utility scale — so that utility, unmeasurable in contemplation, becomes measurable through the willingness to bet. Risk gave the ghost a body, or seemed to, by making the unseen quantity the very thing that consistent gambling reveals.`,
+    openq:`does the willingness to bet reveal the want that contemplation cannot measure — or only the shape of a gamble?`},
+  gulf:{rn:"v",title:"The Gulf",family:"in preparation",lit:false,
+    desc:`Grant that each person's utility might somehow be scaled; a deeper barrier remains, for there is no common scale across persons. To say that bread brings the starving man more utility than caviar brings the glutton seems obvious — yet it cannot be proved, for no one can climb inside two minds and compare what he finds in each. This plate sets out the problem of interpersonal comparison and the use Lionel Robbins made of it: that since one man's satisfaction cannot be scientifically weighed against another's, economics has no warrant to say that taking a dollar from the rich to give to the poor raises total welfare, however plausible it sounds. Robbins's stricture cleaved the subject in two, banishing such judgments to ethics and leaving positive economics silent on the distribution of income — a silence that purchased rigor at the price of nearly everything one might have wanted utility to tell us.`,
+    openq:`one mind's satisfaction cannot be weighed against another's — so on what warrant may a science say the poor man needs the dollar more?`},
+  welfare:{rn:"vi",title:"The Welfare",family:"in preparation",lit:false,
+    desc:`If utilities cannot be compared, what can a science of welfare still say? Its answer was the criterion of Vilfredo Pareto: an arrangement is efficient if no one can be made better off without making someone worse off, a judgment that needs no comparison between persons, only each person's own ranking of his own lot. This plate sets out Pareto efficiency and the two welfare theorems — that every competitive equilibrium is efficient, and that any efficient outcome can be reached by competition given the right starting point — the nearest thing economics has to a proof that markets do good. But it also sets out the criterion's poverty: that a world in which one man owns everything is Pareto efficient, since the starving cannot be fed without lessening the surfeit of the glutton; that efficiency is silent on justice; and that the value judgments Robbins banished creep back in the very choice of which efficient point to bless.`,
+    openq:`a world where one man owns everything can be efficient — so what is efficiency worth as a measure of the good?`},
+  leveller:{rn:"vii",title:"The Leveller",family:"in preparation",lit:false,
+    desc:`Yet the most famous thing utility was ever made to say concerns the distribution of income, and it says it through the margin. If the satisfaction a dollar brings diminishes as one grows rich — the hundredth dollar mattering less than the first — then a dollar taken from a millionaire and given to a pauper subtracts little utility and adds much, so that total satisfaction is greatest when income is equally shared. This plate sets out the utilitarian case for equality, urged by Francis Edgeworth and Arthur Pigou, and the assault Robbins led against it: that the argument depends on comparing utilities across persons, and on assuming all persons convert money to satisfaction alike, neither of which can be shown. It is the sharpest instance of the volume's tension — a conclusion of great moral weight resting on a premise that cannot be proved — and the reason the equality of incomes remains a question economics can frame but not, on its own terms, settle.`,
+    openq:`if a dollar means less to the rich than the poor, does justice follow from arithmetic — or does the arithmetic assume what it claims to prove?`},
+  sum:{rn:"viii",title:"The Sum",family:"in preparation",lit:false,
+    desc:`Suppose one wished, despite every difficulty, to add up what a society wants — to forge from the conflicting desires of millions a single ranking of what is best for all. Kenneth Arrow proved, in 1951, that it cannot coherently be done. This plate sets out his impossibility theorem: that no method of combining individual preferences into a social ordering can satisfy a handful of mild and reasonable conditions at once — that any rule for aggregating wants must either contradict itself, ignore someone, or crown a dictator. The result struck at the heart of the project of a social welfare function, the dream of summing utility into a collective will, and it generalized the ancient paradoxes of voting into a theorem about wanting itself. There is, Arrow showed, no faithful way to pass from what each of us wants to what we want together — no general will that the mere adding of preferences can be trusted to reveal.`,
+    openq:`can the wants of millions be combined into a single will — or is every method of adding them bound to break?`},
+  happiness:{rn:"ix",title:"The Happiness",family:"in preparation",lit:false,
+    desc:`Utility began, in Bentham, as felt happiness, and became, in the hands of his successors, mere consistent choice; the two are not the same, and the gap between them is the subject of this plate. For a person may choose what does not make him happy — out of habit, error, addiction, or a taste that misleads him — so that the utility revealed by his choices and the welfare measured by his feelings can part ways. This plate sets out the modern attempt to measure happiness directly, through survey and experience, and the puzzles it has turned up: above all the finding, named for Richard Easterlin, that rising income within a country buys little lasting happiness, since satisfaction is judged against one's neighbors and one's own past. The plate asks whether utility, having retreated from happiness into choice to win its rigor, lost along the way the very thing it was first invented to track.`,
+    openq:`people choose what does not make them happy — so does the utility revealed by choice still measure anything worth having?`},
+  currency:{rn:"x",title:"The Currency",family:"in preparation",lit:false,
+    desc:`Utility is, above all, a common currency: it promises to render every good and every harm in a single coin, so that incommensurable things — an hour of leisure, a clean river, a human life — may be weighed against one another and a rational choice made among them. This plate sets out that promise and its critics. The promise underwrites cost-benefit analysis, the discipline of putting a number on everything a decision touches; the criticism holds that some values resist the reduction, that to price a sacred thing is already to misunderstand it, and that the demand to make all goods commensurable is less a discovery about value than a decision to treat as comparable what may not be. It is the philosophical core of the unease utility provokes: whether the mind really does possess a single scale on which all its wants are ranged, or whether the scale is a fiction the science imposes to make its sums come out.`,
+    openq:`can every good be priced on one scale — and what is lost when the incomparable is made to compare?`},
+  axiom:{rn:"xi",title:"The Axiom",family:"in preparation",lit:false,
+    desc:`Modern utility rests not on measured pleasure but on axioms — a short list of consistency conditions a person's preferences are assumed to obey: that he can rank any two options, that his rankings do not cycle, that adding an irrelevant alternative leaves his choice between the others unchanged. From these, the existence of a utility function follows as a theorem. This plate sets out the axiomatic foundation and the cracks that experiment has opened in it. Maurice Allais devised choices, now famous, in which thoughtful people reliably violate the independence axiom; Daniel Ellsberg, others in which they flee not risk but ambiguity. The violations are not random but systematic, which means they cannot be dismissed as noise. The plate asks what survives when the axioms fail — whether utility is a true description of choosing, a useful idealization of it, or a normative standard that real choosers, stubbornly, decline to meet.`,
+    openq:`real choosers violate the axioms in regular ways — is utility then a description of choice, an idealization, or a standard we decline to meet?`},
+  worth:{rn:"xii",title:"The Worth",family:"in preparation",lit:false,
+    desc:`The volume ends where it began, at the question of what a thing is worth, and what utility was ever supposed to be. Three answers have contended: that utility is pleasure, the felt happiness Bentham sought to count; that it is preference, whatever choice reveals; and that it is well-being, the flourishing of a life. Economics, seeking rigor, retreated from the first to the second — from happiness to choice — and in doing so gained a science it could operate and lost the thing the science was for. This final plate asks whether the concept can be repaired or must be replaced: whether utility names a real quantity, a useful fiction, or a confusion of three different things under one word; and whether a discipline that cannot see the want it measures should keep faith with the ghost, or learn at last to do without it. The price will go on being paid whatever the answer — but what it measures remains the open question of the whole inquiry.`,
+    openq:`pleasure, preference, or well-being — which did utility ever mean, and can a science keep a quantity it cannot see?`}
+};
+
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+function render(id){
+  var tile=document.querySelector('.el[data-id="'+id+'"]');
+  var d=PLATES[id]; if(!d||!tile) return;
+  var h='';
+  h+='<div class="d-head">';
+  h+='<div class="d-sym'+(d.lit?' lit':'')+'">'+esc(d.rn)+'</div>';
+  h+='<div class="d-titles">';
+  h+='<div class="d-family">The Utility &middot; Plate '+esc(d.rn)+' &middot; '+esc(d.family)+'</div>';
+  h+='<h2 class="d-name">'+esc(d.title)+'</h2>';
+  h+='<div class="d-status'+(d.lit?' print':'')+'">'+esc(d.family)+'</div>';
+  h+='</div></div>';
+  h+='<p class="d-desc">'+esc(d.desc)+'</p>';
+  if(d.lit && d.excerpt){
+    h+='<div class="d-excerpt"><span class="lead">From the opening</span><p>'+d.excerpt+'</p></div>';
+  }
+  if(d.url){h+='<p class="d-readplate"><a href="'+d.url+'">Read the plate<span class="arr" aria-hidden="true">&#8594;</span></a></p>';}
+  if(!d.lit && d.openq){
+    h+='<p class="d-openq"><span class="lead">This plate will ask</span><q>'+esc(d.openq)+'</q></p>';
+  }
+  document.getElementById('detail').innerHTML=h;
+  var prev=document.querySelector('.el.sel'); if(prev) prev.classList.remove('sel');
+  tile.classList.add('sel');
+}
+
+(function(){
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.el').forEach(function(b){
+    b.addEventListener('click',function(){
+      render(b.dataset.id);
+      document.getElementById('detail').scrollIntoView({behavior:reduce?'auto':'smooth',block:'nearest'});
+    });
+  });
+  render('want');
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-divide.html">← The Divide</a><a rel="next" href="the-want.html">The Want →</a></nav>
+</body>
+</html>

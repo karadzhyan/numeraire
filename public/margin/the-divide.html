@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Divide — Numéraire, The Surplus, Plate ii</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:66rem; --measure:35rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(2.8rem,7vh,5rem) 0 clamp(1.4rem,3.5vh,2.2rem);text-align:center;}
+
+  .crumbs{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 400;
+    font-size:.8rem;letter-spacing:.04em;color:var(--faint);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:center;gap:.55rem;}
+  .crumbs a{text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .2s ease,color .2s ease;}
+  .crumbs a:hover{border-color:var(--num);color:var(--ink);}
+  .crumbs .sep{color:var(--faintest);}
+  .crumbs .here{color:var(--ink);}
+
+  .plate-mark{width:116px;height:116px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:.18rem;line-height:1;}
+  .plate-mark.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pm-vol{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.84rem;letter-spacing:.06em;color:rgba(240,235,225,.62);}
+  .pm-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;
+    font-size:2.5rem;letter-spacing:.02em;text-transform:uppercase;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.1rem,6vw,4rem);line-height:1.03;letter-spacing:-.025em;margin:1rem 0 0;text-wrap:balance;}
+  .status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:42rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .epi{max-width:38rem;margin:clamp(2.2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .epi q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.46;color:var(--ink);quotes:none;display:block;text-wrap:pretty;}
+  .epi .cite{display:block;margin-top:.95rem;font-size:.78rem;color:var(--faintest);letter-spacing:.05em;font-style:normal;}
+  .epi .cite em{font-style:italic;}
+
+  .essay{max-width:52rem;margin:clamp(3rem,7vh,5rem) auto 0;counter-reset:sn;}
+  .essay::after{content:"";display:block;clear:both;}
+  .essay > p,.essay > .pull{max-width:var(--measure);}
+  .essay p{font-size:1.075rem;line-height:1.8;color:var(--ink);margin:0 0 1.4rem;text-wrap:pretty;}
+  .essay em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.72;padding:.08em .14em 0 0;color:var(--ink);}
+
+  .divider{display:flex;justify-content:center;margin:2.4rem 0;}
+  .divider svg{width:96px;height:12px;overflow:visible;}
+  .divider line{stroke:var(--num);stroke-width:1;} .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.5vw,1.74rem);line-height:1.34;color:var(--ink);text-align:center;
+    margin:2.4rem auto;max-width:33rem;text-wrap:balance;}
+
+  .snref{font-family:"Fraunces",serif;font-size:.64em;line-height:0;vertical-align:super;
+    color:var(--soft);counter-increment:sn;margin-left:1px;font-style:normal;}
+  .snref::after{content:counter(sn);}
+  .sn{display:block;max-width:var(--measure);margin:.1rem 0 1.4rem;padding:.15rem 0 .15rem 1.05rem;
+    border-left:1px solid var(--hair);font-size:.84rem;line-height:1.52;color:var(--faint);}
+  .sn::before{content:counter(sn);font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--faintest);margin-right:.5em;font-size:.92em;}
+  .sn em{font-style:italic;}
+
+  @media (min-width:64rem){
+    .sn{float:right;clear:right;width:15rem;margin:.35rem 0 1.3rem;padding:0;border-left:none;}
+    .divider,.pull,.apparatus{clear:both;}
+  }
+
+  .apparatus{max-width:52rem;margin:clamp(3.2rem,7vh,5rem) auto 0;padding-top:2rem;border-top:1px solid var(--hair);clear:both;}
+  .app-h{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;}
+  .app-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.4rem;}
+  .app-list li{border-top:1px solid var(--hair);}
+  .app-list li:first-child,.app-list li:nth-child(2){border-top:none;}
+  .app-list a{display:block;text-decoration:none;padding:.95rem 0;}
+  .app-list a:hover .app-t{color:var(--soft);}
+  .app-rel{display:block;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faintest);margin-bottom:.3rem;}
+  .app-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.12rem;color:var(--ink);transition:color .2s ease;}
+  .app-g{display:block;font-size:.84rem;color:var(--faint);font-style:italic;line-height:1.4;margin-top:.22rem;}
+
+  footer{margin-top:clamp(3.5rem,8vh,6rem);padding:2.2rem 0 4rem;border-top:1px solid var(--hair);}
+  .crumbs.foot{justify-content:flex-start;margin-bottom:1.3rem;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .plate-mark{width:96px;height:96px;}
+    .pm-num{font-size:2.1rem;}
+    .essay p{font-size:1.04rem;line-height:1.74;}
+    .dropcap{font-size:3rem;}
+    .app-list{grid-template-columns:1fr;}
+    .app-list li:nth-child(2){border-top:1px solid var(--hair);}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="crumbs rise d1" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-surplus.html">The Surplus &middot; Vol VII</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate ii</span>
+    </nav>
+    <div class="plate-mark lit rise d2" aria-hidden="true">
+      <span class="pm-vol">Su</span>
+      <span class="pm-num">ii</span>
+    </div>
+    <h1 class="rise d3">The Divide</h1>
+    <div class="status rise d3">in print &middot; The Surplus &middot; plate ii</div>
+    <p class="standfirst rise d4">Every exchange creates a gain; the price decides how it is shared. Between the seller's cost and the buyer's worth lies a whole range of prices, each leaving both better off, none of them inevitable — so where the price falls within that range is settled not by the nature of the thing but by a contest of power, knowledge, and law. This plate follows that contest, and finds in the price — even the impersonal price of an open market — the verdict that divides the spoils of cooperation.</p>
+  </header>
+
+  <div class="epi rise d5">
+    <q>The value of a man is, as of all other things, his price; that is to say, so much as would be given for the use of his power, and therefore is not absolute, but a thing dependant on the need and judgement of another.</q>
+    <span class="cite">Thomas Hobbes, <em>Leviathan</em> (1651)</span>
+  </div>
+
+  <article class="essay">
+
+    <p class="lede"><span class="dropcap">T</span>here is a number that decides, in every sale, who gets the better of it — and it hides in plain sight, wearing the look of a simple fact. The price of the coffee is three dollars: so the sign says, and so it seems, as fixed and given as the temperature of the cup. But the three dollars is doing something the sign does not admit. It is dividing a spoil. The coffee was worth more than three to you and less than three to the seller, and somewhere in that gap a gain was waiting to be split; the price is where it was split, and a different price would have split it differently.</p>
+
+    <p>The previous plate established that the gain exists; this one concerns its fate. For a gain, once made, does not distribute itself — it must be apportioned, and the price is what apportions it.<sup class="snref"></sup> Notice first how much room there is for the apportioning to vary. Suppose the coffee is worth four to you and costs the seller one: then three units of surplus lie on the counter between you, and any price at all from one to four will see both of you walk away content. At a price of one, you pocket nearly the whole three; at a price of four, the seller does; at any figure between, you divide it, more to the one or more to the other — and at every one of those figures the trade is still, in the economist's blessing word, mutually beneficial. The existence of the gain told us that a trade should happen. It said nothing of the terms. Between the floor of the seller's cost and the ceiling of the buyer's worth lies a whole range of possible prices, every one of them efficient and none of them inevitable, and the surplus alone cannot tell us which will rule.</p>
+    <aside class="sn">Fix the buyer's value and the seller's cost and you have fixed only the bounds of the bargain, not its outcome. If the coffee is worth four to you and costs the seller one, then any price between one and four leaves both better off for trading — at a price near one you keep almost the whole three-unit gain, at a price near four the seller does, and at every price between you share it in some proportion. The surplus determines the range of possible prices; it does not determine which price within the range will rule. That is decided by something else entirely.</aside>
+
+    <p>What, then, does decide? The question is older than economics, and was answered with rigor only rather late.<sup class="snref"></sup> Edgeworth, in 1881, proved what common sense had long suspected: that between two traders alone the price is genuinely indeterminate — there is no single figure the logic of exchange compels, only a range of bargains all of which both would accept, the choice among them left to the will and the nerve of the parties. Long before him, the medieval doctors who fretted over the just price had worried the same bone from the moral end. In asking whether a price was fair — whether the merchant who charged what the famine would bear had sinned — they conceded, without quite saying so, that a price is not a fact handed down by nature but a division made by men, and that a division, unlike a fact, can be just or unjust. The marginal revolution would later fold the just price into the market price and pronounce the question dissolved. The disquiet behind it was not dissolved, only renamed.</p>
+    <aside class="sn">Edgeworth saw this with a clarity that founded mathematical economics: between two isolated traders, he proved, the terms of exchange are indeterminate — any division along a whole curve of possible bargains is consistent with both gaining — and only the press of competition, many buyers and many sellers, narrows the range toward a single determinate price. The medieval doctrine of the just price had circled the same insight from the other side: in worrying whether a price was fair, the Schoolmen were admitting that the price was a division, and that a division can be just or unjust — a moral fact, not a natural one.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>If the surplus fixes only the range and leaves the rest open, then the price is settled by forces the textbook diagram omits — and the first of them is power.<sup class="snref"></sup> Where a price is bargained rather than merely posted, the share each party carries off turns on the strength of his position, and strength here has a precise meaning: the credibility of his refusal. The party who can walk away unharmed — who has other buyers or sellers, time to wait, or simply less need of the deal — holds out for a price near the favorable end of the range and lets the other close the gap. The party who cannot walk away — who must sell his labor this week or not eat — has no such leverage, and the surplus drains toward his counterpart. Economists name the fallback the threat point, and a negotiation is in truth a contest to make one's own the more believed. The deepest fact about bargaining is that need is weakness, and the gains of cooperation flow away from those who need them most.</p>
+    <aside class="sn">Where the parties are few and the price is haggled, the share each carries off is governed by the strength of his hand — and the strength of a hand is, at bottom, the credibility of his refusal. The one who can walk away unhurt, who has other buyers or sellers to turn to, who can outwait the other or simply needs the deal less, will claim the larger slice; the one with no alternative, who must trade today or go without, takes what he is given. Economists call the fallback the threat point. Need is weakness at the bargaining table, and the surplus flows away from it.</aside>
+
+    <p>Power's near relations, knowledge and law, bend the division further.<sup class="snref"></sup> The party who knows what the other would accept in extremity can drive him to that edge, while the party kept in the dark surrenders ground he might have held — which is why so much of bargaining is the art of hiding one's own floor while divining the other's. And beneath the private contest sits the public frame, decisive and too often forgotten. The price divides the surplus, but the law has already, in large part, decided how — for every rule that touches an exchange shifts the threat points that govern it. A minimum wage sets a floor beneath the weakest seller of labor; a rent ceiling caps the strongest landlord; the right to combine lends the single worker the standing of many; and behind all of them stands the prior allotment, by law and by history, of who owns what before any bargaining starts, which settles who comes to the table desperate and who comes able to wait. The division looks like the work of the market; much of it is the work of the rules.</p>
+    <aside class="sn">Two further forces bend the split. Knowledge is one: the party who can read the other's true reservation can press him to its edge, while the party kept in the dark gives ground he need not. The law is the other, and the deeper. Every rule that touches exchange — the minimum wage, the rent ceiling, the right to bargain collectively, the limit on interest, the very allocation of who owns what before any trade begins — is a thumb on the scale of the division, shifting the threat points and so the share. The price divides the surplus, but the law, in good part, decides where the dividing falls.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>All this is plainest where bargaining is visible — a haggle in a bazaar, a union across the table from a firm. But most prices are not haggled; they are met already made, in markets where buyers and sellers are too many for any one to matter, and here the division performs its finest concealment.<sup class="snref"></sup> The competitive price is determinate: driven by the press of rivals to the single point where the quantity offered meets the quantity sought, it stands before each trader as a fixed and external thing, to be accepted or declined but never argued. And just because no one sets it, it looks like no one's doing — a fact of the world, impersonal as gravity, the last thing one would call a verdict in a contest. Yet a division it remains. The competitive price splits the surplus exactly as the haggled one does; only the splitting has been settled in advance, at the level of the whole market, by the numbers massed on each side and the wealth and the options behind them. Let the sellers grow scarce or the buyers grow desperate, and the impersonal price shifts to favor the stronger side as obediently as any haggle. No individual set it; the contest, waged over all their heads, set it — and handed each the result wearing the face of a fact.</p>
+    <aside class="sn">The competitive price is the masterpiece of the disguise. Where buyers and sellers are many, no one of them can move the price; each meets it already made, as fixed and external as the weather, and takes it or leaves it without a word of haggling. It looks, therefore, like a pure fact of the world — and this is precisely its deception. The price is still a division of the surplus; only the division has been settled at the level of the whole market, by the numbers ranged on each side, their wealth, their alternatives, before any single trader arrives. Alter that balance and the impersonal price obediently moves. No one set it; the contest set it.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>The competitive case deserves its strongest statement, for it is the hardest for this work's thesis to digest.<sup class="snref"></sup> In a truly competitive market, the objection runs, there is no contest at all at the point of sale: each party is a price-taker, facing a number neither can move, and to dress a parametric datum in the language of struggle is to overdramatize a transaction as undramatic, for the individual, as reading a label. The reply is that the absence of a visible struggle is not the absence of struggle but its displacement: the price the individual takes as given was made by the confrontation of all supply with all demand, a contest as real as any, merely resolved before he arrived and presented to him already settled. Nor is this to deny the price its other and famous office — that it signals where things are scarce and steers them where they are wanted, the coordinating wonder Hayek taught a century to admire. The price wears both faces at once; but the work's claim concerns only the first — that the dividing the price performs is the thing perennially, and conveniently, mistaken for a fact of nature.</p>
+    <aside class="sn">The objection is fair and must be met squarely: in true competition there is no bargaining, only two price-takers accepting a number neither can budge — so why call a datum a verdict? Because the absence of a visible struggle is not its absence, only its removal to another level: the competitive price is the settled outcome of all supply confronting all demand, decided before the individual sale and merely ratified by it. And the price does more than divide — it signals scarcity and steers resources, the office Hayek prized — so it wears two faces. But it is the dividing face, not the signaling one, that is forever mistaken for a fact of nature.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>We may now state, more plainly than anywhere else in these volumes, the conviction that animates them all.<sup class="snref"></sup> A price is a verdict on a hidden contest, mistaken for a fact of nature. In the price considered as the divider of a surplus, that sentence is not a figure of speech but a flat description of the case. A cooperation — a sale, a hiring, a loan, a tenancy — brings a gain into being that neither party could have had alone. The gain must be split between them. The split is settled by their relative power, their knowledge of each other, and the law that frames them both. And the number in which the settlement is recorded — the price, the wage, the rent, the rate — is then received by everyone who pays or pockets it as though it were a property of the thing transacted, a fact about coffee or labor or money, rather than the score of a contest that might have ended otherwise. The verdict is read as a fact. To undo that single misreading is the labor of the whole work, and nowhere is the misreading laid so bare as in the dividing of the gain.</p>
+    <aside class="sn">Here the thesis of the whole work stands at its plainest. A price is a verdict on a hidden contest, mistaken for a fact of nature — and in the price as divider of the surplus the saying is no metaphor but a literal description. There is a gain; it must be split; the splitting is settled by power, by knowledge, by law; and the number that records the settlement is taken, by those who pay and receive it, for a property of the thing exchanged. The verdict is read as a fact. That is the single confusion this work exists to undo, and nowhere is it so cleanly exhibited as here.</aside>
+
+    <p>Learn to see prices so, and a society's price list turns legible in a new and unsettling way.<sup class="snref"></sup> Each price is a line drawn through the gain of some cooperation, and where the line falls records — in the plain arithmetic of the market — who held the power, the knowledge, and the law when the bargain was struck. The wage is the line through the gain the firm and the worker make together, and where it falls reports how that gain was shared. The rent is the line through the gain of the inhabited city, and reports the same of landlord and tenant. The rate of interest is the line through the gain of present money lent into the future. Read so, the prices of a society are the map of its settled contests, the ledger of its distributed advantage — kept in the guise of mere facts, so that the advantage recorded there, and the power that won it, can be paid out daily without being called to account. The price is read as a fact; and the reading is no accident, but a service, performed for whomever the division favored.</p>
+    <aside class="sn">To see the price as a line through a surplus is to acquire a strange and useful sight. Every price becomes legible as a division of some cooperation's gain, and the place the line falls becomes a record of who held the power, the knowledge, and the law when the bargain was struck. A society's price list, read so, is the map of its settled contests — the wage that says how the gain of the firm was shared between owner and worker, the rent that says how the gain of the city was shared between tenant and landlord. The prices announce the distribution of advantage, and announce it in the guise of mere facts, so that the advantage need never be argued.</aside>
+
+    <p class="pull">A society's prices are the map of its settled contests — the ledger of who got the better of whom, kept in the innocent hand of arithmetic.</p>
+
+    <p>So the two plates that open this volume complete a single thought. The first showed that exchange creates a gain — real, large, the deepest thing the market has to offer. This one has shown that the gain, once created, must be divided, and that the price is the instrument of the division — the verdict that says how the spoils of cooperation shall be shared, handed down by the contest of power, knowledge, and law, and then mistaken, by all who meet it, for a fact about the world. The surplus is the prize; the price is the verdict that awards it; and the awarding is the contest the price conceals. What the gain is, the plate before this showed; how the price divides it, this one has tried to. A price is a verdict on a hidden contest, mistaken for a fact of nature — and the surplus is the contest's stake, the gain over which the whole long quarrel of economic life is waged. The argument remains open.</p>
+
+  </article>
+
+  <nav class="apparatus" aria-label="Related reading">
+    <h2 class="app-h">Related</h2>
+    <ul class="app-list">
+      <li><a href="the-gain.html"><span class="app-rel">In this volume</span><span class="app-t">The Gain</span><span class="app-g">plate i — the previous plate: the gain whose division this one traces, the prize to this verdict</span></a></li>
+      <li><a href="the-surplus.html"><span class="app-rel">In this volume</span><span class="app-t">The Prize</span><span class="app-g">plate vi — when one hand grows strong enough, the division becomes a capture: market power as a claim upon the surplus</span></a></li>
+      <li><a href="the-surplus.html"><span class="app-rel">In this volume</span><span class="app-t">The Source</span><span class="app-g">plate xi — the great division, of the gain between labor and capital, and the older quarrel over who makes it</span></a></li>
+      <li><a href="the-bargain.html"><span class="app-rel">In The Wage</span><span class="app-t">The Bargain</span><span class="app-g">the wage as the line drawn through the surplus of the firm: the division of the gain that employment makes</span></a></li>
+    </ul>
+  </nav>
+
+  <footer>
+    <nav class="crumbs foot" aria-label="Return">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-surplus.html">The Surplus &middot; Vol VII</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate ii</span>
+    </nav>
+    <p class="colophon">The second plate of Volume VII, <em>The Surplus</em> — the price as the line that divides the gain between buyer and seller, the bargaining range and the forces that settle the split, and the competitive price that hides the division behind the face of a fact. Return to <em><a href="the-surplus.html">The Surplus</a></em>, or to <a href="numeraire-atlas.html">the complete table of volumes</a>. The epigraph is from Hobbes's <em>Leviathan</em>; Edgeworth and the doctrine of the just price are discussed in the text, and modern bargaining theory is given in paraphrase. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-gain.html">← The Gain</a><a rel="next" href="the-utility.html">The Utility →</a></nav>
+</body>
+</html>

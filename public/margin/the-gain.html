@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Gain — Numéraire, The Surplus, Plate i</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:66rem; --measure:35rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(2.8rem,7vh,5rem) 0 clamp(1.4rem,3.5vh,2.2rem);text-align:center;}
+
+  .crumbs{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 400;
+    font-size:.8rem;letter-spacing:.04em;color:var(--faint);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:center;gap:.55rem;}
+  .crumbs a{text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .2s ease,color .2s ease;}
+  .crumbs a:hover{border-color:var(--num);color:var(--ink);}
+  .crumbs .sep{color:var(--faintest);}
+  .crumbs .here{color:var(--ink);}
+
+  .plate-mark{width:116px;height:116px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:.18rem;line-height:1;}
+  .plate-mark.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pm-vol{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.84rem;letter-spacing:.06em;color:rgba(240,235,225,.62);}
+  .pm-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;
+    font-size:2.5rem;letter-spacing:.02em;text-transform:uppercase;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.1rem,6vw,4rem);line-height:1.03;letter-spacing:-.025em;margin:1rem 0 0;text-wrap:balance;}
+  .status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:42rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .epi{max-width:38rem;margin:clamp(2.2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .epi q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.46;color:var(--ink);quotes:none;display:block;text-wrap:pretty;}
+  .epi .cite{display:block;margin-top:.95rem;font-size:.78rem;color:var(--faintest);letter-spacing:.05em;font-style:normal;}
+  .epi .cite em{font-style:italic;}
+
+  .essay{max-width:52rem;margin:clamp(3rem,7vh,5rem) auto 0;counter-reset:sn;}
+  .essay::after{content:"";display:block;clear:both;}
+  .essay > p,.essay > .pull{max-width:var(--measure);}
+  .essay p{font-size:1.075rem;line-height:1.8;color:var(--ink);margin:0 0 1.4rem;text-wrap:pretty;}
+  .essay em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.72;padding:.08em .14em 0 0;color:var(--ink);}
+
+  .divider{display:flex;justify-content:center;margin:2.4rem 0;}
+  .divider svg{width:96px;height:12px;overflow:visible;}
+  .divider line{stroke:var(--num);stroke-width:1;} .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.5vw,1.74rem);line-height:1.34;color:var(--ink);text-align:center;
+    margin:2.4rem auto;max-width:33rem;text-wrap:balance;}
+
+  .snref{font-family:"Fraunces",serif;font-size:.64em;line-height:0;vertical-align:super;
+    color:var(--soft);counter-increment:sn;margin-left:1px;font-style:normal;}
+  .snref::after{content:counter(sn);}
+  .sn{display:block;max-width:var(--measure);margin:.1rem 0 1.4rem;padding:.15rem 0 .15rem 1.05rem;
+    border-left:1px solid var(--hair);font-size:.84rem;line-height:1.52;color:var(--faint);}
+  .sn::before{content:counter(sn);font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--faintest);margin-right:.5em;font-size:.92em;}
+  .sn em{font-style:italic;}
+
+  @media (min-width:64rem){
+    .sn{float:right;clear:right;width:15rem;margin:.35rem 0 1.3rem;padding:0;border-left:none;}
+    .divider,.pull,.apparatus{clear:both;}
+  }
+
+  .apparatus{max-width:52rem;margin:clamp(3.2rem,7vh,5rem) auto 0;padding-top:2rem;border-top:1px solid var(--hair);clear:both;}
+  .app-h{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;}
+  .app-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.4rem;}
+  .app-list li{border-top:1px solid var(--hair);}
+  .app-list li:first-child,.app-list li:nth-child(2){border-top:none;}
+  .app-list a{display:block;text-decoration:none;padding:.95rem 0;}
+  .app-list a:hover .app-t{color:var(--soft);}
+  .app-rel{display:block;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faintest);margin-bottom:.3rem;}
+  .app-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.12rem;color:var(--ink);transition:color .2s ease;}
+  .app-g{display:block;font-size:.84rem;color:var(--faint);font-style:italic;line-height:1.4;margin-top:.22rem;}
+
+  footer{margin-top:clamp(3.5rem,8vh,6rem);padding:2.2rem 0 4rem;border-top:1px solid var(--hair);}
+  .crumbs.foot{justify-content:flex-start;margin-bottom:1.3rem;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .plate-mark{width:96px;height:96px;}
+    .pm-num{font-size:2.1rem;}
+    .essay p{font-size:1.04rem;line-height:1.74;}
+    .dropcap{font-size:3rem;}
+    .app-list{grid-template-columns:1fr;}
+    .app-list li:nth-child(2){border-top:1px solid var(--hair);}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="crumbs rise d1" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-surplus.html">The Surplus &middot; Vol VII</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate i</span>
+    </nav>
+    <div class="plate-mark lit rise d2" aria-hidden="true">
+      <span class="pm-vol">Su</span>
+      <span class="pm-num">i</span>
+    </div>
+    <h1 class="rise d3">The Gain</h1>
+    <div class="status rise d3">in print &middot; The Surplus &middot; plate i</div>
+    <p class="standfirst rise d4">Buy a thing for less than it was worth to you, and you walk away with the difference — a gain no receipt records. So does the seller who sells above his cost. Every voluntary exchange creates such a gain, the surplus; and it is no transfer of advantage from one party to another but advantage made where there was none, conjured out of the difference between what a thing is worth to the one who holds it and the one who wants it. This plate asks what that gain is, where it comes from, and why it is the deepest case the market can make for itself.</p>
+  </header>
+
+  <div class="epi rise d5">
+    <q>It is not true that in trade one gives equal value for equal value. On the contrary, each of the two contracting parties always gives a lesser value for a greater.</q>
+    <span class="cite">Étienne Bonnot de Condillac, <em>Commerce and Government</em> (1776)</span>
+  </div>
+
+  <article class="essay">
+
+    <p class="lede"><span class="dropcap">E</span>very good bargain leaves something over. You would have paid five for the book and you paid three; the two you kept are real, though no receipt records them, and they are yours by the simple grace of having wanted the thing less dearly than its price let you have it. The bookseller, who would have let it go for one, keeps two of his own. Between you, the sale has conjured four out of nothing — four units of advantage that existed nowhere before the two of you agreed, and that economists, with their gift for making the obvious sound hard, call the surplus.</p>
+
+    <p>It is worth pausing on the strangeness of that last image: conjured out of nothing. We are accustomed to think of gain as something got at another's expense — that if I come away from a deal the richer, you must have come away the poorer, and the merchant who profits at both ends of a trade is a kind of thief in slow motion.<sup class="snref"></sup> The whole of economics begins by refusing that picture. A voluntary exchange is not the transfer of an advantage from one pocket to another; it is the making of an advantage where there was none. You valued the book above three dollars or you would have kept your money; the seller valued three dollars above the book or he would have kept his stock; and when you traded, each of you moved to a position he preferred to the one he had left. No one was emptied to fill another. Both of you rose. The gain was not carved from a fixed stock of good — it was brought into being by the act of dealing, and it did not exist until you dealt.</p>
+    <aside class="sn">The intuition that one man's gain in a bargain must be another's loss is old and stubborn. It underlay the mercantilist faith that a nation grew rich only at its neighbors' expense, and the older suspicion of the merchant as a man who makes nothing and lives by skimming those who do. Smith's quiet revolution was to see that voluntary exchange is not a transfer but a creation: the butcher and his customer both dine better for the trade, each having got, in his own eyes, the better end of it. Nobody is fleeced. Value appears that was not there before.</aside>
+
+    <p>Where does it come from, this manufactured advantage? From difference — from the plain fact that the same object is not worth the same to everyone.<sup class="snref"></sup> A thing is worth most in the hands that want it most, and the world is forever arranging itself so that things sit in the wrong hands: the book gathering dust on the shelf of a man who has read it, keenly wanted by another who has not; the field worth little to its idle owner and much to the neighbor who would farm it. Between what a thing is worth to the one who holds it and what it is worth to the one who covets it lies a gap, and in that gap a gain waits. Exchange is the act of closing the gap — of moving the thing to the hand that prizes it — and the gain it yields measures how badly matched the holding and the wanting had been. This is why the most profitable trades are struck between the most unlike parties, and why Ricardo could show that even nations good at everything still grow richer by trading: it is not sameness but difference that the surplus feeds on.</p>
+    <aside class="sn">The gain is born of difference. Were the book worth exactly the same to buyer and seller, no trade could improve on the standing arrangement, and there would be nothing to divide; it is because the thing is worth five to you and one to him that four units of advantage lie waiting in the gap. Exchange is the act of moving a thing to the hand that values it most, and the wider the divergence in valuations — the very difference Ricardo built into the doctrine of comparative advantage — the larger the surplus a trade can release. Likeness yields no gain; difference is the mine.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>The surplus has two halves, one for each side of the counter, and economics has a name and a picture for both.<sup class="snref"></sup> The buyer's half is the consumer's surplus — the distance between what the thing was worth to him and the lesser sum he actually paid. The seller's half is the producer's surplus — the distance between the price he got and the lesser sum that would still have tempted him to part with the thing. Each half can be drawn. Range all the would-be buyers from the most eager to the least, and their willingness to pay traces a curve sloping downward, the demand curve; range all the would-be sellers from the most willing to the most reluctant, and their willingness to accept traces a curve sloping up, the supply curve; and the gains from trade are the whole area enclosed between the two, out to the point where they cross and the last worthwhile trade is made. The surplus, in that picture, is not a metaphor but a region with an area one could in principle measure.</p>
+    <aside class="sn">The buyer's gain — the gap between what the thing is worth to him and what he pays — is the consumer's surplus; the seller's — the gap between his price and the least he would have taken — is the producer's surplus. Each is read off a curve: the demand curve is the schedule of what successive buyers would be willing to pay, the supply curve the schedule of what successive sellers would be willing to accept, and the total surplus is the lens-shaped area caught between the two, out to the quantity at which they meet. Add the slivers and you have the gain.</aside>
+
+    <p>That one could measure it was the discovery of a French engineer with a practical problem.<sup class="snref"></sup> Jules Dupuit, in 1844, wanted to know what a public work — a bridge, a road, a canal — was truly worth to the people who used it, and saw that the answer could not be the tolls it collected, since many who paid a given toll would gladly have paid far more, and pocketed the difference as a benefit the toll never caught. The true worth, he reasoned, was the sum of all those hidden willingnesses, the whole area beneath the curve of demand — so that the first measure of consumer surplus was drawn not to vindicate the market but to value a bridge. Half a century later Alfred Marshall gave the thing its lasting name and a tool's precision, defining a man's surplus as the excess of the price he would have paid, rather than go without, over the price he is actually charged. What had been a moralist's intuition — that a good bargain enriches — became a quantity with a shape.</p>
+    <aside class="sn">The first to measure the gain was an engineer. Jules Dupuit, asking in 1844 what a bridge was worth to the public who crossed it, saw that the tolls collected understated the benefit — for many who paid the toll would gladly have paid more — and that the true worth was the sum of all those willingnesses, the area beneath the curve of demand. Marshall, half a century on, gave the quantity its enduring name, the consumer's surplus, defining it as the excess of the price a man would pay rather than go without over the price he is actually charged. The benefit of exchange had become a measurable thing.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>Here we reach the deepest thing the surplus has to say, and the strongest case that can be made for the institution this whole work anatomizes.<sup class="snref"></sup> Why suffer the market — its inequalities, its indifference, its recurrent failures — at all? Because it harvests the gains from trade as nothing else yet discovered does. A market is, at bottom, a vast and tireless machine for finding the hand that values each thing most and putting the thing into it, and in doing so it reaps, exchange by exchange, the surplus that mismatched valuations strew across the world. This, and not fairness, is the true content of Adam Smith's invisible hand: the promise is not that the outcome will be just but that it will be fruitful — that a crowd of people, each pursuing his own advantage, will, without intending it, leave very little of the available gain unrealized. The market's apology is written in surplus. Whether that surplus is the right thing to maximize, and at what cost to other goods, a later plate must ask; but the power of the case rests here, on the gain that trade creates.</p>
+    <aside class="sn">This is the deepest case for the market, and worth stating at its strongest. A market is a machine for finding willing buyers and willing sellers and letting them trade — which is to say, a machine for moving each good to the hand that values it most and harvesting, trade by trade, the gains that mismatched valuations leave lying about. The famous invisible hand promises not that the result is fair but that it is fruitful: that self-interested exchange, left to run, will wring out very nearly the whole of the available surplus, leaving little gain unrealized. The theorem that makes this precise waits in a later plate.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>The case is powerful, and honesty requires that its limits be set down beside it with equal care.<sup class="snref"></sup> Four cautions cut against any easy celebration of the gain. The first: the surplus, for all its geometric crispness, rests on a curve no one can see — the schedule of what people would have paid — so that every measure of it is partly a guess, and the textbook's confident triangles are confident beyond their warrant. The second, and graver: that a gain exists says nothing of how it is split, for both parties profiting is entirely consistent with one profiting hugely and the other by a hair — "mutually beneficial" is a low bar, which fairness clears and extortion clears too. The third: the gain is counted in money, in willingness to pay, which is fenced by ability to pay, so the rich man's idle preference registers as more surplus than the poor man's urgent need, and the calculus tilts toward the moneyed before it begins. The fourth: "voluntary" conceals as much as it states, for the man who sells his labor cheap because the alternative is hunger trades freely, and gains by trading, yet his consent was wrung from him by a circumstance he never chose. The gain is real. Taken alone, it is also nearly silent on everything we most want to know.</p>
+    <aside class="sn">Four cautions temper the celebration. The surplus is real, but its size rests on the unobservable curve of what people would have paid, and so is always partly guessed. That a trade creates a gain says nothing of how the gain is split — both may profit while one profits enormously and the other barely. The gain is reckoned in willingness to pay, which is bounded by ability to pay, so the calculus quietly counts the rich man's whim above the poor man's need. And "voluntary" is a thin word: the starving man who sells his labor for a pittance gains by the trade, yet his consent was wrung from him by a hunger he did not choose.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>All of which sets up, rather than settles, the question this volume exists to pursue.<sup class="snref"></sup> The work has held throughout that a price is a verdict on a hidden contest mistaken for a fact of nature, and the surplus is what lets us see what the contest is over. For there can be no struggle over the division of a gain until there is a gain to divide; the present plate has done its work if it has made that pool of advantage visible — real, created by the meeting of the parties, lying on the table between them. The gain is the prize. The next plate will argue that the price is the verdict that awards it, the line drawn through the surplus that says how much of the created advantage each shall carry away. Secure the prize and the contest over it comes into focus; deny the prize and there is nothing to contest, and the price really is the innocent fact it appears to be.</p>
+    <aside class="sn">Everything in this volume turns on a distinction the present plate is meant to secure: between the gain and its division. Before a price can be seen as the line that splits a surplus, there must be a surplus to split — a pool of advantage, created by the meeting of the parties, lying on the table to be claimed. The gain is the prize; the price, the next plate argues, is the verdict that awards it. Establish that the prize exists, and the whole contest over who carries it off comes into view.</aside>
+
+    <p>And here the surplus springs its quiet trap.<sup class="snref"></sup> The mutual gain is no illusion — both parties truly do leave the table better off than they came, and that is exactly what makes the price so easy to mistake for a simple fact of nature. Because no one was robbed, because each walked away ahead, the number at which they settled wears an air of obvious rightness, as if it were a property of the thing rather than a settlement between persons; we see two willing parties, both content, and conclude that the price merely records their agreement. But the same two parties, content for the same reasons, would have settled just as willingly at a great many other prices — and at each of them the gain would have been split differently, more to the one or more to the other. A price is a verdict on a hidden contest, mistaken for a fact of nature; and it is the very reality of the shared gain that supplies the disguise, the contentment of both parties drawing the eye away from the question of how unevenly their contentment was bought.</p>
+    <aside class="sn">Here is the subtle thing. The mutual gain is no fiction — both parties really do come away better off — and it is precisely this truth that disguises the struggle beneath. Because each has profited, the price at which they settled wears the look of a natural meeting point, a plain fact about the thing, fair by the very evidence that no one was forced. Yet that same trade, at a hundred other prices, would still have left both better off; the particular price that prevailed merely says who got how much of the gain. The reality of the benefit is the camouflage of the division.</aside>
+
+    <p class="pull">That both come away richer is no fiction — and it is the fiction's source: because the gain is real, the price that divides it looks like a fact.</p>
+
+    <p>So the first plate of this volume lays the cornerstone for the rest. Exchange creates a gain; the gain is real, and large, and the deepest justification the market can offer; it is born of difference, measured as an area, harvested by the price system trade upon trade. But the gain, once made, must be divided, and its division is settled by the price — and because the gain is genuine, the division it conceals goes unseen, the price passing for a fact of nature when it is the outcome of a contest over the spoils that cooperation brings into being. A price is a verdict on a hidden contest, mistaken for a fact of nature. The surplus is what the contest is over; the gain is the prize the bargain creates and the price awards; and to see the prize clearly, as this plate has tried to make us see it, is to be unable, ever after, to take the price for granted. What the gain is, this plate has shown; how the price divides it is the question of the next. The argument remains open.</p>
+
+  </article>
+
+  <nav class="apparatus" aria-label="Related reading">
+    <h2 class="app-h">Related</h2>
+    <ul class="app-list">
+      <li><a href="the-divide.html"><span class="app-rel">In this volume</span><span class="app-t">The Divide</span><span class="app-g">plate ii — the next plate: the price as the line that splits the gain between the parties</span></a></li>
+      <li><a href="the-surplus.html"><span class="app-rel">In this volume</span><span class="app-t">The Triangle</span><span class="app-g">plate iii — the gain drawn and measured, and the unseen curve the measure rests upon</span></a></li>
+      <li><a href="the-surplus.html"><span class="app-rel">In this volume</span><span class="app-t">The Willing</span><span class="app-g">plate viii — the gain is counted in willingness to pay, and so weighs the rich man's whim above the poor man's need</span></a></li>
+      <li><a href="the-margin.html"><span class="app-rel">In The Margin</span><span class="app-t">The Margin</span><span class="app-g">the apparatus beneath the surplus: the demand curve, whose area is the gain, is built at the margin</span></a></li>
+    </ul>
+  </nav>
+
+  <footer>
+    <nav class="crumbs foot" aria-label="Return">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-surplus.html">The Surplus &middot; Vol VII</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate i</span>
+    </nav>
+    <p class="colophon">The first plate of Volume VII, <em>The Surplus</em> — the gains from trade, the value an exchange creates out of the difference between what a thing is worth to buyer and seller, and the measure of it that Dupuit drew to value a bridge and Marshall named. Return to <em><a href="the-surplus.html">The Surplus</a></em>, or to <a href="numeraire-atlas.html">the complete table of volumes</a>. The epigraph is from Condillac's <em>Commerce and Government</em>; Dupuit and Marshall are discussed in the text, and modern welfare economics is given in paraphrase. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-surplus.html">← The Surplus</a><a rel="next" href="the-divide.html">The Divide →</a></nav>
+</body>
+</html>

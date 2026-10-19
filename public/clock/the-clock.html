@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Clock — The Hours № II · i</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45;
+    --faint:#6e685d;
+    --faintest:#9a9384;
+    --num:#c4bcab;
+    --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16);
+    --frame:68rem;
+    --read:37rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.6rem,4vw,4rem);}
+  p{margin:0;}
+  i,em{font-style:italic;}
+  a{color:inherit;}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:4px;border-radius:1px;}
+  .fr{font-family:"Fraunces",Georgia,serif;font-feature-settings:"liga" 1,"dlig" 0;}
+
+  /* ---- heavy entrance ---- */
+  .hero{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:space-between;}
+  .bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.5rem;padding:2.5rem 0 0;}
+  .mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.3rem;letter-spacing:-.01em;}
+  .edition{font-size:.9rem;color:var(--faint);letter-spacing:.06em;}
+  .hero-foot{padding-bottom:clamp(3.5rem,8vh,7rem);text-align:center;}
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(3.4rem,12vw,10.5rem);line-height:.96;letter-spacing:-.03em;margin:0;text-wrap:balance;}
+  .standfirst{font-size:clamp(1.16rem,1.5vw,1.36rem);line-height:1.55;color:var(--soft);
+    margin:clamp(1.6rem,3vh,2.4rem) auto 0;max-width:44rem;text-wrap:pretty;}
+
+  /* ---- epigraph ---- */
+  .epigraph{max-width:34rem;margin:clamp(3rem,7vh,5.5rem) auto clamp(1rem,2vh,2rem);text-align:center;}
+  .epigraph p{font-style:italic;font-size:1.06rem;line-height:1.55;color:var(--soft);margin:0;text-indent:0;text-wrap:pretty;}
+  .epigraph .attr{display:block;font-style:normal;font-size:.8rem;letter-spacing:.07em;color:var(--faintest);margin-top:1rem;}
+
+  /* ---- reading column ---- */
+  .read{max-width:var(--read);margin:0 auto;}
+  .read p{font-size:1.07rem;line-height:1.74;color:var(--ink);margin:0;text-indent:1.4em;text-wrap:pretty;}
+  .sec-head + p,.pull + p,.opening{text-indent:0;}
+
+  .sec-head{text-align:center;margin:clamp(4rem,9vh,7.5rem) 0 clamp(1.8rem,3.5vh,2.6rem);}
+  .sec-head.first{margin-top:clamp(4rem,9vh,7rem);}
+  .sec-num{display:block;font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;
+    font-size:.98rem;letter-spacing:.06em;color:var(--faintest);margin-bottom:.85rem;}
+  .sec-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.6rem,2.6vw,2.05rem);line-height:1.12;letter-spacing:-.012em;margin:0;}
+
+  .opening::first-letter{
+    font-family:"Fraunces",serif;font-weight:500;float:left;font-size:5.3rem;line-height:.72;
+    padding:.36rem .55rem 0 0;color:var(--ink);
+  }
+
+  .pull{max-width:50rem;margin:clamp(4.5rem,9vh,7rem) auto;text-align:center;}
+  .pull p{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:clamp(2rem,4.2vw,3.1rem);line-height:1.08;letter-spacing:-.02em;color:var(--ink);
+    margin:0;text-indent:0;text-wrap:balance;}
+
+  .ref{font-size:.62em;vertical-align:.5em;line-height:0;color:var(--faint);font-style:normal;}
+  .ref a{text-decoration:none;}
+  .ref a:hover{color:var(--ink);}
+
+  .coda{max-width:46rem;margin:clamp(5rem,10vh,8rem) auto 0;text-align:center;}
+  .coda p{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400,"ital" 0;font-style:italic;
+    font-size:clamp(1.5rem,2.6vw,2.05rem);line-height:1.3;color:var(--soft);margin:0;text-wrap:balance;}
+
+  .notes{max-width:var(--read);margin:clamp(5rem,11vh,9rem) auto 0;padding-top:2.4rem;border-top:1px solid var(--hair);}
+  .notes h3{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.92rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.6rem;}
+  .note{display:flex;gap:.9rem;font-size:.86rem;line-height:1.56;color:var(--faint);margin:0 0 1rem;text-wrap:pretty;}
+  .note .nn{flex:0 0 auto;font-family:"Fraunces",serif;color:var(--faintest);min-width:1.1rem;}
+  .note i{font-style:italic;}
+
+  footer{margin-top:clamp(6rem,13vh,10rem);padding:2.6rem 0 4.5rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.5rem;margin-bottom:1.8rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.1rem;}
+  .f-ref{font-size:.82rem;color:var(--faintest);letter-spacing:.18em;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:60ch;}
+  .colophon a{color:var(--faint);border-bottom:1px solid var(--hair);}
+  .colophon a:hover{border-color:var(--soft);}
+
+  @media (prefers-reduced-motion: no-preference){
+    .r{opacity:0;transform:translateY(12px);animation:rise 1.1s cubic-bezier(.2,.6,.2,1) both;}
+    .r1{animation-delay:.06s}.r2{animation-delay:.2s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  /* ============================================================= */
+  /*  Numéraire — extensions for the second movement & the figure  */
+  /* ============================================================= */
+
+  .movement{max-width:var(--read);margin:clamp(5.5rem,12vh,9.5rem) auto clamp(2.4rem,5vh,3.8rem);text-align:center;}
+  .movement .mv-rule{width:2.2rem;height:1px;background:var(--num);margin:0 auto 1.5rem;}
+  .movement .mv-label{display:block;font-family:"Fraunces",serif;font-variation-settings:"opsz" 28,"wght" 500;
+    font-size:.74rem;letter-spacing:.26em;text-transform:uppercase;color:var(--faintest);margin-bottom:1rem;}
+  .movement .mv-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 132,"wght" 360;font-weight:360;
+    font-style:italic;font-size:clamp(2rem,4.4vw,2.95rem);line-height:1.05;letter-spacing:-.02em;color:var(--ink);
+    margin:0;text-wrap:balance;}
+  .movement .mv-blurb{font-size:1.02rem;line-height:1.62;color:var(--soft);max-width:33rem;margin:1.5rem auto 0;
+    font-style:italic;text-wrap:pretty;}
+  .movement + .sec-head,.movement + .sec-head.first{margin-top:clamp(2.6rem,5vh,3.6rem);}
+
+  .read p.lede-p{text-indent:0;margin-top:1.7rem;}
+  .lede{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;font-style:normal;
+    font-size:.99em;letter-spacing:.005em;color:var(--ink);}
+
+  .figure{max-width:min(66rem,100%);margin:clamp(4.5rem,9vh,7rem) auto;}
+  .fig-head{max-width:var(--read);margin:0 auto 1.4rem;text-align:center;}
+  .fig-num{display:block;font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--faintest);margin-bottom:.7rem;}
+  .fig-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 96,"wght" 400;
+    font-size:clamp(1.4rem,2.4vw,1.9rem);line-height:1.12;letter-spacing:-.01em;margin:0;}
+  .fig-intro{font-size:1rem;line-height:1.6;color:var(--soft);max-width:34rem;margin:1rem auto 0;text-wrap:pretty;}
+
+  .instrument{border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);padding:1.7rem 0 1.5rem;margin-top:1.7rem;}
+  .regime{display:flex;justify-content:center;align-items:center;gap:0;margin-bottom:1.4rem;}
+  .regime button{appearance:none;background:none;border:none;cursor:pointer;font-family:"Fraunces",serif;
+    font-variation-settings:"opsz" 28,"wght" 400;font-size:.92rem;letter-spacing:.015em;color:var(--faintest);
+    padding:.4rem 1.05rem .55rem;border-bottom:1.5px solid transparent;transition:color .25s,border-color .25s;}
+  .regime button[aria-pressed="true"]{color:var(--ink);border-color:var(--ink);font-variation-settings:"opsz" 28,"wght" 500;}
+  .regime button:hover{color:var(--soft);}
+  .regime .sep{align-self:center;color:var(--num);font-size:.78rem;padding:0 .15rem;}
+
+  .fig-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  #figsvg,#towersvg{display:block;width:100%;height:auto;}
+  .seg-paid,.seg-edge,.endflag{transition:opacity .42s ease,transform .45s cubic-bezier(.2,.6,.2,1);}
+  .fig-hit{cursor:pointer;}
+  .fig-hit:focus{outline:none;}
+  .hit-ring{opacity:0;transition:opacity .2s ease;}
+  .fig-hit:hover .hit-ring,.fig-hit:focus-visible .hit-ring{opacity:1;}
+
+  .readout{display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;gap:.4rem 1.7rem;margin-top:1.5rem;}
+  .ro{font-size:.85rem;color:var(--faint);font-variant-numeric:tabular-nums;}
+  .ro b{font-family:"Fraunces",serif;font-variation-settings:"opsz" 24,"wght" 500;font-weight:500;color:var(--ink);
+    font-size:.98rem;margin-left:.3rem;}
+  .ro.muted{color:var(--faintest);}
+  .ro.gap{color:var(--soft);}
+
+  .fig-legend{display:flex;flex-wrap:wrap;justify-content:center;gap:1.4rem;margin-top:1.1rem;font-size:.8rem;color:var(--faint);}
+  .fig-legend .lg{display:inline-flex;align-items:center;gap:.5rem;}
+  .sw{width:1.55rem;height:.82rem;display:inline-block;border:1px solid var(--hair);}
+  .sw-paid{background:rgba(28,26,22,.13);}
+  .sw-cut{background-image:repeating-linear-gradient(45deg,var(--faintest) 0 1px,transparent 1px 5px);}
+
+  .annot{max-width:41rem;margin:1.3rem auto 0;text-align:center;min-height:3.1em;font-size:.93rem;line-height:1.5;
+    color:var(--soft);text-wrap:pretty;}
+  .annot .a-k{display:block;font-family:"Fraunces",serif;font-variation-settings:"opsz" 26,"wght" 500;color:var(--ink);
+    font-size:.86rem;letter-spacing:.02em;margin-bottom:.28rem;}
+  .annot i{font-style:italic;}
+
+  .fig-foot{max-width:var(--read);margin:1.5rem auto 0;font-size:.82rem;line-height:1.58;color:var(--faint);
+    text-align:center;text-wrap:pretty;}
+
+  @media (prefers-reduced-motion: reduce){
+    .seg-paid,.seg-edge,.endflag,.regime button,.hit-ring{transition:none;}
+  }
+  @media (max-width:680px){ #figsvg,#towersvg{min-width:560px;} }
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .read p{font-size:1.04rem;}
+    .opening::first-letter{font-size:4.4rem;}
+    .f-bar{flex-direction:column;gap:.7rem;}
+    .regime button{font-size:.84rem;padding:.4rem .7rem .5rem;}
+    .readout{gap:.3rem 1.05rem;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-clock">The Clock · contents</a><a href="the-clock.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <section class="hero">
+    <div class="bar r r1">
+      <span class="mark">Numéraire</span>
+      <span class="edition">The Hours&nbsp;&middot;&nbsp;№&nbsp;II&nbsp;&middot;&nbsp;i</span>
+    </div>
+    <div class="hero-foot r r2">
+      <h1>The Clock</h1>
+      <p class="standfirst">The law of the wage and the hour rests on an assumption so deep it is never argued — that an hour of a person&rsquo;s labor is a <i>thing</i>, a unit the same for everyone, that can be counted, owed, paid, and stolen. It looks like a fact of nature. It is a fact of history. The hour had to be made into a thing before it could be bought, and the thing that made it was the clock.</p>
+    </div>
+  </section>
+
+  <div class="epigraph r">
+    <p>&hellip; a street laid out before inches of land had value, and when one-handed clocks sufficiently subdivided the day.</p>
+    <span class="attr">Thomas Hardy, <i>Tess of the d&rsquo;Urbervilles</i></span>
+  </div>
+
+  <article class="read">
+
+    <div class="movement">
+      <div class="mv-rule"></div>
+      <span class="mv-label">First Movement</span>
+      <h2 class="mv-title">The Making of the Hour</h2>
+      <p class="mv-blurb">How a unit that seems to belong to nature was in fact assembled in history — by a machine, a discipline, and a long campaign against every older way of keeping time.</p>
+    </div>
+
+    <div class="sec-head first"><span class="sec-num fr">I</span><h2 class="sec-title">Task and Time</h2></div>
+    <p class="opening">Before the clock ruled work, the task did. The farmer worked while there was light and weather; the fisher went out with the tide; the smith stayed at the forge until the iron was worked. Labor took the shape of the job and the turn of the day and the season, and it stopped when the thing was done. Time, in such a world, was not a quantity a person spent — it was the medium the work moved through, with no separate existence to be saved or wasted. The anthropologist who studied the Nuer found that they kept their day by the round of their cattle, the milking and herding and watering, and had no word for time as a thing that passes, that one might hoard or throw away.<span class="ref"><a href="#n1">1</a></span> In medieval England a length of time was named for the work that filled it: a span might run as long as it takes to cook an egg, or to say a prayer.<span class="ref"><a href="#n2">2</a></span> The hour existed, but loosely, and almost no life was ruled by it.</p>
+
+    <div class="sec-head"><span class="sec-num fr">II</span><h2 class="sec-title">The Key-Machine</h2></div>
+    <p>What changed the world&rsquo;s relation to time was a machine. The mechanical clock came first out of the monastery, where the bell that called the monks to prayer at the fixed hours imposed the earliest true schedule — a day cut into equal parts and obeyed by all. From the fourteenth century the clocks spread out of the cloister into the towns, onto the church towers and the market squares, and a new kind of time arrived with them: the <i>merchant&rsquo;s</i> time, the historian Jacques Le Goff called it, set against the older time of the Church.<span class="ref"><a href="#n3">3</a></span> This new time was unlike the task&rsquo;s in every way that would come to matter. It was uniform — every hour the same length, whatever the season or the labor. It was divisible without end, into minutes and then seconds. And it was abstract, detached from any particular work — an empty vessel that could be filled with anything, or with nothing. Lewis Mumford would later judge the clock, not the steam-engine, to be the key machine of the industrial age, and he was right.<span class="ref"><a href="#n4">4</a></span> The engine multiplied the work a man could do; the clock turned the time he did it in into something that could be measured — and so, in time, sold.</p>
+
+    <div class="pull"><p>Before an hour could be bought, it had to be made into a thing: uniform, divisible, the same for everyone, and emptied of the task that once filled it.</p></div>
+
+    <div class="sec-head"><span class="sec-num fr">III</span><h2 class="sec-title">The Discipline</h2></div>
+    <p>The factory turned the clock&rsquo;s abstract time into a discipline. Where the old work had been paid by the piece or the task, the new work was bought by the hour — and an employer who has bought the hour has every reason to see that none of it runs to waste. So the factory acquired a clock, and a bell, and a locked gate; it fined the latecomer and the idler; it kept a record of each worker&rsquo;s time and docked the pay of any who came up short. The day was no longer the worker&rsquo;s to arrange around the work; it was the employer&rsquo;s, measured out and accounted for. Thompson found the whole transformation gathered into a single distinction that the industrial worker came to feel and the old craftsman never had — the distinction between the employer&rsquo;s time and one&rsquo;s own.<span class="ref"><a href="#n5">5</a></span> What the factory taught, in the end, was that time had a value, and that during the bought hours the value belonged to someone else.</p>
+
+    <div class="sec-head"><span class="sec-num fr">IV</span><h2 class="sec-title">Time Is Money</h2></div>
+    <p>The clock could measure time and the factory could command it, but neither could, alone, make a person <i>feel</i> that wasting it was wrong. That was the work of a moral campaign, preached from the pulpit and drilled in the schoolroom for two centuries. The Puritan and then the Methodist taught the sinfulness of idleness and the duty of redeeming the time; the charity schools beat punctuality into the children of the poor long before they reached the factory gate; and the maxim that pressed the whole teaching into four words was set down by Benjamin Franklin in 1748 — that time is money, and the hours a man lets slip are coins he has thrown into the street.<span class="ref"><a href="#n6">6</a></span> It is a strange thought, held up to the light: that the minutes of a life are a currency, and rest a kind of spending. But it is now so deep in us that the other way of thinking is hard to reach at all — and it had to be taught, against the grain of every older way of living, before a bought hour could feel like a natural thing to sell.</p>
+
+    <div class="sec-head"><span class="sec-num fr">V</span><h2 class="sec-title">Saint Monday</h2></div>
+    <p>The teaching did not take all at once. For generations the workers held to the older rhythms where they could — laboring hard as a deadline neared and easing after, and keeping &lsquo;Saint Monday,&rsquo; the unofficial holiday of those who had spent Sunday too well to face the Monday morning.<span class="ref"><a href="#n7">7</a></span> They resented the clock and the bell as the instruments of their masters, and for a time they fought the new time itself. But the deeper change was not the resistance; it was what the resistance became. The workers stopped trying to escape clock-time and began to bargain inside it. They accepted that the day would be counted in hours, and they organized to win some of those hours back — to set a limit on the working day, and to make every hour past the limit cost the employer more. The eight-hour movement was the proof of the conversion: it did not reject the clock; it fought over how many of the clock&rsquo;s hours were the employer&rsquo;s, and how many were the worker&rsquo;s own.<span class="ref"><a href="#n8">8</a></span></p>
+
+    <div class="pull"><p>The worker did not first refuse the clock and then submit to it. He learned to fight inside it — over how many of its hours were his own.</p></div>
+
+    <div class="sec-head"><span class="sec-num fr">VI</span><h2 class="sec-title">The Bought Hour</h2></div>
+    <p>We are all the factory&rsquo;s children now. Clock-time is so wholly inside us that we can scarcely feel it as anything but natural — we wake to it, are paid by it, measure our own worth in it, and forget that it was made. But made it was, in history, by a machine and a discipline and a long campaign of moralists, against a world that had got along without it through all the ages before. And nearly everything the law of the wage and the hour does stands on the thing they made. The minimum wage is a floor under the price of an hour. The overtime premium is a surcharge on the hour past the standard. Off-the-clock work is labor for which the bought hour went unpaid; wage theft is the taking of hours owed; and the entire apparatus of the timesheet exists to count the hours and settle who owns them. The field treats the hour as its given — the unit it adds up and litigates over — and never thinks to ask where the unit came from. It came from the clock. The clock made the hour into a thing, and in the making handed the field its subject, and half its name. But a unit is not as simple as it looks, and a subject taken for granted is a subject not yet understood. To see what the law is really standing on, the made hour has to be taken apart.</p>
+
+    <div class="movement">
+      <div class="mv-rule"></div>
+      <span class="mv-label">Second Movement</span>
+      <h2 class="mv-title">The Anatomy of the Unit</h2>
+      <p class="mv-blurb">The first movement showed that the hour was made. The second takes the made thing apart — into the separate abstractions it is built from, and the separate bodies of living law that each one, unnoticed, now holds up.</p>
+    </div>
+
+    <div class="sec-head"><span class="sec-num fr">VII</span><h2 class="sec-title">The Four Reductions</h2></div>
+    <p class="opening">To say that the clock made the hour into a thing is true but not yet precise, because the hour is not a single abstraction. It is a stack of them, each a distinct achievement, each won against the grain of how time is actually lived. Four of them carry the weight of everything that follows.</p>
+    <p>The first is <i>uniformity</i>. The clock made every hour the same length — and this was less obvious than it sounds, for the hour had not always been uniform. The medieval day was kept in temporal hours: the span of daylight was divided into twelve and the span of darkness into twelve, so that a daytime hour in June ran far longer than one in December, and an hour of the day was never the same length as an hour of the night. The sundial and the water-clock tracked these unequal hours faithfully enough. It was the mechanical clock, beating at a constant rate, that could tell only equal hours — and as it spread, the equal hour became <i>the</i> hour, and the seasonal one was forgotten.<span class="ref"><a href="#n9">9</a></span> Uniformity, the most natural-seeming property of the unit, was the instrument&rsquo;s gift and not the world&rsquo;s.</p>
+    <p>The second is <i>detachment</i>. The clock made time an empty vessel, severable from whatever fills it — so that an hour became a quantity with no necessary content, the same whether spent in hard labor or in idle waiting or in nothing at all. This is the reduction that permitted the hour, rather than the job, to be the thing one buys.</p>
+    <p>The third is <i>divisibility</i>. The clock cut time without end — into minutes, and then seconds, and then finer still — so that the unit had no smallest part, and any span of it, however brief, could in principle be named, marked off, and counted.</p>
+    <p>The fourth is <i>commensuration</i>. This was Franklin&rsquo;s cut, and the moralists&rsquo;: the uniform, detached, divisible unit was set equal to money, at a rate. Once an hour could be exchanged for a sum, time became a kind of currency, and the whole vocabulary of owing and earning and stealing fastened onto it as though it had always belonged there.</p>
+    <p>These four — uniform, detached, divisible, priced — are not a historian&rsquo;s ornament laid over the subject. They are the parts the unit is made of. And the law of the wage and hour, which takes the unit as simply given, is in truth standing on all four at once: leaning on each for a different thing it needs, and quarreling, at the edge of each, over a different question it cannot finally close.</p>
+
+    <div class="figure">
+      <div class="fig-head">
+        <span class="fig-num fr">Figure i</span>
+        <h3 class="fig-title">The Hour in Cross-Section</h3>
+        <p class="fig-intro">The unit is not one abstraction but four, stacked. Each layer is an achievement won against the way time is lived; each, as the next sections show, comes to bear a living doctrine — and one seam runs down through them all.</p>
+      </div>
+      <div class="instrument">
+        <div class="fig-scroll">
+          <svg viewBox="0 0 1000 360" role="img" aria-labelledby="f1t f1d" id="towersvg">
+            <title id="f1t">The four reductions of the hour</title>
+            <desc id="f1d">Four stacked strata — uniform, detached, divisible, priced — each with a short gloss and the doctrine it bears (rounding; the edge of the day; the bottom of the scale; the regular rate). A single fault line descends through all four, marked the seam.</desc>
+
+            <line x1="58" y1="40" x2="58" y2="332" stroke="#c4bcab" stroke-width="1"></line>
+            <line x1="58" y1="40" x2="65" y2="40" stroke="#c4bcab" stroke-width="1"></line>
+            <line x1="58" y1="332" x2="65" y2="332" stroke="#c4bcab" stroke-width="1"></line>
+            <text transform="translate(46,186) rotate(-90)" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="11" fill="#9a9384" letter-spacing="0.22em" style='font-variation-settings:"opsz" 24,"wght" 500'>THE MADE HOUR</text>
+
+            <rect x="92" y="40" width="808" height="64" rx="2.5" fill="rgba(28,26,22,0.045)" stroke="#ddd6c7" stroke-width="1"></rect>
+            <rect x="92" y="116" width="808" height="64" rx="2.5" fill="rgba(28,26,22,0.045)" stroke="#ddd6c7" stroke-width="1"></rect>
+            <rect x="92" y="192" width="808" height="64" rx="2.5" fill="rgba(28,26,22,0.045)" stroke="#ddd6c7" stroke-width="1"></rect>
+            <rect x="92" y="268" width="808" height="64" rx="2.5" fill="rgba(28,26,22,0.045)" stroke="#ddd6c7" stroke-width="1"></rect>
+
+            <text x="116" y="68" font-family="Fraunces, Georgia, serif" font-size="21" fill="#1c1a16" style='font-variation-settings:"opsz" 40,"wght" 460'>Uniform</text>
+            <text x="116" y="89" font-family="Newsreader, Georgia, serif" font-size="13.5" font-style="italic" fill="#534e45">every hour the same length</text>
+            <text x="884" y="77" text-anchor="end" font-family="Fraunces, Georgia, serif" font-size="13.5" fill="#6e685d" style='font-variation-settings:"opsz" 24,"wght" 400'>&#8594;&#8202;&#8202;rounding</text>
+
+            <text x="116" y="144" font-family="Fraunces, Georgia, serif" font-size="21" fill="#1c1a16" style='font-variation-settings:"opsz" 40,"wght" 460'>Detached</text>
+            <text x="116" y="165" font-family="Newsreader, Georgia, serif" font-size="13.5" font-style="italic" fill="#534e45">time emptied of its task</text>
+            <text x="884" y="153" text-anchor="end" font-family="Fraunces, Georgia, serif" font-size="13.5" fill="#6e685d" style='font-variation-settings:"opsz" 24,"wght" 400'>&#8594;&#8202;&#8202;the edge of the day</text>
+
+            <text x="116" y="220" font-family="Fraunces, Georgia, serif" font-size="21" fill="#1c1a16" style='font-variation-settings:"opsz" 40,"wght" 460'>Divisible</text>
+            <text x="116" y="241" font-family="Newsreader, Georgia, serif" font-size="13.5" font-style="italic" fill="#534e45">cut without end, to the minute</text>
+            <text x="884" y="229" text-anchor="end" font-family="Fraunces, Georgia, serif" font-size="13.5" fill="#6e685d" style='font-variation-settings:"opsz" 24,"wght" 400'>&#8594;&#8202;&#8202;the bottom of the scale</text>
+
+            <text x="116" y="296" font-family="Fraunces, Georgia, serif" font-size="21" fill="#1c1a16" style='font-variation-settings:"opsz" 40,"wght" 460'>Priced</text>
+            <text x="116" y="317" font-family="Newsreader, Georgia, serif" font-size="13.5" font-style="italic" fill="#534e45">set equal to money, at a rate</text>
+            <text x="884" y="305" text-anchor="end" font-family="Fraunces, Georgia, serif" font-size="13.5" fill="#6e685d" style='font-variation-settings:"opsz" 24,"wght" 400'>&#8594;&#8202;&#8202;the regular rate</text>
+
+            <polyline points="520,36 520,104 509,116 509,180 528,192 528,256 514,268 514,330" fill="none" stroke="#1c1a16" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"></polyline>
+            <path d="M 510 331 L 518 331 L 514 339 Z" fill="#1c1a16"></path>
+            <text x="520" y="27" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="12.5" fill="#1c1a16" letter-spacing="0.03em" style='font-variation-settings:"opsz" 24,"wght" 500'>the seam</text>
+          </svg>
+        </div>
+      </div>
+      <p class="fig-foot">Read from the bottom, the layers are also a dependency: nothing can be <i>priced</i> until it has been made uniform, detached, and divisible. The hour is the whole stack at once — and the law of the wage and hour leans on every course of it.</p>
+    </div>
+
+
+    <div class="sec-head"><span class="sec-num fr">VIII</span><h2 class="sec-title">Power, Not Work</h2></div>
+    <p class="opening">The deepest of the four is detachment, because of what it does to the thing being sold. When work was bought by the task, what changed hands was labor: a finished thing — a shirt sewn, a field reaped, a load hauled — and the bargain was complete when the thing was done. When work is bought by the hour, what changes hands is time; and time is not labor but the <i>capacity</i> for it. The employer who buys an hour has not bought a quantity of work. He has bought a power, which he must then set to work, and the amount of work he draws from it is fixed nowhere in the bargain — it is fixed by his command of the hour he now owns.</p>
+    <p>Marx gave the two things their names — <i>labour-power,</i> the capacity, which the worker sells; and <i>labour,</i> its exercise, which the employer directs — and one need not follow him a single step further into his theory of value to see that the distinction is the hinge of the entire field.<span class="ref"><a href="#n10">10</a></span> For it opens a gap that the world of the task never had: the gap between the time bought and the labor got. In a piece-rate world there is no such gap; the pay is the product, and there is nothing to dispute but the count of products. In a time-rate world the pay is the hour, and what happens inside the hour is a separate matter altogether — a matter of discipline, of supervision, of how hard and how long and at what the bought power is made to work. The bargain sets the price of the hour. It does not set the contents of the hour. And the whole law of the wage and hour lives in that opened space, between the hour the worker sells and the labor the employer takes.</p>
+    <p>It follows that the unit the law counts is not, in the end, a unit of time at all, but a unit of subjection — an hour across which the worker&rsquo;s capacity stands at another&rsquo;s command.<span class="ref"><a href="#n11">11</a></span> This is why the plain question &mdash; <i>was the worker working?</i> &mdash; so often has no answer on the face of the clock. The clock records presence; the law must decide subjection; and the two do not coincide. The worker who waits beside a silent machine, ready, is producing nothing — but his capacity is held. The worker held in line at the gate to be searched does nothing his employer can sell — but he is not free to leave. Time itself, the bare abstraction the clock handed over, cannot resolve these cases; it only measures the span. What must be decided, in each hard one, is whether across that span the power was held — and that is a question the instrument was never built to answer.</p>
+
+    <div class="pull"><p>The bargain fixes the price of the hour. It does not fix what happens inside it. The whole field lives in that gap.</p></div>
+
+    <div class="sec-head"><span class="sec-num fr">IX</span><h2 class="sec-title">The Incomplete Bargain</h2></div>
+    <p class="opening">Why time, and not work? The first movement showed that the hour became the unit; the section above showed that to buy the hour is to buy a capacity, not a quantity of labor. But the deeper question is why the wage bargain settled on time at all — why one buys the hours of a person rather than a stated amount of work from them. The answer is that the work cannot be written down in advance. A contract that tried to name every task the worker would perform, in every contingency that might arise across a day or a year, would be impossibly long and still unfinished, because the future of the work is unknown at the moment the bargain is struck. Ronald Coase saw, in 1937, that this is the very reason the firm exists: where the market would demand a fresh bargain for each separate task, the firm substitutes a single standing bargain in which the worker agrees, within limits, to do as he is afterward directed.<span class="ref"><a href="#n12">12</a></span></p>
+    <p>Herbert Simon gave the structure its exact form. The employment contract, he showed, is the purchase not of a specified performance but of <i>authority</i> — the worker agrees to accept the employer&rsquo;s direction, within a bounded range, as to which tasks he will perform; the wage is the price of his entering that range.<span class="ref"><a href="#n13">13</a></span> What changes hands is discretion over the worker&rsquo;s effort, to be exercised later, as the need reveals itself. And the unit in which that discretion is sold is time. The hour is the natural vessel for authority precisely because authority is open-ended: one cannot buy &lsquo;the work,&rsquo; for the work is not yet known; one can only buy the span of hours across which it may be commanded. The incompleteness of the bargain and the choice of time as its measure are a single fact seen from two sides.</p>
+    <p>It follows that the gap named a moment ago — between the time bought and the labor got — is not a flaw in the bargain but its very design. The contract is deliberately left open; it does not fix the contents of the hour, so that the employer may fill them by command as circumstances dictate. But contents left open are contents left unmeasured. The thing the law will most need to know — whether the worker&rsquo;s capacity was in fact held to the employer&rsquo;s purpose across this span — is exactly what the logic of the wage relation declines to write down. The hour is sold full of authority and empty of specification, and it falls to the law, afterward, to reconstruct what filled it.</p>
+    <p>Here lies the field&rsquo;s deepest difficulty, and the root of nearly all its problems of proof. The quantity the law must price — held, subordinated time — cannot be directly observed. What can be observed is the clock: presence, punches, the timekeeping record. So the law is forced to reason from an observable proxy, clock-time, to an unobservable target, commanded labor-power — to <i>meter</i> an input it cannot see by the marks of one it can.<span class="ref"><a href="#n14">14</a></span> Every hard case is a place where the proxy and the target come apart: the worker present but not held — the bona-fide meal, the genuinely relieved break — and the worker idle, or even absent, yet held nonetheless — the technician on call, the employee waiting under orders. The proxy is never the thing; it is only the thing that can be seen. This is why the burden of proof is built as it is: when the employer alone keeps the records of the proxy and has kept them badly, the law will not let the unobservability of the target defeat the claim, but lets the worker make the hours out by reasonable inference and shifts onto the employer the burden of the books he should have kept. Beneath the four reductions, then, lies a fifth fact, prior to them all — that the bargain which buys the hour is incomplete by design, purchasing authority over time in the place of a measured quantity of work, and leaving the real magnitude forever to be inferred from a proxy that never quite fits. The four reductions made the hour countable. Incompleteness is why there is anything to contest in the count — and the seams that follow are the places where the proxy tears, and the law must reach through the tear to the unobservable thing beneath.</p>
+
+
+    <div class="sec-head"><span class="sec-num fr">X</span><h2 class="sec-title">The Seam</h2></div>
+    <p class="opening">Each of the four reductions, in making the unit usable, left a seam — a place where the abstraction parts from the reality it abstracted, and where, under enough pressure, the two can be pried apart again. The hardest and most heavily litigated questions in the law of the wage and hour are not scattered at random across the field. They sit, every one of them, at one of these four seams; and to see the field this way is to see that its doctrines are not a list to be memorized but an architecture to be understood.</p>
+    <p class="lede-p"><span class="lede">Detachment&rsquo;s seam is the edge of the day.</span> Because time was severed from task, it became possible — and then necessary — to ask what, within the span a worker is present, counts as the work he was paid for. The question cannot even arise where labor is bought by the piece: no shirt, no pay. It arises only once the hour is the unit, and it has no answer the clock can give, so the law has spent the better part of a century supplying one by hand. Idle and on-call time turns on whether the worker is <i>engaged to wait</i> or merely <i>waiting to be engaged</i> — which is to say, on whether his capacity is held.<span class="ref"><a href="#n15">15</a></span> The donning and doffing of gear integral and indispensable to the work is part of the compensable day, which runs unbroken from the first such act to the last, so that the legal workday need not begin at the moment the worker punches in.<span class="ref"><a href="#n16">16</a></span> Time spent in a mandatory security line at the exit is, under federal law, a merely postliminary activity and not compensable at all.<span class="ref"><a href="#n17">17</a></span> And when boundary claims of this kind first multiplied — after the Supreme Court let workers recover for time spent merely walking, inside the plant, toward their stations — Congress reached in and legislated the edge directly, passing the Portal-to-Portal Act to shear travel-to-station and other preliminary and postliminary time off the bought span.<span class="ref"><a href="#n18">18</a></span> The edge of the day is nowhere given by the clock. It is drawn, and redrawn, by courts and by statute, in the slivers where the day&rsquo;s filled center fades into its contested margins.</p>
+    <p class="lede-p"><span class="lede">Divisibility&rsquo;s seam is the bottom of the scale.</span> The clock made time divisible without end, but the law flinches from following its own instrument all the way down. Under the federal <i>de minimis</i> doctrine, slivers of time too small or too irregular to be practical to record may simply be disregarded — &lsquo;split-second absurdities,&rsquo; the Court once said, are not what the statute is for.<span class="ref"><a href="#n19">19</a></span> But <i>how</i> small is too small is exactly the seam, and different sovereigns set the floor in different places. California has refused the doctrine outright, holding that an employer must pay for regularly worked minutes even when they are few, because the divisibility is real and the technology to capture it now exists.<span class="ref"><a href="#n19">19</a></span> The same handful of minutes spent locking up after a shift is beneath the law&rsquo;s notice in one jurisdiction and a compensable wrong in the next — not because the minutes differ, but because the two sovereigns cut the floor of divisibility at different depths.</p>
+    <p class="lede-p"><span class="lede">Uniformity&rsquo;s seam is rounding.</span> If every minute is the same as every other, then a few minutes shaved here and added back there ought to wash out over time — and for a long while the law agreed: a neutral rounding policy, one that did not in the aggregate cheat the worker, was lawful.<span class="ref"><a href="#n20">20</a></span> But the premise was always a fiction of convenience — minutes are interchangeable in the ledger, never in the life — and the fiction holds only so long as the true minutes cannot be seen. Once the timekeeping system records each worker&rsquo;s actual punches to the minute, the convenience evaporates, and the courts have begun to say so: rounding of meal punches has been struck down, and where the exact minutes are captured, the demand is now for payment of all the time worked, the rounding fiction giving way to the recorded fact.<span class="ref"><a href="#n20">20</a></span> Uniformity was a workable assumption in an age of paper. Electronic timekeeping is quietly withdrawing its license.</p>
+    <p class="lede-p"><span class="lede">Commensuration&rsquo;s seam is the regular rate.</span> Before an hour can be priced, it must be settled what the price includes — and the law insists that the hour&rsquo;s value is not merely the base wage but very nearly everything of value the work earns: nondiscretionary bonuses, shift premiums, and the like must be folded into the &lsquo;regular rate&rsquo; before a minute of overtime is figured.<span class="ref"><a href="#n21">21</a></span> The seam shows whenever a lump of money has to be poured back into the hours to find its rate. A flat bonus for completing a weekend shift is not earned by the hour at all, yet to compute the overtime it must be treated <i>as if</i> it were — and the law must then decide across how many hours to spread it. California spreads it across only the non-overtime hours actually worked, a choice that raises the hour&rsquo;s reckoned value, and the premium owed, above what the federal method would yield.<span class="ref"><a href="#n21">21</a></span> The commensuration the clock made possible — time set equal to money — turns out, at its seam, to be a standing question of exactly how the money is made to sit inside the time.</p>
+    <p>These are four questions, but they are one shape. In each, an abstraction that made the hour usable is pressed until it parts from the reality beneath it, and the law must choose whether to follow the abstraction or the fact. That choice is the daily work of the field. It is made, almost always, in the small — in slivers and spare minutes and the spreading of small sums — because the abstractions hold everywhere except at their edges, and it is only at the edges that anything is left to fight about. The figure below holds one ordinary day up to the light, and marks the seams.</p>
+
+    <div class="figure">
+      <div class="fig-head">
+        <span class="fig-num fr">Figure ii</span>
+        <h3 class="fig-title">The Contested Day</h3>
+        <p class="fig-intro">One ordinary shift, drawn to the minute. The filled span is paid; the hatched slivers are carved off by law. Switch the governing law, and watch the carved edges fill — the same minutes, a different sovereign.</p>
+      </div>
+      <div class="instrument">
+        <div class="regime" role="group" aria-label="Governing law">
+          <button id="btn-fed" type="button" aria-pressed="true">Federal&nbsp;·&nbsp;FLSA</button>
+          <span class="sep" aria-hidden="true">/</span>
+          <button id="btn-cal" type="button" aria-pressed="false">California&nbsp;·&nbsp;control&nbsp;test</button>
+        </div>
+        <div class="fig-scroll">
+          <svg id="figsvg" viewBox="0 0 1000 184" role="img" aria-labelledby="figttl figdsc">
+            <title id="figttl">The contested working day</title>
+            <desc id="figdsc">A timeline of one shift from 7:54 a.m. to 5:14 p.m. The paid span is shaded; pre-shift gear time is paid; the half-hour meal is unpaid; two end slivers — closing tasks and an exit security search — are unpaid under federal law and paid under California law.</desc>
+            <g id="figroot"></g>
+          </svg>
+        </div>
+        <div class="readout" id="readout">
+          <span class="ro muted">Time-clock span <b id="ro-naive">&mdash;</b></span>
+          <span class="ro" id="row-fed">Paid, federal <b id="ro-fed">&mdash;</b></span>
+          <span class="ro" id="row-cal">Paid, California <b id="ro-cal">&mdash;</b></span>
+          <span class="ro gap">The gap <b id="ro-gap">&mdash;</b></span>
+        </div>
+        <div class="fig-legend" aria-hidden="true">
+          <span class="lg"><i class="sw sw-paid"></i> paid — counted</span>
+          <span class="lg"><i class="sw sw-cut"></i> carved off by law — unpaid</span>
+        </div>
+        <p class="annot" id="annot" aria-live="polite"><span class="a-k" id="ann-k">The same day, two laws.</span><span id="ann-t">Hover or tap the marked parts of the day. The center is paid under any law; the argument is always at the edges.</span></p>
+      </div>
+      <p class="fig-foot">The marquee split is the exit search: identical minutes held non-compensable by the U.S. Supreme Court under the federal statute (<i>Integrity Staffing v. Busk</i>) and compensable by the California Supreme Court under the State&rsquo;s control test (<i>Frlekin v. Apple</i>). Fourteen minutes a day, here — on the order of sixty hours a year — turning on nothing but which sovereign defines the hour.</p>
+    </div>
+
+    <div class="sec-head"><span class="sec-num fr">XI</span><h2 class="sec-title">Who Owns the Clock</h2></div>
+    <p class="opening">There is a question hidden inside the made hour that the world of the task never had to ask: who says how long it is, who says what it is worth, and who certifies how much of it was spent. Under the task these were not questions at all. The work decided when it was done; the daylight decided how long there was to do it; no one owned the measure, because the measure was the world itself. To make the hour a thing was therefore also, and unavoidably, to make an authority over the thing — for an abstract unit, unlike a finished task, does not measure itself. Someone must hold the standard, keep the clock, and do the counting.</p>
+    <p>And at first that someone was the master. The factory clock hung on the master&rsquo;s wall; the bell was rung on his order; and the workers, Thompson records, suspected — often rightly — that the master&rsquo;s clock was not above being held back in the morning and hurried at night. To own the hour was to hold a small sovereignty over time, and the early factory held it whole: it set the length of the day, it fixed the price of the hour, and it kept the only count that counted.</p>
+    <p>Seen from here, the whole law of the wage and hour is the long expropriation of that sovereignty — the slow taking of the master&rsquo;s three powers, one by one, and their lodging partly in the worker and partly in the state. The minimum wage takes the <i>price:</i> the worth of an hour is no longer wholly the master&rsquo;s to set, because the law now sets a floor beneath it. The overtime premium and the standard day take the <i>length:</i> how long the ordinary day runs, and what the hours past it must cost, are no longer his alone to decree. And the law of records and proof takes the <i>count</i> — most pointedly in the old rule that where an employer has kept no adequate record of the hours, the worker may make them out by reasonable inference, and the burden falls on the employer to show otherwise.<span class="ref"><a href="#n22">22</a></span> The count is no longer the master&rsquo;s to control by the simple expedient of keeping no books. Price, length, count: the three sovereign powers over the unit, each prised loose and redistributed.</p>
+    <p>This is why the field is not what it appears to be. It appears to be administration — the dull, additive bookkeeping of a natural unit, hours summed and wages divided out. It is in fact adjudication — the continual settling of who may define, measure, and price a unit that nature never supplied and that someone, always, must have the authority to fix. The oldest question in the political economy of work is not, at bottom, what an hour is worth. It is who may say. The clock made the asking possible; the law of the wage and hour is the room in which the asking is, still, carried on.</p>
+
+    <div class="sec-head"><span class="sec-num fr">XII</span><h2 class="sec-title">The Recaptured Instrument</h2></div>
+    <p class="opening">One thing more must be said, because it turns the whole story around. The clock&rsquo;s four reductions were forged for the master. Uniformity, detachment, divisibility, price — these were the abstractions that made labor measurable, and what is measurable is what can be commanded, compared, driven, and bought cheap. The instrument was built to meter the worker.</p>
+    <p>But an instrument that can count is an instrument anyone can count with. The same uniform, divisible, recorded hour that let the master meter the day let the worker, in time, prove it — and demand it paid. The timesheet is a blade that cuts both ways: the master&rsquo;s tool of discipline and the worker&rsquo;s tool of proof, the very same object, simply turned around. The eight-hour movement was the first turning, when workers stopped trying to escape the clock and began to wield it, fighting no longer against measured time but for a smaller measure of it. The wage-and-hour case is the latest. It takes the master&rsquo;s own instrument — the records, the punches, the minutes the employer kept in order to control the worker — and turns them into the evidence that the worker was not paid for all he gave. The fourteen minutes a day carved off at the edges, beneath anyone&rsquo;s notice one shift at a time, are recoverable precisely because the clock recorded them; multiplied across a year and a workforce, the slivers become the case.</p>
+    <p>So the field is not the neutral arithmetic it resembles. It is the eight-hour war, carried on by other means — no longer over the length of the standard day, which is largely won, but over the seams of the constructed hour, fought now in the small places where the abstractions wear thin. The hour was the master&rsquo;s invention. The law of the hour is the long account of how it was taken back, minute by recorded minute, and made to answer to the one whose life it counts.</p>
+
+    <div class="coda"><p>We say <i>an hour,</i> and reckon it owed, or earned, or stolen, as though it were a fact of the world. It is an artifact — four reductions deep, each still bearing weight, each still contested at its seam, and the authority over it never finally fixed. What the field counts is not a unit of nature it was handed to administer. It is a thing made in history, given its makers&rsquo; assumptions and its makers&rsquo; war — and counting, still, the only thing it was ever built to count: a life, in the master&rsquo;s measure, asking to be paid in its own.</p></div>
+
+    <div class="notes">
+      <h3>Notes</h3>
+      <div class="note" id="n1"><span class="nn fr">1</span><span>E.&nbsp;P. Thompson, &lsquo;Time, Work-Discipline, and Industrial Capitalism,&rsquo; <i>Past &amp; Present</i>, No.&nbsp;38 (Dec.&nbsp;1967), pp.&nbsp;56&ndash;97 — the essay on which this plate rests. The Nuer &lsquo;cattle clock,&rsquo; kept by the round of pastoral tasks, is drawn by Thompson from E.&nbsp;E. Evans-Pritchard; the Nuer, Evans-Pritchard observed, had no word for time as something that passes and may be saved or wasted.</span></div>
+      <div class="note" id="n2"><span class="nn fr">2</span><span>Thompson notes that in medieval England a duration might be given as the time to cook an egg, or to say a prayer — measures taken from the task, not from a clock.</span></div>
+      <div class="note" id="n3"><span class="nn fr">3</span><span>Mechanical clocks spread from the monastery and the town from the fourteenth century onward; Jacques Le Goff set the older &lsquo;time of the Church&rsquo; against the rising &lsquo;merchant&rsquo;s time&rsquo; of the medieval town.</span></div>
+      <div class="note" id="n4"><span class="nn fr">4</span><span>Lewis Mumford, <i>Technics and Civilization</i> (1934), which held the clock, not the steam-engine, to be the key machine of the modern industrial age — a judgment Thompson cites with approval.</span></div>
+      <div class="note" id="n5"><span class="nn fr">5</span><span>Thompson&rsquo;s distinction between the employer&rsquo;s time and the worker&rsquo;s &lsquo;own&rsquo;: having bought the time, the employer has every reason to see none of it wasted — so the measure of work becomes no longer the task but the value of the time.</span></div>
+      <div class="note" id="n6"><span class="nn fr">6</span><span>Benjamin Franklin, &lsquo;Advice to a Young Tradesman&rsquo; (1748): &lsquo;Remember that time is money.&rsquo;</span></div>
+      <div class="note" id="n7"><span class="nn fr">7</span><span>&lsquo;Saint Monday&rsquo; — the unofficial Monday holiday of workers who kept the older, irregular rhythms against the discipline of the clock.</span></div>
+      <div class="note" id="n8"><span class="nn fr">8</span><span>The eight-hour movement, which did not reject clock-time but fought within it, over how many of the clock&rsquo;s hours belonged to the employer and how many to the worker. See <i>The Eight-Hour Day</i>, the third plate of this volume.</span></div>
+      <div class="note" id="n9"><span class="nn fr">9</span><span>On the medieval &lsquo;temporal&rsquo; hours — daylight and darkness each divided into twelve, so that an hour&rsquo;s length varied with the season and differed between day and night — and their replacement by the equal &lsquo;equinoctial&rsquo; hours that the constant beat of the mechanical clock made standard, see Gerhard Dohrn-van&nbsp;Rossum, <i>History of the Hour: Clocks and Modern Temporal Orders</i> (1996); David S. Landes, <i>Revolution in Time</i> (1983). The uniformity of the hour was itself an achievement of the instrument.</span></div>
+      <div class="note" id="n10"><span class="nn fr">10</span><span>Karl Marx, <i>Capital,</i> Vol.&nbsp;I (1867), esp. the chapters on the buying and selling of labour-power: the worker sells not labour but <i>labour-power,</i> the capacity to work for a stated time, whose exercise the purchaser then directs. The related reduction of qualitatively different labours to undifferentiated, socially necessary labour-<i>time</i> is drawn on here for the conceptual distinction alone, without commitment to the labour theory of value Marx builds upon it.</span></div>
+      <div class="note" id="n11"><span class="nn fr">11</span><span>On abstract, uniform time as not a neutral container but a constituted social form — and on the clock-hour as itself an instrument of domination rather than mere measurement — see Moishe Postone, <i>Time, Labor, and Social Domination</i> (1993).</span></div>
+      <div class="note" id="n12"><span class="nn fr">12</span><span>R.&nbsp;H. Coase, &lsquo;The Nature of the Firm,&rsquo; <i>Economica</i> 4 (1937), 386&ndash;405. The firm displaces the market&rsquo;s task-by-task bargaining with the employer&rsquo;s standing authority to direct the worker within agreed limits; the wage relation economizes on the cost of contracting afresh for each separate act.</span></div>
+      <div class="note" id="n13"><span class="nn fr">13</span><span>Herbert&nbsp;A. Simon, &lsquo;A Formal Theory of the Employment Relationship,&rsquo; <i>Econometrica</i> 19 (1951), 293&ndash;305. The employee sells not a defined performance but acceptance of the employer&rsquo;s authority to choose, within a bounded &lsquo;area of acceptance,&rsquo; the tasks to be done; the wage is the price of that discretion, and time is the unit across which it runs.</span></div>
+      <div class="note" id="n14"><span class="nn fr">14</span><span>On the wage contract as constitutively incomplete — buying a capacity to be directed rather than a defined output — and the consequent problem of <i>metering</i> an effort that cannot be directly observed, see Armen&nbsp;A. Alchian &amp; Harold Demsetz, &lsquo;Production, Information Costs, and Economic Organization,&rsquo; <i>American Economic Review</i> 62 (1972), 777&ndash;795; Oliver&nbsp;E. Williamson, <i>Markets and Hierarchies</i> (1975); and, on incompleteness generally, Oliver Hart &amp; John Moore, &lsquo;Incomplete Contracts and Renegotiation,&rsquo; <i>Econometrica</i> 56 (1988), 755&ndash;785. The law of hours worked is, in this light, a metering rule for an input the parties cannot directly see.</span></div>
+      <div class="note" id="n15"><span class="nn fr">15</span><span><i>Armour &amp; Co. v. Wantock,</i> 323&nbsp;U.S. 126 (1944); <i>Skidmore v. Swift &amp; Co.,</i> 323&nbsp;U.S. 134 (1944): whether idle or on-call time is compensable turns on the facts of control — in the familiar shorthand, whether the employee is &lsquo;engaged to wait&rsquo; or merely &lsquo;waiting to be engaged.&rsquo;</span></div>
+      <div class="note" id="n16"><span class="nn fr">16</span><span><i>Steiner v. Mitchell,</i> 350&nbsp;U.S. 247 (1956) (activities &lsquo;integral and indispensable&rsquo; to the principal work are compensable); <i>IBP, Inc. v. Alvarez,</i> 546&nbsp;U.S. 21 (2005) (the continuous workday runs from the first to the last principal activity, so that donning and doffing such gear, and the walking time between, are hours worked). The compensable day need not begin at the punch.</span></div>
+      <div class="note" id="n17"><span class="nn fr">17</span><span><i>Integrity Staffing Solutions, Inc. v. Busk,</i> 574&nbsp;U.S. 27 (2014): time in a mandatory post-shift security screening is not compensable under the Fair Labor Standards Act, as amended by the Portal-to-Portal Act, because it is a postliminary activity and not integral and indispensable to the principal work. Contrast <i>Frlekin v. Apple Inc.,</i> 8&nbsp;Cal.5th 1038 (2020), holding the same kind of exit search compensable under California&rsquo;s broader &lsquo;hours worked&rsquo; control clause — the divergence the figure turns on.</span></div>
+      <div class="note" id="n18"><span class="nn fr">18</span><span>Portal-to-Portal Act of 1947, 29&nbsp;U.S.C. §§&nbsp;251&ndash;262. Enacted after <i>Anderson v. Mt.&nbsp;Clemens Pottery Co.,</i> 328&nbsp;U.S. 680 (1946), and <i>Jewell Ridge Coal Corp. v. Local No.&nbsp;6167,</i> 325&nbsp;U.S. 161 (1945), opened a flood of &lsquo;portal-to-portal&rsquo; claims for in-plant travel time, the Act carves travel to and from the place of principal activity, and other preliminary and postliminary activities, out of compensable time unless made compensable by contract or custom — Congress legislating the edge of the day directly.</span></div>
+      <div class="note" id="n19"><span class="nn fr">19</span><span>The federal <i>de minimis</i> doctrine originates in dictum in <i>Anderson v. Mt.&nbsp;Clemens Pottery Co.,</i> 328&nbsp;U.S. 680, 692 (1946) (&lsquo;split-second absurdities&rsquo; need not be counted), and was systematized in <i>Lindow v. United States,</i> 738&nbsp;F.2d 1057 (9th&nbsp;Cir. 1984) (weighing regularity, aggregate amount, and administrative practicability); see also <i>Sandifer v. U.S.&nbsp;Steel Corp.,</i> 571&nbsp;U.S. 220 (2014). California declined to adopt it in <i>Troester v. Starbucks Corp.,</i> 5&nbsp;Cal.5th 829 (2018), requiring payment for small but regularly recurring increments that are practical to capture.</span></div>
+      <div class="note" id="n20"><span class="nn fr">20</span><span><i>See&rsquo;s Candy Shops, Inc. v. Superior Court,</i> 210&nbsp;Cal.App.4th 889 (2012) (a facially neutral rounding policy that does not, over time, undercompensate is lawful); <i>Donohue v. AMN Services, LLC,</i> 11&nbsp;Cal.5th 58 (2021) (rejecting rounding of meal-period punches). In <i>Camp v. Home Depot U.S.A., Inc.,</i> 84&nbsp;Cal.App.5th 638 (2022), the Court of Appeal held that where the timekeeping system has captured the actual minutes worked, the employer must pay for all of them rather than round; the California Supreme Court granted review (S277518) in February&nbsp;2023, and the question stands before it as this plate is set.</span></div>
+      <div class="note" id="n21"><span class="nn fr">21</span><span>Under the FLSA the &lsquo;regular rate&rsquo; sweeps in nearly all remuneration (29&nbsp;U.S.C. §&nbsp;207(e)), so that nondiscretionary bonuses and shift differentials must be folded into the hour&rsquo;s value before overtime is computed. <i>Alvarado v. Dart Container Corp. of California,</i> 4&nbsp;Cal.5th 542 (2018), holds that a flat-sum bonus is converted to a per-hour value by dividing only by the non-overtime hours actually worked — a more protective divisor than the federal method — the Court treating the lump as if it were earned on a per-hour basis throughout the pay period.</span></div>
+      <div class="note" id="n22"><span class="nn fr">22</span><span><i>Anderson v. Mt.&nbsp;Clemens Pottery Co.,</i> 328&nbsp;U.S. 680 (1946): where the employer has failed to keep adequate records, an employee may prove the hours worked by &lsquo;just and reasonable inference,&rsquo; whereupon the burden shifts to the employer to negate it; the case also treats as compensable the time an employee is necessarily required to be on the premises. The count is thus not the employer&rsquo;s to control by silence.</span></div>
+    </div>
+
+  </article>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref">The Hours&nbsp;&middot;&nbsp;plate i</span>
+    </div>
+    <p class="colophon">The first plate of <i>The Hours,</i> in two movements. The first, after E.&nbsp;P. Thompson, recovers how time was made into a thing that could be measured — and so bought, and so at last owed and counted and stolen. The second takes the made hour apart, into the four reductions it is built from — uniform, detached, divisible, priced — and shows each one bearing a living body of doctrine and contested at its seam: the edge of the day, the bottom of the scale, the rounding of minutes, the reckoning of the rate — all of it resting on a wage bargain incomplete by design, whose real magnitude the law must read off an imperfect proxy, the clock. The plate beneath the plates; everything the volume counts is counted in the unit it made, and every modern quarrel over the wage and the hour is a quarrel at one of its seams. Historical argument after Thompson, Le&nbsp;Goff, Mumford, Dohrn-van&nbsp;Rossum, and Marx, with its economics after Coase, Simon, and Alchian; doctrine on the authority of the cases noted above. Set in Fraunces and Newsreader. It stands in <a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/wage-and-hour.html" data-personal-target="wage-and-hour.html" data-personal-label="Wage &amp; Hour">Wage &amp; Hour</a>.</p>
+  </footer>
+
+</div>
+<script>
+(function(){
+  "use strict";
+  var svgns = "http://www.w3.org/2000/svg";
+  var root = document.getElementById("figroot");
+  if(!root){ return; }
+
+  // ---- geometry ----
+  var M = 64, RIGHT = 64, VBW = 1000, W = VBW - M - RIGHT;   // inner width 872
+  var D0 = 474, D1 = 1034, SPAN = D1 - D0;                   // 7:54 .. 5:14 = 560 min
+  function x(min){ return M + (min - D0) / SPAN * W; }
+  var BARY = 70, BARH = 40, BARB = BARY + BARH;
+
+  // palette tokens
+  var INK = "#1c1a16", SOFT = "#534e45", FAINT = "#6e685d", FAINTEST = "#9a9384",
+      NUM = "#c4bcab", HAIR = "#ddd6c7", WASH = "rgba(28,26,22,0.13)";
+
+  function el(tag, attrs, parent){
+    var e = document.createElementNS(svgns, tag), k;
+    for(k in attrs){ if(attrs.hasOwnProperty(k)){ e.setAttribute(k, attrs[k]); } }
+    if(parent){ parent.appendChild(e); }
+    return e;
+  }
+  function txt(s, attrs, parent){
+    var t = el("text", attrs, parent);
+    t.textContent = s;
+    return t;
+  }
+  var LBL = "Fraunces, Georgia, serif";
+
+  try{
+    // ---- defs: hatch for carved (unpaid) slivers ----
+    var defs = el("defs", {}, root);
+    var pat = el("pattern", {id:"hatch", patternUnits:"userSpaceOnUse", width:"7", height:"7", patternTransform:"rotate(45)"}, defs);
+    el("line", {x1:"0", y1:"0", x2:"0", y2:"7", stroke:FAINT, "stroke-width":"0.9"}, pat);
+
+    // ---- outer frame: the physical "present" span (clock-in gear to released) ----
+    el("rect", {x:x(D0), y:BARY, width:x(D1)-x(D0), height:BARH, rx:"2.5", fill:"none", stroke:HAIR, "stroke-width":"1"}, root);
+
+    // ---- paid washes (always-paid core: gear+morning, then afternoon) ----
+    el("rect", {"class":"seg-paid", x:x(474), y:BARY, width:x(720)-x(474), height:BARH, fill:WASH}, root);
+    el("rect", {"class":"seg-paid", x:x(750), y:BARY, width:x(1020)-x(750), height:BARH, fill:WASH}, root);
+
+    // ---- the contested edge zone (closing tasks + exit search): fill vs hatch ----
+    var edgeFill = el("rect", {id:"edge-fill", "class":"seg-edge", x:x(1020), y:BARY, width:x(1034)-x(1020), height:BARH, fill:WASH, opacity:"0"}, root);
+    var edgeHatch = el("rect", {id:"edge-hatch", "class":"seg-edge", x:x(1020), y:BARY, width:x(1034)-x(1020), height:BARH, fill:"url(#hatch)", opacity:"1"}, root);
+
+    // ---- inner divider hairlines ----
+    function vline(min, col, w){ el("line", {x1:x(min), y1:BARY, x2:x(min), y2:BARB, stroke:(col||HAIR), "stroke-width":(w||"1")}, root); }
+    vline(480, HAIR, "1");   // punch-in (8:00) within the gear sliver
+    vline(720, HAIR, "1");   // meal start
+    vline(750, HAIR, "1");   // meal end
+    vline(1020, NUM, "1");   // clock-out (5:00)
+    vline(1025, HAIR, "1");  // closing / search boundary
+
+    // ---- region labels (engraved inside the bar) ----
+    var midY = BARY + BARH/2 + 4.5;
+    function region(min0, min1, s, size){
+      txt(s, {x:(x(min0)+x(min1))/2, y:midY, "text-anchor":"middle", "font-family":LBL,
+        "font-size":(size||"13"), fill:FAINTEST, "letter-spacing":"0.07em",
+        style:'font-variation-settings:"opsz" 22,"wght" 400'}, root);
+    }
+    region(480, 720, "on the line");
+    region(750, 1020, "on the line");
+    region(720, 750, "meal", "11.5");
+
+    // ---- top callouts: gear (left) and contested edges (right) ----
+    // gear leader + label
+    var gearMid = (x(474)+x(480))/2;
+    el("line", {x1:gearMid, y1:BARY, x2:gearMid+22, y2:52, stroke:NUM, "stroke-width":"1"}, root);
+    txt("gear · boot-up", {x:gearMid+27, y:49, "text-anchor":"start", "font-family":LBL,
+      "font-size":"12.5", fill:FAINT, "letter-spacing":"0.03em",
+      style:'font-variation-settings:"opsz" 22,"wght" 400'}, root);
+    // contested-edges leader + label
+    var edgeMid = (x(1020)+x(1034))/2;
+    el("line", {x1:edgeMid, y1:BARY, x2:edgeMid, y2:50, stroke:NUM, "stroke-width":"1"}, root);
+    txt("contested edges", {x:edgeMid, y:44, "text-anchor":"middle", "font-family":LBL,
+      "font-size":"12.5", fill:FAINT, "letter-spacing":"0.03em",
+      style:'font-variation-settings:"opsz" 22,"wght" 400'}, root);
+
+    // ---- end-flag: where the paid span ends (slides on toggle) ----
+    var flag = el("g", {id:"end-flag", "class":"endflag", transform:"translate("+x(1020)+",0)"}, root);
+    el("line", {x1:"0", y1:BARY-6, x2:"0", y2:BARB+8, stroke:INK, "stroke-width":"1.3"}, flag);
+    el("path", {d:"M -4 "+(BARB+13)+" L 4 "+(BARB+13)+" L 0 "+(BARB+5)+" Z", fill:INK}, flag);
+
+    // ---- hour ticks + labels ----
+    function hour(min, s){
+      el("line", {x1:x(min), y1:BARB, x2:x(min), y2:BARB+7, stroke:FAINT, "stroke-width":"1"}, root);
+      txt(s, {x:x(min), y:BARB+22, "text-anchor":"middle", "font-family":LBL, "font-size":"13.5",
+        fill:FAINT, style:'font-variation-settings:"opsz" 24,"wght" 400'}, root);
+    }
+    hour(480, "8");
+    hour(720, "12");
+    hour(1020, "5");
+
+    // ---- punch bracket (the time-clock span sits inside the legal span) ----
+    var pbY = BARB + 38, px0 = x(480), px1 = x(1020);
+    el("line", {x1:px0, y1:pbY, x2:px1, y2:pbY, stroke:FAINT, "stroke-width":"1"}, root);
+    el("line", {x1:px0, y1:pbY-4, x2:px0, y2:pbY+4, stroke:FAINT, "stroke-width":"1"}, root);
+    el("line", {x1:px1, y1:pbY-4, x2:px1, y2:pbY+4, stroke:FAINT, "stroke-width":"1"}, root);
+    txt("the time-clock span", {x:(px0+px1)/2, y:pbY+18, "text-anchor":"middle",
+      "font-family":"Newsreader, Georgia, serif", "font-size":"13", "font-style":"italic", fill:FAINT}, root);
+
+    // ---- interactive hit zones + highlight rings ----
+    function ring(min0, min1){
+      return {x:x(min0), w:x(min1)-x(min0)};
+    }
+    function hit(min0, min1, ry0, key, aria){
+      var g = el("g", {"class":"fig-hit", tabindex:"0", role:"button", "aria-label":aria}, root);
+      el("rect", {x:x(min0), y:ry0, width:x(min1)-x(min0), height:(BARB-ry0), fill:"none", "pointer-events":"all"}, g);
+      var r = ring(min0, min1);
+      // the visible ring traces only the actual bar sliver
+      el("rect", {"class":"hit-ring", x:r.x, y:BARY, width:r.w, height:BARH, rx:"2", fill:"none", stroke:INK, "stroke-width":"1.4", "pointer-events":"none"}, g);
+      g.addEventListener("mouseenter", function(){ setAnn(key); });
+      g.addEventListener("focus", function(){ setAnn(key); });
+      g.addEventListener("click", function(){ setAnn(key); });
+      g.addEventListener("mouseleave", function(){ setAnn("default"); });
+      g.addEventListener("blur", function(){ setAnn("default"); });
+      return g;
+    }
+    // widened hit boxes reach up to their callouts; rings stay on the slivers
+    hit(472, 484, 44, "don",    "Pre-shift gear and boot-up");
+    hit(720, 750, BARY, "meal", "Unpaid meal period");
+    hit(1018, 1025, 42, "close",  "Closing tasks after clock-out");
+    hit(1025, 1035, 42, "search", "Exit security search");
+
+  }catch(err){ if(window.console){ console.warn("figure build:", err); } }
+
+  // ---- annotations ----
+  var ANN = {
+    "default": { k: "The same day, two laws.",
+      t: "Hover or tap the marked parts of the day. The center is paid under any law; the argument is always at the edges." },
+    "don": { k: "Pre-shift gear — paid under both",
+      t: "The compensable day begins at the first principal activity — here, donning required gear — not at the punch. <i>IBP v. Alvarez</i>; <i>Steiner v. Mitchell</i>." },
+    "meal": { k: "The meal — unpaid under both",
+      t: "A bona-fide meal period, relieved of duty, is the worker\u2019s own and unpaid; but its punches may not be rounded. <i>Donohue v. AMN</i>." },
+    "close": { k: "Closing tasks — the de\u00A0minimis seam",
+      t: "Federal: a few minutes\u2019 shut-down may be excused as <i>de minimis</i> (<i>Lindow</i>; <i>Sandifer</i>). California: compensable — no <i>de minimis</i> (<i>Troester v. Starbucks</i>)." },
+    "search": { k: "Exit search — the marquee split",
+      t: "Federal: a postliminary activity, not compensable (<i>Integrity Staffing v. Busk</i>). California: time under the employer\u2019s control, compensable (<i>Frlekin v. Apple</i>). Identical minutes; opposite answers." }
+  };
+  var annK = document.getElementById("ann-k"), annT = document.getElementById("ann-t");
+  function setAnn(key){
+    var a = ANN[key] || ANN["default"];
+    if(annK){ annK.innerHTML = a.k; }
+    if(annT){ annT.innerHTML = a.t; }
+  }
+
+  // ---- readout ----
+  function hm(mins){ var h = Math.floor(mins/60), m = mins%60; return h + ":" + (m<10 ? "0"+m : ""+m); }
+  function setText(id, s){ var n = document.getElementById(id); if(n){ n.textContent = s; } }
+  setText("ro-naive", hm(510));   // 8:30  punch-in to punch-out, less the half-hour meal
+  setText("ro-fed",   hm(516));   // 8:36  + gear
+  setText("ro-cal",   hm(530));   // 8:50  + gear + closing + search
+  setText("ro-gap",   "14 min a day");
+
+  // ---- regime toggle ----
+  var btnFed = document.getElementById("btn-fed"), btnCal = document.getElementById("btn-cal");
+  var edgeFillEl = document.getElementById("edge-fill"),
+      edgeHatchEl = document.getElementById("edge-hatch"),
+      flagEl = document.getElementById("end-flag");
+  function setRegime(r){
+    var cal = (r === "cal");
+    if(btnFed){ btnFed.setAttribute("aria-pressed", cal ? "false" : "true"); }
+    if(btnCal){ btnCal.setAttribute("aria-pressed", cal ? "true" : "false"); }
+    if(edgeFillEl){ edgeFillEl.setAttribute("opacity", cal ? "1" : "0"); }
+    if(edgeHatchEl){ edgeHatchEl.setAttribute("opacity", cal ? "0" : "1"); }
+    if(flagEl){ flagEl.setAttribute("transform", "translate(" + (cal ? x(1034) : x(1020)) + ",0)"); }
+  }
+  if(btnFed){ btnFed.addEventListener("click", function(){ setRegime("fed"); }); }
+  if(btnCal){ btnCal.addEventListener("click", function(){ setRegime("cal"); }); }
+  setRegime("fed");
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><span></span><a href="../editions.html#source-clock">Return to edition contents →</a></nav>
+</body>
+</html>

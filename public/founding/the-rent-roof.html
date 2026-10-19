@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Roof — The Rent, plate x</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1;
+    --ink:#1c1a16;
+    --soft:#534e45;
+    --faint:#6e685d;
+    --faintest:#9a9384;
+    --num:#c4bcab;
+    --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16);
+    --frame:68rem;
+    --read:37rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.6rem,4vw,4rem);}
+  p{margin:0;}
+  i,em{font-style:italic;}
+  a{color:inherit;}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:4px;border-radius:1px;}
+  .fr{font-family:"Fraunces",Georgia,serif;font-feature-settings:"liga" 1,"dlig" 0;}
+
+  /* ---- heavy entrance ---- */
+  .hero{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:space-between;}
+  .bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.5rem;padding:2.5rem 0 0;}
+  .mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.3rem;letter-spacing:-.01em;}
+  .edition{font-size:.9rem;color:var(--faint);letter-spacing:.06em;}
+  .hero-foot{padding-bottom:clamp(3.5rem,8vh,7rem);text-align:center;}
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(3.4rem,12vw,11rem);line-height:.95;letter-spacing:-.03em;margin:0;}
+  .standfirst{font-size:clamp(1.16rem,1.5vw,1.36rem);line-height:1.55;color:var(--soft);
+    margin:clamp(1.6rem,3vh,2.4rem) auto 0;max-width:45rem;text-wrap:pretty;}
+
+  /* ---- reading column ---- */
+  .read{max-width:var(--read);margin:0 auto;}
+  .read p{font-size:1.07rem;line-height:1.74;color:var(--ink);margin:0;text-indent:1.4em;text-wrap:pretty;}
+  .sec-head + p,.pull + p,.opening,.plate + p,.coda + p{text-indent:0;}
+
+  .sec-head{text-align:center;margin:clamp(4rem,9vh,7.5rem) 0 clamp(1.8rem,3.5vh,2.6rem);}
+  .sec-head.first{margin-top:clamp(5rem,11vh,9rem);}
+  .sec-num{display:block;font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;
+    font-size:.98rem;letter-spacing:.06em;color:var(--faintest);margin-bottom:.85rem;}
+  .sec-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.6rem,2.6vw,2.05rem);line-height:1.12;letter-spacing:-.012em;margin:0;}
+
+  .opening::first-letter{
+    font-family:"Fraunces",serif;font-weight:500;float:left;font-size:5.3rem;line-height:.72;
+    padding:.36rem .55rem 0 0;color:var(--ink);
+  }
+
+  .pull{max-width:50rem;margin:clamp(4.5rem,9vh,7rem) auto;text-align:center;}
+  .pull p{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:clamp(2rem,4.2vw,3.1rem);line-height:1.08;letter-spacing:-.02em;color:var(--ink);
+    margin:0;text-indent:0;text-wrap:balance;}
+
+  .ref{font-size:.62em;vertical-align:.5em;line-height:0;color:var(--faint);font-style:normal;}
+  .ref a{text-decoration:none;}
+  .ref a:hover{color:var(--ink);}
+
+  /* ---- plates (diagrams) ---- */
+  .plate{max-width:var(--read);margin:clamp(3.4rem,7vh,5.2rem) auto;}
+  .plate.wide{max-width:44rem;}
+  .plate figure{margin:0;}
+  .plate svg{display:block;width:100%;height:auto;overflow:visible;}
+  .plate text{font-family:"Fraunces",Georgia,serif;fill:var(--soft);paint-order:stroke;stroke:var(--paper);stroke-width:2.6px;stroke-linejoin:round;}
+  .plate .axis{stroke:var(--soft);stroke-width:1.1;}
+  .plate .curve{fill:none;stroke:var(--ink);stroke-width:1.6;}
+  .plate .curve.sec{stroke:var(--soft);stroke-width:1.4;}
+  .plate .guide{stroke:var(--faintest);stroke-width:1;stroke-dasharray:2.4 3.4;fill:none;}
+  .plate .level{stroke:var(--faintest);stroke-width:1;stroke-dasharray:1 4;}
+  .plate .floor{stroke:var(--ink);stroke-width:1.2;stroke-dasharray:5 4;}
+  .plate .dot{fill:var(--ink);}
+  .plate .dot.open{fill:var(--paper);stroke:var(--ink);stroke-width:1.4;}
+  .plate .lbl{font-size:14px;fill:var(--soft);}
+  .plate .tick{font-size:13px;fill:var(--faint);}
+  .plate .reg{font-size:12.5px;fill:var(--faint);font-style:italic;}
+  .plate figcaption{font-size:.82rem;line-height:1.56;color:var(--faint);margin:1.2rem auto 0;
+    max-width:33rem;text-align:center;text-wrap:pretty;}
+  .plate figcaption .pn{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;
+    color:var(--faintest);letter-spacing:.05em;text-transform:uppercase;font-size:.74rem;}
+
+  /* ---- coda ---- */
+  .coda{max-width:46rem;margin:clamp(5rem,10vh,8rem) auto 0;text-align:center;}
+  .coda p{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400,"ital" 0;font-style:italic;
+    font-size:clamp(1.5rem,2.6vw,2.05rem);line-height:1.3;color:var(--soft);margin:0;text-wrap:balance;}
+
+  /* ---- notes ---- */
+  .notes{max-width:var(--read);margin:clamp(5rem,11vh,9rem) auto 0;padding-top:2.4rem;border-top:1px solid var(--hair);}
+  .notes h3{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.92rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.6rem;}
+  .note{display:flex;gap:.9rem;scroll-margin-top:2rem;font-size:.86rem;line-height:1.56;color:var(--faint);margin:0 0 1rem;text-wrap:pretty;}
+  .note .nn{flex:0 0 auto;font-family:"Fraunces",serif;color:var(--faintest);min-width:1.1rem;}
+  .note i{font-style:italic;}
+
+  /* ---- colophon ---- */
+  footer{margin-top:clamp(6rem,13vh,10rem);padding:2.6rem 0 4.5rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.5rem;margin-bottom:1.8rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.1rem;}
+  .f-ref{font-size:.82rem;color:var(--faintest);letter-spacing:.18em;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:60ch;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .r{opacity:0;transform:translateY(12px);animation:rise 1.1s cubic-bezier(.2,.6,.2,1) both;}
+    .r1{animation-delay:.06s}.r2{animation-delay:.2s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .read p{font-size:1.04rem;}
+    .opening::first-letter{font-size:4.4rem;}
+    .f-bar{flex-direction:column;gap:.7rem;}
+    .plate .lbl,.plate .reg,.plate .tick{font-size:11px;}
+  }
+
+  /* ===== revision: airier rhythm + new plate types ===== */
+  .read p{line-height:1.82;}
+  .sec-head{margin:clamp(5.5rem,12.5vh,9.5rem) 0 clamp(2.2rem,4vh,3rem);}
+  .sec-head.first{margin-top:clamp(5rem,11vh,8.5rem);}
+  .sec-head::before{content:"";display:block;width:2.4rem;height:1px;background:var(--num);margin:0 auto 1.7rem;opacity:.85;}
+  .pull{margin:clamp(5.5rem,11vh,8.5rem) auto;}
+  .plate{margin:clamp(4.4rem,9vh,6.6rem) auto;}
+  .coda{margin-top:clamp(6rem,12vh,9rem);}
+
+  /* centered closing ornament */
+  .orn{display:flex;justify-content:center;margin:clamp(5rem,10vh,7.5rem) auto 0;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;}
+  .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* ledger plate: sources -> remedies */
+  .ledger figure{margin:0;}
+  .ledger-grid{display:grid;grid-template-columns:1fr 1fr;position:relative;
+    border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);}
+  .ledger-grid::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:1px;background:var(--hair);}
+  .ledger-grid .lh{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;
+    font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);padding:1.15rem 1.5rem .55rem;}
+  .ledger-grid .lh.r{text-align:right;} .ledger-grid .lh.l{text-align:left;}
+  .ledger-grid .cell{padding:1.3rem 1.5rem;border-top:1px solid var(--hair);}
+  .ledger-grid .src{text-align:right;} .ledger-grid .rem{text-align:left;}
+  .ledger-grid .cell b{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 500;font-weight:500;
+    font-size:1.13rem;display:block;color:var(--ink);letter-spacing:-.01em;line-height:1.15;}
+  .ledger-grid .cell span{display:block;font-size:.81rem;color:var(--faint);margin-top:.34rem;line-height:1.42;}
+  .ledger-coda{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.16rem;line-height:1.42;color:var(--soft);text-align:center;margin:1.7rem auto 0;max-width:33rem;text-wrap:balance;}
+  @media (max-width:620px){
+    .ledger-grid{grid-template-columns:1fr;}
+    .ledger-grid::before{display:none;}
+    .ledger-grid .lh{display:none;}
+    .ledger-grid .src,.ledger-grid .rem{text-align:left;}
+    .ledger-grid .src{border-bottom:none;}
+    .ledger-grid .rem{border-top:none;padding-top:.1rem;padding-left:2.4rem;position:relative;}
+    .ledger-grid .rem::before{content:"\2192";position:absolute;left:1.1rem;top:.1rem;color:var(--faintest);}
+    .ledger-grid .cell{padding-bottom:.5rem;}
+    .ledger-grid .rem{padding-bottom:1.3rem;}
+  }
+
+  /* ===== frontispiece: annotated contents ===== */
+  .sec-head{scroll-margin-top:2.5rem;}
+  .contents{max-width:40rem;margin:0 auto;padding:clamp(3rem,8vh,7rem) 0 clamp(3rem,7vh,6rem);}
+  .contents .orn{margin:0 auto 2.4rem;}
+  .contents-eyebrow{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faintest);text-align:center;margin:0 0 3rem;}
+  .contents-list{list-style:none;margin:0 auto;padding:0;max-width:33rem;counter-reset:none;}
+  .contents-list li{margin:0 0 1.7rem;}
+  .contents-list li:last-child{margin-bottom:0;}
+  .contents-list a{display:grid;grid-template-columns:2.6rem 1fr;column-gap:1.1rem;
+    text-decoration:none;align-items:baseline;}
+  .contents-list .cn{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;
+    font-size:.96rem;color:var(--faintest);text-align:right;letter-spacing:.02em;}
+  .contents-list .ct{font-family:"Fraunces",serif;font-variation-settings:"opsz" 58,"wght" 500;
+    font-size:1.2rem;color:var(--ink);letter-spacing:-.012em;line-height:1.18;transition:color .25s ease;}
+  .contents-list .cg{grid-column:2;font-style:italic;font-size:.92rem;color:var(--faint);
+    margin-top:.22rem;line-height:1.42;text-wrap:pretty;}
+  .contents-list a:hover .ct{color:var(--soft);}
+  @media (max-width:600px){
+    .contents-list a{grid-template-columns:1.9rem 1fr;column-gap:.85rem;}
+    .contents-list .ct{font-size:1.1rem;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-founding">The Founding Atlas · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+
+  <section class="hero">
+    <div class="bar r r1">
+      <span class="mark">Numéraire</span>
+      <span class="edition">The Rent · № II · x</span>
+    </div>
+    <div class="hero-foot r r2">
+      <h1>The Roof</h1>
+      <p class="standfirst">Of all the prices this volume has examined, none is felt so keenly or so universally as the price of a place to live. The rent of land has been, until now, an abstraction — the landlord growing rich in his sleep, the differential between the good acre and the marginal, the increment the community confers. This plate makes it concrete and brings it home, for the rent of land is the largest single force in the cost of the one thing every household must buy: a roof. Take a house apart and its price is paid for two things — the building, a manufactured thing that costs much the same everywhere, and the land beneath it, whose price is everything and varies entirely by where. In the cities where the work is, a home now sells for two and three times what it costs to build, and the whole of that difference is the price of the ground. That price reflects a scarcity that is, to a great degree, manufactured by law: zoning, which forbids building more homes where they are most wanted — reserving roughly three-quarters of American residential land for single houses alone — and so converts the right to build into a rent captured by whoever already owns, exactly as the licence did. The windfall is defended by the homevoter, the owner whose largest and least diversified asset is the rent and who controls the local body that sets the zoning; the costs of the closed city run from dear rent to a misallocation of labour that shrinks the whole economy. The remedy is the volume's own, in two forms that prove to be one medicine — tax the land&rsquo;s rent, and dissolve the scarcity that breeds it.</p>
+    </div>
+  </section>
+
+  <nav class="contents" aria-label="Contents">
+    <div class="orn" aria-hidden="true"><svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg></div>
+    <p class="contents-eyebrow">The argument in seven movements</p>
+    <ol class="contents-list">
+      <li><a href="#s1"><span class="cn">I</span><span class="ct">The Roof</span><span class="cg">the rent of land made personal</span></a></li>
+      <li><a href="#s2"><span class="cn">II</span><span class="ct">The House and the Land</span><span class="cg">the price is the ground, not the building</span></a></li>
+      <li><a href="#s3"><span class="cn">III</span><span class="ct">The Scarcity Made by Law</span><span class="cg">zoning forbids the homes we lack</span></a></li>
+      <li><a href="#s4"><span class="cn">IV</span><span class="ct">The Rent of the Right to Build</span><span class="cg">the windfall of the incumbent owner</span></a></li>
+      <li><a href="#s5"><span class="cn">V</span><span class="ct">The Homevoter</span><span class="cg">why the scarcity renews itself</span></a></li>
+      <li><a href="#s6"><span class="cn">VI</span><span class="ct">The Closed City</span><span class="cg">what the scarcity costs us all</span></a></li>
+      <li><a href="#s7"><span class="cn">VII</span><span class="ct">The Same Medicine</span><span class="cg">capture the rent, dissolve the scarcity</span></a></li>
+    </ol>
+  </nav>
+
+  <article class="read">
+
+    <div class="sec-head first" id="s1"><span class="sec-num fr">I</span><h2 class="sec-title">The Roof</h2></div>
+
+    <p class="opening">Of all the prices this volume has examined, none is felt so keenly or so universally as the price of a place to live. The rent of land has been, until now, something of an abstraction — the landlord growing rich in his sleep, the differential between the good acre and the marginal, the increment the community confers on ground it never owned. This plate makes it concrete, and brings it home, for the rent of land is the largest single force in the cost of the one thing every household must somehow buy: a roof. In the cities where the work is, a home has become the defining expense and the defining anxiety of ordinary life — the thing a young family cannot afford, the reason a worker turns down the better job in the better place, the asset on which the fortunate float and from which the rest are shut out. The roof has grown dear, and the question this plate asks is why; and the answer, from first to last, is rent.<sup class="ref"><a href="#n1">1</a></sup></p>
+
+    <div class="sec-head" id="s2"><span class="sec-num fr">II</span><h2 class="sec-title">The House and the Land</h2></div>
+
+    <p>To see it, begin by taking a house apart into the two things its price is paid for: the building, and the ground it stands on. The building is a manufactured thing, made of materials that cost much the same everywhere — timber and concrete and glass and wiring, and the labour to assemble them — so that the cost of putting up a given house in a cheap city is not very different from the cost of putting up the same house in an expensive one. The ground is another matter entirely.</p>
+
+    <div class="plate">
+      <figure>
+        <svg viewBox="0 0 660 400" role="img" aria-label="Two lines plotted against cities ordered by demand. A nearly flat lower line marks the cost of building a home, roughly the same everywhere. A steeply rising upper curve marks what a home sells for. The widening shaded gap between them is the value of the land.">
+          <line class="axis" x1="80" y1="330" x2="620" y2="330"/>
+          <path d="M624,330 L614,326 L614,334 Z" style="fill:var(--soft)"/>
+          <line class="axis" x1="80" y1="330" x2="80" y2="70"/>
+          <path d="M80,66 L76,76 L84,76 Z" style="fill:var(--soft)"/>
+          <path d="M110,283 C300,268 440,198 590,108 L590,260 L110,290 Z" style="fill:var(--sel)"/>
+          <line x1="110" y1="290" x2="590" y2="260" style="stroke:var(--soft);stroke-width:1.4"/>
+          <path d="M110,283 C300,268 440,198 590,108" style="fill:none;stroke:var(--ink);stroke-width:1.7"/>
+          <text class="lbl" x="448" y="150" text-anchor="middle">what a home sells for</text>
+          <text class="reg" x="300" y="309" text-anchor="middle">what it costs to build</text>
+          <text class="reg" x="487" y="226" text-anchor="middle">the land</text>
+          <text class="reg" x="487" y="244" text-anchor="middle">(its scarce location)</text>
+          <text class="lbl" transform="translate(50,200) rotate(-90)" text-anchor="middle">the price of a home</text>
+          <text class="reg" x="590" y="352" text-anchor="end">cities, by demand &rarr;</text>
+        </svg>
+        <figcaption><span class="pn">Plate x.a&nbsp;&middot;&nbsp;</span>The building and the ground. The cost of constructing a home — the lower line — is much the same from city to city: a house is timber and concrete and labour, priced in national markets. What a home sells for — the upper curve — is not. In most places the two run close together, and housing is affordable; the price is the building, plus an ordinary price for the land. But in the most sought-after cities the curve pulls violently away from the cost line, and the whole of the widening gap is the value of the land. The expensive home is not a better building — it is the same building. It is expensive because of where it stands. This persistent gap between price and construction cost is the signature Glaeser and Gyourko taught us to read: the mark of a place where the land is dear and the supply of housing is held down.</figcaption>
+      </figure>
+    </div>
+
+    <p>Across most of America, a home sells for something close to what it costs to build — the structure, plus a modest and ordinary price for the land beneath it — and where that is so, housing is not dear. But in a limited number of places, almost all of them on the coasts, a home sells for far more than it costs to build, two and three and four times more, and the whole of that difference is the price of the land. The expensive home is not expensive because it is a better building; it is, very often, a worse one. It is expensive because of the ground it sits on — because of where it is.<sup class="ref"><a href="#n2">2</a></sup> And this raises the question on which everything turns: land near the heart of a thriving city is genuinely scarce, for there is only so much of it; but is it as scarce as its price implies?</p>
+
+    <div class="sec-head" id="s3"><span class="sec-num fr">III</span><h2 class="sec-title">The Scarcity Made by Law</h2></div>
+
+    <p>It is not — or it need not be. For the scarcity of housing is not, in the main, a scarcity of land; it is a scarcity of permission to build. A single acre near a city centre could hold one house, or a row of townhouses, or a tower of two hundred flats — the same ground, multiplied many times over as a place to live, if only the building were allowed to rise. What forbids it is zoning: the dense body of law that dictates what may be built where — the rules that reserve the land for detached single houses alone, that cap the height and the density, that mandate minimum lot sizes and setbacks and parking spaces, that turn each proposal to add homes into a permission to be fought for and, more often than not, denied. Across the United States, roughly three-quarters of the residential land is zoned for single-family houses only, which is to say that it is illegal, on most of the land in most American cities, to build the very thing those cities most lack. The scarcity that makes the land so dear is, to a great degree, manufactured — written into law — exactly as the scarcity behind the taxi medallion and the occupational licence was manufactured in an earlier plate. The roof is dear because the law has made the right to raise it scarce.<sup class="ref"><a href="#n3">3</a></sup></p>
+
+    <p>How much of the land&rsquo;s value is manufactured in this way, and how much is the irreducible premium of a genuinely desirable spot, is a real and contested question. When Glaeser and Gyourko measure the gap between price and building cost and call it a regulatory tax, critics answer that the gap is simply the location value of land — the natural premium of a good address — and the artefact of no regulation at all. There is justice on both sides, and the volume&rsquo;s own categories dissolve the quarrel: the price of a central location is a rent either way, part of it the natural scarcity of a place there is only one of, part of it the manufactured scarcity of a density the law forbids. The natural part no reform can abolish, though a tax can capture it; the manufactured part a change in the law can dissolve. And the proof that the manufactured part is large is the simplest kind there is: where a city has lifted the limits and let the building rise, the homes have come.<sup class="ref"><a href="#n4">4</a></sup></p>
+
+    <div class="sec-head" id="s4"><span class="sec-num fr">IV</span><h2 class="sec-title">The Rent of the Right to Build</h2></div>
+
+    <p>Whoever holds a scarcity collects its rent, and here the holder is the existing owner. When the law forbids new building, the homes that already stand are made scarcer and so dearer, and their owners grow richer — not by any act of their own, not by improving anything, but because a community grew up around them and the law forbade anyone from adding to the supply. It is the unearned increment of an earlier plate in its purest residential form: a windfall conferred on the incumbent by the growth of others and the prohibition of competitors. The right to build, where it is granted, becomes a valuable thing in itself, an entitlement bought and sold; and the value of the prohibition, everywhere it binds, is folded into the price of every existing home and held there as wealth. The homeowner — the most sympathetic and least suspected of figures — has become a rentier, and the home is the rent.<sup class="ref"><a href="#n5">5</a></sup></p>
+
+    <div class="plate wide">
+      <figure>
+        <svg viewBox="0 0 700 380" role="img" aria-label="Two panels. On the left, where building is allowed, an upward-sloping housing supply meets demand; when demand shifts out, the quantity of homes rises and the price barely moves. On the right, where building is forbidden, supply is a vertical line fixed by zoning; the same outward shift in demand leaves the quantity unchanged and drives the price sharply up.">
+          <text class="lbl" x="195" y="32" text-anchor="middle">Where building is allowed</text>
+          <text class="lbl" x="520" y="32" text-anchor="middle">Where it is forbidden</text>
+          <line x1="350" y1="56" x2="350" y2="348" style="stroke:var(--hair);stroke-width:1"/>
+          <!-- LEFT: elastic -->
+          <line class="axis" x1="70" y1="330" x2="320" y2="330"/>
+          <path d="M324,330 L314,326 L314,334 Z" style="fill:var(--soft)"/>
+          <line class="axis" x1="70" y1="330" x2="70" y2="64"/>
+          <path d="M70,60 L66,70 L74,70 Z" style="fill:var(--soft)"/>
+          <line x1="90" y1="298" x2="312" y2="200" style="stroke:var(--ink);stroke-width:1.5"/>
+          <line x1="95" y1="205" x2="252" y2="318" style="stroke:var(--soft);stroke-width:1.3"/>
+          <line x1="165" y1="205" x2="320" y2="318" style="stroke:var(--soft);stroke-width:1.3;stroke-dasharray:5 3"/>
+          <circle class="dot" cx="176" cy="259" r="3.6"/>
+          <circle class="dot" cx="219" cy="241" r="3.6"/>
+          <path d="M236,250 L262,245 L258,238 Z" style="fill:var(--faint)"/>
+          <text class="reg" x="300" y="192" text-anchor="middle">supply</text>
+          <text class="reg" x="247" y="276">demand grows</text>
+          <text class="reg" x="150" y="322" text-anchor="middle">more homes</text>
+          <!-- RIGHT: inelastic -->
+          <line class="axis" x1="400" y1="330" x2="650" y2="330"/>
+          <path d="M654,330 L644,326 L644,334 Z" style="fill:var(--soft)"/>
+          <line class="axis" x1="400" y1="330" x2="400" y2="64"/>
+          <path d="M400,60 L396,70 L404,70 Z" style="fill:var(--soft)"/>
+          <line x1="490" y1="330" x2="490" y2="120" style="stroke:var(--ink);stroke-width:1.6"/>
+          <line x1="410" y1="212" x2="575" y2="320" style="stroke:var(--soft);stroke-width:1.3"/>
+          <line x1="455" y1="168" x2="620" y2="300" style="stroke:var(--soft);stroke-width:1.3;stroke-dasharray:5 3"/>
+          <line x1="490" y1="266" x2="490" y2="199" style="stroke:var(--faintest);stroke-width:1;stroke-dasharray:3 3"/>
+          <circle class="dot" cx="490" cy="266" r="3.6"/>
+          <circle class="dot" cx="490" cy="199" r="3.6"/>
+          <path d="M519,233 L508,226 L506,237 Z" style="fill:var(--faint)"/>
+          <text class="reg" x="497" y="138" text-anchor="middle">supply fixed by zoning</text>
+          <text class="reg" x="523" y="232">the rent</text>
+          <text class="reg" x="498" y="322" text-anchor="middle">same homes</text>
+        </svg>
+        <figcaption><span class="pn">Plate x.b&nbsp;&middot;&nbsp;</span>What a city does with its own success. On the left, where building is allowed, the supply of housing slopes upward: when a growing or richer population wants more homes — when demand shifts out — the city answers with new homes, and the price barely stirs. The newcomers are housed. On the right, where zoning fixes the supply, the supply curve is a vertical wall: the same outward shift in demand finds no new homes to occupy, and so spends itself entirely on the price, which climbs while the number of dwellings stands still. That climb is the rent. Zoning is the machine that converts a city&rsquo;s prosperity into its incumbents&rsquo; windfall — that turns the demand to live somewhere into a payment to those who already do, rather than into homes for those who would.</figcaption>
+      </figure>
+    </div>
+
+    <p>The diagram holds the whole of it. Where the supply of housing can answer demand, a growing city is housed at a roughly steady price, the arrivals absorbed as new construction. Where the supply is fixed by law, that same growing demand has nowhere to go but into the price, which rises without natural limit while the number of homes stands still. The prosperity that should have drawn people in and built up to receive them is captured instead, in its entirety, by those who got there first.</p>
+
+    <div class="sec-head" id="s5"><span class="sec-num fr">V</span><h2 class="sec-title">The Homevoter</h2></div>
+
+    <p>Why, then, does the scarcity persist, when so many are harmed by it and the remedy is known? Because the people who profit from it govern the body that sets it. The economist William Fischel gave the answer its name: the homevoter. A house is, for most families who own one, by far their largest asset, and an undiversifiable one — their savings are not spread across a hundred holdings but sunk into a single property on a single street. That concentration makes the homeowner intensely, and quite rationally, protective of anything that might bear on the value of the home; and the thing that bears on it most — the building of new homes nearby, which would ease the very scarcity that holds the value up — is decided locally, in the zoning board and the city council and the neighbourhood hearing, the arenas the homeowner attends and effectively controls. So the homeowner votes, reliably and successfully, to keep new housing out: to protect the value, and to forestall the traffic and the change and the loss of &ldquo;character&rdquo; that the new building is felt to bring.<sup class="ref"><a href="#n6">6</a></sup></p>
+
+    <p>The result is a closed loop of remarkable stability. At the hearing where the new homes are debated, the people with a direct and quantifiable stake — the owners whose property values turn on the outcome — are present, organised, and opposed; the people who would gain — the renters priced out, the young who would move in, the workers who would take the better jobs — are diffuse, unorganised, and mostly not in the room, many of them not yet even residents of the town whose law excludes them. It is the transitional gains trap once more, wearing its most sympathetic face. The rent has been capitalised into the wealth of ordinary families, who did not design the system, who bought in good faith, and who would be genuinely harmed by its sudden unwinding — and who therefore defend it with the full and understandable ferocity of people protecting their life&rsquo;s savings. And so the scarcity renews itself, election after election and lawsuit after lawsuit, against nearly every attempt to relieve it.<sup class="ref"><a href="#n7">7</a></sup></p>
+
+    <div class="sec-head" id="s6"><span class="sec-num fr">VI</span><h2 class="sec-title">The Closed City</h2></div>
+
+    <p>The cost of all this is far larger than dear rent, though dear rent is cost enough. The deepest harm is that the closed city closes off opportunity itself. The cities that restrict housing most fiercely are, and not by accident, the most productive — the places where wages are highest because the work is most valuable, where a worker of ordinary skill earns more than she could anywhere else, by virtue of who and what surrounds her. By making housing unaffordable, these cities turn away the very workers who would come to share in that productivity, who are left instead in the places they can afford, doing less than they might. Labour is misallocated across the whole country — held back from where it would be most productive — and the economy is smaller for it. How much smaller is genuinely uncertain, and honesty requires saying so: the most influential estimate, by Chang-Tai Hsieh and Enrico Moretti, put the loss very high, holding that housing constraints in a few productive cities had lowered American growth substantially across half a century — but their figures were later found to contain errors, were revised, and have been challenged by others who find the true effect far smaller. The defensible statement is that the direction is not in doubt and the magnitude is: the closed city costs the country output, perhaps a great deal of it, though no one can yet say how much with confidence.<sup class="ref"><a href="#n8">8</a></sup></p>
+
+    <p>And the loss is not only in output. The scarcity divides a society into those who own and those who rent — the former growing wealthier in their sleep while the latter surrender an ever-larger share of their income for shelter — a steady transfer from the young to the old, from the poor to the propertied, from the newcomer to the long-established. It pushes those who cannot afford the centre out toward the edges and beyond, into long commutes and sprawling development, with all their costs in time and traffic and carbon. And because the single-family neighbourhoods the law most carefully protects are, on the whole, the wealthier and the whiter, the scarcity inscribes and perpetuates a segregation by class and by race that long outlives the explicit exclusions it replaced. The closed city is dearer, smaller, more unequal, more sprawling, and more divided than the open one would be.<sup class="ref"><a href="#n9">9</a></sup></p>
+
+    <div class="plate wide ledger">
+      <figure>
+        <div class="ledger-grid">
+          <div class="lh r">What the closed city costs</div>
+          <div class="lh l">What zoning genuinely protects</div>
+          <div class="cell src"><b>Dearer homes</b><span>scarcity priced into every door</span></div>
+          <div class="cell rem"><b>Against real nuisance</b><span>the smelter beside the schoolyard</span></div>
+          <div class="cell src"><b>Blocked opportunity</b><span>workers kept from where they thrive</span></div>
+          <div class="cell rem"><b>Open space</b><span>parks, habitat, the watershed</span></div>
+          <div class="cell src"><b>A smaller economy</b><span>output lost to misallocation</span></div>
+          <div class="cell rem"><b>Sound infrastructure</b><span>roads and pipes sized to their load</span></div>
+          <div class="cell src"><b>Wider inequality</b><span>owners enriched, renters shut out</span></div>
+          <div class="cell rem"><b>A measure of amenity</b><span>light and air and ordinary quiet</span></div>
+          <div class="cell src"><b>Sprawl and division</b><span>distance, carbon, and segregation</span></div>
+          <div class="cell rem"><b>Worth keeping</b><span>but a fraction of what zoning does</span></div>
+        </div>
+        <p class="ledger-coda">The case against zoning is not a case against rules. Some of what land-use law does is genuine and necessary: it keeps the smelter from the schoolyard, guards the watershed, sizes the road to its traffic, and secures a measure of light and air. The task is not to abolish regulation but to separate the part that answers a real harm, which should stay, from the part that merely manufactures scarcity to enrich whoever already owns, which should go. The two have been bundled together for a hundred years, and it is the bundle that keeps the roof so dear.</p>
+        <figcaption><span class="pn">Plate x.c&nbsp;&middot;&nbsp;</span>The ledger of the closed city. On the left, what the manufactured scarcity costs: not only dearer homes but blocked opportunity, a smaller economy, a widening gulf between owner and renter, and the sprawl and segregation that follow when people are pushed from where they would choose to live. On the right, the genuine functions land-use law performs — the real nuisances it prevents, the open space and infrastructure and amenity it secures. These are worth keeping. But they are a fraction of what zoning does, and they can be had without the scarcity; the smelter can be kept from the school without forbidding the apartment building down the street.</figcaption>
+      </figure>
+    </div>
+
+    <div class="sec-head" id="s7"><span class="sec-num fr">VII</span><h2 class="sec-title">The Same Medicine</h2></div>
+
+    <p>What, then, is to be done — and here the volume&rsquo;s threads draw together, for the remedy is one it has already supplied, in two forms that turn out to be the same medicine. The first is the tax of the previous plate. A tax on the value of land captures the unearned rent the scarcity confers — takes the windfall back from the incumbent and returns it to the public that created it — and does so, as we saw, without distorting anything at all; and it does something more, peculiarly apt here, for by making it costly to hold valuable urban land in an idle or underused state, it presses the owner to build on it, or to sell to someone who will. The second is to dissolve the scarcity at its source: to liberalise the zoning, to let the building rise, to legalise the homes the city forbids. These are not rival remedies but complements — the tax captures the rent, the upzoning removes the scarcity that creates it — and each makes the other work the better, for a tax that penalises idle land and a law that permits dense building together turn the underused lot into the new apartments.<sup class="ref"><a href="#n10">10</a></sup></p>
+
+    <p>The case for the cure must be made honestly, and its evidence is itself a caution. When the city of Auckland upzoned three-quarters of its residential land at a stroke, the homes came — construction surged, and rents rose markedly less than they otherwise would have — which is the clearest proof we possess that the manufactured scarcity is real and that lifting it works. But the American reforms of recent years tell a more sobering story: the cities and states that have pared back single-family zoning — Minneapolis, Oregon, much of California — have so far seen only modest new building, held down by high interest rates and construction costs, by reforms too narrowly targeted to bite, by local resistance and litigation, and by the plain fact that such changes take the better part of a decade to show their full effect. The lesson is that scale and patience are decisive: large and sweeping reform works where piecemeal tinkering does not, and even the large reform pays out slowly. The remedy is sound; it is neither quick nor easy.<sup class="ref"><a href="#n11">11</a></sup></p>
+
+    <p>The politics follow from the homevoter. Because the beneficiaries of the scarcity control the local government that sets it, the relief has increasingly had to come from above — from state legislatures preempting local zoning, overriding the city council in the name of the wider public that the council does not represent. It is an awkward and contested instrument, this overriding of local control, and it provokes the predictable resistance and the predictable lawsuits; but it follows from the structure of the trap, for a body captured by its incumbents will not free itself. There is even a paradox of scale in the politics, the mirror of the one in the economics: the sweeping reform may be easier to pass than the narrow one, because singling out a few neighbourhoods unites them in opposition, while changing everything at once spreads the burden and the benefit alike. The path is hard, and slow, and uncertain. But its direction is clear, and it is the volume&rsquo;s entire: capture the rent, and dissolve the scarcity that breeds it.<sup class="ref"><a href="#n12">12</a></sup></p>
+
+    <div class="orn" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="coda"><p>There is an old enclosure and a new one, and the roof stands between them. The old enclosure fenced the common field and made of it a private rent; the new ones, which the next plates take up, fence the immaterial commons of invention and information. Housing belongs to both worlds at once — for the land beneath the house is the oldest enclosed thing there is, and the right to build upon it is among the newest and most fiercely held. To open the city is to undo, in the most literal and grounded place there is, the act this whole volume indicts: the turning of a shared abundance into a private scarcity, and of a scarcity into a rent. The ground was here before any of us; the city was built by all of us; and the question the roof poses, in the end, is the question of the volume entire — whether what the many made together may be fenced and charged for by the few who happen to hold the deed.<sup class="ref"><a href="#n13">13</a></sup></p></div>
+
+    <section class="notes">
+      <p class="note" id="n1"><span class="nn fr">1</span><span>Housing is the lived face of the rent question, and the home the household&rsquo;s largest asset, so the abstraction of the earlier plates here becomes the monthly cheque and the closed door. The plate&rsquo;s claim is that the affordability crisis of the productive cities is, at bottom, a rent phenomenon — that the answer to why a roof has grown so dear is, from first to last, the rent of land.</span></p>
+      <p class="note" id="n2"><span class="nn fr">2</span><span>The decomposition: a building is made of materials and labour priced in national markets, so construction costs vary little — the standard reference series (R.S. Means, now Gordian) shows modest variation across metropolitan areas. Land value varies enormously. Across most of America a home sells for close to its construction cost; in a limited, mostly coastal set of cities it sells for a large multiple of that cost, and the gap is the land. Edward Glaeser and Joseph Gyourko (with Raven Saks, 2005&ndash;2006) argued that a persistent gap between price and the cost of construction is the signature of a market where land is dear and supply is tightly constrained.</span></p>
+      <p class="note" id="n3"><span class="nn fr">3</span><span>The scarcity is manufactured by zoning. Roughly three-quarters of US residential land is zoned for detached single-family houses only (Urban Institute, 2023), and the apparatus of height and density caps, minimum lot sizes, setbacks, and parking minimums forbids building more homes where they are most wanted, though the same ground could hold many times more by building up. This is the licence of plate vi: the law caps the permitted quantity, manufacturing a scarcity that was not physically necessary.</span></p>
+      <p class="note" id="n4"><span class="nn fr">4</span><span>How much of the land&rsquo;s value is manufactured is contested. Glaeser and Gyourko measure the gap between price and building cost and read it as a &ldquo;regulatory tax&rdquo;; Cameron Murray objects that the gap is simply the location premium of land — noting that the method detects a &ldquo;tax&rdquo; even where no modern zoning existed, in colonial Australia and ancient Mesopotamia. The volume&rsquo;s categories reconcile them: the price of a central location is a rent either way — part the natural scarcity of a singular place, capturable by a tax, and part the manufactured scarcity of a forbidden density, removable by reform. That the manufactured part is large is shown by what happens when the limits are lifted (note 11).</span></p>
+      <p class="note" id="n5"><span class="nn fr">5</span><span>The rent accrues to the incumbent. Restricting new building makes existing homes scarcer and dearer — an unearned windfall, the unearned increment of plate iii in residential form, conferred by the community&rsquo;s growth and the prohibition of competitors. The right to build, where granted, becomes a tradable entitlement; the value of the prohibition is capitalised into the price of every existing home and held there as wealth (plate vi). The homeowner becomes a rentier.</span></p>
+      <p class="note" id="n6"><span class="nn fr">6</span><span>William Fischel, <i>The Homevoter Hypothesis</i> (2001): because a house is the typical owning household&rsquo;s largest and least diversified asset, homeowners are intensely motivated to protect its value, and they dominate the local governments — zoning boards, councils, neighbourhood hearings — where land use is decided. They therefore vote, reliably and effectively, to restrict the new building that would ease the scarcity holding their home&rsquo;s value up.</span></p>
+      <p class="note" id="n7"><span class="nn fr">7</span><span>The asymmetry sustains the trap. At the hearing, owners with a concentrated, quantifiable stake are present and opposed, while the renters, the young, and the would-be residents who would benefit are diffuse, unorganised, and often not yet residents of the town that excludes them. It is the transitional gains trap of plate vi at its most sympathetic: the rent is capitalised into the savings of ordinary families who bought in good faith. Reform consequently meets organised resistance and litigation — Minneapolis&rsquo;s 2040 plan was enjoined by a court, California&rsquo;s lot-split law (SB 9) was challenged as unconstitutional — and the scarcity renews itself.</span></p>
+      <p class="note" id="n8"><span class="nn fr">8</span><span>The misallocation cost, bounded honestly. Chang-Tai Hsieh and Enrico Moretti, &ldquo;Housing Constraints and Spatial Misallocation,&rdquo; <i>American Economic Journal: Macroeconomics</i> (2019), found that constraints in a few high-productivity cities (notably New York, San Francisco, and San Jose) lowered aggregate US growth by about 36% over 1964&ndash;2009, implying GDP a few percent higher in a counterfactual. But Bryan Caplan (2021) identified arithmetic errors the authors conceded — revising the level figure substantially — and a comment by Brian Greaney argues the result is fragile to modelling choices and the effect may be far smaller. Glaeser and Gyourko (2018) separately estimated GDP roughly 2% lower annually. The direction is robust; the magnitude is genuinely uncertain.</span></p>
+      <p class="note" id="n9"><span class="nn fr">9</span><span>Beyond output: the scarcity transfers wealth from renters to owners and from the young to the old (renters pay a rising share of income for shelter while owners gain in their sleep); it pushes the priced-out toward the edges, with the time, traffic, and carbon costs of sprawl; and because the single-family neighbourhoods the law protects are on the whole wealthier and whiter (Urban Institute, 2023), it perpetuates a segregation by class and race that outlives the explicit exclusions it succeeded.</span></p>
+      <p class="note" id="n10"><span class="nn fr">10</span><span>The two cures as one medicine. The land-value tax of plate ix captures the unearned rent and, by taxing land&rsquo;s value whether or not it is used, presses idle or underused urban land toward development; upzoning dissolves the manufactured scarcity directly by legalising more homes. They are complements that reinforce each other — a tax penalising idle land and a law permitting density together convert the underused lot into new apartments.</span></p>
+      <p class="note" id="n11"><span class="nn fr">11</span><span>The evidence, and its caution. Auckland upzoned roughly three-quarters of its residential land under the 2016 Unitary Plan, trebling permitted dwelling capacity; construction surged — Greenaway-McGrevy and Phillips (2023) find building permits in upzoned areas more than quadrupled from 2016 to 2021, with on the order of 22,000 homes (about a third of the period&rsquo;s residential consents) directly attributable, and synthetic-control work finds rents for three-bedroom homes some 26&ndash;33% below their counterfactual six years on. American reforms have so far disappointed by comparison: Minneapolis (2018&ndash;19), Oregon (2019), and much of California have seen only modest new building, held down by interest rates and construction costs, narrow targeting, local circumvention, litigation, and the decade-long lag of such changes; Stacy and co-authors (2023) find localised US upzonings produced small effects. Scale appears decisive — large, sweeping reform works where piecemeal change does not — though a minority of analysts (Murray) contest even the Auckland result.</span></p>
+      <p class="note" id="n12"><span class="nn fr">12</span><span>The political path follows from the homevoter. Because the beneficiaries of the scarcity control the local government that sets it, relief increasingly comes from state legislatures preempting local zoning — California, Oregon, and Montana&rsquo;s 2023 reforms among them — overriding the council in the name of a wider public it does not represent. The instrument is contested and draws lawsuits, but follows from the trap: a captured body will not free itself. And a paradox of scale runs through the politics as through the economics — the sweeping reform may pass more easily than the narrow one, since singling out a few neighbourhoods unites them in opposition while changing everything at once spreads burden and benefit alike.</span></p>
+      <p class="note" id="n13"><span class="nn fr">13</span><span>The bridge to plate xi. From the fencing of land the volume turns to the fencing of the immaterial commons — ideas, networks, and data — the new enclosures. Housing is the hinge between the old enclosure and the new: the land beneath the house is the oldest enclosed thing, the right to build upon it among the newest and most fiercely defended. The argument remains open.</span></p>
+    </section>
+
+  </article>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref">The Rent · plate x</span>
+    </div>
+    <p class="colophon">The tenth plate of <i>The Rent</i> — the rent of land made personal, in the price of a place to live. It decomposes the cost of a home into the building, a manufactured thing that costs much the same everywhere, and the land, whose price is everything and varies entirely by where; and it shows, with Glaeser and Gyourko, that in the expensive cities a home&rsquo;s price is overwhelmingly the price of its ground. That price reflects a scarcity largely manufactured by law — zoning, which forbids building more homes where they are most wanted, reserving roughly three-quarters of American residential land for single houses alone, and so converts the right to build into a rent captured by incumbent owners exactly as the licence did in plate vi. The windfall is the unearned increment of plate iii in residential form, capitalised into every home and held as wealth; and it is defended by the homevoter (Fischel), the owner whose largest and least diversified asset is the rent and who controls the local government that sets the zoning — the transitional gains trap of plate vi wearing its most sympathetic face. The costs of the closed city run far beyond dear rent: a misallocation of labour that shrinks the whole economy (Hsieh and Moretti — though the plate is candid that the magnitude is contested and the headline figures were revised), and a widening of inequality, sprawl, and segregation besides. The remedy is the volume&rsquo;s own, in two forms that prove to be one medicine: the land-value tax of plate ix, which captures the rent and presses idle land into use, and the liberalisation of zoning, which dissolves the manufactured scarcity directly. The plate bounds the case honestly — some land-use law answers a real harm and should stay; large-scale reform works (Auckland) where piecemeal reform has so far largely not; and because the homevoter controls the locality, relief must often come from state preemption above. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-rent-remedy.html">← The Remedy</a><a rel="next" href="the-rent-enclosure.html">The Enclosure →</a></nav>
+</body>
+</html>

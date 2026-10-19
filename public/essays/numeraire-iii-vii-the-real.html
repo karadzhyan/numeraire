@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Real — The Rate, Plate vii · Numéraire</title>
+<meta name="description" content="real against nominal; Fisher&#x27;s equation, and the part of every rate that is only the expectation of inflation.">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- reading-progress hairline ---- */
+  .progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--ink);z-index:10000;}
+
+  /* ---- masthead ---- */
+  .masthead{padding:clamp(2.8rem,8vh,5.6rem) 0 clamp(1.6rem,4vh,2.6rem);text-align:center;}
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;}
+  .edition{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+  .edition b{font-family:"Fraunces",serif;font-weight:500;font-style:normal;color:var(--soft);letter-spacing:.04em;}
+
+  .symbox{width:84px;height:84px;border:1px solid var(--ink);border-radius:2px;background:var(--ink);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;margin:clamp(1.4rem,3.4vh,2.2rem) auto 0;}
+  .symbox .sb-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2rem;line-height:1;color:var(--paper);letter-spacing:-.01em;}
+  .symbox .sb-num{font-family:"Fraunces",serif;font-size:.66rem;color:rgba(240,235,225,.58);margin-top:.28rem;letter-spacing:.04em;}
+
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-top:1.15rem;}
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.5rem,7vw,5rem);line-height:1.0;letter-spacing:-.028em;margin:.55rem 0 0;text-wrap:balance;}
+  .subtitle{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.05rem,1.7vw,1.32rem);color:var(--faint);margin:.5rem 0 0;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.64;color:var(--soft);
+    max-width:43rem;margin:clamp(1.3rem,3vh,1.9rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+  .status{font-size:.84rem;color:var(--soft);margin:clamp(1.2rem,2.6vh,1.7rem) auto 0;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .backrow{margin-top:clamp(1.3rem,3vh,1.9rem);padding-top:1.5rem;border-top:1px solid var(--hair);max-width:50rem;margin-left:auto;margin-right:auto;}
+  .backlink{display:inline-block;font-size:.82rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .backlink:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- generic block furniture ---- */
+  main{padding:0;}
+  .eyebrow{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.2rem;}
+
+  .block-argument{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .argument{max-width:40rem;margin:0 auto;}
+  .argument p{font-size:1.08rem;line-height:1.74;color:var(--ink);margin:0 0 1.2rem;text-wrap:pretty;}
+  .argument p:last-child{margin-bottom:0;}
+  .argument .closer{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 400;font-style:italic;color:var(--soft);font-size:1.06rem;}
+
+  /* ---- table of plates ---- */
+  .block-toc{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .toc ol{list-style:none;margin:0;padding:0;max-width:44rem;}
+  .toc li{display:grid;grid-template-columns:2.5rem 1fr;column-gap:1rem;align-items:baseline;
+    padding:.85rem 0;border-top:1px solid var(--hair);}
+  .toc li:first-child{border-top:none;}
+  .t-num{font-family:"Fraunces",serif;font-size:.92rem;color:var(--faintest);text-align:right;}
+  .t-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.08rem;color:var(--ink);line-height:1.15;text-decoration:none;}
+  a.t-title{border-bottom:1px solid var(--num);padding-bottom:1px;}
+  a.t-title:hover{border-bottom-color:var(--ink);}
+  .t-gloss{grid-column:2;font-size:.85rem;color:var(--faint);font-style:italic;margin-top:.22rem;line-height:1.4;}
+  .t-q{grid-column:2;font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:.95rem;color:var(--soft);margin-top:.42rem;line-height:1.36;}
+  .t-q .lead{font-family:"Fraunces",serif;font-style:normal;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-right:.5rem;}
+  .t-tag{display:inline-block;margin-left:.6rem;font-family:"Newsreader",serif;font-size:.64rem;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--paper);background:var(--ink);border-radius:2px;padding:.12em .5em;vertical-align:.14em;}
+  .t-read{grid-column:2;margin-top:.42rem;}
+  .t-read a{font-size:.8rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .t-read a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- the plates (essays) ---- */
+  .plates-open{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.8rem,6vh,4rem);}
+  .plates-open .eyebrow{text-align:center;}
+  .plate{max-width:54rem;margin:clamp(2.8rem,6.5vh,4.4rem) auto 0;padding-top:clamp(2.2rem,4.6vh,3rem);
+    border-top:1px solid var(--hair);position:relative;scroll-margin-top:1.4rem;}
+  .plate:first-of-type{border-top:none;margin-top:clamp(1.6rem,3.5vh,2.4rem);padding-top:0;}
+  .plate-head{margin:0 0 1.7rem;}
+  .plate-kicker{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .plate-kicker .pk-tag{margin-left:.6rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .plate-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.8rem,4.2vw,2.7rem);line-height:1.03;letter-spacing:-.02em;margin:.32rem 0 .42rem;}
+  .plate-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.02rem;color:var(--faint);max-width:36rem;line-height:1.45;}
+
+  .epigraph{max-width:34rem;margin:1.4rem 0 1.9rem;padding-left:1.1rem;border-left:1px solid var(--num);}
+  .epigraph p{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:1.04rem;line-height:1.42;color:var(--soft);margin:0;}
+  .epigraph cite{display:block;font-style:normal;font-family:"Newsreader",serif;font-size:.78rem;
+    letter-spacing:.03em;color:var(--faintest);margin-top:.55rem;}
+
+  .plate-body{max-width:37rem;}
+  .plate-body p{font-size:1.05rem;line-height:1.75;color:var(--ink);margin:0 0 1.18rem;text-wrap:pretty;}
+  .plate-body p:last-child{margin-bottom:0;}
+  .plate-body em{font-style:italic;}
+  .plate-body .lead-para::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 500;
+    float:left;font-size:3.5rem;line-height:.78;padding:.08em .14em 0 0;color:var(--ink);}
+  .plate-body h4{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);margin:1.9rem 0 .9rem;}
+
+  .break{display:flex;justify-content:center;margin:1.9rem 0;}
+  .break span{font-family:"Fraunces",serif;font-size:1.05rem;letter-spacing:.4em;color:var(--faintest);padding-left:.4em;}
+
+  /* sidenotes — inline by default, true margin notes on wide screens */
+  .sn-ref{font-family:"Fraunces",serif;font-size:.64rem;vertical-align:super;line-height:0;color:var(--soft);margin-left:.06em;}
+  .sidenote{font-family:"Newsreader",serif;font-size:.82rem;line-height:1.52;color:var(--faint);
+    border-left:2px solid var(--hair);padding-left:.9rem;margin:.7rem 0 1.05rem;}
+  .sidenote .sn-num{font-family:"Fraunces",serif;color:var(--faintest);font-size:.7rem;margin-right:.38rem;}
+  .sidenote em{font-style:italic;}
+  @media (min-width:1040px){
+    .sidenote{float:right;clear:right;width:14.5rem;margin:.25rem -17.5rem 1.15rem 0;
+      border-left:none;border-top:1px solid var(--hair);padding:.42rem 0 0;}
+  }
+
+  /* ---- coda ---- */
+  .coda{max-width:40rem;margin:clamp(2.8rem,6vh,4rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);}
+  .coda p{font-size:1.06rem;line-height:1.74;color:var(--ink);margin:0 0 1.15rem;text-wrap:pretty;}
+  .coda p:last-child{margin-bottom:0;}
+  .coda .q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .f-ref a{text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .f-ref a:hover{border-bottom-color:var(--soft);}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .progress{transition:width .08s linear;}
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}.rise.d4{animation-delay:.4s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    h1{font-size:clamp(2.2rem,11vw,3rem);}
+    .symbox{width:72px;height:72px;}
+    .symbox .sb-sym{font-size:1.7rem;}
+    .plate-body .lead-para::first-letter{font-size:3rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+
+  /* ---- standalone plate (leaf) ---- */
+  .leaf-head{max-width:54rem;margin:0 auto;padding:clamp(2.2rem,6.5vh,4.4rem) 0 0;text-align:center;}
+  .leaf-loc{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.08em;color:var(--faintest);margin-bottom:1.7rem;}
+  .leaf-loc a{text-decoration:none;color:var(--faint);border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .leaf-loc a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+  .leaf-loc .sep{margin:0 .5rem;color:var(--num);}
+  .leaf-kicker{font-family:"Fraunces",serif;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .leaf-kicker .pk-tag{margin-left:.55rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .leaf-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.2rem,5.6vw,3.7rem);line-height:1.02;letter-spacing:-.024em;margin:.42rem 0 0;text-wrap:balance;}
+  .leaf-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.06rem;color:var(--faint);
+    max-width:34rem;margin:.72rem auto 0;line-height:1.5;text-wrap:pretty;}
+  .epigraph.leaf-epigraph{margin:1.95rem auto 1.4rem;text-align:left;}
+  .leaf-body-wrap{max-width:54rem;margin:clamp(1.8rem,4vh,2.8rem) auto 0;}
+
+  .leaf-nav{max-width:54rem;margin:clamp(3rem,7vh,5.2rem) auto 0;padding-top:clamp(1.8rem,4vh,2.6rem);
+    border-top:1px solid var(--hair);display:grid;grid-template-columns:1fr auto 1fr;gap:1.3rem;align-items:start;}
+  .ln-cell{text-decoration:none;display:block;}
+  .ln-cell .lab{display:block;font-family:"Fraunces",serif;font-size:.64rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--faintest);margin-bottom:.36rem;}
+  .ln-cell .ttl{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1rem;
+    color:var(--soft);line-height:1.22;}
+  a.ln-cell:hover .ttl{color:var(--ink);}
+  .ln-prev{text-align:left;} .ln-home{text-align:center;} .ln-next{text-align:right;}
+
+  @media (max-width:600px){
+    .leaf-nav{grid-template-columns:1fr;gap:1.4rem;}
+    .ln-prev,.ln-home,.ln-next{text-align:center;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#ne-contents">Complete contents</a><a href="../editions.html#volume-rate">The Rate · both editions</a><a href="../volumes/the-rate.html">Collected volume</a></div></nav>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="frame">
+
+  <header class="leaf-head">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="leaf-loc rise d1" aria-label="Location in the series"><a href="numeraire-atlas-updated.html">Numéraire</a><span class="sep">·</span><a href="numeraire-iii-the-rate.html">Volume III · The Rate</a></nav>
+    <div class="leaf-kicker rise d2">Plate vii <span class="pk-tag">in print</span></div>
+    <h1 class="leaf-title rise d2">The Real</h1>
+    <div class="leaf-gloss rise d3">real against nominal; Fisher's equation, and the part of every rate that is only the expectation of inflation.</div>
+    <div class="epigraph leaf-epigraph rise d3">
+      <p>The contract fixes the money to be repaid; the change in prices determines how much of the world that repayment will command.</p>
+      <cite>— the argument of this plate, after Irving Fisher, 1930</cite>
+    </div>
+  </header>
+
+  <main class="leaf-body-wrap">
+    <article class="plate">
+<div class="plate-body">
+<p class="lead-para">A loan at five per cent promises five per cent more money. It does not promise five per cent more of anything the money will buy. Lend a hundred dollars for a year and receive a hundred and five; if the price of a basket of goods rises from a hundred to a hundred and three, the repayment buys about 1.94 per cent more of that basket than the original advance. The additional dollars are visible on the statement. The additional command over goods has to be calculated. This is the distinction between the nominal rate and the real rate, and it changes the meaning of a contract without changing a word of it. The borrower can pay every dollar promised and the lender can still receive less purchasing power than he expected. To know the price at which the present has actually been exchanged for the future, we must know what happened to the unit in which the exchange was written.</p>
+<p>Fisher made the standard of measurement part of the theory of interest. A rate reckoned in dollars and a rate reckoned in goods can differ because the dollar itself changes in value. For a one-year claim that is paid as promised, the exact relation is a ratio: one plus the real return equals one plus the nominal return divided by one plus the inflation rate. In the example, 1.05 divided by 1.03 is approximately 1.019417. Subtracting inflation from the nominal rate gives the familiar two per cent approximation; the ratio gives the precise answer.<sup class="sn-ref">1</sup> The choice of goods also matters. A broad price index supplies a practical common measure, but a household buying a different mixture need not experience exactly its change in living costs. The real rate makes the standard explicit. It does not discover a purchasing power independent of what is being purchased. For the comparison to mean anything, the money return, the change in prices, and the period over which both are measured must belong to the same calculation.</p>
+<div class="sidenote"><span class="sn-num">1.</span> Irving Fisher, <a href="https://www.econlib.org/library/YPDBooks/Fisher/fshToI.html?chapter_num=6"><em>The Theory of Interest</em></a> (1930), Part I, ch. II, §§ 1–3 and note 19. Fisher distinguishes the approximation from the compounding convention under which a simple additive difference is exact. The basket and annual-return figures here are illustrative.</div>
+<p>The harder distinction is between the rate anticipated when the contract is made and the rate realized when it is discharged. If inflation is known in advance, the parties can incorporate it into their terms. To preserve a two per cent real return when prices will certainly rise three per cent requires a nominal return of 5.06 per cent: 1.02 multiplied by 1.03, less one. Fisher's argument was that a foreseen change in the purchasing power of money could be offset in the money rate, leaving the underlying exchange of present and future goods undisturbed. But perfect foresight is a condition of that clean result. In ordinary lending, expected inflation helps form the prospective real rate, while actual inflation determines the purchasing power eventually delivered. Subtracting expected inflation from the nominal quotation is a useful approximation, not an exact general valuation of an uncertain payoff.<sup class="sn-ref">2</sup> The uncertainty can itself matter to the terms. A contractual promise fixes the number of dollars more securely than it fixes the world in which those dollars will arrive.</p>
+<div class="sidenote"><span class="sn-num">2.</span> Fisher, ch. II, §§ 2 and 4 and notes 18–19. His foreseen-change argument is conditional, and his discussion of actual markets expressly recognizes imperfect adjustment. The 5.06 per cent figure assumes certain inflation, one annual payment, and full repayment.</div>
+<div class="break"><span>⁂</span></div>
+<p>A surprise in prices changes the distribution of the bargain. Keep the promised repayment at a hundred and five dollars, but let the basket rise unexpectedly from a hundred to a hundred and six. The lender receives about 0.94 per cent less purchasing power than he advanced, despite receiving every dollar owed. Relative to the same nominal obligation under the prices expected, the borrower's repayment is lighter in real terms. Unexpected deflation reverses that direction. This is a consequence of the fixed nominal claim, rather than evidence that either party necessarily understood or intended the transfer.<sup class="sn-ref">3</sup> Nor does it describe the whole position of every debtor. A borrower whose income fails to keep pace with prices can find the payment difficult even as its value in goods falls; a lender may also own assets or receive income affected in other ways. The real value of the contract is one part of their balance sheets. Its change should be counted precisely, without making it stand for every gain or loss inflation brings to the people on either side.</p>
+<div class="sidenote"><span class="sn-num">3.</span> Fisher, ch. II, §§ 2 and 4, on unanticipated monetary appreciation or depreciation and the different positions of debtor and creditor. The example gives 105 ÷ 106 − 1 ≈ −0.009434. The inference concerns a fixed nominal payment that is made in full.</div>
+<p>Indexation can tie a claim more closely to purchasing power, but it does not make every component of the rate transparent. Treasury Inflation-Protected Securities adjust payments with a specified consumer-price index. Comparing their yields with nominal Treasury yields gives inflation compensation, often called breakeven inflation. That difference also reflects compensation for inflation risk and differences in liquidity; it cannot be read directly as a pure forecast. D'Amico, Kim, and Wei model these components jointly and show why treating indexed yields as an uncontaminated real-rate measure can distort the inference.<sup class="sn-ref">4</sup> The lesson returns to the contract. An indexed payment promises protection against the index named in its terms, rather than every possible change in the holder's expenses. Its market price can still move, and a sale before maturity is a different transaction from holding the promised payments. We can improve the measurement and allocation of inflation risk without removing every uncertainty from an exchange across time.</p>
+<div class="sidenote"><span class="sn-num">4.</span> Stefania D'Amico, Don H. Kim, and Min Wei, <a href="https://www.federalreserve.gov/pubs/feds/2014/201424/201424pap.pdf">“Tips from TIPS: The Informational Content of Treasury Inflation-Protected Security Prices”</a>, FEDS 2014-024, revision of 19 February 2016, §§ I–II, pp. 1–8. The distinction concerns expectations, inflation risk and relative liquidity, without treating the paper's historical estimates as current premiums.</div>
+<p>The distinction also changes how a policy rate is read. If a nominal quotation is unchanged while expected inflation rises, the prospective real rate falls in the simple comparison; if expected inflation falls, it rises. A central bank can therefore leave its announced number still while the expected terms of borrowing in goods become tighter. At zero nominal interest, a certain fall of two per cent in the basket's price gives the lender a real return of about 2.04 per cent. Nothing in the money account has grown, yet its command over goods has increased.<sup class="sn-ref">5</sup> The later plate on the lower bound examines the consequences when the money rate cannot be cut far enough to offset that movement. Here the implication is already clear: the number announced does not exhaust the conditions it creates. Expectations about prices help determine the terms on which expenditure is postponed or brought forward. For that reason, a decision about the money rate and a judgment about the real stance of policy are connected tasks, but they are not interchangeable observations.</p>
+<div class="sidenote"><span class="sn-num">5.</span> The illustration is 100 ÷ 98 − 1 ≈ 0.020408. Fisher's ch. II supplies the distinction of standards; <a href="numeraire-iii-ix-the-zero.html"><em>The Zero</em></a>, Plate ix, treats the effective lower bound. The calculation alone makes no claim about the interest rate appropriate to any particular economy.</div>
+<p>The real rate removes one ambiguity while leaving the volume's deeper questions open. It tells us whether a fully paid claim delivered more or less purchasing power, measured against a stated standard. It does not tell us whether the gain was earned, whether the original title was just, or whether another arrangement would have served production better. Those judgments require the arguments about ownership, waiting, opportunity, and institutions through which the preceding plates have moved. Fisher's distinction prevents a simpler error from deciding them in advance: mistaking the count of money for the substance of the exchange. A high nominal rate can contain little real reward; a zero nominal rate can preserve more goods than were originally advanced. The <a href="numeraire-iii-viii-the-policy.html">next plate</a> follows the institution that deliberately changes the monetary quotation. Its power matters because the contract is written in money and lived through in goods. Between the two lies the changing price level, which can alter the bargain even when the promised sum remains exactly the same.</p>
+</div>
+    </article>
+  </main>
+
+  <nav class="leaf-nav" aria-label="Plate navigation">
+    <a class="ln-cell ln-prev" href="numeraire-iii-vi-the-natural.html"><span class="lab">← Previous plate</span><span class="ttl">Plate vi · The Natural</span></a>
+    <a class="ln-cell ln-home" href="numeraire-iii-the-rate.html"><span class="lab">The volume</span><span class="ttl">The Rate · contents</span></a>
+    <a class="ln-cell ln-next" href="numeraire-iii-viii-the-policy.html"><span class="lab">Next plate →</span><span class="ttl">Plate viii · The Policy</span></a>
+  </nav>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref"><a href="numeraire-iii-the-rate.html">The Rate</a> · <a href="numeraire-atlas-updated.html">the table</a></span>
+    </div>
+    <p class="colophon">Plate vii of <em>The Rate</em>, Volume the Third of <em>Numéraire</em> — a periodic table of economic life. Adapted for the Utility edition from the earlier Quantities plate, <a href="../quantities/numeraire-plate-the-real.html">The Real</a>, and the Collected plate, <a href="../volumes/the-rate.html#plate-vii">The Veil</a>; the earlier texts and figures remain available. This leaf may be read on its own or as part of the volume. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<script>
+(function(){
+  var bar=document.getElementById('progress');
+  function onScroll(){
+    var h=document.documentElement;
+    var max=(h.scrollHeight-h.clientHeight);
+    var p=max>0?(h.scrollTop||document.body.scrollTop)/max:0;
+    bar.style.width=(p*100).toFixed(2)+'%';
+  }
+  document.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="numeraire-iii-vi-the-natural.html">← The Natural</a><a rel="next" href="numeraire-iii-viii-the-policy.html">The Policy →</a></nav>
+</body>
+</html>

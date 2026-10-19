@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Compounds — Numéraire</title>
+<meta name="description" content="The Compounds of Numéraire, A Periodic Table of Economic Life — what the elements form together. In chemistry, bonded elements combine into compounds with characters of their own; here the twenty-six elements combine into sixty specific economic relationships. The constellation showed which elements bond; this companion shows what each bond is. Wage and power make monopsony; margin and power make the monopoly markup; externality and tax make the Pigouvian correction; premium and asymmetry make adverse selection. Choose an element and read every compound it forms, each named, derived, and linked to both of its constituent volumes. The table of compounds of economic life, where no element ever acts alone.">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem; --measure:40rem;
+    --wash:rgba(28,26,22,.066); --wash2:rgba(28,26,22,.12);
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.62;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  .measure{max-width:var(--measure);margin-left:auto;margin-right:auto;}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- ornaments ---- */
+  .orn{display:flex;justify-content:center;margin:0 auto;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .divider{display:flex;align-items:center;gap:1.1rem;max-width:30rem;margin:clamp(3rem,7vh,5rem) auto;color:var(--num);}
+  .divider .ln{flex:1;height:1px;background:var(--hair);}
+  .divider svg{display:block;width:12px;height:12px;overflow:visible;flex:0 0 auto;}
+  .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* ---- progress + running head ---- */
+  #progress{position:fixed;top:0;left:0;height:2px;width:100%;transform:scaleX(0);transform-origin:0 50%;background:var(--soft);opacity:.45;z-index:10000;}
+  #topbar{position:fixed;top:0;left:0;right:0;z-index:9998;transform:translateY(-100%);transition:transform .5s cubic-bezier(.2,.6,.2,1);
+    background:rgba(240,235,225,.86);-webkit-backdrop-filter:saturate(1.1) blur(8px);backdrop-filter:saturate(1.1) blur(8px);
+    border-bottom:1px solid var(--hair);}
+  #topbar.show{transform:translateY(0);}
+  .tb-in{max-width:var(--frame);margin:0 auto;padding:.62rem clamp(1.4rem,4vw,3.4rem);display:flex;justify-content:space-between;align-items:baseline;gap:1.2rem;}
+  .tb-l{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:.86rem;letter-spacing:.01em;}
+  .tb-l span{color:var(--faintest);font-weight:400;}
+  .tb-r{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);text-align:right;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+
+  /* ---- title page ---- */
+  .vol-title{padding:clamp(3.4rem,11vh,8rem) 0 clamp(1.6rem,5vh,3rem);text-align:center;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.16rem;letter-spacing:.02em;}
+  .vol-no{font-size:.84rem;color:var(--faint);letter-spacing:.16em;text-transform:uppercase;margin-top:.55rem;}
+  h1.vol-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 380;font-weight:380;
+    font-size:clamp(2.9rem,9vw,6rem);line-height:.98;letter-spacing:-.028em;margin:clamp(1.7rem,4.5vh,2.8rem) 0 0;text-wrap:balance;}
+  .vol-sym{width:78px;height:78px;margin:clamp(1.6rem,4vh,2.4rem) auto 0;border:1px solid var(--hair);border-radius:2px;
+    display:flex;align-items:center;justify-content:center;background:var(--ink);}
+  .vol-sym span{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2.3rem;line-height:1;color:var(--paper);letter-spacing:-.01em;}
+  .vol-coords{font-family:"Fraunces",serif;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);margin-top:1.1rem;}
+  .vol-gloss{font-style:italic;color:var(--soft);font-size:1.12rem;margin:.5rem 0 0;}
+  .vol-epigraph{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 400;font-style:italic;
+    font-size:clamp(1.14rem,1.7vw,1.34rem);line-height:1.42;color:var(--soft);max-width:33rem;margin:clamp(1.8rem,4vh,2.6rem) auto 0;text-wrap:pretty;}
+  .vol-epigraph .lead{display:block;font-style:normal;font-variation-settings:"opsz" 24,"wght" 400;
+    font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.7rem;}
+  .vol-status{display:inline-flex;align-items:center;gap:.5rem;margin:clamp(1.8rem,4vh,2.4rem) auto 0;font-size:.84rem;color:var(--soft);}
+  .vol-status::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ink);}
+
+  /* ---- the argument (preface) ---- */
+  .part-head{text-align:center;margin:0 0 clamp(1.6rem,3.5vh,2.3rem);}
+  .part-kicker{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faintest);}
+  .part-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-weight:400;
+    font-size:clamp(1.5rem,3.4vw,2.1rem);letter-spacing:-.012em;margin:.4rem 0 0;}
+  .argument p{font-size:1.05rem;line-height:1.74;margin:0 0 1.15rem;text-wrap:pretty;}
+  .argument p.lede::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 420;
+    float:left;font-size:3.5em;line-height:.78;padding:.05em .1em 0 0;color:var(--ink);}
+  .argument em,.plate-body em,.coda em{font-style:italic;}
+
+  /* ---- contents ---- */
+  .toc{list-style:none;margin:0 auto;padding:0;max-width:43rem;}
+  .toc li{border-top:1px solid var(--hair);}
+  .toc li:last-child{border-bottom:1px solid var(--hair);}
+  .toc a{display:grid;grid-template-columns:2.6rem 1fr;column-gap:1.1rem;align-items:baseline;
+    padding:.82rem .3rem;text-decoration:none;transition:background .2s ease;}
+  .toc a:hover{background:rgba(28,26,22,.035);}
+  .toc-n{font-family:"Fraunces",serif;font-size:.92rem;color:var(--faintest);text-align:right;}
+  .toc-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.06rem;color:var(--ink);line-height:1.16;}
+  .toc-g{grid-column:2;font-size:.85rem;font-style:italic;color:var(--faint);margin-top:.16rem;line-height:1.38;}
+
+  /* ---- plates ---- */
+  .plate{margin:clamp(3.2rem,8vh,6rem) 0 0;padding-top:clamp(2.4rem,5.5vh,3.4rem);border-top:1px solid var(--hair);scroll-margin-top:4rem;}
+  .plate-open{max-width:var(--measure);margin-inline:auto;}
+  .plate-no{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 360;font-size:clamp(2.6rem,7vw,4.1rem);
+    line-height:.9;color:var(--num);letter-spacing:.02em;}
+  .plate-kicker{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faintest);margin:.9rem 0 .2rem;}
+  .plate-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.8rem,4.4vw,2.7rem);line-height:1.04;letter-spacing:-.018em;margin:0;text-wrap:balance;}
+  .plate-gloss{font-style:italic;color:var(--soft);font-size:1.02rem;margin:.55rem 0 0;line-height:1.4;}
+
+  .ask{max-width:var(--measure);margin:clamp(1.5rem,3.5vh,2.2rem) auto clamp(1.8rem,4vh,2.4rem);}
+  .ask .lead{display:block;font-family:"Fraunces",serif;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.55rem;}
+  .ask q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:clamp(1.18rem,1.8vw,1.38rem);line-height:1.36;color:var(--soft);quotes:none;}
+
+  .plate-body{max-width:var(--measure);margin-inline:auto;}
+  .plate-body p{margin:0 0 1.18rem;text-wrap:pretty;}
+  .plate-body > p:first-of-type::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 430;
+    float:left;font-size:3.5em;line-height:.76;padding:.04em .12em 0 0;color:var(--ink);}
+  .plate-body h4{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.76rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faint);margin:2rem 0 .9rem;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 380;font-style:italic;
+    font-size:clamp(1.4rem,2.3vw,1.7rem);line-height:1.32;color:var(--soft);text-align:center;
+    max-width:33rem;margin:clamp(2rem,4.5vh,2.8rem) auto;text-wrap:balance;}
+
+  .edge{max-width:var(--measure);margin:1.7rem auto;padding:.1rem 0 .1rem 1.15rem;border-left:1px solid var(--hair);
+    color:var(--faint);font-size:.92rem;line-height:1.62;}
+  .edge .lead{display:block;font-family:"Fraunces",serif;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.4rem;}
+  .edge em{font-style:italic;color:var(--soft);}
+
+  /* ---- figures (engravings) ---- */
+  .fig{max-width:var(--measure);margin:clamp(2.1rem,4.5vh,2.9rem) auto;}
+  .fig-frame{border:1px solid var(--hair);border-radius:2px;padding:clamp(1rem,2.4vw,1.7rem) clamp(1rem,2.4vw,1.7rem) clamp(.8rem,2vw,1.3rem);background:rgba(255,253,247,.4);}
+  .fig svg{display:block;width:100%;height:auto;}
+  figcaption{margin:.95rem auto 0;max-width:38rem;font-size:.85rem;line-height:1.5;color:var(--faint);text-wrap:pretty;}
+  figcaption .fig-n{font-family:"Fraunces",serif;font-weight:500;letter-spacing:.04em;color:var(--soft);}
+  figcaption em{font-style:italic;}
+  .ax{stroke:var(--soft);stroke-width:1.1;fill:none;}
+  .tick{stroke:var(--soft);stroke-width:1;}
+  .curve{stroke:var(--ink);stroke-width:1.5;fill:none;stroke-linecap:round;}
+  .curve2{stroke:var(--ink);stroke-width:1.3;fill:none;stroke-linecap:round;}
+  .guide{stroke:var(--faintest);stroke-width:1;fill:none;stroke-dasharray:3 3.5;}
+  .core{stroke:var(--ink);stroke-width:3;fill:none;stroke-linecap:round;}
+  .fill-cs{fill:var(--wash);}
+  .fill-dwl{fill:var(--wash2);}
+  .fill-wedge{fill:var(--wash);}
+  .fill-lens{fill:var(--wash);}
+  .hatch-line{stroke:var(--faintest);stroke-width:.8;}
+  .lbl{font-family:"Fraunces",serif;font-size:11.5px;fill:var(--faint);font-variation-settings:"opsz" 24,"wght" 400;}
+  .lbl-i{font-family:"Newsreader",serif;font-style:italic;font-size:11px;fill:var(--soft);}
+  .lbl-sm{font-family:"Fraunces",serif;font-size:9.6px;fill:var(--faintest);letter-spacing:.02em;}
+  .lbl-ax{font-family:"Fraunces",serif;font-size:9.4px;fill:var(--faintest);letter-spacing:.12em;}
+
+  /* ---- coda + colophon ---- */
+  .coda{max-width:var(--measure);margin:clamp(3rem,7vh,5rem) auto 0;}
+  .coda p{margin:0 0 1.18rem;text-wrap:pretty;}
+  .coda p.lede::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 430;
+    float:left;font-size:3.5em;line-height:.76;padding:.04em .12em 0 0;color:var(--ink);}
+  footer{margin-top:clamp(3.6rem,8vh,6rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.4rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .colophon{font-size:.85rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+
+  /* ---- motion / reveal ---- */
+  @media (prefers-reduced-motion: no-preference){
+    html.js .reveal{opacity:0;transform:translateY(14px);}
+    html.js .reveal.in{opacity:1;transform:none;}
+    .reveal{transition:opacity .9s cubic-bezier(.2,.6,.2,1),transform .9s cubic-bezier(.2,.6,.2,1);}
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.18s}.rise.d3{animation-delay:.32s}.rise.d4{animation-delay:.46s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  /* ---- responsive ---- */
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .argument p,.plate-body p,.coda p{font-size:1.01rem;}
+    .plate-body > p:first-of-type::first-letter,.argument p.lede::first-letter,.coda p.lede::first-letter{font-size:3em;}
+    .f-bar{flex-direction:column;gap:.5rem;}
+    .toc a{grid-template-columns:2rem 1fr;column-gap:.8rem;}
+    figcaption{font-size:.82rem;}
+  }
+
+  /* ---- print: a volume, in print ---- */
+  @media print{
+    html,body{background:#fff;color:#000;}
+    body{font-size:11.5pt;line-height:1.5;}
+    body::before,#progress,#topbar{display:none !important;}
+    .frame{max-width:none;padding:0;}
+    .measure,.plate-open,.plate-body,.ask,.edge,.coda{max-width:34rem;}
+    a{text-decoration:none;}
+    .plate{break-before:page;border-top:none;padding-top:0;}
+    .fig,figure{break-inside:avoid;}
+    .plate-no{color:#bbb;}
+    .reveal{opacity:1 !important;transform:none !important;}
+  }
+
+  /* ---- the compounds ---- */
+  .cmp-intro{max-width:var(--measure);margin-inline:auto;}
+  .cmp-intro p{font-size:1.05rem;line-height:1.74;margin:0 0 1.15rem;text-wrap:pretty;}
+  .cmp-intro p.lede::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 420;float:left;font-size:3.5em;line-height:.78;padding:.05em .1em 0 0;color:var(--ink);}
+  .cmp-stage{max-width:63rem;margin:1.7rem auto 0;}
+  .cmp-hint{text-align:center;font-size:.82rem;color:var(--faint);font-style:italic;margin:0 0 1rem;}
+  .cmp-board{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:9px;align-items:start;}
+  .cmp-col{display:flex;flex-direction:column;gap:8px;}
+  .cmp-col-h{font-family:"Fraunces",serif;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--faintest);text-align:center;margin:0 0 .1rem;min-height:2.4em;display:flex;align-items:flex-end;justify-content:center;line-height:1.2;}
+  .cmp-cell{position:relative;appearance:none;-webkit-appearance:none;border:1px solid var(--hair);border-radius:2px;background:var(--paper);color:var(--ink);padding:10px 9px 11px;text-align:left;cursor:pointer;min-height:70px;display:flex;flex-direction:column;transition:background .25s,color .25s,border-color .15s,opacity .25s,transform .12s;font:inherit;}
+  .cmp-cell:hover{border-color:var(--faintest);transform:translateY(-2px);}
+  .cmp-cell .ce-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.5rem;line-height:1;letter-spacing:-.01em;}
+  .cmp-cell .ce-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 24,"wght" 500;font-size:.72rem;margin-top:.3rem;line-height:1.1;font-weight:500;}
+  .cmp-cell .ce-deg{position:absolute;top:7px;right:9px;font-family:"Fraunces",serif;font-size:.68rem;color:var(--faintest);}
+  .cmp-cell.sel{background:var(--ink);border-color:var(--ink);color:var(--paper);}
+  .cmp-cell.sel .ce-deg{color:rgba(240,235,225,.55);}
+  .cmp-cell.lit{border-color:var(--ink);background:var(--sel);}
+  .cmp-board.has-sel .cmp-cell:not(.sel):not(.lit){opacity:.32;}
+  .cmp-panel{max-width:46rem;margin:1.8rem auto 0;border-top:1px solid var(--hair);padding-top:1.2rem;min-height:14rem;}
+  .cmp-head{display:flex;align-items:baseline;gap:.6rem;flex-wrap:wrap;margin-bottom:.2rem;}
+  .cmp-head .ch-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:1.7rem;color:var(--ink);line-height:1;}
+  .cmp-head .ch-name{font-family:"Fraunces",serif;font-weight:500;font-size:1.18rem;color:var(--ink);}
+  .cmp-head .ch-count{font-size:.86rem;color:var(--faint);font-style:italic;}
+  .cmp-head .ch-gloss{flex-basis:100%;font-style:italic;color:var(--faint);font-size:.92rem;margin-top:.05rem;}
+  .cmp-list{margin-top:1.1rem;display:flex;flex-direction:column;gap:.1rem;}
+  .cmp-entry{display:grid;grid-template-columns:2.7rem 1fr;gap:.1rem .9rem;padding:.85rem 0;border-top:1px solid var(--hair);}
+  .cmp-entry:first-child{border-top:0;}
+  .cmp-partner{grid-row:span 2;align-self:start;appearance:none;background:transparent;border:1px solid var(--hair);border-radius:2px;width:2.7rem;height:2.7rem;display:flex;align-items:center;justify-content:center;cursor:pointer;font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.15rem;color:var(--ink);transition:background .15s,border-color .15s;}
+  .cmp-partner:hover{background:var(--sel);border-color:var(--faintest);}
+  .cmp-cn{display:flex;align-items:baseline;gap:.55rem;flex-wrap:wrap;}
+  .cmp-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.04rem;color:var(--ink);}
+  .cmp-arrow{color:var(--faintest);}
+  .cmp-pname{font-size:.82rem;color:var(--faint);}
+  .cmp-formula{font-family:"Fraunces",serif;font-style:italic;font-size:.88rem;color:var(--soft);background:var(--wash);border:1px solid var(--hair);border-radius:2px;padding:.05rem .4rem;white-space:nowrap;}
+  .cmp-desc{font-size:.95rem;line-height:1.56;color:var(--soft);margin-top:.35rem;text-wrap:pretty;}
+  .cmp-desc .lnk{color:var(--ink);text-decoration:underline;text-decoration-color:var(--faintest);text-underline-offset:2px;}
+  .cmp-toggle{display:block;margin:2rem auto 0;font-family:"Fraunces",serif;font-size:.78rem;letter-spacing:.02em;color:var(--soft);background:transparent;border:1px solid var(--hair);border-radius:2px;padding:.4rem .8rem;cursor:pointer;transition:border-color .15s,color .15s;}
+  .cmp-toggle:hover{border-color:var(--faintest);color:var(--ink);}
+  .cmp-all{max-width:46rem;margin:1.4rem auto 0;display:none;}
+  .cmp-all.open{display:block;}
+  .cmp-all-group{margin:1.3rem 0 0;}
+  .cmp-all-gh{font-family:"Fraunces",serif;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);border-bottom:1px solid var(--hair);padding-bottom:.3rem;margin-bottom:.5rem;}
+  .cmp-all-row{display:grid;grid-template-columns:7.5rem 1fr;gap:.3rem .9rem;padding:.5rem 0;font-size:.9rem;line-height:1.5;align-items:baseline;}
+  .cmp-all-pair{font-family:"Fraunces",serif;color:var(--faint);font-size:.82rem;}
+  .cmp-all-row b{font-family:"Fraunces",serif;font-variation-settings:"opsz" 24,"wght" 500;color:var(--ink);font-weight:500;}
+  .cmp-open{font-family:"Fraunces",serif;font-size:.82rem;color:var(--soft);text-decoration:underline;text-decoration-color:var(--faintest);text-underline-offset:2px;white-space:nowrap;}
+  .cmp-open:hover{color:var(--ink);}
+  .ch-open{margin-left:.1rem;}
+  @media (max-width:680px){
+    .cmp-board{gap:6px;}
+    .cmp-cell{min-height:60px;padding:8px 6px 9px;}
+    .cmp-cell .ce-sym{font-size:1.2rem;}
+    .cmp-cell .ce-name{font-size:.58rem;}
+    .cmp-col-h{font-size:.52rem;letter-spacing:.08em;}
+    .cmp-formula{white-space:normal;}
+    .cmp-all-row{grid-template-columns:1fr;gap:.05rem;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#ne-contents">Complete contents</a><a href="../essays/numeraire-atlas-updated.html">Essay atlas</a><a href="../editions.html#ne-companions">Companions</a></div></nav>
+<div id="progress" aria-hidden="true"></div>
+<div id="topbar" aria-hidden="true"><div class="tb-in">
+  <span class="tb-l">Numéraire <span>· The Compounds</span></span>
+  <span class="tb-r" id="tb-plate">Combinations</span>
+</div></div>
+
+<div class="frame">
+
+  <header class="vol-title">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="rise d1">
+      <span class="imprint">Numéraire</span>
+      <div class="vol-no">A Companion to the Atlas</div>
+    </div>
+    <h1 class="vol-name rise d2">The Compounds</h1>
+    <div class="vol-coords rise d3">what the elements form together</div>
+    <p class="vol-gloss rise d3">no element acts alone; bonded, the twenty-six combine into sixty named relationships, each with a character neither half possessed</p>
+    <p class="vol-epigraph rise d4">
+      <span class="lead">Why it combines</span>
+      An element is an abstraction; you never meet one in the wild. What the economy presents is always a compound — a wage bent by power, a premium spoiled by hidden knowledge, a margin pressed against a tax. The constellation drew the bonds. This is what the bonds are made of: the specific reactions of economic life, each with a name of its own.
+    </p>
+    <div class="vol-status rise d4">twenty-six elements &middot; sixty compounds &middot; click an element to read what it forms</div>
+  </header>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <section class="cmp-intro reveal" aria-labelledby="cmp-h">
+    <div class="part-head">
+      <div class="part-kicker">On combination</div>
+      <h2 class="part-title" id="cmp-h">When Two Elements Meet</h2>
+    </div>
+    <p class="lede">The atlas isolates the elements; the constellation joins them; but neither says what the joining produces. In chemistry the answer is the whole of the science: two elements bond and a compound appears with properties belonging to neither — sodium burns, chlorine poisons, and together they season food. Economic life is the same. The wage is one thing and power another, but a wage under a single great employer is monopsony, a third thing, with a logic the wage alone does not have. A premium is the price of risk and an asymmetry is hidden knowledge, but a premium sold to people who know their own risks better than the insurer is adverse selection, the slow poisoning of a market. The elements are the alphabet; the compounds are the words.</p>
+    <p>This companion names them. Each of the sixty bonds the constellation draws is here given its compound — the specific relationship the two elements form, with the concept it is known by, the formula where one is clean, and a sentence on how the reaction runs. They are the familiar furniture of the science seen from a new angle: the monopoly markup is margin meeting power, the Pigouvian tax is the externality meeting the tax, present value is the rate meeting the stock, capital accumulation is growth meeting the stock, labor&rsquo;s share is the share meeting the wage. Read this way, an economics that can look like a heap of disconnected models becomes a small number of elements reacting in lawful, repeatable ways.</p>
+    <p>It is built for wandering. Click any element in the table and it lights, together with every element it bonds with; below, each compound it forms is set out in full. Click a partner to swing the view to it and follow the reactions onward — from the margin to power, from power to the wage, from the wage to the share — or open either volume to read the element entire. The whole table of sixty can be unfolded at once for those who would rather see the reactions listed than discovered. However you move through it, the lesson is the same: the cells of the table are where we store the elements, but the compounds are where the economy actually happens.</p>
+  </section>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <div class="cmp-stage reveal">
+    <p class="cmp-hint">Click an element to see the compounds it forms &middot; click a partner to follow the chain &middot; open either volume to read it whole</p>
+    <div class="cmp-board" id="cmp-board"><!-- built by script --></div>
+    <div class="cmp-panel" id="cmp-panel"><!-- built by script --></div>
+    <button class="cmp-toggle" id="cmp-toggle" type="button" aria-expanded="false">Unfold the full table of sixty compounds &nbsp;▸</button>
+    <div class="cmp-all" id="cmp-all"><!-- built by script --></div>
+  </div>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <section class="cmp-intro reveal" aria-labelledby="all-h">
+    <div class="part-head">
+      <div class="part-kicker">What the compounds reveal</div>
+      <h2 class="part-title" id="all-h">Everything Is a Compound</h2>
+    </div>
+    <p class="lede">Set out together, the compounds make an argument the separate volumes cannot. They show that the great named results of economics &mdash; the ones with a person&rsquo;s name attached, Ricardo&rsquo;s rent and Coase&rsquo;s theorem and Akerlof&rsquo;s lemons and Ostrom&rsquo;s commons &mdash; are not isolated discoveries but combinations of the same few elements, meeting under different conditions. Adverse selection and moral hazard are both the asymmetry, bonded once to the premium and once to the contract. The deadweight triangle of a tax and the deadweight triangle of a monopoly are the same surplus, lost to two different causes. Monopsony and rent-seeking are both power, turned toward the wage and toward the privilege. The economy does not have a hundred separate problems; it has a few elements, and the trouble is always in how they combine.</p>
+    <p>And this is the final form of the work&rsquo;s argument. If every compound is a reaction between elements, then the pure element &mdash; the wage as such, the price as such &mdash; is something that exists only on the page. In the world there is no wage that is not already bent by some power, some norm, some asymmetry, some tax; no price that is not already a compound of the contests around it. The periodic table was never a claim that these things exist in isolation. It was a way of naming the elements so that their combinations could be understood &mdash; and the combinations, not the elements, are the economy we actually live in. The cells hold the alphabet still. The compounds are the only language anyone ever speaks.</p>
+    <p>Return to the <a href="numeraire-atlas.html">atlas</a> for the table of elements, the <a href="numeraire-constellation.html">constellation</a> for the web of bonds these compounds inhabit, the <a href="numeraire-properties.html">properties</a> to weigh the elements by their traits, the <a href="numeraire-laboratory.html">laboratory</a> to set the reactions moving, the <a href="numeraire-preface.html">preface</a> for the argument entire, the <a href="numeraire-tour.html">guided tour</a> for a path through the plates, the <a href="numeraire-index.html">index</a> to find any compound by name, or the <a href="numeraire-diagonals.html">diagonals</a> to follow one idea across the table, the <a href="numeraire-objections.html">objections</a> to hear the case against it all, the <a href="numeraire-chronology.html">chronology</a> to place each idea in time, the <a href="numeraire-measures.html">measures</a> for the numbers economic life runs on, the <a href="numeraire-cases.html">cases</a> for the table put to work, the <a href="numeraire-priceless.html">priceless</a> for where it ends, the <a href="numeraire-gaps.html">gaps</a> for what falls outside it, the <a href="numeraire-firstperson.html">first person</a> for the life inside, the <a href="numeraire-schools.html">schools</a> for the rival readings, the <a href="numeraire-sources.html">sources</a> for the books behind the bonds, or the <a href="numeraire-unsettled.html">unsettled</a> for the contests of our moment. No element stands alone, and neither, in the end, does any volume.</p>
+  </section>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref">The Compounds &middot; What the Elements Form</span>
+    </div>
+    <p class="colophon">The Compounds of Numéraire, A Periodic Table of Economic Life — the sixty economic relationships the twenty-six elements form when they bond, one for each thread of the constellation. Each compound carries the concept it is known by, a formula where one is clean, a sentence on how the reaction runs, and links to both of its constituent volumes; click an element to read what it forms, click a partner to follow the chain. A companion to the atlas, its preface, its guided tour, its index, its laboratory, its constellation, its properties, its diagonals, its objections, its chronology, its measures, its cases, its priceless, its gaps, its first person, its schools, its sources, and its unsettled — the eighth face of one connected work. Built in plain HTML and JavaScript; set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var BOARD=document.getElementById('cmp-board'); if(!BOARD) return;
+  var PANEL=document.getElementById('cmp-panel'), ALL=document.getElementById('cmp-all'), TOG=document.getElementById('cmp-toggle');
+  var ELEMENTS=[["wage", "Wg", "The Wage", "the price of labor", 1], ["rent", "Rn", "The Rent", "the price of position", 1], ["rate", "Rt", "The Rate", "the price of time", 1], ["premium", "Pm", "The Premium", "the price of risk", 1], ["spread", "Sp", "The Spread", "the price of standing between", 1], ["margin", "Mg", "The Margin", "the value of one more", 2], ["surplus", "Su", "The Surplus", "the value beyond the price", 2], ["utility", "Ut", "The Utility", "the want price claims to track", 2], ["stock", "Sk", "The Stock", "wealth held, not earned", 2], ["power", "Pw", "The Power", "too few on one side", 3], ["externality", "Ex", "The Externality", "costs that escape the price", 3], ["asymmetry", "As", "The Asymmetry", "what one side cannot know", 3], ["commons", "Cm", "The Commons", "what no one owns", 3], ["firm", "Fm", "The Firm", "planning inside the market", 4], ["contract", "Ct", "The Contract", "the law of the deal", 4], ["money", "Mo", "The Money", "what we agree to trust", 4], ["tax", "Tx", "The Tax", "who really pays", 4], ["rule", "Ru", "The Rule", "the design of markets", 4], ["cycle", "Cy", "The Cycle", "boom, bust, idleness", 5], ["growth", "Gr", "The Growth", "why nations are rich", 5], ["level", "Lv", "The Level", "the value of money over time", 5], ["share", "Sh", "The Share", "labor against capital", 5], ["choice", "Ch", "The Choice", "preference and its logic", 6], ["bias", "Bi", "The Bias", "the systematic errors", 6], ["game", "Gm", "The Game", "strategy and equilibrium", 6], ["norm", "Nm", "The Norm", "the unwritten rules", 6]];
+  var COMPOUNDS=[{"a": "margin", "b": "surplus", "w": 3, "n": "The Triangle of Surplus", "f": "∫(MB − MC) dq", "d": "Where marginal benefit exceeds marginal cost, the gap accumulates into surplus; the area between the curves, out to the point they cross, is the gain from trade itself."}, {"a": "margin", "b": "power", "w": 3, "n": "The Monopoly Markup", "f": "MR = MC &lt; P", "d": "A firm with power sets marginal revenue equal to marginal cost &mdash; but marginal revenue lies below price, so output is held back, and the wedge between price and cost becomes profit and deadweight loss."}, {"a": "margin", "b": "wage", "w": 2, "n": "The Marginal Product of Labor", "f": "w = MPL · P", "d": "Orthodoxy pays each worker the value of the last hour worked: the wage is the marginal product of labor, priced. Whether the last hour can be told apart from the others is the whole quarrel."}, {"a": "margin", "b": "rent", "w": 2, "n": "Ricardian Rent", "f": "rent = MP(best) − MP(margin)", "d": "Rent is the gap between the best land and the worst still in use: the superior site earns, for free, the difference between what it yields and what the marginal acre yields."}, {"a": "margin", "b": "utility", "w": 2, "n": "Diminishing Marginal Utility", "f": "∂U/∂x falling", "d": "Each additional unit is wanted less than the last; the slope of utility falls, and from that single descending curve come demand, surplus, and the logic of the optimum."}, {"a": "margin", "b": "stock", "w": 1, "n": "The Marginal Product of Capital", "f": "r = MPK", "d": "Add one machine to the stock and ask what it yields; the return to capital is its marginal product &mdash; the hinge on which every theory of investment and growth turns."}, {"a": "surplus", "b": "tax", "w": 2, "n": "Deadweight Loss", "f": "½ · t · ΔQ", "d": "A tax drives a wedge between what the buyer pays and the seller keeps; trades that would have happened do not, and the surplus they would have made is lost to no one &mdash; the triangle of pure waste."}, {"a": "surplus", "b": "power", "w": 2, "n": "The Cost of Monopoly", "f": "ΔDWL", "d": "Power converts consumer surplus into profit and destroys the remainder; the output never produced is the social cost of letting too few stand on one side of the market."}, {"a": "surplus", "b": "rule", "w": 1, "n": "The Welfare Theorems", "f": "competitive eq. ⇒ Pareto", "d": "Under the right rules a competitive equilibrium exhausts the surplus and wastes nothing; the theorems state when the invisible hand is efficient &mdash; and, read backward, exactly when it is not."}, {"a": "surplus", "b": "utility", "w": 1, "n": "Consumer Surplus", "f": "∫ (P(q) − P*) dq", "d": "What a buyer would have paid, less what they did pay: the want, measured in money above the price, and the most contested bridge ever built from utility to welfare."}, {"a": "rate", "b": "money", "w": 3, "n": "Liquidity Preference", "f": "r = L(M)", "d": "The interest rate is the price of parting with money &mdash; of how much must be paid to hold wealth in any form but the most liquid. Set it, and you have set the price of time itself."}, {"a": "rate", "b": "stock", "w": 2, "n": "Present Value", "f": "PV = Σ C / (1+r)^t", "d": "Every asset is a claim on future cash, discounted to the present; the rate is the lens that turns a stream of tomorrows into a single price today. Raise it, and all asset values fall at once."}, {"a": "rate", "b": "cycle", "w": 2, "n": "The Credit Cycle", "f": "", "d": "Cheap money lengthens the boom; dear money ends it. The rate is the lever the central bank pulls, and the cycle is what moves at the far end of it &mdash; after a long and variable lag."}, {"a": "rate", "b": "premium", "w": 1, "n": "The Risk Premium", "f": "r = r(f) + π", "d": "Every rate is a safe rate plus a payment for bearing uncertainty; the premium is what the unknown future costs, added on top of the price of mere time."}, {"a": "rate", "b": "spread", "w": 1, "n": "The Yield Spread", "f": "r(long) − r(short)", "d": "The difference between two rates &mdash; long over short, risky over safe &mdash; is itself a price, read by markets as a forecast of growth, of default, or of the turning of the cycle."}, {"a": "premium", "b": "asymmetry", "w": 3, "n": "Adverse Selection", "f": "", "d": "When the insured know their own risks and the insurer does not, the safe withdraw and the premium chases an ever-worsening pool; the market for lemons, written in the language of insurance."}, {"a": "premium", "b": "utility", "w": 2, "n": "Expected Utility", "f": "E[U] = Σ p · U(x)", "d": "Risk is borne by weighing each outcome&rsquo;s utility by its probability; the premium a person will pay to escape a fair gamble measures the curvature of their utility &mdash; their aversion to risk."}, {"a": "premium", "b": "stock", "w": 1, "n": "The Equity Premium", "f": "", "d": "Risky assets must promise more than safe ones or no one would hold them; how much more is the equity premium &mdash; and why it has been so large is one of finance&rsquo;s famous unsolved puzzles."}, {"a": "premium", "b": "bias", "w": 1, "n": "Probability Weighting", "f": "w(p) ≠ p", "d": "People do not feel probabilities as they are: they overweight the rare and underweight the near-certain, and so buy lottery tickets and insurance in the same afternoon &mdash; the premium, distorted by the mind."}, {"a": "utility", "b": "choice", "w": 3, "n": "Revealed Preference", "f": "x ≻ y ⇔ x chosen", "d": "Utility cannot be seen, only choices can; so the want is inferred from what is picked over what was affordable. Preference read backward from the act &mdash; provided the acts stay consistent."}, {"a": "utility", "b": "bias", "w": 2, "n": "The Anomalies", "f": "", "d": "The neat axioms of utility break against the evidence &mdash; framing, reference points, loss aversion. Where choice departs in patterned ways from expected utility, a behavioral science begins."}, {"a": "choice", "b": "bias", "w": 3, "n": "Bounded Rationality", "f": "", "d": "The maximizer is an idealization; real choosers satisfice, anchor, and err in regular ways. Bias is not random noise around rationality but its systematic shadow."}, {"a": "choice", "b": "game", "w": 2, "n": "Strategic Choice", "f": "best response", "d": "When the payoff to my choice depends on yours, choosing becomes a game; the rational act is no longer a point on a curve but a best response to what the other is expected to do."}, {"a": "choice", "b": "norm", "w": 1, "n": "Social Preferences", "f": "U(x, others)", "d": "People often choose as if others&rsquo; outcomes entered their own utility &mdash; fairness, reciprocity, spite. The maximizer is not always selfish; the norm can sit inside the preference."}, {"a": "bias", "b": "norm", "w": 2, "n": "The Nudge", "f": "", "d": "If choice is shaped by frames and defaults, then whoever sets the default steers the choice; the norm becomes a lever, and the architecture of options a quiet kind of policy."}, {"a": "game", "b": "norm", "w": 3, "n": "Repeated Cooperation", "f": "the folk theorem", "d": "What cannot be sustained in a single encounter can be sustained by the shadow of the future; norms of cooperation are equilibria of the repeated game, held in place by the threat of tomorrow."}, {"a": "game", "b": "power", "w": 2, "n": "Oligopoly", "f": "Cournot · Bertrand", "d": "Between monopoly and competition lies the small number, where each firm must watch the others; price and quantity emerge from a strategic game rather than from a single curve."}, {"a": "game", "b": "rule", "w": 2, "n": "Mechanism Design", "f": "", "d": "Run the game in reverse: choose the rules so that self-interested play produces the outcome you wanted. The auction, the matching, the contract &mdash; equilibria engineered to order."}, {"a": "game", "b": "commons", "w": 2, "n": "The Social Dilemma", "f": "", "d": "The tragedy of the commons is a game: each rationally takes, and all are ruined. It is the structure of the payoff, not the wickedness of the players, that empties the pasture."}, {"a": "game", "b": "contract", "w": 1, "n": "Bargaining", "f": "Nash bargaining", "d": "When two parties must split a surplus they create together, the division is a game of threats and patience; the contract is the equilibrium they reach &mdash; or the breakdown they fall into."}, {"a": "power", "b": "wage", "w": 2, "n": "Monopsony", "f": "w &lt; MPL", "d": "When the buyer of labor has power, the wage falls below the marginal product; facing an upward-sloping supply of workers, the employer holds wages down simply by hiring fewer. Power, inverted."}, {"a": "power", "b": "rent", "w": 2, "n": "Rent-Seeking", "f": "", "d": "Power can be bought: resources spent to capture a privilege &mdash; a license, a tariff, a protected monopoly &mdash; produce nothing and transfer much. The rent is the prize; the seeking is the dead loss."}, {"a": "power", "b": "externality", "w": 1, "n": "Market Failure", "f": "", "d": "Both are reasons the price misleads: power makes it too high, the externality makes it simply wrong. Together they map the boundary of the claim that markets left alone do well."}, {"a": "power", "b": "rule", "w": 1, "n": "Antitrust", "f": "", "d": "Power is made and unmade by rules; the law decides what counts as monopoly and what may be done about it. The referee can break the firm that the game, left to itself, would let grow."}, {"a": "externality", "b": "commons", "w": 3, "n": "The Tragedy of the Commons", "f": "", "d": "An externality with many hands is a commons: each imposes a small cost on all, the unpriced harm accumulates, and the shared thing is exhausted. Smoke and overgrazing are one problem in two coats."}, {"a": "externality", "b": "tax", "w": 3, "n": "The Pigouvian Tax", "f": "t = marginal damage", "d": "Price the harm and the market will finally count it; a tax set equal to the marginal external cost makes the polluter face the true price, and the externality dissolves back into the ordinary calculus."}, {"a": "externality", "b": "rule", "w": 2, "n": "Cap and Trade", "f": "", "d": "Rather than tax the harm, cap it and let the right to emit be bought and sold; the rule manufactures a market where none existed, and the price of a permit becomes the price of the externality."}, {"a": "commons", "b": "norm", "w": 2, "n": "Governing the Commons", "f": "", "d": "Ostrom&rsquo;s answer to the tragedy: neither the state nor the market but the community, binding itself with norms, monitoring, and graduated sanctions. A commons can be governed from within."}, {"a": "commons", "b": "firm", "w": 1, "n": "Collective Action", "f": "", "d": "Why do some groups organize while others merely free-ride? The firm is one solution to the commons problem of joint production &mdash; deliberate planning replacing the unpriced scramble."}, {"a": "commons", "b": "rule", "w": 2, "n": "The Charter", "f": "", "d": "A commons survives when its rules are clear: who may use it, how much, policed by whom. The charter is the constitution of the shared thing, the difference between a resource and a ruin."}, {"a": "firm", "b": "contract", "w": 3, "n": "The Incomplete Contract", "f": "", "d": "Because no contract can foresee everything, gaps always remain; whoever holds the right to decide within the gaps holds the power. The firm exists exactly where the contract runs out."}, {"a": "firm", "b": "asymmetry", "w": 2, "n": "Principal and Agent", "f": "", "d": "The owner cannot see the manager&rsquo;s effort, nor the manager the worker&rsquo;s; the firm is a tower of hidden actions, and much of its structure is the attempt to align what no one can directly observe."}, {"a": "firm", "b": "power", "w": 1, "n": "Market Structure", "f": "", "d": "The size of the firm and the concentration of the market are two views of a single fact; where firms grow large, power follows, and the boundary of the firm becomes a question for the referee."}, {"a": "contract", "b": "asymmetry", "w": 3, "n": "Moral Hazard", "f": "", "d": "Insure a thing and it is guarded less; promise a fixed wage and effort may quietly slacken. When action is hidden after the deal is struck, the contract must be written to make honesty pay &mdash; or it fails."}, {"a": "contract", "b": "rule", "w": 2, "n": "Enforcement", "f": "", "d": "A contract is only a promise until something stands behind it; the rule &mdash; the court, the law &mdash; is what turns the word into a binding. Without enforcement, the seal is so much ink."}, {"a": "money", "b": "level", "w": 3, "n": "The Quantity Theory", "f": "MV = PY", "d": "Print enough and prices rise; the value of money is the inverse of the price level, and the level is, in the long run and the old slogan, everywhere a monetary phenomenon."}, {"a": "money", "b": "cycle", "w": 2, "n": "Monetary Policy", "f": "", "d": "By moving the quantity of money and the rate, the central bank tries to smooth the cycle; whether it can do more than choose the average rate of inflation is the long argument of macroeconomics."}, {"a": "tax", "b": "rule", "w": 2, "n": "Fiscal Design", "f": "", "d": "A tax is an artifact of rules: what is taxed, on what schedule, with which exemptions. The optimal-tax problem is the engineering of revenue with the least distortion and the most consent."}, {"a": "tax", "b": "share", "w": 1, "n": "Redistribution", "f": "", "d": "The tax can reshape the distribution the market hands down; who really pays and who really receives is the question of incidence &mdash; the lever by which the share is contested after the fact."}, {"a": "cycle", "b": "level", "w": 3, "n": "The Phillips Curve", "f": "", "d": "The short-run bargain between inflation and slack: push the economy past its limit and prices rise; tolerate higher prices and unemployment falls &mdash; until expectations adjust and the bargain quietly vanishes."}, {"a": "cycle", "b": "growth", "w": 2, "n": "Trend and Fluctuation", "f": "Y = trend + cycle", "d": "Growth is the trend, the cycle the wobble around it; the deep question is whether the wobble leaves the trend untouched, or whether a slump cut deep enough scars the long run for good."}, {"a": "growth", "b": "stock", "w": 3, "n": "Capital Accumulation", "f": "ΔK = sY − δK", "d": "Save, invest, accumulate: the stock of capital grows and output with it, until depreciation and diminishing returns catch up. The Solow engine of why nations grow rich &mdash; and why their growth slows."}, {"a": "growth", "b": "share", "w": 2, "n": "The Sources of Growth", "f": "Y = A · K^α · L^(1−α)", "d": "Growth-accounting splits the rise in output among capital, labor, and a residual; the factor shares are the weights, and the residual &mdash; productivity &mdash; is the honest measure of our ignorance."}, {"a": "growth", "b": "level", "w": 1, "n": "The Long Run", "f": "", "d": "Across decades the price level is money and the growth rate is technology; the two great trends of the economy, one nominal and one real, meeting in the question of what a currency buys across a lifetime."}, {"a": "share", "b": "wage", "w": 3, "n": "Labor&rsquo;s Share", "f": "wL / Y", "d": "The wage bill as a fraction of the whole: how much of what is produced flows to those who work rather than those who own. Long believed a constant, now visibly falling &mdash; and no one fully agrees why."}, {"a": "share", "b": "rent", "w": 2, "n": "Functional Distribution", "f": "", "d": "Before income is split among persons it is split among factors &mdash; wages, profit, rent. The classical question of who receives what by virtue of owning which, which the personal distribution hides."}, {"a": "spread", "b": "asymmetry", "w": 2, "n": "The Informed Trader", "f": "", "d": "The market-maker widens the spread against the fear that whoever trades knows more; the bid-ask gap is the price of protection against adverse selection, paid by everyone for the sins of a few."}, {"a": "spread", "b": "stock", "w": 2, "n": "Inventory and Liquidity", "f": "", "d": "The dealer holds a stock so as to stand ready to trade, and the spread pays for the risk of holding it; liquidity is the service, the spread its price, the inventory its standing cost."}, {"a": "stock", "b": "rent", "w": 1, "n": "Wealth", "f": "", "d": "A stock of assets throws off a stream of returns; accumulated, it becomes wealth, and wealth held rather than earned is the rentier&rsquo;s position &mdash; capital as a congealed, inheritable claim."}, {"a": "wage", "b": "rent", "w": 1, "n": "The Factor Prices", "f": "", "d": "Labor earns a wage, land a rent, capital a return; the prices of the factors of production, each set in its own market, are the atoms out of which the whole distribution of income is built."}];
+  var GROUPS=[[1,"The Prices"],[2,"The Quantities"],[3,"The Failures"],[4,"The Institutions"],[5,"The Aggregates"],[6,"The Behaviors"]];
+  var byKey={}; for(var i=0;i<ELEMENTS.length;i++){ byKey[ELEMENTS[i][0]]=ELEMENTS[i]; }
+  var adj={}; for(i=0;i<ELEMENTS.length;i++) adj[ELEMENTS[i][0]]=[];
+  for(i=0;i<COMPOUNDS.length;i++){ var c=COMPOUNDS[i]; adj[c.a].push({p:c.b,c:c}); adj[c.b].push({p:c.a,c:c}); }
+
+  var cells={};
+  for(var g=0; g<GROUPS.length; g++){
+    var col=document.createElement('div'); col.className='cmp-col';
+    var h=document.createElement('div'); h.className='cmp-col-h'; h.textContent=GROUPS[g][1]; col.appendChild(h);
+    for(i=0;i<ELEMENTS.length;i++){ var e=ELEMENTS[i]; if(e[4]!==GROUPS[g][0]) continue;
+      var b=document.createElement('button'); b.className='cmp-cell'; b.type='button'; b.setAttribute('data-key',e[0]);
+      b.setAttribute('aria-label',e[2]+' \u2014 '+adj[e[0]].length+' compounds');
+      b.innerHTML='<span class="ce-deg">'+adj[e[0]].length+'</span><span class="ce-sym">'+e[1]+'</span><span class="ce-name">'+e[2]+'</span>';
+      (function(key){ b.addEventListener('click',function(){ select(key); }); })(e[0]);
+      col.appendChild(b); cells[e[0]]=b;
+    }
+    BOARD.appendChild(col);
+  }
+
+  function select(key){
+    BOARD.classList.add('has-sel');
+    for(var k in cells){ if(cells.hasOwnProperty(k)){ cells[k].classList.remove('sel','lit'); } }
+    cells[key].classList.add('sel');
+    var list=adj[key].slice();
+    list.sort(function(x,y){ return (y.c.w-x.c.w) || x.c.n.localeCompare(y.c.n); });
+    for(var j=0;j<list.length;j++){ if(cells[list[j].p]) cells[list[j].p].classList.add('lit'); }
+    var e=byKey[key];
+    var html='<div class="cmp-head"><span class="ch-sym">'+e[1]+'</span><span class="ch-name">'+e[2]+'</span>'
+      +'<span class="ch-count">forms '+list.length+' compound'+(list.length===1?'':'s')+'</span>'
+      +'<a class="cmp-open ch-open" href="the-'+key+'.html">open '+e[2]+' \u2192</a>'
+      +'<span class="ch-gloss">'+e[3]+'</span></div><div class="cmp-list">';
+    for(j=0;j<list.length;j++){
+      var p=byKey[list[j].p], c=list[j].c;
+      html+='<div class="cmp-entry"><button class="cmp-partner" type="button" data-key="'+list[j].p+'" aria-label="follow to '+p[2]+'">'+p[1]+'</button>'
+        +'<div class="cmp-cn"><span class="cmp-name">'+c.n+'</span><span class="cmp-arrow">&middot;</span><span class="cmp-pname">'+e[2]+' + '+p[2]+'</span>'
+        +(c.f? '<span class="cmp-formula">'+c.f+'</span>' : '')+'</div>'
+        +'<div class="cmp-desc">'+c.d+' <a class="lnk" href="the-'+list[j].p+'.html">open '+p[2]+' \u2192</a></div></div>';
+    }
+    html+='</div>';
+    PANEL.innerHTML=html;
+    var pbs=PANEL.querySelectorAll('.cmp-partner');
+    for(var q=0;q<pbs.length;q++){ (function(btn){ btn.addEventListener('click',function(ev){ ev.stopPropagation(); select(btn.getAttribute('data-key')); PANEL.scrollIntoView({behavior:'smooth',block:'start'}); }); })(pbs[q]); }
+  }
+
+  var built=false;
+  function buildAll(){
+    var tiers=[[3,"Core compounds \u2014 the deepest bonds"],[2,"Strong compounds"],[1,"Further compounds"]];
+    var html='';
+    for(var t=0;t<tiers.length;t++){
+      var rows=COMPOUNDS.filter(function(c){return c.w===tiers[t][0];});
+      rows.sort(function(x,y){ return byKey[x.a][2].localeCompare(byKey[y.a][2]); });
+      html+='<div class="cmp-all-group"><div class="cmp-all-gh">'+tiers[t][1]+' ('+rows.length+')</div>';
+      for(var r=0;r<rows.length;r++){ var c=rows[r], A=byKey[c.a], B=byKey[c.b];
+        html+='<div class="cmp-all-row"><span class="cmp-all-pair">'+A[1]+' + '+B[1]+'</span><span><b>'+c.n+'</b> &mdash; '+c.d+'</span></div>';
+      }
+      html+='</div>';
+    }
+    ALL.innerHTML=html;
+  }
+  TOG.addEventListener('click',function(){
+    var open=ALL.classList.toggle('open');
+    TOG.setAttribute('aria-expanded',open?'true':'false');
+    TOG.innerHTML = open ? 'Fold the table away &nbsp;\u25be' : 'Unfold the full table of sixty compounds &nbsp;\u25b8';
+    if(open && !built){ buildAll(); built=true; }
+  });
+
+  select('margin');
+
+  // ---- page chrome ----
+  document.documentElement.classList.add('js');
+  var bar=document.getElementById('progress'), topbar=document.getElementById('topbar'), title=document.querySelector('.vol-title');
+  function onScroll(){ var doc=document.documentElement, hh=doc.scrollHeight-window.innerHeight; var pr=hh>0?Math.min(1,Math.max(0,window.scrollY/hh)):0;
+    if(bar) bar.style.transform='scaleX('+pr.toFixed(4)+')';
+    if(topbar){ var th=(title?title.offsetHeight:420)*0.72; if(window.scrollY>th) topbar.classList.add('show'); else topbar.classList.remove('show'); } }
+  window.addEventListener('scroll',onScroll,{passive:true}); window.addEventListener('resize',onScroll,{passive:true}); onScroll();
+  if('IntersectionObserver' in window){
+    var rev=new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); rev.unobserve(en.target);} }); },{rootMargin:'0px 0px -8% 0px',threshold:0.04});
+    document.querySelectorAll('.reveal').forEach(function(el){ rev.observe(el); });
+  } else { document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); }); }
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="numeraire-properties.html">← The Properties</a><a rel="next" href="numeraire-diagonals.html">The Diagonals →</a></nav>
+</body>
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Slowdown — The Growth, Plate xi · Numéraire</title>
+<meta name="description" content="secular stagnation; whether the age of rapid growth was a one-time windfall now nearly spent.">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- reading-progress hairline ---- */
+  .progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--ink);z-index:10000;}
+
+  /* ---- masthead ---- */
+  .masthead{padding:clamp(2.8rem,8vh,5.6rem) 0 clamp(1.6rem,4vh,2.6rem);text-align:center;}
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;}
+  .edition{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+  .edition b{font-family:"Fraunces",serif;font-weight:500;font-style:normal;color:var(--soft);letter-spacing:.04em;}
+
+  .symbox{width:84px;height:84px;border:1px solid var(--ink);border-radius:2px;background:var(--ink);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;margin:clamp(1.4rem,3.4vh,2.2rem) auto 0;}
+  .symbox .sb-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2rem;line-height:1;color:var(--paper);letter-spacing:-.01em;}
+  .symbox .sb-num{font-family:"Fraunces",serif;font-size:.66rem;color:rgba(240,235,225,.58);margin-top:.28rem;letter-spacing:.04em;}
+
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-top:1.15rem;}
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.5rem,7vw,5rem);line-height:1.0;letter-spacing:-.028em;margin:.55rem 0 0;text-wrap:balance;}
+  .subtitle{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.05rem,1.7vw,1.32rem);color:var(--faint);margin:.5rem 0 0;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.64;color:var(--soft);
+    max-width:43rem;margin:clamp(1.3rem,3vh,1.9rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+  .status{font-size:.84rem;color:var(--soft);margin:clamp(1.2rem,2.6vh,1.7rem) auto 0;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .backrow{margin-top:clamp(1.3rem,3vh,1.9rem);padding-top:1.5rem;border-top:1px solid var(--hair);max-width:50rem;margin-left:auto;margin-right:auto;}
+  .backlink{display:inline-block;font-size:.82rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .backlink:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- generic block furniture ---- */
+  main{padding:0;}
+  .eyebrow{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.2rem;}
+
+  .block-argument{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .argument{max-width:40rem;margin:0 auto;}
+  .argument p{font-size:1.08rem;line-height:1.74;color:var(--ink);margin:0 0 1.2rem;text-wrap:pretty;}
+  .argument p:last-child{margin-bottom:0;}
+  .argument .closer{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 400;font-style:italic;color:var(--soft);font-size:1.06rem;}
+
+  /* ---- table of plates ---- */
+  .block-toc{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .toc ol{list-style:none;margin:0;padding:0;max-width:44rem;}
+  .toc li{display:grid;grid-template-columns:2.5rem 1fr;column-gap:1rem;align-items:baseline;
+    padding:.85rem 0;border-top:1px solid var(--hair);}
+  .toc li:first-child{border-top:none;}
+  .t-num{font-family:"Fraunces",serif;font-size:.92rem;color:var(--faintest);text-align:right;}
+  .t-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.08rem;color:var(--ink);line-height:1.15;text-decoration:none;}
+  a.t-title{border-bottom:1px solid var(--num);padding-bottom:1px;}
+  a.t-title:hover{border-bottom-color:var(--ink);}
+  .t-gloss{grid-column:2;font-size:.85rem;color:var(--faint);font-style:italic;margin-top:.22rem;line-height:1.4;}
+  .t-q{grid-column:2;font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:.95rem;color:var(--soft);margin-top:.42rem;line-height:1.36;}
+  .t-q .lead{font-family:"Fraunces",serif;font-style:normal;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-right:.5rem;}
+  .t-tag{display:inline-block;margin-left:.6rem;font-family:"Newsreader",serif;font-size:.64rem;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--paper);background:var(--ink);border-radius:2px;padding:.12em .5em;vertical-align:.14em;}
+  .t-read{grid-column:2;margin-top:.42rem;}
+  .t-read a{font-size:.8rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .t-read a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- the plates (essays) ---- */
+  .plates-open{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.8rem,6vh,4rem);}
+  .plates-open .eyebrow{text-align:center;}
+  .plate{max-width:54rem;margin:clamp(2.8rem,6.5vh,4.4rem) auto 0;padding-top:clamp(2.2rem,4.6vh,3rem);
+    border-top:1px solid var(--hair);position:relative;scroll-margin-top:1.4rem;}
+  .plate:first-of-type{border-top:none;margin-top:clamp(1.6rem,3.5vh,2.4rem);padding-top:0;}
+  .plate-head{margin:0 0 1.7rem;}
+  .plate-kicker{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .plate-kicker .pk-tag{margin-left:.6rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .plate-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.8rem,4.2vw,2.7rem);line-height:1.03;letter-spacing:-.02em;margin:.32rem 0 .42rem;}
+  .plate-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.02rem;color:var(--faint);max-width:36rem;line-height:1.45;}
+
+  .epigraph{max-width:34rem;margin:1.4rem 0 1.9rem;padding-left:1.1rem;border-left:1px solid var(--num);}
+  .epigraph p{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:1.04rem;line-height:1.42;color:var(--soft);margin:0;}
+  .epigraph cite{display:block;font-style:normal;font-family:"Newsreader",serif;font-size:.78rem;
+    letter-spacing:.03em;color:var(--faintest);margin-top:.55rem;}
+
+  .plate-body{max-width:37rem;}
+  .plate-body p{font-size:1.05rem;line-height:1.75;color:var(--ink);margin:0 0 1.18rem;text-wrap:pretty;}
+  .plate-body p:last-child{margin-bottom:0;}
+  .plate-body em{font-style:italic;}
+  .plate-body .lead-para::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 500;
+    float:left;font-size:3.5rem;line-height:.78;padding:.08em .14em 0 0;color:var(--ink);}
+  .plate-body h4{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);margin:1.9rem 0 .9rem;}
+
+  .break{display:flex;justify-content:center;margin:1.9rem 0;}
+  .break span{font-family:"Fraunces",serif;font-size:1.05rem;letter-spacing:.4em;color:var(--faintest);padding-left:.4em;}
+
+  /* sidenotes — inline by default, true margin notes on wide screens */
+  .sn-ref{font-family:"Fraunces",serif;font-size:.64rem;vertical-align:super;line-height:0;color:var(--soft);margin-left:.06em;}
+  .sidenote{font-family:"Newsreader",serif;font-size:.82rem;line-height:1.52;color:var(--faint);
+    border-left:2px solid var(--hair);padding-left:.9rem;margin:.7rem 0 1.05rem;}
+  .sidenote .sn-num{font-family:"Fraunces",serif;color:var(--faintest);font-size:.7rem;margin-right:.38rem;}
+  .sidenote em{font-style:italic;}
+  @media (min-width:1040px){
+    .sidenote{float:right;clear:right;width:14.5rem;margin:.25rem -17.5rem 1.15rem 0;
+      border-left:none;border-top:1px solid var(--hair);padding:.42rem 0 0;}
+  }
+
+  /* ---- coda ---- */
+  .coda{max-width:40rem;margin:clamp(2.8rem,6vh,4rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);}
+  .coda p{font-size:1.06rem;line-height:1.74;color:var(--ink);margin:0 0 1.15rem;text-wrap:pretty;}
+  .coda p:last-child{margin-bottom:0;}
+  .coda .q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .f-ref a{text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .f-ref a:hover{border-bottom-color:var(--soft);}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .progress{transition:width .08s linear;}
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}.rise.d4{animation-delay:.4s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    h1{font-size:clamp(2.2rem,11vw,3rem);}
+    .symbox{width:72px;height:72px;}
+    .symbox .sb-sym{font-size:1.7rem;}
+    .plate-body .lead-para::first-letter{font-size:3rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+
+  /* ---- standalone plate (leaf) ---- */
+  .leaf-head{max-width:54rem;margin:0 auto;padding:clamp(2.2rem,6.5vh,4.4rem) 0 0;text-align:center;}
+  .leaf-loc{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.08em;color:var(--faintest);margin-bottom:1.7rem;}
+  .leaf-loc a{text-decoration:none;color:var(--faint);border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .leaf-loc a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+  .leaf-loc .sep{margin:0 .5rem;color:var(--num);}
+  .leaf-kicker{font-family:"Fraunces",serif;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .leaf-kicker .pk-tag{margin-left:.55rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .leaf-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.2rem,5.6vw,3.7rem);line-height:1.02;letter-spacing:-.024em;margin:.42rem 0 0;text-wrap:balance;}
+  .leaf-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.06rem;color:var(--faint);
+    max-width:34rem;margin:.72rem auto 0;line-height:1.5;text-wrap:pretty;}
+  .epigraph.leaf-epigraph{margin:1.95rem auto 1.4rem;text-align:left;}
+  .leaf-body-wrap{max-width:54rem;margin:clamp(1.8rem,4vh,2.8rem) auto 0;}
+
+  .leaf-nav{max-width:54rem;margin:clamp(3rem,7vh,5.2rem) auto 0;padding-top:clamp(1.8rem,4vh,2.6rem);
+    border-top:1px solid var(--hair);display:grid;grid-template-columns:1fr auto 1fr;gap:1.3rem;align-items:start;}
+  .ln-cell{text-decoration:none;display:block;}
+  .ln-cell .lab{display:block;font-family:"Fraunces",serif;font-size:.64rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--faintest);margin-bottom:.36rem;}
+  .ln-cell .ttl{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1rem;
+    color:var(--soft);line-height:1.22;}
+  a.ln-cell:hover .ttl{color:var(--ink);}
+  .ln-prev{text-align:left;} .ln-home{text-align:center;} .ln-next{text-align:right;}
+
+  @media (max-width:600px){
+    .leaf-nav{grid-template-columns:1fr;gap:1.4rem;}
+    .ln-prev,.ln-home,.ln-next{text-align:center;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#ne-contents">Complete contents</a><a href="../editions.html#volume-growth">The Growth · both editions</a><a href="../volumes/the-growth.html">Collected volume</a></div></nav>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="frame">
+
+  <header class="leaf-head">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="leaf-loc rise d1" aria-label="Location in the series"><a href="numeraire-atlas-updated.html">Numéraire</a><span class="sep">·</span><a href="numeraire-xx-the-growth.html">Volume XX · The Growth</a></nav>
+    <div class="leaf-kicker rise d2">Plate xi <span class="pk-tag">in print</span></div>
+    <h1 class="leaf-title rise d2">The Slowdown</h1>
+    <div class="leaf-gloss rise d3">secular stagnation; whether the age of rapid growth was a one-time windfall now nearly spent.</div>
+    <div class="epigraph leaf-epigraph rise d3">
+      <p>The growth that made the modern world was not the normal condition of mankind but a single, glorious episode, and it may be ending. For one extraordinary century the great inventions remade human life — light and power, the engine, clean water, the conquest of distance and of disease — and each of these could be invented only once. What has followed is smaller. The question the comfortable forget to ask is whether the climb that lifted our grandparents so far will carry our grandchildren as high, or whether we are living on the fading momentum of a wave that has already crested.</p>
+      <cite>— the argument of this plate, after Robert J. Gordon, 2016</cite>
+    </div>
+  </header>
+
+  <main class="leaf-body-wrap">
+    <article class="plate">
+      <div class="plate-body">
+<p class="lead-para">The volume's flagship ended in optimism: growth springs from ideas, and ideas, being non-rival, never run out, so the climb need never stop. This plate is the doubt that shadows that hope. Its claim is not that ideas have ceased but that the great ones may be behind us — that the burst of growth which remade the modern world was not the new and permanent condition of mankind but a single, unrepeatable episode, now fading. The economist who pressed this hardest is Robert Gordon, who looked at the long record of American growth and saw not a steady upward line but a hump: a special century, roughly 1870 to 1970, in which output per person rose as it never had before and, he suspects, never will again. Before it lay the slow world of the earlier plates, where living standards barely moved from one generation to the next; after it, a deceleration already under way, the rate of advance bending downward across the rich world for the better part of a lifetime. Gordon does not deny that growth continues; he denies that it will continue at the pace that the people of the special century came to think of as ordinary and owed. The question is the plate's, put in its starkest form: was the age of growth a one-time windfall, now nearly spent?</p>
+
+<p>His case rests first on the character of the inventions that drove the special century. The transformations of that hundred years — the harnessing of electricity, the internal combustion engine, running water and the indoor bathroom, the chemical and pharmaceutical retreat of disease, the telephone and the broadcast that annihilated distance — were not merely large but unique, in a way that bears directly on the future. Each could be accomplished only once. A house passed from dark to lit, from the outhouse to plumbing, from isolation to instant connection — and having made that passage, it cannot make it again; the second electrification adds nothing to the first. The great inventions were one-time elevations from a low floor to a high one, and the growth they threw off was the growth of scaling a cliff, not of strolling along its summit. Gordon's contention is that the inventions since — above all the computer and the internet, real and remarkable as they are — have remade a narrower province of life, the gathering and sending of information, and have not delivered, and may not be able to deliver, an elevation on the scale of the earlier wave. The engine of ideas runs on, but it pushes now against a world already lifted, where the easy and enormous gains have largely been taken.<sup class="sn-ref">1</sup></p>
+<div class="sidenote"><span class="sn-num">1.</span> Gordon's special century, roughly 1870 to 1970, was driven by inventions unique in a way that matters: each could be done only once. A house went from dark to lit, from outhouse to plumbing, from isolation to connection — and cannot make the passage twice; the second electrification adds nothing. They were one-time elevations from a low floor to a high one. The computer and internet, real as they are, remade a narrower province of life and have not delivered an elevation on the same scale.</div>
+
+<p>To the one-time inventions Gordon adds a set of headwinds — forces particular to the present that drag on growth quite apart from the pace of invention. The first is demographic: the rich societies are aging, their working share shrinking, so that output per head is pulled down by the plain arithmetic of fewer earners carrying more dependents. The second is educational: the great twentieth-century rise in schooling — the move to universal secondary education, the mass entry into college — was itself a one-time gain, and the attainment that had powered growth has levelled off, with no comparable rise in view. The third is distributional: when the gains that do occur flow chiefly to the top, the income of the median household — the experience of the typical family — stalls even as the average creeps upward, so that for most people the slowdown is sharper than the aggregate confesses. And the fourth is the overhang of debt, public and private, which mortgages future income to past borrowing. None of these is invention slowing; every one of them is growth slowing; and together, Gordon argues, they could cut in half the rate of advance that the ordinary family had learned to expect.<sup class="sn-ref">2</sup></p>
+<div class="sidenote"><span class="sn-num">2.</span> The headwinds drag on growth apart from the pace of invention. Demographic: aging societies, a shrinking working share. Educational: the twentieth-century rise in schooling was itself a one-time gain, now levelled off. Distributional: when gains flow to the top, the median household stalls even as the average creeps up. And the overhang of debt, mortgaging future income to past borrowing. None is invention slowing; all are growth slowing.</div>
+
+<div class="break"><span>⁂</span></div>
+
+<p>Gordon's is a pessimism of supply — a claim about the dwindling fuel of growth, the inventions and the able hands that turn possibility into product. But there is a second and darker reading of the slowdown, which lodges the trouble not in supply but in demand. On this view, revived under the old name of secular stagnation, the rich economies suffer a chronic insufficiency of spending: a glut of saving with too few profitable outlets, which presses the return on investment so low that the interest rate which would balance the one against the other falls below zero — beneath the floor a monetary authority can readily reach. The economy then settles into a torpor of weak demand, thin investment, and output below its potential, not because it cannot produce but because it will not spend enough to summon its capacity into use. The two pessimisms point the same way — toward slower growth — by opposite roads: the one holds that the engine is weakening, the other that the engine is starved of fuel it could perfectly well burn. Which force dominates is disputed; that the trend has bent downward, across the rich world and for a generation, is not.<sup class="sn-ref">3</sup></p>
+<div class="sidenote"><span class="sn-num">3.</span> A second pessimism lodges the trouble in demand, not supply: secular stagnation, revived from an older theory. A glut of saving with too few outlets presses the return on investment until the balancing interest rate falls below zero, beneath the floor policy can readily reach; the economy settles into weak demand and output below potential — not for inability to produce but for unwillingness to spend enough to use its capacity. The two pessimisms reach slower growth by opposite roads.</div>
+
+<p>Against all this stands the optimist's reply, and it is not feeble. The pessimist, the optimist says, forever mistakes the pause before the next wave for the end of waves: the same gloom was preached in the 1930s and again in the 1970s, on the very eve of booms that no forecaster foresaw, and the measured slowdown may be partly an artifact of figures that price ordinary goods well but value the free and transforming ones — the search engine, the library carried in every pocket — at almost nothing. And the last great wave itself took decades to surface in the figures: electricity was wired into the factories long before it reorganized them, so the digital wave may simply be early in the same slow diffusion, its largest gains still to come. The transformations now gathering in the biological sciences and in artificial intelligence may yet prove elevations to rival electricity, their fruits merely not yet harvested, still less counted. Gordon does not deny the possibility; his claim is one of probability and the base rate of history, that the special century was special, that nothing since has matched it, and that the burden of proof rests on those who promise its like will come again. The dispute cannot be closed by assertion, for it is a forecast, and forecasts of invention are the least trustworthy forecasts there are. Yet the stakes are immense, since a tenth of a point shaved from the annual rate, compounded across a working life, is the whole difference between a child twice as rich as its parents and one barely richer at all.<sup class="sn-ref">4</sup></p>
+<div class="sidenote"><span class="sn-num">4.</span> The optimist replies that the pessimist always mistakes the pause before the next wave for the end of waves — the same gloom preached in the 1930s and 1970s before unforeseen booms — and that the measured slowdown may be a statistical artifact, pricing ordinary goods but barely valuing free transforming ones. The biological sciences and artificial intelligence may yet rival electricity. Gordon's claim is probabilistic: the special century was special, and the burden lies on those who promise its return.</div>
+
+<p>So the volume that opened with the escape from stagnation closes on a question about the escape's permanence. The earlier plates explained where growth comes from — the accumulation that runs into its limits, the restless advance of method, the borrowing open to the latecomer, and beneath them all the engine of ideas. This plate asks whether that engine, having lifted the modern world so far so fast, can keep lifting it at the same rate, or whether the rate itself was the exceptional thing — a property not of growth as such but of one extraordinary century, the like of which the long record gives scant reason to expect a second time. It is fitting that the grandest of the aggregates should close not in triumph but in doubt, for growth is the one economic quantity whose future cannot be reasoned out from its past, resting as it does on inventions not yet made and therefore unknowable in advance. The wealth of the modern world is real and immense; whether it will go on compounding as it has, or subside toward the slow increase that was the human norm through all the ages before the special century, is the question on which the prosperity of the next generation hangs — and the one this volume, in honesty, must leave open.<sup class="sn-ref">5</sup></p>
+<div class="sidenote"><span class="sn-num">5.</span> It is fitting that the grandest aggregate should close in doubt, for growth is the one economic quantity whose future cannot be reasoned from its past, resting on inventions not yet made and so unknowable. Whether the wealth of the modern world will go on compounding, or subside toward the slow increase that was the human norm before the special century, is the question on which the next generation's prosperity hangs — and the one the volume must honestly leave open.</div>
+      </div>
+    </article>
+  </main>
+
+  <nav class="leaf-nav" aria-label="Plate navigation">
+    <a class="ln-cell ln-prev" href="numeraire-xx-viii-the-idea.html"><span class="lab">← Previous plate</span><span class="ttl">Plate viii · The Idea</span></a>
+    <a class="ln-cell ln-home" href="numeraire-xx-the-growth.html"><span class="lab">The volume</span><span class="ttl">The Growth · contents</span></a>
+    <span class="ln-cell ln-next"></span>
+  </nav>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref"><a href="numeraire-xx-the-growth.html">The Growth</a> · <a href="numeraire-atlas-updated.html">the table</a></span>
+    </div>
+    <p class="colophon">Plate xi of <em>The Growth</em>, Volume the Twentieth of <em>Numéraire</em> — a periodic table of economic life. This leaf may be read on its own or as part of the volume. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<script>
+(function(){
+  var bar=document.getElementById('progress');
+  function onScroll(){
+    var h=document.documentElement;
+    var max=(h.scrollHeight-h.clientHeight);
+    var p=max>0?(h.scrollTop||document.body.scrollTop)/max:0;
+    bar.style.width=(p*100).toFixed(2)+'%';
+  }
+  document.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="numeraire-xx-viii-the-idea.html">← The Idea</a><a rel="next" href="numeraire-xxi-the-level.html">The Level →</a></nav>
+</body>
+</html>

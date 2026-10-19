@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Commons — Numéraire, Volume XIII</title>
+<meta name="description" content="The Commons — Volume XIII of Numéraire, A Periodic Table of Economic Life. The resource that all may use and none will tend: the tragedy of overuse, the fishery and the pasture, the n-person dilemma, and the three ways to govern what no one owns — the market, the state, and Ostrom\'s self-governing community.">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem; --measure:40rem;
+    --wash:rgba(28,26,22,.066); --wash2:rgba(28,26,22,.12);
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.62;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  .measure{max-width:var(--measure);margin-left:auto;margin-right:auto;}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- ornaments ---- */
+  .orn{display:flex;justify-content:center;margin:0 auto;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .divider{display:flex;align-items:center;gap:1.1rem;max-width:30rem;margin:clamp(3rem,7vh,5rem) auto;color:var(--num);}
+  .divider .ln{flex:1;height:1px;background:var(--hair);}
+  .divider svg{display:block;width:12px;height:12px;overflow:visible;flex:0 0 auto;}
+  .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* ---- progress + running head ---- */
+  #progress{position:fixed;top:0;left:0;height:2px;width:100%;transform:scaleX(0);transform-origin:0 50%;background:var(--soft);opacity:.45;z-index:10000;}
+  #topbar{position:fixed;top:0;left:0;right:0;z-index:9998;transform:translateY(-100%);transition:transform .5s cubic-bezier(.2,.6,.2,1);
+    background:rgba(240,235,225,.86);-webkit-backdrop-filter:saturate(1.1) blur(8px);backdrop-filter:saturate(1.1) blur(8px);
+    border-bottom:1px solid var(--hair);}
+  #topbar.show{transform:translateY(0);}
+  .tb-in{max-width:var(--frame);margin:0 auto;padding:.62rem clamp(1.4rem,4vw,3.4rem);display:flex;justify-content:space-between;align-items:baseline;gap:1.2rem;}
+  .tb-l{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:.86rem;letter-spacing:.01em;}
+  .tb-l span{color:var(--faintest);font-weight:400;}
+  .tb-r{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);text-align:right;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+
+  /* ---- title page ---- */
+  .vol-title{padding:clamp(3.4rem,11vh,8rem) 0 clamp(1.6rem,5vh,3rem);text-align:center;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.16rem;letter-spacing:.02em;}
+  .vol-no{font-size:.84rem;color:var(--faint);letter-spacing:.16em;text-transform:uppercase;margin-top:.55rem;}
+  h1.vol-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 380;font-weight:380;
+    font-size:clamp(2.9rem,9vw,6rem);line-height:.98;letter-spacing:-.028em;margin:clamp(1.7rem,4.5vh,2.8rem) 0 0;text-wrap:balance;}
+  .vol-sym{width:78px;height:78px;margin:clamp(1.6rem,4vh,2.4rem) auto 0;border:1px solid var(--hair);border-radius:2px;
+    display:flex;align-items:center;justify-content:center;background:var(--ink);}
+  .vol-sym span{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2.3rem;line-height:1;color:var(--paper);letter-spacing:-.01em;}
+  .vol-coords{font-family:"Fraunces",serif;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);margin-top:1.1rem;}
+  .vol-gloss{font-style:italic;color:var(--soft);font-size:1.12rem;margin:.5rem 0 0;}
+  .vol-epigraph{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 400;font-style:italic;
+    font-size:clamp(1.14rem,1.7vw,1.34rem);line-height:1.42;color:var(--soft);max-width:33rem;margin:clamp(1.8rem,4vh,2.6rem) auto 0;text-wrap:pretty;}
+  .vol-epigraph .lead{display:block;font-style:normal;font-variation-settings:"opsz" 24,"wght" 400;
+    font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.7rem;}
+  .vol-status{display:inline-flex;align-items:center;gap:.5rem;margin:clamp(1.8rem,4vh,2.4rem) auto 0;font-size:.84rem;color:var(--soft);}
+  .vol-status::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ink);}
+
+  /* ---- the argument (preface) ---- */
+  .part-head{text-align:center;margin:0 0 clamp(1.6rem,3.5vh,2.3rem);}
+  .part-kicker{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faintest);}
+  .part-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-weight:400;
+    font-size:clamp(1.5rem,3.4vw,2.1rem);letter-spacing:-.012em;margin:.4rem 0 0;}
+  .argument p{font-size:1.05rem;line-height:1.74;margin:0 0 1.15rem;text-wrap:pretty;}
+  .argument p.lede::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 420;
+    float:left;font-size:3.5em;line-height:.78;padding:.05em .1em 0 0;color:var(--ink);}
+  .argument em,.plate-body em,.coda em{font-style:italic;}
+
+  /* ---- contents ---- */
+  .toc{list-style:none;margin:0 auto;padding:0;max-width:43rem;}
+  .toc li{border-top:1px solid var(--hair);}
+  .toc li:last-child{border-bottom:1px solid var(--hair);}
+  .toc a{display:grid;grid-template-columns:2.6rem 1fr;column-gap:1.1rem;align-items:baseline;
+    padding:.82rem .3rem;text-decoration:none;transition:background .2s ease;}
+  .toc a:hover{background:rgba(28,26,22,.035);}
+  .toc-n{font-family:"Fraunces",serif;font-size:.92rem;color:var(--faintest);text-align:right;}
+  .toc-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.06rem;color:var(--ink);line-height:1.16;}
+  .toc-g{grid-column:2;font-size:.85rem;font-style:italic;color:var(--faint);margin-top:.16rem;line-height:1.38;}
+
+  /* ---- plates ---- */
+  .plate{margin:clamp(3.2rem,8vh,6rem) 0 0;padding-top:clamp(2.4rem,5.5vh,3.4rem);border-top:1px solid var(--hair);scroll-margin-top:4rem;}
+  .plate-open{max-width:var(--measure);margin-inline:auto;}
+  .plate-no{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 360;font-size:clamp(2.6rem,7vw,4.1rem);
+    line-height:.9;color:var(--num);letter-spacing:.02em;}
+  .plate-kicker{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faintest);margin:.9rem 0 .2rem;}
+  .plate-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.8rem,4.4vw,2.7rem);line-height:1.04;letter-spacing:-.018em;margin:0;text-wrap:balance;}
+  .plate-gloss{font-style:italic;color:var(--soft);font-size:1.02rem;margin:.55rem 0 0;line-height:1.4;}
+
+  .ask{max-width:var(--measure);margin:clamp(1.5rem,3.5vh,2.2rem) auto clamp(1.8rem,4vh,2.4rem);}
+  .ask .lead{display:block;font-family:"Fraunces",serif;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.55rem;}
+  .ask q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:clamp(1.18rem,1.8vw,1.38rem);line-height:1.36;color:var(--soft);quotes:none;}
+
+  .plate-body{max-width:var(--measure);margin-inline:auto;}
+  .plate-body p{margin:0 0 1.18rem;text-wrap:pretty;}
+  .plate-body > p:first-of-type::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 430;
+    float:left;font-size:3.5em;line-height:.76;padding:.04em .12em 0 0;color:var(--ink);}
+  .plate-body h4{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.76rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faint);margin:2rem 0 .9rem;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 380;font-style:italic;
+    font-size:clamp(1.4rem,2.3vw,1.7rem);line-height:1.32;color:var(--soft);text-align:center;
+    max-width:33rem;margin:clamp(2rem,4.5vh,2.8rem) auto;text-wrap:balance;}
+
+  .edge{max-width:var(--measure);margin:1.7rem auto;padding:.1rem 0 .1rem 1.15rem;border-left:1px solid var(--hair);
+    color:var(--faint);font-size:.92rem;line-height:1.62;}
+  .edge .lead{display:block;font-family:"Fraunces",serif;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.4rem;}
+  .edge em{font-style:italic;color:var(--soft);}
+
+  /* ---- figures (engravings) ---- */
+  .fig{max-width:var(--measure);margin:clamp(2.1rem,4.5vh,2.9rem) auto;}
+  .fig-frame{border:1px solid var(--hair);border-radius:2px;padding:clamp(1rem,2.4vw,1.7rem) clamp(1rem,2.4vw,1.7rem) clamp(.8rem,2vw,1.3rem);background:rgba(255,253,247,.4);}
+  .fig svg{display:block;width:100%;height:auto;}
+  figcaption{margin:.95rem auto 0;max-width:38rem;font-size:.85rem;line-height:1.5;color:var(--faint);text-wrap:pretty;}
+  figcaption .fig-n{font-family:"Fraunces",serif;font-weight:500;letter-spacing:.04em;color:var(--soft);}
+  figcaption em{font-style:italic;}
+  .ax{stroke:var(--soft);stroke-width:1.1;fill:none;}
+  .tick{stroke:var(--soft);stroke-width:1;}
+  .curve{stroke:var(--ink);stroke-width:1.5;fill:none;stroke-linecap:round;}
+  .curve2{stroke:var(--ink);stroke-width:1.3;fill:none;stroke-linecap:round;}
+  .guide{stroke:var(--faintest);stroke-width:1;fill:none;stroke-dasharray:3 3.5;}
+  .core{stroke:var(--ink);stroke-width:3;fill:none;stroke-linecap:round;}
+  .fill-cs{fill:var(--wash);}
+  .fill-dwl{fill:var(--wash2);}
+  .fill-wedge{fill:var(--wash);}
+  .fill-lens{fill:var(--wash);}
+  .hatch-line{stroke:var(--faintest);stroke-width:.8;}
+  .lbl{font-family:"Fraunces",serif;font-size:11.5px;fill:var(--faint);font-variation-settings:"opsz" 24,"wght" 400;}
+  .lbl-i{font-family:"Newsreader",serif;font-style:italic;font-size:11px;fill:var(--soft);}
+  .lbl-sm{font-family:"Fraunces",serif;font-size:9.6px;fill:var(--faintest);letter-spacing:.02em;}
+  .lbl-ax{font-family:"Fraunces",serif;font-size:9.4px;fill:var(--faintest);letter-spacing:.12em;}
+
+  /* ---- coda + colophon ---- */
+  .coda{max-width:var(--measure);margin:clamp(3rem,7vh,5rem) auto 0;}
+  .coda p{margin:0 0 1.18rem;text-wrap:pretty;}
+  .coda p.lede::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 430;
+    float:left;font-size:3.5em;line-height:.76;padding:.04em .12em 0 0;color:var(--ink);}
+  footer{margin-top:clamp(3.6rem,8vh,6rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.4rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .colophon{font-size:.85rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+
+  /* ---- motion / reveal ---- */
+  @media (prefers-reduced-motion: no-preference){
+    html.js .reveal{opacity:0;transform:translateY(14px);}
+    html.js .reveal.in{opacity:1;transform:none;}
+    .reveal{transition:opacity .9s cubic-bezier(.2,.6,.2,1),transform .9s cubic-bezier(.2,.6,.2,1);}
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.18s}.rise.d3{animation-delay:.32s}.rise.d4{animation-delay:.46s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  /* ---- responsive ---- */
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .argument p,.plate-body p,.coda p{font-size:1.01rem;}
+    .plate-body > p:first-of-type::first-letter,.argument p.lede::first-letter,.coda p.lede::first-letter{font-size:3em;}
+    .f-bar{flex-direction:column;gap:.5rem;}
+    .toc a{grid-template-columns:2rem 1fr;column-gap:.8rem;}
+    figcaption{font-size:.82rem;}
+  }
+
+  /* ---- print: a volume, in print ---- */
+  @media print{
+    html,body{background:#fff;color:#000;}
+    body{font-size:11.5pt;line-height:1.5;}
+    body::before,#progress,#topbar{display:none !important;}
+    .frame{max-width:none;padding:0;}
+    .measure,.plate-open,.plate-body,.ask,.edge,.coda{max-width:34rem;}
+    a{text-decoration:none;}
+    .plate{break-before:page;border-top:none;padding-top:0;}
+    .fig,figure{break-inside:avoid;}
+    .plate-no{color:#bbb;}
+    .reveal{opacity:1 !important;transform:none !important;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#ne-contents">Complete contents</a><a href="../editions.html#volume-commons">The Commons · both editions</a><a href="../essays/numeraire-xiii-the-commons.html">Expanded essays</a></div></nav>
+<div id="progress" aria-hidden="true"></div>
+<div id="topbar" aria-hidden="true"><div class="tb-in">
+  <span class="tb-l">Numéraire <span>· The Commons</span></span>
+  <span class="tb-r" id="tb-plate">Volume XIII</span>
+</div></div>
+
+<div class="frame">
+
+  <header class="vol-title">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="rise d1">
+      <span class="imprint">Numéraire</span>
+      <div class="vol-no">Volume XIII &middot; № XIII</div>
+    </div>
+    <h1 class="vol-name rise d2">The Commons</h1>
+    <div class="vol-sym rise d3" aria-hidden="true"><span>Cm</span></div>
+    <div class="vol-coords rise d3">Group III &middot; The Failures</div>
+    <p class="vol-gloss rise d3">the resource that all may use and none will tend</p>
+    <p class="vol-epigraph rise d4">
+      <span class="lead">The question of the volume</span>
+      When a pasture belongs to everyone, who will spare the grass?
+    </p>
+    <div class="vol-status rise d4">in print &middot; twelve plates</div>
+  </header>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <section class="argument measure reveal" aria-labelledby="arg-h">
+    <div class="part-head">
+      <div class="part-kicker">Numéraire &middot; Volume XIII</div>
+      <h2 class="part-title" id="arg-h">The Argument</h2>
+    </div>
+    <p class="lede">The preceding volume, <em>The Externality</em>, traced a single cost as it slipped past a price — the smoke a mill made and did not pay for, the benefit an orchard gave away — and found, beneath every instance, the same lack: a market that was never built, so that a cost or a worth came to rest on a bystander the price had never consulted. This volume takes that lack and multiplies it. For there is a kind of resource whose bystanders are not a few unlucky neighbors but everyone at once, and on which each user is, at the same moment, the maker of the harm and one of its victims. A pasture open to every herder; a sea open to every boat; an aquifer beneath a hundred farms; the atmosphere into which all the world exhales. Each is rival — what one takes, another cannot have — and each is open, for no one can readily be kept out. And each, left to the unguided pursuit of private gain, is used to ruin.</p>
+    <p>The economist's name for such a thing is a common-pool resource, and its trouble lies in the meeting of two properties that the textbook good keeps carefully apart. A loaf of bread is rival but excludable: what I eat you cannot, and the baker may refuse me until I pay, so a price forms and the market does its work. The open sea is rival but <em>not</em> excludable: the fish I land you cannot land, yet no gate stands at the water's edge, and so no price forms for the taking of them. It is this combination — subtractable like a private good, open like a public one — that defines the commons and dooms it, for the resource can be exhausted and yet no one can be made to pay for exhausting it. The price that should have rationed the scarce thing was never allowed to form, and into that silence the herds and the fleets and the wells pour without limit.</p>
+    <p>What follows from the silence was given its enduring name by Garrett Hardin in 1968: the tragedy of the commons. Each herder who adds a beast to the common pasture takes the whole of that beast for himself, while the cost it imposes — a little less grass for every other herder's animals — is spread thin across them all and borne by none in particular. The private gain is concentrated and the shared cost is diffuse, and so each herder, consulting only his own ledger, adds and adds until the pasture is grazed to dust. The tragedy, in the old and exact sense of the word, is not that the herders are wicked; it is that they are reasonable, and that reason, turned loose on a commons, is an engine of collective ruin. What is sensible for each is catastrophe for all.</p>
+    <p>Seen with the eye the last volume trained, the commons is the externality made reciprocal and many-sided. There, one party laid a cost upon another and the harm ran in a single direction, mill to laundry, smoke to lung. Here the harm runs every way at once: each user's withdrawal diminishes the resource for all the rest, so that every participant is perpetrator and victim together, and the missing market is missing not between two parties but among a multitude. The tragedy of the commons is the externality written in the plural — the same uncounted cost of the eleventh volume, now suffered symmetrically by everyone who shares the thing. It is the failure of a resource that belongs to all and therefore, in the only sense that governs conduct, to none.</p>
+    <p>Against this failure the discipline has set three remedies, and the contest among them is the spine of the volume. The first is to <em>fence</em> the commons — to carve it into private property, so that one owner bears the whole cost of overuse and reaps the whole reward of husbandry, and the harm each user did to all collapses into a cost he does to himself. The second is the <em>Leviathan</em> — the state, which by quota and licence and closed season coerces the restraint the users cannot impose upon themselves: "mutual coercion, mutually agreed upon," in Hardin's own phrase. For two centuries the argument ran between these two, the market against the state, as though they exhausted the possibilities. They do not. The third remedy, and the volume's turning point, is the one Elinor Ostrom spent a career documenting: that communities of users, given the room to do it, govern their commons themselves — neither privatizing the resource nor surrendering it to the state, but crafting, monitoring, and enforcing their own rules of access — and have done so, in alpine pasture and coastal fishery and irrigated valley, for centuries together. Her work, crowned with the Nobel of 2009, did not merely add a third option to a list of two; it dissolved the dichotomy that had counted only two.</p>
+    <p>The thesis of the volume may be set down at the outset, since the plates exist to earn it rather than to spring it. The commons is the failure of the unowned shared resource — rival yet open to all, so that each user's gain is every other's loss, and the sum of rational withdrawals is a ruin that no one willed. It can be governed: by the market, by the state, or by the community. But no one of these is a panacea, and the choice among them is not a theorem to be proved but a judgment to be made, turning on the nature of the resource and the character of the people who share it — for privatization dispossesses and may not even conserve, regulation is captured and ill-informed and displaces what worked, and self-governance does not scale and can cloak an injustice of its own. A price that takes no account of the shared cost is a verdict that the shared is no one's concern; this volume is the study of that verdict, of the ruin it licenses, and of the plural, partial, hard-won institutions by which men have learned, here and there and never for certain, to tend what none of them owns. The argument, here most of all, remains open.</p>
+  </section>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <section class="contents reveal" aria-labelledby="toc-h">
+    <div class="part-head">
+      <div class="part-kicker">The twelve plates of this volume</div>
+      <h2 class="part-title" id="toc-h">The Plates</h2>
+    </div>
+    <ol class="toc">
+      <li><a href="#plate-i"><span class="toc-n">i</span><span class="toc-t">The Pasture</span><span class="toc-g">rival yet open to all; the four goods; the tragedy in miniature</span></a></li>
+      <li><a href="#plate-ii"><span class="toc-n">ii</span><span class="toc-t">The Tragedy</span><span class="toc-g">Hardin's pasture formalized; private incentive, collective ruin; the dissipated rent</span></a></li>
+      <li><a href="#plate-iii"><span class="toc-n">iii</span><span class="toc-t">The Fishery</span><span class="toc-g">the open-access fishery; Gordon and Schaefer; rent fished away to nothing</span></a></li>
+      <li><a href="#plate-iv"><span class="toc-n">iv</span><span class="toc-t">The Many</span><span class="toc-g">the tragedy as an n-person dilemma; Olson, free-riding, and the trap of the many</span></a></li>
+      <li><a href="#plate-v"><span class="toc-n">v</span><span class="toc-t">The Fence</span><span class="toc-g">privatize the commons; Demsetz, enclosure, and the tradable quota</span></a></li>
+      <li><a href="#plate-vi"><span class="toc-n">vi</span><span class="toc-t">The Leviathan</span><span class="toc-g">the state's coercion; Hardin's Leviathan, regulation, and its capture</span></a></li>
+      <li><a href="#plate-vii"><span class="toc-n">vii</span><span class="toc-t">The Governed</span><span class="toc-g">Ostrom's third way; the community that governs itself</span></a></li>
+      <li><a href="#plate-viii"><span class="toc-n">viii</span><span class="toc-t">The Charter</span><span class="toc-g">the design principles; the anatomy of a commons that endures</span></a></li>
+      <li><a href="#plate-ix"><span class="toc-n">ix</span><span class="toc-t">The Stranger</span><span class="toc-g">when self-governance fails; the stranger, the multitude, the global commons</span></a></li>
+      <li><a href="#plate-x"><span class="toc-n">x</span><span class="toc-t">The Club</span><span class="toc-g">club goods and congestion; the crowded road and the optimal club — Buchanan</span></a></li>
+      <li><a href="#plate-xi"><span class="toc-n">xi</span><span class="toc-t">The Mirror</span><span class="toc-g">the comedy, the knowledge commons, and the anticommons — Rose, Heller</span></a></li>
+      <li><a href="#plate-xii"><span class="toc-n">xii</span><span class="toc-t">The Inheritance</span><span class="toc-g">the failure of the unowned made whole — toward The Game, The Norm, The Rule</span></a></li>
+    </ol>
+  </section>
+
+  <main class="plates" id="plates">
+
+    <!-- ===================== PLATE I ===================== -->
+    <section class="plate reveal" id="plate-i" data-label="Plate i · The Pasture">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">i</div>
+        <p class="plate-kicker">Plate the First &middot; The Failures &middot; № XIII</p>
+        <h3 class="plate-title">The Pasture</h3>
+        <p class="plate-gloss">rival yet open to all; the four goods; the tragedy in miniature</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what kind of thing is a pasture that belongs to everyone — and why is it doomed?</q></div>
+      <div class="plate-body">
+        <p>Picture the commons in its oldest form: the village pasture, a stretch of grazing land open to all the households of the village and owned outright by none of them. Any villager may turn his cattle onto it; the grass is there for whoever brings a beast to eat it. Two facts about this pasture, taken together, contain the whole of what follows. The grass is <em>rival</em> — or, in the economist's harsher word, subtractable — for a mouthful eaten by one man's cow is a mouthful denied to every other's, and the resource can be used up. And the pasture is <em>non-excludable</em>: there is no fence, no gate, no toll, and by custom or by law no villager can be turned away, so the resource stands open. A good that is at once rival and open is what the modern literature calls a common-pool resource, and it is the unstable compound at the center of this volume.</p>
+        <p>The pairing comes clear when the four kinds of good are set side by side, sorted by the two questions the figure poses: is the good rival, and is it excludable? The familiar private good — a loaf, a coat, a car — is both rival and excludable, and the market governs it without difficulty, for a price can be charged and the unwilling kept out. Its opposite is the pure public good — national defense, a lighthouse, the light shed by a discovery — which is neither rival nor excludable: one man's protection or illumination subtracts nothing from another's, and none can be made to pay, so the market underprovides it. Between these poles lie the two mixed cases. The club good is excludable but not rival — a toll road, a cinema, a subscription — which can be sold to members and crowds only when it congests, and which the tenth plate takes up. And the common-pool resource, the subject here, is the fourth and most treacherous cell: rival like a private good, yet open like a public one. It carries the scarcity that demands rationing together with the openness that forbids it.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="f1t f1d">
+              <title id="f1t">The four kinds of good</title>
+              <desc id="f1d">A two-by-two matrix sorting goods by rivalry (columns: no, yes) and excludability (rows: yes, no). The four cells hold club goods, private goods, public goods, and — shaded — common-pool resources.</desc>
+              <text x="260" y="44" text-anchor="middle" class="lbl-ax">RIVAL?</text>
+              <text x="190" y="62" text-anchor="middle" class="lbl-sm">no</text>
+              <text x="330" y="62" text-anchor="middle" class="lbl-sm">yes</text>
+              <text x="100" y="160" text-anchor="middle" class="lbl-ax" transform="rotate(-90 100 160)">EXCLUDABLE?</text>
+              <text x="113" y="116" text-anchor="end" class="lbl-sm">yes</text>
+              <text x="113" y="206" text-anchor="end" class="lbl-sm">no</text>
+              <polygon points="260,160 400,160 400,250 260,250" class="band"/>
+              <polyline points="120,70 400,70 400,250 120,250 120,70" fill="none" class="axis"/>
+              <line x1="260" y1="70" x2="260" y2="250" class="axis"/>
+              <line x1="120" y1="160" x2="400" y2="160" class="axis"/>
+              <text x="190" y="110" text-anchor="middle" class="lbl-sm">Club goods</text>
+              <text x="190" y="126" text-anchor="middle" class="lbl-sm">toll road, cinema</text>
+              <text x="330" y="110" text-anchor="middle" class="lbl-sm">Private goods</text>
+              <text x="330" y="126" text-anchor="middle" class="lbl-sm">bread, a coat</text>
+              <text x="190" y="200" text-anchor="middle" class="lbl-sm">Public goods</text>
+              <text x="190" y="216" text-anchor="middle" class="lbl-sm">defense, a lighthouse</text>
+              <text x="330" y="200" text-anchor="middle" class="lbl-sm">Common-pool</text>
+              <text x="330" y="216" text-anchor="middle" class="lbl-sm">pasture, the open sea</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 1.</span> The four kinds of good. Economists sort goods by two questions: is the good rival — does one person's use leave less for another — and is it excludable — can non-payers be kept out? Private goods, rival and excludable, the market handles well. Public goods, being neither, it underprovides. Club goods, excludable but not rival, can be sold to members and crowd only when congested. The common-pool resource, in the shaded cell — rival like a private good but open like a public one — is the subject of this volume and the source of the tragedy: each user subtracts from the rest, and none can be kept from taking.</figcaption>
+        </figure>
+        <p>From that single misfit the tragedy follows in miniature, and the next plate will draw it in full. Because the grass is rival, each additional cow does a real harm — it leaves less for all the others; because the pasture is open, no one can charge that cow's owner for the harm, nor keep him out to prevent it. So the herder weighs only what is his to weigh: the gain of one more animal, which is wholly his, against its private cost, which does not include the grass it strips from his neighbors' beasts. He adds the cow. Every herder reasons the same way, and the pasture fills past what it can bear; the grass fails, and the cattle starve on ground that, husbanded, would have fed a smaller herd indefinitely. Each man, pursuing his own good by impeccable logic, helps to destroy the thing on which all of them depend.</p>
+        <p>This is the externality of the preceding volume, returned in a new and symmetrical form. The cost the cow imposes on the other herds is a real cost falling on third parties outside any transaction — an external cost, uncounted by the one who causes it. But where the eleventh volume's externality ran one way, from a polluter to a sufferer, here it runs every way at once: each herder fouls the pasture of all the others and is in turn fouled by them, so that every user is at once the author of the harm and among those who suffer it. The commons is the externality made reciprocal and multiplied across a multitude — which is why its diagnosis borrows the eleventh volume's tools while its cure runs into difficulties all its own. To mend an externality between two parties, one may tax the one or seat the two at a table; to mend an externality among five hundred symmetric herders, with no table large enough and no obvious party to tax, is the harder problem these plates pursue.</p>
+        <aside class="pull">Rival like a private good, yet open like a public one: the common-pool resource carries the scarcity that demands rationing together with the openness that forbids it.</aside>
+        <aside class="edge"><span class="lead">the edge</span> The phrase "the tragedy of the commons," for all its power, has misled about as much as it has illuminated, and the confusion begins with Hardin himself. He wrote of a pasture with no rules at all — a pure open-access resource, a free-for-all — and then called it a "commons," tarring with the same word the historic commons of England and Europe, which were nothing of the kind. Those were governed: hedged about with stinting rules that capped each commoner's herd, overseen by manorial courts and customary rights, and kept productive across generations by careful management. The enclosure that "solved" their supposed tragedy was, very often, not a rescue but a seizure — a transfer of common land into private hands that dispossessed the very commoners who had managed it well. The careful modern usage, owed largely to Ostrom, separates the <em>open-access</em> resource, which has no rules and does tend toward Hardin's ruin, from <em>common property</em>, a resource that a defined community governs by rules of its own. Hardin's tragedy is real, but it is the tragedy of open access, not of every commons — and the distinction, which the seventh plate makes the hinge of the whole argument, is the difference between a thing doomed and a thing merely difficult. (His further use of the parable to argue for coercive limits on human population has worn least well of all, and forms no part of the economics.)</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE II ===================== -->
+    <section class="plate reveal" id="plate-ii" data-label="Plate ii · The Tragedy">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">ii</div>
+        <p class="plate-kicker">Plate the Second &middot; The Failures &middot; № XIII</p>
+        <h3 class="plate-title">The Tragedy</h3>
+        <p class="plate-gloss">Hardin's pasture formalized; private incentive, collective ruin; the dissipated rent</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what exactly does each herder reckon, and how does the reckoning ruin the pasture?</q></div>
+      <div class="plate-body">
+        <p>Set the parable down as a model, in the manner the discipline has refined since Hardin. A pasture supports cattle, and its total yield — call it beef, or milk, or simply output — rises as cattle are added, but by less and less with each beast, for the animals begin to compete for a fixed quantity of grass; past some number the pasture is so crowded that another animal lowers the total yield outright. Two curves describe this. The <em>average product</em> is the yield per animal, the total output divided by the number of cattle, and it falls steadily as crowding sets in — each cow, on a more crowded pasture, gives less. The <em>marginal product</em> is the addition to total output from one more animal, and because the average is falling the marginal lies below it and falls faster: the latest cow not only yields little itself but drags down the yield of all the rest.</p>
+        <p>Now ask what number of cattle each kind of decision-maker will choose, against a common cost — the price of acquiring and keeping a beast, drawn as a horizontal line. A sole owner of the pasture, who captures all the output and bears all the cost, reckons at the margin: he adds cattle only so long as one more adds more to total output than it costs, and stops where the marginal product meets the cost. That is the efficient herd, marked Q* in the figure, and at it the pasture yields its greatest surplus over cost — the rent of the land, the shaded rectangle. But the commoners face a different reckoning. No commoner captures the marginal product, for the loss a new cow inflicts falls mostly on the others' animals and only slightly on his own; what he captures is the average product, the yield his beast will fetch him. So he adds cattle as long as the average product exceeds the cost — and entry continues, by him and by every other, until the average product has fallen all the way down to the cost. That is the commons equilibrium, far to the right of Q*, with many more cattle than the pasture should ever bear.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="f2t f2d">
+              <title id="f2t">Why the commons is overgrazed</title>
+              <desc id="f2d">Falling average-product and marginal-product lines against a horizontal cost line. A sole owner stops where marginal product meets cost (Q*, keeping the shaded rent); open access drives entry until average product meets cost, far to the right, with the rent dissipated.</desc>
+              <line x1="64" y1="250" x2="414" y2="250" class="axis"/>
+              <polygon points="414,250 406,246 406,254" class="ink-fill"/>
+              <line x1="64" y1="250" x2="64" y2="40" class="axis"/>
+              <polygon points="64,40 60,48 68,48" class="ink-fill"/>
+              <text x="220" y="277" text-anchor="middle" class="lbl-ax">number of cattle</text>
+              <text x="26" y="148" text-anchor="middle" class="lbl-ax" transform="rotate(-90 26 148)">product, cost</text>
+              <polygon points="64,117 177,117 177,150 64,150" class="band"/>
+              <text x="118" y="136" text-anchor="middle" class="lbl-sm">rent</text>
+              <line x1="64" y1="150" x2="404" y2="150" class="guide"/>
+              <text x="404" y="144" text-anchor="end" class="lbl-sm">cost</text>
+              <line x1="64" y1="90" x2="404" y2="170" class="curve"/>
+              <text x="398" y="178" text-anchor="end" class="lbl-sm">average product</text>
+              <line x1="64" y1="110" x2="404" y2="230" class="curve2"/>
+              <text x="398" y="236" text-anchor="end" class="lbl-sm">marginal product</text>
+              <line x1="177" y1="150" x2="177" y2="250" class="guide"/>
+              <circle cx="177" cy="150" r="3.7" class="ink-fill"/>
+              <text x="171" y="142" text-anchor="end" class="lbl-sm">efficient</text>
+              <text x="177" y="266" text-anchor="middle" class="lbl-sm">Q*</text>
+              <line x1="319" y1="150" x2="319" y2="250" class="guide"/>
+              <circle cx="319" cy="150" r="3.5" fill="none" class="dot-o"/>
+              <text x="327" y="144" text-anchor="start" class="lbl-sm">the commons</text>
+              <text x="319" y="266" text-anchor="middle" class="lbl-sm">open access</text>
+              <text x="248" y="163" text-anchor="middle" class="lbl-sm">overuse</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 2.</span> Why the commons is overgrazed. As cattle are added, the output per animal — the average product — falls, and the marginal product, the addition to total output from one more animal, falls faster and lies below it. A herder deciding whether to add a beast looks at the average product, what his animal will yield him, and adds animals until that average just covers his cost — the commons equilibrium, far to the right. A sole owner, reckoning the effect on the whole, stops where the marginal product covers the cost — at Q*, far fewer animals — and keeps the shaded rent. Open access drives the herd past Q* until the rent is grazed away to nothing. The pasture is ruined not by greed but by arithmetic.</figcaption>
+        </figure>
+        <p>The gap between the two equilibria is the tragedy made quantitative. Because the marginal product lies below the average, the point where average product meets cost falls far to the right of where marginal product meets cost: the commons carries more cattle than is efficient, and the surplus the land could have yielded — the rent a sole owner would have kept — is not transferred to anyone but destroyed. As cattle pile in toward the commons equilibrium, each adds a little to the total and subtracts more from the rest, and the rectangle of rent is eaten away until, at the equilibrium, the average product just equals the cost and the rent is gone entirely. This is the precise and devastating result on which the whole economics of the commons turns: open access dissipates rent to zero. The resource yields, in the end, no more than its users sank into it; everything it might have produced over and above their costs — the whole reason the resource was worth having — is competed away in the scramble to use it. The pasture is destroyed, as the argument promised, not by greed but by arithmetic.</p>
+        <aside class="pull">A sole owner reckons the marginal product and stops; the commoner reckons the average and presses on. Between the two stand all the cattle the pasture cannot bear — and the rent, grazed away to nothing.</aside>
+        <aside class="edge"><span class="lead">the edge</span> The rent-dissipation result is exact, but it leans on assumptions worth naming, for relaxing them is the whole project of the later plates. It requires genuinely open access — free entry, with no rule and no limit on who may graze or how much; close the entry, even informally, and the dissipation is checked. It requires that each user be small and take the others' conduct as given, ignoring his own effect on the common yield; but in a group small enough that each herder knows his extra cow visibly hurts neighbors he must face tomorrow, that effect is no longer ignored, and the men may restrain themselves with neither fence nor state — the possibility the seventh plate is built upon. And the model speaks only of efficiency, saying nothing of who ends with what: the sole owner who pockets the rent and the commoners dispossessed by enclosure are equally "efficient" in its eyes, though the difference between them is the difference between a fortune and a livelihood. The arithmetic of the tragedy is real; whether a given commons lies in its grip, and what escaping it would cost in justice, the arithmetic alone cannot say.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE III ===================== -->
+    <section class="plate reveal" id="plate-iii" data-label="Plate iii · The Fishery">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">iii</div>
+        <p class="plate-kicker">Plate the Third &middot; The Failures &middot; № XIII</p>
+        <h3 class="plate-title">The Fishery</h3>
+        <p class="plate-gloss">the open-access fishery; Gordon and Schaefer; rent fished away to nothing</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what becomes of a fishery that anyone at all may enter?</q></div>
+      <div class="plate-body">
+        <p>The pasture is a parable; the fishery is where the economics of the commons became a working science. A fish stock renews itself, and the rate at which it grows depends on its size: a tiny stock grows slowly, for there are few fish to breed; a stock at the sea's carrying capacity grows not at all, for it has filled its niche; and somewhere between, at an intermediate stock, the growth runs fastest. From this biology comes the central object of the model, the <em>sustainable yield</em> — the catch that exactly matches the stock's growth, and can therefore be taken year upon year without running the stock down. Plotted against fishing effort — the boats, the days, the nets at work — the sustainable yield traces a hump. A little effort takes a little, from a large and barely-cropped stock; more effort takes more, up to a peak; and beyond the peak the heavy fishing holds the stock so low that, for all the added boats, the sustainable catch falls. The peak is the maximum sustainable yield, the largest catch the sea will bear forever — beloved of fisheries biologists and, as the economics will show, not quite the right target.</p>
+        <p>Now lay the economics over the biology. Value the sustainable catch at the market price, and the hump becomes a curve of sustainable revenue; set against it the cost of effort, a straight line rising from the origin, since each boat-day costs about the same. Three points on the picture matter. Where the revenue curve stands highest above the cost line — where the gap between them is greatest — is the maximum economic yield, the effort a sole owner of the fishery would choose, for there the rent, the surplus of revenue over cost, is largest; and it lies, tellingly, to the left of the biological maximum, a lighter touch than even the largest sustainable catch. The peak of the hump is the maximum sustainable yield. And far to the right, where the revenue curve has fallen back to meet the cost line, sits the open-access equilibrium — for under open access boats keep entering as long as any rent remains to be had, and entry ceases only when revenue has been dragged all the way down to cost and the rent is zero. The open-access fishery is fished not to its economic optimum, nor even to its biological one, but past them both, to the point where it yields its crews no more than their costs and the stock is gravely overfished.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="f3t f3d">
+              <title id="f3t">The open-access fishery</title>
+              <desc id="f3d">A humped sustainable-revenue curve against a rising cost-of-effort line. Maximum economic yield (rent largest) lies left of maximum sustainable yield (the peak); open access drives effort far right, to where revenue meets cost and the rent is zero.</desc>
+              <line x1="64" y1="250" x2="414" y2="250" class="axis"/>
+              <polygon points="414,250 406,246 406,254" class="ink-fill"/>
+              <line x1="64" y1="250" x2="64" y2="40" class="axis"/>
+              <polygon points="64,40 60,48 68,48" class="ink-fill"/>
+              <text x="220" y="278" text-anchor="middle" class="lbl-ax">fishing effort</text>
+              <text x="26" y="148" text-anchor="middle" class="lbl-ax" transform="rotate(-90 26 148)">revenue / cost</text>
+              <polyline points="64,250 110,162 155,104 195,78 240,70 285,82 330,122 370,162 404,192" class="curve"/>
+              <text x="96" y="150" text-anchor="start" class="lbl-sm">sustainable revenue</text>
+              <line x1="64" y1="250" x2="404" y2="110" class="curve2"/>
+              <text x="398" y="104" text-anchor="end" class="lbl-sm">cost of effort</text>
+              <line x1="190" y1="81" x2="190" y2="198" class="guide"/>
+              <line x1="190" y1="198" x2="190" y2="250" class="guide"/>
+              <circle cx="190" cy="81" r="3.7" class="ink-fill"/>
+              <circle cx="190" cy="198" r="3.5" fill="none" class="dot-o"/>
+              <text x="184" y="140" text-anchor="end" class="lbl-sm">rent</text>
+              <line x1="240" y1="70" x2="240" y2="250" class="guide"/>
+              <line x1="342" y1="135" x2="342" y2="250" class="guide"/>
+              <circle cx="342" cy="135" r="3.5" fill="none" class="dot-o"/>
+              <text x="348" y="131" text-anchor="start" class="lbl-sm">rent = 0</text>
+              <text x="190" y="264" text-anchor="middle" class="lbl-sm">MEY</text>
+              <text x="240" y="264" text-anchor="middle" class="lbl-sm">MSY</text>
+              <text x="342" y="264" text-anchor="middle" class="lbl-sm">open access</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 3.</span> The open-access fishery, after Gordon and Schaefer. The hump is the sustainable revenue — the catch the sea will bear indefinitely, valued at market price — which rises with effort to a peak and then falls as the stock is fished down. The straight line is the cost of effort. A sole owner would fish at maximum economic yield, where the gap between revenue and cost — the rent — is largest, conserving the stock; the biological maximum, the largest sustainable catch, lies a little beyond. But under open access boats keep entering while any profit remains, until revenue is dragged all the way down to cost: the rent is fished away to nothing, and effort overshoots even the biological maximum. The cod and the anchoveta were lost on the right-hand side of this picture.</figcaption>
+        </figure>
+        <p>This is no blackboard curiosity. The great fisheries of the world have been fished down the right-hand slope of this picture within living memory. The northern cod off Newfoundland, worked for five centuries, collapsed in 1992 under a fleet that open access and then a captured regulator had let grow far too large; the stock has never recovered, and tens of thousands lost their living in a single season. The Peruvian anchoveta, the largest single fishery on earth, crashed in the early 1970s under the same arithmetic, compounded by a shift in the ocean itself. In each, the pattern of the figure played out to the letter: too many boats, drawn in by a rent that their own numbers then annihilated, fishing a renewable resource clean past the point of renewal. The rent was fished away to the last dollar, and then the fish were fished away too. What the model adds to the parable of the pasture is rigor and reach — the same logic of dissipated rent, now quantified, fitted to data, and written across the collapse of the world's seas.</p>
+        <aside class="pull">Boats enter while any rent remains, and stop only when revenue has fallen to cost. The open-access fishery is fished past profit and past prudence alike — to the point where the rent is gone and the stock with it.</aside>
+        <aside class="edge"><span class="lead">the edge</span> The Gordon–Schaefer model is the workhorse of fisheries economics, and like all workhorses it is a simplification. Its stock grows by a tidy logistic law; its price holds fixed; its effort is homogeneous; its fish swim alone, a single species uncoupled from the ecosystem around them. Real seas are none of these: stocks fluctuate with currents and temperature, species prey upon and compete with one another, and the link between effort and catch is shot through with uncertainty, so that the smooth curves are at best a guide and at worst a false comfort. The model's prescription — hold effort to the maximum economic yield — demands that the biology and the economics be known with a precision rarely in hand, and then enforced against a fleet with every motive to cheat, which is the management problem the later plates take up. Most sobering of all, fisheries have collapsed under careful regulation as readily as under open access: the cod was being managed when it fell. The curves are far easier to draw than to govern by, and a model that explains the tragedy is not yet a model that can prevent it.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE IV ===================== -->
+    <section class="plate reveal" id="plate-iv" data-label="Plate iv · The Many">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">iv</div>
+        <p class="plate-kicker">Plate the Fourth &middot; The Failures &middot; № XIII</p>
+        <h3 class="plate-title">The Many</h3>
+        <p class="plate-gloss">the tragedy as an n-person dilemma; Olson, free-riding, and the trap of the many</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>why can a crowd not simply agree among itself to restrain?</q></div>
+      <div class="plate-body">
+        <p>Why does the herder not see the ruin coming and stop — and why can the herders not simply agree among themselves to graze less? The answer is that the commons has the structure of a game, and the game is a trap. Strip it to the bone. Each user chooses between two courses: to restrain, taking less than he might, or to overuse, taking all he can. Follow one user's reckoning. If the others restrain, the resource stays healthy, and he does best by overusing — he reaps the fruit of their restraint while bearing none of its cost, the classic free ride. If instead the others overuse, the resource is doomed whatever he does, and he had far better grab his share before it vanishes than restrain and be left with nothing. Either way — whatever the others do — overusing pays him more than restraining. Overuse is, in the language of the twenty-fifth volume, a dominant strategy; and since every user faces the identical reckoning, every user overuses, and the resource is destroyed, though all of them would have fared better had all restrained. This is the prisoner's dilemma, played not by two but by the many, and its grip is the deepest root of the tragedy: the ruin is no failure of foresight and no lapse into vice, but the strict consequence of each person's rational choice.</p>
+        <p>Mancur Olson, in <em>The Logic of Collective Action</em> of 1965, drew out the part that sheer number plays, and it is decisive. Conserving the commons is itself a collective good — a benefit that, once produced by the restraint of some, is enjoyed by all, the restrained and the unrestrained alike — and the provision of collective goods is undone by free-riding. In a small group, each member's restraint makes a visible difference to the whole, and his shirking is noticed and resented by people he must live among; the temptation to free-ride is checked by visibility and consequence. In a large group, each member's contribution is a drop in the ocean, his shirking is invisible, and the benefit of his restraint accrues overwhelmingly to others — so he shirks, and so does everyone, and the collective good goes unprovided. Olson's conclusion was stark: large groups, lacking coercion or some separate selective incentive that rewards contributors one by one, will fail to act in their common interest, however vast that interest may be. The figure shows the trap in a single frame. At every level of others' cooperation, the individual's payoff from overusing sits above his payoff from restraining, so the rational user always defects, and the group comes to rest in the overuse trap at the left — far below the shared prosperity it would have reached, at the right, had all restrained.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="f4t f4d">
+              <title id="f4t">The tragedy as a dilemma of the many</title>
+              <desc id="f4d">Two rising payoff lines for one user against the number of others who restrain. The overuse line lies above the restraint line everywhere, so overusing dominates; all therefore overuse and rest at the left, far below the all-restrain outcome at the right.</desc>
+              <line x1="64" y1="250" x2="414" y2="250" class="axis"/>
+              <polygon points="414,250 406,246 406,254" class="ink-fill"/>
+              <line x1="64" y1="250" x2="64" y2="40" class="axis"/>
+              <polygon points="64,40 60,48 68,48" class="ink-fill"/>
+              <text x="220" y="278" text-anchor="middle" class="lbl-ax">others who restrain &#8594;</text>
+              <text x="26" y="148" text-anchor="middle" class="lbl-ax" transform="rotate(-90 26 148)">my payoff</text>
+              <line x1="64" y1="140" x2="404" y2="140" class="guide"/>
+              <line x1="64" y1="180" x2="404" y2="90" class="curve"/>
+              <text x="398" y="98" text-anchor="end" class="lbl-sm">if I restrain</text>
+              <line x1="64" y1="140" x2="404" y2="55" class="curve2"/>
+              <text x="398" y="49" text-anchor="end" class="lbl-sm">if I overuse</text>
+              <text x="120" y="128" text-anchor="start" class="lbl-sm">overuse pays more</text>
+              <circle cx="64" cy="140" r="3.7" class="ink-fill"/>
+              <text x="72" y="151" text-anchor="start" class="lbl-sm">all overuse</text>
+              <circle cx="404" cy="90" r="3.7" class="ink-fill"/>
+              <text x="398" y="84" text-anchor="end" class="lbl-sm">all restrain</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 4.</span> The tragedy as a dilemma of the many. Each line is one user's payoff, rising as more of the others restrain their use and the resource stays healthy. But whatever the others do, the user does better by overusing than by restraining — the overuse line lies above the restraint line everywhere — so overusing is the dominant choice, and every user reasons the same way. All therefore overuse, and the group comes to rest at the far left, in the overuse trap, where no one restrains. Yet had all restrained, every one of them would have stood higher, at the right. The resource is destroyed not by malice but by the logic of the situation — and, as Olson saw, the larger and more anonymous the group, the tighter the trap.</figcaption>
+        </figure>
+        <p>Two consequences follow, and they organize the rest of the volume. The first is that exhortation is futile. To tell the herders to be less greedy, or the fishermen to think of the future, mistakes the nature of the problem: they are not greedy or short-sighted but trapped, and a trap is not escaped by good intentions. What must change is the structure of payoffs — and the three cures the coming plates examine are precisely three ways of changing it. Privatization changes the payoffs by making one party bear the full marginal cost of his use. Regulation changes them by fixing a penalty to overuse. And self-governance, the subtlest of the three, changes them by turning the one-shot dilemma into a repeated game among people who will meet again, so that the threatened loss of future cooperation makes restraint, at last, the rational choice. The second consequence is a thread that runs to the volume's end: because the trap tightens with numbers, the size of the group and the closeness of its members are not incidental but central. A handful of neighbors may slip the dilemma unaided; a planet of strangers may find it inescapable. The whole question of when a commons can be governed, and by what, turns out to be in large part a question of how many share it, and how well they know one another.</p>
+        <aside class="pull">Whatever the others do, overusing pays more — so every user overuses, and the resource dies. The commons is destroyed by rationality, not by malice; and the larger the crowd, the tighter the trap.</aside>
+        <aside class="edge"><span class="lead">the edge</span> The dilemma is a powerful diagnosis, but read as prophecy it misleads — and the one who showed why was Ostrom. Real people, set in commons both in the laboratory and in the field, cooperate far more than the one-shot dilemma allows: they talk, they make promises, they watch one another, and above all they punish defectors at a cost to themselves, and by these means they reach the cooperation the dominant-strategy logic declares impossible. The n-person prisoner's dilemma is the worst case, the commons stripped of everything that lets cooperation grow — played once, among anonymous strangers, with no talk and no recourse. Most actual commons are nothing so bare. Olson's pessimism about large groups, too, was overdrawn: unions and movements and lobbies of great size do organize, sustained by leadership, by selective incentives, by an identity and a habit his austere model leaves out. The dilemma proves that a commons can fail, and explains with precision why; it does not prove that a commons must fail, and the gap between can and must is exactly the room in which the next plates do their work.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE V ===================== -->
+    <section class="plate reveal" id="plate-v" data-label="Plate v · The Fence">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">v</div>
+        <p class="plate-kicker">Plate the Fifth &middot; The Failures &middot; № XIII</p>
+        <h3 class="plate-title">The Fence</h3>
+        <p class="plate-gloss">privatize the commons; Demsetz, enclosure, and the tradable quota</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what if the commons were carved up and handed into private keeping?</q></div>
+      <div class="plate-body">
+        <p>The first cure is the most direct, and the most drastic: abolish the commons by turning it into property. Carve the open pasture into fenced parcels, each with an owner; grant the fishery's catch to named holders; vest the aquifer's water in titled rights. The logic is the mirror of the tragedy. The commons failed because each user bore only a sliver of the cost of his use while reaping the whole of its gain; ownership repairs exactly this, for the owner of a parcel bears the entire cost of overgrazing it and keeps the entire reward of husbanding it, and so — consulting now a ledger in which the external cost has become internal — he grazes it to the efficient point and no further. The externality that each commoner imposed on all the others is internalized, in the eleventh volume's word, by the simple expedient of making one party the whole of the affected public. Where there is one owner, there is no one left to spill upon.</p>
+        <p>Harold Demsetz, in a celebrated essay of 1967, turned this static logic into a theory of how property rights come to exist at all. Rights are not free — to draw a boundary, record a title, and police a fence all cost effort — and so a resource held in common will be left in common as long as it stays abundant enough that the tragedy's losses are small. But let the resource grow scarce or valuable, and the losses from open access swell until, at some point, they exceed the cost of establishing property; and there, Demsetz argued, private rights emerge, summoned into being by the very scarcity that makes the commons ruinous. His illustration was the rise of private hunting territories among the Montagnais of Labrador: customary open access to the forest gave way to defended family lands precisely when the European fur trade made beaver pelts valuable enough that unrestrained trapping would have wiped the beaver out. Property, on this view, is no fixed institution and no natural right but an economizing response — it appears when, and where, and to the degree that internalizing an externality becomes worth its cost. The fence is built when the grass is at last worth fencing.</p>
+        <p>The modern instruments of this cure are subtler than the literal fence. Chief among them is the individual transferable quota, the device that has done most to rebuild collapsing fisheries: the regulator sets a total allowable catch and divides it into shares, each a private and tradable right to a fraction of the harvest. The holder of a quota now owns a stake in the stock's future — a healthier stock means a larger catch and a more valuable share — and so acquires the sole owner's motive to conserve; and because the shares may be bought and sold, the catch flows to whoever can take it most cheaply, restoring the efficiency that open access had destroyed. It is the cap-and-trade of the eleventh volume turned from a pollutant to a resource: a manufactured property right in something that had none. Tradable water rights do the same for rivers and aquifers, and the enclosure of common land did it, centuries ago, for the pasture. Where the instrument fits the resource it works, and works well — the fisheries managed by well-designed quotas are among the few to have recovered, because their owners, at last, want them to.</p>
+        <p>Two things the cure quietly assumes, and both matter. The first is that the resource can be bounded and defended at all — that a fence can be built around it cheaply enough to be worth the building. The second is that someone must be chosen to receive the property, and the choosing is enormous: to privatize a commons is to convert a thing that many used into a thing that one owns, and the question of which one — the incumbent fishermen, the lord of the manor, the first to file a claim — settles who is enriched and who dispossessed. Privatization solves the problem of efficiency by raising, in its sharpest form, the problem of justice; and the two problems, as the eleventh volume warned and this one repeats, are not the same problem. The fence that saves the grass also encloses it, and on one side of the fence stands an owner, and on the other, those who used to graze.</p>
+        <aside class="pull">Where there is one owner, there is no one left to spill upon. The fence repairs the tragedy by making the whole of the harmed public into a single proprietor — and rights arise, Demsetz saw, exactly when the grass grows worth the fencing.</aside>
+        <aside class="edge"><span class="lead">the edge</span> Privatization's limits are large, and four are decisive. Many commons cannot be fenced at all: the fish that swim across every boundary, the water that flows beneath a hundred parcels, the atmosphere itself — these resist definition and defy enforcement, and the cost of bounding them can swallow whatever the bounding would save, so that Demsetz's own logic counsels against it. The distributional wound is grave and recurring: enclosure dispossessed the English commoners and pitched them off the land, and quota grants have handed public fisheries to incumbent boat-owners as windfalls worth fortunes, converting a shared birthright into private wealth at a stroke. Privatization can destroy the very institutions that were working — impose a private title on a commons that a community had governed well for generations and you may shatter the trust, the local knowledge, and the customary rules that made it work, putting a worse system in the place of a functioning one. And ownership guarantees a stake, not stewardship: a private owner with a high enough discount rate will rationally liquidate a slow-growing resource — clear-cut the forest, fish out the slow stock, bank the proceeds where they grow faster — for the same calculus of the third volume that values the future at a discount can value it at almost nothing. The fence aligns the incentive to conserve only where conservation pays better than destruction; where it does not, the owner destroys with a clear conscience and a clear title.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE VI ===================== -->
+    <section class="plate reveal" id="plate-vi" data-label="Plate vi · The Leviathan">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">vi</div>
+        <p class="plate-kicker">Plate the Sixth &middot; The Failures &middot; № XIII</p>
+        <h3 class="plate-title">The Leviathan</h3>
+        <p class="plate-gloss">the state's coercion; Hardin's Leviathan, regulation, and its capture</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what if a sovereign imposed the restraint the users cannot impose on themselves?</q></div>
+      <div class="plate-body">
+        <p>If the commons cannot, or should not, be carved into private property, the second cure leaves it shared but sets a sovereign over it. Hardin himself, for all that his name clings to the tragedy, did not prescribe privatization; he prescribed the state. His phrase was "mutual coercion, mutually agreed upon" — the recognition that, since no user will restrain himself while the others do not, and since exhortation cannot break the dilemma, the users may agree to be coerced, each consenting to a binding limit on all precisely because he cannot trust the rest to limit themselves unbound. The Leviathan of Hobbes is summoned for a Hobbesian reason: in the state of nature that is the open commons, each devours what all depend upon, and only a power standing above them, able to compel, can impose the restraint that none can impose alone. The state supplies, by coercion, the discipline that the missing price and the missing owner did not.</p>
+        <p>The instruments of this cure fill the statute books of every fishing nation and every environmental ministry. The total allowable catch, parcelling a fixed harvest among the fleet; the licence, capping the number who may enter; the closed season and the closed ground, the marine reserve and the national park, that put a time or a place beyond reach; the limits on gear, on mesh, on engine size, that blunt the efficiency of effort; the permits to extract, to pump, to emit. In each, the regulator stands in for the missing owner: he estimates the efficient level of use — the maximum economic yield of the fishery, the safe yield of the aquifer — and then rations access to it by command, allocating the scarce right to use where no price and no property allocated it before. Done well, regulation reaches the same conservation a sole owner would have chosen, while keeping the resource public and its users many.</p>
+        <p>For a whole class of commons, moreover, regulation is not one option among three but the only one to be had. The great resources that cannot be fenced and are shared by far too many to self-govern — the high-seas fisheries beyond any nation's waters, the air, the migratory stocks, the river that crosses borders — admit of no private owner and no face-to-face community; for these, the coercion of states, acting alone within their territories or together by treaty, is the sole instrument left. The whole apparatus of international environmental law — the fishing conventions, the whaling moratorium, the protocols on pollution and on the ozone layer — is the Leviathan extended, by halting and imperfect agreement, to commons that overflow every single sovereign. Where the resource is too large for the fence and too peopled for the community, the state, or a league of states, is the last resort and often the only one.</p>
+        <aside class="pull">Since no user will restrain himself while the rest do not, the users may agree to be coerced — each consenting to bind all, because he cannot trust the rest to bind themselves. The Leviathan supplies the restraint the dilemma forbids them to supply alone.</aside>
+        <aside class="edge"><span class="lead">the edge</span> But the Leviathan is as fallible as the market it replaces, and its failures are the matter of much of public-choice economics. The regulator faces the information problem in full: to set the right quota he must know the biology and the economics that the fishery's own collapse shows are devilishly hard to know, and a quota set too high — as quotas chronically are — preserves the form of management while permitting the substance of overfishing. Worse, regulation is routinely captured by the very users it regulates: the fishing councils colonized by the industry, the catch limits ratcheted upward by political pressure past anything the stock can bear — the cod, recall, was being managed when it died. Top-down rule ignores local knowledge and local conditions, imposing uniform prescriptions ill-fitted to particular waters, and it can displace the community institutions that were quietly succeeding — the state that declares a forest a park and expels the people who had sustainably used it for centuries, the "fortress conservation" that worsens what it meant to save. And enforcement is costly and forever leaky: the ocean is wide, the poacher is patient, and the over-quota catch is landed after dark. The deepest lesson, which the next plate draws out, is that the long argument between the market and the state — privatize or regulate, the fence or the Leviathan — was conducted as though these two exhausted the possibilities. They do not.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE VII ===================== -->
+    <section class="plate reveal" id="plate-vii" data-label="Plate vii · The Governed">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">vii</div>
+        <p class="plate-kicker">Plate the Seventh &middot; The Failures &middot; № XIII</p>
+        <h3 class="plate-title">The Governed</h3>
+        <p class="plate-gloss">Ostrom's third way; the community that governs itself</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>is there a way to govern the commons that is neither the market nor the state?</q></div>
+      <div class="plate-body">
+        <p>The dichotomy held the field for two centuries: a commons must be saved by the market or by the state, by the fence or by the Leviathan. Elinor Ostrom broke it — and she broke it not with a theorem but with evidence. A political scientist by training, schooled in economics, she did what the theorists of the tragedy had not: she went and looked at actual commons, hundreds of them, across the world and across the centuries, and found, again and again, the thing the dichotomy declared impossible. Communities of users were governing their shared resources themselves, neither privatizing them nor surrendering them to any state, but crafting their own rules of access and use, monitoring one another, punishing violators, and sustaining the resource for generation upon generation. The Swiss villagers of Törbel had governed their high alpine pastures and forests by communal statute since the thirteenth century; the Japanese villages their common woodlands, the <em>iriai</em>, for as long; the huerta of Valencia had watered its fields by a customary law of turns, adjudicated by a Water Tribunal that still convenes each week at a cathedral door; the lobstermen of Maine policed their own harbor grounds. None of these was Hardin's lawless free-for-all, and none was a fenced estate or a state fishery. They were commons, in the precise sense — common property, governed by their commoners — and they worked.</p>
+        <p>Why should self-governance succeed where the dilemma of the fourth plate proved it must fail? Because the dilemma of the fourth plate was the wrong model: it was a game played once, among strangers, and a commons is neither. A commons is a game played over and over by the same people, who will face one another again tomorrow and in the year to come; and in a repeated game, as the twenty-fifth volume shows, cooperation that is impossible in a single round becomes sustainable, held in place by the shadow of the future. If a user who cheats today can be punished tomorrow — shamed, fined, excluded, cut out of the cooperation he depends upon — then so long as he values the future stream of cooperation above the one-time prize of cheating, restraint becomes his rational choice, and the commons holds itself together with neither fence nor sovereign. But this self-enforcement carries a precise condition, and the figure draws it: cooperation survives only if the users are patient enough, and the patience required rises with the size of the group. In a small, stable, face-to-face community, where every user's conduct is seen and his cheating at once known and answered, modest patience suffices and cooperation holds; as the group grows large and anonymous, the threshold of patience climbs toward an impossible perfection, and below any attainable patience the cooperation collapses. Ostrom's enduring commons are, to a one, the small and the bounded — which is no accident but the very mechanism. They are the groups for which the repeated game can be won.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="f5t f5d">
+              <title id="f5t">Why small communities govern commons that strangers cannot</title>
+              <desc id="f5d">A rising curve shows the patience needed to sustain cooperation as a function of group size, climbing toward perfect patience. Below a feasible level of patience, only groups smaller than n-star — to the left — can cooperate; larger groups fall into the tragedy.</desc>
+              <line x1="64" y1="250" x2="414" y2="250" class="axis"/>
+              <polygon points="414,250 406,246 406,254" class="ink-fill"/>
+              <line x1="64" y1="250" x2="64" y2="40" class="axis"/>
+              <polygon points="64,40 60,48 68,48" class="ink-fill"/>
+              <text x="220" y="278" text-anchor="middle" class="lbl-ax">group size n &#8594;</text>
+              <text x="26" y="148" text-anchor="middle" class="lbl-ax" transform="rotate(-90 26 148)">patience &#948;</text>
+              <line x1="64" y1="60" x2="404" y2="60" class="guide"/>
+              <text x="70" y="54" text-anchor="start" class="lbl-sm">&#948; = 1</text>
+              <line x1="64" y1="155" x2="404" y2="155" class="guide"/>
+              <text x="70" y="149" text-anchor="start" class="lbl-sm">feasible patience</text>
+              <polyline points="64,210 110,160 160,128 220,102 290,84 350,76 404,72" class="curve"/>
+              <text x="114" y="120" text-anchor="start" class="lbl-sm">threshold</text>
+              <line x1="117" y1="155" x2="117" y2="250" class="guide"/>
+              <circle cx="117" cy="155" r="3.7" class="ink-fill"/>
+              <text x="117" y="264" text-anchor="middle" class="lbl-sm">n*</text>
+              <text x="124" y="169" text-anchor="start" class="lbl-sm">limit of cooperation</text>
+              <text x="160" y="96" text-anchor="middle" class="lbl-sm">cooperation holds</text>
+              <text x="330" y="201" text-anchor="middle" class="lbl-sm">tragedy</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 5.</span> Why small communities govern commons that strangers cannot. A commons is a game played over and over among the same users, and in a repeated game cooperation can hold if each is patient enough to value the future stream of restraint above the one-time prize of cheating. The patience required rises with the size of the group: in a small village, where each user's cheating is seen and punished, modest patience suffices; in a vast and anonymous population, the threshold climbs toward an impossible perfection. Below a feasible level of patience, only groups smaller than n* can sustain cooperation. Ostrom's enduring commons sit to the left, among the small and the bounded; the global commons sits far to the right, where no attainable patience will serve — which is why the village saves its pasture and the world struggles to save its sky.</figcaption>
+        </figure>
+        <p>For this work — gathered in <em>Governing the Commons</em> of 1990 and a lifetime of fieldwork around it — Ostrom was awarded the Nobel Memorial Prize in 2009, the first woman to receive it. The honor marked more than a career; it marked the overturning of a settled idea. Where the discipline had recognized two solutions to the tragedy and had argued endlessly over which to prefer, Ostrom established a third and showed it was no curiosity but a workhorse, the means by which a great share of the world's forests and fisheries and irrigation systems had in fact been governed all along, beneath the notice of a theory with eyes only for the market and the state. She did not claim the community always works — the next plates are largely her own catalogue of when it does not. She claimed something more carefully revolutionary: that the community is a third mode of governance, standing in its own right beside the other two, so that the question is never simply whether to privatize or to regulate, but which of three instruments, or which blend of them, fits the resource and the people at hand. The dichotomy that had counted two was dissolved into a trichotomy, and the discipline of the commons was remade.</p>
+        <aside class="pull">Hardin offered the market or the state; Ostrom found a third thing — the community that governs itself. A commons is a repeated game, and neighbors who will meet again can enforce the restraint that strangers never could.</aside>
+        <aside class="edge"><span class="lead">the edge</span> Ostrom's third way is a discovery, not a panacea, and the limits she was the first to mark are the matter of the next two plates. Self-governance is not universal: it works under specific and demanding conditions — small numbers, stable membership, clear boundaries, good monitoring, the autonomy to make one's own rules — and fails when those conditions are absent, as on the global commons they almost wholly are. The romance of the self-governing community can be overdone, and badly: real communities are also seats of hierarchy and exclusion, and the same local rules that conserve a forest may entrench a village elite, shut out women or newcomers or the poor, and enforce a distribution as unjust as any enclosure — a commons well governed for its members may be a commons closed and cruel to everyone else. And self-governance does not scale: the very features that let a Swiss village succeed — everyone known to everyone, the cheat seen and shamed, the future shared — are precisely what a planet of eight billion strangers lacks. Ostrom dethroned the dichotomy; she did not abolish the tragedy, and she would have been the last to say she had.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE VIII ===================== -->
+    <section class="plate reveal" id="plate-viii" data-label="Plate viii · The Charter">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">viii</div>
+        <p class="plate-kicker">Plate the Eighth &middot; The Failures &middot; № XIII</p>
+        <h3 class="plate-title">The Charter</h3>
+        <p class="plate-gloss">the design principles; the anatomy of a commons that endures</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what do the commons that last have in common?</q></div>
+      <div class="plate-body">
+        <p>If self-governance works under conditions, what are they? Ostrom answered not by deduction but by comparison: she set the commons that had endured for centuries beside those that had collapsed, and asked what the survivors shared. The answer was a set of design principles — not a formula guaranteeing success, for she insisted to the end that there is no panacea, but a list of features that recurred among the long-lived commons and were missing or weak in the failures. Eight in number, they read as the anatomy of an institution that can win the repeated game. The boundaries of the resource and of the group of users are clearly drawn, so that it is known what is being governed and who may use it. The rules of use are matched to local conditions — to this soil, this stream, this stock — rather than imported from a template. Those bound by the rules take part in making and revising them, so that the users govern themselves and are not governed from without. The resource and the users' conduct are monitored, by the users themselves or by monitors accountable to them. Violations meet graduated sanctions — a warning first, then a small penalty, escalating only for the stubborn or the repeat offender — so that enforcement deters without shattering the community. Cheap and accessible mechanisms stand ready to resolve the disputes that arise. The users' right to organize and make their own rules is recognized by the outside authorities, who do not override it. And in large systems governance is nested — local units within larger ones, layer upon layer — the polycentric arrangement the final plate returns to.</p>
+        <p>These principles are no arbitrary checklist; each repairs a specific way the commons fails. Clear boundaries solve the founding problem of open access — they close the entry, converting Hardin's free-for-all into a bounded common-property regime with a known membership, the very thing the first plate distinguished from a true commons. Monitoring and graduated sanctions are the machinery of the repeated game made real: cooperation holds, the seventh plate showed, only if the cheat is seen and answered, and these are how a community sees and answers him — credibly, since the sanctions are enforced, and durably, since they escalate gently rather than expelling a neighbor at his first lapse and so dissolving the very community whose future punishments give the arrangement its force. Collective choice and the fit to local conditions harness the users' own knowledge — the knowledge a distant regulator lacks — and secure their consent, so that the rules are kept as theirs and not resented as another's. Recognition by the state keeps the institution from being swept away by the very Leviathan of the sixth plate. The design principles are, in sum, the engineering of trust and enforcement — the concrete devices by which a group of users manufactures, out of repetition and visibility and proportionate punishment, the cooperation the bare dilemma said they could never have.</p>
+        <aside class="pull">Success has an anatomy: bounded membership, rules the users make, monitoring, and sanctions that escalate gently. The design principles are the engineering of the trust the repeated game requires.</aside>
+        <aside class="edge"><span class="lead">the edge</span> But the design principles are a diagnosis, not a recipe, and Ostrom said so plainly. They describe what successful commons tend to possess; they do not supply a procedure that will manufacture success, for one cannot simply install the eight and expect cooperation to follow — they emerge from a history, a culture, and a stock of trust that no planner can engineer to order, and a charter handed down from outside is not the same thing as a charter grown from within. The list is also, in part, drawn after the fact: it comes from the survivors, and survivorship bias lurks in any such reading, for the commons that lacked these features collapsed and left fewer traces, lending the principles an aura of necessity the full record might not bear. Their universality has been contested — some long-lived commons want one principle or another, and some that have all eight still fail — so that the eight are best taken as a set of correlates, immensely useful for diagnosis and for design, rather than as sufficient conditions. To treat them as a blueprint, to be stamped onto any commons anywhere, would be to repeat in a humbler key the very planner's error that the whole of Ostrom's work stands against.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE IX ===================== -->
+    <section class="plate reveal" id="plate-ix" data-label="Plate ix · The Stranger">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">ix</div>
+        <p class="plate-kicker">Plate the Ninth &middot; The Failures &middot; № XIII</p>
+        <h3 class="plate-title">The Stranger</h3>
+        <p class="plate-gloss">when self-governance fails; the stranger, the multitude, the global commons</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>and when the community cannot govern itself?</q></div>
+      <div class="plate-body">
+        <p>The seventh plate's optimism has a boundary, and the eighth plate's principles, read backward, draw it. The conditions that let a community govern its commons are the conditions whose absence dooms it, and each design principle casts a shadow. Where the users are too numerous to know or to monitor one another, the repeated game's threshold of patience climbs past reach. Where they are anonymous and mobile — strangers passing through, harvesters who will never return — there is no reputation to stake and no future punishment to fear, and the shadow of the future that disciplines the village falls on no one. Where they are heterogeneous, split by wealth or interest or value, they cannot agree on rules, and the agreement a homogeneous village reaches with ease a divided multitude cannot reach at all. Where the resource or the technology changes faster than institutions can evolve — a new market that makes a local resource immensely valuable overnight, a new gear that multiplies each harvester's reach — the slow growth of custom is simply outrun. Where the resource is hard to observe, so that overuse goes unseen, or where its boundaries lie open and its users uncountable, monitoring fails, and with it the whole apparatus of restraint. The commons that cannot be self-governed is, in short, the one that is large, open, anonymous, divided, fast-changing, and unwatchable — the mirror image, point for point, of Törbel and the Valencian huerta.</p>
+        <p>These adverse conditions reach their extreme in a single class of resource, and it is the gravest the volume must face: the global commons. The atmosphere into which all the world pours its carbon and once poured its ozone-destroying gases; the high-seas fisheries beyond every nation's reach; the deep ocean, the polar regions, the orbital space about the earth — these are commons whose community of users is all of humanity and all its states, and that community is too vast, too various, too anonymous, and above all too far beyond any overarching authority for either the village's self-governance or the sovereign's coercion to apply. There is no world community to shame a defecting nation as a village shames a defecting herder; there is no world state to set and enforce a global quota; and the atmosphere can be neither fenced nor owned. This is why the climate, which the eleventh volume named the externality of externalities, is the hardest problem in the discipline's gift: it is the tragedy of the commons at planetary scale, a reciprocal externality among nearly two hundred sovereigns and eight billion people, with every condition that makes a commons governable absent and every condition that makes one tragic present. The treaties — Kyoto, Paris — are halting attempts to build, by negotiated consent, the missing institution that neither market nor Leviathan supplies.</p>
+        <p>And yet it is not hopeless, and the proof is the Montreal Protocol. The thinning of the ozone layer was a global commons problem of just this shape — a shared atmospheric resource degraded by emissions diffuse and worldwide — and it was, very nearly, solved: the world agreed, in 1987, to phase out the offending chemicals, and the ozone layer is healing. What made ozone tractable where carbon is not is itself instructive. The science was clear and dramatic; the substitutes for the banned chemicals were cheap and ready; and the parties that mattered were few — a handful of chemical firms and the governments that housed them. Climate enjoys none of these advantages: its science, though settled, is diffuse and slow in its effects; its substitutes touch the whole of the energy economy; and its parties are everyone. The lesson of Montreal is therefore double-edged. It shows that the global commons can be governed, that the tragedy is not destiny even at planetary scale — and it shows, with equal force, how demanding the conditions of that governance are, and how few of them the hardest commons enjoys.</p>
+        <aside class="pull">The commons that cannot be self-governed is the one that is large, open, anonymous, divided, and unwatchable — the mirror, point for point, of the village that can. And the atmosphere is its extreme.</aside>
+        <aside class="edge"><span class="lead">the edge</span> Even here the picture resists the despair it invites, and two cautions correct it. First, the clean division between "self-governance works" and "self-governance fails" is too crude, for most real governance is neither pure self-rule nor pure command but polycentric — a patchwork of overlapping institutions at many scales, local nested in national nested in international, which was the burden of Ostrom's later work and is, in fact, the shape of the climate response now taking form: a tangle of treaties, national policies, subnational pledges, city networks, and private standards, messy and partial and far short of any world authority, yet not nothing. Second, the pessimism about large-scale cooperation can be self-fulfilling and can serve as an alibi for inaction — to declare the global commons ungovernable is itself a move in the game, one that licenses the very defection it foretells. The ozone treaty, the slow accretion of climate action, and the long if imperfect history of international cooperation all show that the "impossible" global commons is sometimes governed, when the conditions — clear science, affordable substitutes, side-payments, leadership — are painstakingly assembled. The global commons is the hardest case the volume knows; it is not, on the evidence, a hopeless one.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE X ===================== -->
+    <section class="plate reveal" id="plate-x" data-label="Plate x · The Club">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">x</div>
+        <p class="plate-kicker">Plate the Tenth &middot; The Failures &middot; № XIII</p>
+        <h3 class="plate-title">The Club</h3>
+        <p class="plate-gloss">club goods and congestion; the crowded road and the optimal club — Buchanan</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what of the goods that are shared freely until they are crowded?</q></div>
+      <div class="plate-body">
+        <p>Return to the four-cell matrix of the first plate, and to the cell the volume has so far passed over: the club good, excludable but not rival. A swimming pool, a golf course, a toll road, a cinema, a subscription service — these are goods that one member may enjoy without diminishing another's enjoyment, up to a point, and from which non-members can readily be barred. Because they are non-rival, they are shared like a public good; because they are excludable, they can be sold like a private one, and so, unlike the pure public good, the market provides them without difficulty — by a fee at the gate, a toll on the road, a price for the membership. James Buchanan gave them their theory in a paper of 1965, "An Economic Theory of Clubs," and the theory turns on a question the pure cases never raise: not whether to provide the good, but to how many. For the club good is non-rival only up to a point, and that point — the onset of congestion — is where it shades into the commons.</p>
+        <p>The optimal size of a club balances two opposing forces, and the figure draws their resolution. On the one side, each new member shares in the cost of providing the good, so that the cost falling on each existing member declines as the membership grows — a gain that pulls toward a larger club. On the other, each new member adds to the crowding — the pool more thronged, the road more clogged, the course more booked — so that the enjoyment of each existing member declines as membership grows past the point where congestion sets in: a loss that pulls toward a smaller club. The net benefit per member, the gain from shared cost set against the loss from crowding, therefore rises, reaches a peak, and falls; and the optimal club is the size at the peak, where the saving in shared cost from the last member admitted just balances the congestion he brings. A club smaller than this leaves cost-sharing gains untaken; a club larger crowds away more than the new members save. There is a right number of members, and it is neither one nor everyone.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="f6t f6d">
+              <title id="f6t">The crowded good and the size of the club</title>
+              <desc id="f6d">The net benefit per member rises as members share the cost, peaks, and falls as crowding sets in. The optimal club is the size at the peak, n-star, where the last member's saving in shared cost just balances the congestion he adds.</desc>
+              <line x1="64" y1="250" x2="414" y2="250" class="axis"/>
+              <polygon points="414,250 406,246 406,254" class="ink-fill"/>
+              <line x1="64" y1="250" x2="64" y2="40" class="axis"/>
+              <polygon points="64,40 60,48 68,48" class="ink-fill"/>
+              <text x="140" y="278" text-anchor="start" class="lbl-ax">club size (members) &#8594;</text>
+              <text x="26" y="148" text-anchor="middle" class="lbl-ax" transform="rotate(-90 26 148)">$ per member</text>
+              <polyline points="64,200 120,130 175,95 234,80 295,98 350,135 404,205" class="curve"/>
+              <text x="96" y="72" text-anchor="start" class="lbl-sm">net benefit</text>
+              <line x1="234" y1="80" x2="234" y2="250" class="guide"/>
+              <circle cx="234" cy="80" r="3.7" class="ink-fill"/>
+              <text x="240" y="86" text-anchor="start" class="lbl-sm">optimal club</text>
+              <text x="234" y="264" text-anchor="middle" class="lbl-sm">n*</text>
+              <text x="90" y="185" text-anchor="start" class="lbl-sm">sharing the cost</text>
+              <text x="404" y="185" text-anchor="end" class="lbl-sm">then crowding</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 6.</span> The crowded good, and the size of the club. Some goods — a swimming pool, a toll road, a club — can be shared without rivalry up to a point, then begin to crowd. As members are added, each member's share of the cost falls, which is a gain; but past a point the crowding subtracts from each member's enjoyment, which is a loss. The net benefit per member therefore rises, peaks, and falls, and the optimal club is the size at the peak, where the last member's saving in shared cost just balances the congestion he brings. It is the bridge between the volume's goods: an uncrowded road is a public good, a crowded one a common-pool resource, and the toll that sizes the club is the congestion charge of the volume on externalities.</figcaption>
+        </figure>
+        <p>The deeper service of the club good is that it reveals the boundaries of the whole taxonomy to be soft, and rivalry itself to be a matter of degree. A road with few cars upon it is a pure public good: my driving on it subtracts nothing from yours, and it is non-rival and, absent a toll, non-excludable. The same road at rush hour is a common-pool resource: now my driving slows yours, the road is rival, and we are back in the congestion externality of the eleventh volume, each driver imposing delay on all the others. The good has not changed; the crowding has changed it, sliding it from one cell of the matrix into another. And the remedy for the congested road is exactly the club's: charge for entry, exclude at a price, size the membership — which is why the congestion charge that the eleventh volume met in the streets of London is, seen from here, the club solution to a common-pool problem, a toll that turns an overgrazed public road into a rightly-sized club. A great many of what we call commons problems are at bottom congestion problems — the crowded park, the jammed bandwidth, the overloaded server — and a great many of their solutions are at bottom clubs.</p>
+        <aside class="pull">A road empty is a public good; a road jammed is a commons. The good has not changed — the crowd has changed it, and the toll that sizes the club is the congestion charge of the eleventh volume.</aside>
+        <aside class="edge"><span class="lead">the edge</span> But the club solution raises, in its sharpest form, the problem of exclusion. To club a good is to keep out those who will not or cannot pay — and for a whole class of goods that is precisely what we refuse to do, whatever it would save in congestion. A public park, a beach, a basic connection to the network, a public square: these we hold open by design, deeming access a right or a common inheritance rather than a privilege of membership, and for them the efficient toll is morally inadmissible — the eleventh plate's comedy of the commons standing against the tenth plate's economy of the club. The theory assumes, besides, that membership can be cleanly controlled and congestion cleanly measured, neither of which is always so. And the four-cell taxonomy it refines is itself less a partition than a set of idealized poles, for the lines between the cells are blurred and shifting: technology moves goods between them — encryption makes the once non-excludable excludable, turning a public good into a club good; congestion makes the once non-rival rival, turning a club good into a commons — so that a good's place in the matrix is no fixed property but a contingent and reversible fact. The neat fourfold table of the first plate is a scaffolding for thought, not a law of nature.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE XI ===================== -->
+    <section class="plate reveal" id="plate-xi" data-label="Plate xi · The Mirror">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">xi</div>
+        <p class="plate-kicker">Plate the Eleventh &middot; The Failures &middot; № XIII</p>
+        <h3 class="plate-title">The Mirror</h3>
+        <p class="plate-gloss">the comedy, the knowledge commons, and the anticommons — Rose, Heller</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>is the commons always a tragedy — and is the fence always its cure?</q></div>
+      <div class="plate-body">
+        <p>The volume has treated the commons as a thing prone to tragedy and the fence as its cure. This plate sets against that picture three inversions, in which the logic turns over: cases where the commons is no tragedy, and cases where privatization is itself the disease. The first inversion is the comedy of the commons, named by the legal scholar Carol Rose in 1986. Some resources grow more valuable the more they are used. A public square, a market, a fair, a harbor, a street thrown open to all comers — the worth of these lies in the gathering, in the crowd itself, so that each additional user, far from subtracting from the rest, adds to what all enjoy. For such resources openness is not the road to ruin but the path to greatest value, and the right policy is not to fence but to fling wide; restricting access destroys the very worth the commons creates. The network goods of the eleventh volume are the modern instance — a telephone system, a language, a marketplace whose value swells with every user — and they are commons whose proper ending is comedy, not tragedy.</p>
+        <p>The second inversion is deeper, and turns on a property the volume has held fixed: rivalry. A common-pool resource is rival — that was the whole engine of the tragedy, the grass one cow eats being grass another cannot. But information is not rival. A fact, a formula, a melody, a line of code, once made, may be used by one without leaving any less for another; my knowing a theorem subtracts nothing from your knowing it. A knowledge commons is therefore immune to the tragedy of overuse — one cannot overgraze a fact, and the more who draw on an idea the more is built upon it. The open commons of knowledge — the sciences, free and open-source software, the great collaborative encyclopaedia, the public domain — flourish with use rather than failing under it; they are commons in the fullest sense, shared and unfenced, and yet they do not deplete. Here the eleventh volume's positive externality reigns where its negative one cannot, and the danger, as the twelfth volume on information presses, is not overuse at all but its opposite: under-provision, since a non-rival good is hard to be paid for and so may go unmade, and over-enclosure, since the temptation to fence what need not be fenced — by patent, by copyright, by paywall — can starve a commons that thrives only open.</p>
+        <p>The third inversion is the exact mirror of the tragedy, and it was named by the legal scholar Michael Heller in 1998: the tragedy of the anticommons. The commons is overused because too many hold a right to use it and none a right to exclude; the anticommons is underused because too many hold a right to exclude it and none may act without the others' leave. Fragment a resource into many separate ownership rights, each carrying a veto, and the resource is not overgrazed but gridlocked — left idle because no one can assemble the permissions to put it to use. Heller's first example was the empty storefronts of post-Soviet Moscow, where a single shop might require the assent of a dozen agencies each owning some shred of the right to it, so that the windows stayed dark while flimsy kiosks crowded the pavement before them. His gravest is the patent thicket of the eleventh and twelfth volumes' world — an invention that touches dozens of patents, any one of whose holders may block it, so that useful products go unbuilt for want of a deal among the veto-holders. The anticommons teaches the lesson the fifth plate could not: that the cure for the commons can overshoot into the opposite disease, and that too much private property gridlocks a resource as surely as too little lays it waste.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="f7t f7d">
+              <title id="f7t">The tragedy and its mirror</title>
+              <desc id="f7d">From a resource used near its efficient level, multiplying rights-holders sends use two ways: upward into overuse when each may use and none exclude (the commons), downward into underuse when each may exclude and none act alone (the anticommons).</desc>
+              <line x1="64" y1="250" x2="414" y2="250" class="axis"/>
+              <polygon points="414,250 406,246 406,254" class="ink-fill"/>
+              <line x1="64" y1="250" x2="64" y2="40" class="axis"/>
+              <polygon points="64,40 60,48 68,48" class="ink-fill"/>
+              <text x="120" y="278" text-anchor="start" class="lbl-ax">number of rights-holders &#8594;</text>
+              <text x="26" y="148" text-anchor="middle" class="lbl-ax" transform="rotate(-90 26 148)">resource use</text>
+              <line x1="64" y1="150" x2="404" y2="150" class="guide"/>
+              <text x="78" y="144" text-anchor="start" class="lbl-sm">efficient use</text>
+              <line x1="64" y1="150" x2="404" y2="70" class="curve"/>
+              <text x="398" y="64" text-anchor="end" class="lbl-sm">overuse (commons)</text>
+              <line x1="64" y1="150" x2="404" y2="225" class="curve2"/>
+              <text x="398" y="231" text-anchor="end" class="lbl-sm">underuse (anticommons)</text>
+              <circle cx="64" cy="150" r="3.7" class="ink-fill"/>
+              <text x="200" y="130" text-anchor="start" class="lbl-sm">no right to exclude</text>
+              <text x="200" y="172" text-anchor="start" class="lbl-sm">each can exclude</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 7.</span> The tragedy and its mirror. Begin, at the left, with a resource held by few and used near its efficient level. Now multiply the rights-holders. If each holds a right to use and none a right to exclude — the commons — use climbs above the efficient level into overuse, the tragedy of the earlier plates. But if each holds a right to exclude and none can act without the others' leave — the anticommons — use falls below the efficient level into underuse, as any one holder can block the rest: the empty storefront with too many landlords, the invention strangled in a thicket of patents. Too many owners can waste a resource as surely as too few. Property is not a quantity, more being always better; it is a structure, and both open access and fragmented veto are its pathologies.</figcaption>
+        </figure>
+        <p>The figure sets the two failures side by side, and from it the unifying lesson falls out. Begin with a resource held by few and used near its efficient level, and then multiply the holders of rights in it. If the rights are rights to use, with none to exclude — the commons — use climbs above the efficient level into overuse, the tragedy of the early plates. If the rights are rights to exclude, with none able to act alone — the anticommons — use sinks below the efficient level into underuse, Heller's gridlock. The optimum lies between, where rights are neither so absent that all overuse nor so fragmented that none may act. And the moral is one the volume has been circling from the start: property is not a scalar, a quantity of which more is always better. It is a structure — a particular bundling and placing of the rights to use and to exclude — and a structure can fail by excess as by want. The fence of the fifth plate is no universal good, to be applied without limit; it is a tool with an optimum, and beyond that optimum it does not cure the tragedy but inverts it.</p>
+        <aside class="pull">The commons overuses for want of a right to exclude; the anticommons underuses for a surfeit of them. Too many owners gridlock a thing as surely as too few lay it waste — and a fact, being non-rival, has no tragedy at all.</aside>
+        <aside class="edge"><span class="lead">the edge</span> But the inversions have their own contested edges, and none is a law. The comedy of the commons is bounded: even resources that gain by openness eventually congest — the square thronged past pleasure, the network choked with spam, the open road jammed — so that the comedy, pressed far enough, returns to tragedy, and the difference is one of scale and degree rather than of kind. The knowledge commons, though immune to overuse, is not therefore free: it faces real problems of provision and of quality — who funds the open project, who guards the encyclopaedia against vandalism and the science against fraud, the twelfth volume's quarrels in full — and it is sustained, when it is, by effort and norm and subsidy, not by magic. And the anticommons, though a genuine and arresting phenomenon, is empirically harder to document than the tragedy it mirrors: the thesis that patent thickets actually strangle innovation is contested, the evidence mixed, so that Heller's mirror, like Hardin's original, may be more vivid as a parable than robust as a regularity. The inversions enrich the picture and puncture the dogma that the commons is always tragic and the fence always its cure; they do not replace one universal law with three.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE XII ===================== -->
+    <section class="plate reveal" id="plate-xii" data-label="Plate xii · The Inheritance">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">xii</div>
+        <p class="plate-kicker">Plate the Twelfth &middot; The Failures &middot; № XIII</p>
+        <h3 class="plate-title">The Inheritance</h3>
+        <p class="plate-gloss">the failure of the unowned made whole — toward The Game, The Norm, The Rule</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what, then, do we owe to the things we hold in common?</q></div>
+      <div class="plate-body">
+        <p>Gather the volume. It began at the village pasture, where two properties met that the textbook good keeps apart — rivalry and openness — and made of their meeting the common-pool resource, the unstable compound at the center of all that followed. From the pasture came the tragedy, drawn in full: the herder who reckons the average and ignores the marginal, the rent grazed away to nothing, the ruin worked not by greed but by arithmetic. The fishery turned the parable into a science, and the dilemma of the many turned it into a game whose dominant move is to overuse and whose trap tightens with numbers. Against the failure stood three cures — the fence that privatizes, the Leviathan that regulates, and the governed commons that Ostrom found communities had been quietly keeping all along — each with its charter of conditions and its catalogue of limits: the stranger and the global commons marking where self-governance fails, the club and the congestion charge refining the concept, the comedy and the anticommons showing the tragedy neither universal nor always cured by the fence.</p>
+        <p>Beneath it all lies a single insight, and it is the one the argument promised. The commons is the failure of the unowned shared resource. Because the resource is rival, each user's withdrawal is a real cost to all the others; because it is non-excludable, no price can charge him for that cost and no gate can keep him from imposing it; and so each user, weighing only his private gain against his private cost, takes more than the whole can bear, and the sum of these rational withdrawals is a ruin that no one willed and all must suffer. It is the externality of the eleventh volume made reciprocal and many-sided — where the externality ran one way, from a polluter to a sufferer, the commons runs every way at once, each user at the same instant the author of the harm and among the harmed. The tragedy of the commons is the externality written in the plural, and the failure it names is the failure of a thing that, belonging to all, is in the only sense that governs conduct the responsibility of none.</p>
+        <p>Against that failure the discipline sets three instruments, and the volume's hard-won wisdom is that none is a master key. The market can mend the commons by the fence — privatize it, and one owner internalizes what the many externalized. The state can mend it by the Leviathan — regulate it, and public coercion supplies the restraint the users cannot. The community can mend it by self-governance — and here was Ostrom's revolution, the demonstration that users themselves, neither privatizing nor surrendering to the state, govern their commons by rules of their own, turning the one-shot tragedy into a repeated game that neighbors can win. For two centuries the discipline named only the first two and quarreled over which to prefer; Ostrom established the third and dissolved the dichotomy, and the answer she left is not a formula but a judgment — there is no panacea, the right instrument depends on the resource and the people who share it, and often the truest answer is polycentric, a layering of market and state and community, local nested in national nested in global, no single one sufficient and all of them at work.</p>
+        <p>The volume reaches into the table at every turn. It is, before all, the child of <em>The Externality</em>, whose missing market it suffers in the plural, and whose remedies — the cap-and-trade permit, the congestion charge, the carbon price — are revealed here as commons remedies, property manufactured for a thing that had none. It rests on <em>The Game</em>, for the tragedy is an n-person prisoner's dilemma and its cure a repeated game sustained by the shadow of the future. It is twin to <em>The Norm</em>, for the community's monitoring and its graduated sanctions are social norms enforcing cooperation, and Ostrom's self-governance is the norm volume's mechanism turned upon a resource. It leans on <em>The Rule</em>, for property law and regulation and the Leviathan are the formal entitlements that law-and-economics designs. It turns on <em>The Rate</em>, for whether a private owner conserves or liquidates depends on the discount with which he weighs the future — the intergenerational commons, the climate, hanging on that number. And it bears the mark of <em>The Power</em>, in the local elite who captures a commons and the concentration that enclosure breeds; of <em>The Asymmetry</em>, in the non-rival knowledge commons that cannot be overgrazed but can be under-provided; of <em>The Rent</em>, whose unearned return is here the resource rent that open access dissipates and enclosure captures; and of <em>The Surplus</em>, for that dissipated rent is destroyed surplus, a deadweight loss the sea and the pasture pay.</p>
+        <p>And with this volume a family closes. <em>The Commons</em> is the fourth and last of <em>The Failures</em>, and with it the third group of the table is complete. Set the four side by side and the architecture of the group stands revealed. <em>The Power</em> was the failure of number — too few hands on one side of the market. <em>The Asymmetry</em> was the failure of knowledge — what one party knew and another did not. <em>The Externality</em> was the failure of the missing market — a cost or a worth with no price to carry it. <em>The Commons</em> is the failure of the unowned shared resource — a thing rival and open, exhausted because it is no one's to keep. Four ways a competitive and lawful market fails with no villain in sight: not through fraud or force, but through structure — the structure of a market cornered, a market blinded, a market missing, a market unowned. <em>The Failures</em> join <em>The Institutions</em> and <em>The Behaviors</em> as the third of the table's six families to be finished entire, and they are, perhaps, its dark heart: the volumes that explain why the elegant machinery of price, which the first eight volumes anatomized, does not always deliver what it promises.</p>
+        <p>For the deeper unity of the four is that each is a failure of the market's coverage — of its completeness, its reach. The competitive ideal that the early volumes built assumes a world of markets complete and universal: every good owned, every cost priced, every party informed, every seller one among many. <em>The Failures</em> are the four great ways the world falls short of that ideal — a market cornered by the few, a market blinded by unequal knowledge, a market missing where a cost goes uncounted, a market unowned where a resource lies open — and each volume of the group is the study of one shortfall and the imperfect art of its repair. To read them together is to learn the discipline's most adult lesson: that the market is neither a machine that always works nor an idol that always fails, but an institution magnificent within its competence and lost outside it, and that the work of economics is to know, precisely, where the edge of that competence lies.</p>
+        <p>What, then, is the verdict on the economics of the commons? On the side of triumph, it is among the discipline's most fruitful and most humane achievements. Gordon and Schaefer built the working model of every fishery on earth; Hardin, for all his confusions, named a problem that organizes the whole of environmental policy; Demsetz explained why property itself comes into being; and Ostrom, above all, overturned a false and confining dichotomy and won the Nobel for showing that ordinary people, given the room, govern their commons with a wisdom the theorists had denied them. The field is the foundation of natural-resource economics — of fisheries and forestry and the management of water — and it bears with mounting urgency on the gravest commons of all, the climate. More than any other body of work in the table, it restored the community to a discipline that had recognized only the market and the state, and so enlarged the very idea of how human beings might govern themselves.</p>
+        <p>And on the side of humility, every cure the volume offers is partial and conditional. Privatization dispossesses and may not conserve; regulation is captured and ill-informed and displaces what worked; self-governance does not scale and can mask an injustice of its own. The models are stylized, the design principles a diagnosis and not a recipe, and the hardest commons — the global atmosphere, with no community to govern it, no world state to regulate it, and no way to fence it — may exceed every instrument the volume holds, as the eleventh volume's plate on climate already confessed. The deepest question of all, how to weigh the resource against the present need and the future against the now, is the discount-rate question the third volume could not settle and this one cannot either. So the volume ends where it began, with a verdict rather than a fact: the commons is the failure of the unowned shared resource, governable by the market, the state, or the community, no one of which is a panacea and the choice among which depends on the resource and the people who share it; the discipline names the failure with precision and supplies a plural, partial, and hard-won set of cures, and leaves to judgment, case by case, which institution can tend what no one owns. The plates hand on to <em>The Game</em>, whose dilemma is the tragedy's engine; to <em>The Norm</em>, whose informal rules are its quietest cure; to <em>The Rule</em>, whose formal law is its loudest; to <em>The Rate</em>, on whose discount the future of every shared resource turns; and back to <em>The Externality</em>, whose plural this volume has been. What men hold in common they may sometimes govern, often save, and never manage by formula. The argument remains open.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref">Volume XIII &middot; The Commons</span>
+    </div>
+    <p class="colophon">Volume XIII of <em>Numéraire, A Periodic Table of Economic Life</em> — <em>The Commons</em>, the thirteenth of twenty-six elements and the fourth and last of <em>The Failures</em>. With it that family is complete: the third of the table's six groups to be finished entire, after <em>The Institutions</em> and <em>The Behaviors</em>. Across twelve plates and seven engravings the volume follows the failure of the unowned shared resource — rival yet open to all — from the village pasture and the tragedy of its overgrazing, through the open-access fishery and the dilemma of the many, to the three ways men have learned to govern what no one owns: the fence that privatizes, the Leviathan that regulates, and the community that, after Ostrom, governs itself — with their conditions, their limits at the global commons, and their inversions in the comedy and the anticommons. It hands on to <em>The Externality</em>, whose plural it is, and forward to <em>The Game</em>, <em>The Norm</em>, <em>The Rule</em>, and <em>The Rate</em>. The figures stand after Hardin, Gordon and Schaefer, Demsetz, Olson, Ostrom, Buchanan, Rose, and Heller. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<script>
+(function(){
+  var root=document.documentElement; root.classList.add('js');
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var bar=document.getElementById('progress');
+  var topbar=document.getElementById('topbar');
+  var title=document.querySelector('.vol-title');
+  var label=document.getElementById('tb-plate');
+  function onScroll(){
+    var doc=document.documentElement;
+    var h=doc.scrollHeight-window.innerHeight;
+    var p=h>0?Math.min(1,Math.max(0,window.scrollY/h)):0;
+    if(bar) bar.style.transform='scaleX('+p.toFixed(4)+')';
+    if(topbar){
+      var threshold=(title?title.offsetHeight:420)*0.72;
+      if(window.scrollY>threshold) topbar.classList.add('show'); else topbar.classList.remove('show');
+    }
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+  if('IntersectionObserver' in window){
+    var rev=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); rev.unobserve(e.target); } });
+    },{rootMargin:'0px 0px -10% 0px',threshold:0.06});
+    document.querySelectorAll('.reveal').forEach(function(el){ rev.observe(el); });
+    if(label){
+      var cur=new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting){ var t=e.target.getAttribute('data-label'); if(t) label.textContent=t; } });
+      },{rootMargin:'-44% 0px -50% 0px',threshold:0});
+      document.querySelectorAll('.plate[data-label]').forEach(function(el){ cur.observe(el); });
+    }
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-asymmetry.html">← The Asymmetry</a><a rel="next" href="the-firm.html">The Firm →</a></nav>
+</body>
+</html>

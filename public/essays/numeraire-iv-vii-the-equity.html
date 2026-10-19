@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Equity — The Premium, Plate vii · Numéraire</title>
+<meta name="description" content="the equity premium puzzle: why the reward for holding stocks over bonds is far larger than any sane fear of risk should require.">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- reading-progress hairline ---- */
+  .progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--ink);z-index:10000;}
+
+  /* ---- masthead ---- */
+  .masthead{padding:clamp(2.8rem,8vh,5.6rem) 0 clamp(1.6rem,4vh,2.6rem);text-align:center;}
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;}
+  .edition{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+  .edition b{font-family:"Fraunces",serif;font-weight:500;font-style:normal;color:var(--soft);letter-spacing:.04em;}
+
+  .symbox{width:84px;height:84px;border:1px solid var(--ink);border-radius:2px;background:var(--ink);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;margin:clamp(1.4rem,3.4vh,2.2rem) auto 0;}
+  .symbox .sb-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2rem;line-height:1;color:var(--paper);letter-spacing:-.01em;}
+  .symbox .sb-num{font-family:"Fraunces",serif;font-size:.66rem;color:rgba(240,235,225,.58);margin-top:.28rem;letter-spacing:.04em;}
+
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-top:1.15rem;}
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.5rem,7vw,5rem);line-height:1.0;letter-spacing:-.028em;margin:.55rem 0 0;text-wrap:balance;}
+  .subtitle{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.05rem,1.7vw,1.32rem);color:var(--faint);margin:.5rem 0 0;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.64;color:var(--soft);
+    max-width:43rem;margin:clamp(1.3rem,3vh,1.9rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+  .status{font-size:.84rem;color:var(--soft);margin:clamp(1.2rem,2.6vh,1.7rem) auto 0;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .backrow{margin-top:clamp(1.3rem,3vh,1.9rem);padding-top:1.5rem;border-top:1px solid var(--hair);max-width:50rem;margin-left:auto;margin-right:auto;}
+  .backlink{display:inline-block;font-size:.82rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .backlink:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- generic block furniture ---- */
+  main{padding:0;}
+  .eyebrow{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.2rem;}
+
+  .block-argument{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .argument{max-width:40rem;margin:0 auto;}
+  .argument p{font-size:1.08rem;line-height:1.74;color:var(--ink);margin:0 0 1.2rem;text-wrap:pretty;}
+  .argument p:last-child{margin-bottom:0;}
+  .argument .closer{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 400;font-style:italic;color:var(--soft);font-size:1.06rem;}
+
+  /* ---- table of plates ---- */
+  .block-toc{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .toc ol{list-style:none;margin:0;padding:0;max-width:44rem;}
+  .toc li{display:grid;grid-template-columns:2.5rem 1fr;column-gap:1rem;align-items:baseline;
+    padding:.85rem 0;border-top:1px solid var(--hair);}
+  .toc li:first-child{border-top:none;}
+  .t-num{font-family:"Fraunces",serif;font-size:.92rem;color:var(--faintest);text-align:right;}
+  .t-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.08rem;color:var(--ink);line-height:1.15;text-decoration:none;}
+  a.t-title{border-bottom:1px solid var(--num);padding-bottom:1px;}
+  a.t-title:hover{border-bottom-color:var(--ink);}
+  .t-gloss{grid-column:2;font-size:.85rem;color:var(--faint);font-style:italic;margin-top:.22rem;line-height:1.4;}
+  .t-q{grid-column:2;font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:.95rem;color:var(--soft);margin-top:.42rem;line-height:1.36;}
+  .t-q .lead{font-family:"Fraunces",serif;font-style:normal;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-right:.5rem;}
+  .t-tag{display:inline-block;margin-left:.6rem;font-family:"Newsreader",serif;font-size:.64rem;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--paper);background:var(--ink);border-radius:2px;padding:.12em .5em;vertical-align:.14em;}
+  .t-read{grid-column:2;margin-top:.42rem;}
+  .t-read a{font-size:.8rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .t-read a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- the plates (essays) ---- */
+  .plates-open{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.8rem,6vh,4rem);}
+  .plates-open .eyebrow{text-align:center;}
+  .plate{max-width:54rem;margin:clamp(2.8rem,6.5vh,4.4rem) auto 0;padding-top:clamp(2.2rem,4.6vh,3rem);
+    border-top:1px solid var(--hair);position:relative;scroll-margin-top:1.4rem;}
+  .plate:first-of-type{border-top:none;margin-top:clamp(1.6rem,3.5vh,2.4rem);padding-top:0;}
+  .plate-head{margin:0 0 1.7rem;}
+  .plate-kicker{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .plate-kicker .pk-tag{margin-left:.6rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .plate-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.8rem,4.2vw,2.7rem);line-height:1.03;letter-spacing:-.02em;margin:.32rem 0 .42rem;}
+  .plate-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.02rem;color:var(--faint);max-width:36rem;line-height:1.45;}
+
+  .epigraph{max-width:34rem;margin:1.4rem 0 1.9rem;padding-left:1.1rem;border-left:1px solid var(--num);}
+  .epigraph p{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:1.04rem;line-height:1.42;color:var(--soft);margin:0;}
+  .epigraph cite{display:block;font-style:normal;font-family:"Newsreader",serif;font-size:.78rem;
+    letter-spacing:.03em;color:var(--faintest);margin-top:.55rem;}
+
+  .plate-body{max-width:37rem;}
+  .plate-body p{font-size:1.05rem;line-height:1.75;color:var(--ink);margin:0 0 1.18rem;text-wrap:pretty;}
+  .plate-body p:last-child{margin-bottom:0;}
+  .plate-body em{font-style:italic;}
+  .plate-body .lead-para::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 500;
+    float:left;font-size:3.5rem;line-height:.78;padding:.08em .14em 0 0;color:var(--ink);}
+  .plate-body h4{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);margin:1.9rem 0 .9rem;}
+
+  .break{display:flex;justify-content:center;margin:1.9rem 0;}
+  .break span{font-family:"Fraunces",serif;font-size:1.05rem;letter-spacing:.4em;color:var(--faintest);padding-left:.4em;}
+
+  /* sidenotes — inline by default, true margin notes on wide screens */
+  .sn-ref{font-family:"Fraunces",serif;font-size:.64rem;vertical-align:super;line-height:0;color:var(--soft);margin-left:.06em;}
+  .sidenote{font-family:"Newsreader",serif;font-size:.82rem;line-height:1.52;color:var(--faint);
+    border-left:2px solid var(--hair);padding-left:.9rem;margin:.7rem 0 1.05rem;}
+  .sidenote .sn-num{font-family:"Fraunces",serif;color:var(--faintest);font-size:.7rem;margin-right:.38rem;}
+  .sidenote em{font-style:italic;}
+  @media (min-width:1040px){
+    .sidenote{float:right;clear:right;width:14.5rem;margin:.25rem -17.5rem 1.15rem 0;
+      border-left:none;border-top:1px solid var(--hair);padding:.42rem 0 0;}
+  }
+
+  /* ---- coda ---- */
+  .coda{max-width:40rem;margin:clamp(2.8rem,6vh,4rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);}
+  .coda p{font-size:1.06rem;line-height:1.74;color:var(--ink);margin:0 0 1.15rem;text-wrap:pretty;}
+  .coda p:last-child{margin-bottom:0;}
+  .coda .q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .f-ref a{text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .f-ref a:hover{border-bottom-color:var(--soft);}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .progress{transition:width .08s linear;}
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}.rise.d4{animation-delay:.4s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    h1{font-size:clamp(2.2rem,11vw,3rem);}
+    .symbox{width:72px;height:72px;}
+    .symbox .sb-sym{font-size:1.7rem;}
+    .plate-body .lead-para::first-letter{font-size:3rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+
+  /* ---- standalone plate (leaf) ---- */
+  .leaf-head{max-width:54rem;margin:0 auto;padding:clamp(2.2rem,6.5vh,4.4rem) 0 0;text-align:center;}
+  .leaf-loc{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.08em;color:var(--faintest);margin-bottom:1.7rem;}
+  .leaf-loc a{text-decoration:none;color:var(--faint);border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .leaf-loc a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+  .leaf-loc .sep{margin:0 .5rem;color:var(--num);}
+  .leaf-kicker{font-family:"Fraunces",serif;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .leaf-kicker .pk-tag{margin-left:.55rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .leaf-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.2rem,5.6vw,3.7rem);line-height:1.02;letter-spacing:-.024em;margin:.42rem 0 0;text-wrap:balance;}
+  .leaf-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.06rem;color:var(--faint);
+    max-width:34rem;margin:.72rem auto 0;line-height:1.5;text-wrap:pretty;}
+  .epigraph.leaf-epigraph{margin:1.95rem auto 1.4rem;text-align:left;}
+  .leaf-body-wrap{max-width:54rem;margin:clamp(1.8rem,4vh,2.8rem) auto 0;}
+
+  .leaf-nav{max-width:54rem;margin:clamp(3rem,7vh,5.2rem) auto 0;padding-top:clamp(1.8rem,4vh,2.6rem);
+    border-top:1px solid var(--hair);display:grid;grid-template-columns:1fr auto 1fr;gap:1.3rem;align-items:start;}
+  .ln-cell{text-decoration:none;display:block;}
+  .ln-cell .lab{display:block;font-family:"Fraunces",serif;font-size:.64rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--faintest);margin-bottom:.36rem;}
+  .ln-cell .ttl{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1rem;
+    color:var(--soft);line-height:1.22;}
+  a.ln-cell:hover .ttl{color:var(--ink);}
+  .ln-prev{text-align:left;} .ln-home{text-align:center;} .ln-next{text-align:right;}
+
+  @media (max-width:600px){
+    .leaf-nav{grid-template-columns:1fr;gap:1.4rem;}
+    .ln-prev,.ln-home,.ln-next{text-align:center;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#ne-contents">Complete contents</a><a href="../editions.html#volume-premium">The Premium · both editions</a><a href="../volumes/the-premium.html">Collected volume</a></div></nav>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="frame">
+
+  <header class="leaf-head">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="leaf-loc rise d1" aria-label="Location in the series"><a href="numeraire-atlas-updated.html">Numéraire</a><span class="sep">·</span><a href="numeraire-iv-the-premium.html">Volume IV · The Premium</a></nav>
+    <div class="leaf-kicker rise d2">Plate vii <span class="pk-tag">in print</span></div>
+    <h1 class="leaf-title rise d2">The Equity</h1>
+    <div class="leaf-gloss rise d3">the equity premium puzzle: why the reward for holding stocks over bonds is far larger than any sane fear of risk should require.</div>
+    <div class="epigraph leaf-epigraph rise d3">
+      <p>To call a premium compensation for risk begins the account; the account must still explain the size of the payment and the price of safety.</p>
+      <cite>— the argument of this plate, after Rajnish Mehra and Edward C. Prescott, 1985</cite>
+    </div>
+  </header>
+
+  <main class="leaf-body-wrap">
+    <article class="plate">
+<div class="plate-body">
+<p class="lead-para">The holders of shares bear losses that the holders of safer claims may escape. That is a reason for a premium, but it does not tell us how large the premium should be. Rajnish Mehra and Edward Prescott made the size the question. In the American series they studied for 1889–1978, the average annual real return on equities was 6.98 per cent, against 0.80 per cent on relatively safe short-term securities: a difference of 6.18 percentage points.<sup class="sn-ref">1</sup> Their 1985 paper asked whether a familiar model of consumption and asset prices could produce such a gap while also producing the low safe return. It could not within the restrictions they regarded as defensible. The finding was more precise than the claim that stocks pay well, and more troublesome than the observation that investors dislike danger. The danger had to be connected to what the investor ultimately wanted the money for. Once that connection was made, the predicted compensation was much too small.</p>
+<div class="sidenote"><span class="sn-num">1.</span> Rajnish Mehra and Edward C. Prescott, <a href="https://rajnishmehra.com/wp-content/uploads/2023/09/The-Equity-Premium-A-Puzzle.pdf">“The Equity Premium: A Puzzle”</a>, <em>Journal of Monetary Economics</em> 15 (1985), pp. 145–148, Table 1. These are historical arithmetic averages of annual real returns. The relatively safe series uses Treasury bills from 1931, Treasury certificates in 1920–1930, and prime commercial paper before 1920; it is not a ninety-year series of one unchanged security.</div>
+<p>Begin with two claims, each paying a hundred in one of two equally likely future conditions and nothing in the other. One pays when the household has abundant resources; the other pays when resources are scarce. Their average payments are identical, yet they need not have the same value. The second claim supplies purchasing power where an additional purchase matters more. It can therefore command a higher price today and offer a lower average return to its buyer. This is the consumption logic behind the premium: a claim that pays poorly in the states where consumption is already low must become sufficiently cheap, or promise sufficiently much, to be held. The preceding plate on <a href="numeraire-iv-v-the-systematic.html">systematic risk</a> connected a security to the market portfolio. The present question reaches behind the market return to the household's marginal use of the resources it receives. A violently fluctuating security need not be exceptionally burdensome if its good payments arrive in the household's bad states. A modestly fluctuating claim can be burdensome if it fails at just that moment. The amount of movement and the occasion of the movement are different facts.</p>
+<p>The benchmark puts discipline on this intuition by making the same preferences price both equity and a safe claim. Its household represents aggregate consumption, values consumption in different dates and states through a specified utility function, and faces a process calibrated to the observed growth of consumption. With constant relative risk aversion, the curvature governing the pain of uncertain consumption also governs the willingness to substitute consumption through time. In the original exercise, preference parameters varied within stated bounds, including a risk-aversion coefficient no greater than ten. For the calibrated economy with average real safe rates between zero and four per cent, the largest equity premium was about 0.35 percentage points.<sup class="sn-ref">2</sup> The model therefore misses the joint observation by a large margin. It is not enough to answer that shares sometimes crash: the model already allows unfavorable outcomes. Nor can the observed stock-return variance simply be substituted for consumption risk. The question is how much the claim changes the resources available in states where those resources have high marginal value. The benchmark's relatively smooth consumption leaves too little variation in that value to support the historical spread.</p>
+<div class="sidenote"><span class="sn-num">2.</span> Mehra and Prescott, §§ 3–4, pp. 150–156. For the consumption-pricing mechanism, see also Rajnish Mehra, <a href="https://rajnishmehra.com/wp-content/uploads/2023/09/FAJ-RM.pdf">“The Equity Premium: Why Is It a Puzzle?”</a>, <em>Financial Analysts Journal</em> 59, no. 1 (2003), corrected February 2003, pp. 55–60. The two-claim illustration is authored for this plate; it holds probabilities and payments fixed while changing the state in which payment arrives.</div>
+<div class="break"><span>⁂</span></div>
+<p>Making the household much more averse to risk does not give the analyst a free adjustment. Under the benchmark's preferences, the same change also makes consumption at different dates harder to substitute. In a growing economy, future consumption is generally more abundant than present consumption. A household that strongly resists moving consumption away from the scarcer present requires a substantial return to save. Mehra's later exposition illustrates the difficulty with a parameterization producing a real safe rate of 12.7 per cent alongside an equity premium of only 1.4 points. Those are predictions of that illustration, not the historical rates.<sup class="sn-ref">3</sup> The attempted explanation must account for the price of safety as well as the price of equity. One cannot choose a coefficient solely because it fits the spread, then ignore what it implies for the rest of the economy. Equally, the failure does not establish a clinical boundary between sane and irrational fear. It identifies a conflict among particular preferences, the consumption process, and observed returns. A different connection between attitudes toward risk and attitudes toward time changes the test.</p>
+<div class="sidenote"><span class="sn-num">3.</span> Mehra (2003), pp. 57–60, including the distinction between risk aversion and intertemporal substitution. The 12.7-per-cent safe rate and 1.4-point premium belong to his later lognormal illustration, with risk aversion 10 and discount factor 0.99; they should not be confused with the original two-state calibration. Increasing risk aversion has both growth and precautionary effects, so the argument is not a claim that the safe rate rises without limit for every parameter choice.</div>
+<p>One repair changes the danger the sample is asked to represent. Investors might price a rare collapse in consumption that occurs too seldom to be measured adequately in one national return history. In Robert Barro's extension of the rare-disaster approach, the probability and size of a severe contraction can make a large difference to the relative valuation of risky and safe claims. The fate of the safe claim matters: an event that destroys both claims does not supply the same insurance comparison as one in which the safer claim continues to pay.<sup class="sn-ref">4</sup> This is a way to retain purposeful risk-bearing while revising the distribution of the risk. Its practical demand is evidence about the severe states, their likelihood, and the resources available in them. The American sample included crashes and depression. Even such a record need not exhaust the events a buyer had reason to fear. The fuller account of this problem belongs to the plate on the tail.</p>
+<div class="sidenote"><span class="sn-num">4.</span> Robert J. Barro, <a href="https://www.nber.org/system/files/working_papers/w11310/w11310.pdf"><em>Rare Events and the Equity Premium</em></a>, NBER Working Paper 11310 (May 2005), §§ I.A and I.C, pp. 2–6 and 11–13. This citation identifies the retained working-paper version. Its output contractions and general default have different effects on the spread. <a href="numeraire-iv-x-the-tail.html">The Tail</a> develops the implications of sparse observations and common catastrophe.</div>
+<p>Another repair changes how the investor experiences the return. Shlomo Benartzi and Richard Thaler combined loss aversion with frequent evaluation of a portfolio. An investor may be saving for a distant retirement while treating each year's result as a separate gain or loss; the planning horizon and the evaluation interval are different. In their simulations using historical returns and prospect-theory preferences, an evaluation interval around a year made stocks and bonds comparably attractive. This was a model-based consistency result, not a measurement proving that investors all inspect their wealth annually, and not proof that this mechanism alone sets the premium.<sup class="sn-ref">5</sup> Its force is to bring the experience of holding the claim into the price of holding it. A sequence of short losses can be unwelcome even where the eventual use of the funds remains far away. But identifying such a mechanism does not establish that every reluctance to hold equities is a defect of attention. A household may need money during a downturn, have earnings exposed to the same shock, or face a loss it cannot finance. Those circumstances must be distinguished from the way a statement is read.</p>
+<div class="sidenote"><span class="sn-num">5.</span> Shlomo Benartzi and Richard H. Thaler, <a href="https://www.anderson.ucla.edu/documents/areas/fac/accounting/myopic_loss_aversion.pdf">“Myopic Loss Aversion and the Equity Premium Puzzle”</a>, <em>Quarterly Journal of Economics</em> 110 (1995), §§ I and III–IV, pp. 73–76 and 79–85. Their model separates the evaluation period from the planning horizon and reports sensitivity to the specification. <a href="numeraire-iv-ix-the-prospect.html">The Prospect</a> examines the underlying valuation of gains, losses, and probabilities.</div>
+<p>The puzzle therefore changes the burden of an explanation. Calling the premium compensation for risk is the beginning of an account, not its conclusion. The account must identify the risk, connect it to the people who hold it, and explain the magnitude of the payment without making the rest of their choices unintelligible. Rare disasters and the evaluation of losses illustrate different ways of revising that account; the existence of either mechanism does not allocate every point of the observed spread to it. There is also a difference between the return anticipated when shares are bought and the return realized afterward. Prices can change because beliefs change; feared losses can remain unrealized; the sample itself can favor the survivors. The 6.18-point historical difference is consequently neither a promise of a future return nor a direct measurement of what each buyer expected. The next plate, <a href="numeraire-iv-viii-the-survivor.html">The Survivor</a>, takes the record of success into the question of who was able to bear the exposure. The premium is a receipt that needs explaining. Its size alone certifies neither a service nor a folly.</p>
+</div>
+    </article>
+  </main>
+
+  <nav class="leaf-nav" aria-label="Plate navigation">
+    <a class="ln-cell ln-prev" href="numeraire-iv-vi-the-unknown.html"><span class="lab">← Previous plate</span><span class="ttl">Plate vi · The Unknown</span></a>
+    <a class="ln-cell ln-home" href="numeraire-iv-the-premium.html"><span class="lab">The volume</span><span class="ttl">The Premium · contents</span></a>
+    <a class="ln-cell ln-next" href="numeraire-iv-viii-the-survivor.html"><span class="lab">Next plate →</span><span class="ttl">Plate viii · The Survivor</span></a>
+  </nav>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref"><a href="numeraire-iv-the-premium.html">The Premium</a> · <a href="numeraire-atlas-updated.html">the table</a></span>
+    </div>
+    <p class="colophon">Plate vii of <em>The Premium</em>, Volume the Fourth of <em>Numéraire</em> — a periodic table of economic life. Adapted for the Utility edition from the earlier Quantities plate, <a href="../quantities/numeraire-plate-the-puzzle.html">The Puzzle</a>; the earlier texts and figures remain available. This leaf may be read on its own or as part of the volume. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<script>
+(function(){
+  var bar=document.getElementById('progress');
+  function onScroll(){
+    var h=document.documentElement;
+    var max=(h.scrollHeight-h.clientHeight);
+    var p=max>0?(h.scrollTop||document.body.scrollTop)/max:0;
+    bar.style.width=(p*100).toFixed(2)+'%';
+  }
+  document.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="numeraire-iv-vi-the-unknown.html">← The Unknown</a><a rel="next" href="numeraire-iv-viii-the-survivor.html">The Survivor →</a></nav>
+</body>
+</html>

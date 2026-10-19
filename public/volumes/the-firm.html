@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Firm — Numéraire, Volume XIV</title>
+<meta name="description" content="The Firm — Volume XIV of Numéraire, A Periodic Table of Economic Life. The strangest object in a market economy: an island of central planning in a sea of prices. Why firms exist, where their boundaries fall, how they are governed and for whom, and what outsourcing and the gig platform are doing to both.">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem; --measure:40rem;
+    --wash:rgba(28,26,22,.066); --wash2:rgba(28,26,22,.12);
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.62;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  .measure{max-width:var(--measure);margin-left:auto;margin-right:auto;}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- ornaments ---- */
+  .orn{display:flex;justify-content:center;margin:0 auto;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .divider{display:flex;align-items:center;gap:1.1rem;max-width:30rem;margin:clamp(3rem,7vh,5rem) auto;color:var(--num);}
+  .divider .ln{flex:1;height:1px;background:var(--hair);}
+  .divider svg{display:block;width:12px;height:12px;overflow:visible;flex:0 0 auto;}
+  .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* ---- progress + running head ---- */
+  #progress{position:fixed;top:0;left:0;height:2px;width:100%;transform:scaleX(0);transform-origin:0 50%;background:var(--soft);opacity:.45;z-index:10000;}
+  #topbar{position:fixed;top:0;left:0;right:0;z-index:9998;transform:translateY(-100%);transition:transform .5s cubic-bezier(.2,.6,.2,1);
+    background:rgba(240,235,225,.86);-webkit-backdrop-filter:saturate(1.1) blur(8px);backdrop-filter:saturate(1.1) blur(8px);
+    border-bottom:1px solid var(--hair);}
+  #topbar.show{transform:translateY(0);}
+  .tb-in{max-width:var(--frame);margin:0 auto;padding:.62rem clamp(1.4rem,4vw,3.4rem);display:flex;justify-content:space-between;align-items:baseline;gap:1.2rem;}
+  .tb-l{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:.86rem;letter-spacing:.01em;}
+  .tb-l span{color:var(--faintest);font-weight:400;}
+  .tb-r{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);text-align:right;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+
+  /* ---- title page ---- */
+  .vol-title{padding:clamp(3.4rem,11vh,8rem) 0 clamp(1.6rem,5vh,3rem);text-align:center;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.16rem;letter-spacing:.02em;}
+  .vol-no{font-size:.84rem;color:var(--faint);letter-spacing:.16em;text-transform:uppercase;margin-top:.55rem;}
+  h1.vol-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 380;font-weight:380;
+    font-size:clamp(2.9rem,9vw,6rem);line-height:.98;letter-spacing:-.028em;margin:clamp(1.7rem,4.5vh,2.8rem) 0 0;text-wrap:balance;}
+  .vol-sym{width:78px;height:78px;margin:clamp(1.6rem,4vh,2.4rem) auto 0;border:1px solid var(--hair);border-radius:2px;
+    display:flex;align-items:center;justify-content:center;background:var(--ink);}
+  .vol-sym span{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2.3rem;line-height:1;color:var(--paper);letter-spacing:-.01em;}
+  .vol-coords{font-family:"Fraunces",serif;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);margin-top:1.1rem;}
+  .vol-gloss{font-style:italic;color:var(--soft);font-size:1.12rem;margin:.5rem 0 0;}
+  .vol-epigraph{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 400;font-style:italic;
+    font-size:clamp(1.14rem,1.7vw,1.34rem);line-height:1.42;color:var(--soft);max-width:33rem;margin:clamp(1.8rem,4vh,2.6rem) auto 0;text-wrap:pretty;}
+  .vol-epigraph .lead{display:block;font-style:normal;font-variation-settings:"opsz" 24,"wght" 400;
+    font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.7rem;}
+  .vol-status{display:inline-flex;align-items:center;gap:.5rem;margin:clamp(1.8rem,4vh,2.4rem) auto 0;font-size:.84rem;color:var(--soft);}
+  .vol-status::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ink);}
+
+  /* ---- the argument (preface) ---- */
+  .part-head{text-align:center;margin:0 0 clamp(1.6rem,3.5vh,2.3rem);}
+  .part-kicker{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faintest);}
+  .part-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-weight:400;
+    font-size:clamp(1.5rem,3.4vw,2.1rem);letter-spacing:-.012em;margin:.4rem 0 0;}
+  .argument p{font-size:1.05rem;line-height:1.74;margin:0 0 1.15rem;text-wrap:pretty;}
+  .argument p.lede::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 420;
+    float:left;font-size:3.5em;line-height:.78;padding:.05em .1em 0 0;color:var(--ink);}
+  .argument em,.plate-body em,.coda em{font-style:italic;}
+
+  /* ---- contents ---- */
+  .toc{list-style:none;margin:0 auto;padding:0;max-width:43rem;}
+  .toc li{border-top:1px solid var(--hair);}
+  .toc li:last-child{border-bottom:1px solid var(--hair);}
+  .toc a{display:grid;grid-template-columns:2.6rem 1fr;column-gap:1.1rem;align-items:baseline;
+    padding:.82rem .3rem;text-decoration:none;transition:background .2s ease;}
+  .toc a:hover{background:rgba(28,26,22,.035);}
+  .toc-n{font-family:"Fraunces",serif;font-size:.92rem;color:var(--faintest);text-align:right;}
+  .toc-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.06rem;color:var(--ink);line-height:1.16;}
+  .toc-g{grid-column:2;font-size:.85rem;font-style:italic;color:var(--faint);margin-top:.16rem;line-height:1.38;}
+
+  /* ---- plates ---- */
+  .plate{margin:clamp(3.2rem,8vh,6rem) 0 0;padding-top:clamp(2.4rem,5.5vh,3.4rem);border-top:1px solid var(--hair);scroll-margin-top:4rem;}
+  .plate-open{max-width:var(--measure);margin-inline:auto;}
+  .plate-no{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 360;font-size:clamp(2.6rem,7vw,4.1rem);
+    line-height:.9;color:var(--num);letter-spacing:.02em;}
+  .plate-kicker{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faintest);margin:.9rem 0 .2rem;}
+  .plate-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.8rem,4.4vw,2.7rem);line-height:1.04;letter-spacing:-.018em;margin:0;text-wrap:balance;}
+  .plate-gloss{font-style:italic;color:var(--soft);font-size:1.02rem;margin:.55rem 0 0;line-height:1.4;}
+
+  .ask{max-width:var(--measure);margin:clamp(1.5rem,3.5vh,2.2rem) auto clamp(1.8rem,4vh,2.4rem);}
+  .ask .lead{display:block;font-family:"Fraunces",serif;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.55rem;}
+  .ask q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:clamp(1.18rem,1.8vw,1.38rem);line-height:1.36;color:var(--soft);quotes:none;}
+
+  .plate-body{max-width:var(--measure);margin-inline:auto;}
+  .plate-body p{margin:0 0 1.18rem;text-wrap:pretty;}
+  .plate-body > p:first-of-type::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 430;
+    float:left;font-size:3.5em;line-height:.76;padding:.04em .12em 0 0;color:var(--ink);}
+  .plate-body h4{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.76rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faint);margin:2rem 0 .9rem;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 380;font-style:italic;
+    font-size:clamp(1.4rem,2.3vw,1.7rem);line-height:1.32;color:var(--soft);text-align:center;
+    max-width:33rem;margin:clamp(2rem,4.5vh,2.8rem) auto;text-wrap:balance;}
+
+  .edge{max-width:var(--measure);margin:1.7rem auto;padding:.1rem 0 .1rem 1.15rem;border-left:1px solid var(--hair);
+    color:var(--faint);font-size:.92rem;line-height:1.62;}
+  .edge .lead{display:block;font-family:"Fraunces",serif;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.4rem;}
+  .edge em{font-style:italic;color:var(--soft);}
+
+  /* ---- figures (engravings) ---- */
+  .fig{max-width:var(--measure);margin:clamp(2.1rem,4.5vh,2.9rem) auto;}
+  .fig-frame{border:1px solid var(--hair);border-radius:2px;padding:clamp(1rem,2.4vw,1.7rem) clamp(1rem,2.4vw,1.7rem) clamp(.8rem,2vw,1.3rem);background:rgba(255,253,247,.4);}
+  .fig svg{display:block;width:100%;height:auto;}
+  figcaption{margin:.95rem auto 0;max-width:38rem;font-size:.85rem;line-height:1.5;color:var(--faint);text-wrap:pretty;}
+  figcaption .fig-n{font-family:"Fraunces",serif;font-weight:500;letter-spacing:.04em;color:var(--soft);}
+  figcaption em{font-style:italic;}
+  .ax{stroke:var(--soft);stroke-width:1.1;fill:none;}
+  .tick{stroke:var(--soft);stroke-width:1;}
+  .curve{stroke:var(--ink);stroke-width:1.5;fill:none;stroke-linecap:round;}
+  .curve2{stroke:var(--ink);stroke-width:1.3;fill:none;stroke-linecap:round;}
+  .guide{stroke:var(--faintest);stroke-width:1;fill:none;stroke-dasharray:3 3.5;}
+  .core{stroke:var(--ink);stroke-width:3;fill:none;stroke-linecap:round;}
+  .fill-cs{fill:var(--wash);}
+  .fill-dwl{fill:var(--wash2);}
+  .fill-wedge{fill:var(--wash);}
+  .fill-lens{fill:var(--wash);}
+  .hatch-line{stroke:var(--faintest);stroke-width:.8;}
+  .lbl{font-family:"Fraunces",serif;font-size:11.5px;fill:var(--faint);font-variation-settings:"opsz" 24,"wght" 400;}
+  .lbl-i{font-family:"Newsreader",serif;font-style:italic;font-size:11px;fill:var(--soft);}
+  .lbl-sm{font-family:"Fraunces",serif;font-size:9.6px;fill:var(--faintest);letter-spacing:.02em;}
+  .lbl-ax{font-family:"Fraunces",serif;font-size:9.4px;fill:var(--faintest);letter-spacing:.12em;}
+
+  /* ---- coda + colophon ---- */
+  .coda{max-width:var(--measure);margin:clamp(3rem,7vh,5rem) auto 0;}
+  .coda p{margin:0 0 1.18rem;text-wrap:pretty;}
+  .coda p.lede::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 430;
+    float:left;font-size:3.5em;line-height:.76;padding:.04em .12em 0 0;color:var(--ink);}
+  footer{margin-top:clamp(3.6rem,8vh,6rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.4rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .colophon{font-size:.85rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+
+  /* ---- motion / reveal ---- */
+  @media (prefers-reduced-motion: no-preference){
+    html.js .reveal{opacity:0;transform:translateY(14px);}
+    html.js .reveal.in{opacity:1;transform:none;}
+    .reveal{transition:opacity .9s cubic-bezier(.2,.6,.2,1),transform .9s cubic-bezier(.2,.6,.2,1);}
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.18s}.rise.d3{animation-delay:.32s}.rise.d4{animation-delay:.46s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  /* ---- responsive ---- */
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .argument p,.plate-body p,.coda p{font-size:1.01rem;}
+    .plate-body > p:first-of-type::first-letter,.argument p.lede::first-letter,.coda p.lede::first-letter{font-size:3em;}
+    .f-bar{flex-direction:column;gap:.5rem;}
+    .toc a{grid-template-columns:2rem 1fr;column-gap:.8rem;}
+    figcaption{font-size:.82rem;}
+  }
+
+  /* ---- print: a volume, in print ---- */
+  @media print{
+    html,body{background:#fff;color:#000;}
+    body{font-size:11.5pt;line-height:1.5;}
+    body::before,#progress,#topbar{display:none !important;}
+    .frame{max-width:none;padding:0;}
+    .measure,.plate-open,.plate-body,.ask,.edge,.coda{max-width:34rem;}
+    a{text-decoration:none;}
+    .plate{break-before:page;border-top:none;padding-top:0;}
+    .fig,figure{break-inside:avoid;}
+    .plate-no{color:#bbb;}
+    .reveal{opacity:1 !important;transform:none !important;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#ne-contents">Complete contents</a><a href="../editions.html#volume-firm">The Firm · both editions</a><a href="../essays/numeraire-xiv-the-firm.html">Expanded essays</a></div></nav>
+<div id="progress" aria-hidden="true"></div>
+<div id="topbar" aria-hidden="true"><div class="tb-in">
+  <span class="tb-l">Numéraire <span>· The Firm</span></span>
+  <span class="tb-r" id="tb-plate">Volume XIV</span>
+</div></div>
+
+<div class="frame">
+
+  <header class="vol-title">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="rise d1">
+      <span class="imprint">Numéraire</span>
+      <div class="vol-no">Volume XIV &middot; № XIV</div>
+    </div>
+    <h1 class="vol-name rise d2">The Firm</h1>
+    <div class="vol-sym rise d3" aria-hidden="true"><span>Fm</span></div>
+    <div class="vol-coords rise d3">Group IV &middot; The Institutions</div>
+    <p class="vol-gloss rise d3">planning inside the market</p>
+    <p class="vol-epigraph rise d4">
+      <span class="lead">The question of the volume</span>
+      If markets are so efficient, why is so much run by command inside firms?
+    </p>
+    <div class="vol-status rise d4">in print &middot; twelve plates</div>
+  </header>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <section class="argument reveal" aria-labelledby="arg-h">
+    <div class="part-head">
+      <div class="part-kicker">Numéraire &middot; Volume XIV</div>
+      <h2 class="part-title" id="arg-h">The Argument</h2>
+    </div>
+    <p class="lede">There is something strange at the heart of a market economy, so familiar that we forget to find it strange: that most of the work in such an economy is not coordinated by markets at all. Walk into any large firm and you will find no prices governing its inner life — the designer does not buy the engineer's drawing, the assembler does not bid for the part, the clerk does not negotiate a wage with the manager each morning. Within the firm, things are arranged by plan and by command, by direction from above rather than exchange among equals, and the price mechanism that the textbooks celebrate falls silent at the door. The firm is, in the phrase this volume will not tire of, an island of central planning in a sea of prices — and the existence of such islands, vast and numerous, in the very economy that is supposed to run on markets, is the puzzle from which all else in this volume follows.</p>
+    <p>Ronald Coase posed the puzzle in 1937, in a question of disarming simplicity. If the market is so efficient an allocator — if the price system coordinates the whole economy without a central planner, as its defenders insist — then why is so much economic activity withdrawn from the market and run by command inside firms? Why does the entrepreneur not buy each input afresh in the market at each moment, but instead hire workers under open-ended contracts and direct them by fiat? The answer Coase gave, and the answer this volume builds upon, is that using the market is itself costly. There are costs to discovering what the price is, to negotiating each bargain, to writing and enforcing each contract — the transaction costs — and when these costs are high enough, it is cheaper to dispense with the market and organize the activity within a firm, by authority. The firm exists because the market is not free to use, and it expands to the point where the cost of arranging one more thing internally just exceeds the cost of buying it outside.</p>
+    <aside class="pull">Within the firm there are no prices. The work is run by plan and by command — and the existence of these islands of planning, in the very economy that is supposed to run on markets, is the puzzle this volume must solve.</aside>
+    <p>From that answer flow the questions the plates take up. If the firm's boundary is set where the cost of command meets the cost of the market, then the boundary is a choice, not a given, and it is redrawn whenever those costs shift — which is why the same activity is made inside one firm and bought from another, and why the boundary of the firm is among the most consequential and least noticed decisions in the economy. What pushes activity inside is, above all, the danger of holdup: when a relationship requires investments specific to it, the parties become locked together, and the threat of opportunism drives them to integrate. And what governs the activity once inside is no longer price but a tangle of other rules — the authority of the employment relation, by which the worker agrees to obey within a zone; the contracts, always incomplete, that ownership must complete by conferring the right to decide what they leave unsaid; the hierarchy through which the modern corporation coordinates by plan what the market once coordinated by price.</p>
+    <p>But to organize by command is to create power, and a firm is therefore not only an efficiency device but a structure of authority, with all that authority entails. Inside the firm, someone directs and others obey; the owners' interest and the managers' diverge, and the managers' from the workers'; and the question of who controls the firm, and in whose interest it is run, becomes as live within this institution as the question of who writes the rules was for the market itself. The modern corporation separated ownership from control, leaving dispersed shareholders nominally in charge and salaried managers actually so; the doctrine of shareholder value sought to bend the managers back to the owners' purpose, against the rival claim that the firm should serve its workers, its customers, and its community as well. And the firm is, to those who labor within it, a kind of government — a private government, exercising over their working lives a power more direct and less accountable than any market, and often than many states.</p>
+    <p>The firm is not fixed in its form, and our own age is remaking it. The integrated corporation that once employed within its walls all who contributed to its product has been pulling its boundaries inward, contracting out to subcontractors and franchisees and temporary agencies the work it formerly did itself, until the firm of the law and the firm of the economy no longer coincide — the brand at the center employing few, the labor dispersed among nominal independents who bear the risks the firm has shed. The gig platform carries the tendency furthest, coordinating vast workforces it declines to employ, an entity that is neither quite a firm nor quite a market but a new thing trading on the ambiguity between them. What these developments are doing to the boundary of the firm, and to the workers cast across it, the volume's later plates must weigh.</p>
+    <p>The thesis, for the plates to earn, is this. The firm is not a natural unit of the economy, nor the featureless profit-maximizing point of the textbook, but a made and contested institution — a domain of conscious planning whose existence answers the costliness of markets, whose boundary is a choice, whose inner life is a structure of authority and a contest over control, and whose form is even now being remade. To study the firm is to discover that the market economy is not one great market but an archipelago of planned economies, the firms, coordinating across the water by price; that capitalism runs as much on command as on exchange; and that the visible hand of the manager does, within those islands, the work that the invisible hand is praised for doing without. The firm is where we learn that planning was never the market's opposite but its constant companion — and that here, as everywhere in this table, the arrangement we take for nature is a thing that someone made, and could have made otherwise.</p>
+  </section>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <section class="contents reveal" aria-labelledby="toc-h">
+    <div class="part-head">
+      <div class="part-kicker">The twelve plates of this volume</div>
+      <h2 class="part-title" id="toc-h">The Plates</h2>
+    </div>
+    <ol class="toc">
+      <li><a href="#plate-i"><span class="toc-n">i</span><span class="toc-t">The Island</span><span class="toc-g">why firms exist; planning within the sea of prices</span></a></li>
+      <li><a href="#plate-ii"><span class="toc-n">ii</span><span class="toc-t">The Friction</span><span class="toc-g">transaction costs; the price of using the market</span></a></li>
+      <li><a href="#plate-iii"><span class="toc-n">iii</span><span class="toc-t">The Edge</span><span class="toc-g">the boundary of the firm; make or buy; the Coasean margin</span></a></li>
+      <li><a href="#plate-iv"><span class="toc-n">iv</span><span class="toc-t">The Holdup</span><span class="toc-g">asset specificity; lock-in; why integration follows</span></a></li>
+      <li><a href="#plate-v"><span class="toc-n">v</span><span class="toc-t">The Agent</span><span class="toc-g">the nexus of contracts; the principal-agent problem; agency costs</span></a></li>
+      <li><a href="#plate-vi"><span class="toc-n">vi</span><span class="toc-t">The Unwritten</span><span class="toc-g">incomplete contracts; ownership as residual control</span></a></li>
+      <li><a href="#plate-vii"><span class="toc-n">vii</span><span class="toc-t">The Hierarchy</span><span class="toc-g">the managerial corporation; ownership divorced from control</span></a></li>
+      <li><a href="#plate-viii"><span class="toc-n">viii</span><span class="toc-t">The Authority</span><span class="toc-g">the employment relation; the wage as submission to direction</span></a></li>
+      <li><a href="#plate-ix"><span class="toc-n">ix</span><span class="toc-t">The Fief</span><span class="toc-g">the firm as private government; power over the working life</span></a></li>
+      <li><a href="#plate-x"><span class="toc-n">x</span><span class="toc-t">The Steward</span><span class="toc-g">corporate governance; shareholder value and its rivals; for whom</span></a></li>
+      <li><a href="#plate-xi"><span class="toc-n">xi</span><span class="toc-t">The Fissure</span><span class="toc-g">outsourcing, franchising, the gig platform; the dissolving boundary</span></a></li>
+      <li><a href="#plate-xii"><span class="toc-n">xii</span><span class="toc-t">The Visible Hand</span><span class="toc-g">the firm as conscious coordination; planning and the market</span></a></li>
+    </ol>
+  </section>
+
+  <main class="plates" id="plates">
+
+    <!-- ===================== PLATE I ===================== -->
+    <section class="plate reveal" id="plate-i" data-label="Plate i · The Island">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">i</div>
+        <p class="plate-kicker">Plate the First &middot; The Institutions &middot; № XIV</p>
+        <h3 class="plate-title">The Island</h3>
+        <p class="plate-gloss">why firms exist; planning within the sea of prices</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>why, in an economy built on markets, is most work arranged with no market at all?</q></div>
+      <div class="plate-body">
+        <p>The market economy is praised, above all, for coordinating without a coordinator. No one directs it; the price system does the work, each buyer and seller pursuing his own ends, and out of the millions of independent bargains an order emerges that no mind designed — the invisible hand, the spontaneous order, the marvel of the textbooks. And yet, if one looks at where the work of such an economy actually happens, one finds that most of it happens with no market at all. Step inside a corporation and the prices vanish. The engineer does not sell her drawing to the machinist; the machinist does not bid against his fellow for the part; no one haggles, each morning, over the wage for the day's labor. Within the firm, things are arranged by plan and by command — by direction flowing down a hierarchy — and the price mechanism that rules the economy at large falls silent at the company door. The firm is an island of central planning in a sea of prices, and the existence of such islands, in their multitudes, within the economy supposed to run on markets, is the strangest fact in all of economic life.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ff1t ff1d">
+              <title id="ff1t">Two modes of coordination</title>
+              <desc id="ff1d">On the left, the market: independent parties linked by exchange in a web with no center. On the right, the firm: a hierarchy in which authority flows down from a single head.</desc>
+              <line x1="220" y1="52" x2="220" y2="250" stroke="var(--faint)" stroke-width="1" stroke-dasharray="2 4"/>
+              <line x1="60" y1="90" x2="140" y2="80" stroke="var(--soft)" stroke-width="1"/>
+              <line x1="60" y1="90" x2="110" y2="150" stroke="var(--soft)" stroke-width="1"/>
+              <line x1="140" y1="80" x2="110" y2="150" stroke="var(--soft)" stroke-width="1"/>
+              <line x1="110" y1="150" x2="50" y2="200" stroke="var(--soft)" stroke-width="1"/>
+              <line x1="110" y1="150" x2="160" y2="200" stroke="var(--soft)" stroke-width="1"/>
+              <line x1="50" y1="200" x2="160" y2="200" stroke="var(--soft)" stroke-width="1"/>
+              <line x1="140" y1="80" x2="160" y2="200" stroke="var(--soft)" stroke-width="1"/>
+              <circle cx="60" cy="90" r="11" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.1"/>
+              <circle cx="140" cy="80" r="11" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.1"/>
+              <circle cx="110" cy="150" r="11" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.1"/>
+              <circle cx="50" cy="200" r="11" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.1"/>
+              <circle cx="160" cy="200" r="11" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.1"/>
+              <line x1="320" y1="80" x2="280" y2="150" stroke="var(--ink)" stroke-width="1.1"/>
+              <line x1="320" y1="80" x2="360" y2="150" stroke="var(--ink)" stroke-width="1.1"/>
+              <line x1="280" y1="150" x2="255" y2="210" stroke="var(--ink)" stroke-width="1.1"/>
+              <line x1="280" y1="150" x2="305" y2="210" stroke="var(--ink)" stroke-width="1.1"/>
+              <line x1="360" y1="150" x2="340" y2="210" stroke="var(--ink)" stroke-width="1.1"/>
+              <line x1="360" y1="150" x2="385" y2="210" stroke="var(--ink)" stroke-width="1.1"/>
+              <circle cx="320" cy="80" r="11" fill="var(--ink)" stroke="var(--ink)" stroke-width="1.1"/>
+              <circle cx="280" cy="150" r="11" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.1"/>
+              <circle cx="360" cy="150" r="11" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.1"/>
+              <circle cx="255" cy="210" r="11" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.1"/>
+              <circle cx="305" cy="210" r="11" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.1"/>
+              <circle cx="340" cy="210" r="11" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.1"/>
+              <circle cx="385" cy="210" r="11" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.1"/>
+              <text class="lbl" x="105" y="52" text-anchor="middle">THE MARKET</text>
+              <text class="lbl" x="320" y="52" text-anchor="middle">THE FIRM</text>
+              <text class="lbl-sm" x="105" y="240" text-anchor="middle">coordination by price</text>
+              <text class="lbl-sm" x="320" y="240" text-anchor="middle">coordination by command</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 1.</span> Two ways to coordinate. The market, on the left, is a web of exchange among independent parties, with no center and no director; order arises from the bargains themselves. The firm, on the right, is a hierarchy, in which a single head directs the rest by authority and the price mechanism is suppressed within. The market coordinates by price, the firm by command — and the economy is built of both, the islands of command joined across the water by the threads of price.</figcaption>
+        </figure>
+        <p>It was Ronald Coase, in a paper of 1937 written when he was barely more than a student, who first saw that this ordinary fact was a profound puzzle. The economics of his day, like ours, held the price system to be a supremely efficient way of coordinating production — so efficient that no central planner could match it, the lesson the century would seem to teach. But if that were the whole truth, Coase asked, why are there firms at all? Why does the entrepreneur not simply buy each service in the market as he needs it — this hour of labor, that component, this calculation — letting prices guide every step, instead of hiring people under open-ended contracts and directing them by command? Within the firm, the allocation of resources is removed from the price mechanism and given over to authority; the firm is, in Coase's words, a region where the market is superseded. And the more one looked, the larger these regions appeared, until it became clear that a vast share of all economic activity in a market economy is conducted not through markets but inside the planned hierarchies of firms.</p>
+        <p>The figure sets the two modes of coordination side by side, and the contrast is the whole matter. On the one hand the market: a web of independent parties, linked by exchange, with no center and no commander, coordinated by the prices that pass between them. On the other the firm: a hierarchy descending from a single head, coordinated not by price but by direction, the worker doing not what the price signals but what the manager says. The firm does not merely participate in the market; within itself it abolishes the market, replacing the horizontal relation of exchange with the vertical relation of command. And a modern economy is built of both — not a single great market, but a multitude of these planned islands, joined across the water by the threads of price. Herbert Simon imagined a visitor from Mars, equipped to see organizations as solid shapes and market transactions as lines between them; he would behold, Simon said, great green regions threaded with thin red lines, and would surely call what he saw an organizational economy, naming it for the firms that fill it rather than the markets that merely connect them.</p>
+        <aside class="pull">A visitor from Mars would not call ours a market economy. He would see vast green islands of planning — the firms — joined by thin red threads of exchange, and would name the thing for the islands.</aside>
+        <p>That the firm supersedes the market within itself is the fact from which this whole volume unfolds. It means that conscious planning, the supposed opposite of the market, is not banished from the market economy but woven through it, gathered into the firms that do so much of its work; that the manager's deliberate direction does, on the islands, the coordinating for which the invisible hand is praised on the open sea. And it poses at once the question the next plate must answer, the question Coase asked and that the existence of every firm renews: if the market is so good at coordinating, why is so much taken out of its hands? The answer will prove to lie not in the failure of the market but in its cost — that the market, far from being free to use, charges a price for its services, and that where the price is steep enough, it is cheaper to plan than to trade.</p>
+        <aside class="edge"><span class="lead">the edge</span> The puzzle of the firm exposes a confusion at the center of our economic talk, the supposed opposition between the market and the plan. We are taught to see the great contest of the last century as one between market economies and planned ones, between the spontaneous order of prices and the conscious direction of an authority, and to suppose that the triumph of the former was the defeat of the latter. But the market economy that won is itself riddled with planning — not at the center, in a single ministry, but dispersed through millions of firms, each an authority directing its members by command and suppressing within its walls the very price mechanism the economy is named for. The choice was never between market and plan in the abstract, for every actual economy mixes the two, coordinating some things by exchange and others by command; what differs from one economy to another is only where the boundary falls, how much is left to the market and how much gathered into the islands of planning. To see this is to be freed from a false dichotomy and returned to the real question, which is not whether to plan or to trade but which to do where — a question of the firm's boundary the plates ahead must take up, and that no slogan about markets or planning can answer.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE II ===================== -->
+    <section class="plate reveal" id="plate-ii" data-label="Plate ii · The Friction">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">ii</div>
+        <p class="plate-kicker">Plate the Second &middot; The Institutions &middot; № XIV</p>
+        <h3 class="plate-title">The Friction</h3>
+        <p class="plate-gloss">transaction costs; the price of using the market</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if the market is so efficient, what does it cost to use — and who would pay to escape it?</q></div>
+      <div class="plate-body">
+        <p>Coase's answer to his own puzzle was as simple as the puzzle, and as far-reaching: the market is not free to use. The textbook treats the price mechanism as though invoking it cost nothing — as though one could, at any moment and without expense, learn the going price, strike the bargain, and have the deal performed. But none of this is free. To buy in the market one must first discover the price, which means searching out who sells, at what quality, on what terms — the cost of information. One must negotiate the bargain, which takes time and skill and often advantage — the cost of haggling. One must set the agreement down in a contract that anticipates what may go wrong — the cost of drafting. And one must see that the other party performs, with recourse if he does not — the cost of monitoring and enforcement. These are the transaction costs, the costs of using the price mechanism itself, quite apart from the cost of the thing being bought, and they are the friction that the frictionless model leaves out.</p>
+        <p>Once transaction costs are admitted, the firm explains itself. For where the cost of using the market is high — where the thing is complex to specify, or the bargain must be struck again and again, or the parties must trust each other with much — it becomes cheaper to dispense with the market and arrange the matter within a firm, by authority. Rather than buy each hour of labor afresh, negotiating the terms anew each morning, the entrepreneur hires a worker under a single standing contract: do, within limits, what I direct, in exchange for a wage. One open-ended relationship of command replaces a thousand separate market bargains, and the transaction costs of those thousand bargains are saved. The firm, in Coase's framing, is simply the cheaper of two ways to organize the same production — cheaper than the market wherever the market's friction runs high — and the entrepreneur chooses between making within the firm and buying through the market exactly as he would choose between any two methods, by which costs the less.</p>
+        <p>This reframes both the firm and the market, and the reframing is the heart of the matter. The firm is not a failure of the market, nor a suspension of economic rationality, but a rational response to the market's cost — an institution that exists because exchange is dear, and that does by command what the market would do too expensively. And the market, correspondingly, is not the frictionless ideal of the textbook but a costly mechanism whose friction is precisely what calls forth firms, and indeed most of the institutions that economics studies. To assume transaction costs to zero, as the frictionless model does, is to assume away the very feature of the world that explains why firms exist at all — which is why the model, for all its elegance, cannot see the firm, and treats it as a mere point of production rather than the planned hierarchy it is. Coase's insight, neglected for decades and then crowned with a Nobel, founded a whole economics of institutions, in which the question is always which arrangement — market, firm, or other — most economizes on the costs of transacting.</p>
+        <aside class="pull">The market is not free to use. It charges for its services — in search, in haggling, in contracts and their enforcement — and the firm is what we build when the charge grows too steep to pay.</aside>
+        <p>What raises or lowers the market's friction therefore decides how much is done by firms and how much by markets, and the later plates will trace the chief of these forces — the complexity that makes a thing hard to contract for, the frequency that makes repeated bargaining wasteful, and above all the specificity that locks parties together and exposes them to holdup. But the general lesson stands already: the boundary between the planned and the priced, between what is gathered into firms and what is left to the market, is set by the relative cost of the two, and it is therefore movable, and therefore a choice. The firm exists in the gap between the ideal market and the real one — the gap that transaction costs open — and the size of that gap, in any line of business, decides how much of it will be run by command.</p>
+        <aside class="edge"><span class="lead">the edge</span> Coase's insight has a consequence that should unsettle both the celebrants and the critics of the market. To the celebrant, who holds the price system a frictionless marvel needing no improvement, it answers that the price system is not frictionless at all — that it charges, at every turn, for the search and the bargaining and the contracting and the enforcing that exchange requires, and that these charges are real enough to drive a vast share of economic life out of the market and into the planned interior of firms. The frictionless market of the textbook, by setting these costs to zero, assumes away the very feature of the world that explains why firms, and most institutions, exist at all. But the insight cuts against the critic too, the one who reads in the firm's planning a refutation of the market or a model for replacing it. For the firm plans only where planning is cheaper than trading, and trades wherever trading is cheaper than planning; it does not abolish the market but economizes against it, drawing its boundary at the very margin where the two costs meet. The firm is neither the market's triumph nor its negation but its complement, the institution that arises to do what the market does badly and stops where the market does well — which is why no firm grows to swallow the whole economy, and why the dream of running an economy as a single great firm founders on the same transaction costs, now multiplied beyond any hierarchy's power to bear.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE III ===================== -->
+    <section class="plate reveal" id="plate-iii" data-label="Plate iii · The Edge">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">iii</div>
+        <p class="plate-kicker">Plate the Third &middot; The Institutions &middot; № XIV</p>
+        <h3 class="plate-title">The Edge</h3>
+        <p class="plate-gloss">the boundary of the firm; make or buy; the Coasean margin</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>where does the firm end and the market begin — and who decides?</q></div>
+      <div class="plate-body">
+        <p>If the firm internalizes the transactions that are dear to conduct through the market, then it does not internalize all of them — only those for which command is cheaper than exchange — and so the firm has an edge, a boundary at which its planned interior gives way to the market without. This edge is the famous make-or-buy decision, and it is drawn activity by activity. The carmaker must decide whether to forge its own steel or buy it, cast its own engines or source them, write its own software or license it; every firm must decide whether to keep its accounting, its cleaning, its security, its logistics within the house or contract them to others. Each such decision compares the cost of making within the firm against the cost of buying through the market, and the sum of them traces the boundary of the firm — the line, drawn through the whole field of production, that separates what this firm does by command from what it leaves to exchange.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ff2t ff2d">
+              <title id="ff2t">The boundary of the firm</title>
+              <desc id="ff2d">The marginal cost of organizing inside the firm rises with the firm's size and crosses the flat marginal cost of using the market at the optimal boundary; make to the left, buy to the right.</desc>
+              <line class="ax" x1="60" y1="252" x2="404" y2="252"/>
+              <line class="ax" x1="60" y1="252" x2="60" y2="44"/>
+              <line class="curve" x1="70" y1="230" x2="360" y2="90"/>
+              <line class="curve2" x1="60" y1="160" x2="390" y2="160"/>
+              <line class="guide" x1="215" y1="252" x2="215" y2="160"/>
+              <circle cx="215" cy="160" r="2.6" fill="var(--ink)"/>
+              <text class="lbl-sm" x="330" y="96" text-anchor="middle">internal cost</text>
+              <text class="lbl-sm" x="108" y="152" text-anchor="middle">market cost</text>
+              <text class="lbl-i" x="148" y="236" text-anchor="middle">← make</text>
+              <text class="lbl-i" x="292" y="236" text-anchor="middle">buy →</text>
+              <text class="lbl" x="215" y="266" text-anchor="middle">Q*</text>
+              <text class="lbl-ax" x="356" y="269" text-anchor="middle">FIRM SIZE →</text>
+              <text class="lbl-ax" transform="rotate(-90 28 150)" x="28" y="150" text-anchor="middle">MARGINAL COST</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 2.</span> The Coasean margin. The cost of organizing one more activity inside the firm rises as the firm grows, for the hierarchy lengthens and control weakens; the cost of buying that activity in the market stays roughly level. The firm should make whatever is cheaper to make and buy whatever is cheaper to buy, so it expands to Q*, where the two costs meet, and no further. To the left of Q* command is cheaper and the firm makes; to the right the market is cheaper and the firm buys. The boundary is where the rising cost of command crosses the standing cost of exchange.</figcaption>
+        </figure>
+        <p>The figure draws the margin at which the edge settles. As the firm grows, taking ever more activity inside, the cost of organizing one more thing internally rises — for the hierarchy lengthens, the entrepreneur's attention spreads thinner, control slackens, and the mistakes of the center fall on an ever-wider domain, so that command, cheap at small scale, grows dear at large. The cost of buying the same thing in the market, meanwhile, stays roughly level. The firm should make whatever is cheaper to make and buy whatever is cheaper to buy, and so it expands to the point Q* where the rising cost of internal command just meets the level cost of the market, and there it stops. To the left of that margin lie the activities cheaper to organize within — these the firm makes; to the right lie those cheaper to obtain without — these it buys. The edge of the firm is simply this crossing, and it is no more fixed than the costs that determine it.</p>
+        <p>Because it is set by costs that move, the boundary moves with them. When the costs of using the market fall — as better information, thicker markets, and cheaper contracting make it easier to find suppliers and trust them — the margin shifts inward, and firms buy what they once made, contracting out the accounting and the manufacturing and the logistics they had kept within. When the costs of the market rise — when a needed input grows specific and the danger of holdup looms, as the next plate shows — the margin shifts outward, and firms make what they once bought, integrating the supply they cannot safely contract for. The history of the firm is in part a history of this margin sliding back and forth: the great vertically integrated combines of the industrial age, which made everything from the ore to the automobile within a single colossal works, and the leaner firms of our own time, which keep only a core and buy the rest, are not different species but the same logic answering different costs.</p>
+        <aside class="pull">The firm grows by swallowing the market — until the cost of digesting one more transaction exceeds the cost of buying it. That margin is the edge of the firm, and it is drawn, and redrawn, by choice.</aside>
+        <p>The rising curve also answers the question that haunts every defense of planning, and that the puzzle of the firm makes unavoidable: if command saves the costs of the market, why not run everything by command — why not organize the whole economy as one great firm? Because command is not free either, and its costs rise with scale, exactly as the figure shows. Stretch the hierarchy across a whole society and the information that must climb it degrades, the directives that descend it lose their fit to the case, the motivation of those at the bottom decays, and the errors of the center compound beyond any reckoning. The firm economizes on the market's costs only by taking on the hierarchy's, and beyond some size the second overtakes the first. This is why no firm grows without limit, and why the dream of the single planned economy founders: what works within the firm, at the scale where command beats the market, fails when stretched across a society, where the market beats command. The boundary between the two is not to be chosen once and for all, but found, transaction by transaction, where the cost of command meets the cost of exchange.</p>
+        <aside class="edge"><span class="lead">the edge</span> The boundary of the firm answers a question the celebrants of planning have never adequately faced: if organizing by command saves the costs of the market, why not organize everything by command — why not run the whole economy as one great plan? The answer is written in the rising curve of the figure. Organizing by command is not free; it has its own costs, and they grow with scale, for as the hierarchy lengthens the information that must climb it degrades, the directives that descend it lose their fit to the particular case, the motivation of those at the bottom to serve ends they did not choose decays, and the mistakes of the center multiply across an ever-larger domain. The firm economizes on the costs of the market only by incurring the costs of the hierarchy, and beyond a certain size the latter overtake the former, which is why no firm grows without limit and why the boundary settles where it does. The dream of the single planned economy founders on exactly this — that the costs of planning rise faster than the savings, so that what works within the firm fails when stretched across a society. The market and the firm are not rivals to be chosen between once and for all, but complements whose proper boundary is set, transaction by transaction, where the rising cost of command meets the standing cost of exchange.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE IV ===================== -->
+    <section class="plate reveal" id="plate-iv" data-label="Plate iv · The Holdup">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">iv</div>
+        <p class="plate-kicker">Plate the Fourth &middot; The Institutions &middot; № XIV</p>
+        <h3 class="plate-title">The Holdup</h3>
+        <p class="plate-gloss">asset specificity; lock-in; why integration follows</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what makes a firm swallow its supplier — and what does a worker share with a power plant built beside a coal mine?</q></div>
+      <div class="plate-body">
+        <p>The force that most often drives an activity inside the firm has a name, and Oliver Williamson built a whole economics around it: the holdup problem, born of asset specificity. An investment is specific to a relationship when it is worth far more within that relationship than in any other use — a power plant built at the mouth of a particular coal mine, a machine tooled to a single buyer's part, a worker's skills honed to one employer's peculiar ways. Such an investment, once made, creates a surplus over its next-best use, a quasi-rent that exists only so long as the relationship continues. And here the danger enters. Before the investment, the parties may have many alternatives and bargain as equals; after it is sunk, they are locked together, for the specific asset cannot be carried elsewhere without losing its quasi-rent. Williamson called this the fundamental transformation — the passage from competition among many before the commitment to bilateral monopoly between two after it — and it changes everything about the bargaining.</p>
+        <p>For now the other party can hold you up. Knowing that your plant is worthless without his coal, the mine owner may demand a higher price; knowing that your specific machine has no other buyer, the buyer may offer a lower one; and you, unable to redeploy the asset without forfeiting the quasi-rent, may swallow the worse terms rather than lose everything. This is holdup — the opportunistic exploitation of a partner whom a specific investment has rendered captive — and its damage is done less by the holdups that occur than by those that are merely feared. For the figure shows the deeper cost: anticipating that any specific investment will expose him to holdup, the rational investor invests less than he should, holding back from the efficient commitment to limit his vulnerability, so that the relationship's full value is never realized. The threat of holdup, casting its shadow forward, deters the very investment that would have created the gain, and the loss is the gap between what is invested and what efficiency would require.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ff3t ff3d">
+              <title id="ff3t">Holdup and underinvestment</title>
+              <desc id="ff3d">As asset specificity rises, actual investment under market contracting falls below the efficient first-best level, the widening gap being the underinvestment caused by the fear of holdup.</desc>
+              <line class="ax" x1="60" y1="252" x2="404" y2="252"/>
+              <line class="ax" x1="60" y1="252" x2="60" y2="44"/>
+              <line class="curve2" x1="60" y1="90" x2="404" y2="90"/>
+              <polyline class="curve" fill="none" points="70,98 160,120 250,160 360,205"/>
+              <text class="lbl-sm" x="120" y="82" text-anchor="middle">first-best</text>
+              <text class="lbl-sm" x="158" y="133" text-anchor="middle">actual investment</text>
+              <text class="lbl-i" x="315" y="146" text-anchor="middle">underinvestment</text>
+              <text class="lbl-ax" x="350" y="269" text-anchor="middle">SPECIFICITY →</text>
+              <text class="lbl-ax" transform="rotate(-90 28 150)" x="28" y="150" text-anchor="middle">INVESTMENT</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 3.</span> Holdup and underinvestment. The efficient, first-best level of a relationship-specific investment does not depend on who later captures its value. But under market contracting, the more specific the investment, the more it exposes the investor to holdup, and so the less he dares commit — the actual investment falling below the first-best by a gap that widens with specificity. The lost value is not the rent that holdup transfers but the investment that the fear of holdup prevents. Integration, by removing the separate party who might exploit the lock-in, restores the investment toward its efficient level.</figcaption>
+        </figure>
+        <p>The remedy is integration. If the plant and the mine are owned by one firm, there is no separate party to hold the other up, for the two divisions of a single owner do not expropriate each other; common ownership aligns what arms-length contracting set at odds. This is Williamson's central prediction, and the evidence bears it out: the higher the specificity of an investment, the more likely the relationship is to be folded inside a firm rather than left to a contract. Where the asset is generic and the market full of alternatives, buy — the market is safe, for no one is locked in. Where the asset is specific and the partners few, make — integrate, lest the holdup that arms-length dealing invites either be suffered or, worse, deter the investment altogether. So the boundary of the firm is drawn, in large part, to enclose the relationships too specific to trust to a contract, and to leave outside those generic enough for the market to govern. The firm is revealed as more than a device for saving transaction costs; it is a safeguard, the institution that lets specific investments be made safely that the market's holdup risk would otherwise deter.</p>
+        <aside class="pull">Build a power plant at the mouth of a mine, or a career on one firm's particular skills, and you have made yourself a hostage. The firm is, in part, the institution that lets us invest without being held to ransom.</aside>
+        <p>And the worker is caught in the very same logic, which is why this plate concerns labor as much as capital. One who invests in skills valuable chiefly to a single employer — the firm-specific human capital that <em>The Wage</em> distinguished from the general kind — has made of himself the same hostage as the plant beside the mine. Having learned this firm's peculiar systems, this team's tacit ways, he is worth more here than anywhere else, and the surplus of his worth here over his worth elsewhere is a quasi-rent the employer may try to capture, holding down his wage in the knowledge that he cannot easily leave. The firm, conversely, having borne the cost of training him, may be held up if he threatens to go. This mutual vulnerability shapes the whole employment relation — the long tenure, the seniority that rewards staying, the deferred compensation and the pension that vest only with time, the internal ladder that promotes from within — all of them devices to protect the specific investment from holdup, to turn a relationship that arms-length dealing would poison into one that mutual dependence secures. The worker and the power plant share a predicament, and the firm is, for both, the fortress raised against opportunism.</p>
+        <aside class="edge"><span class="lead">the edge</span> The holdup problem reveals the firm as more than an efficiency device — as a safeguard against the opportunism the market, for all its virtues, invites. The market coordinates strangers who need not trust one another, and this is its glory; but it is also its limit, for where a relationship requires one party to sink an investment specific to it, the very arms-length quality that makes the market work becomes a danger, since the other party, owing nothing but the contract, may exploit the lock-in the investment creates. The threat need never be carried out to do its damage; its mere shadow, falling across the decision to invest, is enough to deter the investment, so that holdup destroys value less through the holdups that happen than through the investments that, fearing them, are never made. Integration answers the threat by removing the separate party who might exploit it, folding the relationship inside a single ownership where the divisions cannot hold each other to ransom — which is why firms swallow the suppliers and buyers on whom they most depend, and why the boundary of the firm tends to enclose precisely the relationships too specific to trust to a contract. The worker is caught in the same logic, for one who invests in skills valuable only to a particular employer has made the same hostage of himself as the plant beside the mine, and must seek the same safeguards — the long tenure, the deferred reward, the bond of mutual dependence — that turn a relationship vulnerable to holdup into one secured against it.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE V ===================== -->
+    <section class="plate reveal" id="plate-v" data-label="Plate v · The Agent">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">v</div>
+        <p class="plate-kicker">Plate the Fifth &middot; The Institutions &middot; № XIV</p>
+        <h3 class="plate-title">The Agent</h3>
+        <p class="plate-gloss">the nexus of contracts; the principal-agent problem; agency costs</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if the firm is run by people spending other people's money, what keeps them faithful — and what does the attempt cost?</q></div>
+      <div class="plate-body">
+        <p>So far the firm has been seen from outside, as a boundary drawn against the market. Turn now to its interior, and the first thing to abandon is the picture of the firm as a single thing with a single will. Jensen and Meckling proposed, in 1976, that the firm is better seen as a nexus of contracts — not an actor but a meeting point, a legal fiction at the center of a web of agreements among shareholders and managers, workers and suppliers, creditors and customers, each contracting with the fiction at the middle. There is, on this view, no firm that maximizes profit the way the textbook imagines; there is a knot of contracting parties, each pursuing his own ends, and what the firm does is whatever this tangle of divergent interests, pulling against one another, produces. The question of the firm's inner life is therefore the question of how a crowd of self-interested parties, bound only by contracts that cannot foresee everything, is brought to act as if it were one.</p>
+        <p>At every joint of the nexus sits the same difficulty, the one economics calls the principal-agent problem. Whenever one party, the agent, acts on behalf of another, the principal, but their interests diverge and the principal cannot fully observe what the agent does, the agent may serve himself at the principal's expense. The classic instance is the modern corporation's own: the shareholders own the firm but do not run it, the managers run it but do not own it, and the managers may therefore pursue what flatters or eases them rather than what enriches the owners — the empire built for its own sake beyond the profitable size, the perquisites of office, the quiet life of effort withheld, the entrenchment that guards the manager's seat against every threat. Adam Smith saw it two centuries before the theory had a name: the directors of joint-stock companies, he wrote, being the managers of other people's money rather than their own, cannot be expected to watch over it with the same anxious vigilance as owners, so that negligence and profusion must always, in some degree, prevail.</p>
+        <p>Jensen and Meckling gave the cost of this difficulty a name and an anatomy: agency costs, the sum of three things. There are the monitoring costs the principal bears to watch the agent — the audits, the boards, the reporting that try to see what the agent does. There are the bonding costs the agent bears to assure the principal of his fidelity — the guarantees and reputations he stakes. And there is the residual loss, the value still forfeited because no monitoring and no bonding can align the two perfectly, the irreducible leakage of having one's affairs in another's hands. These are not bookkeeping fictions but real subtractions from what the firm is worth, and they fall wherever an agent acts for a principal — which, in the nexus of contracts, is nearly everywhere. The worker is an agent who may shirk; this, in the account of Alchian and Demsetz, is why the capitalist firm takes the shape it does, hiring a monitor to watch the team and granting him the residual, the profit, so that the one who guards against shirking has every reason to guard well. The firm is, in part, an apparatus for monitoring agents and an arrangement of who shall claim the residual that motivates the monitoring.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ff4t ff4d">
+              <title id="ff4t">The agency tradeoff</title>
+              <desc id="ff4d">The net value of the agency relationship rises and then falls as incentives strengthen: weak incentives leave effort too low, strong incentives load too much risk on the agent, and the optimum lies in between.</desc>
+              <line class="ax" x1="60" y1="252" x2="404" y2="252"/>
+              <line class="ax" x1="60" y1="252" x2="60" y2="44"/>
+              <polyline class="curve" fill="none" points="70,200 120,140 170,100 230,80 290,98 350,150 390,182"/>
+              <line class="guide" x1="230" y1="252" x2="230" y2="80"/>
+              <circle cx="230" cy="80" r="2.6" fill="var(--ink)"/>
+              <text class="lbl-sm" x="120" y="120" text-anchor="middle">effort rises</text>
+              <text class="lbl-sm" x="338" y="120" text-anchor="middle">risk bites</text>
+              <text class="lbl" x="230" y="266" text-anchor="middle">optimum</text>
+              <text class="lbl-ax" x="354" y="269" text-anchor="middle">INCENTIVES →</text>
+              <text class="lbl-ax" transform="rotate(-90 28 150)" x="28" y="150" text-anchor="middle">NET VALUE</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 4.</span> The agency tradeoff. To motivate an agent whose effort he cannot see, the principal ties the agent's pay to results; but results depend on chance as well as effort, so tying pay to results loads risk onto a risk-averse agent, which is costly. Stronger incentives thus buy more effort at the price of more risk, and the net value of the relationship rises, peaks, and falls. The optimal contract is not the most powerful incentive but an intermediate one — strong enough to spur effort, gentle enough to spare the agent ruinous risk. Perfect alignment is not the goal, because it is not affordable.</figcaption>
+        </figure>
+        <p>The natural remedy is to align the agent's interest with the principal's by tying his reward to the principal's — the performance bonus, the profit share, the stock option that makes the manager a part-owner and so gives him a stake in the value he is tempted to neglect. But alignment has a cost, and the figure draws it. To tie pay to results is to load onto the agent the risk that results carry, for output depends on luck as much as on effort, and a risk-averse agent saddled with that risk must be compensated for bearing it, or will distort his choices to avoid it. So incentives face a tradeoff: stronger ones buy more effort but impose more risk, and the net value of the relationship rises, reaches a peak, and declines. The optimal contract is therefore not the most powerful incentive imaginable but an intermediate one, strong enough to spur effort yet gentle enough to spare the agent ruinous risk — a balance, worked out across the whole of contract theory by Holmström and Mirrlees and others, between motivating and insuring. Perfect alignment is not the aim, because it cannot be bought; some residual loss is always optimal to endure.</p>
+        <aside class="pull">The people who run great firms are mostly spending other people's money. What they do with it is settled not by a natural drive to maximize, but by the incentives and the watchers we contrive — and never perfectly.</aside>
+        <p>What this reveals about the firm is that it does not automatically maximize anything. It is a coalition of self-interested parties, and what it actually pursues depends on the incentives and the monitoring — the governance — that align them, all of which are designed, and all of which are contested. The drive to maximize profit that the textbook attributes to the firm as a kind of natural instinct is, in truth, an achievement, wrung from a reluctant nexus by carefully built incentives, and never wrung completely. This is why the question of for whom the firm is run, which a later plate must face, is a real and open question rather than a settled fact: the firm serves whatever interest its governance is built to serve, and that building is a matter of power and choice. The principal-agent problem, finally, is one face of the asymmetry that its own volume anatomizes — the hidden action that the principal cannot observe — and it sits at the root of the firm's governance, its executive pay, and the perennial fear that those who run our great enterprises are not, in the end, serving those for whom they are supposed to act.</p>
+        <aside class="edge"><span class="lead">the edge</span> The principal-agent problem disturbs the comfortable assumption that a firm simply maximizes profit, as though it were a single mind with a single will. There is no such mind; there is a nexus of contracts among many parties, and at every joint of it sits the same difficulty — that one acts for another whose interests differ and whose eyes cannot follow him everywhere. The manager spends the shareholders' money, the worker expends or husbands his own effort, the executive pursues the empire that flatters him; and the firm does what this tangle of divergent interests, imperfectly disciplined by monitoring and incentive, leads it to do, which is rarely just what any owner would choose. The recognition cuts two ways. Against those who trust the firm to maximize value automatically, it answers that value leaks at every agency joint, the firm's vaunted efficiency purchased with monitoring that is itself costly and never complete. But against those who would simply command the firm to serve some better end, it answers that commands too must run through agents who have their own interests, so that no purpose — shareholder wealth or worker welfare or public good — is achieved merely by being declared; each must be built into the incentives that move the agents who would carry it out, or be quietly subverted by them. The firm is not a tool that does what it is told, but a coalition that does what its incentives induce, and to govern it is to engineer those incentives, knowing they will never align perfectly and that the residual loss is the standing price of having others act on our behalf.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE VI ===================== -->
+    <section class="plate reveal" id="plate-vi" data-label="Plate vi · The Unwritten">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">vi</div>
+        <p class="plate-kicker">Plate the Sixth &middot; The Institutions &middot; № XIV</p>
+        <h3 class="plate-title">The Unwritten</h3>
+        <p class="plate-gloss">incomplete contracts; ownership as residual control</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if no contract can foresee everything, who decides what the contract left out — and why is that what it means to own?</q></div>
+      <div class="plate-body">
+        <p>The view of the firm as a nexus of contracts contains a flaw that its authors did not at first stress, and that Sanford Grossman, Oliver Hart, and John Moore made the basis of a new theory: the contracts are incomplete. No agreement can specify what is to be done in every possible future, for the future's contingencies are too numerous to foresee, too subtle to describe, and too hard to prove to a court even when foreseen and described. The complete contract of ideal theory, which names an action for every conceivable state of the world, is a fiction; every real contract is shot through with gaps, with situations it does not address. And this raises a question the pure theory of contracts could not answer, because it had assumed the gaps away: when the contract is silent — when some unforeseen situation arises that no clause governs — who decides what shall be done?</p>
+        <p>The answer, Hart saw, is the owner. To own an asset is to hold the residual control rights over it — the right to decide its use in any situation the contract did not specify. A contract may assign particular rights, particular permitted uses; ownership confers the residual, all the rights not given away, the authority to determine the asset's use across the whole unmapped territory the contract left blank. This is a redefinition of ownership as deep as it is simple. We are accustomed to think that owning is possessing, or that owning is claiming the income a thing yields; but the incomplete-contracts theory locates the essence of ownership elsewhere, in the right to decide the unwritten — to have the last word over a thing wherever the contract runs out. And since the contract runs out almost everywhere, the residual is nearly the whole; to own is to govern the asset in all the situations no one thought to write down, which is to say in most of the situations that will actually arise.</p>
+        <p>From this flows a fresh theory of the firm's boundary. The firm, in this account, is defined by the assets it owns; and the make-or-buy question becomes the question of who should own which assets. The answer turns on investment and incentive, in a way that completes the holdup story of the earlier plate. Because ownership confers the residual control that governs the unforeseen, it confers bargaining power in exactly those situations, and so it shapes each party's incentive to make the relationship-specific investments that the contract cannot protect. The party who owns an asset will invest more in it, knowing his residual control shields the return; the party who does not own it will invest less, fearing the owner will decide the unwritten against him. Ownership is thus a way of allocating incentives — but a scarce way, for one cannot give both parties the strong incentives that come from owning the same asset. Integration, placing both assets under one owner, sharpens that owner's incentive at the cost of dulling the other's; separate ownership keeps both incentives moderate. So ownership should fall to the party whose investment matters most, and the boundary of the firm — who owns what — is set to put the residual control where it does the most good for the investments that count. For this, with Bengt Holmström's work on incentives, Hart was given the Nobel.</p>
+        <aside class="pull">No contract foresees everything. To own a thing is to hold the right to decide what the contract left unsaid — and the firm is the machine we build for deciding the unwritten.</aside>
+        <p>But the theory's longest reach is not into the boundary of the firm; it is into the nature of authority within it. For if to own an asset is to decide the unwritten concerning it, then to own the assets a person must use in order to work is to hold a power over that person — the power to decide, in every situation the employment contract left blank, what he shall do. The authority of the employer over the employee, which the next plates examine, rests in part on just this: that the firm owns the tools, the premises, the capital without which the worker cannot produce, and ownership of these confers the residual right to direct their use, and so to direct him. Hart and Moore drew the conclusion plainly — that ownership of assets is a source of power over the people who need to use them. The firm is, in this light, a machine for deciding the unwritten, a structure of residual authority erected precisely because contracts cannot reach the contingencies that matter; and the question of who owns its assets is never merely one of efficiency, but always also one of who shall command whom, across all the vast territory that no contract can map.</p>
+        <aside class="edge"><span class="lead">the edge</span> The theory of incomplete contracts overturns a picture of ownership so familiar we mistake it for the nature of the thing. We imagine that to own is to possess, to hold a thing in one's hand or one's name; or, more sophisticatedly, that to own is to claim the income it produces. But the deepest meaning of ownership is neither possession nor income but residual control — the right to decide the use of a thing in all the situations a contract failed to address, which is to say in most of them. Because no contract can foresee the future's full complexity, every contract leaves gaps, and someone must hold the authority to decide what happens in them; that someone is the owner, and ownership is precisely the holding of that residual authority. The consequence reaches past the firm into the whole question of power. For if ownership of an asset is the right to decide the unwritten concerning it, then ownership of the assets a person must use to work is a power over that person — the power to decide, in every case the employment contract left blank, what he shall do — and the authority of the employer over the employee rests, in part, on the ownership of the tools, the premises, the capital the worker cannot do without. To own the means is to command those who need them; and the boundary of the firm, the question of who owns what, is therefore never merely a question of efficiency but always also one of who shall have the last word over whom, in all the territory that no contract can map.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE VII ===================== -->
+    <section class="plate reveal" id="plate-vii" data-label="Plate vii · The Hierarchy">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">vii</div>
+        <p class="plate-kicker">Plate the Seventh &middot; The Institutions &middot; № XIV</p>
+        <h3 class="plate-title">The Hierarchy</h3>
+        <p class="plate-gloss">the managerial corporation; ownership divorced from control</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>when the firm grew too large for any owner to control, who came to run it — and for whom?</q></div>
+      <div class="plate-body">
+        <p>The firm of the early plates could be a single proprietor and a few hands; the firm that dominates a modern economy is something else entirely — the great managerial corporation, employing thousands, coordinated through tiers of salaried managers, owned by multitudes who never set foot in it. Alfred Chandler told the history of how this came to be, and gave it a title that answers Adam Smith across two centuries: the visible hand. Where the throughput was high and the coordination complex — on the railroads first, then in mass production and mass distribution — the administrative coordination of professional managers proved more efficient than the coordination of the market, and so the visible hand of management displaced the invisible hand of prices in directing the flow of goods through these great enterprises. The modern economy came to be dominated by large firms that coordinate internally by plan and hierarchy what smaller producers had left to the market. The island of planning had grown into a continent, and it was run by managers.</p>
+        <p>This growth worked a transformation whose magnitude we have stopped noticing, because we were born into its result. As the corporation grew and raised its capital from the public, its ownership dispersed — spread among thousands, then millions, of shareholders, no one of whom held enough to direct it. And as ownership dispersed, control did not vanish but migrated, gathering in the hands of the salaried managers, who owned little of the firm yet ran all of it. Adolf Berle and Gardiner Means named this the separation of ownership and control, and documented it in 1932: the corporation had become an institution in which the owners no longer controlled and the controllers no longer owned. The figure traces the mechanism. As the firm grows, the stake of its largest shareholder falls, and once that stake drops below the threshold needed for working control, the owners as a body — dispersed, uncoordinated, each too small to bother — lose the power to direct, and the managers, organized and informed and permanent, take it up.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ff5t ff5d">
+              <title id="ff5t">The separation of ownership and control</title>
+              <desc id="ff5d">As a firm grows, the stake held by its largest shareholder falls; once it drops below the threshold for working control, control passes from the dispersed owners to the salaried managers.</desc>
+              <line class="ax" x1="60" y1="252" x2="404" y2="252"/>
+              <line class="ax" x1="60" y1="252" x2="60" y2="44"/>
+              <line class="guide" x1="60" y1="169" x2="390" y2="169"/>
+              <line class="guide" x1="230" y1="252" x2="230" y2="169"/>
+              <polyline class="curve" fill="none" points="70,70 150,120 240,175 380,222"/>
+              <circle cx="230" cy="169" r="2.6" fill="var(--ink)"/>
+              <text class="lbl-sm" x="152" y="102" text-anchor="middle">largest owner's stake</text>
+              <text class="lbl-sm" x="108" y="162" text-anchor="middle">control threshold</text>
+              <text class="lbl-i" x="126" y="236" text-anchor="middle">owner control</text>
+              <text class="lbl-i" x="312" y="236" text-anchor="middle">managerial control</text>
+              <text class="lbl-ax" x="356" y="269" text-anchor="middle">FIRM SIZE →</text>
+              <text class="lbl-ax" transform="rotate(-90 28 150)" x="28" y="150" text-anchor="middle">OWNER'S STAKE</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 5.</span> The separation of ownership and control. In a small firm a single owner holds enough to control it. As the firm grows and its shares disperse among more and more holders, the largest stake shrinks, and once it falls below the threshold for working control, the owners lose the power to direct. Control then passes to the salaried managers — informed, organized, and permanent — who own little of the firm yet run all of it. The owners come to own without controlling; the managers, to control without owning.</figcaption>
+        </figure>
+        <p>The consequences of this divorce run through everything that follows. The dispersed shareholders are not merely numerous but rationally apathetic, each holding too small a fraction to make the cost of monitoring worth his while, so that the collective action problem that frustrates the diffuse public before the captured regulator frustrates the owners before their own managers. The managers, accordingly, enjoy a wide discretion — the principal-agent problem of the earlier plate, now writ across the whole economy, with the principals too scattered to discipline the agents who act in their name. And this discretion forces into the open a question that the owner-managed firm never had to ask: in whose interest is the corporation to be run? The owners' representatives no longer run it; the runners are not the owners; for whom, then, do they manage? Berle and Means could not answer their own question, and wondered whether the managers might come to run the corporation as a kind of public trust, or whether, freed from the owners' check, they would run it for themselves. The question they opened is the question of corporate governance, and a later plate must return to it.</p>
+        <aside class="pull">The great corporation broke the oldest link in the theory of property — that the owner controls. The shareholders own and do not control; the managers control and do not own; and for whom, then, the firm is run became a question no one had to ask before.</aside>
+        <p>But the deepest thing the separation did was to dissolve a concept — the classical idea of property on which so much of the market's moral defense depends. That defense rests on a unity: the owner controls his property and bears the consequences, so that he holds both the right to direct it and the incentive to direct it well, reaping what he sows and answering for what he wastes. The owner-managed farm embodies the unity, and the case for private property is strongest there. The corporation tore it apart. Ownership, dispersed among multitudes too small to control anything, became passive — a mere title to a stream of income, the very passivity that <em>The Rent</em> examined. Control, gathered in managers who owned little, became active — a power over vast assets whose consequences fell mostly on others. The correspondence of right, power, and responsibility that justified property is gone, and what stands in its place is a concentration of private power over much of a nation's wealth, owned by the passive and run by the unaccountable. The corporation is no fact of nature but a historical creation, and the separation at its heart is a made feature with momentous consequences, the first of which is that the oldest argument for property no longer quite fits the institution that holds most of it.</p>
+        <aside class="edge"><span class="lead">the edge</span> The separation of ownership and control, which we now take entirely for granted, was in truth the dissolution of a concept — the classical idea of property, on which much of the moral defense of the market rests. That defense assumes a unity: the owner controls his property and bears the consequences of his control, so that he has both the right to direct it and the incentive to direct it well, reaping what he sows and answering for what he wastes. The owner-managed farm or workshop embodies this unity, and the case for private property is strongest there. But the modern corporation tore the unity apart. Ownership dispersed among thousands too small and too scattered to control anything became passive, a mere title to a stream of income; control concentrated in managers who owned little became active, a power exercised over assets whose consequences fell mostly on others. The shareholder owns without controlling; the manager controls without owning; and the tidy correspondence between right, power, and responsibility that justified property is gone. Berle and Means saw that this left the corporation's legitimacy in question — neither the private property of its scattered owners nor anything publicly accountable, but a third thing, a concentration of private power answerable in practice to no one. The question of corporate governance, of for whom and by what right the great firm is run, is the question this dissolution opened, and it has never been closed.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE VIII ===================== -->
+    <section class="plate reveal" id="plate-viii" data-label="Plate viii · The Authority">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">viii</div>
+        <p class="plate-kicker">Plate the Eighth &middot; The Institutions &middot; № XIV</p>
+        <h3 class="plate-title">The Authority</h3>
+        <p class="plate-gloss">the employment relation; the wage as submission to direction</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what does a worker actually sell, when the wage buys not a task but obedience?</q></div>
+      <div class="plate-body">
+        <p>The firm coordinates within itself by command, and the instrument of that command is the employment relation — which, looked at closely, is a stranger thing than the language of the labor market lets on. Herbert Simon, who analyzed it with a logician's care, observed that the employment contract differs in kind from an ordinary contract of sale. When you buy a thing, you agree on a definite good for a definite price, and the bargain specifies what shall be delivered. When you employ a person, you do nothing of the sort. The worker does not agree to perform a specified task; he agrees to accept the employer's authority — to do, within a zone he is willing to accept, whatever the employer shall direct, in exchange for a wage. He sells not a product but his obedience, and defers to the employer the very decision of what the work shall be. The wage purchases the right to direct, and the content of the direction is settled later, by the one who pays.</p>
+        <p>Simon saw why this peculiar arrangement should exist, and the reason rejoins the theme of the incomplete contract. When there is uncertainty about what will need doing — and there nearly always is — it is wasteful to specify every task in advance, and far more efficient to defer the decision until the need is known, letting the employer choose, within the worker's zone of acceptance, the action the moment requires. Employment is the contractual form of this deferral: the worker agrees in advance to obey within a range, the employer gains the flexibility to direct as circumstances unfold, and the firm draws from this its central advantage over the market, which would require a fresh bargain for every fresh task. The zone of acceptance has edges — there are directions the worker will not take, and beyond them he refuses or departs — but within it, the relation is one not of exchange between equals but of command and compliance. This is the very thing that makes the firm a firm: that within it, work is directed rather than bought.</p>
+        <p>Beneath the modern contract lies an older form, and it is worth naming because it tells the truth the modern language softens. The law of employment descends from the law of master and servant — a law of subordination, in which the servant owed obedience and the master held the right of command — and the mark of an employee, in law to this day, is precisely that the employer has the right to control and direct his work, the feature that distinguishes the employee from the independent contractor who merely delivers a result. The wage relation, for all its vocabulary of free and equal contract, is at bottom a relation of command and subordination. Marx pressed the point with his customary edge: the worker, a free and equal party in the marketplace where he sells his labor-power, becomes upon entering the workplace a subordinate, the possessor of labor-power following the capitalist into a hidden abode of production where a different law than the market's prevails. The freedom of the labor market delivers the worker to a workplace that is not free but governed.</p>
+        <aside class="pull">The wage does not buy a task. It buys obedience — the worker's agreement to do, within a zone, whatever he is told. Beneath the language of free contract, the employment relation is a relation of command.</aside>
+        <p>There is no contradiction in this, only a sequence that we are apt to overlook. The worker is free in the market and subordinate in the workplace, and the two conditions follow one upon the other: he exercises his market freedom once, in agreeing to enter, and thereby places himself under an authority he will obey daily thereafter. To describe the wage as the price of submission rather than the price of a product is not to deny that the submission is freely entered or fairly paid; it is to insist on what is entered — that it is submission, that the firm is a structure of command and not a marketplace, and that the freedom of the labor market terminates at a workplace door beyond which authority, not exchange, governs. The verdict that <em>The Wage</em> examined is, seen from here, the price at which a person agrees to be directed; and the firm's whole internal coordination, the visible hand of its management, works through the authority that this agreement confers. How far that authority reaches, and whether the freedom to enter redeems the subordination that follows, the next plate must weigh.</p>
+        <aside class="edge"><span class="lead">the edge</span> The employment relation hides, beneath the egalitarian language of contract, a relation of authority the language is designed not to name. We speak of the labor market as though the worker sold his labor as a grocer sells an apple — a definite thing, for a definite price, between equals who part as they met. But the worker does not sell a definite thing; he sells his obedience, agreeing to do, within a zone he accepts, whatever the employer shall later direct, and deferring to the employer the very specification of the work. The contract is radically incomplete by design, because its purpose is to substitute authority for specification — to let the employer decide, as circumstances unfold, what the worker shall do, which is the whole advantage the firm draws from employing rather than contracting. The worker is thus free in the market and subordinate in the workplace, and the two are not in tension but in sequence: he exercises his market freedom once, in agreeing to enter, and thereby places himself under an authority he will obey daily thereafter. To see the wage as the price of submission rather than the price of a product is not to deny that the submission is freely entered or fairly paid; it is to insist that what is entered is submission, that the firm is a structure of command and not a marketplace, and that the freedom of the labor market terminates at a workplace door beyond which a different principle governs.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE IX ===================== -->
+    <section class="plate reveal" id="plate-ix" data-label="Plate ix · The Fief">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">ix</div>
+        <p class="plate-kicker">Plate the Ninth &middot; The Institutions &middot; № XIV</p>
+        <h3 class="plate-title">The Fief</h3>
+        <p class="plate-gloss">the firm as private government; power over the working life</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if the firm governs the working lives of millions, by what right — and why do we not call it a government?</q></div>
+      <div class="plate-body">
+        <p>If the wage buys obedience, then the firm is a structure of power over those who obey, and Elizabeth Anderson has drawn the conclusion the softer language resists: the firm is a government, and an authoritarian one, ruling the lives of those who work within it. We cherish the belief that a market economy is a realm of freedom, in which no one is subject to arbitrary authority and all relations are voluntary exchanges among equals. But this belief describes only the market, and stops at the workplace door. Inside the firm, the worker is governed. The employer dictates when he shall arrive and leave, when he may eat, what he may wear, what he may say, how he shall perform each task, and not seldom what he may do on his own time — the substances in his blood, the opinions on his account, the conduct of his private hours. The employer monitors him, by camera and keystroke and productivity count. And the employer may sanction him, to the ultimate sanction of stripping him of his livelihood, often for any reason or none. This is government — the exercise of authority over the conduct of subjects — and its subjects have, as a rule, no vote in it, no voice over its rules, and no constitutional protection against it.</p>
+        <p>Anderson's argument gains its force from a comparison we are trained not to make. If a state did to its citizens what the employer does to the worker — dictated their dress, surveilled their speech, regulated their off-hours conduct, and exiled them from their livelihood at will — we would call it tyranny without hesitation. We do not call the firm a tyranny, because the firm is private and the relation is said to be voluntary; but the authority it wields over the daily life of the worker is more detailed, and far less accountable, than the authority of most modern states over most modern citizens. The firm is a private government — government in that it rules, private in that it is neither the public state nor democratically answerable to the governed. We have hidden a vast exercise of power over human lives inside the categories of private contract and economic relation, where it escapes the scrutiny that any comparable public power would attract, and the achievement of seeing the firm clearly is in part the achievement of seeing this hidden government for what it is.</p>
+        <p>There is a historical irony here that sharpens the point, and gives the plate its name. The friends of the free market, from the Levellers and Paine to the classical economists, were egalitarians; they prized the market as the instrument of liberty, the mechanism by which men might be freed from the arbitrary authority of lord and guild and king and made independent, each the proprietor of his own land or trade, beholden to no master. And in an economy of small proprietors, so it might have been. But the economy the market actually produced was one in which most people own no productive property and must therefore sell their labor to those who do, entering as employees the private governments of firms. The freedom that was to abolish the lord's authority instead relocated it — from the manor to the company premises, from the feudal fief to the corporate one — and the worker, free in the market, found himself a vassal in the workplace, owing obedience to a private lord whose domain the law of the land scarcely reaches. The market freed men from the lord only to deliver them to the boss.</p>
+        <aside class="pull">If a state dictated your dress, monitored your speech, and could turn you out of your livelihood at will, we would call it tyranny. Because an employer does it, we call it the free market.</aside>
+        <p>The usual reply is that the worker consented — he chose the job, and he may quit — and so the authority he lives under is the mere working-out of his own free contract. But the reply proves less than it claims, for it is the same reply that every government gives to the subject who chafes: love it or leave it. The freedom to quit one employer for another is real and worth defending, and it distinguishes the worker's condition from the serf's; but it does not dissolve the government he lives under, any more than the freedom to emigrate dissolves the state. Most who own no capital must work for someone who does, and the choice among private governments is not the same as freedom from private government. To insist that the firm is a government is not to deny the gains of the market, nor the reality of the worker's choice among employers; it is to refuse the sleight of hand by which a vast power over human lives is made to vanish into the language of private economic relations, and to reopen the questions — of voice, of rights, of accountability within the workplace — that the language was fashioned to close. The firm holds power not only in the market, as <em>The Power</em> showed, but over the people within it; and the second power, hidden behind the first, is the one this plate insists we name.</p>
+        <aside class="edge"><span class="lead">the edge</span> The firm as private government exposes a blind spot so large that a whole tradition of freedom has overlooked it. The friends of the free market have understood liberty as freedom from arbitrary authority — from the lord, the guild, the king who could command a life without consent — and have prized the market as the instrument of that freedom, the means by which men might become independent, beholden to no master. And so it might have been, in an economy of small proprietors each working his own trade. But the economy the market actually produced was one in which most own no productive property and must work for those who do, entering as employees the private governments of firms, where they are subject to an authority over their daily lives more detailed and less accountable than the state's: told when to come and go, watched as they work, forbidden conduct on their own time, and liable to lose their livelihood at the employer's discretion. The freedom that was to abolish arbitrary authority instead relocated it, from the lord's manor to the company's premises, and then hid it, by classing the firm as private and its authority as the working-out of a voluntary contract. But authority is authority whether public or private, and the consent given once, at the threshold, under the necessity of earning a living, does not dissolve the government one lives under thereafter. To insist that the firm is a government is not to deny the gains of the market or the reality of the worker's choice among employers; it is to refuse the sleight of hand by which a vast exercise of power over human lives is made to vanish into the language of private economic relations, and to reopen the question — of voice, of rights, of accountability — that the language was fashioned to close.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE X ===================== -->
+    <section class="plate reveal" id="plate-x" data-label="Plate x · The Steward">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">x</div>
+        <p class="plate-kicker">Plate the Tenth &middot; The Institutions &middot; № XIV</p>
+        <h3 class="plate-title">The Steward</h3>
+        <p class="plate-gloss">corporate governance; shareholder value and its rivals; for whom</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>the managers control the firm — but for whom should they run it, and who gets to say?</q></div>
+      <div class="plate-body">
+        <p>The separation of ownership from control left a question hanging that this plate must answer: if the managers run the firm, for whom do they run it, and what holds them to that purpose? The first half of the question is corporate governance, the apparatus by which those who control the firm are bent toward serving someone other than themselves. The board of directors, elected by the shareholders, is meant to monitor the managers on the owners' behalf — though boards are often the managers' creatures, and the monitoring slack. The market for corporate control supplies a fiercer discipline: a firm run badly enough will see its stock fall, inviting a raider to buy it cheap, dismiss its managers, and reform it, so that the standing threat of takeover keeps managers honest — the logic that drove the takeover wars of the 1980s. And executive pay, tied through options and equity to the share price, applies to the chief the incentive alignment that the agency plate described, making the manager a part-owner so that he prospers as the owners do.</p>
+        <p>But every one of these mechanisms presupposes an answer to the second half of the question — for whom? — and that answer was the prize in one of the great ideological contests of the age. The doctrine that won is shareholder value. Milton Friedman gave it its manifesto in 1970, in an essay whose title is its argument: the social responsibility of business is to increase its profits. The managers, Friedman held, are the agents of the shareholders who own the firm, and their duty is to maximize the owners' wealth, not to spend the owners' money on whatever social causes the managers happen to favor; social ends are the business of individuals and governments, not of corporations playing with other people's money. Jensen and the agency theorists supplied the technical case: the shareholders, as residual claimants, gain only what is left after all others are paid, so that maximizing their value maximizes the whole pie. The doctrine swept the field, and the figure records its mark — the steady rise across recent decades in the share of profits returned to shareholders as dividends and buybacks, as firms came to be run, openly and increasingly, for the people who held their stock.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ff6t ff6d">
+              <title id="ff6t">The rise of shareholder payouts</title>
+              <desc id="ff6d">The share of corporate profits returned to shareholders as dividends and buybacks rises over recent decades, accelerating after the shareholder-value turn.</desc>
+              <line class="ax" x1="60" y1="252" x2="404" y2="252"/>
+              <line class="ax" x1="60" y1="252" x2="60" y2="44"/>
+              <line class="guide" x1="220" y1="252" x2="220" y2="150"/>
+              <polyline class="curve" fill="none" points="70,200 150,185 220,150 290,110 390,75"/>
+              <circle cx="220" cy="150" r="2.4" fill="var(--ink)"/>
+              <text class="lbl-sm" x="140" y="170" text-anchor="middle">dividends + buybacks</text>
+              <text class="lbl-i" x="252" y="123" text-anchor="middle">the shareholder turn</text>
+              <text class="lbl-ax" x="366" y="269" text-anchor="middle">TIME →</text>
+              <text class="lbl-ax" transform="rotate(-90 28 150)" x="28" y="150" text-anchor="middle">SHARE OF PROFITS</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 6.</span> The rise of shareholder payouts. Through the middle of the last century, corporations retained much of their profit to reinvest; in the decades since, a rising share has been returned to shareholders as dividends and, increasingly, share buybacks. The turn toward shareholder value did not merely change what managers said the firm was for; it changed where the firm's earnings went — out, to the holders of its stock, rather than back, into the enterprise and those who work in it.</figcaption>
+        </figure>
+        <p>The rival view never died, and it presses harder now. On this account the firm should serve all its stakeholders — the workers who give it their careers, the customers who depend on it, the suppliers and communities bound up with it, and not the shareholders alone. Its proponents observe that the shareholders are owners in a thin and peculiar sense: dispersed, passive, shielded by limited liability, holding diversified portfolios from which any one firm may be sold in a moment, and bearing in consequence less of the firm's specific risk than the worker who has staked his livelihood on it. Why, they ask, should such owners be the sole beneficiaries and all others mere instruments of their gain? They charge the shareholder-value doctrine with the ills of the era it ruled — the short-termism that starves investment to flatter the quarterly stock price, the squeezing of wages and the fissuring of the workforce that the next plate examines, the externalizing of costs onto the public, and the long decline in labor's share that <em>The Share</em> traced. Against shareholder primacy they set a stakeholder capitalism, lately proclaimed even by assemblies of chief executives, though whether the proclamations have changed any conduct remains in doubt.</p>
+        <aside class="pull">For whom is the corporation run? Not a fact of nature, nor quite of law, but a verdict on a contest — and the verdict that capital should rule, which we take for common sense, won a particular battle at a particular time.</aside>
+        <p>What matters for this volume is that the question is genuinely open — that the firm's purpose is neither given by nature nor firmly settled by law. The law of most lands, surprisingly, does not command the firm to maximize shareholder value; it leaves directors a wide discretion, which ideology and incentive then rush to fill. Other countries and earlier decades answered differently: the postwar managerial corporation that saw itself as a trustee for many constituencies, the German firm that seats workers on its board by the law of codetermination, the long mid-century in which retained earnings flowed back into the enterprise and the workforce as much as out to the owners. For whom the firm is run is thus a verdict on a contest — between capital and labor, shareholder and stakeholder, the immediate and the enduring — and the answer we now take for common sense is the trophy of a battle fought and won within living memory, which is to say a battle that could be fought again. The corporation is a made institution, and the question of whose interests it serves is made along with it, and unmade, and remade.</p>
+        <aside class="edge"><span class="lead">the edge</span> The question of whom the firm is run for is commonly answered as though it were obvious — the owners, of course; the shareholders, whose property the firm is — but the obviousness dissolves on inspection, and what remains is a choice dressed as a fact. The shareholders are owners in a peculiar and attenuated sense: dispersed, passive, protected by limited liability, holding diversified portfolios from which any one firm may be sold in an instant, bearing less of the firm's specific risk than the workers who have staked their careers on it or the communities grown up around it. That such owners should be the sole beneficiaries of the firm's efforts, and all others mere means to their enrichment, is not a deduction from the nature of property but a contestable claim about purpose — one that the doctrine of shareholder value asserted, that the takeover wave and the stock-based pay of recent decades enforced, and that the rising tide of payouts in the figure records. The rival claim, that the firm should serve all who commit themselves to it, is no less defensible and was, in other countries and earlier decades, the reigning one. The law itself, in most places, does not settle the matter, leaving directors a discretion that ideology and incentive rush to fill. So the purpose of the corporation is genuinely open — a verdict perpetually contested between capital and labor, shareholder and stakeholder, the immediate and the enduring — and the answer we take for common sense is the trophy of a battle fought, and won, within living memory, and could be fought again.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE XI ===================== -->
+    <section class="plate reveal" id="plate-xi" data-label="Plate xi · The Fissure">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">xi</div>
+        <p class="plate-kicker">Plate the Eleventh &middot; The Institutions &middot; № XIV</p>
+        <h3 class="plate-title">The Fissure</h3>
+        <p class="plate-gloss">outsourcing, franchising, the gig platform; the dissolving boundary</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>who employs the worker who cleans the tower, drives for the app, or wears the franchise's uniform — and why is it no longer the brand they serve?</q></div>
+      <div class="plate-body">
+        <p>The boundary of the firm, the early plates insisted, is movable, sliding with the costs that set it; and in our own time it has been moving in one direction, inward, with consequences David Weil gathered under the name of the fissured workplace. The integrated corporation that once employed within its walls nearly everyone who contributed to its product — the janitors and cooks and drivers alongside the engineers and managers — has been shedding all but a core, contracting out the rest. The hotel's housekeepers now work for a staffing firm, not the hotel; the technology giant's cafeteria workers and security guards for subcontractors; its manufacturing for distant supplier firms. The brand on the building employs few of those who labor under it. What was once one firm has fissured into a lead company at the center and a surrounding web of contractors, franchisees, and agencies, each a separate employer, joined to the center not by the employment relation but by a commercial contract.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ff7t ff7d">
+              <title id="ff7t">The dissolving boundary</title>
+              <desc id="ff7d">A small core firm is joined by contracts to a surrounding web of subcontractor, franchise, gig platform, and temp agency; the dashed line marks the larger boundary of the old firm, when all of them would have been employed within one wall.</desc>
+              <ellipse cx="220" cy="150" rx="145" ry="118" fill="none" stroke="var(--soft)" stroke-width="1.2" stroke-dasharray="5 5"/>
+              <line x1="220" y1="150" x2="128" y2="98" stroke="var(--soft)" stroke-width="1" stroke-dasharray="1 3"/>
+              <line x1="220" y1="150" x2="312" y2="98" stroke="var(--soft)" stroke-width="1" stroke-dasharray="1 3"/>
+              <line x1="220" y1="150" x2="128" y2="202" stroke="var(--soft)" stroke-width="1" stroke-dasharray="1 3"/>
+              <line x1="220" y1="150" x2="312" y2="202" stroke="var(--soft)" stroke-width="1" stroke-dasharray="1 3"/>
+              <circle cx="128" cy="98" r="14" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.1"/>
+              <circle cx="312" cy="98" r="14" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.1"/>
+              <circle cx="128" cy="202" r="14" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.1"/>
+              <circle cx="312" cy="202" r="14" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.1"/>
+              <circle cx="220" cy="150" r="30" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.6"/>
+              <text class="lbl" x="220" y="155" text-anchor="middle">FIRM</text>
+              <text class="lbl-sm" x="112" y="80" text-anchor="middle">subcontractor</text>
+              <text class="lbl-sm" x="322" y="80" text-anchor="middle">franchise</text>
+              <text class="lbl-sm" x="116" y="226" text-anchor="middle">temp agency</text>
+              <text class="lbl-sm" x="320" y="226" text-anchor="middle">gig platform</text>
+              <text class="lbl-sm" x="220" y="49" text-anchor="middle">the old firm: all inside</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 7.</span> The dissolving boundary. The solid circle is the firm today — a lean core, the brand and its highest-value work. Around it, joined by contracts rather than by employment, lies the labor it once contained: the subcontractor, the franchise, the temp agency, the gig platform. The dashed line marks the old boundary, the wall within which all of these would once have been employed by a single firm. The boundary has not vanished; it has contracted, pushing the workers outside it while the lead firm, through its standards and its contracts, directs them still.</figcaption>
+        </figure>
+        <p>Some of this follows the innocent logic of the early plates: as the cost of contracting falls, the market grows cheaper than the hierarchy, and the boundary contracts. But Weil saw a second motive, less innocent, and it rejoins the doctrine of the previous plate. By contracting out its workers, the lead firm sheds the obligations that employment carries — the wages and benefits, the liabilities, the body of labor law that would bind it to them as employees — and pushes those costs and risks onto the contractors, who compete by squeezing labor, or onto the workers themselves. The firm keeps the profitable core and the brand; it sheds the labor and the risk. And shareholder value drives the knife, for fissuring flatters the profits and the payouts of the figure before it by cutting the wage bill and clearing the liabilities from the books. Yet the lead firm does not relinquish control. Through the standards it imposes, the contracts it dictates, the specifications and inspections and algorithms by which it governs how the franchisee operates and how the contractor performs, it directs the work as closely as any employer ever did. Here is the trick at the heart of the fissure: the separation of control from employment, so that the firm may command the worker it does not employ, and keep an employer's power while disclaiming an employer's duties.</p>
+        <p>The gig platform carries the trick to its limit, and in doing so dissolves not merely the boundary of a firm but the line between the firm and the market itself. It coordinates a vast labor force through an apparatus of algorithmic direction more total than any foreman's — setting the prices, assigning the tasks, monitoring the performance, rating the worker, and deactivating him at a keystroke — which is the behavior of a firm, and a peculiarly absolute one. Yet it insists that its workers are independent contractors, free agents transacting in a market, which is the language of the market and not the firm. It is, in truth, neither: not a firm, for it disclaims the employment and the responsibility; not a market, for the worker sets neither his price nor his terms but takes what the algorithm dictates. It is a new thing, trading on the ambiguity between the two — exercising the control of a firm without its accountability, wearing the form of a market without its freedom. The categories of the very first plate, the firm and the market as the two modes of coordination, blur into one another in the platform, which is why the law has struggled so to classify it.</p>
+        <aside class="pull">The brand controls the work but employs no one who does it. Fissuring gives the firm an employer's power without an employer's duties — control without accountability — and pushes the risk onto the worker who wears its name.</aside>
+        <p>For the worker, the fissure is felt as loss. The same janitor, cleaning the same floor of the same tower, earns less and is protected less as a contractor's employee than she would as the building owner's, for the wage premium that a large and profitable firm once shared with all who worked under its roof — the rent-sharing that <em>The Wage</em> examined — does not cross the contractual line to reach her. The gig worker bears the full risk of his trade, with no floor under his earnings and no benefits behind him. And when something goes wrong — the wage unpaid, the injury uncompensated, the discrimination unredressed — the lead firm points to the contractor, the contractor is too small to answer, and the worker who served the brand finds the brand owes him nothing. What is dissolving, beneath the particular boundaries, is the category of employment itself, the legal form through which a century of protections was fastened to work; and the great contests now fought in the courts and legislatures over whether the app's driver is an employee or a contractor are, beneath their technicality, contests over whether those protections will survive the remaking of the firm. The boundary of the firm was always a choice; the fissure reveals that it is a choice with a casualty, and names the casualty — the worker cast across the line.</p>
+        <aside class="edge"><span class="lead">the edge</span> The fissured workplace reveals the boundary of the firm to be not only movable but manipulable — a line firms now redraw not merely to economize on transaction costs, as the early theory supposed, but to shed the responsibilities that employment carries while keeping the control that employment confers. The lead firm contracts out its janitors, its drivers, its makers, and by the contracting escapes the wages, the benefits, the liabilities, the labor law that would bind it to them as employees; yet through the standards it imposes, the contracts it dictates, the algorithms by which it assigns and monitors and rates, it directs their work as closely as any employer ever did. This is the trick at the heart of the fissure: the separation of control from employment, so that the firm may command the worker it does not employ, and the worker may serve the brand that owes him nothing. The gig platform carries the trick to its limit, coordinating a vast labor force through an algorithmic direction more total than a foreman's while insisting that the workers are independent contractors free in a market — a claim true enough to escape the duties of an employer and false enough to deny the workers the freedoms of a real market, in which they might set their own prices and terms. What is dissolving is not merely the boundary of the particular firm but the category of employment itself, the legal form through which a century of protections was attached to work; and the contest over whether the app's driver is an employee or a contractor is, beneath its technicality, a contest over whether those protections shall survive the remaking of the firm.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE XII ===================== -->
+    <section class="plate reveal" id="plate-xii" data-label="Plate xii · The Visible Hand">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">xii</div>
+        <p class="plate-kicker">Plate the Twelfth &middot; The Institutions &middot; № XIV</p>
+        <h3 class="plate-title">The Visible Hand</h3>
+        <p class="plate-gloss">the firm as conscious coordination; planning and the market</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if the firm is a made thing — its existence, its boundary, its government all chosen — what does it teach about the economy we took for a market?</q></div>
+      <div class="plate-body">
+        <p>The volume may now gather what its plates have shown. The firm began as a puzzle — the island of planning in the sea of prices, the region where the market falls silent and command takes over — and the plates have, one by one, dissolved the puzzle into an account. The firm exists because the market is costly to use, and command, where the market's friction runs high, is the cheaper way to coordinate. Its boundary is drawn at the margin where the rising cost of command meets the standing cost of exchange, pushed outward by the holdup that relationship-specific investments invite, and settled by the question of who should own the assets to keep the right incentives alive. And its inner life is no single will but a nexus of contracting parties, held together by monitoring and incentive against the agency that forever leaks their value, coordinated by the authority the employment relation confers, and structured into a hierarchy that long ago divorced the owners from the control. The firm, in short, is explained — not as a natural unit of the economy but as an institution that answers, at every point, to costs and to contests.</p>
+        <p>But to explain the firm by its efficiency is to tell only half its story, for the firm is also a structure of power, and the plates have held that half as firmly as the first. To coordinate by command is to govern, and the firm governs: its workers, whom it directs and monitors and may deprive of their livelihood, a private government over the working life more detailed than the state's and far less accountable; and the market beyond, over which the largest firms wield the power that its own volume named. For whom this power is exercised — for the shareholders who own the firm in their thin and passive way, or for the workers and communities who stake more of themselves upon it — is answered neither by nature nor by law but contested, a verdict that the doctrine of shareholder value won in one age and that another may overturn. The firm is an efficiency device and a power structure at once, and to see only the first is to miss the half that decides whose interests the efficiency serves.</p>
+        <p>The image that gathers the whole is the one this plate takes for its title. Adam Smith taught the world to see the market as an invisible hand, coordinating the self-interested without anyone intending the result; and the lesson was true, and remains the deepest in economics. But it was never the whole truth, for within the firms that do so much of the economy's work, the coordination is not invisible and unintended but visible and deliberate — the visible hand of the manager, planning and directing what the market is praised for arranging without a plan. The economy is not one great market but an archipelago of these planned islands, the firms, joined across the water by the threads of price; it is coordinated, in vast measure, by conscious command, and runs as much on the visible hand within its firms as on the invisible hand between them. Planning, which the last century's great contest taught us to see as the market's opposite and its defeated rival, was woven into the victorious market economy all along, gathered into the firms that fill it — so that the real question was never whether to plan or to trade, but, as the first plate said, which to do where.</p>
+        <p>This returns the firm to the argument of the table. The firm is not a natural unit of economic life, nor the featureless profit-maximizing point of the textbook, but a made and contested institution. Its existence is an answer to the costliness of markets, and would be otherwise where those costs were otherwise. Its boundary is a choice, drawn and redrawn as costs shift and as firms calculate what to keep and what to shed. Its government is a structure of authority whose reach and accountability are perpetually in question. Its purpose, the interest it serves, is a verdict on a contest between capital and labor that no law finally settles. And its form is, even now, being remade — fissured into cores and contractors and the strange new creature of the platform, which is neither firm nor market. At every one of these points the firm is the work of human choice and the stake of human contest, and the arrangement we take for the nature of business is a thing that someone made, and could have made otherwise.</p>
+        <p>To its companions in this group, and to the volumes beyond, the firm hands what it has found. To <em>The Rule</em>, its neighbor, it offers itself as the great non-market interior of the built economy — the domain where the price mechanism that the rules construct is deliberately suppressed in favor of command — so that the two volumes together show the economy to be market and hierarchy at once, and both of them made. To <em>The Contract</em>, also of this group, it returns the nexus from which it is woven, the enforceable promises knotted around assets out of which the firm is built. To <em>The Money</em> and <em>The Tax</em> it nods as fellow institutions — the medium the firm transacts in, the levy it bears — the four of them composing the institutional frame within which the prices of the earlier groups are struck. To <em>The Power</em> it hands the firm as the vessel of power in both its forms, the market power over prices and the private government over persons.</p>
+        <p>And to the volumes of labor and value it hands the firm as their hidden setting. To <em>The Wage</em> it returns the employment relation seen anew, the wage as the price not of a product but of submission to direction. To <em>The Surplus</em> it gives the firm as the site where that labor is set to work and its product gathered. To <em>The Share</em> it hands the firm as the place where value is divided between capital and labor, the shareholder turn and the falling labor share enacted within its very walls. And to <em>The Asymmetry</em> it offers the hidden action at the root of its agency, the unobservable effort that makes the principal-agent problem, and the whole apparatus of monitoring and incentive raised against it, necessary. The firm is the room in which much of the rest of the table happens, and to have seen the room is to understand the prices struck inside it differently.</p>
+        <p>The firm, then, is the visible hand of the economy — the conscious, deliberate coordination that does, within its islands, what the invisible hand is praised for doing without. And the hand is not nature's but ours. We made the firm, to economize against a market that charges for its use; we draw its boundary, and redraw it; we constitute its authority, and govern, or fail to govern, the power that authority confers; we decide, in a contest never finally won, whose interests it shall serve; and we are, in this very age, remaking its form. The visible hand is a human hand, and what it arranges it could arrange otherwise. The argument remains open, because the firm — why it exists, where it ends, whom it governs, for whom it is run, and what it is becoming — is not given to us by nature to accept, but posed to us as a question, to be answered, and answered again, by the only hand that ever shaped it, which is our own.</p>
+      </div>
+    </section>
+</main>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref">Volume XIV &middot; The Firm</span>
+    </div>
+    <p class="colophon">Volume XIV of <em>Numéraire, A Periodic Table of Economic Life</em> — <em>The Firm</em>, the fourteenth of twenty-six and the fourth of The Institutions. Twelve plates and seven engravings, written with the rigor of the seminar and the grace of the essay, and scrupulous throughout about the exact edge of what can be known. The firm is the island of central planning in the sea of prices, the region where the market is superseded and command takes over; this volume asks why such islands exist at all, where their boundaries fall, how they are governed and for whom, and what the fissured workplace and the gig platform are doing to both — and finds, at every point, not a fact of nature but a made and contested institution. It hands its findings to <em>The Rule</em> and <em>The Contract</em>, its neighbors in this group, to <em>The Money</em> and <em>The Tax</em> beside them, and outward to <em>The Power</em>, <em>The Wage</em>, <em>The Surplus</em>, <em>The Share</em>, and <em>The Asymmetry</em>. The figures stand after Coase and Williamson, Jensen and Meckling, Simon, Berle and Means, Chandler, Hart, and Weil. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var root=document.documentElement; root.classList.add('js');
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var bar=document.getElementById('progress');
+  var topbar=document.getElementById('topbar');
+  var title=document.querySelector('.vol-title');
+  var label=document.getElementById('tb-plate');
+  function onScroll(){
+    var doc=document.documentElement;
+    var h=doc.scrollHeight-window.innerHeight;
+    var p=h>0?Math.min(1,Math.max(0,window.scrollY/h)):0;
+    if(bar) bar.style.transform='scaleX('+p.toFixed(4)+')';
+    if(topbar){
+      var threshold=(title?title.offsetHeight:420)*0.72;
+      if(window.scrollY>threshold) topbar.classList.add('show'); else topbar.classList.remove('show');
+    }
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+  if('IntersectionObserver' in window){
+    var rev=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); rev.unobserve(e.target); } });
+    },{rootMargin:'0px 0px -10% 0px',threshold:0.06});
+    document.querySelectorAll('.reveal').forEach(function(el){ rev.observe(el); });
+    if(label){
+      var cur=new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting){ var t=e.target.getAttribute('data-label'); if(t) label.textContent=t; } });
+      },{rootMargin:'-44% 0px -50% 0px',threshold:0});
+      document.querySelectorAll('.plate[data-label]').forEach(function(el){ cur.observe(el); });
+    }
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-commons.html">← The Commons</a><a rel="next" href="the-contract.html">The Contract →</a></nav>
+</body>
+</html>

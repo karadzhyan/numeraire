@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Rent — Numéraire, Volume II</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem; --measure:40rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- ornament ---- */
+  .orn{display:flex;justify-content:center;margin:0 auto 1.9rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* ---- masthead / volume front ---- */
+  .masthead{padding:clamp(3rem,8vh,6rem) 0 clamp(1.6rem,4vh,2.6rem);text-align:center;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;text-decoration:none;}
+  .imprint:hover{color:var(--soft);}
+  .vol-dateline{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+
+  .vol-sym{width:114px;height:114px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;align-items:center;justify-content:center;
+    font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 500;font-size:3.1rem;line-height:1;letter-spacing:-.01em;}
+  .vol-sym.lit{background:var(--ink);color:var(--paper);}
+  .vol-elnum{font-family:"Fraunces",serif;font-size:.74rem;color:var(--faintest);letter-spacing:.18em;text-transform:uppercase;margin-top:1rem;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.3rem,6.5vw,4.6rem);line-height:1.02;letter-spacing:-.025em;margin:.7rem 0 0;text-wrap:balance;}
+  .vol-status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .vol-status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:44rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  /* ---- the volume question ---- */
+  .vol-q{max-width:46rem;margin:clamp(2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .vol-q .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.7rem;}
+  .vol-q q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.3rem,2.4vw,1.72rem);line-height:1.32;color:var(--ink);quotes:none;text-wrap:balance;}
+
+  /* ---- frontispiece (the argument) ---- */
+  .front{margin:clamp(3rem,7vh,5rem) auto 0;max-width:var(--measure);}
+  .front-eyebrow{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);text-align:center;
+    display:flex;align-items:center;gap:.9rem;justify-content:center;margin:0 0 2.1rem;}
+  .front-eyebrow::before,.front-eyebrow::after{content:"";height:1px;width:2.4rem;background:var(--hair);}
+  .front p{font-size:1.07rem;line-height:1.76;color:var(--ink);margin:0 0 1.35rem;text-wrap:pretty;}
+  .front p:last-child{margin-bottom:0;}
+  .front em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.74;padding:.1em .12em 0 0;color:var(--ink);}
+  .front-orn{display:flex;justify-content:center;margin:2rem 0;}
+  .front-orn svg{width:96px;height:12px;overflow:visible;}
+  .front-orn line{stroke:var(--num);stroke-width:1;} .front-orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* ---- the plates (a table within the table) ---- */
+  main{padding:clamp(3rem,7vh,5rem) 0 0;}
+  .plates-head{display:flex;align-items:baseline;gap:.9rem;margin:0 0 1.6rem;}
+  .plates-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-size:.86rem;color:var(--faintest);letter-spacing:.04em;flex:0 0 auto;}
+  .plates-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);flex:0 0 auto;}
+  .plates-rule{flex:1;height:1px;background:var(--hair);position:relative;top:-2px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:13px;}
+
+  .el{appearance:none;-webkit-appearance:none;background:var(--paper);border:1px solid var(--hair);border-radius:2px;
+    padding:14px 15px 16px;text-align:left;cursor:pointer;position:relative;min-height:152px;
+    display:flex;flex-direction:column;color:inherit;font-family:inherit;
+    transition:border-color .22s ease,background .22s ease,transform .22s ease,box-shadow .22s ease;}
+  .el:hover{border-color:var(--faintest);transform:translateY(-2px);}
+  .el-rn{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-size:.78rem;color:var(--faintest);letter-spacing:.18em;text-transform:uppercase;}
+  .pl-hero{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 500;font-size:1.34rem;line-height:1.06;margin-top:.5rem;letter-spacing:-.012em;}
+  .el-gloss{font-size:.79rem;color:var(--faint);line-height:1.36;margin-top:.5rem;font-style:italic;}
+  .pl-flag{margin-top:auto;padding-top:.7rem;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--faintest);}
+  .el.lit{background:var(--ink);border-color:var(--ink);}
+  .el.lit .pl-hero{color:var(--paper);}
+  .el.lit .el-rn{color:rgba(240,235,225,.5);}
+  .el.lit .el-gloss{color:rgba(240,235,225,.62);}
+  .el.lit .pl-flag{color:rgba(240,235,225,.7);}
+  .el.sel{box-shadow:inset 0 0 0 1.5px var(--ink);border-color:var(--ink);}
+  .el.lit.sel{box-shadow:inset 0 0 0 1.5px var(--paper);}
+
+  /* ---- detail panel (the plate, opened) ---- */
+  .detail{margin:clamp(2.4rem,5vh,3.6rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);scroll-margin-top:1.4rem;}
+  .d-head{display:flex;gap:1.3rem;align-items:flex-start;}
+  .d-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 500;font-size:1.5rem;line-height:1;
+    color:var(--ink);flex:0 0 auto;border:1px solid var(--hair);border-radius:2px;letter-spacing:.04em;
+    width:86px;height:86px;display:flex;align-items:center;justify-content:center;text-transform:uppercase;}
+  .d-sym.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .d-titles{min-width:0;}
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);}
+  .d-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.7rem,3.6vw,2.5rem);margin:.22rem 0 .35rem;line-height:1.04;letter-spacing:-.016em;}
+  .d-status{font-size:.84rem;color:var(--faint);font-style:italic;}
+  .d-status.print{color:var(--soft);font-style:normal;}
+  .d-status.print::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .d-desc{font-size:1.05rem;line-height:1.72;color:var(--ink);max-width:42rem;margin:1.3rem 0 0;text-wrap:pretty;}
+
+  .d-openq{margin:1.6rem 0 0;max-width:40rem;}
+  .d-openq .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.5rem;}
+  .d-openq q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);quotes:none;}
+
+  .d-excerpt{margin:1.8rem 0 0;max-width:42rem;border-left:1px solid var(--hair);padding:.2rem 0 .2rem 1.5rem;}
+  .d-excerpt .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.8rem;}
+  .d-excerpt p{font-size:1.04rem;line-height:1.74;color:var(--ink);margin:0;text-wrap:pretty;}
+  .d-excerpt .x-cap{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 500;font-size:1.15rem;}
+  .d-readplate{margin:1.6rem 0 0;}
+  .d-readplate a{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:.94rem;
+    letter-spacing:.01em;text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:2px;transition:border-color .2s ease,color .2s ease;}
+  .d-readplate a:hover{color:var(--soft);border-color:var(--soft);}
+  .d-readplate .arr{margin-left:.4rem;}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;text-decoration:none;}
+  .f-mark:hover{color:var(--soft);}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;}
+    .el{min-height:138px;padding:12px 12px 14px;}
+    .pl-hero{font-size:1.18rem;}
+    .el-gloss{font-size:.74rem;}
+    .vol-sym{width:92px;height:92px;font-size:2.5rem;}
+    .d-head{gap:1rem;}
+    .d-sym{width:64px;height:64px;font-size:1.25rem;}
+    .front p{font-size:1.04rem;}
+    .dropcap{font-size:3rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="rise d1">
+      <a class="imprint" href="numeraire-atlas.html">Numéraire</a>
+      <div class="vol-dateline">The Second Volume &middot; The Prices</div>
+    </div>
+    <div class="vol-sym lit rise d2" aria-hidden="true">Rn</div>
+    <div class="vol-elnum rise d2">Element 02 &middot; Group I</div>
+    <h1 class="rise d3">The Rent</h1>
+    <div class="vol-status rise d3">in print &middot; № II &middot; 2 of 12 plates</div>
+    <p class="standfirst rise d4">There are two ways to grow rich: to make something the world will pay for, or to own something it needs and cannot do without. The first volume took up the wage, which is the price of making; this one takes up rent, the return to having. It anatomizes the most disputed of all incomes — the payment that flows not to effort or invention but to the ownership of what is scarce: the landlord's due, the monopolist's premium, the rent of a gift or a place. What part of it, if any, is earned, is a question economics has never laid to rest.</p>
+    <div class="vol-q rise d5">
+      <span class="lead">The question of the volume</span>
+      <q>where does the earned return end, and the unearned rent begin?</q>
+    </div>
+  </header>
+
+  <section class="front" aria-label="The argument of the volume">
+    <div class="front-eyebrow">The argument</div>
+
+    <p><span class="dropcap">T</span>here are two ways to grow rich, and they are not the same. One may make something the world will pay for — grow the corn, weave the cloth, write the song — and be paid for the making; or one may own something the world needs and cannot do without, and be paid simply for letting others use it. The first volume of this table took up the wage, which is the price of doing. This one takes up rent, which is the return to having. The distinction is ancient and uneasy, for the income of the owner has always worn a different moral color from the income of the worker: the wage is plainly earned, bought with effort and time, while rent — the landlord's payment for ground he never tilled, the owner's return on a scarcity he merely holds — has the look of something got for nothing, a charge levied by those who happen to control what the rest of us require. Whether that look is just is the question the volume cannot avoid.</p>
+
+    <p>The classical economists worried at the puzzle for a hundred years. Adam Smith had eyed the landlord with plain suspicion, calling rent a kind of monopoly price and remarking that landlords, like other men, love to reap where they never sowed; but it was Ricardo who cut to the center of it. Rent, he saw, is a child of difference. Imagine a country with land of every quality, and few enough people that only the best of it need be farmed: then land is not scarce, the poorer ground lies idle, and no one pays a penny to use what he might have for the taking. But let the population grow, and poorer and poorer soils must be brought under the plough to feed it — and now the best land yields more, for the same labor, than the marginal land just barely worth working. That surplus, the difference between the good acre and the worst acre in use, is bid for by every farmer who would rather have the good land than the bad; and the bidding hands it to the owner, as rent. From which Ricardo drew the inversion that startled his contemporaries and founded the modern theory: rent does not make corn dear; the dearness of corn, by forcing poor land into use, makes the rent. The landlord is not the cause of the high price but its beneficiary — a passenger grown rich on a journey he does not row.</p>
+
+    <p>What Ricardo found in the cornfield, later economists found everywhere, for land proved only the plainest instance of a far more general thing. The essence of rent is not soil but scarcity: the return to anything whose supply cannot grow to meet the demand for it. A mineral seam, a stretch of spectrum, a site at the city's heart, a rare and wanted skill, a name the public loves — each is fixed, or nearly so, in supply, and each therefore earns its holder a surplus that competition cannot erode, because the thing itself cannot be multiplied. Marshall gave the temporary version of this its name, the quasi-rent earned by a factor that is scarce for a while before supply can adjust. And the modern definition, more austere than Ricardo's, draws the idea to its limit: rent is whatever a factor is paid above the least that would keep it where it is — the surplus over its next-best use, the part of the income that buys nothing, because the factor would have stayed for less. By that measure rent hides in almost every payment, wherever something needed is something scarce.</p>
+
+    <div class="front-orn" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>If rent is a surplus the owner did nothing to produce, the moral question is not far behind, and in 1879 it arrived with the force of a revival. Henry George, an American printer turned prophet, published <em>Progress and Poverty</em>, and a treatise of political economy became, for a season, a phenomenon outsold only by the Scriptures. His question was the one the classics had raised and flinched from: why does progress, for all the wealth it heaps up, leave poverty so stubbornly beside it? His answer was rent. The value of a piece of land, George insisted, is made not by its owner but by the whole community that grows up around it — the roads, the neighbors, the commerce, the sheer press of people — so that the landlord who pockets the rising value is collecting a toll on the labor of everyone else, an unearned increment skimmed from the common advance. His remedy was as bold as his diagnosis: tax away the rent of land through a single tax that would fund the whole of government, and abolish every other levy on industry and wage. The single tax never came; but George had named, more sharply than anyone before him, the oldest suspicion in the subject — that some are paid not for what they do, but for what they are permitted to withhold.</p>
+
+    <p>The twentieth century gave that suspicion a harder and more general edge. Rent, the modern economists observed, does not merely wait to be collected; it is competed for, and the competition is itself a waste. Wherever a rent can be won — a monopoly licensed by the state, a tariff that shuts out a rival, a regulation bent to favor the incumbent, a place at the head of some privileged queue — men will spend real resources to capture it: hiring lobbyists, mounting lawsuits, courting the officials who hold the gate. Tullock and Krueger called this rent-seeking, and saw what was insidious in it. The rent itself is only a transfer, a shifting of wealth from one pocket to another; but the scramble to win it consumes effort and talent and ingenuity that produce nothing at all, burning real wealth in pursuit of a prize that merely changes hands. An economy thick with rents, on this view, sets its cleverest people not to enlarging the pie but to fighting over the slices — and the fight, not just the rent, is the cost. The modern economy offers a thousand such doors — the licensed profession that limits its own numbers, the patent stretched to fence off a field, the subsidy written for a single firm — each a scarcity made by rule rather than nature, and each worth the lobbying it costs to win. Here the volume touches its neighbor on power, for a monopoly's profit is precisely a rent, and much of what power buys is the right to collect one.</p>
+
+    <p>Beneath all of it lies the question the volume turns on, and it is this table's master thought in its starkest form. A rent is the part of an income that flows from controlling something scarce rather than from contributing anything — and it presents itself, always, as the natural and earned return to a factor: the landlord's due, the owner's just reward, the going rate for a thing in short supply. But it is nothing so innocent. It is a verdict on a contest — over who owns the scarce thing, who was permitted to enclose it, who got there first — dressed in the mild language of a market price. A price is a verdict on a hidden contest, mistaken for a fact of nature; the wage, the first volume argued, is that verdict on the contest between employer and worker, mistaken for the natural worth of the work — and the rent is the same discovery pressed to its limit, for the rent owes nothing even to effort, and is the purest case the subject affords of a price that is wholly a claim and scarcely a contribution at all. And yet — for the volume must be honest — the line between the earned and the unearned is the hardest in all of economics to draw, and nearly every real income straddles it: the gifted man labored to hone his gift, the owner bore a risk, the site was improved as well as held. The twelve plates that follow trace the rent from Ricardo's difference and George's unearned increment through the general return to scarcity, the surplus above transfer, the waste of rent-seeking, the rents of monopoly and land and talent and position, the increment the public makes, the tax the economists urge, and the rentier in whose image an economy may slowly be remade. Where the wage asked what labor earns, this volume asks what ownership is owed. The argument remains open.</p>
+  </section>
+
+  <main>
+    <div class="plates-head">
+      <span class="plates-num fr">№ II</span>
+      <span class="plates-name">The twelve plates</span>
+      <span class="plates-rule"></span>
+    </div>
+    <div class="grid" id="grid">
+      <button class="el lit" data-id="difference" aria-label="Plate i — The Difference — in print"><span class="el-rn">Plate i</span><span class="pl-hero">The Difference</span><span class="el-gloss">Ricardo's differential rent, and why rent is price-determined</span><span class="pl-flag">in print</span></button>
+      <button class="el lit" data-id="unearned" aria-label="Plate ii — The Unearned — in print"><span class="el-rn">Plate ii</span><span class="pl-hero">The Unearned</span><span class="el-gloss">Henry George, the land question, and the income no one earned</span><span class="pl-flag">in print</span></button>
+      <button class="el" data-id="scarcity" aria-label="Plate iii — The Scarcity"><span class="el-rn">Plate iii</span><span class="pl-hero">The Scarcity</span><span class="el-gloss">rent as the return to anything fixed in supply</span></button>
+      <button class="el" data-id="transfer" aria-label="Plate iv — The Transfer"><span class="el-rn">Plate iv</span><span class="pl-hero">The Transfer</span><span class="el-gloss">rent as payment above what would keep the factor in place</span></button>
+      <button class="el" data-id="seeker" aria-label="Plate v — The Seeker"><span class="el-rn">Plate v</span><span class="pl-hero">The Seeker</span><span class="el-gloss">rent-seeking, and the resources wasted competing for privilege</span></button>
+      <button class="el" data-id="monopoly" aria-label="Plate vi — The Monopoly"><span class="el-rn">Plate vi</span><span class="pl-hero">The Monopoly</span><span class="el-gloss">the rent that market power creates and protects</span></button>
+      <button class="el" data-id="land" aria-label="Plate vii — The Land"><span class="el-rn">Plate vii</span><span class="pl-hero">The Land</span><span class="el-gloss">the oldest rent, from the physiocrats to land reform</span></button>
+      <button class="el" data-id="talent" aria-label="Plate viii — The Talent"><span class="el-rn">Plate viii</span><span class="pl-hero">The Talent</span><span class="el-gloss">the superstar's premium, and whether a gift is earned</span></button>
+      <button class="el" data-id="position" aria-label="Plate ix — The Position"><span class="el-rn">Plate ix</span><span class="pl-hero">The Position</span><span class="el-gloss">the rent of location, incumbency, and the network</span></button>
+      <button class="el" data-id="increment" aria-label="Plate x — The Increment"><span class="el-rn">Plate x</span><span class="pl-hero">The Increment</span><span class="el-gloss">the value the community creates and the owner reaps</span></button>
+      <button class="el" data-id="tax" aria-label="Plate xi — The Tax"><span class="el-rn">Plate xi</span><span class="pl-hero">The Tax</span><span class="el-gloss">why economists would tax rent, and why we scarcely do</span></button>
+      <button class="el" data-id="rentier" aria-label="Plate xii — The Rentier"><span class="el-rn">Plate xii</span><span class="pl-hero">The Rentier</span><span class="el-gloss">rent, inequality, and the economy that lives on having</span></button>
+    </div>
+  </main>
+
+  <section class="detail" id="detail" aria-live="polite"></section>
+
+  <footer>
+    <div class="f-bar">
+      <a class="f-mark" href="numeraire-atlas.html">Numéraire</a>
+      <span class="f-ref">Volume II &middot; The Prices</span>
+    </div>
+    <p class="colophon">Volume II, <em>The Rent</em>, opens with two plates in print — <em>The Difference</em> and <em>The Unearned</em>, Ricardo's theory of rent and the moral question it could not settle. The second element of the table by its fixed order, and the second of its volumes to appear; it stands beside <a href="the-wage.html">The Wage</a> as the other half of the oldest question in the subject — for if the wage is what labor is paid for its work, rent is what ownership is paid for its scarcity, and between them they divide the income of an economy into the earned and the disputed. Return to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+
+<script>
+const PLATES = {
+  difference:{rn:"i",title:"The Difference",family:"in print",lit:true,url:"the-difference.html",
+    desc:`Ricardo's great contribution, and the analytical heart of the subject: that the rent of land arises not from any bounty of the landlord but from the difference between one piece of ground and another. As cultivation spreads to poorer soils to feed a growing people, the better land yields a surplus over the worst land still worth working — and that surplus, competed for by farmers, falls to the owner as rent. From which follows Ricardo's famous inversion: that rent does not raise the price of corn, but the price of corn raises the rent.`,
+    excerpt:`<span class="x-cap">T</span>here is a question that sounds simple and is not: why does the owner of a field, who may never have set foot on it, receive a payment for the use of land he did nothing to make? The classical economists worried at it for a century, and it was David Ricardo who gave the answer that has shaped every discussion since. Rent, he saw, is a child of difference. Were all land equally fertile and equally placed, and were there enough of it, none would command a price at all; it is because the good land is scarce, and the poorer land must be pressed into use to feed a growing population, that the better land yields a surplus over the worst — and that surplus, bid for by those who would farm it, becomes the rent the owner pockets for having got there first.`},
+  unearned:{rn:"ii",title:"The Unearned",family:"in print",lit:true,url:"the-unearned.html",
+    desc:`The moral and political reckoning the theory forced. If rent is the surplus thrown off by scarce land, and the landlord did nothing to create it, then rent is income no one earned — and Henry George, in the book that made him the most read economist of his age, drew the radical conclusion: that the rent of land, being the creation of nature and the community rather than the owner, should be taken back through a single tax on land values, with all other taxes abolished. The unearned increment, and the oldest quarrel in political economy.`,
+    excerpt:`<span class="x-cap">I</span>n 1879 an American printer and journalist named Henry George published a book called Progress and Poverty, and it became, for a season, one of the best-selling works of economics ever written — outsold, in its day, by nothing but the Bible. Its question was the one that had troubled the classical economists, asked now with the force of a prophet: how can it be that material progress, which so swells the wealth of nations, leaves so many in poverty, and gathers its gains into so few hands? George's answer fixed on rent. The value of land, he argued, is created not by its owner but by the presence and the labor of the whole community around it — and to let private owners pocket that value is to let them charge the rest of us for access to the earth we were all born to.`},
+  scarcity:{rn:"iii",title:"The Scarcity",family:"in preparation",lit:false,
+    desc:`Rent generalized beyond the soil. What is true of land is true of anything whose supply cannot grow to meet demand: the return to scarcity itself, wherever it is found. Marshall's quasi-rent, the temporary surplus earned by a factor fixed in the short run; the rents of mineral deposits and radio spectrum, of rare skills and famous names; the recognition that land was only the clearest case of a phenomenon reaching wherever something needed cannot be multiplied at will.`,
+    openq:`if rent is the wage of scarcity, what in an economy is truly scarce — and who owns it?`},
+  transfer:{rn:"iv",title:"The Transfer",family:"in preparation",lit:false,
+    desc:`The modern definition, sharper than Ricardo's and more general: economic rent is whatever a factor is paid above the least that would keep it in its present use. The footballer who would play for a tenth of his wage, the actor who would act for nothing, the site that would be let for far less than it fetches — each earns, over and above its transfer earnings, a rent. The idea draws a line, in principle, through every income, dividing the part that is needed to call forth the service from the part that is pure surplus.`,
+    openq:`if part of nearly every income is rent, is the line between earning and rent-collecting one that anyone can draw?`},
+  seeker:{rn:"v",title:"The Seeker",family:"in preparation",lit:false,
+    desc:`The discovery that rent does not merely sit to be collected: it is fought over, and the fighting is itself a cost. Where a rent can be had — a monopoly licensed, a tariff granted, a regulation tilted — resources pour into the contest to capture it: lobbyists, lawyers, the long queue for the privileged place. Tullock and Krueger named this rent-seeking, and saw its sting: that the scramble for an artificial scarcity wastes real effort which creates nothing, piling the cost of the competition atop the transfer the rent already exacts.`,
+    openq:`if winning a rent is worth its price, how much of a society's talent is spent winning rather than making?`},
+  monopoly:{rn:"vi",title:"The Monopoly",family:"in preparation",lit:false,
+    desc:`The meeting of this volume with the volume on power. The supernormal profit a monopolist earns is a rent — the return not to any service but to a protected position, a scarcity he has manufactured or been granted. Monopoly rent, the rent of the patent and the franchise and the cornered market, and the question that has divided economists: whether such rents are the unavoidable lure of innovation, the just reward of having built what rivals cannot, or merely the toll of a gatekeeper on a road he did not lay.`,
+    openq:`when a firm earns more than enough to keep it in business, is the excess a reward, or a toll?`},
+  land:{rn:"vii",title:"The Land",family:"in preparation",lit:false,
+    desc:`The oldest rent, and still the paradigm. From the physiocrats, who held land the one truly productive thing and its rent the net product of a nation, through the enclosures that turned common ground into private rent, to the land reforms that have convulsed half the world — the story of who owns the earth and who pays for the use of it. Why land remains the purest case: its supply is fixed, its location unearned, and its value, more plainly than any other, the gift of the community that surrounds it.`,
+    openq:`the earth was made by no one — so by what right does anyone collect a rent for standing on it?`},
+  talent:{rn:"viii",title:"The Talent",family:"in preparation",lit:false,
+    desc:`The hardest case for the whole earned-and-unearned distinction. The rare gift — the voice, the eye, the mind that markets will pay fortunes for — earns a rent on a scarcity its owner did not create, the accident of his birth. Rosen's economics of superstars, in which tiny differences in talent open vast gulfs in reward; the premium to ability that this volume's neighbor, The Wage, meets from the other side; and the uneasy question of whether what a person is paid for being gifted is any more earned than what a landlord is paid for being lucky.`,
+    openq:`a gift is not chosen and not made — so is the fortune it commands earned, or merely a rent on good luck?`},
+  position:{rn:"ix",title:"The Position",family:"in preparation",lit:false,
+    desc:`The rent of being well placed. The corner that catches the crowd, the harbor on the trade route, the firm that arrived before its rivals, the network everyone must join because everyone has joined it — each yields a return owing less to what is done there than to where, or when, it stands. Locational and positional rent, the advantage of incumbency, and the modern platform whose dominance is a position so entrenched that the rent renews itself.`,
+    openq:`if the first to arrive collects forever, how much of success is the reward of merit, and how much of timing?`},
+  increment:{rn:"x",title:"The Increment",family:"in preparation",lit:false,
+    desc:`The value the public creates and the private owner keeps. Build a railway, a school, a park, and the land around it rises in worth — not by any act of its owners, but by the spending and the presence of everyone else; the unearned increment that so exercised the reformers. The capture of community-made value by private title, the betterment taxes and land-value levies meant to claw it back, and the perennial spectacle of owners reaping precisely where the public has sown.`,
+    openq:`when public works make private land more valuable, to whom does the new value rightly belong?`},
+  tax:{rn:"xi",title:"The Tax",family:"in preparation",lit:false,
+    desc:`The economist's worst-kept secret: that rent is the perfect thing to tax. A tax on a factor fixed in supply — on land, on spectrum, on any pure scarcity — cannot drive it away or shrink it, since it can neither flee nor contract, so the tax falls on the rent without distorting a thing, the rare levy with no deadweight cost. From the physiocrats to George to the modern theorem that bears his name, the case has been made again and again. Why so little of public revenue rests on it is a question less of economics than of who holds the land.`,
+    openq:`if rent is the one thing a state could tax without doing harm, why does it tax almost everything else instead?`},
+  rentier:{rn:"xii",title:"The Rentier",family:"in preparation",lit:false,
+    desc:`The figure who lives on having, and the economy reshaped in his image. The rentier draws his income from ownership alone — from land, from titles, from the scarcities he controls — and his rise and fall is a barometer of an age: the landed aristocrat, the financier, the holder of patents and platforms. The concentration of unearned income and its bearing on inequality, the fear that a modern economy tilts ever more toward rents and away from making, and the closing question of whether rent is a flaw in the system or the shape the system finally takes.`,
+    openq:`is an economy that rewards owning above making a thing gone wrong, or a thing run to its end?`}
+};
+
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+function render(id){
+  var tile=document.querySelector('.el[data-id="'+id+'"]');
+  var d=PLATES[id]; if(!d||!tile) return;
+  var h='';
+  h+='<div class="d-head">';
+  h+='<div class="d-sym'+(d.lit?' lit':'')+'">'+esc(d.rn)+'</div>';
+  h+='<div class="d-titles">';
+  h+='<div class="d-family">The Rent &middot; Plate '+esc(d.rn)+' &middot; '+esc(d.family)+'</div>';
+  h+='<h2 class="d-name">'+esc(d.title)+'</h2>';
+  h+='<div class="d-status'+(d.lit?' print':'')+'">'+esc(d.family)+'</div>';
+  h+='</div></div>';
+  h+='<p class="d-desc">'+esc(d.desc)+'</p>';
+  if(d.lit && d.excerpt){
+    h+='<div class="d-excerpt"><span class="lead">From the opening</span><p>'+d.excerpt+'</p></div>';
+  }
+  if(d.url){h+='<p class="d-readplate"><a href="'+d.url+'">Read the plate<span class="arr" aria-hidden="true">&#8594;</span></a></p>';}
+  if(!d.lit && d.openq){
+    h+='<p class="d-openq"><span class="lead">This plate will ask</span><q>'+esc(d.openq)+'</q></p>';
+  }
+  document.getElementById('detail').innerHTML=h;
+  var prev=document.querySelector('.el.sel'); if(prev) prev.classList.remove('sel');
+  tile.classList.add('sel');
+}
+
+(function(){
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.el').forEach(function(b){
+    b.addEventListener('click',function(){
+      render(b.dataset.id);
+      document.getElementById('detail').scrollIntoView({behavior:reduce?'auto':'smooth',block:'nearest'});
+    });
+  });
+  render('difference');
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-union.html">← The Union</a><a rel="next" href="the-difference.html">The Difference →</a></nav>
+</body>
+</html>

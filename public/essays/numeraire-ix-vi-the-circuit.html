@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Circuit — The Stock, Plate vi · Numéraire</title>
+<meta name="description" content="Copeland; the flow of funds — how money moves as both stock and flow across the sectors of an economy, every payment a flow that changes some balance, every balance a stock some flow has built.">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- reading-progress hairline ---- */
+  .progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--ink);z-index:10000;}
+
+  /* ---- masthead ---- */
+  .masthead{padding:clamp(2.8rem,8vh,5.6rem) 0 clamp(1.6rem,4vh,2.6rem);text-align:center;}
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;}
+  .edition{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+  .edition b{font-family:"Fraunces",serif;font-weight:500;font-style:normal;color:var(--soft);letter-spacing:.04em;}
+
+  .symbox{width:84px;height:84px;border:1px solid var(--ink);border-radius:2px;background:var(--ink);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;margin:clamp(1.4rem,3.4vh,2.2rem) auto 0;}
+  .symbox .sb-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2rem;line-height:1;color:var(--paper);letter-spacing:-.01em;}
+  .symbox .sb-num{font-family:"Fraunces",serif;font-size:.66rem;color:rgba(240,235,225,.58);margin-top:.28rem;letter-spacing:.04em;}
+
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-top:1.15rem;}
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.5rem,7vw,5rem);line-height:1.0;letter-spacing:-.028em;margin:.55rem 0 0;text-wrap:balance;}
+  .subtitle{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.05rem,1.7vw,1.32rem);color:var(--faint);margin:.5rem 0 0;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.64;color:var(--soft);
+    max-width:43rem;margin:clamp(1.3rem,3vh,1.9rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+  .status{font-size:.84rem;color:var(--soft);margin:clamp(1.2rem,2.6vh,1.7rem) auto 0;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .backrow{margin-top:clamp(1.3rem,3vh,1.9rem);padding-top:1.5rem;border-top:1px solid var(--hair);max-width:50rem;margin-left:auto;margin-right:auto;}
+  .backlink{display:inline-block;font-size:.82rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .backlink:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- generic block furniture ---- */
+  main{padding:0;}
+  .eyebrow{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.2rem;}
+
+  .block-argument{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .argument{max-width:40rem;margin:0 auto;}
+  .argument p{font-size:1.08rem;line-height:1.74;color:var(--ink);margin:0 0 1.2rem;text-wrap:pretty;}
+  .argument p:last-child{margin-bottom:0;}
+  .argument .closer{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 400;font-style:italic;color:var(--soft);font-size:1.06rem;}
+
+  /* ---- table of plates ---- */
+  .block-toc{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .toc ol{list-style:none;margin:0;padding:0;max-width:44rem;}
+  .toc li{display:grid;grid-template-columns:2.5rem 1fr;column-gap:1rem;align-items:baseline;
+    padding:.85rem 0;border-top:1px solid var(--hair);}
+  .toc li:first-child{border-top:none;}
+  .t-num{font-family:"Fraunces",serif;font-size:.92rem;color:var(--faintest);text-align:right;}
+  .t-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.08rem;color:var(--ink);line-height:1.15;text-decoration:none;}
+  a.t-title{border-bottom:1px solid var(--num);padding-bottom:1px;}
+  a.t-title:hover{border-bottom-color:var(--ink);}
+  .t-gloss{grid-column:2;font-size:.85rem;color:var(--faint);font-style:italic;margin-top:.22rem;line-height:1.4;}
+  .t-q{grid-column:2;font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:.95rem;color:var(--soft);margin-top:.42rem;line-height:1.36;}
+  .t-q .lead{font-family:"Fraunces",serif;font-style:normal;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-right:.5rem;}
+  .t-tag{display:inline-block;margin-left:.6rem;font-family:"Newsreader",serif;font-size:.64rem;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--paper);background:var(--ink);border-radius:2px;padding:.12em .5em;vertical-align:.14em;}
+  .t-read{grid-column:2;margin-top:.42rem;}
+  .t-read a{font-size:.8rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .t-read a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- the plates (essays) ---- */
+  .plates-open{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.8rem,6vh,4rem);}
+  .plates-open .eyebrow{text-align:center;}
+  .plate{max-width:54rem;margin:clamp(2.8rem,6.5vh,4.4rem) auto 0;padding-top:clamp(2.2rem,4.6vh,3rem);
+    border-top:1px solid var(--hair);position:relative;scroll-margin-top:1.4rem;}
+  .plate:first-of-type{border-top:none;margin-top:clamp(1.6rem,3.5vh,2.4rem);padding-top:0;}
+  .plate-head{margin:0 0 1.7rem;}
+  .plate-kicker{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .plate-kicker .pk-tag{margin-left:.6rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .plate-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.8rem,4.2vw,2.7rem);line-height:1.03;letter-spacing:-.02em;margin:.32rem 0 .42rem;}
+  .plate-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.02rem;color:var(--faint);max-width:36rem;line-height:1.45;}
+
+  .epigraph{max-width:34rem;margin:1.4rem 0 1.9rem;padding-left:1.1rem;border-left:1px solid var(--num);}
+  .epigraph p{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:1.04rem;line-height:1.42;color:var(--soft);margin:0;}
+  .epigraph cite{display:block;font-style:normal;font-family:"Newsreader",serif;font-size:.78rem;
+    letter-spacing:.03em;color:var(--faintest);margin-top:.55rem;}
+
+  .plate-body{max-width:37rem;}
+  .plate-body p{font-size:1.05rem;line-height:1.75;color:var(--ink);margin:0 0 1.18rem;text-wrap:pretty;}
+  .plate-body p:last-child{margin-bottom:0;}
+  .plate-body em{font-style:italic;}
+  .plate-body .lead-para::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 500;
+    float:left;font-size:3.5rem;line-height:.78;padding:.08em .14em 0 0;color:var(--ink);}
+  .plate-body h4{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);margin:1.9rem 0 .9rem;}
+
+  .break{display:flex;justify-content:center;margin:1.9rem 0;}
+  .break span{font-family:"Fraunces",serif;font-size:1.05rem;letter-spacing:.4em;color:var(--faintest);padding-left:.4em;}
+
+  /* sidenotes — inline by default, true margin notes on wide screens */
+  .sn-ref{font-family:"Fraunces",serif;font-size:.64rem;vertical-align:super;line-height:0;color:var(--soft);margin-left:.06em;}
+  .sidenote{font-family:"Newsreader",serif;font-size:.82rem;line-height:1.52;color:var(--faint);
+    border-left:2px solid var(--hair);padding-left:.9rem;margin:.7rem 0 1.05rem;}
+  .sidenote .sn-num{font-family:"Fraunces",serif;color:var(--faintest);font-size:.7rem;margin-right:.38rem;}
+  .sidenote em{font-style:italic;}
+  @media (min-width:1040px){
+    .sidenote{float:right;clear:right;width:14.5rem;margin:.25rem -17.5rem 1.15rem 0;
+      border-left:none;border-top:1px solid var(--hair);padding:.42rem 0 0;}
+  }
+
+  /* ---- coda ---- */
+  .coda{max-width:40rem;margin:clamp(2.8rem,6vh,4rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);}
+  .coda p{font-size:1.06rem;line-height:1.74;color:var(--ink);margin:0 0 1.15rem;text-wrap:pretty;}
+  .coda p:last-child{margin-bottom:0;}
+  .coda .q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .f-ref a{text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .f-ref a:hover{border-bottom-color:var(--soft);}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .progress{transition:width .08s linear;}
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}.rise.d4{animation-delay:.4s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    h1{font-size:clamp(2.2rem,11vw,3rem);}
+    .symbox{width:72px;height:72px;}
+    .symbox .sb-sym{font-size:1.7rem;}
+    .plate-body .lead-para::first-letter{font-size:3rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+
+  /* ---- standalone plate (leaf) ---- */
+  .leaf-head{max-width:54rem;margin:0 auto;padding:clamp(2.2rem,6.5vh,4.4rem) 0 0;text-align:center;}
+  .leaf-loc{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.08em;color:var(--faintest);margin-bottom:1.7rem;}
+  .leaf-loc a{text-decoration:none;color:var(--faint);border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .leaf-loc a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+  .leaf-loc .sep{margin:0 .5rem;color:var(--num);}
+  .leaf-kicker{font-family:"Fraunces",serif;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .leaf-kicker .pk-tag{margin-left:.55rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .leaf-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.2rem,5.6vw,3.7rem);line-height:1.02;letter-spacing:-.024em;margin:.42rem 0 0;text-wrap:balance;}
+  .leaf-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.06rem;color:var(--faint);
+    max-width:34rem;margin:.72rem auto 0;line-height:1.5;text-wrap:pretty;}
+  .epigraph.leaf-epigraph{margin:1.95rem auto 1.4rem;text-align:left;}
+  .leaf-body-wrap{max-width:54rem;margin:clamp(1.8rem,4vh,2.8rem) auto 0;}
+
+  .leaf-nav{max-width:54rem;margin:clamp(3rem,7vh,5.2rem) auto 0;padding-top:clamp(1.8rem,4vh,2.6rem);
+    border-top:1px solid var(--hair);display:grid;grid-template-columns:1fr auto 1fr;gap:1.3rem;align-items:start;}
+  .ln-cell{text-decoration:none;display:block;}
+  .ln-cell .lab{display:block;font-family:"Fraunces",serif;font-size:.64rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--faintest);margin-bottom:.36rem;}
+  .ln-cell .ttl{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1rem;
+    color:var(--soft);line-height:1.22;}
+  a.ln-cell:hover .ttl{color:var(--ink);}
+  .ln-prev{text-align:left;} .ln-home{text-align:center;} .ln-next{text-align:right;}
+
+  @media (max-width:600px){
+    .leaf-nav{grid-template-columns:1fr;gap:1.4rem;}
+    .ln-prev,.ln-home,.ln-next{text-align:center;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#ne-contents">Complete contents</a><a href="../editions.html#volume-stock">The Stock · both editions</a><a href="../volumes/the-stock.html">Collected volume</a></div></nav>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="frame">
+
+  <header class="leaf-head">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="leaf-loc rise d1" aria-label="Location in the series"><a href="numeraire-atlas-updated.html">Numéraire</a><span class="sep">·</span><a href="numeraire-ix-the-stock.html">Volume IX · The Stock</a></nav>
+    <div class="leaf-kicker rise d2">Plate vi <span class="pk-tag">in print</span></div>
+    <h1 class="leaf-title rise d2">The Circuit</h1>
+    <div class="leaf-gloss rise d3">Copeland; the flow of funds — how money moves as both stock and flow across the sectors of an economy, every payment a flow that changes some balance, every balance a stock some flow has built.</div>
+    <div class="epigraph leaf-epigraph rise d3">
+      <p>Follow a dollar as it is spent, and it does not vanish; it is received, and spent again, and received again, threading from hand to hand and sector to sector in an endless round. Money is never destroyed in the spending, only moved, and at every step the moving leaves a mark — a balance raised here, lowered there. To see an economy whole is to see this circuit entire: not the goods alone, nor the incomes alone, but the great round of payments by which every flow alters some stock, and every stock is the settled residue of flows.</p>
+      <cite>— the argument of this plate, after Morris Copeland, 1952</cite>
+    </div>
+  </header>
+
+  <main class="leaf-body-wrap">
+    <article class="plate">
+      <div class="plate-body">
+<p class="lead-para">The volume has built two great accounts — the flow account of what a nation earns and the stock account of what it owns — and between them lies a question neither quite answers. Money is spent; money is received; and since every dollar one party pays is a dollar another party gets, the spending never destroys it. Where, then, does it go? The puzzle is the plate's, posed in its plainest form by the man who first traced the answer: if every dollar spent is a dollar received, where does it pile up? The circular flow of the textbooks — households pay firms for goods, firms pay households for labor, round and round — makes the economy look like a closed loop in which money merely circulates and accumulates nowhere. But money does pile up, in balances, and the loop is not closed, because at every turn some parties spend less than they receive and others spend more, and the difference must go somewhere. Morris Copeland set out to follow the money through the whole economy and to record, sector by sector, where it came from and where it went. The result was a third great account to set beside the income statement and the balance sheet — the flow of funds — and an answer to the question of where the money goes: into claims, the financial deposit of the circuit, by which the spending of some becomes the holdings of others and the whole round of payments builds the standing structure of who owes whom.</p>
+
+<p>Copeland's method was to carve the economy into sectors — households, businesses, governments, the banks and other financial institutions, and the rest of the world — and to draw up for each a plain account with two sides: the sources of its funds and the uses to which it put them. A sector's sources are its receipts: the income it earns, and whatever it borrows or raises by selling off an asset. Its uses are its outlays: what it spends on goods, and whatever it lends or sets aside by acquiring an asset. The two sides must balance, for a sector cannot use a dollar it has not got from somewhere, and every sector lives under the iron constraint that its total outgo equals its total intake broadly construed. But the balance within each sector conceals a deeper structure between them. For a sector need not spend its income on goods: it may spend less than it earns and lend or accumulate the rest, or spend more than it earns and borrow to cover the gap. Lay the sectors side by side, and the economy resolves into a matrix of payments — every stream leaving one sector entering another, every cell a flow of money from a payer to a payee — and the question of where the money goes becomes the question of how this matrix balances.<sup class="sn-ref">1</sup></p>
+<div class="sidenote"><span class="sn-num">1.</span> Copeland carved the economy into sectors — households, businesses, governments, financial institutions, and the rest of the world — and drew up for each an account with two sides: sources of funds (the income earned, plus what it borrows or raises by selling an asset) and uses (what it spends on goods, plus what it lends or sets aside by acquiring an asset). The two sides must balance: no sector can use a dollar it has not got. But a sector may spend less than it earns and lend the rest, or spend more and borrow the gap.</div>
+
+<p>The matrix balances by a law as certain as any in economics and far less heeded: across all the sectors together, lending equals borrowing, and the surpluses sum exactly to the deficits. A sector that spends less than it earns runs a financial surplus and must do something with it — it lends, directly or through a bank, to someone who will use it. A sector that spends more than it earns runs a deficit and must cover it — it borrows, from someone who has a surplus to spare. There is no third course: a dollar not spent by the one who earned it is a dollar lent to one who will spend it, and the lending and the borrowing are a single act seen from its two ends. So the financial surpluses of the thrifty sectors and the financial deficits of the prodigal ones are not independent quantities that merely happen to run close; they are equal of necessity, the one the exact mirror of the other, summing across the whole economy to zero. Most often it is the households, saving more than they lay out, who run the surplus, and the firms and the government, investing or spending beyond their intake, who run the deficits; and the surplus of the savers reaches the deficit-runners through the financial system, whose whole business is that conveyance.<sup class="sn-ref">2</sup></p>
+<div class="sidenote"><span class="sn-num">2.</span> The balancing law: across all sectors together, lending equals borrowing and surpluses sum to deficits. A surplus sector (spending less than it earns) must lend its surplus; a deficit sector (spending more) must borrow to cover the gap; and a dollar not spent by its earner is a dollar lent to a spender — the lending and borrowing one act from two ends. So surpluses and deficits are equal of necessity, summing across the economy to zero. Usually households run the surplus, firms and government the deficits.</div>
+
+<div class="break"><span>⁂</span></div>
+
+<p>Here the flow of funds shows itself as the missing link between the volume's two great accounts. The income statement records the flows of production and earning; the balance sheet records the stocks of wealth and claims; but neither shows how the one becomes the other — how the act of saving out of a flow of income turns into the holding of a financial stock. The flow of funds shows precisely this. Every financial surplus, conveyed as a loan, creates a claim: the lender comes to hold a new asset, the borrower to owe a new debt, and the same act that channeled the flow has added to the standing structure of stocks. Saving, which the income account sees only as income not consumed, the flow of funds follows to its destination — into the bond bought, the deposit made, the share acquired — and so reveals how the streams of flow silently raise the stock of claims. The financial web that the stock account found already standing, the flow account explains as the piled-up deposit of a million separate acts of lending; the claims net to nothing for the nation, as that account taught, precisely because each was born as a matched pair, a surplus on the one side and a deficit on the other, in the very circuit the flow of funds records.<sup class="sn-ref">3</sup></p>
+<div class="sidenote"><span class="sn-num">3.</span> The flow of funds is the missing link. The income statement records flows of production; the balance sheet records stocks of wealth and claims; neither shows how saving out of a flow becomes the holding of a stock. The flow of funds shows it: every surplus, lent, creates a claim — the lender holds an asset, the borrower owes a debt — so the act that channels the flow adds to the standing stocks. Saving, which the income account sees only as income unconsumed, is followed to the bond bought, the deposit made.</div>
+
+<p>And because the flow of funds tracks the borrowing and lending that the income account leaves out, it sees what that account is blind to: the build-up of debt, and the strain it stores. A nation may post a healthy income year upon year while, beneath the flows of earning and spending, one sector quietly loads itself with obligations it will struggle to honor — households borrowing against their houses, firms piling leverage upon their assets, a government running deficits a creditor may one day decline to fund. None of this shows in the measure of production, which counts only the rate of output and stays silent on the debts accumulating behind it; but all of it shows in the flow of funds, where every loan is entered as it is made and the swelling indebtedness of a sector stands plainly in its accounts. It was no accident that when a great financial crisis came, it had stood visible for years in the flow-of-funds figures — the mounting debt of households and of the financial sector itself — to the few who read them, and stayed hidden in the figures of income that the world preferred to watch. The circuit carries warnings the flow of income cannot, for it follows not only the earning and the spending but the promising, and a promise is a strain no record of income will show.<sup class="sn-ref">4</sup></p>
+<div class="sidenote"><span class="sn-num">4.</span> Because it tracks the borrowing the income account omits, the flow of funds sees what that account cannot: the build-up of debt. A nation may post a healthy income while one sector quietly loads itself with obligations it will struggle to honor — households borrowing against houses, firms piling on leverage, a government running deficits. The measure of production counts only the rate of output, silent on the debt accumulating behind it; the flow of funds enters every loan as it is made, and the rising indebtedness stands plainly in its accounts.</div>
+
+<p>So the answer to the plate's question is at last in hand. Where does the money pile up, if every dollar spent is received? Not in any sector's spending, which only passes it along, but in the balances the spending leaves behind — in the claims that the surpluses of the savers lay upon the deficits of the borrowers, settling out of the round as its standing residue. Money does not accumulate by being held still; it accumulates by circulating, each pass of the round laying a fresh layer of claim upon the financial structure. Copeland's circuit thus completes the volume's reckoning of stock and flow: the income account gives the flows of production, the balance sheet the stocks of wealth, and the flow of funds the motion that joins them — the great round of payments by which every flow alters some balance and every balance is the settled deposit of flows. To watch an economy truly is to watch this circuit entire, and to know that the money one cannot find in the spending has not vanished but descended, as every flow at last descends, into the stock of standing things.<sup class="sn-ref">5</sup></p>
+<div class="sidenote"><span class="sn-num">5.</span> The answer: money piles up not in any sector's spending, which passes it on, but in the balances the spending leaves — the claims the surpluses of savers lay upon the deficits of borrowers, settling out of the circuit as its residue. Money accumulates not by being held still but by circulating, each pass laying a fresh claim on the financial structure. Copeland's circuit completes the reckoning: income gives the flows, the balance sheet the stocks, the flow of funds the motion that joins them.</div>
+      </div>
+    </article>
+  </main>
+
+  <nav class="leaf-nav" aria-label="Plate navigation">
+    <a class="ln-cell ln-prev" href="numeraire-ix-v-the-lifetime.html"><span class="lab">← Previous plate</span><span class="ttl">Plate v · The Lifetime</span></a>
+    <a class="ln-cell ln-home" href="numeraire-ix-the-stock.html"><span class="lab">The volume</span><span class="ttl">The Stock · contents</span></a>
+    <a class="ln-cell ln-next" href="numeraire-ix-vii-the-wearing.html"><span class="lab">Next plate →</span><span class="ttl">Plate vii · The Wearing</span></a>
+  </nav>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref"><a href="numeraire-ix-the-stock.html">The Stock</a> · <a href="numeraire-atlas-updated.html">the table</a></span>
+    </div>
+    <p class="colophon">Plate vi of <em>The Stock</em>, Volume the Ninth of <em>Numéraire</em> — a periodic table of economic life. This leaf may be read on its own or as part of the volume. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<script>
+(function(){
+  var bar=document.getElementById('progress');
+  function onScroll(){
+    var h=document.documentElement;
+    var max=(h.scrollHeight-h.clientHeight);
+    var p=max>0?(h.scrollTop||document.body.scrollTop)/max:0;
+    bar.style.width=(p*100).toFixed(2)+'%';
+  }
+  document.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="numeraire-ix-v-the-lifetime.html">← The Lifetime</a><a rel="next" href="numeraire-ix-vii-the-wearing.html">The Wearing →</a></nav>
+</body>
+</html>

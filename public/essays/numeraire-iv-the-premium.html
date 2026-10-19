@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Premium — Numéraire, Volume IV</title>
+<meta name="description" content="Numéraire, Volume IV: The Premium — the price of risk. Expected utility and the gambling paradox (Daniel Bernoulli); the measure of risk aversion, and how the dread of risk falls with wealth — the rich man's steadier nerve (Pratt and Arrow); insurance and the law of large numbers (Jacob Bernoulli); diversification and portfolio choice (Markowitz); the capital-asset-pricing model and systematic risk (Sharpe); and the flagship, the survivor's premium that hides luck behind skill (Knight).">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- reading-progress hairline ---- */
+  .progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--ink);z-index:10000;}
+
+  /* ---- masthead ---- */
+  .masthead{padding:clamp(2.8rem,8vh,5.6rem) 0 clamp(1.6rem,4vh,2.6rem);text-align:center;}
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;}
+  .edition{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+  .edition b{font-family:"Fraunces",serif;font-weight:500;font-style:normal;color:var(--soft);letter-spacing:.04em;}
+
+  .symbox{width:84px;height:84px;border:1px solid var(--ink);border-radius:2px;background:var(--ink);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;margin:clamp(1.4rem,3.4vh,2.2rem) auto 0;}
+  .symbox .sb-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2rem;line-height:1;color:var(--paper);letter-spacing:-.01em;}
+  .symbox .sb-num{font-family:"Fraunces",serif;font-size:.66rem;color:rgba(240,235,225,.58);margin-top:.28rem;letter-spacing:.04em;}
+
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-top:1.15rem;}
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.5rem,7vw,5rem);line-height:1.0;letter-spacing:-.028em;margin:.55rem 0 0;text-wrap:balance;}
+  .subtitle{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.05rem,1.7vw,1.32rem);color:var(--faint);margin:.5rem 0 0;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.64;color:var(--soft);
+    max-width:43rem;margin:clamp(1.3rem,3vh,1.9rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+  .status{font-size:.84rem;color:var(--soft);margin:clamp(1.2rem,2.6vh,1.7rem) auto 0;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .backrow{margin-top:clamp(1.3rem,3vh,1.9rem);padding-top:1.5rem;border-top:1px solid var(--hair);max-width:50rem;margin-left:auto;margin-right:auto;}
+  .backlink{display:inline-block;font-size:.82rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .backlink:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- generic block furniture ---- */
+  main{padding:0;}
+  .eyebrow{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.2rem;}
+
+  .block-argument{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .argument{max-width:40rem;margin:0 auto;}
+  .argument p{font-size:1.08rem;line-height:1.74;color:var(--ink);margin:0 0 1.2rem;text-wrap:pretty;}
+  .argument p:last-child{margin-bottom:0;}
+  .argument .closer{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 400;font-style:italic;color:var(--soft);font-size:1.06rem;}
+
+  /* ---- table of plates ---- */
+  .block-toc{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .toc ol{list-style:none;margin:0;padding:0;max-width:44rem;}
+  .toc li{display:grid;grid-template-columns:2.5rem 1fr;column-gap:1rem;align-items:baseline;
+    padding:.85rem 0;border-top:1px solid var(--hair);}
+  .toc li:first-child{border-top:none;}
+  .t-num{font-family:"Fraunces",serif;font-size:.92rem;color:var(--faintest);text-align:right;}
+  .t-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.08rem;color:var(--ink);line-height:1.15;text-decoration:none;}
+  a.t-title{border-bottom:1px solid var(--num);padding-bottom:1px;}
+  a.t-title:hover{border-bottom-color:var(--ink);}
+  .t-gloss{grid-column:2;font-size:.85rem;color:var(--faint);font-style:italic;margin-top:.22rem;line-height:1.4;}
+  .t-q{grid-column:2;font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:.95rem;color:var(--soft);margin-top:.42rem;line-height:1.36;}
+  .t-q .lead{font-family:"Fraunces",serif;font-style:normal;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-right:.5rem;}
+  .t-tag{display:inline-block;margin-left:.6rem;font-family:"Newsreader",serif;font-size:.64rem;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--paper);background:var(--ink);border-radius:2px;padding:.12em .5em;vertical-align:.14em;}
+  .t-read{grid-column:2;margin-top:.42rem;}
+  .t-read a{font-size:.8rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .t-read a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- the plates (essays) ---- */
+  .plates-open{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.8rem,6vh,4rem);}
+  .plates-open .eyebrow{text-align:center;}
+  .plate{max-width:54rem;margin:clamp(2.8rem,6.5vh,4.4rem) auto 0;padding-top:clamp(2.2rem,4.6vh,3rem);
+    border-top:1px solid var(--hair);position:relative;scroll-margin-top:1.4rem;}
+  .plate:first-of-type{border-top:none;margin-top:clamp(1.6rem,3.5vh,2.4rem);padding-top:0;}
+  .plate-head{margin:0 0 1.7rem;}
+  .plate-kicker{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .plate-kicker .pk-tag{margin-left:.6rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .plate-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.8rem,4.2vw,2.7rem);line-height:1.03;letter-spacing:-.02em;margin:.32rem 0 .42rem;}
+  .plate-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.02rem;color:var(--faint);max-width:36rem;line-height:1.45;}
+
+  .epigraph{max-width:34rem;margin:1.4rem 0 1.9rem;padding-left:1.1rem;border-left:1px solid var(--num);}
+  .epigraph p{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:1.04rem;line-height:1.42;color:var(--soft);margin:0;}
+  .epigraph cite{display:block;font-style:normal;font-family:"Newsreader",serif;font-size:.78rem;
+    letter-spacing:.03em;color:var(--faintest);margin-top:.55rem;}
+
+  .plate-body{max-width:37rem;}
+  .plate-body p{font-size:1.05rem;line-height:1.75;color:var(--ink);margin:0 0 1.18rem;text-wrap:pretty;}
+  .plate-body p:last-child{margin-bottom:0;}
+  .plate-body em{font-style:italic;}
+  .plate-body .lead-para::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 500;
+    float:left;font-size:3.5rem;line-height:.78;padding:.08em .14em 0 0;color:var(--ink);}
+  .plate-body h4{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);margin:1.9rem 0 .9rem;}
+
+  .break{display:flex;justify-content:center;margin:1.9rem 0;}
+  .break span{font-family:"Fraunces",serif;font-size:1.05rem;letter-spacing:.4em;color:var(--faintest);padding-left:.4em;}
+
+  /* sidenotes — inline by default, true margin notes on wide screens */
+  .sn-ref{font-family:"Fraunces",serif;font-size:.64rem;vertical-align:super;line-height:0;color:var(--soft);margin-left:.06em;}
+  .sidenote{font-family:"Newsreader",serif;font-size:.82rem;line-height:1.52;color:var(--faint);
+    border-left:2px solid var(--hair);padding-left:.9rem;margin:.7rem 0 1.05rem;}
+  .sidenote .sn-num{font-family:"Fraunces",serif;color:var(--faintest);font-size:.7rem;margin-right:.38rem;}
+  .sidenote em{font-style:italic;}
+  @media (min-width:1040px){
+    .sidenote{float:right;clear:right;width:14.5rem;margin:.25rem -17.5rem 1.15rem 0;
+      border-left:none;border-top:1px solid var(--hair);padding:.42rem 0 0;}
+  }
+
+  /* ---- coda ---- */
+  .coda{max-width:40rem;margin:clamp(2.8rem,6vh,4rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);}
+  .coda p{font-size:1.06rem;line-height:1.74;color:var(--ink);margin:0 0 1.15rem;text-wrap:pretty;}
+  .coda p:last-child{margin-bottom:0;}
+  .coda .q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .f-ref a{text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .f-ref a:hover{border-bottom-color:var(--soft);}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .progress{transition:width .08s linear;}
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}.rise.d4{animation-delay:.4s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    h1{font-size:clamp(2.2rem,11vw,3rem);}
+    .symbox{width:72px;height:72px;}
+    .symbox .sb-sym{font-size:1.7rem;}
+    .plate-body .lead-para::first-letter{font-size:3rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#ne-contents">Complete contents</a><a href="../editions.html#volume-premium">The Premium · both editions</a><a href="../volumes/the-premium.html">Collected volume</a></div></nav>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="rise d1">
+      <span class="imprint">Numéraire</span>
+      <div class="edition"><b>Volume the Fourth</b> &middot; of the table of twenty-six</div>
+    </div>
+    <div class="symbox rise d2" aria-hidden="true"><span class="sb-sym">Pm</span><span class="sb-num">04</span></div>
+    <div class="d-family rise d2">The Prices &middot; Group I &middot; № 04 &middot; Pm</div>
+    <h1 class="rise d2">The Premium</h1>
+    <div class="subtitle rise d3">the price of risk</div>
+    <p class="standfirst rise d3">The premium is the price of risk — what must be paid, over and above a sure thing, to persuade someone to bear an uncertain one. It is the fourth of the prices, and the one that reaches deepest into the self, for it is bound up with how we feel about the unknown and with the stories we tell about who deserves their fortune. Its twelve plates follow risk from the gambling paradox that first revealed why uncertainty has a price, through the two great engines that tame it — the pooling of insurance and the spreading of diversification — to what remains when all that can be diversified away is gone: a price paid only for the risk no one can escape. And they end on the most uncomfortable discovery of all — that the premium we infer from the world's great fortunes is largely a survivor's tale, in which the reward for skill and the reward for mere luck, having left the identical trace, can no longer be told apart.</p>
+    <div class="status rise d3">in print &middot; № IV &middot; 12 of 12 plates</div>
+    <div class="backrow rise d4">
+      <a class="backlink" href="numeraire-atlas-updated.html">← The complete table of volumes</a>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="block-argument">
+      <div class="argument">
+        <p class="eyebrow">The argument of the volume</p>
+        <p>Of the prices in this family, the premium is the one we are most sure we understand. Risk is unpleasant; people must be paid to bear it; the payment is the premium, the extra return a risky venture must promise over a safe one. Insurance, the stock market, the fortunes of those who gamble and win — all seem to display the same plain fact, that the world pays a price for the bearing of uncertainty, and that the price is the just reward of a real and onerous service.</p>
+        <p>What the theory of risk found beneath that plain fact is less plain. The premium exists, it showed, only because the utility of wealth is concave — because a loss bites deeper than an equal gain — so that the price of risk is rooted not in the world but in the curvature of our wants. It found that most risk can be made to vanish, pooled away by insurance or diversified away in a portfolio, so that the premium is paid only for the slender residue no sharing can touch. And it found that this residue is not a property of any asset but a relationship — an asset's tendency to fail in the states we most fear — so that risk lives not in the thing but in its place in the whole, and the same venture is differently risky to every bearer.</p>
+        <p>And it found, at the last, that the premium the world seems to display is in large part an illusion of vantage. The fortunes we observe are the survivors of risk; the ruined have left no record; and among those who bore the same uncertainty equally well, who was left standing to collect the reward was settled, in unmeasurable part, by luck. The realized price of risk thus confounds the reward for skill with the reward for a favorable draw, beyond any separating; the average premium history reports is inflated by the disasters that happened not to strike; and the universal habit of reading a great fortune as a monument to its holder's courage is the privilege of the survivor, who writes the account. The question the volume cannot escape — how much of a fortune is courage, and how much is luck — turns out to have, for any single fortune, no answer the fortune itself can give.</p>
+        <p class="closer">The argument remains open. What follows is an attempt to fix its exact edges.</p>
+      </div>
+    </section>
+
+    <section class="block-toc toc">
+      <p class="eyebrow">The twelve plates of this volume</p>
+      <ol>
+        <li>
+          <span class="t-num">i</span>
+          <a class="t-title" href="numeraire-iv-i-the-wager.html">The Wager<span class="t-tag">in print</span></a>
+          <span class="t-gloss">the St. Petersburg paradox and the birth of expected utility: why a concave taste for wealth makes us fear risk, and the premium the gap between a gamble and its certain worth.</span>
+          <span class="t-read"><a href="numeraire-iv-i-the-wager.html">Read the plate →</a></span>
+        </li>
+        <li>
+          <span class="t-num">ii</span>
+          <a class="t-title" href="numeraire-iv-ii-the-aversion.html">The Aversion<span class="t-tag">in print</span></a>
+          <span class="t-gloss">Arrow and Pratt, and the measure of risk aversion; how the dread of risk changes with wealth, and the rich man's steadier nerve.</span>
+          <span class="t-read"><a href="numeraire-iv-ii-the-aversion.html">Read the plate →</a></span>
+        </li>
+        <li>
+          <span class="t-num">iii</span>
+          <a class="t-title" href="numeraire-iv-iii-the-pool.html">The Pool<span class="t-tag">in print</span></a>
+          <span class="t-gloss">insurance and the law of large numbers: how pooling turns the unforeseeable fate of the one into the near-certain average of the many — and where the pooling breaks.</span>
+          <span class="t-read"><a href="numeraire-iv-iii-the-pool.html">Read the plate →</a></span>
+        </li>
+        <li>
+          <span class="t-num">iv</span>
+          <a class="t-title" href="numeraire-iv-iv-the-basket.html">The Basket<span class="t-tag">in print</span></a>
+          <span class="t-gloss">diversification, the one free lunch: how spreading a stake destroys the risk peculiar to each venture, leaving only the risk that all ventures share.</span>
+          <span class="t-read"><a href="numeraire-iv-iv-the-basket.html">Read the plate →</a></span>
+        </li>
+        <li>
+          <span class="t-num">v</span>
+          <a class="t-title" href="numeraire-iv-v-the-systematic.html">The Systematic<span class="t-tag">in print</span></a>
+          <span class="t-gloss">the capital-asset-pricing model: that only undiversifiable risk is paid for, and that an asset's risk is how it moves with the market, not how much it moves.</span>
+          <span class="t-read"><a href="numeraire-iv-v-the-systematic.html">Read the plate →</a></span>
+        </li>
+        <li>
+          <span class="t-num">vi</span>
+          <a class="t-title" href="numeraire-iv-vi-the-unknown.html">The Unknown<span class="t-tag">in print</span></a>
+          <span class="t-gloss">Knight's risk against uncertainty; the premium for what cannot be assigned a probability, and Ellsberg's preference for the devil one can count.</span>
+          <span class="t-read"><a href="numeraire-iv-vi-the-unknown.html">Read the plate →</a></span>
+        </li>
+        <li>
+          <span class="t-num">vii</span>
+          <a class="t-title" href="numeraire-iv-vii-the-equity.html">The Equity<span class="t-tag">in print</span></a>
+          <span class="t-gloss">the equity premium puzzle: why the reward for holding stocks over bonds is far larger than any sane fear of risk should require.</span>
+          <span class="t-read"><a href="numeraire-iv-vii-the-equity.html">Read the plate →</a></span>
+        </li>
+        <li>
+          <span class="t-num">viii</span>
+          <a class="t-title" href="numeraire-iv-viii-the-survivor.html">The Survivor<span class="t-tag">in print</span></a>
+          <span class="t-gloss">the great fortune as the wage of survival: the price of risk borne in advance against the spoils of luck in the event, and why, in any single success, skill and luck leave the same trace.</span>
+          <span class="t-read"><a href="numeraire-iv-viii-the-survivor.html">Read the plate →</a></span>
+        </li>
+        <li>
+          <span class="t-num">ix</span>
+          <a class="t-title" href="numeraire-iv-ix-the-prospect.html">The Prospect<span class="t-tag">in print</span></a>
+          <span class="t-gloss">prospect theory and loss aversion; probability weighed by feeling, and why the same hand insures a house and buys a lottery ticket.</span>
+          <span class="t-read"><a href="numeraire-iv-ix-the-prospect.html">Read the plate →</a></span>
+        </li>
+        <li>
+          <span class="t-num">x</span>
+          <a class="t-title" href="numeraire-iv-x-the-tail.html">The Tail<span class="t-tag">in print</span></a>
+          <span class="t-gloss">rare disasters and fat tails; the black swan, systemic risk, and the catastrophe that no premium had priced.</span>
+          <span class="t-read"><a href="numeraire-iv-x-the-tail.html">Read the plate →</a></span>
+        </li>
+        <li>
+          <span class="t-num">xi</span>
+          <a class="t-title" href="numeraire-iv-xi-the-hedge.html">The Hedge<span class="t-tag">in print</span></a>
+          <span class="t-gloss">options and the transfer of risk; Black and Scholes, risk-neutral pricing, and the market for handing one's risk to another.</span>
+          <span class="t-read"><a href="numeraire-iv-xi-the-hedge.html">Read the plate →</a></span>
+        </li>
+        <li>
+          <span class="t-num">xii</span>
+          <a class="t-title" href="numeraire-iv-xii-the-ruin.html">The Ruin<span class="t-tag">in print</span></a>
+          <span class="t-gloss">the gambler's ruin and the question of ergodicity; the gulf between what a bet pays on average and what it does to one who keeps taking it.</span>
+          <span class="t-read"><a href="numeraire-iv-xii-the-ruin.html">Read the plate →</a></span>
+        </li>
+      </ol>
+    </section>
+
+    <section class="coda">
+      <p class="eyebrow">In closing</p>
+      <p>This volume took up the price we are most certain is deserved — the reward for bearing risk — and found it the most entangled with luck and with self-regard. The premium is real: because the utility of wealth is concave, a fair gamble is a bad bargain, and the risk-averse must be paid to face uncertainty. The plates in print followed that price from its origin in the curvature of our wants to its strange afterlife in the fortunes risk leaves behind.</p>
+      <p>Risk, the volume showed, is first of all to be tamed rather than borne. Insurance pools it, turning the unforeseeable fate of the one into the near-certain average of the many, and trading each person's dreaded loss for a small sure payment. Diversification spreads it, destroying for free the risk peculiar to each venture and leaving only the risk that all ventures share. What survives both — the systematic, undiversifiable remainder — is all that earns a premium, and it is priced not by how much an asset varies but by how it moves with the common fate, by its tendency to fail when failure is least affordable. Risk, properly understood, is less a quantity a thing possesses than a relationship it bears to the states we fear.</p>
+      <p>And then the volume turned from the expected to the realized, and the elegance gave way to discomfort. The premium is earned in advance, before the throw; but the fortunes we see come after it, and we see only the winners, the ruined having vanished. In any single great fortune the reward for skill and the reward for luck leave the same trace — a survivor with the winnings — and cannot be told apart; the premium history reports is swollen by catastrophes that did not happen; and the story that a fortune was deserved is mostly told by those who lived to tell it. So the fourth price completes the family's lesson and turns it upon ourselves. The wage flatters us as worth and is partly power; the rent flatters us as contribution and is the toll of position; the rate presents itself as a fact of time and is partly a decision; and the premium presents itself as the wage of courage and is, in its realized form, the wage of survival. Each is a payment that dresses something cooler — a position, a decision, a power, a lucky draw — in the language of desert.</p>
+      <p class="q">If the reward for bearing risk falls, in the end, to whoever is left standing, and if luck and skill leave the survivor the identical winnings, then when we honor a great fortune as the prize of courage, whom are we honoring — the brave, or merely the spared?</p>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref"><a href="numeraire-atlas-updated.html">The table of volumes</a></span>
+    </div>
+    <p class="colophon">Volume the Fourth of <em>Numéraire</em>, a periodic table of economic life: twenty-six primitives gathered in six families, each turned inside out at the seam where the seminar and the essay usually part — with the rigor of the one and the grace of the other — and each scrupulous about the exact edge of what can be known. <em>The Premium</em> is in print; all twelve plates are published, and the eighth, <em>The Survivor</em>, stands as the flagship of the volume. It is the fourth of the prices, the price of risk, set beside the wage of labor, the rent of position, and the rate of time. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var bar=document.getElementById('progress');
+  function onScroll(){
+    var h=document.documentElement;
+    var max=(h.scrollHeight-h.clientHeight);
+    var p=max>0?(h.scrollTop||document.body.scrollTop)/max:0;
+    bar.style.width=(p*100).toFixed(2)+'%';
+  }
+  document.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="numeraire-iii-xii-the-curve.html">← The Curve</a><a rel="next" href="numeraire-iv-i-the-wager.html">The Wager →</a></nav>
+</body>
+</html>

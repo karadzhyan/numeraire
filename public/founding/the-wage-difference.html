@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Difference — The Wage, plate v</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1;
+    --ink:#1c1a16;
+    --soft:#534e45;
+    --faint:#6e685d;
+    --faintest:#9a9384;
+    --num:#c4bcab;
+    --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16);
+    --frame:68rem;
+    --read:37rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.6rem,4vw,4rem);}
+  p{margin:0;}
+  i,em{font-style:italic;}
+  a{color:inherit;}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:4px;border-radius:1px;}
+  .fr{font-family:"Fraunces",Georgia,serif;font-feature-settings:"liga" 1,"dlig" 0;}
+
+  /* ---- heavy entrance ---- */
+  .hero{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:space-between;}
+  .bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.5rem;padding:2.5rem 0 0;}
+  .mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.3rem;letter-spacing:-.01em;}
+  .edition{font-size:.9rem;color:var(--faint);letter-spacing:.06em;}
+  .hero-foot{padding-bottom:clamp(3.5rem,8vh,7rem);text-align:center;}
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(3.4rem,12vw,11rem);line-height:.95;letter-spacing:-.03em;margin:0;}
+  .standfirst{font-size:clamp(1.16rem,1.5vw,1.36rem);line-height:1.55;color:var(--soft);
+    margin:clamp(1.6rem,3vh,2.4rem) auto 0;max-width:45rem;text-wrap:pretty;}
+
+  /* ---- reading column ---- */
+  .read{max-width:var(--read);margin:0 auto;}
+  .read p{font-size:1.07rem;line-height:1.74;color:var(--ink);margin:0;text-indent:1.4em;text-wrap:pretty;}
+  .sec-head + p,.pull + p,.opening,.plate + p,.coda + p{text-indent:0;}
+
+  .sec-head{text-align:center;margin:clamp(4rem,9vh,7.5rem) 0 clamp(1.8rem,3.5vh,2.6rem);}
+  .sec-head.first{margin-top:clamp(5rem,11vh,9rem);}
+  .sec-num{display:block;font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;
+    font-size:.98rem;letter-spacing:.06em;color:var(--faintest);margin-bottom:.85rem;}
+  .sec-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.6rem,2.6vw,2.05rem);line-height:1.12;letter-spacing:-.012em;margin:0;}
+
+  .opening::first-letter{
+    font-family:"Fraunces",serif;font-weight:500;float:left;font-size:5.3rem;line-height:.72;
+    padding:.36rem .55rem 0 0;color:var(--ink);
+  }
+
+  .pull{max-width:50rem;margin:clamp(4.5rem,9vh,7rem) auto;text-align:center;}
+  .pull p{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:clamp(2rem,4.2vw,3.1rem);line-height:1.08;letter-spacing:-.02em;color:var(--ink);
+    margin:0;text-indent:0;text-wrap:balance;}
+
+  .ref{font-size:.62em;vertical-align:.5em;line-height:0;color:var(--faint);font-style:normal;}
+  .ref a{text-decoration:none;}
+  .ref a:hover{color:var(--ink);}
+
+  /* ---- plates (diagrams) ---- */
+  .plate{max-width:var(--read);margin:clamp(3.4rem,7vh,5.2rem) auto;}
+  .plate.wide{max-width:44rem;}
+  .plate figure{margin:0;}
+  .plate svg{display:block;width:100%;height:auto;overflow:visible;}
+  .plate text{font-family:"Fraunces",Georgia,serif;fill:var(--soft);paint-order:stroke;stroke:var(--paper);stroke-width:2.6px;stroke-linejoin:round;}
+  .plate .axis{stroke:var(--soft);stroke-width:1.1;}
+  .plate .curve{fill:none;stroke:var(--ink);stroke-width:1.6;}
+  .plate .curve.sec{stroke:var(--soft);stroke-width:1.4;}
+  .plate .guide{stroke:var(--faintest);stroke-width:1;stroke-dasharray:2.4 3.4;fill:none;}
+  .plate .level{stroke:var(--faintest);stroke-width:1;stroke-dasharray:1 4;}
+  .plate .floor{stroke:var(--ink);stroke-width:1.2;stroke-dasharray:5 4;}
+  .plate .dot{fill:var(--ink);}
+  .plate .dot.open{fill:var(--paper);stroke:var(--ink);stroke-width:1.4;}
+  .plate .lbl{font-size:14px;fill:var(--soft);}
+  .plate .tick{font-size:13px;fill:var(--faint);}
+  .plate .reg{font-size:12.5px;fill:var(--faint);font-style:italic;}
+  .plate figcaption{font-size:.82rem;line-height:1.56;color:var(--faint);margin:1.2rem auto 0;
+    max-width:33rem;text-align:center;text-wrap:pretty;}
+  .plate figcaption .pn{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;
+    color:var(--faintest);letter-spacing:.05em;text-transform:uppercase;font-size:.74rem;}
+
+  /* ---- coda ---- */
+  .coda{max-width:46rem;margin:clamp(5rem,10vh,8rem) auto 0;text-align:center;}
+  .coda p{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400,"ital" 0;font-style:italic;
+    font-size:clamp(1.5rem,2.6vw,2.05rem);line-height:1.3;color:var(--soft);margin:0;text-wrap:balance;}
+
+  /* ---- notes ---- */
+  .notes{max-width:var(--read);margin:clamp(5rem,11vh,9rem) auto 0;padding-top:2.4rem;border-top:1px solid var(--hair);}
+  .notes h3{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.92rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.6rem;}
+  .note{display:flex;gap:.9rem;scroll-margin-top:2rem;font-size:.86rem;line-height:1.56;color:var(--faint);margin:0 0 1rem;text-wrap:pretty;}
+  .note .nn{flex:0 0 auto;font-family:"Fraunces",serif;color:var(--faintest);min-width:1.1rem;}
+  .note i{font-style:italic;}
+
+  /* ---- colophon ---- */
+  footer{margin-top:clamp(6rem,13vh,10rem);padding:2.6rem 0 4.5rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.5rem;margin-bottom:1.8rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.1rem;}
+  .f-ref{font-size:.82rem;color:var(--faintest);letter-spacing:.18em;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:60ch;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .r{opacity:0;transform:translateY(12px);animation:rise 1.1s cubic-bezier(.2,.6,.2,1) both;}
+    .r1{animation-delay:.06s}.r2{animation-delay:.2s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .read p{font-size:1.04rem;}
+    .opening::first-letter{font-size:4.4rem;}
+    .f-bar{flex-direction:column;gap:.7rem;}
+    .plate .lbl,.plate .reg,.plate .tick{font-size:11px;}
+  }
+
+  /* ===== revision: airier rhythm + new plate types ===== */
+  .read p{line-height:1.82;}
+  .sec-head{margin:clamp(5.5rem,12.5vh,9.5rem) 0 clamp(2.2rem,4vh,3rem);}
+  .sec-head.first{margin-top:clamp(5rem,11vh,8.5rem);}
+  .sec-head::before{content:"";display:block;width:2.4rem;height:1px;background:var(--num);margin:0 auto 1.7rem;opacity:.85;}
+  .pull{margin:clamp(5.5rem,11vh,8.5rem) auto;}
+  .plate{margin:clamp(4.4rem,9vh,6.6rem) auto;}
+  .coda{margin-top:clamp(6rem,12vh,9rem);}
+
+  /* centered closing ornament */
+  .orn{display:flex;justify-content:center;margin:clamp(5rem,10vh,7.5rem) auto 0;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;}
+  .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* ledger plate: sources -> remedies */
+  .ledger figure{margin:0;}
+  .ledger-grid{display:grid;grid-template-columns:1fr 1fr;position:relative;
+    border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);}
+  .ledger-grid::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:1px;background:var(--hair);}
+  .ledger-grid .lh{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;
+    font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);padding:1.15rem 1.5rem .55rem;}
+  .ledger-grid .lh.r{text-align:right;} .ledger-grid .lh.l{text-align:left;}
+  .ledger-grid .cell{padding:1.3rem 1.5rem;border-top:1px solid var(--hair);}
+  .ledger-grid .src{text-align:right;} .ledger-grid .rem{text-align:left;}
+  .ledger-grid .cell b{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 500;font-weight:500;
+    font-size:1.13rem;display:block;color:var(--ink);letter-spacing:-.01em;line-height:1.15;}
+  .ledger-grid .cell span{display:block;font-size:.81rem;color:var(--faint);margin-top:.34rem;line-height:1.42;}
+  .ledger-coda{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.16rem;line-height:1.42;color:var(--soft);text-align:center;margin:1.7rem auto 0;max-width:33rem;text-wrap:balance;}
+  @media (max-width:620px){
+    .ledger-grid{grid-template-columns:1fr;}
+    .ledger-grid::before{display:none;}
+    .ledger-grid .lh{display:none;}
+    .ledger-grid .src,.ledger-grid .rem{text-align:left;}
+    .ledger-grid .src{border-bottom:none;}
+    .ledger-grid .rem{border-top:none;padding-top:.1rem;padding-left:2.4rem;position:relative;}
+    .ledger-grid .rem::before{content:"\2192";position:absolute;left:1.1rem;top:.1rem;color:var(--faintest);}
+    .ledger-grid .cell{padding-bottom:.5rem;}
+    .ledger-grid .rem{padding-bottom:1.3rem;}
+  }
+
+  /* ===== frontispiece: annotated contents ===== */
+  .sec-head{scroll-margin-top:2.5rem;}
+  .contents{max-width:40rem;margin:0 auto;padding:clamp(3rem,8vh,7rem) 0 clamp(3rem,7vh,6rem);}
+  .contents .orn{margin:0 auto 2.4rem;}
+  .contents-eyebrow{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faintest);text-align:center;margin:0 0 3rem;}
+  .contents-list{list-style:none;margin:0 auto;padding:0;max-width:33rem;counter-reset:none;}
+  .contents-list li{margin:0 0 1.7rem;}
+  .contents-list li:last-child{margin-bottom:0;}
+  .contents-list a{display:grid;grid-template-columns:2.6rem 1fr;column-gap:1.1rem;
+    text-decoration:none;align-items:baseline;}
+  .contents-list .cn{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;
+    font-size:.96rem;color:var(--faintest);text-align:right;letter-spacing:.02em;}
+  .contents-list .ct{font-family:"Fraunces",serif;font-variation-settings:"opsz" 58,"wght" 500;
+    font-size:1.2rem;color:var(--ink);letter-spacing:-.012em;line-height:1.18;transition:color .25s ease;}
+  .contents-list .cg{grid-column:2;font-style:italic;font-size:.92rem;color:var(--faint);
+    margin-top:.22rem;line-height:1.42;text-wrap:pretty;}
+  .contents-list a:hover .ct{color:var(--soft);}
+  @media (max-width:600px){
+    .contents-list a{grid-template-columns:1.9rem 1fr;column-gap:.85rem;}
+    .contents-list .ct{font-size:1.1rem;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-founding">The Founding Atlas · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+
+  <section class="hero">
+    <div class="bar r r1">
+      <span class="mark">Numéraire</span>
+      <span class="edition">The Wage · № I · v</span>
+    </div>
+    <div class="hero-foot r r2">
+      <h1>The Difference</h1>
+      <p class="standfirst">Two workers of equal skill can be paid very differently, and not because one is worth more than the other. One may simply hold a worse job — more dangerous, more wretched, more precarious, more despised — and the wage, the oldest theory of these matters holds, must make up the difference: the bad job must pay more to fill its places at all. This is the compensating differential, Adam Smith's idea that the market equalises not wages but the whole bundle of a job's advantages and disadvantages. The theory is elegant, and it is half true. The other half is this plate's subject — for the world is full of jobs that are both dreadful and badly paid, and the reason the compensation so often fails to appear is the reason that has shadowed this whole volume: power.</p>
+    </div>
+  </section>
+
+  <nav class="contents" aria-label="Contents">
+    <div class="orn" aria-hidden="true"><svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg></div>
+    <p class="contents-eyebrow">The argument in seven movements</p>
+    <ol class="contents-list">
+      <li><a href="#s1"><span class="cn">I</span><span class="ct">The Other Reason Wages Differ</span><span class="cg">the qualities of the job, not the worker</span></a></li>
+      <li><a href="#s2"><span class="cn">II</span><span class="ct">Smith's Five Circumstances</span><span class="cg">the oldest theory of the wage gap</span></a></li>
+      <li><a href="#s3"><span class="cn">III</span><span class="ct">The Price of a Bad Job</span><span class="cg">how the market prices what we suffer at work</span></a></li>
+      <li><a href="#s4"><span class="cn">IV</span><span class="ct">The Price of a Life</span><span class="cg">the wage premium for danger, and what it reveals</span></a></li>
+      <li><a href="#s5"><span class="cn">V</span><span class="ct">The Prediction That Fails</span><span class="cg">why the worst jobs so often pay the least</span></a></li>
+      <li><a href="#s6"><span class="cn">VI</span><span class="ct">Why It Fails</span><span class="cg">skill, ignorance, and the power to refuse</span></a></li>
+      <li><a href="#s7"><span class="cn">VII</span><span class="ct">The Differential and the Bargain</span><span class="cg">the premium as the price of consent</span></a></li>
+    </ol>
+  </nav>
+
+  <article class="read">
+
+    <div class="sec-head first" id="s1"><span class="sec-num fr">I</span><h2 class="sec-title">The Other Reason Wages Differ</h2></div>
+
+    <p class="opening">Two plates of this volume have been about why the ceiling differs from worker to worker. The plate on the margin set the ceiling at the value of what a worker produces; the plate on skill explained why that value is higher for some — more training, more talent, scarcer abilities. Both locate the difference in the worker. But there is a third reason wages differ that has nothing to do with the worker at all, and everything to do with the job.</p>
+
+    <p>Consider two workers of identical skill, equally productive, who could do each other's work. One cleans offices at night; the other guts carcasses on a slaughterhouse line. One files papers in a warm room; the other roofs houses in January. If the wage were worth alone, and the workers are equally worth, they should be paid the same. Often they are not — and the theory of this plate says they should not be. The unpleasant, dangerous, or precarious job must pay more, not because the work is worth more, but to persuade anyone to do it at all. The difference in the wage compensates for the difference in the job. This is the compensating wage differential, and it is the oldest idea in the economics of wages.<sup class="ref"><a href="#n1">1</a></sup></p>
+
+    <div class="sec-head" id="s2"><span class="sec-num fr">II</span><h2 class="sec-title">Smith's Five Circumstances</h2></div>
+
+    <p>Adam Smith set it out in 1776, in a chapter on why wages differ across employments, and he did it so thoroughly that little has been added since. The &ldquo;whole of the advantages and disadvantages of the different employments of labour,&rdquo; he wrote, tend in a free market to equality — not the wages, but the whole bundle, money and everything else together. Where a job carries some disadvantage, the money wage must rise to offset it; where it carries some hidden advantage, the money wage may fall. He named five such circumstances.<sup class="ref"><a href="#n2">2</a></sup></p>
+
+    <div class="plate wide ledger">
+      <figure>
+        <div class="ledger-grid">
+          <div class="lh r">The circumstance</div>
+          <div class="lh l">Smith's instance</div>
+          <div class="cell src"><b>The disagreeable trade</b><span>dirty, dangerous, or dishonourable</span></div>
+          <div class="cell rem"><b>the butcher, the hangman</b><span>paid more for the odium</span></div>
+          <div class="cell src"><b>The costly skill</b><span>long and dear to learn</span></div>
+          <div class="cell rem"><b>the apprenticed craftsman</b><span>paid to recompense the training</span></div>
+          <div class="cell src"><b>The broken work</b><span>seasonal, stopped by weather</span></div>
+          <div class="cell rem"><b>the mason idled by frost</b><span>paid more for the days he works</span></div>
+          <div class="cell src"><b>The trusted hand</b><span>given responsibility, and the power to harm</span></div>
+          <div class="cell rem"><b>the goldsmith, the physician</b><span>paid for the trust reposed</span></div>
+          <div class="cell src"><b>The long-odds calling</b><span>few who enter will win</span></div>
+          <div class="cell rem"><b>the law, the stage</b><span>winners paid for the many who fail — though hope misleads the count</span></div>
+        </div>
+        <p class="ledger-coda">Five reasons one job must pay more than another that demands no less skill. Smith's claim was that the market equalises not wages but the whole of the advantages and disadvantages of the work — so the money wage rises exactly to offset whatever, beyond pay, the job lacks.</p>
+        <figcaption><span class="pn">Plate v.a&nbsp;&middot;&nbsp;</span>Smith's five circumstances, after the <i>Wealth of Nations</i>, 1776. The money wage, Smith held, is only part of what a job offers; a free market equalises the whole — pay together with everything else — so wherever a job carries a disadvantage, the wage must rise to make up for it. Five such disadvantages: unpleasant or dishonourable work, costly training, irregular employment, the burden of trust, and long odds of success. Each, all else equal, pushes the money wage up. The second is the human capital of the fourth plate, which Smith reached first; the rest are the proper subject of this one. Note the asymmetry in the fifth: where workers misjudge the odds, overrating their chance of glory, the compensation fails and the lottery trades are underpaid. Even in Smith, the differential is only as good as the worker's judgement — and the worker's freedom to choose.</figcaption>
+      </figure>
+    </div>
+
+    <p>The first circumstance is the agreeableness of the work — whether it is clean or filthy, safe or dangerous, honourable or despised. The dirty and dangerous trades must pay more; so, Smith noted, must the dishonourable ones, which is why the public executioner was, for the little he did, better paid than almost any common trade. The second is the cost of learning the work — the long, expensive training skilled trades demand, which the wage must repay; this is the human-capital story the plate on skill has already told, and Smith had it first. The third is the constancy of the employment — steady work or broken. A mason, idle through every frost and downpour, must earn more on the days he works to carry him through the days he cannot, so that irregular work pays a higher rate for the same skill. The fourth is the trust reposed in the worker — we pay the goldsmith, the physician, the lawyer partly for the responsibility we place in their hands and the harm they could do us. And the fifth is the probability of success — the lottery trades, law and the arts and the like, where a few succeed grandly and many fail, must dangle high rewards before the winners to draw entrants at all. Though here, Smith shrewdly observed, the compensation is usually too small, because people wildly overrate their chances; the &ldquo;overweening conceit which the greater part of men have of their own abilities&rdquo; leads them to crowd the long-odds professions and bid the reward down.<sup class="ref"><a href="#n3">3</a></sup></p>
+
+    <div class="sec-head" id="s3"><span class="sec-num fr">III</span><h2 class="sec-title">The Price of a Bad Job</h2></div>
+
+    <p>Modern economics took Smith's insight and gave it sharper form. A job is a bundle — a wage, yes, but also a set of conditions: its safety, its hours, its pleasantness, its security, its standing. Workers care about all of these, and will trade between them: give up some wage for a safer or pleasanter job, or demand more wage for a worse one. Firms, for their part, can often supply better conditions at a cost — guard rails and ventilation and shorter shifts are not free. The labour market, putting the two together, ends up pricing each condition: there emerges, implicitly, a going rate at which wage can be exchanged for safety, for comfort, for security. The wage attached to any particular job is then the sum of two things — what the worker's product is worth, and a premium or discount for the bundle of conditions the job carries.<sup class="ref"><a href="#n4">4</a></sup></p>
+
+    <p>This is the hedonic theory of wages, and its power is that it makes the implicit explicit. We never see a price tag on &ldquo;safety&rdquo; or &ldquo;pleasantness.&rdquo; But by comparing the wages of otherwise-similar workers in jobs that differ in some condition, we can read off the price the market places on that condition — the wage discount workers accept for a safer job, the premium they demand for a riskier one. The market has been quietly pricing the unpriceable all along, and the wage differential is the price.<sup class="ref"><a href="#n5">5</a></sup></p>
+
+    <div class="sec-head" id="s4"><span class="sec-num fr">IV</span><h2 class="sec-title">The Price of a Life</h2></div>
+
+    <p>There is one condition whose pricing is so consequential, and so unsettling, that it deserves a section of its own: the risk of death. Some jobs are likelier to kill you than others — logging, fishing, roofing, mining. By the logic just laid out, such jobs must pay a premium, the extra wage that persuades a worker to accept the extra risk. And that premium, once measured, lets economists do something startling: put a price on a human life.</p>
+
+    <div class="plate">
+      <figure>
+        <svg viewBox="0 0 640 400" role="img" aria-label="Wages plotted against the risk of death on the job, sloping upward: riskier jobs pay more. A safe job and a dangerous job are marked; the horizontal distance between them is the extra risk, the vertical distance the extra pay. The slope is the market's price of risk, which scaled to a whole life gives the Value of a Statistical Life.">
+          <line class="axis" x1="90" y1="340" x2="594" y2="340"/>
+          <path d="M598,340 L588,336 L588,344 Z" style="fill:var(--soft)"/>
+          <line class="axis" x1="90" y1="340" x2="90" y2="60"/>
+          <path d="M90,56 L86,66 L94,66 Z" style="fill:var(--soft)"/>
+          <line class="curve" x1="120" y1="290" x2="560" y2="150"/>
+          <line class="floor" x1="180" y1="271" x2="470" y2="271"/>
+          <line class="floor" x1="470" y1="271" x2="470" y2="179"/>
+          <circle class="dot" cx="180" cy="271" r="4.2"/>
+          <circle class="dot" cx="470" cy="179" r="4.2"/>
+          <text class="tick" x="130" y="178">the slope is the price of risk</text>
+          <text class="reg" x="173" y="262" text-anchor="end">the safe job</text>
+          <text class="reg" x="480" y="172">the dangerous job</text>
+          <text class="reg" x="325" y="288" text-anchor="middle">more risk</text>
+          <text class="reg" x="480" y="224">more pay —</text>
+          <text class="reg" x="480" y="239">the premium</text>
+          <text class="reg" x="340" y="372" text-anchor="middle">risk of death on the job</text>
+          <text class="lbl" transform="translate(62,200) rotate(-90)" text-anchor="middle">annual wage</text>
+        </svg>
+        <figcaption><span class="pn">Plate v.b&nbsp;&middot;&nbsp;</span>The price of a life. After Thaler and Rosen, and Viscusi. Jobs likelier to kill — logging, fishing, roofing — must pay a premium to fill their places; plotted against risk, wages slope upward, and the slope is the market's price of risk. Take that price — the extra pay a worker demands for a small extra chance of death — and scale it to a whole life: if a worker accepts a few hundred dollars a year for one added chance in ten thousand of dying, ten thousand such workers are charging a few million dollars for the one death expected among them. That figure is the Value of a Statistical Life — not the worth of any person, who would sell their life for no sum, but the rate at which people trade small risks for money. Measured this way it runs to about thirteen million dollars in the United States today, and governments use it, by the billions, to decide which safety measures are worth their cost. The humble premium for a dangerous job is where a society reads its own price on death.</figcaption>
+      </figure>
+    </div>
+
+    <p>The arithmetic is simple and chilling. Suppose workers must be paid an extra few hundred dollars a year to accept a job carrying one additional chance in ten thousand of dying that year. Then ten thousand such workers, taken together, are accepting a few hundred dollars each — a few million in total — in exchange for one expected death among them. That total is what the market reveals these workers, by their own choices, implicitly charge for one statistical life. It is not the value of any particular person, who would not sell their life for any sum; it is the rate at which people trade small risks of death for money, scaled up to a whole life. Economists call it the Value of a Statistical Life, and have measured it, from wage-risk tradeoffs and other choices, at something around thirteen million dollars in the United States today — a figure that has drifted upward over the years as the country has grown richer.<sup class="ref"><a href="#n6">6</a></sup></p>
+
+    <p>This number is no academic curiosity. Governments use it, by the billions, to decide how much to spend on safety — whether a guard rail, a regulation, a recall is &ldquo;worth it,&rdquo; by weighing its cost against the statistical lives it saves at thirteen million each. The practice provokes understandable revulsion: it feels monstrous to price a life, and monstrous to refuse a safety measure because it costs too much per life saved. But the alternative — spending without limit to drive every risk to zero — is impossible, and pretending we do not trade safety against cost is a lie we tell with every road we build and every regulation we decline. The compensating differential, the humble premium for a dangerous job, turns out to be the place where a society reads its own price on death.<sup class="ref"><a href="#n7">7</a></sup></p>
+
+    <div class="sec-head" id="s5"><span class="sec-num fr">V</span><h2 class="sec-title">The Prediction That Fails</h2></div>
+
+    <p>So the theory is elegant, the evidence for it real, and its boldest application — pricing a life — genuinely in use. And yet anyone who looks at the actual world of work feels a deep unease, because the theory makes a clear prediction that the world routinely violates. The compensating differential says bad jobs should pay more. Look around: bad jobs very often pay less.</p>
+
+    <div class="plate">
+      <figure>
+        <svg viewBox="0 0 640 400" role="img" aria-label="Two lines on a graph of wage against how bad a job is. A dashed line slopes upward: the compensating-differential theory predicts that worse jobs pay more. A solid line slopes downward: across the actual labour market, worse jobs tend to pay less. The lines point in opposite directions.">
+          <line class="axis" x1="90" y1="340" x2="594" y2="340"/>
+          <path d="M598,340 L588,336 L588,344 Z" style="fill:var(--soft)"/>
+          <line class="axis" x1="90" y1="340" x2="90" y2="60"/>
+          <path d="M90,56 L86,66 L94,66 Z" style="fill:var(--soft)"/>
+          <line x1="110" y1="270" x2="560" y2="130" style="stroke:var(--soft);stroke-width:1.6;stroke-dasharray:5 4"/>
+          <line class="curve" x1="110" y1="180" x2="560" y2="300"/>
+          <text class="tick" x="300" y="148" text-anchor="middle">what the theory predicts</text>
+          <text class="tick" x="384" y="304" text-anchor="middle">what the world shows</text>
+          <text class="reg" x="116" y="362">pleasant work</text>
+          <text class="reg" x="560" y="362" text-anchor="end">wretched work</text>
+          <text class="lbl" transform="translate(62,200) rotate(-90)" text-anchor="middle">wage</text>
+        </svg>
+        <figcaption><span class="pn">Plate v.c&nbsp;&middot;&nbsp;</span>Two lines that point opposite ways. The theory of compensating differentials predicts the dashed line: among workers of equal skill, the worse the job, the higher the wage that must be paid to fill it. Across the actual labour market, wages trace the solid line instead — the dirtiest, most dangerous, most precarious work is, on the whole, the worst-paid. The prediction is not merely weak; over great stretches of the economy it is inverted. The puzzle is the gap between the two lines, and resolving it — why the premium so often fails to appear, and where it appears at all — is the business of the rest of this plate. The short answer: the theory holds only under conditions the worst jobs systematically violate — equal skill, full knowledge, and a worker free to walk away.</figcaption>
+      </figure>
+    </div>
+
+    <p>The jobs that are dirtiest, most dangerous, most precarious, most despised — the slaughterhouse line, the field labour, the care work, the gig delivery in all weathers — are disproportionately the worst-paid jobs in the economy, not the best. The roofer may earn more than the file clerk; but the migrant farmworker, bent in the heat for piece rates, earns less than the office worker in the cool, though the field is incomparably harder and more dangerous. The correlation the theory predicts — worse job, higher pay — is, across great swaths of the labour market, simply inverted. Far from being compensated for the badness of their jobs, the workers in the worst jobs are, on the whole, paid the least.<sup class="ref"><a href="#n8">8</a></sup></p>
+
+    <div class="sec-head" id="s6"><span class="sec-num fr">VI</span><h2 class="sec-title">Why It Fails</h2></div>
+
+    <p>Three things break the theory, and they nest inside one another. The first is the simplest: &ldquo;all else equal&rdquo; almost never holds. The compensating differential operates between jobs alike in everything but the condition in question. But the worst jobs differ from the best in more than their badness — above all, in the skill they require. The dangerous, dirty, precarious jobs are disproportionately low-skill jobs, and so the downward pull of low skill, the fourth plate's story, swamps the upward push of the compensating premium. The premium is still there, hidden inside the wage: the dangerous low-skill job may pay a little more than a safe low-skill one. But compared across the whole market, where skill varies enormously, the skill effect dominates, and the bad jobs come out at the bottom. The differential is real, but partial, and masked.<sup class="ref"><a href="#n9">9</a></sup></p>
+
+    <p>The second is information. A worker demands a premium for a danger only if they know the danger is there. Many of the worst risks of work are invisible — the slow poison of a chemical, the long damage of a repetitive strain, the cancer that surfaces decades later. Where the risk is hidden, no premium is demanded, and the worker bears it unpaid. This is part of why we do not leave safety wholly to the wage: the market can price only the dangers workers can see, and much of the harm of bad work is precisely the harm they cannot.<sup class="ref"><a href="#n10">10</a></sup></p>
+
+    <p>The third reason is the deepest, and it is the volume's. A compensating differential is a premium paid to induce a worker to accept a disadvantage they would otherwise refuse. It exists only because the worker <em>can</em> refuse — can take the safer, cleaner, steadier job instead, forcing the bad job to bid for them. But strip the worker of that power — of alternatives, of savings, of the safety net the last plate described — and the premium evaporates. A worker who must take this job or go hungry does not need to be compensated for its dangers; they will take it, dangers and all, at whatever it pays, because the alternative is worse. The compensating differential is a luxury of the worker who has somewhere else to go. For the worker who does not, the bad job is not a bargain to be sweetened but a necessity to be endured — and its badness, far from lifting the wage, sits perfectly comfortably beside a low one.<sup class="ref"><a href="#n11">11</a></sup></p>
+
+    <div class="sec-head" id="s7"><span class="sec-num fr">VII</span><h2 class="sec-title">The Differential and the Bargain</h2></div>
+
+    <p>Gather the threads. The compensating differential began as a worth-side idea — a third reason, beside the marginal product and skill, that wages differ. But it turns out to sit uneasily on the worth side, for two reasons that bear on the whole volume.</p>
+
+    <p>The first is that the compensating differential is the clearest case in which the wage is not about the worker's product at all. The premium for danger, the discount for pleasantness — these track no contribution the worker makes; they price the qualities of the job. Even on the side of the ledger the volume has called worth — the side where the wage is supposed to reflect the value of the work — a large part of the variation in pay reflects not what the worker is worth but what the worker must endure. The wage is, even here, only loosely tethered to product.</p>
+
+    <p>The second is the one this plate has driven toward. The compensating differential, the most worth-like of mechanisms, works only when the worker has power — the power to refuse the bad job and take a better one. Where that power is present, the theory holds and the bad job pays its premium. Where it is absent — where the worker has no alternative, no cushion, no floor beneath them — the premium vanishes and the bad job pays badly. So the pattern we observe, in which the worst jobs so often pay the least, is not a refutation of economics but a map of power: the premium appears exactly where workers can command it, and disappears exactly where they cannot. The dirty, dangerous, ill-paid job is the signature of a worker who could not say no.<sup class="ref"><a href="#n12">12</a></sup></p>
+
+    <p>This is why the differential belongs in a volume about power, though it wears the dress of worth. The bargaining range is still the frame. The job's badness, like the worker's skill, helps set the ceiling — what the match is worth, all its conditions reckoned in. But whether the worker actually captures the premium that badness should command depends, as everything in this volume depends, on where in the range the wage finally falls — and that is decided by power. Compensation is what worth would pay; what the worker receives is what power can take.<sup class="ref"><a href="#n13">13</a></sup></p>
+
+    <div class="orn" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="coda"><p>The premium for a bad job is the price of consent — paid only to the worker who could withhold it. To the one who cannot refuse, the bad job is not compensated. It is merely assigned.</p></div>
+
+    <section class="notes">
+      <h3>Notes</h3>
+      <p class="note" id="n1"><span class="nn fr">1</span><span>The compensating (or equalizing) wage differential: the part of the wage that reflects not the worker's productivity but the job's conditions. It is a third source of wage variation, distinct from the marginal product of plate ii and the human capital of plate iv.</span></p>
+      <p class="note" id="n2"><span class="nn fr">2</span><span>Adam Smith, <i>Wealth of Nations</i> (1776), Book I, ch. 10, part I: the five circumstances that &ldquo;make up for a small pecuniary gain in some employments, and counterbalance a great one in others,&rdquo; so that the whole of the advantages and disadvantages of different employments tends to equality.</span></p>
+      <p class="note" id="n3"><span class="nn fr">3</span><span>Smith's instances: the high pay of the dirty and dishonourable trades (the executioner); the higher day-wage of the mason or bricklayer to offset irregular employment; the premiums for trust (goldsmiths, physicians, lawyers); and the lottery-like professions, where the &ldquo;over-weening conceit which the greater part of men have of their own abilities&rdquo; leads entrants to overrate their chances and so bid down the average reward.</span></p>
+      <p class="note" id="n4"><span class="nn fr">4</span><span>The hedonic theory of wages, in which the labour market implicitly prices job attributes: Sherwin Rosen, &ldquo;Hedonic Prices and Implicit Markets,&rdquo; <i>Journal of Political Economy</i> (1974); and Rosen, &ldquo;The Theory of Equalizing Differences,&rdquo; in the <i>Handbook of Labor Economics</i> (1986).</span></p>
+      <p class="note" id="n5"><span class="nn fr">5</span><span>The implicit price of a job attribute is read from the wages of otherwise-similar workers across jobs differing in that attribute; on the firm's side it reflects the cost of providing the amenity, on the worker's the marginal willingness to pay for it.</span></p>
+      <p class="note" id="n6"><span class="nn fr">6</span><span>The Value of a Statistical Life, inferred from the wage premium workers require for fatal-injury risk: Richard Thaler &amp; Sherwin Rosen, &ldquo;The Value of Saving a Life,&rdquo; in <i>Household Production and Consumption</i> (1976); and W. Kip Viscusi's extensive work, e.g. <i>Fatal Tradeoffs</i> (1992). United States agencies currently use central figures around $13 million — the Department of Transportation's $13.7 million (2024), the Department of Health and Human Services' roughly $13&ndash;14 million — with wide ranges; the value has risen with real incomes from about $9 million a decade earlier.</span></p>
+      <p class="note" id="n7"><span class="nn fr">7</span><span>VSL is applied in regulatory cost-benefit analysis across the U.S. government. The unease it provokes is real, but the alternatives — valuing life at infinity, or pretending no tradeoff is made — are respectively impossible and false; what it prices is the rate at which people trade small changes in mortality risk for money, not the worth of an identified life.</span></p>
+      <p class="note" id="n8"><span class="nn fr">8</span><span>On the empirical fragility of estimated compensating differentials — often small, statistically fragile, or wrong-signed, because the conditions for the theory rarely hold cleanly (selection into risky jobs, unobserved skill, the difficulty of holding all else equal): a long and unresolved literature. The gross correlation across jobs between bad conditions and low pay is, in many segments of the market, positive.</span></p>
+      <p class="note" id="n9"><span class="nn fr">9</span><span>The &ldquo;ceteris paribus&rdquo; defence: the differential is identified only among workers of similar skill in similar jobs; across the whole market the strong negative effect of low skill (cf. plate iv) dominates and masks the positive premium for bad conditions, so the worst jobs, being disproportionately low-skill, come out poorly paid.</span></p>
+      <p class="note" id="n10"><span class="nn fr">10</span><span>Where risks are hidden or imperfectly known, no compensating premium is demanded and the worker bears the harm unpaid — a standard rationale for safety regulation and mandatory disclosure, alongside the wage.</span></p>
+      <p class="note" id="n11"><span class="nn fr">11</span><span>That a compensating differential is the price of inducing a worker to accept a disadvantage — and so requires the worker to be able to refuse — is implicit in the theory itself: the premium is a bid for consent, and a worker without alternatives (without the floor of plate x, or against the monopsony of plate viii) cannot withhold consent and so is paid no premium. The disappearance of the differential where workers lack options is a prediction of the theory properly understood, not an anomaly.</span></p>
+      <p class="note" id="n12"><span class="nn fr">12</span><span>Compensating differentials are the clearest instance in which the wage tracks the job rather than the worker's product; the observed pattern, in which bad conditions and low pay coincide wherever workers lack power, maps the distribution of that power across the labour market.</span></p>
+      <p class="note" id="n13"><span class="nn fr">13</span><span>In the volume's frame, a job's conditions help set the ceiling — the full value of the match, disamenities and all — but whether the worker captures the premium those disamenities should command is settled, like the rest of the wage, within the bargaining range, by power. Compensation is what worth would pay; the wage is what power secures.</span></p>
+    </section>
+
+  </article>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref">The Wage · plate v</span>
+    </div>
+    <p class="colophon">The fifth plate of <i>The Wage</i>: compensating differentials — the third reason wages differ, beside the marginal product and skill. The plate sets out Adam Smith's five circumstances, by which the money wage rises to offset whatever, beyond pay, a job lacks; the modern hedonic theory that lets the market price a job's conditions; and the most striking application of all, the Value of a Statistical Life read from the wage premium for danger. It then confronts the theory's great failure — that the worst jobs so often pay the least, not the most — and traces it to three causes: the confounding of skill, the invisibility of many risks, and, deepest, the fact that a compensating differential is a premium only a worker free to refuse can command. The companion to the plates on the margin and on skill, completing the worth side of the volume; and, in its conclusion, another demonstration that even worth, in the end, answers to power. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-wage-skill.html">← The Skill</a><a rel="next" href="the-wage-discrimination.html">The Discrimination →</a></nav>
+</body>
+</html>

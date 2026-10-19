@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Premium — Numéraire, Volume IV</title>
+<meta name="description" content="The Premium — Volume IV of Numéraire, A Periodic Table of Economic Life. The price of risk: what the risk-averse pay to shed a peril and the risk-bearing are paid to pool it — risk aversion and the law of large numbers, the fair premium and its loading, adverse selection and moral hazard, diversifiable versus systematic risk, and the contest between actuarial fairness and solidarity.">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem; --measure:40rem;
+    --wash:rgba(28,26,22,.066); --wash2:rgba(28,26,22,.12);
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.62;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  .measure{max-width:var(--measure);margin-left:auto;margin-right:auto;}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- ornaments ---- */
+  .orn{display:flex;justify-content:center;margin:0 auto;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .divider{display:flex;align-items:center;gap:1.1rem;max-width:30rem;margin:clamp(3rem,7vh,5rem) auto;color:var(--num);}
+  .divider .ln{flex:1;height:1px;background:var(--hair);}
+  .divider svg{display:block;width:12px;height:12px;overflow:visible;flex:0 0 auto;}
+  .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* ---- progress + running head ---- */
+  #progress{position:fixed;top:0;left:0;height:2px;width:100%;transform:scaleX(0);transform-origin:0 50%;background:var(--soft);opacity:.45;z-index:10000;}
+  #topbar{position:fixed;top:0;left:0;right:0;z-index:9998;transform:translateY(-100%);transition:transform .5s cubic-bezier(.2,.6,.2,1);
+    background:rgba(240,235,225,.86);-webkit-backdrop-filter:saturate(1.1) blur(8px);backdrop-filter:saturate(1.1) blur(8px);
+    border-bottom:1px solid var(--hair);}
+  #topbar.show{transform:translateY(0);}
+  .tb-in{max-width:var(--frame);margin:0 auto;padding:.62rem clamp(1.4rem,4vw,3.4rem);display:flex;justify-content:space-between;align-items:baseline;gap:1.2rem;}
+  .tb-l{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:.86rem;letter-spacing:.01em;}
+  .tb-l span{color:var(--faintest);font-weight:400;}
+  .tb-r{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);text-align:right;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+
+  /* ---- title page ---- */
+  .vol-title{padding:clamp(3.4rem,11vh,8rem) 0 clamp(1.6rem,5vh,3rem);text-align:center;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.16rem;letter-spacing:.02em;}
+  .vol-no{font-size:.84rem;color:var(--faint);letter-spacing:.16em;text-transform:uppercase;margin-top:.55rem;}
+  h1.vol-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 380;font-weight:380;
+    font-size:clamp(2.9rem,9vw,6rem);line-height:.98;letter-spacing:-.028em;margin:clamp(1.7rem,4.5vh,2.8rem) 0 0;text-wrap:balance;}
+  .vol-sym{width:78px;height:78px;margin:clamp(1.6rem,4vh,2.4rem) auto 0;border:1px solid var(--hair);border-radius:2px;
+    display:flex;align-items:center;justify-content:center;background:var(--ink);}
+  .vol-sym span{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2.3rem;line-height:1;color:var(--paper);letter-spacing:-.01em;}
+  .vol-coords{font-family:"Fraunces",serif;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);margin-top:1.1rem;}
+  .vol-gloss{font-style:italic;color:var(--soft);font-size:1.12rem;margin:.5rem 0 0;}
+  .vol-epigraph{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 400;font-style:italic;
+    font-size:clamp(1.14rem,1.7vw,1.34rem);line-height:1.42;color:var(--soft);max-width:33rem;margin:clamp(1.8rem,4vh,2.6rem) auto 0;text-wrap:pretty;}
+  .vol-epigraph .lead{display:block;font-style:normal;font-variation-settings:"opsz" 24,"wght" 400;
+    font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.7rem;}
+  .vol-status{display:inline-flex;align-items:center;gap:.5rem;margin:clamp(1.8rem,4vh,2.4rem) auto 0;font-size:.84rem;color:var(--soft);}
+  .vol-status::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ink);}
+
+  /* ---- the argument (preface) ---- */
+  .part-head{text-align:center;margin:0 0 clamp(1.6rem,3.5vh,2.3rem);}
+  .part-kicker{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faintest);}
+  .part-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-weight:400;
+    font-size:clamp(1.5rem,3.4vw,2.1rem);letter-spacing:-.012em;margin:.4rem 0 0;}
+  .argument p{font-size:1.05rem;line-height:1.74;margin:0 0 1.15rem;text-wrap:pretty;}
+  .argument p.lede::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 420;
+    float:left;font-size:3.5em;line-height:.78;padding:.05em .1em 0 0;color:var(--ink);}
+  .argument em,.plate-body em,.coda em{font-style:italic;}
+
+  /* ---- contents ---- */
+  .toc{list-style:none;margin:0 auto;padding:0;max-width:43rem;}
+  .toc li{border-top:1px solid var(--hair);}
+  .toc li:last-child{border-bottom:1px solid var(--hair);}
+  .toc a{display:grid;grid-template-columns:2.6rem 1fr;column-gap:1.1rem;align-items:baseline;
+    padding:.82rem .3rem;text-decoration:none;transition:background .2s ease;}
+  .toc a:hover{background:rgba(28,26,22,.035);}
+  .toc-n{font-family:"Fraunces",serif;font-size:.92rem;color:var(--faintest);text-align:right;}
+  .toc-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.06rem;color:var(--ink);line-height:1.16;}
+  .toc-g{grid-column:2;font-size:.85rem;font-style:italic;color:var(--faint);margin-top:.16rem;line-height:1.38;}
+
+  /* ---- plates ---- */
+  .plate{margin:clamp(3.2rem,8vh,6rem) 0 0;padding-top:clamp(2.4rem,5.5vh,3.4rem);border-top:1px solid var(--hair);scroll-margin-top:4rem;}
+  .plate-open{max-width:var(--measure);margin-inline:auto;}
+  .plate-no{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 360;font-size:clamp(2.6rem,7vw,4.1rem);
+    line-height:.9;color:var(--num);letter-spacing:.02em;}
+  .plate-kicker{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faintest);margin:.9rem 0 .2rem;}
+  .plate-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.8rem,4.4vw,2.7rem);line-height:1.04;letter-spacing:-.018em;margin:0;text-wrap:balance;}
+  .plate-gloss{font-style:italic;color:var(--soft);font-size:1.02rem;margin:.55rem 0 0;line-height:1.4;}
+
+  .ask{max-width:var(--measure);margin:clamp(1.5rem,3.5vh,2.2rem) auto clamp(1.8rem,4vh,2.4rem);}
+  .ask .lead{display:block;font-family:"Fraunces",serif;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.55rem;}
+  .ask q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:clamp(1.18rem,1.8vw,1.38rem);line-height:1.36;color:var(--soft);quotes:none;}
+
+  .plate-body{max-width:var(--measure);margin-inline:auto;}
+  .plate-body p{margin:0 0 1.18rem;text-wrap:pretty;}
+  .plate-body > p:first-of-type::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 430;
+    float:left;font-size:3.5em;line-height:.76;padding:.04em .12em 0 0;color:var(--ink);}
+  .plate-body h4{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.76rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faint);margin:2rem 0 .9rem;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 380;font-style:italic;
+    font-size:clamp(1.4rem,2.3vw,1.7rem);line-height:1.32;color:var(--soft);text-align:center;
+    max-width:33rem;margin:clamp(2rem,4.5vh,2.8rem) auto;text-wrap:balance;}
+
+  .edge{max-width:var(--measure);margin:1.7rem auto;padding:.1rem 0 .1rem 1.15rem;border-left:1px solid var(--hair);
+    color:var(--faint);font-size:.92rem;line-height:1.62;}
+  .edge .lead{display:block;font-family:"Fraunces",serif;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.4rem;}
+  .edge em{font-style:italic;color:var(--soft);}
+
+  /* ---- figures (engravings) ---- */
+  .fig{max-width:var(--measure);margin:clamp(2.1rem,4.5vh,2.9rem) auto;}
+  .fig-frame{border:1px solid var(--hair);border-radius:2px;padding:clamp(1rem,2.4vw,1.7rem) clamp(1rem,2.4vw,1.7rem) clamp(.8rem,2vw,1.3rem);background:rgba(255,253,247,.4);}
+  .fig svg{display:block;width:100%;height:auto;}
+  figcaption{margin:.95rem auto 0;max-width:38rem;font-size:.85rem;line-height:1.5;color:var(--faint);text-wrap:pretty;}
+  figcaption .fig-n{font-family:"Fraunces",serif;font-weight:500;letter-spacing:.04em;color:var(--soft);}
+  figcaption em{font-style:italic;}
+  .ax{stroke:var(--soft);stroke-width:1.1;fill:none;}
+  .tick{stroke:var(--soft);stroke-width:1;}
+  .curve{stroke:var(--ink);stroke-width:1.5;fill:none;stroke-linecap:round;}
+  .curve2{stroke:var(--ink);stroke-width:1.3;fill:none;stroke-linecap:round;}
+  .guide{stroke:var(--faintest);stroke-width:1;fill:none;stroke-dasharray:3 3.5;}
+  .core{stroke:var(--ink);stroke-width:3;fill:none;stroke-linecap:round;}
+  .fill-cs{fill:var(--wash);}
+  .fill-dwl{fill:var(--wash2);}
+  .fill-wedge{fill:var(--wash);}
+  .fill-lens{fill:var(--wash);}
+  .hatch-line{stroke:var(--faintest);stroke-width:.8;}
+  .lbl{font-family:"Fraunces",serif;font-size:11.5px;fill:var(--faint);font-variation-settings:"opsz" 24,"wght" 400;}
+  .lbl-i{font-family:"Newsreader",serif;font-style:italic;font-size:11px;fill:var(--soft);}
+  .lbl-sm{font-family:"Fraunces",serif;font-size:9.6px;fill:var(--faintest);letter-spacing:.02em;}
+  .lbl-ax{font-family:"Fraunces",serif;font-size:9.4px;fill:var(--faintest);letter-spacing:.12em;}
+
+  /* ---- coda + colophon ---- */
+  .coda{max-width:var(--measure);margin:clamp(3rem,7vh,5rem) auto 0;}
+  .coda p{margin:0 0 1.18rem;text-wrap:pretty;}
+  .coda p.lede::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 430;
+    float:left;font-size:3.5em;line-height:.76;padding:.04em .12em 0 0;color:var(--ink);}
+  footer{margin-top:clamp(3.6rem,8vh,6rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.4rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .colophon{font-size:.85rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+
+  /* ---- motion / reveal ---- */
+  @media (prefers-reduced-motion: no-preference){
+    html.js .reveal{opacity:0;transform:translateY(14px);}
+    html.js .reveal.in{opacity:1;transform:none;}
+    .reveal{transition:opacity .9s cubic-bezier(.2,.6,.2,1),transform .9s cubic-bezier(.2,.6,.2,1);}
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.18s}.rise.d3{animation-delay:.32s}.rise.d4{animation-delay:.46s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  /* ---- responsive ---- */
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .argument p,.plate-body p,.coda p{font-size:1.01rem;}
+    .plate-body > p:first-of-type::first-letter,.argument p.lede::first-letter,.coda p.lede::first-letter{font-size:3em;}
+    .f-bar{flex-direction:column;gap:.5rem;}
+    .toc a{grid-template-columns:2rem 1fr;column-gap:.8rem;}
+    figcaption{font-size:.82rem;}
+  }
+
+  /* ---- print: a volume, in print ---- */
+  @media print{
+    html,body{background:#fff;color:#000;}
+    body{font-size:11.5pt;line-height:1.5;}
+    body::before,#progress,#topbar{display:none !important;}
+    .frame{max-width:none;padding:0;}
+    .measure,.plate-open,.plate-body,.ask,.edge,.coda{max-width:34rem;}
+    a{text-decoration:none;}
+    .plate{break-before:page;border-top:none;padding-top:0;}
+    .fig,figure{break-inside:avoid;}
+    .plate-no{color:#bbb;}
+    .reveal{opacity:1 !important;transform:none !important;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#ne-contents">Complete contents</a><a href="../editions.html#volume-premium">The Premium · both editions</a><a href="../essays/numeraire-iv-the-premium.html">Expanded essays</a></div></nav>
+<div id="progress" aria-hidden="true"></div>
+<div id="topbar" aria-hidden="true"><div class="tb-in">
+  <span class="tb-l">Numéraire <span>· The Premium</span></span>
+  <span class="tb-r" id="tb-plate">Volume IV</span>
+</div></div>
+
+<div class="frame">
+
+  <header class="vol-title">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="rise d1">
+      <span class="imprint">Numéraire</span>
+      <div class="vol-no">Volume IV &middot; № IV</div>
+    </div>
+    <h1 class="vol-name rise d2">The Premium</h1>
+    <div class="vol-sym rise d3" aria-hidden="true"><span>Pm</span></div>
+    <div class="vol-coords rise d3">Group I &middot; The Prices</div>
+    <p class="vol-gloss rise d3">the price of shedding a risk</p>
+    <p class="vol-epigraph rise d4">
+      <span class="lead">The question of the volume</span>
+      What will a person pay to be rid of a risk they cannot carry?
+    </p>
+    <div class="vol-status rise d4">in print &middot; twelve plates</div>
+  </header>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <section class="argument measure reveal" aria-labelledby="arg-h">
+    <div class="part-head">
+      <div class="part-kicker">Numéraire &middot; Volume IV</div>
+      <h2 class="part-title" id="arg-h">The Argument</h2>
+    </div>
+    <p class="lede">The first three volumes of this group anatomized prices of familiar things — the wage paid for an hour of work, the rent for the use of land, the rate for the loan of money. This volume turns to a price stranger than any of them: the price not of a good, a service, or a sum, but of risk itself — the premium a person pays to be rid of a peril they would rather not bear. It is the price of certainty. A man who might lose his house to fire, his ship to storm, his health to accident faces not a known cost but a gamble, and the premium is what he pays to turn that gamble into a fixed and bearable sum, trading the small chance of ruin for the certain pinch of a payment. That such a trade is possible at all — that one party will take on a risk another is desperate to shed, and that a price can be set on the transfer — is among the quiet marvels of economic life, and the subject of these twelve plates.</p>
+    <p>Two facts make the marvel work, one on each side of the trade. On the buyer's side is risk aversion. The satisfaction a person draws from wealth rises with each added dollar, but by less and less — the second loaf matters less than the first, the millionth dollar less than the thousandth — so that the pain of losing a sum exceeds the pleasure of gaining the same, and a fair gamble, with equal chances of winning and losing alike, becomes a thing to be avoided rather than sought. To such a person certainty is worth a premium: he will pay something, over and above the average loss, simply to be free of the uncertainty. On the seller's side is the law of large numbers. A single risk is wild and unpredictable; but a great many independent risks, pooled together, are tame, for their average is very nearly certain — the insurer who covers ten thousand houses cannot say which will burn, yet can say with precision how many will. Pooling turns a crowd of uncertainties into a near-certainty, and so the insurer can carry, for a modest price, a risk that to any one of its bearers was insupportable.</p>
+    <p>From these two facts the premium and its price follow. At its base lies the actuarially fair premium, the expected loss itself — the sum that, charged to each, would just cover the claims of all. Upon that base the insurer must lay a loading, to meet its costs, its capital, and its profit; and the buyer, for his part, will pay not merely the expected loss but that plus his own risk premium, the extra he will give to be quit of the uncertainty. Because the risk-averse buyer values shedding the risk by more than it costs the pooling insurer to bear it, the buyer's maximum exceeds the insurer's minimum, and between them opens a zone of agreement in which any premium leaves both better off — the buyer relieved of a peril, the insurer paid to hold what pooling has rendered tame. Insurance is written wherever that zone exists, and the premium struck within it divides the gains from a trade in risk.</p>
+    <p>But the volume's deepest idea cuts against the notion that all risk is dear. For if pooling can render a crowd of independent risks nearly certain, then such risk — idiosyncratic risk, peculiar to one house or one venture and uncorrelated with the rest — can be diversified away almost entirely, and a holder who spreads himself across many such risks bears, in the aggregate, hardly any. Risk that can be diversified to nothing earns nothing; no one will pay a premium to shed what costs nothing to hold. What commands a premium is only the risk that cannot be diversified away — systematic risk, the risk that moves with the whole, the recession or the panic or the storm that strikes every holding at once, which no pooling and no diversification can cancel because it does not average out. This single distinction — between the idiosyncratic risk that pools away unpriced and the systematic risk that survives to be paid for — joins the insurance of houses to the pricing of stocks, and is the hinge on which the second half of the volume turns.</p>
+    <p>Two shadows fall across this account, and the plates pursue them both. The first is the pair of failures inherited entire from the volume on asymmetry, for insurance is where hidden knowledge and hidden action do their sharpest work. When the insured know their own risks better than the insurer — adverse selection — the high-risk crowd in and the low-risk flee, and the pool may unravel toward ruin; when the insured, once covered, take less care than they would unprotected — moral hazard — the very insurance breeds the loss it was bought against. The instruments that fight these maladies — the deductible, the co-payment, the screening, the experience rating — are the working machinery of every real insurance market, and the reason none of them offers the full coverage the simplest theory would prescribe. The second shadow is a contest over fairness itself. To price a risk accurately is to sort persons into classes — the young from the old, the hale from the sick, the careful from the reckless — and to charge each according to what they are; and against this actuarial fairness stands the rival principle of solidarity, which would pool the fortunate with the unfortunate at a common rate, holding that some risks — of being born to poor health, of living where the floods come — ought not to be priced to the person at all.</p>
+    <p>The thesis of the volume may be stated at the outset. The premium is the price of transferring risk — what the risk-averse pay to make an uncertain loss into a certain cost, and what the risk-bearing are paid to pool and carry it. It rests on the concavity of utility and the law of large numbers; it decomposes into the fair premium and the loading; and it is paid, in the end, only for the systematic risk that cannot be diversified away. Yet the price is never the clean thing the mechanics suggest. It is undermined by the asymmetries of knowledge and action, defeated by the correlation that turns the insurable into the catastrophic, bent by a human mind that misweighs the very probabilities it rests upon, and contested, at its root, by a quarrel between the fairness that prices each soul to its risk and the solidarity that refuses to. A premium, like every price in this series, is a verdict on a hidden contest — here the contest between the one who would shed a risk and the one who would bear it, between what can be pooled and what must be priced, and between two irreconcilable ideas of what it means for the price of a risk to be fair. The argument remains open.</p>
+  </section>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <section class="contents reveal" aria-labelledby="toc-h">
+    <div class="part-head">
+      <div class="part-kicker">The twelve plates of this volume</div>
+      <h2 class="part-title" id="toc-h">The Plates</h2>
+    </div>
+    <ol class="toc">
+      <li><a href="#plate-i"><span class="toc-n">i</span><span class="toc-t">The Peril</span><span class="toc-g">risk, uncertainty, and the price of certainty — Knight</span></a></li>
+      <li><a href="#plate-ii"><span class="toc-n">ii</span><span class="toc-t">The Certainty</span><span class="toc-g">risk aversion and the concave utility; the certainty equivalent and the risk premium</span></a></li>
+      <li><a href="#plate-iii"><span class="toc-n">iii</span><span class="toc-t">The Mutual</span><span class="toc-g">the law of large numbers; how pooling turns many risks into one near-certainty</span></a></li>
+      <li><a href="#plate-iv"><span class="toc-n">iv</span><span class="toc-t">The Loading</span><span class="toc-g">the fair premium and the loading; why both parties gain from the trade in risk</span></a></li>
+      <li><a href="#plate-v"><span class="toc-n">v</span><span class="toc-t">The Deductible</span><span class="toc-g">how much to insure; deductibles, coinsurance, and Mossin's theorem</span></a></li>
+      <li><a href="#plate-vi"><span class="toc-n">vi</span><span class="toc-t">The Selection</span><span class="toc-g">adverse selection; hidden risk, the death spiral, and the unraveling pool</span></a></li>
+      <li><a href="#plate-vii"><span class="toc-n">vii</span><span class="toc-t">The Care</span><span class="toc-g">moral hazard; how insurance breeds the loss, and the price of incentive</span></a></li>
+      <li><a href="#plate-viii"><span class="toc-n">viii</span><span class="toc-t">The Basket</span><span class="toc-g">diversifiable and systematic risk; what pooling erases and what it cannot</span></a></li>
+      <li><a href="#plate-ix"><span class="toc-n">ix</span><span class="toc-t">The Beta</span><span class="toc-g">the price of risk in markets; the equity premium, the frontier, and the reward for bearing it</span></a></li>
+      <li><a href="#plate-x"><span class="toc-n">x</span><span class="toc-t">The Catastrophe</span><span class="toc-g">when risks are correlated; the limits of insurability and the insurer of last resort</span></a></li>
+      <li><a href="#plate-xi"><span class="toc-n">xi</span><span class="toc-t">The Sorting</span><span class="toc-g">the misweighing of chance, and the contest of actuarial fairness against solidarity</span></a></li>
+      <li><a href="#plate-xii"><span class="toc-n">xii</span><span class="toc-t">The Assurance</span><span class="toc-g">the price of risk transfer made whole — toward The Spread, The Rate, The Bias</span></a></li>
+    </ol>
+  </section>
+
+  <main class="plates" id="plates">
+
+    <!-- ===================== PLATE I ===================== -->
+    <section class="plate reveal" id="plate-i" data-label="Plate i · The Peril">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">i</div>
+        <p class="plate-kicker">Plate the First &middot; The Prices &middot; № IV</p>
+        <h3 class="plate-title">The Peril</h3>
+        <p class="plate-gloss">risk, uncertainty, and the price of certainty — Knight</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what is it that a premium buys?</q></div>
+      <div class="plate-body">
+        <p>What does a premium buy? Begin with the barest case. A person owns something — a house, a ship, a life's earning power — that some hazard may destroy: a fire that strikes with probability p and, if it strikes, costs L. Facing this peril, the person bears not a known cost but a gamble: most likely nothing, yet with probability p a loss of L. The expected loss — the average across many such years, or many such houses — is the product pL, and this product is the first and most basic price of the risk. It is called the actuarially fair premium: the sum that, collected from each of many who face the same peril, would exactly cover the losses of the unlucky few. An insurer charging precisely pL, with no other costs, would break even in the long run; a wager at those odds is, in the gambler's term, fair. The fair premium is the anchor of all that follows — the floor beneath every real premium, the expected loss made into a price.</p>
+        <p>But a premium is rarely merely fair, and the reason is that the peril is not merely its average. To carry a one-in-a-hundred chance of losing a fortune is not the same as paying one-hundredth of a fortune for certain, though the two bear the identical expected cost. The gamble carries, besides its average, a spread — the dread possibility of the whole loss — and it is that spread, not the average, that the anxious owner most wishes to be quit of. The premium is therefore the price of two things at once: the expected loss, which any insurer must recover, and the certainty, which the risk-averse will pay extra to obtain. The whole of the next plate is given to that extra — the risk premium proper, the amount above the fair price a person will surrender simply to turn a gamble into a sure thing. For now it is enough to see that a premium buys the removal of a peril, and that the removal is worth, to one who dreads the spread, more than the mere average of what is removed.</p>
+        <p>Not every uncertain prospect, however, is a peril of this insurable kind, and the distinction was drawn sharply by Frank Knight in 1921. There is risk, where the odds are known or can be estimated — the roll of a fair die, the failure rate of a machine, the mortality of a great population, all governed by probabilities that long experience or sound theory can pin down. And there is uncertainty, where the odds are not known and perhaps cannot be — the prospect of a wholly novel venture, the chance a new product finds a market, the shape of a future that has no precedent to be counted. Insurance lives in the realm of risk: it presupposes a probability p that the insurer can estimate, a peril recurring often enough, across enough cases, for the law of large numbers to bite. True uncertainty, by contrast, is uninsurable — no premium can be set on a hazard whose likelihood no one can name — and it is left, Knight argued, to the entrepreneur, whose profit is the reward for bearing the unmeasurable, and whose return the ninth plate will meet again as the premium markets pay for risk. The premium of this volume is the price of risk, and risk is uncertainty tamed enough to be counted.</p>
+        <p>With the object so defined, the volume divides as the trade itself divides, into two sides and the price between them. On the side of the one who pays — the demand for insurance — the question is why anyone gives up a sure sum to be spared a merely probable loss, and how much they will give; and the answer, drawn in the next plate, is risk aversion, the curvature of value that makes certainty worth a premium. On the side of the one who is paid — the supply of insurance — the question is how anyone can afford to take on a peril that would ruin the person shedding it; and the answer, drawn in the plate after, is pooling, the law of large numbers that renders a multitude of risks a near-certainty. Between the two lies the premium, which the fourth plate decomposes. The peril, the aversion, the pool, and the price: these four are the foundations, and the eight plates beyond them build on these.</p>
+        <aside class="pull">A premium buys the removal of a peril — and to one who dreads the spread, the removal is worth more than the mere average of what is removed. The fair premium is the floor of the price; the dread of the spread is the rest.</aside>
+        <aside class="edge"><span class="lead">the edge</span> The bare case conceals its difficulties. The actuarially fair premium pretends to a probability p known with certainty, but that probability is itself an estimate, drawn from a mortality table the future may betray or a model the world may break — the insurer bears, beyond the risk it has priced, the deeper risk that it has priced the risk wrongly, which the plate on catastrophe will find at its most dangerous. The loss L, too, is rarely the clean number the formula wants: what is the value of a destroyed heirloom, a ruined reputation, a shortened life, and who is to say? Much of the real work of insurance is the converting of formless misfortunes into countable sums, and much of its litigation the dispute over whether the conversion was just. And Knight's line between risk and uncertainty, though indispensable, is not so crisp as it looks: most real perils are neither perfectly measurable nor perfectly unknowable but somewhere between, their probabilities estimated with a confidence that is itself uncertain — so that the tidy premium of this first plate is, in every actual case, a number resting on a number resting on a guess.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE II ===================== -->
+    <section class="plate reveal" id="plate-ii" data-label="Plate ii · The Certainty">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">ii</div>
+        <p class="plate-kicker">Plate the Second &middot; The Prices &middot; № IV</p>
+        <h3 class="plate-title">The Certainty</h3>
+        <p class="plate-gloss">risk aversion and the concave utility; the certainty equivalent and the risk premium</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>why is a sure thing worth more than its average?</q></div>
+      <div class="plate-body">
+        <p>The first plate left a puzzle: why would anyone pay more than the fair premium — more than the expected loss — to insure? At the fair price the trade is, on average, a wash; pay a loaded premium and it is, on average, a loss. A being that cared only for the average of its wealth would never insure at a loaded price, and would be indifferent to insuring at a fair one. Yet people insure eagerly, and pay dearly to do so. The resolution is that people do not care only for the average of their wealth. They care for the satisfaction wealth brings, and that satisfaction does not rise in step with wealth but more slowly — and from that single curvature the whole demand for insurance flows.</p>
+        <p>The idea is old, and its origin is a paradox. In 1738 Daniel Bernoulli considered a wager — the St. Petersburg game — whose expected monetary value is infinite, yet for which no sane person would pay more than a trifling stake. Why? Because, Bernoulli proposed, what a person values is not money but the use of money, and the use of each added coin is less than the use of the coin before it: a hundred ducats mean far more to a pauper than the hundred-thousand-and-first to a prince. Utility, the satisfaction wealth yields, rises with wealth but at a diminishing rate — the curve of utility against wealth bends, concave, flattening as it climbs. Two centuries later von Neumann and Morgenstern set this intuition on rigorous foundations, showing that a person whose choices among gambles obey a few reasonable axioms acts exactly as if maximizing the expected value not of wealth but of some such utility of wealth. And the concavity of that utility curve is precisely risk aversion. For if utility bends, then the utility of a sure average exceeds the average of the utilities of the gamble's outcomes — the loss of a sum costs more utility than the gain of the same sum yields — so the person prefers the certain average to the uncertain prospect, and will pay to make the swap. The figure shows why.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="f1t f1d">
+              <title id="f1t">Concave utility, the certainty equivalent, and the risk premium</title>
+              <desc id="f1d">Because the utility of wealth is concave, the expected utility of a gamble (the midpoint of the chord) lies below the utility of the expected wealth (the curve above it). The certainty equivalent is the sure wealth of equal utility; the gap between it and the expected wealth is the risk premium.</desc>
+              <line x1="64" y1="250" x2="414" y2="250" class="axis"/>
+              <polygon points="414,250 406,246 406,254" class="ink-fill"/>
+              <line x1="64" y1="250" x2="64" y2="40" class="axis"/>
+              <polygon points="64,40 60,48 68,48" class="ink-fill"/>
+              <text x="220" y="278" text-anchor="middle" class="lbl-ax">wealth</text>
+              <text x="26" y="148" text-anchor="middle" class="lbl-ax" transform="rotate(-90 26 148)">utility</text>
+              <polyline points="64,235 110,180 160,140 220,108 290,88 350,78 404,72" class="curve"/>
+              <text x="250" y="66" text-anchor="start" class="lbl-sm">utility u(w)</text>
+              <line x1="120" y1="172" x2="350" y2="78" class="guide"/>
+              <line x1="120" y1="250" x2="120" y2="172" class="guide"/>
+              <line x1="350" y1="250" x2="350" y2="78" class="guide"/>
+              <line x1="235" y1="250" x2="235" y2="104" class="guide"/>
+              <line x1="188" y1="250" x2="188" y2="125" class="guide"/>
+              <line x1="188" y1="125" x2="235" y2="125" class="guide"/>
+              <circle cx="120" cy="172" r="3.5" fill="none" class="dot-o"/>
+              <circle cx="350" cy="78" r="3.5" fill="none" class="dot-o"/>
+              <circle cx="235" cy="104" r="3.5" fill="none" class="dot-o"/>
+              <circle cx="235" cy="125" r="3.5" fill="none" class="dot-o"/>
+              <circle cx="188" cy="125" r="3.7" class="ink-fill"/>
+              <text x="120" y="264" text-anchor="middle" class="lbl-sm">w&#8321;</text>
+              <text x="188" y="264" text-anchor="middle" class="lbl-sm">CE</text>
+              <text x="235" y="264" text-anchor="middle" class="lbl-sm">E[w]</text>
+              <text x="350" y="264" text-anchor="middle" class="lbl-sm">w&#8322;</text>
+              <text x="211" y="150" text-anchor="middle" class="lbl-sm">risk premium</text>
+              <text x="241" y="100" text-anchor="start" class="lbl-sm">u(E[w])</text>
+              <text x="241" y="128" text-anchor="start" class="lbl-sm">E[u]</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 1.</span> Why a sure thing is worth more than a fair gamble. The curve is the utility of wealth, and it bends: each added dollar adds a little less satisfaction than the last, so the curve is concave. Face a gamble — wealth w&#8321; if the loss strikes, w&#8322; if it does not — and the expected utility is the midpoint of the chord, E[u], which lies below the utility of the expected wealth, u(E[w]), on the curve above it. The person therefore prefers the average for certain to the gamble. The certainty equivalent, CE, is the sure wealth that leaves him just as well off as the gamble; and the gap between it and the expected wealth, the risk premium, is what he will pay to be rid of the risk. That willingness to pay is the demand for insurance.</figcaption>
+        </figure>
+        <p>The figure names the two quantities on which the rest of the volume turns. The expected utility of the gamble, read off the chord, falls below the utility of the expected wealth, read off the curve above it — that gap is the cost of risk, the utility lost merely by facing the spread rather than its average. To express that loss in money rather than utility, drop from the expected-utility level back to the curve: the wealth at that point, the certainty equivalent, is the sure sum that would leave the person exactly as well off as the gamble. It lies below the expected wealth, and the distance between them — the risk premium — is the price, in money, of the risk: the most a person would pay, over and above the expected loss, to be rid of the spread entirely. A risk-averse person's maximum willingness to pay for full insurance is just the expected loss plus this risk premium; the steeper the curvature of utility, the larger the risk premium, the more eagerly and dearly the person insures. How sharply utility bends — the measure of risk aversion itself — Kenneth Arrow and John Pratt made precise, as the rate at which the marginal utility of wealth declines; and that single curvature, varying from person to person and growing as the stakes rise toward the whole of one's wealth, governs the entire demand side of the market for risk.</p>
+        <aside class="pull">If the value of wealth bends, the loss of a sum costs more than the gain of the same sum yields. So the sure average is worth more than the gamble — and the gap, in money, is the risk premium a person will pay to be rid of the spread.</aside>
+        <aside class="edge"><span class="lead">the edge</span> The expected-utility theory is the workhorse of the economics of risk, and it is also, of all the discipline's foundations, among the most battered by evidence. People do not in fact obey the von Neumann–Morgenstern axioms: they treat a certain thing as categorically better than a merely near-certain one, they weigh losses far more heavily than gains and from a reference point rather than valuing final wealth, and they distort the probabilities themselves — anomalies the eleventh plate gathers under the banner of the twenty-fourth volume, on bias. The curvature of utility, moreover, does double and uneasy duty: the same concavity supposed to measure aversion to risk also governs the unwillingness to substitute consumption across time, two attitudes that need not be related and whose forced identification will trouble the ninth plate's account of the equity premium. And risk aversion is not even universal — the same person who insures his house, paying to shed risk, will buy a lottery ticket, paying to take it on, so that the curve must bend one way for losses and another for gains if it is to fit the human animal at all. The concave utility of this plate is the indispensable first model of the demand for insurance; it is not the last word on how people actually face their perils.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE III ===================== -->
+    <section class="plate reveal" id="plate-iii" data-label="Plate iii · The Mutual">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">iii</div>
+        <p class="plate-kicker">Plate the Third &middot; The Prices &middot; № IV</p>
+        <h3 class="plate-title">The Mutual</h3>
+        <p class="plate-gloss">the law of large numbers; how pooling turns many risks into one near-certainty</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>how can anyone afford to carry what would ruin the one who bears it?</q></div>
+      <div class="plate-body">
+        <p>If the second plate explained the demand, the third must explain the supply, and it faces the mirror puzzle. A peril that would ruin the household shedding it — the fire that takes the house, the illness that takes the earnings — does not vanish when an insurer assumes it; someone must still bear the loss when it falls. How, then, can the insurer afford to carry what the insured could not? The answer is that the insurer does not carry one risk. It carries many, and in the carrying transforms them. The single fire is a catastrophe; ten thousand fires, of which a known fraction will occur, are a budget. The peril that is wild and ruinous to its bearer alone becomes, when pooled with thousands of its independent kin, tame and very nearly certain — and it is this transformation, not any greater appetite for risk, that lets the insurer take on for a small price what was insupportable to hold alone.</p>
+        <p>The transformation is worked by the law of large numbers, the deepest theorem in the economics of insurance. Suppose each of n households faces the same independent peril — the same probability of the same loss — and an insurer pools them all. The total claims the insurer must pay will vary from year to year, but the average claim per household varies far less, and the more households in the pool, the less it varies: the spread of that average, measured by its standard deviation, shrinks in proportion to the square root of the number pooled, dwindling toward nothing as the pool grows large. With ten households the average loss is still uncertain; with ten million it is almost exactly the expected loss, year upon year. The insurer, holding that average, faces a near-certainty where each household faced a gamble — and so can charge each little more than the expected loss and still, with overwhelming probability, cover its claims. This is the engine. Pooling does not abolish risk; it cancels the independent part of it against itself, the bad years of some offset by the good years of others, until what remains, spread across the multitude, is small. The figure draws the cancellation.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="f2t f2d">
+              <title id="f2t">The law of large numbers</title>
+              <desc id="f2d">The broad low curve is the spread of loss for a single policyholder; the tall narrow spike is the spread of the average loss across a great pool of independent policies, collapsed almost onto the expected loss.</desc>
+              <line x1="64" y1="250" x2="414" y2="250" class="axis"/>
+              <polygon points="414,250 406,246 406,254" class="ink-fill"/>
+              <line x1="64" y1="250" x2="64" y2="40" class="axis"/>
+              <polygon points="64,40 60,48 68,48" class="ink-fill"/>
+              <text x="150" y="278" text-anchor="start" class="lbl-ax">loss per policy &#8594;</text>
+              <text x="26" y="148" text-anchor="middle" class="lbl-ax" transform="rotate(-90 26 148)">probability</text>
+              <line x1="234" y1="250" x2="234" y2="64" class="guide"/>
+              <text x="234" y="56" text-anchor="middle" class="lbl-sm">expected loss</text>
+              <polyline points="80,240 130,216 180,196 234,188 288,196 338,216 388,240" class="curve2"/>
+              <text x="110" y="206" text-anchor="start" class="lbl-sm">one policy</text>
+              <polyline points="212,248 226,196 234,72 242,196 256,248" class="curve"/>
+              <text x="250" y="100" text-anchor="start" class="lbl-sm">the pool</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 2.</span> The law of large numbers, which is the engine of insurance. The broad, low curve is the spread of outcomes for a single policyholder: he may suffer a large loss or none, and his fate is deeply uncertain. The tall, narrow spike is the spread of the average loss across a great pool of independent policyholders: by the law of large numbers, that average collapses almost onto its expected value, the fair premium. This is the alchemy at the heart of the trade. Risk that is crushing to bear alone becomes, when many independent risks are pooled, very nearly a certainty — so the insurer, holding the average, bears almost no risk at all, and can sell relief from a peril it has itself, by pooling, made tame.</figcaption>
+        </figure>
+        <p>Two readings of the engine deserve separating, for the volume will need both. The first is pooling proper, the law of large numbers just drawn: many independent risks, gathered into one portfolio, shrink in their average to a near-certainty, and this is how the mutual society and the joint-stock insurer alike turn perils into budgets. The second is risk spreading, the transfer of a risk from those who feel it sharply to those who feel it little. Even a risk that cannot be pooled away — a single great risk, or a correlated one — can be made bearable by slicing it among many backers, each taking a small share of a loss that would crush any one of them, as the syndicates of Lloyd's have underwritten the unpredictable for three centuries, and as reinsurers and capital markets stand behind the insurers themselves. Pooling reduces the total risk; spreading merely divides it; and the great institutions of insurance combine the two, pooling what is independent and spreading what is not. But the whole apparatus rests on a single load-bearing word in the law of large numbers — independent — and when the risks are not independent, when they fall together, the engine seizes. That failure is grave enough to claim a plate of its own, the tenth; here it is enough to mark that the magic of the mutual is the magic of independence, and no broader.</p>
+        <aside class="pull">Pooling does not abolish risk; it cancels the independent part of it against itself — the bad years of some offset by the good years of others — until what remains, spread across the multitude, is small. The single fire is a catastrophe; ten thousand are a budget.</aside>
+        <aside class="edge"><span class="lead">the edge</span> The pool's near-certainty is a statement about probability, not a guarantee, and three cautions temper it. The law of large numbers promises that the average loss is very likely close to the expected loss, but very likely is not certain: a run of bad years can still exhaust an insurer that priced for the average and held too little capital against the spread, which is why solvency rules, reserves, and reinsurance exist — to stand behind the part of the risk that pooling leaves, the part that does not vanish even as it shrinks. The theorem requires, too, that the expected loss be known, and the first plate's warning returns: an insurer that has mis-estimated the probability has pooled away the wrong risk, and will discover its error only in the claims. And independence, the load-bearing assumption, is in the real world always imperfect — houses on the same street share a fire, lives in the same nation share a plague, and the faint correlations the model sets to zero are the seeds of the catastrophe the tenth plate will reap. The mutual's alchemy is real, and it underwrites the security of the modern world; it is alchemy within limits, and the limits are the correlations it pretends away.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE IV ===================== -->
+    <section class="plate reveal" id="plate-iv" data-label="Plate iv · The Loading">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">iv</div>
+        <p class="plate-kicker">Plate the Fourth &middot; The Prices &middot; № IV</p>
+        <h3 class="plate-title">The Loading</h3>
+        <p class="plate-gloss">the fair premium and the loading; why both parties gain from the trade in risk</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what is in the price, and why do both sides gain?</q></div>
+      <div class="plate-body">
+        <p>The second plate fixed the most a buyer would pay — the expected loss plus his risk premium — and the third fixed the least a seller could accept — the expected loss plus the cost of bearing and administering the risk. The fourth plate sets the price between them, and in doing so decomposes the premium into its parts. At the bottom is the actuarially fair premium, the expected loss, which the insurer must on average pay out and so must on average collect: this is not a charge for service but a pass-through of the peril itself, the money flowing from the lucky many to the unlucky few. Above it sits the loading, everything the insurer adds beyond the expected loss — the cost of running the business, the cost of the capital it must hold against bad years, the cost of the asymmetries the later plates will name, and its margin of profit. The premium a buyer actually pays is the sum of the two: fair premium plus loading, the peril plus the price of relief from it.</p>
+        <p>Why does the buyer consent to pay more than the expected loss — to pay the loading at all? Because, as the second plate showed, the expected loss is not what the risk is worth to him. The risk-averse buyer would give the expected loss plus his risk premium to be rid of the peril; the insurer will take it on for the expected loss plus its costs; and provided the buyer's risk premium exceeds the insurer's loading — provided, that is, the buyer dreads the risk by more than it costs the insurer to carry it — there opens between them a zone of agreement, a range of premiums at which both come out ahead. The buyer, paying a loaded premium, is still better off than bearing the spread; the insurer, collecting it, is paid more than its cost. This is the crux, and it dissolves a common suspicion. The loading is not a fleecing, not value taken from the buyer; it is the price of a genuine service — the pooling and the bearing of risk — and within the zone of agreement the trade is a true exchange, leaving both parties better off than before. The figure lays the bargain bare.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="f3t f3d">
+              <title id="f3t">The premium decomposed, and the gains from trade</title>
+              <desc id="f3d">The buyer will pay the expected loss plus a risk premium; the insurer needs the expected loss plus a loading. Because the buyer's maximum exceeds the insurer's minimum, a zone of agreement opens between them in which any premium leaves both better off.</desc>
+              <rect x="250" y="90" width="90" height="115" class="band"/>
+              <line x1="64" y1="250" x2="414" y2="250" class="axis"/>
+              <polygon points="414,250 406,246 406,254" class="ink-fill"/>
+              <text x="160" y="278" text-anchor="start" class="lbl-ax">amount ($) &#8594;</text>
+              <rect x="64" y="100" width="276" height="30" fill="none" class="axis"/>
+              <line x1="190" y1="100" x2="190" y2="130" class="axis"/>
+              <rect x="64" y="165" width="186" height="30" fill="none" class="axis"/>
+              <line x1="190" y1="165" x2="190" y2="195" class="axis"/>
+              <text x="64" y="92" text-anchor="start" class="lbl-sm">the buyer will pay</text>
+              <text x="127" y="118" text-anchor="middle" class="lbl-sm">fair premium</text>
+              <text x="265" y="118" text-anchor="middle" class="lbl-sm">risk premium</text>
+              <text x="64" y="210" text-anchor="start" class="lbl-sm">the insurer's cost</text>
+              <text x="127" y="183" text-anchor="middle" class="lbl-sm">expected loss</text>
+              <text x="220" y="183" text-anchor="middle" class="lbl-sm">loading</text>
+              <text x="295" y="150" text-anchor="middle" class="lbl-sm">both gain</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 3.</span> The premium, and why both parties gain. The buyer will pay, at most, the expected loss plus his risk premium — the whole upper bar — to be rid of the risk. The insurer needs, at least, the expected loss plus its loading for costs and capital — the shorter lower bar — to take the risk on. Because the risk-averse buyer values shedding the risk by more than it costs the pooling insurer to bear it, the buyer's maximum exceeds the insurer's minimum, and between them opens a zone in which any premium leaves both better off. The premium struck within that zone divides the gains; that the zone exists at all is why insurance is written. The fair premium is the floor of the price, never the whole of it.</figcaption>
+        </figure>
+        <p>What fills the loading, and how large it grows, is itself a study. Part is the plain cost of administration — the agents, the actuaries, the offices, the adjusters who settle claims. Part is the cost of capital: because pooling tames the spread but does not abolish it, the insurer must hold a buffer of capital against the bad years, and that capital demands a return, which the loading must supply — the very risk premium of the ninth plate, paid now by the policyholder to the insurer's shareholders for bearing the residual, undiversifiable risk. Part, in markets afflicted by them, is the cost of the asymmetries: the screening against adverse selection, the monitoring against moral hazard, the claims that fraud and carelessness inflate, all of which the honest must help fund. And part is profit. Competition presses the loading down toward the true cost of the service, and in a well-functioning market the ratio of loading to fair premium — what the trade calls the expense ratio — is the measure of the industry's efficiency and the intensity of its rivalry. But the deepest lesson of the plate is the one the figure shows: that because the buyer is risk-averse, insurance creates value even when its price exceeds the expected loss, so that the gains from the trade in risk are real and not a mere redistribution — the world is wealthier in welfare, if not in money, for every premium struck within the zone.</p>
+        <aside class="pull">The loading is not a fleecing. It is the price of a service — the pooling and bearing of risk — and because the buyer is risk-averse, the trade leaves both sides better off. The world is richer in welfare, if not in money, for every premium struck in the zone.</aside>
+        <aside class="edge"><span class="lead">the edge</span> The benign picture holds only where the zone of agreement is real and the bargain free, and several things narrow or close it. When the loading swells — through monopoly, through the heavy costs of fighting fraud and selection, through layers of brokers each taking a cut — it can rise to meet or exceed the buyer's risk premium, and then the zone vanishes and the rational buyer declines: under-insurance, the recurring disease of these markets, is often simply a loading grown too fat for the risk premium to cover. The picture assumes, too, that the buyer's risk premium is well-formed — that he dreads the spread by an amount his utility curve honestly reports — when the eleventh plate will show the dread itself distorted, inflated for vivid small risks and starved for remote large ones, so that some premiums are paid by buyers who would, seeing clearly, decline, and some perils left bare by buyers who would, seeing clearly, cover them. And the cost of capital buried in the loading is the thin end of a wedge the second half of the volume drives home: that the insurer's own residual risk has a price, set not by the mortality table but by the markets, and governed by laws the first four plates have not yet drawn.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE V ===================== -->
+    <section class="plate reveal" id="plate-v" data-label="Plate v · The Deductible">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">v</div>
+        <p class="plate-kicker">Plate the Fifth &middot; The Prices &middot; № IV</p>
+        <h3 class="plate-title">The Deductible</h3>
+        <p class="plate-gloss">how much to insure; deductibles, coinsurance, and Mossin's theorem</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if some insurance is good, why not insure everything?</q></div>
+      <div class="plate-body">
+        <p>The first four plates settled why insurance exists and what it costs; the fifth asks how much of it to buy. The simplest theory seems to counsel buying all of it: if shedding risk is good, and the risk-averse buyer gains by insuring, why not insure completely, against every peril, to the last dollar of possible loss? Yet no one does, and no insurer expects them to. Real policies are riddled with partial coverage — the deductible, the sum the insured bears himself before the policy pays; the coinsurance, the fraction of each loss he continues to carry; the policy limit, the ceiling above which he is again on his own. The household that insures its house against fire still pays the first thousand dollars of any claim; the patient still pays a share of the bill. Partial coverage is not a defect of these markets but their normal condition, and the plate must explain why the rational buyer, who gains from insurance, nonetheless declines to buy all of it.</p>
+        <p>The decisive result is Jan Mossin's, of 1968, and it turns on the loading. Were insurance sold at the actuarially fair premium — the expected loss and nothing more — a risk-averse person would insure fully, buying complete coverage and converting his gamble into perfect certainty, for at a fair price every dollar of coverage is a free reduction of risk and he wants all of it. But insurance is not sold at a fair price; it carries a loading, and each dollar of coverage therefore costs slightly more than the expected loss it covers. Now the buyer faces a trade-off at the margin: more coverage means less risk but a larger loading paid, and the rational stopping point is short of full. The reason is exact and instructive. The last increments of coverage insure against the small, likely losses — the part of the loss distribution near zero — and against small losses a person is very nearly risk-neutral, his utility curve there almost straight, so the risk premium he would pay to shed them is tiny, smaller than the loading they cost. He therefore declines to insure the small losses and bears them himself, insuring only the large ones whose spread he truly dreads. A loaded premium buys partial coverage; only a fair one buys full; and the deductible is the mark of the loading made visible.</p>
+        <p>The forms of partial coverage are not arbitrary, and the most common is, under a natural condition, the most efficient. Kenneth Arrow proved that if the loading is a fixed proportion of the expected loss, the policy a risk-averse buyer most prefers is precisely a deductible: full coverage of every loss above a threshold, no coverage below it. The logic is the second plate's, sharpened — concentrate the coverage where the dread is greatest, on the large losses, and bear the small ones yourself, because the small ones cost more in loading than they are worth in relief. The deductible has, besides, three further virtues the later plates will prize: it spares the insurer the cost of processing a swarm of tiny claims, so shrinking the loading itself; it leaves the insured exposed to the first slice of every loss, and so preserves his incentive to take care, blunting the moral hazard of the seventh plate; and a menu of deductibles, offered at different prices, can sort the high-risk from the low, easing the adverse selection of the sixth. Coinsurance — sharing each loss in fixed proportion — serves the same incentive ends by a different geometry. The optimal coverage, in short, is rarely all and rarely none; it is the interior point where the relief from the last dollar of coverage just balances its loading, and the shape of the policy that achieves it is the deductible.</p>
+        <aside class="pull">A fair premium buys full insurance; a loaded one buys partial. The last dollar of coverage guards the small, likely losses a person scarcely dreads — and they cost more in loading than they are worth in relief. The deductible is the loading made visible.</aside>
+        <aside class="edge"><span class="lead">the edge</span> Mossin's clean result rests on the same expected-utility frame the second plate's edge already shook, and the cracks reappear here as a famous anomaly: people buy low deductibles, paying heavily to insure the small, frequent losses that Mossin says they should bear themselves. A low deductible is, on the mathematics, a strikingly bad purchase — a large loading for a small reduction in a risk one hardly fears — yet it is among the most popular options in every market, evidence that the demand for coverage is driven less by the cool weighing of spreads than by a distaste for any out-of-pocket loss, a misjudging of small probabilities, and the seductions of a low advertised price, all matters for the eleventh plate. The theorem assumes, further, that the loss distribution is known and the premium merely proportional, when real loadings vary in shape and real losses defy clean description. And the individual optimum it computes is, in important cases, overridden from without: the law mandates full coverage of certain risks — third-party liability, basic health — regardless of any single buyer's calculation, for reasons of solidarity and externality the eleventh and later volumes press, so that how much to insure is not always, in the end, the buyer's to choose.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE VI ===================== -->
+    <section class="plate reveal" id="plate-vi" data-label="Plate vi · The Selection">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">vi</div>
+        <p class="plate-kicker">Plate the Sixth &middot; The Prices &middot; № IV</p>
+        <h3 class="plate-title">The Selection</h3>
+        <p class="plate-gloss">adverse selection; hidden risk, the death spiral, and the unraveling pool</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what happens when the insured know their risks and the insurer does not?</q></div>
+      <div class="plate-body">
+        <p>The first five plates assumed the insurer knew the risk it priced. The sixth abandons that assumption, and with it the volume crosses into the territory of the twelfth volume, on asymmetry, where one party to a trade knows what another does not. In insurance the asymmetry is acute and characteristic: the person seeking coverage commonly knows his own risk — his health, his habits, the soundness of his house, the care he takes — far better than the insurer who must price it. And this private knowledge bends the demand in a fatal direction. Those who know themselves most at risk are the most eager to insure, and will pay the most; those who know themselves safe are the most inclined to go without. The buyers an insurer attracts are therefore not a fair sample of the population but its worst slice, weighted toward the very risks the insurer would least like to hold. The selection of who insures is adverse — adverse, that is, to the insurer — and it is the master malady of these markets.</p>
+        <p>Trace what the asymmetry does to the price. An insurer that cannot tell the high-risk from the low must charge a single premium, and the natural one is the average cost of all who might buy. But at that average premium the low-risk are overcharged — they are paying for the high-risk pooled with them — and being overcharged, some of them decline and drop out. Their departure leaves the pool riskier than before, so the average cost rises, so the premium must rise; and the higher premium drives out the next-safest tier, who were worth covering at the old price but not the new, which raises the average again. Round and round the spiral turns, each increase in price worsening the pool that sets the price, in the insurance form of the unraveling that Akerlof found in the market for used cars — the good risks driven out by the bad until, in the extreme, only the worst remain and the market for the rest has collapsed. The figure draws the equilibrium this produces. Its novelty is the cost curve: because the eager buyers are the high-risk, the average cost of those who buy falls as a lower price coaxes in the safer, so the average-cost curve slopes downward, and the marginal buyer — always safer than the average already in — lies below it. Competition drives the premium to the average cost of the pool; but efficiency would set it at the cost of the marginal buyer, lower and further out, and the gap between them is insurance that ought to be written and is not.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="f4t f4d">
+              <title id="f4t">Adverse selection in the insurance market</title>
+              <desc id="f4d">Demand slopes down; because the keenest buyers are the riskiest, the average-cost curve also slopes down and the marginal-cost curve lies below it. The competitive equilibrium, where demand meets average cost, falls short of the efficient quantity, where demand meets marginal cost, leaving a deadweight loss of too little insurance.</desc>
+              <line x1="64" y1="250" x2="414" y2="250" class="axis"/>
+              <polygon points="414,250 406,246 406,254" class="ink-fill"/>
+              <line x1="64" y1="250" x2="64" y2="40" class="axis"/>
+              <polygon points="64,40 60,48 68,48" class="ink-fill"/>
+              <text x="140" y="278" text-anchor="start" class="lbl-ax">fraction insured &#8594;</text>
+              <text x="26" y="148" text-anchor="middle" class="lbl-ax" transform="rotate(-90 26 148)">price, cost</text>
+              <polygon points="179,132 179,169 276,184" class="band"/>
+              <line x1="64" y1="70" x2="360" y2="230" class="curve"/>
+              <text x="354" y="224" text-anchor="end" class="lbl-sm">demand</text>
+              <line x1="64" y1="110" x2="404" y2="175" class="curve2"/>
+              <text x="398" y="168" text-anchor="end" class="lbl-sm">average cost</text>
+              <line x1="64" y1="150" x2="404" y2="205" class="guide"/>
+              <text x="398" y="212" text-anchor="end" class="lbl-sm">marginal cost</text>
+              <line x1="179" y1="132" x2="179" y2="250" class="guide"/>
+              <line x1="276" y1="184" x2="276" y2="250" class="guide"/>
+              <circle cx="179" cy="132" r="3.7" class="ink-fill"/>
+              <circle cx="276" cy="184" r="3.5" fill="none" class="dot-o"/>
+              <text x="185" y="126" text-anchor="start" class="lbl-sm">equilibrium</text>
+              <text x="179" y="264" text-anchor="middle" class="lbl-sm">competitive</text>
+              <text x="276" y="264" text-anchor="middle" class="lbl-sm">efficient</text>
+              <text x="205" y="158" text-anchor="start" class="lbl-sm">lost gains</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 4.</span> Adverse selection, after Einav and Finkelstein. The demand curve slopes down: fewer buy insurance as the premium rises. The novelty is the cost curves. Because the people who most want insurance are those who know themselves most at risk, the average cost of the insured pool falls as more are drawn in by a lower price — the average-cost curve slopes downward, and the marginal buyer, always lower-risk than the average, lies below it. Competition drives the premium to the average cost of the pool, fixing the equilibrium where demand meets average cost. But efficiency wants the premium at the cost of the marginal buyer, where demand meets marginal cost — further right. The gap is too little insurance: the shaded loss of buyers whose value exceeds their cost, yet who go uncovered because they must pay for the riskier company they are pooled with.</figcaption>
+        </figure>
+        <p>The maladies of asymmetry breed their own medicines, and adverse selection has three. The first is screening, the insurer's attempt to learn what the buyer knows — the medical examination, the questionnaire, the inspection — and, where direct knowledge fails, the cleverer device of the self-revealing menu. Michael Rothschild and Joseph Stiglitz showed, in 1976, that an insurer facing two hidden types can offer two policies designed so that each type chooses the one meant for it: full coverage at a high price, which the high-risk take, and partial coverage at a low price, which the low-risk prefer because their lesser fear makes the cheaper, thinner policy worth more to them than to their riskier neighbors. The menu sorts the pool by making the buyers sort themselves — a separating equilibrium, in which the low-risk buy too little coverage, a real cost, but the pool no longer unravels. The second medicine is experience rating: pricing each by his record, the claims he has made, the accidents he has had, so that the hidden risk reveals itself over time and the premium comes to track it. And the third is the most radical — compulsion. If exit is what drives the spiral, forbid exit: mandate that all must buy, the safe pooled with the unsafe at a common rate, and the death spiral cannot begin because the low-risk cannot leave. The individual mandate of a national health scheme is, in the language of this plate, an engineered defeat of adverse selection, and it carries the volume to the doorstep of the fairness contest the eleventh plate will join — for to forbid the low-risk to leave is to make them subsidize the high, which is solidarity to its friends and injustice to its critics.</p>
+        <aside class="pull">Those who know themselves most at risk insure the most eagerly. So the buyers an insurer attracts are the population's worst slice — and as each price rise drives out the safe, the pool that sets the price grows sicker. The good risks are driven out by the bad.</aside>
+        <aside class="edge"><span class="lead">the edge</span> Adverse selection is the textbook's favorite failure, and the evidence for it is more mixed than the theory's elegance suggests. In some markets it is plainly present and even ruinous; in others it is faint, absent, or reversed — for the same private knowledge that makes the high-risk buy more can be swamped by another correlation, that the cautious and the well-informed, who are lower-risk, are also the most likely to insure, so that the careful buy coverage and the reckless go without and selection runs, advantageously, the other way. Which force dominates is an empirical question, market by market, not a theorem. The remedies, too, have their costs: screening is intrusive and imperfect, and shades into the discrimination the eleventh plate will weigh; the separating equilibrium leaves the low-risk under-covered and, Rothschild and Stiglitz themselves showed, may fail to exist at all, leaving the competitive market with no stable equilibrium; and compulsion, the surest cure, overrides the individual's choice and forces the subsidy its critics call unjust. The plate's lesson is not that markets in risk always collapse — many work well — but that the hidden knowledge of the insured is a permanent strain on them, met by a permanent and imperfect machinery of screen, record, and mandate.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE VII ===================== -->
+    <section class="plate reveal" id="plate-vii" data-label="Plate vii · The Care">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">vii</div>
+        <p class="plate-kicker">Plate the Seventh &middot; The Prices &middot; № IV</p>
+        <h3 class="plate-title">The Care</h3>
+        <p class="plate-gloss">moral hazard; how insurance breeds the loss, and the price of incentive</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what does a person do differently once the risk is no longer his?</q></div>
+      <div class="plate-body">
+        <p>The sixth plate's asymmetry was of knowledge — the insured knew his risk and the insurer did not. The seventh plate's is of action: the insured, once covered, does things the insurer cannot see and would not wish. For insurance changes behavior. A man who has insured his warehouse against fire is a little less diligent about the wiring; a shipper whose cargo is covered watches the weather a little less anxiously; a patient whose every visit is paid for sees the doctor a little more freely than one who pays from his own purse. The coverage that was bought against a loss comes, perversely, to raise the loss it was bought against — and because the insurer cannot observe the slackened care, it can neither price nor forbid it. This is moral hazard, a phrase inherited from the early fire underwriters, who used it for the temptation a policy created in its holder, and given its modern economic form by Kenneth Arrow and Mark Pauly: the hidden action of an insured who no longer bears the full consequences of his own conduct.</p>
+        <p>The mechanism is a matter of incentive, not of wickedness. Care is costly — the lock, the inspection, the caution, the forgone pleasure — and a person takes care up to the point where its marginal cost equals the marginal benefit it brings him. Uninsured, that benefit is the whole reduction in his expected loss; insured, it is only the small part of the loss he still bears, the rest having passed to the insurer. So the insured, weighing his private cost against his now-diminished private benefit, takes less care than he would unprotected, and less than is efficient, for the care he forgoes would have spared a loss that someone — the pool — must still pay. Carried to its limit the logic is stark: a person fully insured, who bears none of the loss, has no private reason to take any care at all, and full coverage would invite the very ruin it indemnifies. The same logic has an after-the-loss form — the patient, fully covered, who consumes treatment up to the point of no further benefit because it costs him nothing, inflating the claims of all — and a systemic form the later volumes will press, in the bank that gambles the more boldly for knowing it will be rescued. In every case the insurance, by severing conduct from consequence, breeds the loss.</p>
+        <p>The cure is the same instrument the fifth plate already met, now pressed into a second service. If full coverage destroys the incentive to take care, then leave the insured bearing a slice of every loss — a deductible, a coinsurance, a co-payment — and his incentive partly revives, for he again has a private stake in the outcome. But the slice that restores his care is risk he must carry, and risk-bearing was the very thing insurance was meant to relieve; so the contract is caught in a genuine tension, between spreading risk and preserving incentive, and can serve neither fully without failing the other. The optimal policy is therefore, once again, partial — but now for a reason quite distinct from the fifth plate's loading. There, partial coverage was the buyer's free choice, declining to insure the small losses he scarcely feared; here, it is the insurer's imposition, forcing the insured to keep a stake so that he will keep up his guard. The deductible serves both masters at once, which is why it is ubiquitous; experience rating, which prices next year by this year's claims, restores the incentive across time; and direct monitoring, where it is feasible, lets the insurer reward the care it can see. None abolishes the tension. When action is hidden, there is no contract that both fully insures and fully preserves the incentive to take care — and that impossibility, not mere cost, is why the world's insurance is everywhere partial.</p>
+        <aside class="pull">Insurance severs conduct from consequence: the insured no longer bears the full cost of his own carelessness, so he takes less of the care that would have spared a loss the pool must pay. The coverage bought against a loss comes to breed it.</aside>
+        <aside class="edge"><span class="lead">the edge</span> The phrase moral hazard libels its subject, for the slackened care it names is rarely immorality and almost always the ordinary response of a rational person to an altered incentive — a fact worth holding against the moralizing uses to which the term is too often put. The phenomenon is, besides, devilishly hard to separate from its sixth-plate cousin: when the insured both run higher risks and take less care, the statistician sees only that the insured claim more, and cannot easily say how much is the hidden type and how much the hidden action. Its magnitude is genuinely contested — the great controlled experiment in health insurance found that fuller coverage does raise the use of care, but by less than the alarmists feared and with little harm to health — so that the size of the distortion, like adverse selection's, is a matter for measurement and not for assumption. And not all of what the term condemns is even a loss to be cured: an insurance that emboldens a person to take a worthwhile risk he would otherwise have shunned, or to seek the care he genuinely needs, is doing part of its proper work, freeing action that fear had frozen — so that some moral hazard is the price of insurance, and some is its purpose, and the art is to curb the waste without strangling the courage.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE VIII ===================== -->
+    <section class="plate reveal" id="plate-viii" data-label="Plate viii · The Basket">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">viii</div>
+        <p class="plate-kicker">Plate the Eighth &middot; The Prices &middot; № IV</p>
+        <h3 class="plate-title">The Basket</h3>
+        <p class="plate-gloss">diversifiable and systematic risk; what pooling erases and what it cannot</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>which risks vanish when you spread yourself, and which remain?</q></div>
+      <div class="plate-body">
+        <p>The seventh plate completes the volume's account of insurance proper; the eighth begins its account of the wider thing of which insurance is one instance — the pricing of risk wherever it is borne. The bridge is the third plate's own engine, pooling, seen now from the side of the one who holds the risks rather than the one who sheds them. An investor who places his wealth in a single venture bears that venture's whole risk; an investor who spreads it across many ventures is, like the insurer pooling many policies, holding a portfolio, and the same law of large numbers that tamed the insurer's book now works upon the investor's. The question of the plate is exactly which risks the spreading tames and which it cannot — for the answer divides all risk into two kinds, and that division is the deepest idea in the pricing of risk.</p>
+        <p>Harry Markowitz, in 1952, gave the division its modern form. Consider the risk of a portfolio — the spread of its return — as more and more assets are added to it. Part of each asset's risk is peculiar to itself: the firm whose factory burns, the venture whose product fails, the mine that floods, hazards independent from one holding to the next. This idiosyncratic risk behaves exactly like the insurer's independent policies — pooled across many assets, the good and bad surprises cancel, and the portfolio's exposure to any one of them shrinks toward nothing. But part of each asset's risk is not peculiar to itself; it is shared with the whole market — the recession that depresses every business, the panic that drains every price, the rise in rates that burdens every borrower — and this systematic risk does not cancel, because it does not differ from one holding to the next: when it strikes, it strikes all at once and all together. So as the portfolio grows, its risk falls, but not to zero; it falls to a floor, the systematic risk that no diversification can remove. The figure draws the descent. The shrinking gap above the floor is the idiosyncratic risk, erased for free by spreading; the floor itself is the systematic risk, which spreading leaves untouched. Total risk is the sum of the two, and only one of them can be diversified away.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="f5t f5d">
+              <title id="f5t">Diversification and the systematic floor</title>
+              <desc id="f5d">As assets are added to a portfolio, its risk falls — but only to a floor. The shrinking gap above the floor is diversifiable, idiosyncratic risk; the floor itself is systematic risk, which no diversification can remove.</desc>
+              <line x1="64" y1="250" x2="414" y2="250" class="axis"/>
+              <polygon points="414,250 406,246 406,254" class="ink-fill"/>
+              <line x1="64" y1="250" x2="64" y2="40" class="axis"/>
+              <polygon points="64,40 60,48 68,48" class="ink-fill"/>
+              <text x="140" y="278" text-anchor="start" class="lbl-ax">number of assets &#8594;</text>
+              <text x="26" y="148" text-anchor="middle" class="lbl-ax" transform="rotate(-90 26 148)">portfolio risk</text>
+              <polyline points="64,90 96,140 140,172 200,192 280,204 360,208 404,210" class="curve"/>
+              <text x="70" y="84" text-anchor="start" class="lbl-sm">total risk</text>
+              <line x1="64" y1="210" x2="404" y2="210" class="guide"/>
+              <text x="70" y="204" text-anchor="start" class="lbl-sm">systematic risk</text>
+              <text x="84" y="185" text-anchor="start" class="lbl-sm">diversifiable</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 5.</span> The risk that diversification destroys, and the risk it cannot. Hold a single asset and its risk is large. Add a second, a tenth, a hundredth — each rising and falling for its own reasons — and the independent wobbles cancel, so the portfolio's risk falls. But it does not fall to nothing. It descends to a floor: the systematic risk, the part that moves with the whole market and so survives any diversification, the recession that drags down every holding at once. The shrinking gap above the floor is the diversifiable, idiosyncratic risk, which pooling and diversification erase for free. This is the deepest lesson of the volume: only the risk that cannot be diversified away is real to a diversified holder — and only that risk, the next plate shows, commands a premium.</figcaption>
+        </figure>
+        <p>From this division the central principle of the pricing of risk follows, and it is a principle of startling reach. A holder who is well diversified bears almost none of any asset's idiosyncratic risk — he has cancelled it against the rest of his portfolio — and so he will neither pay to be rid of it nor demand a reward for holding it: diversifiable risk, to a diversified holder, is free, and free risk earns no premium. What he cannot escape, and what he must therefore be paid to bear, is the systematic risk, the part that moves with the whole and survives all spreading. Hence the rule that governs the price of risk in every market: only undiversifiable, systematic risk is compensated; idiosyncratic risk, poolable to nothing, commands no return. This single principle reaches back to unify the volume. The insurer's pooling and the investor's diversification are one act under two names, each cancelling independent risk against itself; the perils that insurance handles cheaply — the scattered fires, the individual deaths, the separate accidents — are cheap precisely because they are idiosyncratic and pool away, while the perils that defeat insurance, the correlated catastrophes of the tenth plate, are dear or uninsurable precisely because they are systematic and do not. And it reaches forward to the ninth plate, which must now ask the question the principle poses: if only systematic risk is priced, what exactly is its price?</p>
+        <aside class="pull">Diversifiable risk, to a diversified holder, is free — cancelled against the rest of the portfolio — and free risk earns no premium. Only the systematic risk that moves with the whole, and survives all spreading, must be paid for. Pooling and diversification are one act under two names.</aside>
+        <aside class="edge"><span class="lead">the edge</span> The clean split into diversifiable and systematic risk is a model's idealization, and the world blurs it. The cancellation of idiosyncratic risk requires that the holdings be many and their fortunes truly independent, which an investor of modest means, or one whose wealth is locked in a single house or a single employer, can rarely achieve — so that real holders bear idiosyncratic risk the theory says they should have diversified away, and may reasonably want it priced. The line between the idiosyncratic and the systematic is itself unstable: a risk that looks peculiar to one firm — a default, a fraud, a failure — can, in a crisis, prove to have been systematic all along, as the panics of history reveal correlations that the calm had hidden, the supposedly independent falling together exactly when diversification was most needed. And the principle that only systematic risk is paid for holds for the marginal, diversified investor who sets prices, not for every holder: the undiversified, the constrained, and the merely human bear, and care about, risks the principle declares should cost nothing. The division is the indispensable key to the pricing of risk; like the mutual's independence on which it rests, it is a key the correlations of the real world are forever bending.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE IX ===================== -->
+    <section class="plate reveal" id="plate-ix" data-label="Plate ix · The Beta">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">ix</div>
+        <p class="plate-kicker">Plate the Ninth &middot; The Prices &middot; № IV</p>
+        <h3 class="plate-title">The Beta</h3>
+        <p class="plate-gloss">the price of risk in markets; the equity premium, the frontier, and the reward for bearing it</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if only undiversifiable risk is paid for, what is its price?</q></div>
+      <div class="plate-body">
+        <p>The eighth plate ended with a question: if only systematic risk is paid for, what is its price? The answer is the Capital Asset Pricing Model, built in the 1960s by William Sharpe and others upon Markowitz's foundation, and it is at once a theory of how risk is priced and a measure of how much of it an asset carries. The measure is beta. An asset's beta is the degree to which its return moves with the return of the market as a whole — how violently it rises in the booms and falls in the busts that no one can diversify away. An asset with a beta of one moves, on average, in lockstep with the market; one with a beta of two amplifies the market's swings; one with a beta of zero is uncorrelated with the market, its risk wholly idiosyncratic and so, by the eighth plate's principle, unpriced. Beta, in short, isolates exactly the systematic part of an asset's risk — the only part a diversified holder bears — and discards the idiosyncratic part that diversification has made free. It is the quantity of priced risk in an asset.</p>
+        <p>The price of that risk is drawn by the security market line. The model holds that the expected return on any asset is the risk-free rate — the return on a holding with no systematic risk, the third volume's rate — plus a reward proportional to the asset's beta: the more systematic risk it carries, the more return the market demands to hold it. Plot expected return against beta and the relation is a rising straight line, anchored at the risk-free rate where beta is zero and climbing with a slope equal to the market risk premium, the extra expected return the market grants for bearing one full market's worth of undiversifiable risk. The figure draws the line. That slope is the price of risk itself, the reward per unit of systematic exposure; expressed against the spread rather than the beta, it is the famous ratio of William Sharpe, the reward-to-risk of the best attainable portfolio, and it is the same quantity the eighth plate's frontier would yield, tangent to the line drawn from the risk-free asset. The equity premium — the margin by which the return on the broad market of stocks exceeds the risk-free rate — is this price made concrete: the going rate, in the market for risk, for holding the one risk that cannot be shed.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="f6t f6d">
+              <title id="f6t">The security market line</title>
+              <desc id="f6d">Expected return rises with beta, the measure of systematic risk: the line begins at the risk-free rate where beta is zero and climbs with a slope equal to the market risk premium, passing through the market portfolio at a beta of one.</desc>
+              <line x1="64" y1="250" x2="414" y2="250" class="axis"/>
+              <polygon points="414,250 406,246 406,254" class="ink-fill"/>
+              <line x1="64" y1="250" x2="64" y2="40" class="axis"/>
+              <polygon points="64,40 60,48 68,48" class="ink-fill"/>
+              <text x="120" y="278" text-anchor="start" class="lbl-ax">systematic risk β &#8594;</text>
+              <text x="26" y="148" text-anchor="middle" class="lbl-ax" transform="rotate(-90 26 148)">expected return</text>
+              <line x1="64" y1="200" x2="234" y2="200" class="guide"/>
+              <line x1="234" y1="200" x2="234" y2="130" class="guide"/>
+              <line x1="64" y1="200" x2="404" y2="60" class="curve"/>
+              <text x="398" y="54" text-anchor="end" class="lbl-sm">security market line</text>
+              <circle cx="64" cy="200" r="3.7" class="ink-fill"/>
+              <text x="70" y="206" text-anchor="start" class="lbl-sm">risk-free rate</text>
+              <circle cx="234" cy="130" r="3.7" class="ink-fill"/>
+              <text x="240" y="124" text-anchor="start" class="lbl-sm">the market</text>
+              <text x="240" y="170" text-anchor="start" class="lbl-sm">market risk premium</text>
+              <text x="234" y="264" text-anchor="middle" class="lbl-sm">β = 1</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 6.</span> The price of risk, after the Capital Asset Pricing Model. Only systematic risk is paid for, and an asset's beta measures how much of it the asset carries — how strongly it moves with the market as a whole. The security market line plots the expected return the market grants against that beta: it begins at the risk-free rate, where beta is zero, and rises with a slope equal to the market risk premium, the extra return for bearing one market's worth of undiversifiable risk. The market portfolio sits at a beta of one. This is the insurer's loading written across the whole of finance — the reward demanded by those who agree to hold the systematic risk that the risk-averse, through diversification, have shed. The equity premium it describes is famously larger than plausible risk aversion can explain, a puzzle unsolved.</figcaption>
+        </figure>
+        <p>Two threads run from the line into the rest of the table. The first is a puzzle that has resisted the discipline for forty years. The equity premium that history records — the margin by which stocks have outrun safe bonds over the long run — is very large, far larger than the modest curvature of any plausible utility curve can justify; to rationalize it within the second plate's framework would require a risk aversion so extreme as to be absurd in every other setting. Rajnish Mehra and Edward Prescott named this the equity premium puzzle in 1985, and its many proposed solutions — rare disasters, habits, a distaste for ambiguity, the very behavioral distortions of the eleventh plate — have each illuminated a corner without closing the case, so that the price of market risk remains, embarrassingly, higher than the theory of risk aversion can explain. The second thread ties the plate to the third volume, on the rate: the risk-free rate is the floor from which the security market line rises, the equity premium the height it climbs, and the return on any risky asset the sum of the two — the pure price of time and the price of risk, added together, which is why this volume and the volume on the rate are read as a pair. And beneath both threads lies the unification the plate completes: the insurer's loading of the fourth plate and the market's risk premium of the ninth are, at bottom, the same payment under two names — the reward demanded by whoever agrees to hold the undiversifiable risk that someone else is anxious to shed. Insurance and finance are one subject, and its name is the price of risk.</p>
+        <aside class="pull">The insurer's loading and the market's risk premium are the same payment under two names — the reward demanded by whoever agrees to hold the undiversifiable risk that another is anxious to shed. Insurance and finance are one subject, and its name is the price of risk.</aside>
+        <aside class="edge"><span class="lead">the edge</span> The Capital Asset Pricing Model is the most taught and most tested theory in finance, and the testing has not been kind. Its central prediction — that an asset's return depends on its beta and on nothing else — fares poorly against the data: returns track other things the model says should not matter, the size of the firm and the cheapness of its shares foremost among them, so that beta alone explains far less of the pattern of returns than the theory demands, and richer models with several factors have grown up to patch it. Beta itself is estimated from the past and drifts in the future, and the true market portfolio it requires — all risky assets everywhere — can never be observed, a critique sharp enough that some hold the model untestable in principle. And the whole edifice assumes the diversified, rational, price-taking investor of the eighth plate, whom the eleventh plate is about to dismantle. Yet the model's core idea has survived its empirical wounds, for it is deeper than its particular formula: that risk is priced only insofar as it cannot be diversified away, and that the reward for bearing it is the market's price of risk. The security market line is the wrong equation for the right insight.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE X ===================== -->
+    <section class="plate reveal" id="plate-x" data-label="Plate x · The Catastrophe">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">x</div>
+        <p class="plate-kicker">Plate the Tenth &middot; The Prices &middot; № IV</p>
+        <h3 class="plate-title">The Catastrophe</h3>
+        <p class="plate-gloss">when risks are correlated; the limits of insurability and the insurer of last resort</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what becomes of insurance when the losses fall together?</q></div>
+      <div class="plate-body">
+        <p>The third plate rested the whole edifice of insurance on a single word — independent — and warned that when it failed, the engine would seize. The tenth plate is that failure. Some perils do not strike at random, one here and one there, the misfortunes of the few covered by the premiums of the many. They strike all at once and all together: the earthquake that levels a city, the flood that drowns a valley, the hurricane that flattens a coast, the pandemic that sickens a continent, the financial panic that ruins every holder in the same season. Against such correlated perils the law of large numbers offers no protection, for there is no average to be tamed — the losses do not cancel but compound, ten thousand claims arriving in a single dreadful month rather than scattered across the years. Correlated risk is the systematic risk of the eighth plate wearing its most violent face; it is the risk that diversification cannot diversify and pooling cannot pool, and it is the natural limit of the insurable.</p>
+        <p>From this the conditions of insurability follow, the checklist by which underwriters have always sorted the coverable peril from the uncoverable. A risk is readily insurable when its probability can be estimated, when the losses are independent across the insured so that pooling tames them, when no single event is so large as to swallow the insurer's capital, when the loss is definite and verifiable, and when adverse selection and moral hazard are kept within bounds. The catastrophic perils fail the conditions that matter most. Their losses are correlated, so pooling fails; and any one event is enormous, so it threatens the insurer with ruin rather than a bad year. To insure such a peril at all, the insurer must hold vast capital against the rare calamity, and the cost of that idle capital — the ninth plate's price of systematic risk, demanded now by those who fund the insurer — drives the premium far above the expected loss, often so far that no buyer will pay it. Where the premium that would make the insurer solvent exceeds the premium any buyer will bear, the zone of agreement of the fourth plate closes, and the peril passes out of the realm of private insurance altogether. It is not that catastrophes are uninsurable in principle; it is that their correlation makes their honest price unbearable.</p>
+        <p>What lies beyond the boundary is not nothing, but three further institutions, each a way of bearing what the simple pool cannot. The first is to spread the correlated risk wider than any one insurer — reinsurance, by which insurers insure one another across the whole globe, so that a catastrophe local to one is diluted among many; and the catastrophe bond, by which the risk is sliced and sold to the capital markets, whose vast pool of investors can each take a sliver of a peril that would break any insurer, and who hold it precisely because, to a globally diversified portfolio, even an earthquake may be idiosyncratic. The second is to restore independence by mixing perils and places — a book of risks drawn from many regions and many hazards, uncorrelated with one another, recovering across the portfolio the cancellation that any single peril denies. And the third, where private spreading still falls short, is the state as insurer of last resort. For the government commands what no insurer does: it can spread a loss across the entire population and, by borrowing, across the generations; it can compel participation and so defeat selection; and it can stand behind the floods, the crops, the bank deposits, the acts of terror, and the pandemics that the private market, left alone, would leave bare. The supreme instance is the gravest correlated risk of all — the changing climate, whose losses fall together across whole regions and whole decades, the eleventh volume's externality of externalities here wearing its insurer's aspect — and which is, for that reason, straining the boundary of the insurable as nothing before it. Beyond independence lies the reinsurer, the capital market, and the state; and beyond even these lies the uninsurable, the risk that must simply be borne.</p>
+        <aside class="pull">Correlated risk is the systematic risk of the eighth plate wearing its most violent face — the risk diversification cannot diversify and pooling cannot pool. It is not that catastrophes are uninsurable in principle; it is that their correlation makes their honest price unbearable.</aside>
+        <aside class="edge"><span class="lead">the edge</span> The boundary of insurability is not fixed but moving, and it moves in both directions at once. Financial engineering, better data, and the global reach of reinsurance have pushed many once-uninsurable correlated risks into the coverable, slicing catastrophe into pieces small enough for the world's capital to swallow — a genuine extension of the insurable, and a good one. But the same engineering can conceal correlation as easily as it spreads risk: the crisis of 2008 was, at its root, a vast pool of mortgages believed independent and discovered, too late, to be correlated, their bundled securities and the firms that insured them collapsing together exactly as the eighth plate's hidden correlations warned, with the largest insurer of last resort itself requiring rescue. The state's backstop, in turn, breeds the moral hazard of the seventh plate at the grandest scale — subsidized flood insurance invites building in the floodplain, the promise of rescue invites the gamble that needs rescuing — and raises the fairness questions of the eleventh plate in their hardest form, of who shall pay for whose catastrophe. And the climate is, for now, moving the boundary the wrong way: as the once-rare grows common and the once-independent grows correlated, whole territories are slipping out of the private market's reach, the insurers withdrawing from the coast and the floodplain, and the domain of the insurable, so long expanding, has begun in places to contract.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE XI ===================== -->
+    <section class="plate reveal" id="plate-xi" data-label="Plate xi · The Sorting">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">xi</div>
+        <p class="plate-kicker">Plate the Eleventh &middot; The Prices &middot; № IV</p>
+        <h3 class="plate-title">The Sorting</h3>
+        <p class="plate-gloss">the misweighing of chance, and the contest of actuarial fairness against solidarity</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>is the premium a true price, or a fair one?</q></div>
+      <div class="plate-body">
+        <p>The volume has, until now, granted its central character one steady virtue: the buyer of the second plate weighed his perils coolly, dreading each in exact proportion to its probability and its size, and paid the premium his honest utility named. The eleventh plate withdraws that grant, and in doing so turns the volume from the mechanics of the premium to the two great doubts that hang over it — whether the price is true, and whether it is fair. The first doubt is the buyer's. People do not weigh probabilities as the theory assumes. They overweight the small ones and underweight the large, attending to the vivid possibility rather than its true frequency, as Daniel Kahneman and Amos Tversky showed in the work that founds the twenty-fourth volume, on bias. And this misweighing falls with peculiar force on the demand for insurance, whose whole business is the weighing of chance.</p>
+        <p>The figure draws the distortion, and its consequences run exactly counter to good sense. Because small probabilities loom larger than they are, people over-insure against the vivid minor risk — buying the extended warranty on the appliance, the flight insurance at the gate, the low deductible the fifth plate showed to be a poor bargain — paying heavy loadings to be rid of risks they could easily bear, simply because the small chance of loss looms large in the mind. And because large probabilities are underweighted, and remote catastrophes discounted toward zero until they feel impossible rather than merely unlikely, people under-insure against the rare ruinous peril — leaving the home unguarded against the flood, the earthquake, the once-in-a-century storm — precisely the correlated catastrophes of the tenth plate, and precisely the risks the rational dread of the second plate would have them cover first. The buyer over-insures the trivial and under-insures the grave: the demand for insurance is bent, predictably, by the misweighing of chance, and the bend is the opposite of what cold reason would counsel.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="f7t f7d">
+              <title id="f7t">The probability weighting function</title>
+              <desc id="f7d">The straight line is rational weighting, where decision weight equals probability. The curve is how people actually weigh chance: small probabilities are overweighted, lifting the curve above the line at the left, and large probabilities underweighted, dropping it below across the middle and right.</desc>
+              <line x1="64" y1="250" x2="414" y2="250" class="axis"/>
+              <polygon points="414,250 406,246 406,254" class="ink-fill"/>
+              <line x1="64" y1="250" x2="64" y2="40" class="axis"/>
+              <polygon points="64,40 60,48 68,48" class="ink-fill"/>
+              <text x="120" y="278" text-anchor="start" class="lbl-ax">actual probability p &#8594;</text>
+              <text x="26" y="156" text-anchor="middle" class="lbl-ax" transform="rotate(-90 26 156)">decision weight</text>
+              <line x1="64" y1="250" x2="404" y2="46" class="guide"/>
+              <text x="300" y="84" text-anchor="end" class="lbl-sm">π = p</text>
+              <polyline points="64,250 81,224 110,200 150,182 200,170 234,164 290,140 350,104 404,46" class="curve"/>
+              <text x="326" y="138" text-anchor="start" class="lbl-sm">π(p)</text>
+              <text x="110" y="238" text-anchor="start" class="lbl-sm">overweights the rare</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 7.</span> How people misweigh risk. The straight line is the rational rule: act on a probability as it truly is. The curve is how people actually behave, after Kahneman and Tversky. At the left it rises above the line — small probabilities are overweighted, the rare disaster and the long-shot jackpot looming larger than they are — and across the broad middle and right it falls below — moderate and high probabilities underweighted, the likely treated as less than certain. So the same person over-insures against the vivid small risk, buying extended warranties and low deductibles at ruinous loadings, and under-insures against the large remote one, leaving the flood and the earthquake uncovered. The demand for insurance is not the cool calculation of the second plate; it is bent, predictably, by the weighing of chance.</figcaption>
+        </figure>
+        <p>If the first doubt is whether the buyer reckons his risk truly, the second is deeper, and it concerns the insurer's reckoning rather than the buyer's. For the premium is not merely a price; it is a measurement, and what it measures is the person. To set a fair premium, the insurer must estimate each buyer's risk, and to estimate it must classify — sorting the applicant by age and sex and health, by the place he lives and the work he does and the record he has run up — and charging each according to the class he falls in. The premium, accurately set, is a verdict on who you are. And against the justice of that verdict stands a rival idea of fairness, old as the mutual societies themselves, which holds that some risks ought not to be priced to the person at all. Here the volume meets its hardest contest, and it is a contest economics can frame but cannot decide.</p>
+        <p>Set the two ideas of fairness side by side. The first is actuarial fairness: that each should pay a premium equal to his own true expected loss, no more and no less, so that no one subsidizes another and the price tells each the honest cost of his own risk. By this standard, to charge the same premium to a high-risk and a low-risk person is itself unjust — a tax on the careful to relieve the reckless, a hidden transfer the sixth plate's adverse selection would in any case unravel. The second is solidarity: that some misfortunes are not the person's doing or desert — the genes he was born with, the illness he did not choose, the neighborhood he could not leave — and that to price these to the individual is to punish him for his luck, abandoning the unfortunate to premiums they cannot pay precisely when they need cover most. By this standard, the just premium is the common one, the fortunate pooled with the unfortunate, the risk borne by the community rather than charged to its victims. The two are irreconcilable, and the choice between them is not a matter of fact but of value.</p>
+        <p>The contest is not abstract; it is fought, statute by statute, over what the insurer may be permitted to know and to price. May a health insurer charge the sick more than the well, or must it offer community rating, one price to all, as solidarity demands and adverse selection — checked only by a mandate — allows? May a life insurer demand a genetic test, pricing the buyer on a fate written before his birth, or is some knowledge too fatalistic to be priced? May premiums turn on sex, on race, on the postal code that stands proxy for race — the redlining by which whole neighborhoods were once denied — or are these classifications, however actuarially sound, forbidden as unjust? Each answer draws the line between the priceable and the unpriceable in a different place, and each is a verdict not on the buyer's risk but on the polity's values: how much it will let the cold accuracy of the premium sort its members, and how much it will insist that some risks be shared because they are no one's fault. The premium, here, is revealed as the most intimate of prices — a number presuming to say what a life is likely to cost — and the question of what it may justly contain is among the sharpest at the meeting of the market and the moral.</p>
+        <aside class="pull">The premium, accurately set, is a verdict on who you are. Against the actuarial fairness that prices each to his own risk stands the solidarity that refuses to price the misfortunes no one chose. The two are irreconcilable, and the choice between them is not a matter of fact but of value.</aside>
+        <aside class="edge"><span class="lead">the edge</span> Neither fairness is a villain, and that is what makes the contest intractable. Actuarial fairness is not mere coldness: a premium that tells the truth about risk steers the careless toward care, funds the cover of the many at the lowest honest price, and resists the unraveling that the sixth plate showed can destroy a pool whose prices lie. Solidarity is not mere softness: it recognizes that much of what the premium would price is luck rather than choice, and that a society which abandons its unlucky to unpayable premiums has purchased efficiency at the cost of its decency. The hard cases lie exactly where the two collide — where the risk being priced is partly chosen and partly fated, partly the smoker's habit and partly his genes, so that neither pure accuracy nor pure pooling can be just. And the contest is sharpened by the very advance of knowledge: the better the insurer can predict, the genetic test and the telematic monitor and the algorithm reading a thousand traces of a life, the finer it can sort, and the more of what was once shared misfortune becomes individual, priceable risk — so that the domain of solidarity shrinks as prediction grows, and a world of perfect actuarial knowledge would be a world in which the unlucky could insure against nothing, every risk already known and priced to its bearer. The premium can be made ever more accurate; whether it should be is a question the mortality table cannot answer.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE XII ===================== -->
+    <section class="plate reveal" id="plate-xii" data-label="Plate xii · The Assurance">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">xii</div>
+        <p class="plate-kicker">Plate the Twelfth &middot; The Prices &middot; № IV</p>
+        <h3 class="plate-title">The Assurance</h3>
+        <p class="plate-gloss">the price of risk transfer made whole — toward The Spread, The Rate, The Bias</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what, in the end, does the premium price?</q></div>
+      <div class="plate-body">
+        <p>The volume set out to explain a price stranger than the wage or the rent or the rate — the price of risk itself, the premium a person pays to be rid of a peril he cannot carry. Eleven plates have traced it, and the account may now be gathered. The premium is the price of transferring risk: what the risk-averse pay to turn an uncertain loss into a certain cost, and what the risk-bearing are paid to pool and to carry what others dread. It rests on two foundations, one on each side of the trade — the concavity of utility, which makes certainty worth a premium to those who fear the spread, and the law of large numbers, which makes a multitude of independent risks a near-certainty to those who gather them. From these the price takes its shape: a fair premium, the bare expected loss, and a loading laid upon it for costs, for capital, and for the residual risk the pool cannot shed. And beneath the mechanism lies the volume's deepest finding — that the premium is paid, in the end, only for the risk that cannot be diversified away. Idiosyncratic risk pools to nothing and earns nothing; systematic risk, which moves with the whole and survives all spreading, is the only risk the market troubles to price.</p>
+        <p>That single principle is the thread on which the whole table of this volume hangs, for it joins what looked like separate subjects into one. The insurer pooling its policies and the investor diversifying his portfolio perform the identical act, each cancelling independent risk against itself; the loading the policyholder pays his insurer and the equity premium the shareholder earns from the market are the identical payment, each the reward for bearing the undiversifiable remainder. Insurance and finance, the mutual society and the stock exchange, are revealed as two dialects of a single language, and the word that language is built to name is the price of risk. To know what a premium is, the volume has argued, is to know this much: that it is a verdict on a hidden contest — between the one who would shed a risk and the one who would bear it, between the risk that can be pooled and the risk that must be priced, and between the two ideas of fairness that quarrel over whether a risk should be priced to its bearer at all.</p>
+        <p>The achievement the volume records is real and deep, and it deserves to be named before its limits are. To have seen, with Bernoulli, that what people value is not wealth but its diminishing use, and so to have explained at a stroke why a sure thing is worth more than its average and why anyone insures; to have proved, with the law of large numbers, that risk crushing to one is tame to many, and so to have founded the whole apparatus of mutual security on which the modern world rests; to have shown, with Markowitz and Sharpe, that only undiversifiable risk is priced, and so to have unified the insurance of a cottage with the valuation of a corporation — these are among the genuine triumphs of economic thought, and they are not merely elegant but useful, underwriting the pensions, the mortgages, the ventures, and the protections without which a precarious life would be more precarious still. The economics of risk has made it possible for ordinary people to face an uncertain future without being destroyed by it, and that is no small thing.</p>
+        <p>Yet the volume has been equally a chronicle of where the apparatus strains and breaks. The two asymmetries — the hidden knowledge that drives the good risks from the pool, the hidden action that breeds the very loss insured against — gnaw at every real market in risk, and the deductibles and screens and mandates raised against them are imperfect and costly cures. Correlation, the failure of the one assumption on which pooling wholly depends, turns the insurable into the catastrophic, and leaves the gravest perils of the age — the flood, the earthquake, the pandemic, the warming climate — at or beyond the boundary of what private insurance can bear. The human mind misweighs the very probabilities the theory rests upon, over-insuring the trivial and leaving the grave uncovered. The price of market risk remains larger than any plausible reckoning of fear can explain. And the contest over fairness — whether the premium may justly sort persons by the luck of their birth and circumstance, or whether some risks must be shared because they are no one's fault — is a question economics can sharpen but cannot settle, for it turns not on what is efficient but on what is just. The premium is a powerful instrument and an honest one; it is not, and the volume has not pretended it to be, an instrument without limits or a price without a conscience.</p>
+        <p>With this volume the group of the prices nears its completion. The first four of The Prices are now drawn: the wage, the price of labor; the rent, the price of land and of all that is scarce; the rate, the price of time and of waiting; and now the premium, the price of risk and of the certainty that shedding it buys. Four of the five foundational prices stand, each a verdict on a different hidden contest, and each, on inspection, entangled with the others — for the rate is the floor from which the premium's market reward rises, the rent shares the premium's logic of scarcity, and the wage itself carries a premium for the risks a trade exposes its workers to. One price of the group remains unwritten, and it is the natural sequel to this one.</p>
+        <p>That price is the spread, the subject of the fifth volume and the last of The Prices — the margin the intermediary charges to stand between buyer and seller, to make a market by holding what neither yet wants. The spread is the premium's near kin, for what the market-maker is paid for is precisely risk: the risk of holding inventory that may move against him, and the risk of trading against someone who knows more, the very asymmetry this volume met in its sixth plate. To read The Premium and then The Spread is to complete the price of bearing risk, in the pool and in the market alike. Other debts this volume has incurred will be paid elsewhere in the table. To the third volume, on the rate, it is bound as a pair, the pure price of time and the price of risk together composing every return. To the twenty-fourth, on bias, it owes the misweighing of chance that bends its eleventh plate. To the twelfth, on asymmetry, it owes the two maladies that haunt its markets; to the twenty-third, on choice, the expected utility on which its second plate stands; and to the ninth, on the stock of capital, the diversification its eighth plate borrows. The premium does not stand alone; it is one price among the family of prices, and it has been read here as the price the world sets on the bearing of what cannot be foreseen.</p>
+        <p>What the premium buys, in the end, is assurance — the conversion of a dreaded possibility into a borne and bounded cost, the transformation of a ruin that might come into a payment that certainly does. It is the price of facing the future without being paralyzed by it: of building the ship knowing it may sink, of planting the crop knowing the hail may fall, of living the single irreplaceable life knowing its hazards, and doing these things anyway because the worst of the risk has been laid off onto a pool, a market, a state, or a contract that will make the loss whole. That is a profound service, and the premium is its honest price. But the assurance is never complete and never wholly fair. Some risks no pool can tame and no premium can honestly price; some are misjudged by the very minds that bear them; and the question of who shall pay for whose misfortune — of whether the price of a risk should fall on its bearer or be shared among all — is a question the premium poses but cannot answer, and that each society must answer for itself.</p>
+        <p>The premium is the price of risk transferred and the price of certainty obtained — resting on aversion and on pooling, paid only for what cannot be diversified away, and shadowed throughout by the contest between the one who sheds a risk and the one who bears it, between what can be pooled and what must be priced, and between two irreconcilable ideas of what it means for such a price to be fair. The argument remains open.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref">Volume IV &middot; The Premium</span>
+    </div>
+    <p class="colophon">Volume IV of <em>Numéraire, A Periodic Table of Economic Life</em> — <em>The Premium</em>, the fourth of twenty-six and the fourth of <em>The Prices</em> to be set in print. Its twelve plates and seven engravings trace the price of risk: the peril and the fair premium; risk aversion and the concave utility, the certainty equivalent and the risk premium; the law of large numbers, by which pooling turns a multitude of independent risks into a near-certainty; the fair premium and the loading, and the zone in which both parties gain; the deductible, and how much to insure; the two asymmetries — adverse selection, which drives the good risks from the pool, and moral hazard, which breeds the loss insured against; diversifiable and systematic risk, and the principle that only the undiversifiable is priced; beta and the security market line, the equity premium and its puzzle; the catastrophe, where correlation defeats pooling and the boundary of the insurable is reached; and the sorting, where the misweighing of chance meets the contest between actuarial fairness and solidarity. It hands on to <em>The Spread</em>, the last of <em>The Prices</em>, where the intermediary is paid to bear risk in the market as the insurer is paid to bear it in the pool; to <em>The Rate</em>, with which it composes every return; to <em>The Bias</em>, which bends its demand; and to <em>The Asymmetry</em>, whence its two maladies come. The figures stand after Knight, Bernoulli, von Neumann and Morgenstern, Arrow and Pratt, Mossin, Akerlof, Rothschild and Stiglitz, Pauly, Markowitz and Sharpe, Mehra and Prescott, and Kahneman and Tversky. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<script>
+(function(){
+  var root=document.documentElement; root.classList.add('js');
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var bar=document.getElementById('progress');
+  var topbar=document.getElementById('topbar');
+  var title=document.querySelector('.vol-title');
+  var label=document.getElementById('tb-plate');
+  function onScroll(){
+    var doc=document.documentElement;
+    var h=doc.scrollHeight-window.innerHeight;
+    var p=h>0?Math.min(1,Math.max(0,window.scrollY/h)):0;
+    if(bar) bar.style.transform='scaleX('+p.toFixed(4)+')';
+    if(topbar){
+      var threshold=(title?title.offsetHeight:420)*0.72;
+      if(window.scrollY>threshold) topbar.classList.add('show'); else topbar.classList.remove('show');
+    }
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+  if('IntersectionObserver' in window){
+    var rev=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); rev.unobserve(e.target); } });
+    },{rootMargin:'0px 0px -10% 0px',threshold:0.06});
+    document.querySelectorAll('.reveal').forEach(function(el){ rev.observe(el); });
+    if(label){
+      var cur=new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting){ var t=e.target.getAttribute('data-label'); if(t) label.textContent=t; } });
+      },{rootMargin:'-44% 0px -50% 0px',threshold:0});
+      document.querySelectorAll('.plate[data-label]').forEach(function(el){ cur.observe(el); });
+    }
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-rate.html">← The Rate</a><a rel="next" href="the-spread.html">The Spread →</a></nav>
+</body>
+</html>

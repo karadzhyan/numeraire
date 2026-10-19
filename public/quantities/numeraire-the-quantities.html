@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Numéraire — The Quantities — Group II</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+
+  /* ---- masthead ---- */
+  .masthead{padding:clamp(3rem,8vh,6rem) 0 clamp(2rem,5vh,3.4rem);text-align:center;}
+  .orn{display:flex;justify-content:center;margin:0 auto 1.9rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;}
+  .edition{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+  .kicker{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;
+    font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--faintest);
+    margin:clamp(1.6rem,4vh,2.6rem) 0 0;}
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.3rem,6.5vw,4.6rem);line-height:1.02;letter-spacing:-.025em;margin:.5rem 0 0;text-wrap:balance;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:43rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  /* ---- legend ---- */
+  .legend{display:flex;flex-wrap:wrap;justify-content:center;gap:1.4rem 2.2rem;align-items:center;
+    margin:clamp(1.8rem,4vh,2.6rem) auto 0;padding-top:1.8rem;border-top:1px solid var(--hair);max-width:50rem;}
+  .legend-item{display:flex;align-items:center;gap:.55rem;font-size:.82rem;color:var(--faint);}
+  .legend-swatch{width:20px;height:20px;border:1px solid var(--hair);border-radius:2px;flex:0 0 auto;}
+  .legend-swatch.lit{background:var(--ink);border-color:var(--ink);}
+  .legend-anatomy{font-size:.82rem;color:var(--faint);}
+  .legend-anatomy b{font-family:"Fraunces",serif;font-weight:500;color:var(--soft);}
+  .legend-anatomy em{font-style:italic;}
+
+  /* ---- the argument of the group ---- */
+  .argument{max-width:46rem;margin:clamp(2.2rem,5vh,3.2rem) auto 0;padding-top:clamp(2rem,4vh,2.6rem);
+    border-top:1px solid var(--hair);}
+  .arg-lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--faintest);display:block;margin:0 0 1.2rem;}
+  .argument p{font-size:clamp(1rem,1.25vw,1.1rem);line-height:1.74;color:var(--soft);margin:0 0 1.05rem;text-wrap:pretty;}
+  .argument p:last-child{margin-bottom:0;}
+  .argument em{font-style:italic;}
+  .argument .lede{text-indent:0;}
+  .argument .lede::first-letter{
+    font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    float:left;font-size:3.1rem;line-height:.82;padding:.06em .12em 0 0;color:var(--ink);}
+
+  /* ---- the table ---- */
+  main{padding:clamp(2.6rem,6vh,4.4rem) 0 0;}
+  .group{margin:0 0 clamp(2.4rem,5vh,3.6rem);}
+  .group-head{display:flex;align-items:baseline;gap:.9rem;margin:0 0 1.25rem;}
+  .group-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-size:.86rem;color:var(--faintest);letter-spacing:.04em;flex:0 0 auto;}
+  .group-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);flex:0 0 auto;}
+  .group-rule{flex:1;height:1px;background:var(--hair);position:relative;top:-2px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(176px,1fr));gap:13px;}
+
+  .el{appearance:none;-webkit-appearance:none;background:var(--paper);border:1px solid var(--hair);border-radius:2px;
+    padding:15px 15px 17px;text-align:left;cursor:pointer;position:relative;min-height:150px;
+    display:flex;flex-direction:column;color:inherit;font-family:inherit;
+    transition:border-color .22s ease,background .22s ease,transform .22s ease,box-shadow .22s ease;}
+  .el:hover{border-color:var(--faintest);transform:translateY(-2px);}
+  .el-num{position:absolute;top:11px;right:13px;font-family:"Fraunces",serif;font-size:.72rem;color:var(--faintest);letter-spacing:.03em;}
+  .el-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2.15rem;line-height:1;margin-top:.5rem;letter-spacing:-.012em;}
+  .el-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1rem;margin-top:.55rem;line-height:1.12;}
+  .el-gloss{font-size:.77rem;color:var(--faint);line-height:1.34;margin-top:.3rem;}
+  .el-plates{margin-top:auto;padding-top:.7rem;font-family:"Fraunces",serif;font-size:.68rem;letter-spacing:.05em;color:var(--faintest);}
+  .el.lit{background:var(--ink);border-color:var(--ink);}
+  .el.lit .el-sym,.el.lit .el-name{color:var(--paper);}
+  .el.lit .el-num{color:rgba(240,235,225,.55);}
+  .el.lit .el-gloss{color:rgba(240,235,225,.66);}
+  .el.sel{box-shadow:inset 0 0 0 1.5px var(--ink);border-color:var(--ink);}
+  .el.lit.sel{box-shadow:inset 0 0 0 1.5px var(--paper);}
+
+  /* ---- detail panel ---- */
+  .detail{margin:clamp(2.4rem,5vh,3.6rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);scroll-margin-top:1.4rem;}
+  .d-head{display:flex;gap:1.3rem;align-items:flex-start;}
+  .d-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 500;font-size:2.7rem;line-height:1;
+    color:var(--ink);flex:0 0 auto;border:1px solid var(--hair);border-radius:2px;
+    width:86px;height:86px;display:flex;align-items:center;justify-content:center;}
+  .d-sym.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .d-titles{min-width:0;}
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);}
+  .d-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.7rem,3.6vw,2.5rem);margin:.22rem 0 .35rem;line-height:1.04;letter-spacing:-.016em;}
+  .d-status{font-size:.84rem;color:var(--faint);font-style:italic;}
+  .d-status.print{color:var(--soft);font-style:normal;}
+  .d-status.print::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .d-desc{font-size:1.05rem;line-height:1.72;color:var(--ink);max-width:42rem;margin:1.3rem 0 0;text-wrap:pretty;}
+  .d-openq{margin:1.5rem 0 0;max-width:40rem;}
+  .d-openq .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.5rem;}
+  .d-openq q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);quotes:none;}
+
+  .d-plates{margin:2.2rem 0 0;}
+  .d-plates h3{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.76rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faint);margin:0 0 1.3rem;}
+  .plate-list{list-style:none;margin:0;padding:0;max-width:42rem;}
+  .plate-list li{display:grid;grid-template-columns:2.3rem 1fr;column-gap:1rem;align-items:baseline;
+    padding:.72rem 0;border-top:1px solid var(--hair);}
+  .plate-list li:first-child{border-top:none;}
+  .pl-num{font-family:"Fraunces",serif;font-size:.9rem;color:var(--faintest);text-align:right;}
+  .pl-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.04rem;color:var(--ink);line-height:1.15;}
+  .pl-gloss{grid-column:2;font-size:.84rem;color:var(--faint);font-style:italic;margin-top:.18rem;line-height:1.36;}
+  .pl-tag{display:inline-block;margin-left:.6rem;font-family:"Newsreader",serif;font-style:normal;
+    font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--paper);background:var(--ink);
+    border-radius:2px;padding:.12em .5em;vertical-align:.12em;}
+  .pl-bridge{grid-column:2;font-size:.78rem;color:var(--faintest);margin-top:.3rem;}
+  .pl-essaylink{color:inherit;text-decoration:none;border-bottom:1.5px solid var(--ink);padding-bottom:1px;transition:opacity .18s ease;}
+  .pl-essaylink:hover{opacity:.62;}
+  .pl-bridge b{font-family:"Fraunces",serif;font-weight:500;font-style:normal;color:var(--faint);}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:62ch;}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}.rise.d4{animation-delay:.42s}
+    .group{opacity:0;transform:translateY(14px);animation:rise .9s cubic-bezier(.2,.6,.2,1) both;animation-delay:.56s;}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;}
+    .el{min-height:138px;padding:12px 12px 14px;}
+    .el-sym{font-size:1.9rem;}
+    .el-name{font-size:.92rem;}
+    .el-gloss{font-size:.72rem;}
+    .el-plates{font-size:.64rem;}
+    .d-head{gap:1rem;}
+    .d-sym{width:64px;height:64px;font-size:2rem;}
+    .argument .lede::first-letter{font-size:2.6rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-quantities">The Quantities edition · contents</a><a href="numeraire-the-table.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="rise d1">
+      <span class="imprint">Numéraire</span>
+      <div class="edition">Group II of <a href="numeraire-the-table.html" style="color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px;text-decoration-color:var(--faintest)">the table of twenty-six</a></div>
+    </div>
+    <div class="kicker rise d2">The Second Group · Four Volumes</div>
+    <h1 class="rise d2">The Quantities</h1>
+    <p class="standfirst rise d3">The magnitudes a market is forever trying to count — the value of one more, the value beyond the price, the want a price is built to register, and the wealth that is held rather than earned. The question that orders the group is simple and uncomfortable: <em>what, exactly, is economics counting when it counts?</em></p>
+    <div class="legend rise d3">
+      <span class="legend-item"><span class="legend-swatch lit"></span>in print</span>
+      <span class="legend-item"><span class="legend-swatch"></span>in preparation</span>
+      <span class="legend-anatomy">Each tile is a <b>volume</b>; select one to open its <b>twelve plates</b>. None is yet in print — Volume I, <em>The Wage</em>, holds that distinction — but each is now set.</span>
+    </div>
+  </header>
+
+  <section class="argument rise d4" aria-label="The argument of the group">
+    <span class="arg-lead">The argument of the group</span>
+    <p class="lede">The first group weighed the prices and found each to be a verdict — on a contest, a power, a history — rather than a fact of nature. This group turns from the verdicts to the magnitudes they are verdicts about: the quantities a market is forever trying to count. There are four of them. The value of one more. The value an exchange leaves on the table. The want a price is built to register. And the wealth that is held rather than earned.</p>
+    <p>What orders the volumes is an awkwardness they share. Each of the four is foundational, and each is, in its own way, unmeasurable. The margin governs every price, yet may be a calculation no living chooser ever performs. The surplus is real, yet cannot be added across two people without smuggling in a common unit that does not exist. Utility is the thing the whole apparatus is built to track, and the one thing no instrument has ever read. And capital — the most solid-seeming quantity of all — turned out, under a decade of argument between two Cambridges, to be perhaps no single quantity at all.</p>
+    <p>So this is a science of measurement meeting the four things it cannot quite measure. The <em>numéraire</em> these volumes are after is not another figure to add to the accounts but an honest reckoning of how much of the counting is convention, inference, and faith — and exactly where each of the four stops being a measurement and starts being a decision.</p>
+  </section>
+
+  <main>
+    <section class="group">
+      <div class="group-head"><span class="group-num fr">Group II</span><span class="group-name">The Quantities</span><span class="group-rule"></span></div>
+      <div class="grid">
+        <button class="el lit" data-id="margin" aria-label="The Margin — the value of one more — in print"><span class="el-num">06</span><span class="el-sym">Mg</span><span class="el-name">The Margin</span><span class="el-gloss">the value of one more</span><span class="el-plates">XII of XII in print</span></button>
+        <button class="el lit" data-id="surplus" aria-label="The Surplus — the value beyond the price — in print"><span class="el-num">07</span><span class="el-sym">Su</span><span class="el-name">The Surplus</span><span class="el-gloss">the value beyond the price</span><span class="el-plates">VII of XII in print</span></button>
+        <button class="el" data-id="utility" aria-label="The Utility — the want price claims to track — twelve plates"><span class="el-num">08</span><span class="el-sym">Ut</span><span class="el-name">The Utility</span><span class="el-gloss">the want price claims to track</span><span class="el-plates">XII plates · in prep.</span></button>
+        <button class="el" data-id="stock" aria-label="The Stock — wealth held, not earned — twelve plates"><span class="el-num">09</span><span class="el-sym">Sk</span><span class="el-name">The Stock</span><span class="el-gloss">wealth held, not earned</span><span class="el-plates">XII plates · in prep.</span></button>
+      </div>
+    </section>
+  </main>
+
+  <section class="detail" id="detail" aria-live="polite"></section>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref">Group II · The Quantities</span>
+    </div>
+    <p class="colophon">The second of the table's six groups, here brought from sketch to structure. Four volumes — <em>The Margin</em>, <em>The Surplus</em>, <em>The Utility</em>, <em>The Stock</em> — each now set in twelve plates, and the first of them, <em>The Margin</em>, now stands complete in all twelve of its plates &mdash; the opening volume of this second family set down in whole, and the second, <em>The Surplus</em>, now begun in print, the first seven of its plates set down, the five volumes of the first, <em>The Prices</em>, standing complete before it. The unifying finding is deliberate and uncomfortable: the discipline's four most foundational quantities are precisely the four it cannot cleanly measure — the margin unobserved, the surplus incommensurable, the utility invisible, the capital non-aggregable. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+
+<script>
+const DATA = {
+  margin:{group:"The Quantities",gi:"II",status:"in print · № VI · 12 of 12 plates",
+    desc:"The hinge on which all modern economics turns: the discovery that what governs a price is never the total or the average but the value of one more — one more hour, one more loaf, one more ton. The marginal revolution, and the quiet completeness with which it rebuilt the subject.",
+    openq:"why does the last unit, and not the whole, set the price of everything?",
+    plates:[
+      {n:"i",title:"The Paradox",gloss:"value in use against value in exchange; Smith's water and diamonds, and the question classical economics could not answer",inprint:true,essay:"numeraire-plate-the-paradox.html"},
+      {n:"ii",title:"The Revolution",gloss:"the simultaneous discovery of 1871; Jevons in England, Menger in Vienna, Walras in Lausanne, none aware of the others",inprint:true,essay:"numeraire-plate-the-revolution.html"},
+      {n:"iii",title:"The Gradient",gloss:"diminishing marginal utility, and the first law of Gossen — written in 1854, read by almost no one until it was too late",inprint:true,essay:"numeraire-plate-the-gradient.html"},
+      {n:"iv",title:"The Equimarginal",gloss:"the second law of Gossen; the last dollar made equal across every use, and the rule that defines the optimum",inprint:true,essay:"numeraire-plate-the-equimarginal.html"},
+      {n:"v",title:"The Scissors",gloss:"Marshall, the two blades of supply and demand, and the margin at last written in the calculus",inprint:true,essay:"numeraire-plate-the-scissors.html"},
+      {n:"vi",title:"The Cost",gloss:"marginal against average; why the average is a trap, and the sunk cost a temptation to be refused",inprint:true,essay:"numeraire-plate-the-cost.html"},
+      {n:"vii",title:"The Product",gloss:"the marginal product of a factor; J. B. Clark, and the road that leads straight back to The Wage",bridge:"The Wage",inprint:true,essay:"numeraire-plate-the-product.html"},
+      {n:"viii",title:"The Substitution",gloss:"the indifference curve and the rate at which one want is traded for another along its slope",inprint:true,essay:"numeraire-plate-the-substitution.html"},
+      {n:"ix",title:"The Rule",gloss:"'think at the margin' — the whole of the economist's counsel compressed into three words",inprint:true,essay:"numeraire-plate-the-rule.html"},
+      {n:"x",title:"The Indivisible",gloss:"fixed costs, lumps, and the unit that will not be sliced; Sraffa's quarrel with the smooth curve",inprint:true,essay:"numeraire-plate-the-indivisible.html"},
+      {n:"xi",title:"The Fiction",gloss:"the marginalism controversy; Lester against Machlup, and whether anyone computes the margin or merely behaves, in Friedman's phrase, as if they did",inprint:true,essay:"numeraire-plate-the-fiction.html"},
+      {n:"xii",title:"The Threshold",gloss:"increasing returns, network effects, tipping points — and the quiet return of the whole the margin had taught us to forget",inprint:true,essay:"numeraire-plate-the-threshold.html"}
+    ]},
+  surplus:{group:"The Quantities",gi:"II",status:"in print · № VII · 7 of 12 plates",
+    desc:"The value an exchange creates beyond its price — the gap between what a thing is worth to you and what you actually paid. Where that surplus comes from, and the unending three-way contest, between buyer, seller, and state, over who walks away with it.",
+    openq:"an exchange creates value beyond its price — who walks away with it?",
+    plates:[
+      {n:"i",title:"The Gap",gloss:"Dupuit and the toll on his bridge, 1844; the first attempt to put a number on the value that lies beyond the price",inprint:true,essay:"numeraire-plate-the-gap.html"},
+      {n:"ii",title:"The Triangle",gloss:"Marshall's consumer surplus; the area under the demand curve and above the line you paid",inprint:true,essay:"numeraire-plate-the-triangle.html"},
+      {n:"iii",title:"The Seller's Side",gloss:"producer surplus, economic rent, and the quasi-rent earned by a factor that cannot yet move",inprint:true,essay:"numeraire-plate-the-sellers-side.html"},
+      {n:"iv",title:"The Pie",gloss:"the gains from trade entire; why a voluntary exchange, by definition, leaves both sides larger than it found them",inprint:true,essay:"numeraire-plate-the-pie.html"},
+      {n:"v",title:"The Division",gloss:"the bargain over the surplus; Edgeworth's box, the contract curve, and the split Nash gave a name to",inprint:true,essay:"numeraire-plate-the-division.html",bridge:"The Game"},
+      {n:"vi",title:"The Loss",gloss:"deadweight; the Harberger triangle — the surplus a tax or a monopoly does not transfer but simply destroys",inprint:true,essay:"numeraire-plate-the-loss.html",bridge:"The Tax"},
+      {n:"vii",title:"The Extraction",gloss:"price discrimination, and the perfectly discriminating seller who leaves the buyer with nothing at all",inprint:true,essay:"numeraire-plate-the-extraction.html",bridge:"The Power"},
+      {n:"viii",title:"The Common Measure",gloss:"whether one person's surplus can be added to another's — the interpersonal comparison the whole project is named against"},
+      {n:"ix",title:"The Compensation",gloss:"Kaldor and Hicks; the change called good because the winners could repay the losers, whether or not they ever do — and Scitovsky's reversal of it"},
+      {n:"x",title:"The Other Surplus",gloss:"Marx, surplus value, and the wholly different theory in which the surplus is simply the part of labor's product that labor was never paid",bridge:"The Wage"},
+      {n:"xi",title:"The Nations",gloss:"Ricardo's comparative advantage, the gains from trade between countries, and Stolper and Samuelson on who within a nation actually collects them"},
+      {n:"xii",title:"The Capture",gloss:"Tullock, Krueger, and rent-seeking; the surplus spent in the contest to capture the surplus, and so never enjoyed by anyone"}
+    ]},
+  utility:{group:"The Quantities",gi:"II",status:"in preparation · № VIII · twelve plates set",
+    desc:"The want that price is meant to measure — and the uncomfortable fact at the center of economics that it can never be observed, only inferred from the choices it supposedly drives. The ghost in the machine: the quantity everything is built to track and no instrument can read.",
+    openq:"if want cannot be seen, how can a price claim to measure it?",
+    plates:[
+      {n:"i",title:"The Calculus",gloss:"Bentham's felicific arithmetic; pleasure and pain set down as quantities to be summed, the dream at its most literal"},
+      {n:"ii",title:"The Util",gloss:"cardinal utility and the imagined unit of happiness — the measure economics wished into being before it could find it"},
+      {n:"iii",title:"The Hedonimeter",gloss:"Edgeworth's instrument, proposed in 1881, that would register pleasure continuously — and that was, of course, never built"},
+      {n:"iv",title:"The Ordinal Turn",gloss:"Pareto, and the discovery that you need only the ranking, never the magnitude; Hicks and Allen complete the retreat"},
+      {n:"v",title:"The Indifference",gloss:"the curve that orders wants without ever weighing them; how demand survived the loss of the util"},
+      {n:"vi",title:"The Revealed",gloss:"Samuelson, 1938; the behaviorist purge — forget the want behind the act and read it backward from the choice alone"},
+      {n:"vii",title:"The Axioms",gloss:"completeness, transitivity, continuity; the rational chooser defined by what is assumed of him, and Debreu's theorem that a function follows",bridge:"The Choice"},
+      {n:"viii",title:"The Gamble",gloss:"von Neumann and Morgenstern; utility recovers a cardinal meaning, but only under risk and only up to an arbitrary scale",bridge:"The Premium"},
+      {n:"ix",title:"The Paradoxes",gloss:"Allais and Ellsberg; the careful experiments in which the axioms, asked politely, are systematically and predictably disobeyed",bridge:"The Bias"},
+      {n:"x",title:"The Discount",gloss:"utility stretched across time; the impatience no one can justify, and the future self who is treated as a stranger",bridge:"The Rate"},
+      {n:"xi",title:"The Measure Returns",gloss:"happiness economics; the Easterlin paradox, Kahneman's experienced utility, and the cardinal ghost let back in through the laboratory door"},
+      {n:"xii",title:"The Capability",gloss:"Sen, and the deepest doubt of all — that utility was never the right thing to measure; the contented prisoner and the adapted want"}
+    ]},
+  stock:{group:"The Quantities",gi:"II",status:"in preparation · № IX · twelve plates set",
+    desc:"Wealth as a thing held rather than a thing earned, and the accounting — older than it looks, and constantly muddled — that separates a fortune from an income. Why the confusion of stock with flow distorts nearly every public argument about who has what.",
+    openq:"when does a fortune stop rewarding work and start being a position?",
+    plates:[
+      {n:"i",title:"The Distinction",gloss:"stock against flow; the bathtub, the standing level and the running tap, and the difference everything else depends upon"},
+      {n:"ii",title:"The Ledger",gloss:"the balance sheet against the income statement; Pacioli's double entry of 1494, older by far than the confusion it was meant to prevent"},
+      {n:"iii",title:"The Fund",gloss:"Fisher, 1906; capital defined as nothing but the present value of the income it will throw off — a stock that is only a flow looked at twice",bridge:"The Rate"},
+      {n:"iv",title:"The Quantity",gloss:"the Cambridge capital controversy; whether 'capital' is a magnitude at all, or only a sum that already assumes the answer — and Samuelson's concession"},
+      {n:"v",title:"The Reswitching",gloss:"the single technical result that broke the aggregate: a method cheapest at a high rate and a low one, but not in between, and the curve that doubled back"},
+      {n:"vi",title:"The Inventory",gloss:"working capital; the stock a firm must hold in hand merely to keep the flow of production from stopping",bridge:"The Firm"},
+      {n:"vii",title:"The Wealth",gloss:"net worth; the fortune as it stands at a single instant — assets less liabilities, a photograph rather than a film"},
+      {n:"viii",title:"The Inheritance",gloss:"the stock transmitted and not earned; the patrimonial society, the rentier, and the dead hand laid upon the living"},
+      {n:"ix",title:"The Ratio",gloss:"Piketty; the capital-to-income ratio, the inequality of r against g, and the arithmetic by which what is owned outpaces what is made",bridge:"The Share"},
+      {n:"x",title:"The Mismeasure",gloss:"a billion held set beside a billion earned; the unrealized gain, the wealth tax, and the public confusion of the two that distorts every argument",bridge:"The Tax"},
+      {n:"xi",title:"The Intangible",gloss:"human capital, knowledge, the brand; the growing share of a modern fortune that sits on no balance sheet and answers to no audit",bridge:"The Growth"},
+      {n:"xii",title:"The Sustainable",gloss:"natural capital, depletion, genuine saving; whether a nation's income is real, or merely the sound of its stock being quietly spent",bridge:"The Commons"}
+    ]}
+};
+
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+function render(id){
+  var tile=document.querySelector('.el[data-id="'+id+'"]');
+  var d=DATA[id]; if(!d||!tile) return;
+  var sym=tile.querySelector('.el-sym').textContent;
+  var name=tile.querySelector('.el-name').textContent;
+  var num=tile.querySelector('.el-num').textContent;
+  var lit=tile.classList.contains('lit');
+  var h='';
+  h+='<div class="d-head">';
+  h+='<div class="d-sym'+(lit?' lit':'')+'">'+esc(sym)+'</div>';
+  h+='<div class="d-titles">';
+  h+='<div class="d-family">'+esc(d.group)+' &middot; Group '+d.gi+' &middot; '+esc(num)+'</div>';
+  h+='<h2 class="d-name">'+esc(name)+'</h2>';
+  h+='<div class="d-status'+(d.print?' print':'')+'">'+esc(d.status)+'</div>';
+  h+='</div></div>';
+  h+='<p class="d-desc">'+esc(d.desc)+'</p>';
+  if(d.openq){
+    var lead=d.plates ? 'Its opening question' : 'The first plate would ask';
+    h+='<p class="d-openq"><span class="lead">'+lead+'</span><q>'+esc(d.openq)+'</q></p>';
+  }
+  if(d.plates){
+    var platesHead=d.print ? 'The twelve plates of this volume' : 'The twelve plates, as set';
+    h+='<div class="d-plates"><h3>'+platesHead+'</h3><ol class="plate-list">';
+    d.plates.forEach(function(p){
+      h+='<li'+(p.inprint?' class="inprint"':'')+'>';
+      h+='<span class="pl-num">'+p.n+'</span>';
+      h+='<span class="pl-title">'+(p.essay?'<a class="pl-essaylink" href="'+p.essay+'">'+esc(p.title)+'</a>':esc(p.title))+(p.inprint?'<span class="pl-tag">in print</span>':'')+'</span>';
+      h+='<span class="pl-gloss">'+esc(p.gloss)+'</span>';
+      if(p.bridge){h+='<span class="pl-bridge">a bridge to <b>'+esc(p.bridge)+'</b></span>';}
+      h+='</li>';
+    });
+    h+='</ol></div>';
+  }
+  document.getElementById('detail').innerHTML=h;
+  var prev=document.querySelector('.el.sel'); if(prev) prev.classList.remove('sel');
+  tile.classList.add('sel');
+}
+
+(function(){
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.el').forEach(function(b){
+    b.addEventListener('click',function(){
+      render(b.dataset.id);
+      document.getElementById('detail').scrollIntoView({behavior:reduce?'auto':'smooth',block:'nearest'});
+    });
+  });
+  var __h=(location.hash||'').replace(/^#/,'');
+  render(DATA[__h]?__h:'margin');
+  if(__h&&DATA[__h]){document.getElementById('detail').scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});}
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="numeraire-the-prices.html">← Numéraire</a><a rel="next" href="numeraire-the-failures.html">Numéraire →</a></nav>
+</body>
+</html>

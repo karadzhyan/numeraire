@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Efficiency — The Margin, Plate x · Numéraire</title>
+<meta name="description" content="the welfare theorems; in what exact sense an economy that reckons at the margin wastes nothing, and the demanding conditions under which the claim holds.">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- reading-progress hairline ---- */
+  .progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--ink);z-index:10000;}
+
+  /* ---- masthead ---- */
+  .masthead{padding:clamp(2.8rem,8vh,5.6rem) 0 clamp(1.6rem,4vh,2.6rem);text-align:center;}
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;}
+  .edition{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+  .edition b{font-family:"Fraunces",serif;font-weight:500;font-style:normal;color:var(--soft);letter-spacing:.04em;}
+
+  .symbox{width:84px;height:84px;border:1px solid var(--ink);border-radius:2px;background:var(--ink);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;margin:clamp(1.4rem,3.4vh,2.2rem) auto 0;}
+  .symbox .sb-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2rem;line-height:1;color:var(--paper);letter-spacing:-.01em;}
+  .symbox .sb-num{font-family:"Fraunces",serif;font-size:.66rem;color:rgba(240,235,225,.58);margin-top:.28rem;letter-spacing:.04em;}
+
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-top:1.15rem;}
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.5rem,7vw,5rem);line-height:1.0;letter-spacing:-.028em;margin:.55rem 0 0;text-wrap:balance;}
+  .subtitle{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.05rem,1.7vw,1.32rem);color:var(--faint);margin:.5rem 0 0;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.64;color:var(--soft);
+    max-width:43rem;margin:clamp(1.3rem,3vh,1.9rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+  .status{font-size:.84rem;color:var(--soft);margin:clamp(1.2rem,2.6vh,1.7rem) auto 0;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .backrow{margin-top:clamp(1.3rem,3vh,1.9rem);padding-top:1.5rem;border-top:1px solid var(--hair);max-width:50rem;margin-left:auto;margin-right:auto;}
+  .backlink{display:inline-block;font-size:.82rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .backlink:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- generic block furniture ---- */
+  main{padding:0;}
+  .eyebrow{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.2rem;}
+
+  .block-argument{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .argument{max-width:40rem;margin:0 auto;}
+  .argument p{font-size:1.08rem;line-height:1.74;color:var(--ink);margin:0 0 1.2rem;text-wrap:pretty;}
+  .argument p:last-child{margin-bottom:0;}
+  .argument .closer{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 400;font-style:italic;color:var(--soft);font-size:1.06rem;}
+
+  /* ---- table of plates ---- */
+  .block-toc{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .toc ol{list-style:none;margin:0;padding:0;max-width:44rem;}
+  .toc li{display:grid;grid-template-columns:2.5rem 1fr;column-gap:1rem;align-items:baseline;
+    padding:.85rem 0;border-top:1px solid var(--hair);}
+  .toc li:first-child{border-top:none;}
+  .t-num{font-family:"Fraunces",serif;font-size:.92rem;color:var(--faintest);text-align:right;}
+  .t-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.08rem;color:var(--ink);line-height:1.15;text-decoration:none;}
+  a.t-title{border-bottom:1px solid var(--num);padding-bottom:1px;}
+  a.t-title:hover{border-bottom-color:var(--ink);}
+  .t-gloss{grid-column:2;font-size:.85rem;color:var(--faint);font-style:italic;margin-top:.22rem;line-height:1.4;}
+  .t-q{grid-column:2;font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:.95rem;color:var(--soft);margin-top:.42rem;line-height:1.36;}
+  .t-q .lead{font-family:"Fraunces",serif;font-style:normal;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-right:.5rem;}
+  .t-tag{display:inline-block;margin-left:.6rem;font-family:"Newsreader",serif;font-size:.64rem;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--paper);background:var(--ink);border-radius:2px;padding:.12em .5em;vertical-align:.14em;}
+  .t-read{grid-column:2;margin-top:.42rem;}
+  .t-read a{font-size:.8rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .t-read a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- the plates (essays) ---- */
+  .plates-open{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.8rem,6vh,4rem);}
+  .plates-open .eyebrow{text-align:center;}
+  .plate{max-width:54rem;margin:clamp(2.8rem,6.5vh,4.4rem) auto 0;padding-top:clamp(2.2rem,4.6vh,3rem);
+    border-top:1px solid var(--hair);position:relative;scroll-margin-top:1.4rem;}
+  .plate:first-of-type{border-top:none;margin-top:clamp(1.6rem,3.5vh,2.4rem);padding-top:0;}
+  .plate-head{margin:0 0 1.7rem;}
+  .plate-kicker{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .plate-kicker .pk-tag{margin-left:.6rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .plate-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.8rem,4.2vw,2.7rem);line-height:1.03;letter-spacing:-.02em;margin:.32rem 0 .42rem;}
+  .plate-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.02rem;color:var(--faint);max-width:36rem;line-height:1.45;}
+
+  .epigraph{max-width:34rem;margin:1.4rem 0 1.9rem;padding-left:1.1rem;border-left:1px solid var(--num);}
+  .epigraph p{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:1.04rem;line-height:1.42;color:var(--soft);margin:0;}
+  .epigraph cite{display:block;font-style:normal;font-family:"Newsreader",serif;font-size:.78rem;
+    letter-spacing:.03em;color:var(--faintest);margin-top:.55rem;}
+
+  .plate-body{max-width:37rem;}
+  .plate-body p{font-size:1.05rem;line-height:1.75;color:var(--ink);margin:0 0 1.18rem;text-wrap:pretty;}
+  .plate-body p:last-child{margin-bottom:0;}
+  .plate-body em{font-style:italic;}
+  .plate-body .lead-para::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 500;
+    float:left;font-size:3.5rem;line-height:.78;padding:.08em .14em 0 0;color:var(--ink);}
+  .plate-body h4{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);margin:1.9rem 0 .9rem;}
+
+  .break{display:flex;justify-content:center;margin:1.9rem 0;}
+  .break span{font-family:"Fraunces",serif;font-size:1.05rem;letter-spacing:.4em;color:var(--faintest);padding-left:.4em;}
+
+  /* sidenotes — inline by default, true margin notes on wide screens */
+  .sn-ref{font-family:"Fraunces",serif;font-size:.64rem;vertical-align:super;line-height:0;color:var(--soft);margin-left:.06em;}
+  .sidenote{font-family:"Newsreader",serif;font-size:.82rem;line-height:1.52;color:var(--faint);
+    border-left:2px solid var(--hair);padding-left:.9rem;margin:.7rem 0 1.05rem;}
+  .sidenote .sn-num{font-family:"Fraunces",serif;color:var(--faintest);font-size:.7rem;margin-right:.38rem;}
+  .sidenote em{font-style:italic;}
+  @media (min-width:1040px){
+    .sidenote{float:right;clear:right;width:14.5rem;margin:.25rem -17.5rem 1.15rem 0;
+      border-left:none;border-top:1px solid var(--hair);padding:.42rem 0 0;}
+  }
+
+  /* ---- coda ---- */
+  .coda{max-width:40rem;margin:clamp(2.8rem,6vh,4rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);}
+  .coda p{font-size:1.06rem;line-height:1.74;color:var(--ink);margin:0 0 1.15rem;text-wrap:pretty;}
+  .coda p:last-child{margin-bottom:0;}
+  .coda .q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .f-ref a{text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .f-ref a:hover{border-bottom-color:var(--soft);}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .progress{transition:width .08s linear;}
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}.rise.d4{animation-delay:.4s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    h1{font-size:clamp(2.2rem,11vw,3rem);}
+    .symbox{width:72px;height:72px;}
+    .symbox .sb-sym{font-size:1.7rem;}
+    .plate-body .lead-para::first-letter{font-size:3rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+
+  /* ---- standalone plate (leaf) ---- */
+  .leaf-head{max-width:54rem;margin:0 auto;padding:clamp(2.2rem,6.5vh,4.4rem) 0 0;text-align:center;}
+  .leaf-loc{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.08em;color:var(--faintest);margin-bottom:1.7rem;}
+  .leaf-loc a{text-decoration:none;color:var(--faint);border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .leaf-loc a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+  .leaf-loc .sep{margin:0 .5rem;color:var(--num);}
+  .leaf-kicker{font-family:"Fraunces",serif;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .leaf-kicker .pk-tag{margin-left:.55rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .leaf-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.2rem,5.6vw,3.7rem);line-height:1.02;letter-spacing:-.024em;margin:.42rem 0 0;text-wrap:balance;}
+  .leaf-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.06rem;color:var(--faint);
+    max-width:34rem;margin:.72rem auto 0;line-height:1.5;text-wrap:pretty;}
+  .epigraph.leaf-epigraph{margin:1.95rem auto 1.4rem;text-align:left;}
+  .leaf-body-wrap{max-width:54rem;margin:clamp(1.8rem,4vh,2.8rem) auto 0;}
+
+  .leaf-nav{max-width:54rem;margin:clamp(3rem,7vh,5.2rem) auto 0;padding-top:clamp(1.8rem,4vh,2.6rem);
+    border-top:1px solid var(--hair);display:grid;grid-template-columns:1fr auto 1fr;gap:1.3rem;align-items:start;}
+  .ln-cell{text-decoration:none;display:block;}
+  .ln-cell .lab{display:block;font-family:"Fraunces",serif;font-size:.64rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--faintest);margin-bottom:.36rem;}
+  .ln-cell .ttl{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1rem;
+    color:var(--soft);line-height:1.22;}
+  a.ln-cell:hover .ttl{color:var(--ink);}
+  .ln-prev{text-align:left;} .ln-home{text-align:center;} .ln-next{text-align:right;}
+
+  @media (max-width:600px){
+    .leaf-nav{grid-template-columns:1fr;gap:1.4rem;}
+    .ln-prev,.ln-home,.ln-next{text-align:center;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#ne-contents">Complete contents</a><a href="../editions.html#volume-margin">The Margin · both editions</a><a href="../volumes/the-margin.html">Collected volume</a></div></nav>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="frame">
+
+  <header class="leaf-head">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="leaf-loc rise d1" aria-label="Location in the series"><a href="numeraire-atlas-updated.html">Numéraire</a><span class="sep">·</span><a href="numeraire-vi-the-margin.html">Volume VI · The Margin</a></nav>
+    <div class="leaf-kicker rise d2">Plate x <span class="pk-tag">in print</span></div>
+    <h1 class="leaf-title rise d2">The Efficiency</h1>
+    <div class="leaf-gloss rise d3">the welfare theorems; in what exact sense an economy that reckons at the margin wastes nothing, and the demanding conditions under which the claim holds.</div>
+    <div class="epigraph leaf-epigraph rise d3">
+      <p>An efficient allocation leaves its distribution to be judged.</p>
+      <cite>— the argument of this plate</cite>
+    </div>
+  </header>
+
+  <main class="leaf-body-wrap">
+    <article class="plate">
+      <div class="plate-body">
+<p class="lead-para">The margin tells a chooser where to stop. The welfare theorems ask what follows when many choosers stop together, each taking the same prices as given and each acting within the means available. Can a system assembled from these separate reckonings leave no attainable improvement unused? The claim is stronger than the observation that one buyer and one seller can gain by trading, and narrower than the promise that their society has become as good as it could be. Its meaning depends on what counts as an improvement, which alternatives are feasible, and whose position may be worsened in reaching them. The result joins the volume's two great themes: the power of a common price system to coordinate choices, and the need to read a mathematical conclusion with its assumptions still attached. An economy may pass the theorem's exact test while leaving the question of its justice entirely unsettled.</p>
+
+<p>The test is Pareto efficiency: no feasible alternative can make someone better off while leaving everyone else at least as well off. It asks whether an improvement is available without a loser. Imagine two people, ten loaves, no way to produce another loaf, and preferences in which each always wants more bread and cares only about his own share. Dividing the loaves nine to one is efficient by this test, as is dividing them five to five. Moving from the first division to the second helps one person and hurts the other; neither division leaves bread unallocated. The example is deliberately spare, but its lesson survives richer economies. Efficiency excludes certain missed improvements; it does not rank all the remaining arrangements. A society still needs reasons for choosing among them, including reasons about need, entitlement and the distribution of advantage. Arrow states this limitation at the outset of his account of general equilibrium: great wealth and severe poverty can coexist in a Pareto-efficient allocation. Calling an allocation efficient leaves the initial description of how people live fully in view.<sup class="sn-ref">1</sup></p>
+<div class="sidenote"><span class="sn-num">1.</span> Kenneth J. Arrow, <a href="https://www.nobelprize.org/uploads/2018/06/arrow-lecture.pdf"><em>General Economic Equilibrium: Purpose, Analytic Techniques, Collective Choice</em></a>, Prize Lecture (12 December 1972), §1, p. 111, and §8, pp. 128–130. The ten-loaf example assumes strictly increasing preferences for one's own bread, a fixed total, no external effects and no alternative good or productive activity. Those assumptions make both divisions Pareto efficient; the theorem supplies no distributive ranking between them.</div>
+
+<div class="break"><span>⁂</span></div>
+
+<p>The first welfare theorem connects this test to a competitive equilibrium. Consumers choose their preferred affordable bundles, firms choose profit-maximizing feasible production, and markets clear at prices each participant treats as given. Under the theorem's other conditions, including local nonsatiation of preferences, the resulting allocation is Pareto efficient. Local nonsatiation means that however close one looks to a bundle, some preferred bundle remains; it need not mean wanting more of every possible good. The price system must also cover the relevant goods and consequences, rather than silently omit an injury imposed on someone outside the transaction. The logic uses prices as a common reckoning. An alternative that improves the consumers' positions would require, in aggregate, more purchasing power than the equilibrium makes available, while alternative feasible production cannot generate more profit at the prices the firms have already optimized against. Feasibility and those individual choices cannot all be maintained along with the proposed improvement. The conclusion concerns an equilibrium satisfying these conditions. It does not establish that actual trading always reaches one, or that every observed market outcome has passed the test.<sup class="sn-ref">2</sup></p>
+<div class="sidenote"><span class="sn-num">2.</span> Arrow, §§2–3, pp. 111–118, and §5, pp. 120–123, develops the competitive framework and its welfare interpretation, including corner choices. The statement here uses the usual local-nonsatiation condition for the first theorem. Section 7, pp. 126–128, explains how contingent commodities extend the framework to uncertainty and how asymmetric information obstructs the contracts it calls for. The price argument is an explanation of the theorem's logic, not a claim that its assumptions have been verified for a particular economy.</div>
+
+<p>The theorem reaches beyond the familiar picture of two smooth curves meeting. At an interior, differentiable optimum, the consumer's willingness to exchange one good for another is aligned with the price ratio, and the producer faces the same prices when comparing alternative uses of resources. These marginal conditions show how separate decisions can fit together. Yet a person can optimally buy none of a good, a technology can have a kink, and an equality of derivatives can identify a minimum rather than a maximum. The full welfare claim therefore requires more than finding a set of equal slopes. Arrow's analysis uses global choices and can accommodate corners; the first theorem itself does not require convex preferences or technologies. Nor does its conclusion supply a general measure of aggregate happiness in money. Summing willingness to pay in a single-market diagram requires its own assumptions and gives each dollar the same weight regardless of its owner. Pareto efficiency instead compares each person's own ranking of feasible bundles. The two forms of analysis can illuminate one another, while answering different questions about what an improvement means.<sup class="sn-ref">3</sup></p>
+<div class="sidenote"><span class="sn-num">3.</span> Arrow, pp. 112–116, distinguishes ordinal preferences, marginal conditions and social welfare judgments; §5, especially p. 123, expressly states that the first theorem does not require convexity. The distinction from monetary surplus matters for the next volume's <a href="numeraire-vii-i-the-triangle.html"><em>Triangle</em></a>: a money measure of gains and a Pareto comparison are not interchangeable without additional conditions.</div>
+
+<p>The second welfare theorem asks whether an efficient allocation can be supported by a competitive price system once the starting distribution is suitably arranged. With convex preferences and production possibilities, together with the relevant regularity conditions, supporting prices can decentralize the desired allocation after appropriate redistribution of wealth. Convexity does real work here. Roughly, it permits intermediate combinations without creating holes or scale advantages that a common supporting price cannot reconcile. The result opens a possibility that the first theorem leaves untouched: many different efficient distributions can be compatible with market coordination. The distribution produced from one set of endowments does not acquire a unique warrant merely because it arose through exchange. But the redistribution in this argument must change purchasing power without introducing an additional price wedge into the choices the theorem uses. A lump-sum transfer fixes what a person gives or receives independently of the actions being chosen. A payment that rises with every extra hour worked, or a tax that rises with every extra unit earned, changes the marginal comparison as well as the person's means.<sup class="sn-ref">4</sup></p>
+<div class="sidenote"><span class="sn-num">4.</span> Arrow, §5, pp. 120–123, and §8, p. 128, on supporting prices, convexity and the initial distribution. James A. Mirrlees, <a href="https://www.nobelprize.org/uploads/2018/06/mirrlees-lecture.pdf"><em>Information and Incentives: The Economics of Carrots and Sticks</em></a>, Prize Lecture (9 December 1996), “The Invisible Hand” and “Taxation,” pp. 16–19, explains the redistribution and information problem. The second theorem has stronger assumptions than the first; it is not an assertion that every efficient allocation in every economy admits such decentralization.</div>
+
+<p>The difficulty is specifying and carrying out the desired transfers with information that the institution can actually obtain. A person's earning capacity, preferences and effort are different things, even when the same observed income reflects all three. Mirrlees makes this informational problem part of the design of redistribution: a rule must reckon with what people know privately and how they can respond to what the rule asks or rewards. This does not mean that every lump-sum payment is impossible. A uniform grant needs much less individual information than a transfer tailored to each person's unobserved ability; Mirrlees explicitly allows the former in a model that excludes the ideal individualized transfers. The question becomes which feasible policies improve the chosen social objective once their incentive and resource effects are included. Efficiency and distribution remain analytically distinguishable, but an actual instrument can affect both. The welfare theorems identify a benchmark and a possible separation under stated conditions. They do not supply a costless administrative procedure for achieving any distribution society might prefer.<sup class="sn-ref">5</sup></p>
+<div class="sidenote"><span class="sn-num">5.</span> Mirrlees, pp. 18–19, defines lump-sum transfers by their independence from behaviour, distinguishes unavailable individualized information from a feasible uniform subsidy, and frames policy around observable actions and incentive compatibility. No current tax system or particular reform is evaluated here. The qualification is about implementation, rather than a claim that redistribution must always reduce welfare.</div>
+
+<p>An economy that reckons at the margin can therefore be efficient in a precise and substantial sense: under the competitive framework, it leaves no feasible improvement that benefits someone without harming anyone else. The force of that result survives the refusal to make it say more. It neither chooses the initial ownership of resources nor supplies a moral scale on which every efficient distribution can be ranked; it neither guarantees the markets its proof requires nor makes the obstacles to redistribution disappear. Its achievement is to show how decentralized decisions can be coordinated, and to locate some of the conditions under which that coordination warrants an efficiency claim. The intellectual history is itself revealing. The marginalists did not publish these modern welfare theorems in the eighteen-seventies; their insights were developed, reformulated and proved over generations. The next plate, <a href="numeraire-vi-xi-the-revolution.html">The Revolution</a>, returns to that earlier convergence. Three men found related ways of asking about the last unit. What followed depended on how those beginnings were read, joined and changed.</p>
+      </div>
+    </article>
+  </main>
+
+  <nav class="leaf-nav" aria-label="Plate navigation">
+    <a class="ln-cell ln-prev" href="numeraire-vi-ix-the-calculus.html"><span class="lab">← Previous plate</span><span class="ttl">Plate ix · The Calculus</span></a>
+    <a class="ln-cell ln-home" href="numeraire-vi-the-margin.html"><span class="lab">The volume</span><span class="ttl">The Margin · contents</span></a>
+    <a class="ln-cell ln-next" href="numeraire-vi-xi-the-revolution.html"><span class="lab">Next plate →</span><span class="ttl">Plate xi · The Revolution</span></a>
+  </nav>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref"><a href="numeraire-vi-the-margin.html">The Margin</a> · <a href="numeraire-atlas-updated.html">the table</a></span>
+    </div>
+    <p class="colophon">Plate x of <em>The Margin</em>, Volume the Sixth of <em>Numéraire</em> — a periodic table of economic life. Adapted and developed for the Utility edition from <a href="../volumes/the-margin.html#plate-x"><em>The Efficient</em></a> and <a href="../volumes/the-surplus.html#plate-xi"><em>The Theorem</em></a> in the Collected edition. The earlier texts remain available. This leaf may be read on its own or as part of the volume. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<script>
+(function(){
+  var bar=document.getElementById('progress');
+  function onScroll(){
+    var h=document.documentElement;
+    var max=(h.scrollHeight-h.clientHeight);
+    var p=max>0?(h.scrollTop||document.body.scrollTop)/max:0;
+    bar.style.width=(p*100).toFixed(2)+'%';
+  }
+  document.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="numeraire-vi-ix-the-calculus.html">← The Calculus</a><a rel="next" href="numeraire-vi-xi-the-revolution.html">The Revolution →</a></nav>
+</body>
+</html>

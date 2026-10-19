@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Choice — Numéraire, Volume XXIII</title>
+<meta name="description" content="The Choice — Volume XXIII of Numéraire, A Periodic Table of Economic Life. The rational-choice model — preference, utility, maximization — that underlies the whole of economics: its axioms and generative power, choice under uncertainty and risk aversion, and an honest accounting of the seams where the model strains against how people actually decide: bounded rationality, framing, present bias, manufactured wants, and the tautology that lurks when the best is defined as whatever is chosen.">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem; --measure:40rem;
+    --wash:rgba(28,26,22,.066); --wash2:rgba(28,26,22,.12);
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.62;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  .measure{max-width:var(--measure);margin-left:auto;margin-right:auto;}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- ornaments ---- */
+  .orn{display:flex;justify-content:center;margin:0 auto;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .divider{display:flex;align-items:center;gap:1.1rem;max-width:30rem;margin:clamp(3rem,7vh,5rem) auto;color:var(--num);}
+  .divider .ln{flex:1;height:1px;background:var(--hair);}
+  .divider svg{display:block;width:12px;height:12px;overflow:visible;flex:0 0 auto;}
+  .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* ---- progress + running head ---- */
+  #progress{position:fixed;top:0;left:0;height:2px;width:100%;transform:scaleX(0);transform-origin:0 50%;background:var(--soft);opacity:.45;z-index:10000;}
+  #topbar{position:fixed;top:0;left:0;right:0;z-index:9998;transform:translateY(-100%);transition:transform .5s cubic-bezier(.2,.6,.2,1);
+    background:rgba(240,235,225,.86);-webkit-backdrop-filter:saturate(1.1) blur(8px);backdrop-filter:saturate(1.1) blur(8px);
+    border-bottom:1px solid var(--hair);}
+  #topbar.show{transform:translateY(0);}
+  .tb-in{max-width:var(--frame);margin:0 auto;padding:.62rem clamp(1.4rem,4vw,3.4rem);display:flex;justify-content:space-between;align-items:baseline;gap:1.2rem;}
+  .tb-l{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:.86rem;letter-spacing:.01em;}
+  .tb-l span{color:var(--faintest);font-weight:400;}
+  .tb-r{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);text-align:right;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+
+  /* ---- title page ---- */
+  .vol-title{padding:clamp(3.4rem,11vh,8rem) 0 clamp(1.6rem,5vh,3rem);text-align:center;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.16rem;letter-spacing:.02em;}
+  .vol-no{font-size:.84rem;color:var(--faint);letter-spacing:.16em;text-transform:uppercase;margin-top:.55rem;}
+  h1.vol-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 380;font-weight:380;
+    font-size:clamp(2.9rem,9vw,6rem);line-height:.98;letter-spacing:-.028em;margin:clamp(1.7rem,4.5vh,2.8rem) 0 0;text-wrap:balance;}
+  .vol-sym{width:78px;height:78px;margin:clamp(1.6rem,4vh,2.4rem) auto 0;border:1px solid var(--hair);border-radius:2px;
+    display:flex;align-items:center;justify-content:center;background:var(--ink);}
+  .vol-sym span{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2.3rem;line-height:1;color:var(--paper);letter-spacing:-.01em;}
+  .vol-coords{font-family:"Fraunces",serif;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);margin-top:1.1rem;}
+  .vol-gloss{font-style:italic;color:var(--soft);font-size:1.12rem;margin:.5rem 0 0;}
+  .vol-epigraph{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 400;font-style:italic;
+    font-size:clamp(1.14rem,1.7vw,1.34rem);line-height:1.42;color:var(--soft);max-width:33rem;margin:clamp(1.8rem,4vh,2.6rem) auto 0;text-wrap:pretty;}
+  .vol-epigraph .lead{display:block;font-style:normal;font-variation-settings:"opsz" 24,"wght" 400;
+    font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.7rem;}
+  .vol-status{display:inline-flex;align-items:center;gap:.5rem;margin:clamp(1.8rem,4vh,2.4rem) auto 0;font-size:.84rem;color:var(--soft);}
+  .vol-status::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ink);}
+
+  /* ---- the argument (preface) ---- */
+  .part-head{text-align:center;margin:0 0 clamp(1.6rem,3.5vh,2.3rem);}
+  .part-kicker{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faintest);}
+  .part-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-weight:400;
+    font-size:clamp(1.5rem,3.4vw,2.1rem);letter-spacing:-.012em;margin:.4rem 0 0;}
+  .argument p{font-size:1.05rem;line-height:1.74;margin:0 0 1.15rem;text-wrap:pretty;}
+  .argument p.lede::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 420;
+    float:left;font-size:3.5em;line-height:.78;padding:.05em .1em 0 0;color:var(--ink);}
+  .argument em,.plate-body em,.coda em{font-style:italic;}
+
+  /* ---- contents ---- */
+  .toc{list-style:none;margin:0 auto;padding:0;max-width:43rem;}
+  .toc li{border-top:1px solid var(--hair);}
+  .toc li:last-child{border-bottom:1px solid var(--hair);}
+  .toc a{display:grid;grid-template-columns:2.6rem 1fr;column-gap:1.1rem;align-items:baseline;
+    padding:.82rem .3rem;text-decoration:none;transition:background .2s ease;}
+  .toc a:hover{background:rgba(28,26,22,.035);}
+  .toc-n{font-family:"Fraunces",serif;font-size:.92rem;color:var(--faintest);text-align:right;}
+  .toc-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.06rem;color:var(--ink);line-height:1.16;}
+  .toc-g{grid-column:2;font-size:.85rem;font-style:italic;color:var(--faint);margin-top:.16rem;line-height:1.38;}
+
+  /* ---- plates ---- */
+  .plate{margin:clamp(3.2rem,8vh,6rem) 0 0;padding-top:clamp(2.4rem,5.5vh,3.4rem);border-top:1px solid var(--hair);scroll-margin-top:4rem;}
+  .plate-open{max-width:var(--measure);margin-inline:auto;}
+  .plate-no{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 360;font-size:clamp(2.6rem,7vw,4.1rem);
+    line-height:.9;color:var(--num);letter-spacing:.02em;}
+  .plate-kicker{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faintest);margin:.9rem 0 .2rem;}
+  .plate-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.8rem,4.4vw,2.7rem);line-height:1.04;letter-spacing:-.018em;margin:0;text-wrap:balance;}
+  .plate-gloss{font-style:italic;color:var(--soft);font-size:1.02rem;margin:.55rem 0 0;line-height:1.4;}
+
+  .ask{max-width:var(--measure);margin:clamp(1.5rem,3.5vh,2.2rem) auto clamp(1.8rem,4vh,2.4rem);}
+  .ask .lead{display:block;font-family:"Fraunces",serif;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.55rem;}
+  .ask q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:clamp(1.18rem,1.8vw,1.38rem);line-height:1.36;color:var(--soft);quotes:none;}
+
+  .plate-body{max-width:var(--measure);margin-inline:auto;}
+  .plate-body p{margin:0 0 1.18rem;text-wrap:pretty;}
+  .plate-body > p:first-of-type::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 430;
+    float:left;font-size:3.5em;line-height:.76;padding:.04em .12em 0 0;color:var(--ink);}
+  .plate-body h4{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.76rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faint);margin:2rem 0 .9rem;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 380;font-style:italic;
+    font-size:clamp(1.4rem,2.3vw,1.7rem);line-height:1.32;color:var(--soft);text-align:center;
+    max-width:33rem;margin:clamp(2rem,4.5vh,2.8rem) auto;text-wrap:balance;}
+
+  .edge{max-width:var(--measure);margin:1.7rem auto;padding:.1rem 0 .1rem 1.15rem;border-left:1px solid var(--hair);
+    color:var(--faint);font-size:.92rem;line-height:1.62;}
+  .edge .lead{display:block;font-family:"Fraunces",serif;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.4rem;}
+  .edge em{font-style:italic;color:var(--soft);}
+
+  /* ---- figures (engravings) ---- */
+  .fig{max-width:var(--measure);margin:clamp(2.1rem,4.5vh,2.9rem) auto;}
+  .fig-frame{border:1px solid var(--hair);border-radius:2px;padding:clamp(1rem,2.4vw,1.7rem) clamp(1rem,2.4vw,1.7rem) clamp(.8rem,2vw,1.3rem);background:rgba(255,253,247,.4);}
+  .fig svg{display:block;width:100%;height:auto;}
+  figcaption{margin:.95rem auto 0;max-width:38rem;font-size:.85rem;line-height:1.5;color:var(--faint);text-wrap:pretty;}
+  figcaption .fig-n{font-family:"Fraunces",serif;font-weight:500;letter-spacing:.04em;color:var(--soft);}
+  figcaption em{font-style:italic;}
+  .ax{stroke:var(--soft);stroke-width:1.1;fill:none;}
+  .tick{stroke:var(--soft);stroke-width:1;}
+  .curve{stroke:var(--ink);stroke-width:1.5;fill:none;stroke-linecap:round;}
+  .curve2{stroke:var(--ink);stroke-width:1.3;fill:none;stroke-linecap:round;}
+  .guide{stroke:var(--faintest);stroke-width:1;fill:none;stroke-dasharray:3 3.5;}
+  .core{stroke:var(--ink);stroke-width:3;fill:none;stroke-linecap:round;}
+  .fill-cs{fill:var(--wash);}
+  .fill-dwl{fill:var(--wash2);}
+  .fill-wedge{fill:var(--wash);}
+  .fill-lens{fill:var(--wash);}
+  .hatch-line{stroke:var(--faintest);stroke-width:.8;}
+  .lbl{font-family:"Fraunces",serif;font-size:11.5px;fill:var(--faint);font-variation-settings:"opsz" 24,"wght" 400;}
+  .lbl-i{font-family:"Newsreader",serif;font-style:italic;font-size:11px;fill:var(--soft);}
+  .lbl-sm{font-family:"Fraunces",serif;font-size:9.6px;fill:var(--faintest);letter-spacing:.02em;}
+  .lbl-ax{font-family:"Fraunces",serif;font-size:9.4px;fill:var(--faintest);letter-spacing:.12em;}
+
+  /* ---- coda + colophon ---- */
+  .coda{max-width:var(--measure);margin:clamp(3rem,7vh,5rem) auto 0;}
+  .coda p{margin:0 0 1.18rem;text-wrap:pretty;}
+  .coda p.lede::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 430;
+    float:left;font-size:3.5em;line-height:.76;padding:.04em .12em 0 0;color:var(--ink);}
+  footer{margin-top:clamp(3.6rem,8vh,6rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.4rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .colophon{font-size:.85rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+
+  /* ---- motion / reveal ---- */
+  @media (prefers-reduced-motion: no-preference){
+    html.js .reveal{opacity:0;transform:translateY(14px);}
+    html.js .reveal.in{opacity:1;transform:none;}
+    .reveal{transition:opacity .9s cubic-bezier(.2,.6,.2,1),transform .9s cubic-bezier(.2,.6,.2,1);}
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.18s}.rise.d3{animation-delay:.32s}.rise.d4{animation-delay:.46s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  /* ---- responsive ---- */
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .argument p,.plate-body p,.coda p{font-size:1.01rem;}
+    .plate-body > p:first-of-type::first-letter,.argument p.lede::first-letter,.coda p.lede::first-letter{font-size:3em;}
+    .f-bar{flex-direction:column;gap:.5rem;}
+    .toc a{grid-template-columns:2rem 1fr;column-gap:.8rem;}
+    figcaption{font-size:.82rem;}
+  }
+
+  /* ---- print: a volume, in print ---- */
+  @media print{
+    html,body{background:#fff;color:#000;}
+    body{font-size:11.5pt;line-height:1.5;}
+    body::before,#progress,#topbar{display:none !important;}
+    .frame{max-width:none;padding:0;}
+    .measure,.plate-open,.plate-body,.ask,.edge,.coda{max-width:34rem;}
+    a{text-decoration:none;}
+    .plate{break-before:page;border-top:none;padding-top:0;}
+    .fig,figure{break-inside:avoid;}
+    .plate-no{color:#bbb;}
+    .reveal{opacity:1 !important;transform:none !important;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#ne-contents">Complete contents</a><a href="../editions.html#volume-choice">The Choice · both editions</a><a href="../essays/numeraire-xxiii-the-choice.html">Expanded essays</a></div></nav>
+<div id="progress" aria-hidden="true"></div>
+<div id="topbar" aria-hidden="true"><div class="tb-in">
+  <span class="tb-l">Numéraire <span>· The Choice</span></span>
+  <span class="tb-r" id="tb-plate">Volume XXIII</span>
+</div></div>
+
+<div class="frame">
+
+  <header class="vol-title">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="rise d1">
+      <span class="imprint">Numéraire</span>
+      <div class="vol-no">Volume XXIII &middot; № XXIII</div>
+    </div>
+    <h1 class="vol-name rise d2">The Choice</h1>
+    <div class="vol-sym rise d3" aria-hidden="true"><span>Ch</span></div>
+    <div class="vol-coords rise d3">Group VI &middot; The Behaviors</div>
+    <p class="vol-gloss rise d3">preference and its logic</p>
+    <p class="vol-epigraph rise d4">
+      <span class="lead">The question of the volume</span>
+      People are assumed to choose what is best for them — where does that break?
+    </p>
+    <div class="vol-status rise d4">in print &middot; twelve plates</div>
+  </header>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <section class="argument reveal" aria-labelledby="arg-h">
+    <div class="part-head">
+      <div class="part-kicker">Numéraire &middot; Volume XXIII</div>
+      <h2 class="part-title" id="arg-h">The Argument</h2>
+    </div>
+    <p class="lede">Behind every volume of this table has stood a figure rarely named and never examined: the chooser. The firm that minimizes its cost, the consumer who balances the goods on the shelf, the saver who weighs the rate, the worker who trades leisure for wages, the investor who diversifies against risk — each was assumed, quietly, to do the one thing this volume now holds up to the light: to choose what is best for itself. That assumption is the bedrock on which the whole edifice rests. It is called the theory of rational choice, and it is at once the most powerful instrument economics possesses and the one whose foundations most repay an honest inspection — for it is an extraordinary idealization, and like every idealization it is true enough to build on and false enough to mislead.</p>
+    <p>The model is spare. An agent has preferences — a ranking of the outcomes it might obtain — and chooses, from whatever the world makes available, the most preferred. That is all. One word in its name invites a misreading that must be cleared away at once: rational. In ordinary speech the word suggests the cold, the calculating, the narrowly selfish, and the rational agent of economics is imagined as a money-grubbing computer without warmth or generosity. This is a mistake. Rationality, in the technical sense this volume will give it, is a property not of the content of a person's wants but of their consistency. A rational agent may want anything at all — the welfare of strangers, the beauty of a painting, the leisure of an afternoon, the salvation of his soul — and pursue it with no thought of money. What rationality requires is only that the wants hang together in a certain way, and the second plate will say in exactly what way.</p>
+    <p>From this spare beginning an entire science unfolds. Let the consumer maximize preference against a budget and the demand curve appears, sloping downward; let the firm maximize profit and the supply curve appears; let the two meet and there is equilibrium, and with it the whole apparatus of price the first families of this table set out. The framework is general to a degree that has tempted its boldest practitioners to apply it everywhere — to marriage and crime, to voting and faith, to every corner of life where something is chosen — and it is rigorous, yielding precise and testable predictions. It is also, curiously, two theories in one: a description of how people do choose, and a standard for how a coherent agent should. Much confusion in what follows comes from mistaking the second for the first.</p>
+    <p>The machinery has parts worth naming in advance. Preferences, if they are consistent, can be represented by a utility function, a set of numbers that rank the options — though only rank them, for the modern theory holds utility to be ordinal, a representation of preference and not a measurable quantity of pleasure, and this ordinalist turn freed economics from the impossible task of weighing one person's happiness against another's. Preferences cannot be seen, but choices can, and so the theory grounds itself in revealed preference, inferring the ranking from the choosing. And because most choices are made under uncertainty, the theory extends to risk through expected utility, by which a rational agent weighs each possible outcome by its probability — and from the curvature of utility there falls out, almost for free, the aversion to risk that explains insurance, diversification, and the premium that risk commands.</p>
+    <p>So much for the power. The honesty this work has promised requires that the seams be shown as plainly as the strengths, and they are not hard to find. The axioms that define rationality, so compelling in the abstract, are violated in the laboratory in regular and predictable ways — the paradoxes of Allais and Ellsberg are only the most famous. Real agents, Herbert Simon observed, have not the cognitive means to find the optimum and so satisfice, settling for the good enough. Their preferences are not the fixed and given things the theory assumes but are constructed in the moment by the framing of the choice, reversed over time by the pull of the present, and manufactured over years by an economy that produces the wants it then satisfies. And beneath these empirical strains lies a logical one, a circularity that threatens to drain the central claim of content: if what is best for a person is defined as whatever he chooses, then the statement that he chooses what is best for him says nothing at all.</p>
+    <p>The position this volume will reach is not a verdict for the model or against it but a refusal of both easy verdicts. The theory of rational choice is too powerful, too general, and too useful to discard: it remains the indispensable first approximation, the frame within which even its critics work. And it is too far from how people actually decide to be taken as literal truth: it is a model, an idealization, a deliberate simplification whose value lies precisely in its distance from the messy original. To hold both at once — to use the model while marking exactly where it strains — is the whole of wisdom here, and it is the work the seams of the later plates are meant to do.</p>
+    <p>This volume is the third of the last family, and it is the family's foundation. The chooser it describes is the agent whom <em>The Game</em> set against other choosers and whom <em>The Norm</em> watched submit to the unwritten rule; he is the one whose systematic errors <em>The Bias</em> will catalogue; he is the premise the whole table has leaned upon. To examine him is therefore to examine the deepest assumption of the science — and to discover that the welfare conclusions resting on his rationality, the sovereignty of his preferences and the optimality of the markets that satisfy them, stand only as firmly as the assumption does. At the end waits the question the model cannot answer with its own resources: not what a person chooses, which it takes for the measure of the good, but what is good for him, which may be another thing entirely. The argument remains open.</p>
+  </section>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <section class="contents reveal" aria-labelledby="toc-h">
+    <div class="part-head">
+      <div class="part-kicker">The twelve plates of this volume</div>
+      <h2 class="part-title" id="toc-h">The Plates</h2>
+    </div>
+    <ol class="toc">
+      <li><a href="#plate-i"><span class="toc-n">i</span><span class="toc-t">The Maximizer</span><span class="toc-g">the foundational assumption; rational as consistent, not cold; the agent behind it all</span></a></li>
+      <li><a href="#plate-ii"><span class="toc-n">ii</span><span class="toc-t">The Preference</span><span class="toc-g">the axioms of choice; completeness and transitivity; the money pump</span></a></li>
+      <li><a href="#plate-iii"><span class="toc-n">iii</span><span class="toc-t">The Index</span><span class="toc-g">utility as the ordinal representation of preference; the indifference curve</span></a></li>
+      <li><a href="#plate-iv"><span class="toc-n">iv</span><span class="toc-t">The Inference</span><span class="toc-g">revealed preference; reading the wants from the choices; the operational turn</span></a></li>
+      <li><a href="#plate-v"><span class="toc-n">v</span><span class="toc-t">The Gamble</span><span class="toc-g">choice under uncertainty; expected utility; the maximand under risk</span></a></li>
+      <li><a href="#plate-vi"><span class="toc-n">vi</span><span class="toc-t">The Aversion</span><span class="toc-g">risk aversion from concave utility; the certainty equivalent and the premium</span></a></li>
+      <li><a href="#plate-vii"><span class="toc-n">vii</span><span class="toc-t">The Bound</span><span class="toc-g">bounded rationality; the limits of computation; satisficing for good enough</span></a></li>
+      <li><a href="#plate-viii"><span class="toc-n">viii</span><span class="toc-t">The Frame</span><span class="toc-g">constructed preference; framing and the reference point; the seam in the axioms</span></a></li>
+      <li><a href="#plate-ix"><span class="toc-n">ix</span><span class="toc-t">The Impatience</span><span class="toc-g">time-inconsistent preference; present bias; the divided self over time</span></a></li>
+      <li><a href="#plate-x"><span class="toc-n">x</span><span class="toc-t">The Manufacture</span><span class="toc-g">endogenous preference; where wants come from; the tastes the theory takes as given</span></a></li>
+      <li><a href="#plate-xi"><span class="toc-n">xi</span><span class="toc-t">The Tautology</span><span class="toc-g">the circularity; the best as what is chosen, what is chosen as best; the empty claim</span></a></li>
+      <li><a href="#plate-xii"><span class="toc-n">xii</span><span class="toc-t">The Best</span><span class="toc-g">what the model captures and where it breaks; choice, preference, and the good</span></a></li>
+    </ol>
+  </section>
+
+  <main class="plates" id="plates">
+
+    <!-- ===================== PLATE I ===================== -->
+    <section class="plate reveal" id="plate-i" data-label="Plate i · The Maximizer">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">i</div>
+        <p class="plate-kicker">Plate the First &middot; The Behaviors &middot; № XXIII</p>
+        <h3 class="plate-title">The Maximizer</h3>
+        <p class="plate-gloss">the foundational assumption; rational as consistent, not cold; the agent behind it all</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what does it mean to call a person rational, and why should the whole of economics rest on the answer?</q></div>
+      <div class="plate-body">
+        <p>The model that underlies this entire table can be stated in a single sentence: a person, faced with a set of options the world makes available, chooses the one he most prefers. He is a maximizer — not of money, necessarily, nor of pleasure, but of preference itself, climbing to the highest point of his own ranking that lies within his reach. Everything else in the theory of choice is the working-out of this one idea. The agent has a preference ordering, a ranking of the outcomes he might obtain; he faces a feasible set, the options actually open to him given his means; and he selects from that set the option his ranking places highest. Constrained maximization, the mathematicians call it, and it is the formal skeleton of every economic decision the earlier volumes described.</p>
+        <p>One word in the model's customary name does it more harm than all its critics, and it must be disarmed before anything else can proceed. The word is <em>rational</em>, and in ordinary usage it carries a freight the theory never intended. To call the economic agent rational summons, in most minds, a particular and unlovely figure: cold, calculating, narrowly self-interested, a creature of spreadsheets who counts every penny and feels nothing he cannot price. Generations of critics have attacked this figure, and they have been right to, for he is a monster. But he is not the rational agent of the theory. He is a caricature, and the theory is innocent of him.</p>
+        <p>For rationality, in the precise sense the next plates will sharpen, is a property of the <em>form</em> of a person's preferences and not of their <em>content</em>. It says nothing whatever about what a person ought to want. A rational agent may want the comfort of strangers more than his own; he may want the beauty of a symphony, the quiet of a long walk, the welfare of a child, the approval of his god, and want none of these for any gain he could deposit in a bank. He may be a saint or a sensualist, an altruist or a miser, and the theory is indifferent among them. What it asks of him is only that his wants be ordered in a certain coherent way — that they not contradict themselves — and a person of the most generous and uncalculating heart may satisfy that condition as fully as any miser. Rationality is about consistency, not selfishness; about the shape of choice, not its substance.</p>
+        <aside class="pull">To be rational, in this theory, is not to be cold or grasping. It is only to want things in an order that does not contradict itself — and then to choose, from what one can have, the most preferred. A saint may be a perfect maximizer.</aside>
+        <p>Disarmed of its caricature, the assumption shows its true reach, which is enormous. The maximizer is not one figure among the many this table has drawn; he is the single figure beneath them all. The firm that minimized its costs was maximizing profit; the consumer who balanced the goods on the shelf was maximizing utility against a budget; the saver weighing the rate, the worker trading leisure for wages, the investor spreading his holdings against risk — each was this same agent, choosing the top of his ranking within his constraint. The theory of the firm, the theory of the household, the theory of the market: all are applications of the one model of choice. To examine the maximizer is therefore not to open a side chamber of the science but to walk into its foundation, and to ask of that foundation the question every later plate presses — whether it bears the weight the whole structure places on it.</p>
+        <aside class="edge"><span class="lead">the edge</span> The assumption hides a presupposition more demanding than it first appears, and naming it now will save confusion later. To say that a person chooses the top of his preference ranking is to assume that the ranking exists — that it is there, complete and settled, before the moment of choice, waiting to be consulted like a list in a drawer. The agent is imagined to arrive at every decision already in possession of well-defined answers to questions he may never have faced: whether he prefers this unfamiliar good to that one, this gamble to that certainty, this distant pleasure to this present one. But a great deal of what the later plates will report suggests that the ranking is often not in the drawer at all — that it is assembled on the spot, under the influence of how the question is asked, and would have come out otherwise had the question been put another way. If preference is constructed in the act of choosing rather than consulted before it, then the maximizer is not reading off a pre-existing order but composing one, and the tidy picture of an agent selecting the best from a fixed and known ranking is the first of the idealizations this volume will have to qualify. The model assumes the wants are given. Whether they are given, or made, is a question the model cannot ask of itself.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE II ===================== -->
+    <section class="plate reveal" id="plate-ii" data-label="Plate ii · The Preference">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">ii</div>
+        <p class="plate-kicker">Plate the Second &middot; The Behaviors &middot; № XXIII</p>
+        <h3 class="plate-title">The Preference</h3>
+        <p class="plate-gloss">the axioms of choice; completeness and transitivity; the money pump</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what makes a set of wants consistent — and what becomes of a person whose wants run in a circle?</q></div>
+      <div class="plate-body">
+        <p>If rationality is consistency, the question is what consistency requires, and the answer is given by two axioms so modest in appearance that one wonders they could carry a science. The first is completeness: for any two options the agent might face, he can say which he prefers, or that he is indifferent between them. He is never struck dumb; the ranking has no gaps. The second is transitivity: if he prefers a first option to a second, and the second to a third, then he prefers the first to the third. The ranking has no loops. To these the theory adds, for the sake of its mathematics, the formalities of reflexivity and continuity, but completeness and transitivity are its heart, and between them they say what it is for a set of preferences to hang together. A preference ordering satisfying them is what the theory means, and all it means, by rational.</p>
+        <p>Transitivity is the more interesting of the two, for it can be defended by an argument that turns it from an arbitrary stipulation into a condition of survival in any world where things can be traded. Suppose a man's preferences form a circle: he prefers an apple to a banana, a banana to a cherry, and — completing the loop — a cherry to an apple. He seems to violate no obvious law of reason; he simply likes things in a ring. But watch what the market does to him. He holds a cherry; since he prefers a banana, he will pay a small sum to exchange the cherry for one; since he prefers an apple to the banana, he will pay again to trade up; and since he prefers, absurdly, the cherry to the apple, he will pay a third time to return to exactly where he began. He is now three payments poorer and holds the same fruit. And nothing stops the wheel from turning again, and again, until he is penniless.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ff1t ff1d">
+              <title id="ff1t">The money pump: a cycle of intransitive preference</title>
+              <desc id="ff1d">Three options A, B, and C arranged in a triangle, with arrows running A to B, B to C, and C back to A — a preference that prefers A to B, B to C, and C to A. The cycle has no top, and an agent holding it can be charged repeatedly to travel around the ring.</desc>
+              <circle cx="130" cy="90" r="17" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.3"/>
+              <circle cx="310" cy="90" r="17" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.3"/>
+              <circle cx="220" cy="230" r="17" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.3"/>
+              <text class="lbl" x="130" y="97" text-anchor="middle">A</text>
+              <text class="lbl" x="310" y="97" text-anchor="middle">B</text>
+              <text class="lbl" x="220" y="237" text-anchor="middle">C</text>
+              <line x1="148" y1="90" x2="290" y2="90" stroke="var(--ink)" stroke-width="1.3"/>
+              <polygon points="292,90 284,86 284,94" fill="var(--ink)"/>
+              <line x1="301" y1="104" x2="231" y2="213" stroke="var(--ink)" stroke-width="1.3"/>
+              <polygon points="230,214 231,204 239,208" fill="var(--ink)"/>
+              <line x1="211" y1="216" x2="141" y2="107" stroke="var(--ink)" stroke-width="1.3"/>
+              <polygon points="140,106 149,112 141,116" fill="var(--ink)"/>
+              <text class="lbl-i" x="220" y="82" text-anchor="middle">≻</text>
+              <text class="lbl-i" x="283" y="166" text-anchor="middle">≻</text>
+              <text class="lbl-i" x="157" y="166" text-anchor="middle">≻</text>
+              <text class="lbl-sm" x="220" y="272" text-anchor="middle">preferring A to B, B to C, and C to A — a circle</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 1.</span> The money pump. An arrow from one option to another reads: the first is preferred to the second. Here the preferences run in a ring — A over B, B over C, C over A — and so the ranking has no highest element, no <em>best</em> to choose. Worse, an agent holding such preferences can be charged a fee to swap C for B, B for A, and A for C, arriving back where he started, poorer by three fees and ready to pay again. Intransitivity is not merely untidy; it is a leak through which a person's whole fortune can be pumped.</figcaption>
+        </figure>
+        <p>The money pump is more than a curiosity. It shows that transitivity is the price of not being exploited, that a world of exchange punishes the agent whose preferences loop, and that the discipline of the market is therefore a force pressing real preferences toward the very consistency the axiom demands. It shows, too, why a circle of preference is incoherent in a deeper sense than mere vulnerability: a ranking that loops has no top. There is no most-preferred option in a cycle, no best to choose, and so for an intransitive agent the central instruction of the whole theory — choose the best available — has no meaning, because no best exists. Transitivity is what guarantees that the instruction can be obeyed at all.</p>
+        <aside class="pull">A person whose preferences run in a circle has no best option to choose and a leak through which his fortune drains. Consistency is not a cold virtue imposed from without; it is the condition under which choosing the best is so much as possible.</aside>
+        <p>So the axioms, modest as they look, do indispensable work: they are what make preference into something an agent can maximize. And much follows from them. The next plate shows that a preference ordering obeying these conditions can be captured entirely by a single numerical function — that consistency in ranking is exactly what permits the wants to be written as utility, and the maximizer's climb to be drawn as the ascent of a measurable hill.</p>
+        <aside class="edge"><span class="lead">the edge</span> Of the two axioms it is completeness, the quiet one, that strains hardest against experience, and its failure is not the exotic laboratory violation that troubles transitivity but a feature of the most ordinary moral life. Completeness demands that for any two options a person be able to say which he prefers, or that he is indifferent — that there be, always, an answer. Yet some options refuse to be ranked, not because the chooser is irrational but because the things compared are incommensurable, measured on scales that do not convert into one another. Asked whether he prefers a sum of money to the life of his mother, a decent person does not consult an inner ranking and report the figure; he refuses the question, and his refusal is not a gap in his rationality but a mark of his seriousness. Asked to choose between two careers, or two loves, or two lives he might lead, he may find them genuinely incomparable — each better in some respect, neither better overall — and the honest report is not a preference but a recognition that no preference exists to be reported. The theory cannot represent this. It must read incommensurability as indifference, treating the man who will not weigh his mother against money as though he weighed them and found them equal, which is a falsification of his whole stance. Where preference runs out, the model supplies one anyway, and in doing so it mistakes the texture of a human life, in which some things are not for sale and some choices are not rankings but tragedies.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE III ===================== -->
+    <section class="plate reveal" id="plate-iii" data-label="Plate iii · The Index">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">iii</div>
+        <p class="plate-kicker">Plate the Third &middot; The Behaviors &middot; № XXIII</p>
+        <h3 class="plate-title">The Index</h3>
+        <p class="plate-gloss">utility as the ordinal representation of preference; the indifference curve</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if preference is only a ranking, what exactly are we measuring when we speak of utility?</q></div>
+      <div class="plate-body">
+        <p>A preference ordering that obeys the axioms can be captured, entirely and without remainder, by a single numerical function. Assign to each option a number, larger for the more preferred, and the agent's choosing of the best becomes the maximizing of that number. The number is called utility, and the agent who climbs his preference ranking may now be drawn as climbing a measurable hill, seeking its summit within the fence of his budget. This is the bridge from the bare relation of preference to the calculus of maximization, and it is what lets the spare model of the first plate become a quantitative science.</p>
+        <p>But the most important thing about this utility is what it is not, and the history of the idea is the history of a great subtraction. To the founders of the felicific tradition — to Bentham above all, and after him Jevons and the early Marshall — utility was a substance: a real quantity of pleasure or satisfaction, present in the mind in measurable amounts, addable across the goods a person consumed and, more boldly, comparable across persons, so that one might in principle sum the happiness of a nation and act to enlarge it. This was cardinal utility, and it carried economics toward a vision of the social good as the greatest aggregate of measurable pleasure. The trouble was that no one could measure it. Pleasure has no units; there is no instrument that reads the satisfaction in a mind, no scale on which my enjoyment of bread may be weighed against yours.</p>
+        <p>The escape, worked out by Pareto and Fisher and brought to its sharp modern form by Hicks and Allen, was to discover that economics had never needed the substance at all. For everything the theory of demand requires — that the agent rank bundles, and choose the highest-ranked he can afford — only the <em>order</em> of the utility numbers matters, never their magnitudes. To say that one bundle yields utility ten and another utility five is to say only that the first is preferred; it is not to say it is twice as good, for the numbers might as well have been a hundred and one, or any others that preserve the ranking. Utility, on this ordinal view, is not a reading taken from the mind but a convenient index of a preference that is itself the only real thing. The numbers are a notation for the ranking, and any relabeling that keeps the order keeps the meaning. With this the embarrassment of unmeasurable pleasure simply dissolved: economics could speak of utility while disclaiming all knowledge of how much anyone enjoyed anything.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ff2t ff2d">
+              <title id="ff2t">An indifference map and the consumer's optimum</title>
+              <desc id="ff2d">Quantities of two goods on the axes. Three downward-sloping curves convex to the origin are indifference curves, higher ones more preferred. A straight budget line marks what is affordable, and the consumer's optimum lies where the budget line is tangent to the highest attainable indifference curve.</desc>
+              <line class="ax" x1="60" y1="252" x2="404" y2="252"/>
+              <line class="ax" x1="60" y1="252" x2="60" y2="44"/>
+              <text class="lbl-ax" x="232" y="278" text-anchor="middle">good one →</text>
+              <text class="lbl-ax" transform="rotate(-90 26 150)" x="26" y="150" text-anchor="middle">good two →</text>
+              <polyline class="curve" points="75,150 120,178 185,205 265,223 340,235"/>
+              <polyline class="curve" points="78,75 120,118 180,160 255,190 340,220"/>
+              <polyline class="curve" points="110,72 165,100 235,128 320,155 395,170"/>
+              <line x1="350" y1="252" x2="60" y2="95" stroke="var(--ink)" stroke-width="1.6"/>
+              <text class="lbl-i" x="96" y="88" text-anchor="start">budget</text>
+              <circle cx="180" cy="160" r="4" fill="var(--ink)"/>
+              <text class="lbl-i" x="192" y="151" text-anchor="start">optimum</text>
+              <text class="lbl-sm" x="332" y="132" text-anchor="end">more preferred →</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 2.</span> The consumer's optimum. Each curve joins bundles of the two goods among which the agent is indifferent; the whole family is his preference ordering, with curves farther from the origin more preferred. The straight line is the budget — the bundles he can just afford. His best affordable choice is the point where the budget line is tangent to the highest indifference curve it can reach: the optimum. The lower curve is attainable but inferior; the higher is preferred but unaffordable. This single tangency is the maximizer of the first plate, drawn.</figcaption>
+        </figure>
+        <p>The geometry of the figure is the whole theory in a glance. An indifference curve joins the bundles the agent ranks equally; the family of such curves, nested and rising away from the origin, is a complete picture of his preferences; and his choice is the point where the highest curve he can reach just grazes the line of what he can afford. That grazing — the tangency of budget and indifference curve — is the optimum, the summit of the affordable hill, and it is nothing other than the maximizer of the opening plate rendered in two dimensions. Everything the earlier volumes drew from the consumer, the downward-sloping demand and the response to every change in price and income, can be read off the way this tangency slides as the budget line tilts and shifts. Utility, the ordinal index of a consistent preference, is all the apparatus needs.</p>
+        <aside class="pull">Utility is not a quantity of pleasure read from the mind. It is a notation for the ranking — an index of preference, true only up to its order. Economics learned it could keep the whole calculus of choice while confessing it could not measure happiness at all.</aside>
+        <p>This refinement is rightly counted among the triumphs of the field: it gave demand theory a foundation that asked nothing it could not observe and claimed nothing it could not defend. The next plate pushes the same instinct one step further, asking whether even the ranking must be assumed, or whether it too might be read off from the only thing the world ever shows us — the choices people actually make.</p>
+        <aside class="edge"><span class="lead">the edge</span> The ordinalist subtraction was a gain in rigor bought at a price the discipline has been paying ever since, and the price is a silence on the questions that matter most. By renouncing cardinal utility, economics gave up the claim to measure how much anyone enjoys anything; by renouncing interpersonal comparison, it gave up the claim to weigh one person's enjoyment against another's. The gain was honesty about what cannot be observed. The loss was the ability to say the most obvious thing in welfare economics: that a dollar means more to a hungry man than to a sated one, and that moving it from the rich to the poor enlarges the sum of human satisfaction. On the strict ordinalist view this sentence is not false but meaningless, for it compares utilities across persons, and such comparison the theory has forsworn. A whole apparatus — the Pareto criterion, which counts a change an improvement only if it harms no one — grew up to respect the silence, and it is an apparatus almost designed to have nothing to say about redistribution, since taking from the rich to give to the poor harms someone and so fails the test. The rigor that freed economics from measuring pleasure also bound it from speaking of distribution, and the volume on the share met everywhere the consequence: a science fluent in efficiency and halting in justice, not because justice is unimportant but because the foundations of its theory of value were laid so as to keep it quiet.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE IV ===================== -->
+    <section class="plate reveal" id="plate-iv" data-label="Plate iv · The Inference">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">iv</div>
+        <p class="plate-kicker">Plate the Fourth &middot; The Behaviors &middot; № XXIII</p>
+        <h3 class="plate-title">The Inference</h3>
+        <p class="plate-gloss">revealed preference; reading the wants from the choices; the operational turn</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if a person's preferences cannot be seen, can they be read off, without remainder, from the choices he makes?</q></div>
+      <div class="plate-body">
+        <p>The ordinal turn had banished the measuring of pleasure, but it left preference itself still hidden in the mind, an unobservable from which observable choices were supposed to flow. A bolder spirit asked whether even this residue of the invisible could be dispensed with — whether the whole theory might be rebuilt on what alone can be seen, the choices people actually make. The answer, given by the young Samuelson in 1938 and elaborated for a generation after, was the doctrine of revealed preference, and it reversed the direction of the entire enterprise. Where the older theory began with preferences and deduced choices, revealed preference begins with choices and infers preferences. A man's wants are not peered at through introspection; they are read backward from his deeds.</p>
+        <p>The basic move is disarmingly simple. Suppose a person, able to afford either bundle, chooses A when B lay equally within his means. Then he has <em>revealed</em> a preference for A over B — not stated it, not introspected it, but shown it in the only currency that counts, the currency of action. Preference becomes a summary of choice rather than its hidden cause, and the theory is grounded at last in the observable. The ambition behind the move was the positivist temper of its decade, the same impulse that drove behaviorism in psychology: to purge science of unverifiable talk about inner states and rebuild it on public, repeatable observation. Utility and preference were not to be denied, exactly, but demoted — kept as convenient constructs, summaries of choice behavior, rather than as causes known by introspection.</p>
+        <p>Consistency, banished from the mind, returns as a condition on the deeds. The Weak Axiom of Revealed Preference requires that a chooser not contradict himself across situations: if he picks A over an affordable B today, he must never pick B over an affordable A tomorrow. A strengthened version forbids the longer cycles, restoring transitivity in the language of choice. These axioms are the empirical heart of the theory, for they are testable: one can watch a household's purchases across changing prices and incomes and ask whether the pattern obeys them. And a deep result, refined by Houthakker and Afriat, closes the circle: choices that satisfy the axioms can always be rationalized by some utility function, as if the chooser had been maximizing one all along. Observable consistency in choosing is exactly equivalent to the existence of a preference ordering behind it. The theory had made itself operational — a science of behavior, testable against the record, owing nothing to the inspection of minds.</p>
+        <aside class="pull">Revealed preference reads the wants backward from the deeds: what a person prefers is inferred from what, when he could have done otherwise, he chose. Preference becomes a summary of choice — clean, observable, testable, and quietly circular.</aside>
+        <p>As an instrument this is among the most elegant constructions in the field, and the demand theory of the earlier volumes rests on it more securely than on any introspective foundation. But elegance has concealed a slide whose consequences run through everything that follows in this volume. In making preference the summary of choice, revealed preference has made the two identical by definition. What a person prefers simply <em>is</em> what he chooses; there is, now, no daylight between them. The eleventh plate will show how this identification threatens to drain the theory's central claim of all its content. Here it is enough to mark the hinge: the operational triumph that grounded the theory in behavior did so by defining away the distance between what we choose and what we want — and a great deal of human unhappiness lives in exactly that distance.</p>
+        <aside class="edge"><span class="lead">the edge</span> By defining preference as choice, revealed preference makes one kind of sentence impossible to utter, and it is a sentence we need. The sentence is: he chose it, but it was not what he truly wanted, and it was not good for him. The smoker reaching for the cigarette he is fighting to renounce, the procrastinator opening the diversion he swore to avoid, the shopper seized by a display engineered to seize him, the addict who would give anything to stop — each chooses, in the plain sense that his hand moves and the thing is selected, and each may at the very same moment wish with his whole reflective self that he had not. The older language could hold this: choice on one side, the good of the chooser on the other, and a gap between them where regret and self-betrayal live. Revealed preference closes the gap by fiat. If preference is whatever is chosen, then every choice reveals a preference, every preference is satisfied by the choice that reveals it, and the chooser is, by the very structure of the definition, always getting what he wants. Mistake becomes unsayable; the divided self, invisible; the manipulated consumer, indistinguishable from the free one, since both merely chose. The doctrine purchased its operational cleanliness by assuming away the possibility that a person can choose against his own interest — which is precisely the possibility the rest of this volume, and the whole volume on the bias to come, exists to insist upon.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE V ===================== -->
+    <section class="plate reveal" id="plate-v" data-label="Plate v · The Gamble">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">v</div>
+        <p class="plate-kicker">Plate the Fifth &middot; The Behaviors &middot; № XXIII</p>
+        <h3 class="plate-title">The Gamble</h3>
+        <p class="plate-gloss">choice under uncertainty; expected utility; the maximand under risk</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>how should a rational agent choose among gambles, when he cannot know which outcome will fall?</q></div>
+      <div class="plate-body">
+        <p>The choices that matter most are made in the dark. The investment whose return is unknown, the career whose prospects are uncertain, the insurance bought against a misfortune that may never come, the very crossing of a street — each is a choice not among outcomes but among gambles, lotteries over outcomes whose resolution lies with chance. The theory of choice must therefore extend from the certain to the risky, and the question is what the rational agent maximizes when he cannot know which way the world will fall.</p>
+        <p>The natural first answer is expected value: weigh each money outcome by its probability, add, and choose the gamble with the largest sum. It is the right way to price a wager repeated endlessly, and it is wrong as a theory of choice, as a puzzle posed in Saint Petersburg three centuries ago made plain. Consider a coin tossed until it first shows heads; if that happens on the first toss you are paid two, on the second four, on the third eight, the prize doubling each time. The expected value of this gamble is two times one-half plus four times one-quarter plus eight times one-eighth, and so on without end — a sum of one-after-one forever, which is to say infinite. Expected value therefore counsels you to stake your entire fortune, and more, for the privilege of playing. Yet no sane person would pay more than a trifle. The maximand cannot be expected value, for expected value commands what no one will do.</p>
+        <p>Bernoulli, who posed the puzzle, also solved it, and his solution is the foundation of all that follows. People do not value money in proportion to its amount; they value it less and less at the margin, the second thousand meaning less than the first, the millionth dollar a rounding error to a man who has millions. Utility is concave in wealth. And what the rational agent maximizes is not expected value but expected <em>utility</em> — each outcome weighed by its probability, but counted in utility rather than dollars. Under a concave utility the doubling prizes of the Petersburg gamble are tamed by the shrinking worth of each, the infinite sum collapses to a modest figure, and the willingness to pay a trifle is explained. Two centuries later von Neumann and Morgenstern, in the same volume that founded the theory of games, gave the idea its rigorous form: from a handful of axioms on the ranking of lotteries they proved that a consistent agent must choose as if maximizing the expected value of some utility function. Expected utility is to choice under risk what ordinal utility is to choice under certainty — the precise content of rationality in the presence of chance.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ff3t ff3d">
+              <title id="ff3t">A choice between a gamble and a sure thing</title>
+              <desc id="ff3d">A decision node branches to a gamble and to a sure thing. The gamble leads to a chance node splitting equally between an outcome of one hundred and an outcome of zero; the sure thing yields forty. The rational agent compares the expected utilities, not the expected values.</desc>
+              <rect x="73" y="143" width="14" height="14" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.3"/>
+              <text class="lbl-i" x="80" y="132" text-anchor="middle">you</text>
+              <line x1="87" y1="148" x2="232" y2="94" stroke="var(--ink)" stroke-width="1.3"/>
+              <text class="lbl-sm" x="150" y="110" text-anchor="middle">gamble</text>
+              <line x1="87" y1="156" x2="226" y2="204" stroke="var(--ink)" stroke-width="1.3"/>
+              <text class="lbl-sm" x="153" y="194" text-anchor="middle">the sure thing</text>
+              <circle cx="240" cy="90" r="7" fill="var(--ink)"/>
+              <line x1="247" y1="87" x2="372" y2="60" stroke="var(--ink)" stroke-width="1.3"/>
+              <text class="lbl-sm" x="305" y="66" text-anchor="middle">½</text>
+              <line x1="247" y1="93" x2="372" y2="145" stroke="var(--ink)" stroke-width="1.3"/>
+              <text class="lbl-sm" x="305" y="126" text-anchor="middle">½</text>
+              <text class="lbl-i" x="380" y="62" text-anchor="start">100</text>
+              <text class="lbl-i" x="380" y="148" text-anchor="start">0</text>
+              <circle cx="226" cy="204" r="3" fill="var(--ink)"/>
+              <text class="lbl-i" x="236" y="208" text-anchor="start">40</text>
+              <text class="lbl-sm" x="220" y="276" text-anchor="middle">maximize expected utility, not expected value</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 3.</span> A decision under risk. The square is a decision the agent controls; the circle is a chance the world controls. The gamble pays a hundred or nothing on the toss of a fair coin — an expected <em>value</em> of fifty — while the sure thing pays forty. Expected value prefers the gamble. But a risk-averse agent, whose utility of money is concave, may rank the certain forty above the gamble whose expected value exceeds it, because the utility he expects from the gamble falls short of the utility of forty for certain. The maximand is utility, weighed by probability — never the dollars themselves.</figcaption>
+        </figure>
+        <p>The figure shows the shape of every such decision: a fork the agent governs, a fork chance governs, and at the tips the outcomes whose utilities, weighed by their probabilities, decide the matter. To choose well under risk is to fold the tree back from its tips, replacing each chance fork with the expected utility behind it, until the agent's own fork can be settled by comparing two numbers. It is a procedure of great power and reach, the engine of the theory of insurance, of portfolios, of every decision the earlier volumes made under a cloud of chance. And it is, as the next plate will show, the soil from which the whole phenomenon of risk aversion grows — for the concavity that tamed the Petersburg gamble is the very same curvature that makes a man pay to be rid of risk.</p>
+        <aside class="pull">A gamble worth fifty in expected dollars may be worth less than a certain forty, if the dollars are counted in the utility they bring. To choose under risk is to maximize expected utility — and the curve of that utility is where aversion to risk is born.</aside>
+        <p>For all its elegance the theory rests on one axiom more vulnerable than the rest, and its vulnerability has been the most productive fault line in the modern study of choice. The next plates will mine it.</p>
+        <aside class="edge"><span class="lead">the edge</span> The axiom that does the real work in expected utility is independence — the requirement that if one gamble is preferred to another, mixing each with some third prospect in the same proportion leaves the preference intact, since the common part should cancel. It is compelling on paper and violated in the laboratory with a regularity that has never been explained away. Maurice Allais showed it first: offered a certain prize against a gamble for a larger one, most people cling to the certainty; offered the same two prospects each made unlikely, most people flip to the larger gamble — a reversal that independence forbids, for the common reduction in odds should cancel and change nothing. People, it seems, prize certainty itself, far beyond what the axiom permits. Daniel Ellsberg found a second and deeper crack: people will bet on a draw from an urn of known composition over one of unknown composition, even when the known odds are no better, revealing a horror not of risk, whose odds are given, but of ambiguity, whose odds are not — a distinction the economist Frank Knight had drawn between measurable risk and unmeasurable uncertainty, and which expected utility, by reducing all unknowns to probabilities, cannot represent at all. The theory assumes the agent always has a probability for everything and obeys independence in combining them. Real agents shrink from the unknown odds and overpay for certainty, and in those two robust departures the volume on the bias will find one of its deepest beginnings.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE VI ===================== -->
+    <section class="plate reveal" id="plate-vi" data-label="Plate vi · The Aversion">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">vi</div>
+        <p class="plate-kicker">Plate the Sixth &middot; The Behaviors &middot; № XXIII</p>
+        <h3 class="plate-title">The Aversion</h3>
+        <p class="plate-gloss">risk aversion from concave utility; the certainty equivalent and the premium</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>why will a person pay, in good money, simply to be rid of a risk he could have borne for nothing?</q></div>
+      <div class="plate-body">
+        <p>People pay to avoid risk. They buy insurance at a price above the average loss it covers; they spread their wealth across many ventures rather than stake it on one; they prefer, almost universally, a sure sum to a gamble worth the same on average. This aversion is among the most pervasive facts of economic life, and the previous plate has already supplied its cause, though the cause deserves to be drawn. It is the concavity of utility — the diminishing worth of each added dollar — and from that single curvature the whole disposition to shun risk, and the entire industry built upon it, can be derived.</p>
+        <p>The figure shows the mechanism exactly. Take a gamble that pays a low wealth or a high one on the toss of a fair coin. Its expected wealth is the point midway between them on the floor of the diagram; its expected <em>utility</em> is the point midway between the two utilities, which lies on the straight chord joining the curve's two ends. Because the curve bows upward — because it is concave — the chord runs below it, and so the expected utility of the gamble falls below the utility of its expected wealth. The agent, that is, would rather have the average wealth for certain than face the gamble that yields it on average. That preference, read straight off the geometry, is risk aversion, and it is present for any concave utility whatever, however gentle the bow.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ff4t ff4d">
+              <title id="ff4t">Concave utility, the certainty equivalent, and the risk premium</title>
+              <desc id="ff4d">A concave utility-of-wealth curve. A fifty-fifty gamble between a low and a high wealth has an expected utility on the chord between them, below the curve. The certainty equivalent is the sure wealth giving that same utility; it lies short of the mean, and the gap between them is the risk premium.</desc>
+              <line class="ax" x1="60" y1="252" x2="404" y2="252"/>
+              <line class="ax" x1="60" y1="252" x2="60" y2="44"/>
+              <text class="lbl-ax" x="232" y="278" text-anchor="middle">wealth →</text>
+              <text class="lbl-ax" transform="rotate(-90 26 150)" x="26" y="150" text-anchor="middle">utility →</text>
+              <polyline class="curve" points="70,235 120,195 180,160 255,125 330,105 395,95"/>
+              <line class="guide" x1="120" y1="252" x2="120" y2="195"/>
+              <line class="guide" x1="330" y1="252" x2="330" y2="105"/>
+              <line class="guide" x1="120" y1="195" x2="330" y2="105"/>
+              <line class="guide" x1="225" y1="150" x2="201" y2="150"/>
+              <line class="guide" x1="201" y1="150" x2="201" y2="252"/>
+              <circle cx="225" cy="150" r="3.5" fill="var(--ink)"/>
+              <text class="lbl-i" x="235" y="144" text-anchor="start">the gamble</text>
+              <line x1="201" y1="250" x2="225" y2="250" stroke="var(--ink)" stroke-width="1"/>
+              <text class="lbl-sm" x="213" y="243" text-anchor="middle">premium</text>
+              <text class="lbl-sm" x="120" y="268" text-anchor="middle">low</text>
+              <text class="lbl-sm" x="198" y="268" text-anchor="middle">CE</text>
+              <text class="lbl-sm" x="230" y="268" text-anchor="middle">mean</text>
+              <text class="lbl-sm" x="330" y="268" text-anchor="middle">high</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 4.</span> The price of risk. The gamble's expected utility sits on the chord, below the curve, because utility is concave. The certainty equivalent is the sure wealth that would yield that same utility — found by carrying the chord's height left to the curve and down to the floor. It falls short of the mean, and the distance between them, marked here, is the risk premium: the sum the agent would surrender to trade the gamble for its average value with certainty. That surrendered sum is the margin on which every insurer lives.</figcaption>
+        </figure>
+        <p>The construction names the two quantities on which the economics of risk turns. The certainty equivalent is the sure wealth that would leave the agent exactly as well off as the gamble — found by carrying the gamble's expected utility back to the curve and reading the wealth beneath it. It lies short of the mean, and the shortfall, the risk premium, is the price the agent will pay to be rid of the risk: the amount by which he will accept less than the average, for certain, rather than face the spread. Here is the whole secret of insurance, the subject of an earlier volume. The risk-averse will pay a premium above their expected loss to hand the risk to someone else; the insurer, pooling many independent risks so that the average is nearly certain, bears it cheaply; and the premium between is the room in which both parties gain. The same curvature explains why the prudent diversify, spreading wealth across uncorrelated ventures to shrink the spread without shrinking the average, as the volume on the stock described; why safe assets are dear and risky ones must promise more to be held; why the whole apparatus of hedging and pooling exists. One bend in a curve, and the architecture of risk-bearing stands explained.</p>
+        <aside class="pull">From a single curvature — the diminishing worth of each added dollar — falls the certainty equivalent, the risk premium, and with them insurance, diversification, and the price of safety. The whole economics of risk is the geometry of a bowed line.</aside>
+        <p>It is an account of real beauty and real reach, and it is also, at the scale where most of our risk-taking actually occurs, demonstrably wrong — a failure that points directly toward the volume to come.</p>
+        <aside class="edge"><span class="lead">the edge</span> The concave-utility theory of risk aversion breaks on a calibration the economist Matthew Rabin made pitilessly precise, and the breakage is instructive because it is not a matter of degree but of impossibility. Most people will decline a fifty-fifty bet to win eleven dollars or lose ten — a small, faintly unfavorable gamble they could easily absorb. Ask what curvature of the utility of wealth would be needed to explain that refusal, and then ask what that same curvature implies for larger stakes, and the answer is grotesque: an agent risk-averse enough to refuse the eleven-for-ten bet at every wealth level must, if he is an expected-utility maximizer with concave utility of wealth, also refuse a fifty-fifty bet that risks a hundred dollars against any sum whatever, even a certain million, even all the money there is. The reason is that the only way to dislike a trivial gamble that much is to have a utility so sharply bent that gains beyond a little are worth almost nothing — and such a utility makes one absurdly timid in the large. Since no one is that timid in the large, no concave utility of wealth can explain the caution everyone shows in the small. The phenomenon is real; the explanation is impossible; and the resolution, worked out under the name of loss aversion, is that people are not averse to the variability of their final wealth at all but to losses measured from where they presently stand — a reference-dependence that the strict theory forbids, and that the volume on the bias will have to build its account of risk upon instead.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE VII ===================== -->
+    <section class="plate reveal" id="plate-vii" data-label="Plate vii · The Bound">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">vii</div>
+        <p class="plate-kicker">Plate the Seventh &middot; The Behaviors &middot; № XXIII</p>
+        <h3 class="plate-title">The Bound</h3>
+        <p class="plate-gloss">bounded rationality; the limits of computation; satisficing for good enough</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what becomes of the maximizer when the computation he is set to perform exceeds the capacity of any mind?</q></div>
+      <div class="plate-body">
+        <p>The strains of the axioms were strains of consistency; the strain this plate examines is graver, for it is a strain of possibility. To maximize is to survey the whole field of options, evaluate each by its consequences, and select the best — and for almost any choice that matters, no mind can do it. The options are too many, the consequences too uncertain, the future too branching. A person buying a house cannot inspect every house; a firm setting a price cannot compute the profit-maximizing figure across every contingency; a young man choosing a calling cannot trace the life each would yield. The optimum exists, perhaps, as a point in some vast space, but it is not findable, and a theory that instructs the agent to find it instructs him to do what cannot be done.</p>
+        <p>It was Herbert Simon, more than anyone, who turned this obvious difficulty into a research program and gave it a name. Rationality, he argued, is <em>bounded</em> — hemmed in on every side by the limits of the available information, the capacity of the mind to process it, and the time there is to decide. The agent of the textbook, who optimizes against the whole world in an instant and at no cost, is a fiction; the real agent thinks with a small and costly instrument under pressure of the clock. And the real agent, Simon observed, does not maximize. He <em>satisfices</em>: he forms an aspiration, a level of outcome that would be good enough, and searches only until he finds an option that meets it, and then he stops. He does not find the best house; he finds a house he can live in and buys it. He does not compute the optimal price; he marks his cost up by a customary margin. The maximizer is replaced by a creature who copes.</p>
+        <p>This is not a confession of irrationality but a redescription of what rationality, for a finite being, can mean. Simon drew the distinction sharply: substantive rationality is choosing the objectively best outcome, which is what the theory assumes and what no bounded agent achieves; procedural rationality is deciding by sensible procedures given one's limits, which is what a wise bounded agent does. The shift of attention is from the optimality of the result to the intelligence of the process. And the procedures bounded agents use — the rules of thumb, the heuristics, the customary markups and the standing routines — are not the marks of stupidity they are sometimes taken for. They are often beautifully adapted to their task, fast and frugal where full computation would be slow and ruinous, and a later school under Gigerenzer has shown that simple heuristics can outperform elaborate optimization in the uncertain worlds for which they evolved. Intelligence, for a bounded creature, lies in matching the procedure to the environment, not in a computation no environment rewards.</p>
+        <aside class="pull">The real agent does not find the best house; he finds a house good enough, and stops. Bounded rationality is not the failure of reason but the only form reason can take in a mind that is small, a world that is vast, and a clock that is running.</aside>
+        <p>The consequences reach back into the earlier volumes. The firm of the orthodox theory maximized a profit it could not compute; the firm that Simon's followers actually studied — the behavioral firm of Cyert and March — followed routines, met targets, satisficed, and changed its rules only when its aspirations went unmet. Whole markets, peopled by such satisficers, need not behave as markets of maximizers would. There is a famous defense, owed to Friedman, that the falsity of the assumption need not matter: competition will weed out the firms that stray too far from the optimum, so the survivors will behave <em>as if</em> they maximized, whatever their actual procedures. The defense has force where selection is sharp and the optimum well-defined. It has far less where competition is slack, the environment shifting, and the optimum itself unknowable — which is to say, across much of economic life. The maximizing firm may be a fair prediction of the survivors in a brutal market and a poor description of the agents in a gentle one.</p>
+        <aside class="edge"><span class="lead">the edge</span> Bounded rationality is almost certainly the truth about how people decide, and it has nonetheless failed to displace the maximizing it refutes — and the reason is not the blindness of economists but a genuine and cruel methodological bargain that deserves to be stated without flinching. Maximization, for all its falsity, has one supreme virtue: it is determinate. There is, in principle, one best option, and so the model yields a single prediction that can be confronted with data and either kept or discarded. Bounded rationality surrenders this at a stroke. Once the agent is a satisficer rather than a maximizer, the theory must specify which procedure he uses, what aspiration he forms, how he searches, when he stops, how he revises — and each of these depends on the framing of the problem, the history of the agent, the culture he inhabits, in ways no general theory has been able to pin down. The space of possible bounded procedures is vast where the optimum is unique, and a model that permits a hundred behaviors predicts none of them. So the discipline faces a choice between a model that is false but sharp and a model that is true but blurred, between a fiction that forecasts and a fact that merely describes, and for most of its working life it has chosen the fiction — not because it believes the fiction but because a science is built of predictions, and only the fiction yields them cleanly. Whether that bargain was wise, or whether a sharper science of bounded choice yet awaits its making, is among the deepest open questions the study of behavior has bequeathed to its future.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE VIII ===================== -->
+    <section class="plate reveal" id="plate-viii" data-label="Plate viii · The Frame">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">viii</div>
+        <p class="plate-kicker">Plate the Eighth &middot; The Behaviors &middot; № XXIII</p>
+        <h3 class="plate-title">The Frame</h3>
+        <p class="plate-gloss">constructed preference; framing and the reference point; the seam in the axioms</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if the same choice, differently described, yields a different decision, where is the preference the choice was supposed to reveal?</q></div>
+      <div class="plate-body">
+        <p>The theory assumes that a preference exists before the choice, fixed and waiting to be consulted, and that the choice merely reads it off. The third and perhaps deepest seam is the discovery that this is frequently false — that the preference is not consulted but <em>constructed</em>, assembled in the moment of choosing under the heavy influence of how the choice happens to be presented. Change the presentation and you change the preference, which means the preference was never sitting there to begin with. The phenomenon is called framing, and once seen it cannot be unseen.</p>
+        <p>The canonical demonstration, from Tversky and Kahneman, concerns a public-health choice between two programs to combat a disease expected to kill six hundred. Described in lives saved — one program saves two hundred for certain, the other offers a one-third chance of saving all six hundred and a two-thirds chance of saving none — most people take the certain rescue of two hundred. Described in lives lost — one program lets four hundred die for certain, the other offers a one-third chance that none die and a two-thirds chance that all six hundred die — most people reject the certain loss and gamble. But the two descriptions are the same programs in the same numbers: two hundred saved is four hundred lost, exactly. Nothing has changed but the words, and the choice has reversed. People are risk-averse when outcomes are framed as gains and risk-seeking when the identical outcomes are framed as losses, and the frame is doing the choosing.</p>
+        <p>This violates a principle the theory cannot do without, sometimes called invariance or extensionality: that a rational preference depends only on what the outcomes actually are, never on how they are described. The same final state, however worded, should command the same choice; a mind that flips with the phrasing is responding to something that, by the theory's lights, is not there. And the source of the flipping, Kahneman and Tversky saw, is that people do not evaluate outcomes as final states at all. They evaluate them as <em>changes</em> — as gains or losses measured from a reference point — and the reference point is exactly what the framing sets.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ff5t ff5d">
+              <title id="ff5t">One outcome as a gain or a loss, by the reference point</title>
+              <desc id="ff5d">A single final outcome sits on a line of wealth. Measured from a lower reference point it is a gain; measured from a higher reference point it is a loss. The same state is felt in opposite ways depending only on where the reference is set.</desc>
+              <line class="ax" x1="60" y1="150" x2="404" y2="150"/>
+              <line x1="230" y1="132" x2="230" y2="168" stroke="var(--ink)" stroke-width="1.5"/>
+              <text class="lbl-i" x="230" y="124" text-anchor="middle">one final outcome</text>
+              <line x1="130" y1="142" x2="130" y2="158" stroke="var(--ink)" stroke-width="1.1"/>
+              <text class="lbl-sm" x="130" y="181" text-anchor="middle">reference A</text>
+              <line x1="330" y1="142" x2="330" y2="158" stroke="var(--ink)" stroke-width="1.1"/>
+              <text class="lbl-sm" x="330" y="181" text-anchor="middle">reference B</text>
+              <line x1="134" y1="112" x2="226" y2="112" stroke="var(--ink)" stroke-width="1.2"/>
+              <polygon points="230,112 224,109 224,115" fill="var(--ink)"/>
+              <text class="lbl-i" x="180" y="103" text-anchor="middle">felt as a gain</text>
+              <line x1="326" y1="188" x2="234" y2="188" stroke="var(--ink)" stroke-width="1.2"/>
+              <polygon points="230,188 236,185 236,191" fill="var(--ink)"/>
+              <text class="lbl-i" x="280" y="202" text-anchor="middle">felt as a loss</text>
+              <text class="lbl-sm" x="232" y="232" text-anchor="middle">one outcome, felt as gain or loss — by the reference alone</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 5.</span> Reference-dependence. A single final outcome sits fixed on the line of wealth. Seen from a low reference — what one expected, or started with — it lies to the right, and is felt as a gain. Seen from a high reference, it lies to the left, and the very same state is felt as a loss. Since gains and losses are weighed quite differently, and since framing is what sets the reference, the identical outcome can be embraced or refused according to the words alone. The theory's agent ranks final states; the actual agent ranks departures from a point that the describer can move.</figcaption>
+        </figure>
+        <p>The damage to the theory is structural, not marginal. Orthodox choice is defined over final states — total wealth, total consumption, the full description of where one ends up — and it presumes that the ranking of those states is stable. Reference-dependence relocates choice to the realm of changes, gains and losses reckoned from a baseline, and makes the baseline movable by a word. A preference ordering anchored to a reference that the framing can shift is not the fixed ordering the theory requires; it is a family of orderings, one per frame, with no privileged member among them. The complete and stable ranking of the opening plates dissolves into something contextual and constructed, and the maximizer is revealed, at least often, to be composing his preferences as he goes. The full apparatus that captures this — the value function bent differently for gains and losses, the overweighting of small probabilities — belongs to the volume on the bias, which is built upon it. Here the seam itself is the lesson: the agent does not have the preferences the theory says he consults.</p>
+        <aside class="pull">The agent of the theory ranks final states. The actual agent ranks gains and losses from a reference — and the reference moves with the words. Change the frame and you change the choice, which means the preference was never simply there.</aside>
+        <p>And if preferences are written by the frame, the question of who holds the pen becomes the most pressing in all of economics.</p>
+        <aside class="edge"><span class="lead">the edge</span> Framing would be a tidy laboratory finding were it not that someone always chooses the frame, and the someone is rarely the chooser. If the same loan is felt as cheap when its cost is quoted as a few cents a day and dear when quoted as hundreds a year, then the lender selects the feeling by selecting the quote. If a surcharge accepted as a discount for cash is resented as a penalty for credit, the merchant picks the resentment or its absence by picking the word. If far more people remain enrolled in a pension, or an organ-donor registry, when enrollment is the default than when it must be sought, then whoever sets the default sets the behavior of millions — a lever so reliable that an entire philosophy of governance, the nudge, has been built upon arranging the frames through which citizens choose. The reference point on which all this turns is not given by nature; it is supplied by whoever describes the option, and there is no frame-free, true preference lying beneath the framed ones to which the manipulated party might appeal as his real interest. This is the quiet collapse of consumer sovereignty, the doctrine on which the market's claim to optimality rests. That doctrine assumes the consumer brings stable preferences which the market then serves; but if the seller, by choosing how to present the choice, writes the preference the consumer then expresses, the market is not serving wants that precede it — it is manufacturing the wants it claims to satisfy, and the sovereignty belongs to whoever frames, not to whoever chooses.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE IX ===================== -->
+    <section class="plate reveal" id="plate-ix" data-label="Plate ix · The Impatience">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">ix</div>
+        <p class="plate-kicker">Plate the Ninth &middot; The Behaviors &middot; № XXIII</p>
+        <h3 class="plate-title">The Impatience</h3>
+        <p class="plate-gloss">time-inconsistent preference; present bias; the divided self over time</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>why do we plan, in the calm of distance, exactly what we betray when the moment arrives?</q></div>
+      <div class="plate-body">
+        <p>A man resolves on Sunday to begin his diet on Monday, and on Monday he eats the cake. He intends, all year, to start saving next month, and next month he spends. He means to write the chapter tomorrow, and tomorrow he means it again. These are not failures of knowledge — he knows the cake is unwise, the saving prudent, the chapter due — but failures of a stranger kind: the self who plans and the self who acts want different things, and the planner loses. The theory of choice, which knows only one agent with one stable set of wants, has no room for this most familiar of human experiences, and the fourth seam is the place where time pulls the single agent apart.</p>
+        <p>Choice across time requires discounting, since a reward later is worth less than the same reward now, and the rational form of discounting is exponential: a constant rate per period of delay, the future fading at a steady proportional pace. Its cardinal virtue, established by Samuelson and explored in the volume on the rate, is consistency. Under exponential discounting the ranking of two future dates never changes as the present advances toward them; what you prefer for the distant future, you will still prefer when the future arrives. The exponential agent makes plans he will keep.</p>
+        <p>People do not discount exponentially. They discount hyperbolically, as the figure shows — steeply across the near delays and gently across the far ones, so that the value of a reward collapses in the first moments of waiting and then declines only slowly thereafter. This shape, documented by Strotz, Ainslie, and Laibson, is present bias: an outsized pull toward whatever is immediate. And its consequence is precisely the Sunday-to-Monday reversal. Seen from a distance, the larger-later reward dominates the smaller-sooner — health next year beats cake next year, and you sincerely plan accordingly. But as the moment of the cake approaches, the steep near-segment of the hyperbola lifts its present value above the receding health, the ranking flips, and you eat. Your preferences reverse as time passes, not because you learned anything, but because the curve is bent. You are, in effect, a succession of selves with conflicting wants — a farsighted planner who legislates for the future and a myopic doer who governs the present — and the two are at war, with self-control the name of the planner's struggle to bind the doer.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ff6t ff6d">
+              <title id="ff6t">Hyperbolic and exponential discounting</title>
+              <desc id="ff6d">Two curves showing how the present value of a future reward falls with delay. The exponential curve declines at a steady proportional rate and is time-consistent. The hyperbolic curve falls steeply for short delays and gently for long ones, producing present bias and the reversal of plans.</desc>
+              <line class="ax" x1="60" y1="252" x2="404" y2="252"/>
+              <line class="ax" x1="60" y1="252" x2="60" y2="44"/>
+              <text class="lbl-ax" x="232" y="278" text-anchor="middle">delay →</text>
+              <text class="lbl-ax" transform="rotate(-90 26 150)" x="26" y="150" text-anchor="middle">value now →</text>
+              <polyline class="curve" points="60,70 110,110 170,150 250,190 340,218 395,228"/>
+              <polyline class="curve2" points="60,70 85,125 120,158 180,185 260,200 340,205 395,207"/>
+              <text class="lbl-i" x="178" y="143" text-anchor="start">exponential</text>
+              <text class="lbl-i" x="188" y="197" text-anchor="start">hyperbolic</text>
+              <text class="lbl-sm" x="232" y="272" text-anchor="middle">exponential is consistent; hyperbolic is present-biased</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 6.</span> Two ways the future fades. Both curves agree that delay lowers present value, but their shapes differ where it matters. The exponential curve, declining at a constant rate, keeps the agent's plans intact: distant rankings survive the passage of time. The hyperbolic curve, falling fast at first and then flattening into a long tail, lifts the near reward disproportionately as it approaches — so a plan made at a distance is overturned the instant the sooner reward draws close. The bend in the hyperbola is the present bias, and the present bias is why we betray ourselves on schedule.</figcaption>
+        </figure>
+        <p>The agent who foresees his own inconsistency has one recourse, and it is among the oldest devices of prudence: he binds his future self in advance. Ulysses, who had himself lashed to the mast so that he might hear the Sirens and yet not steer toward them, is the patron of every commitment device since — the savings club one cannot raid, the gym fee paid in advance, the tobacco locked away, the deadline announced to those who will shame its breach. The volume on the contract met this figure under the name of the mast, and here is its psychological root: a planner, knowing the doer will betray him, reaches forward to remove the doer's options before the doer can exercise them. That such devices are wanted at all, that people pay to restrict their own future freedom, is something the theory of a single coherent agent cannot explain, for why would a unified maximizer ever pay to have fewer choices? The demand for self-binding is the signature of a self at war with itself.</p>
+        <aside class="pull">You are a farsighted planner and a myopic doer, and they want different things. The planner makes the resolutions; the doer breaks them — on schedule, every time. Self-control is the planner reaching forward to bind the hands of the doer.</aside>
+        <p>And where there is a self at war, there is a market ready to take a side.</p>
+        <aside class="edge"><span class="lead">the edge</span> Present bias is not a rare affliction but a pervasive feature of human choice, and an enormous swathe of the economy is organized to profit from it rather than to remedy it. The under-saving that leaves millions unprepared for age, the credit-card balance carried at ruinous interest, the procrastination that wastes the talent, the addiction that wrecks the body — each is present bias drawing the doer toward the immediate against the planner's better counsel. And the firms that meet these consumers do not, in general, help the planner win; they monetize the doer's victory. The gymnasium sells annual memberships to people who will attend three times, pricing the contract on the doer's certainty that he will go and the planner's knowledge that he will not, as DellaVigna and Malmendier showed in pitiless detail. The subscription is made effortless to begin and laborious to end, harvesting the inertia of a doer who never gets around to cancelling. The lender offers to buy now and pay later, the casino keeps no clocks, the cigarette waits at the counter. In each case the market is not serving a stable preference that precedes it but choosing, for its own profit, between the consumer's two selves — and it chooses, almost always, the myopic one, because the myopic one is the one that pays today. Consumer sovereignty asked which wants the market should serve and answered: the consumer's. Present bias forces the prior question the doctrine never faced — which of the consumer's warring selves is the consumer? — and the market's revealed answer, that the sovereign is whichever self spends, is not an answer welfare economics can comfortably live with.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE X ===================== -->
+    <section class="plate reveal" id="plate-x" data-label="Plate x · The Manufacture">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">x</div>
+        <p class="plate-kicker">Plate the Tenth &middot; The Behaviors &middot; № XXIII</p>
+        <h3 class="plate-title">The Manufacture</h3>
+        <p class="plate-gloss">endogenous preference; where wants come from; the tastes the theory takes as given</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if the wants a market satisfies are made by the market, what exactly has it satisfied?</q></div>
+      <div class="plate-body">
+        <p>The framing of the eighth plate moved preferences within the moment of choice; this plate moves them across a life. For the theory makes one assumption about preferences so basic that it is rarely stated: that they are <em>given</em> — brought to the market ready-made from somewhere outside it, fixed primitives that the economy takes as data and never questions. Stigler and Becker made the assumption a motto, declaring that tastes are not to be disputed, that one should treat them as stable and shared and explain behavior by prices and incomes rather than by changes in what people want. The motto has real methodological discipline behind it. But it rests on a fiction, for tastes are not given. They are made — and frequently made by the very processes the theory treats them as prior to.</p>
+        <p>The most pointed version of the charge is Galbraith's, and it strikes at the heart of the case for production. An economy, the orthodox story runs, is to be praised for satisfying wants: the more wants met, the more welfare produced. But a vast portion of a modern economy's effort goes not into satisfying wants that exist but into manufacturing wants that do not — the whole apparatus of advertising and marketing exists for no other purpose. And if the wants are produced by the same machine that then satisfies them, the praise collapses into circularity. Galbraith called this the dependence effect: the wants depend on the process that fills them. To create an itch in order to sell the scratch is no service to the scratched; it is an industry that produces its own demand and congratulates itself on meeting it. The satisfaction is real only if the want was, and the want, increasingly, is the product.</p>
+        <p>Beneath the engineered wants lie the inherited ones. What a person desires is in large part what his upbringing, his class, his nation, and his age have taught him to desire — the food that tastes right, the success worth wanting, the life that counts as a life — and the volume on the norm traced how deeply the unwritten rules of a community shape the wants of those raised inside it. Preferences are social products before they are individual data. And there is a darker mechanism still, which Jon Elster anatomized under the name of adaptive preference and the older fable called sour grapes. People adjust their wants to their possibilities: the fox who cannot reach the grapes concludes that they are sour; the person denied some good comes, in time, genuinely not to want it; the deprived scale their desires down to the meager range of the attainable, and call the result contentment. This is ruinous for any claim that satisfying preferences measures welfare, because it means the preferences of the deprived have been bent by the deprivation itself. Meet the diminished wants of someone whose wants were diminished by his want, and you have produced not welfare but the quiet of resignation — the contented slave, whose satisfaction indicts the measure that records it as well-being.</p>
+        <aside class="pull">Tastes are not the fixed data the theory assumes. They are manufactured by the seller, inherited from the culture, and bent by deprivation to fit what little is available. A market that satisfies the wants it made has satisfied itself.</aside>
+        <p>Even the gentlest case tells against the assumption. Many of the things we choose are goods whose worth we cannot know until we have had them — the unfamiliar music, the acquired taste, the calling one cannot judge from outside. For these the informed preference the theory needs does not exist before the choice; it is formed by the consuming, not consulted prior to it, and the agent learns what he wants by getting it. Preferences are an output of experience as much as an input to choice. From every side, then — engineered, inherited, adaptive, learned — the same conclusion presses: the wants the theory treats as the exogenous foundation of everything are themselves endogenous, shaped within the economic process they are supposed to stand outside. And a foundation that is produced by the building it supports is no foundation at all.</p>
+        <aside class="edge"><span class="lead">the edge</span> The charge that preferences are manufactured is the most subversive in this volume, and it is also the most dangerous to wield, for it cuts the hand that holds it. Grant that some wants are false — implanted by advertisers, inherited unexamined, bent by deprivation — and an unavoidable question follows: who is to say which wants are false and which are true? The doctrine of consumer sovereignty, whatever its naïveté, had one great safeguard: it took each person's expressed preferences as authoritative, and so denied anyone else the power to overrule them in the name of what they ought to want. Deny that authority — say that the consumer's revealed wants are not really his, that his true interest lies elsewhere than where he says — and you have handed someone the right to decide, on his behalf, what he really wants. Sometimes that someone is a benign nudging economist; but the same move, dressed as false consciousness, has licensed the party that knew the workers' true interests better than the workers, and the priesthood that knew the flock's, and every paternalism that ever overrode a person's choices for his own claimed good. Hayek and the defenders of sovereignty saw this clearly and were right to: once expressed preference loses its authority, the authority passes to whoever claims to read the authentic preference beneath it, and that reader is rarely as disinterested as he supposes. The seam is real — preferences truly are shaped, and the contented slave truly does refute the simple identification of preference with welfare. But the remedy is treacherous, for there is no neutral arbiter standing outside all framing and all socialization to certify which of a person's wants are genuinely his own. Between the naïveté that trusts every want and the arrogance that trusts none, the honest theory of choice must walk a narrow and badly lit path, and this volume can only insist that the path is there to be walked, not pretend it has found the safe way across.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE XI ===================== -->
+    <section class="plate reveal" id="plate-xi" data-label="Plate xi · The Tautology">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">xi</div>
+        <p class="plate-kicker">Plate the Eleventh &middot; The Behaviors &middot; № XXIII</p>
+        <h3 class="plate-title">The Tautology</h3>
+        <p class="plate-gloss">the circularity; the best as what is chosen, what is chosen as best; the empty claim</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if what is best for a person is whatever he chooses, has the central claim of the theory said anything at all?</q></div>
+      <div class="plate-body">
+        <p>The seams so far have been empirical — places where the theory's predictions fail against what people do. The last and most unsettling seam is logical, and it concerns whether the theory makes a prediction at all. Its central claim is that people choose what is best for them. Press on the word <em>best</em> and the trouble appears. How is the best identified? By the doctrine of revealed preference, the best for a person is what he prefers, and what he prefers is read off what he chooses. So the best is defined as the chosen. Now read the central claim back with that definition in place: people choose what is best for them becomes people choose what they choose. The grand proposition on which a science was built turns out, on inspection, to be a circle — true necessarily, because it could not be false, and saying, for that very reason, nothing.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ff7t ff7d">
+              <title id="ff7t">The circularity of choice and preference</title>
+              <desc id="ff7d">Two boxes, one labelled choice and observed, the other preference and inferred. An arrow from choice to preference reads: choice reveals preference. An arrow back from preference to choice reads: preference explains choice. If best means chosen and chosen is explained by best, the reasoning closes into an empty circle.</desc>
+              <rect x="50" y="120" width="110" height="46" rx="4" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.3"/>
+              <text class="lbl" x="105" y="143" text-anchor="middle">choice</text>
+              <text class="lbl-sm" x="105" y="158" text-anchor="middle">observed</text>
+              <rect x="280" y="120" width="110" height="46" rx="4" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.3"/>
+              <text class="lbl" x="335" y="143" text-anchor="middle">preference</text>
+              <text class="lbl-sm" x="335" y="158" text-anchor="middle">inferred</text>
+              <line x1="165" y1="134" x2="275" y2="134" stroke="var(--ink)" stroke-width="1.2"/>
+              <polygon points="278,134 272,131 272,137" fill="var(--ink)"/>
+              <line x1="275" y1="152" x2="165" y2="152" stroke="var(--ink)" stroke-width="1.2"/>
+              <polygon points="162,152 168,149 168,155" fill="var(--ink)"/>
+              <text class="lbl-i" x="220" y="145" text-anchor="middle">the circle</text>
+              <text class="lbl-sm" x="220" y="104" text-anchor="middle">choice reveals preference</text>
+              <text class="lbl-sm" x="220" y="182" text-anchor="middle">preference explains choice</text>
+              <text class="lbl-sm" x="220" y="235" text-anchor="middle">if 'best' just means 'what is chosen,' the circle closes</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 7.</span> The closed circle. Preference is inferred from choice, by the operational doctrine of the fourth plate; choice is then explained by preference. So long as the two define each other, the explanation is a loop with no purchase on the world: whatever a person does can be redescribed as the maximizing of the preference his doing reveals. The theory rules nothing out, and a claim that rules nothing out forecasts nothing. The arrows turn forever and the wheel grinds no corn.</figcaption>
+        </figure>
+        <p>The emptiness is the price of the operational triumph. By defining preference as the summary of choice, the fourth plate made the proposition that agents maximize preference true by construction — and therefore vacuous, for any behavior whatsoever can be exhibited as the maximizing of some preference, simply by reading the preference off the behavior to be explained. A man who buys the dearer good and a man who buys the cheaper are each maximizing; a man who is consistent and a man who reverses himself can each be fitted with a preference that rationalizes what he did, if the preference is allowed to be whatever the deed requires. A theory able to accommodate every possible observation has thereby forbidden none, and a theory that forbids nothing predicts nothing. This is the hollow at the center, and the rhetoric of rational choice — its talk of a great empirical discovery that people pursue their interests — papers over it.</p>
+        <p>The hollow is widened by an equivocation the theory practices whenever it is pressed. Attacked as a false description of how people actually decide — by the framing, the present bias, the manufactured wants of the preceding plates — its defenders retreat to higher ground: the model was never meant as description, they say, only as a normative benchmark, an account of how a coherent agent ought to choose. Attacked as an empty tautology that describes nothing, they advance again: it is a substantive empirical theory with real predictive content. It cannot be both, yet it is defended as both, sliding between the empirical and the definitional, the descriptive and the normative, so that every objection meets whichever face deflects it. The maneuver keeps the theory safe from refutation, but safety from refutation is exactly the disease, not the cure.</p>
+        <aside class="pull">A theory that can accommodate any behavior has forbidden none, and a theory that forbids nothing foretells nothing. To define the best as the chosen is to turn the science of choice into the proposition that people do what they do.</aside>
+        <p>The theory is rescued from total vacuity by one thing, and it is worth being exact about what. The consistency axioms have genuine empirical bite: completeness and transitivity, and their counterparts in revealed choice, do rule certain patterns out — the cycles, the reversals across frames, the intransitivities. So the claim that an agent maximizes a <em>stable and consistent</em> preference is not empty; it is testable, and it can fail, which is precisely why the laboratory could find it failing. The empirical content of the whole theory lives in the consistency it demands, together with a few substantive predictions like the downward slope of demand that follow from it. But this rescue is also the theory's deepest embarrassment, for it locates the content exactly where the evidence is most damning. The theory means something only insofar as it requires consistency; it requires consistency only where the behavioral findings show people to be inconsistent. And so the fork on which every seam of this volume converges: keep the consistency that gives the theory content, and the evidence falsifies it; drop the consistency to fit the evidence, and the theory dissolves into the tautology that people do what they do. False, or empty. The theory of rational choice must be one or the other, and the art of using it well is knowing, in each application, which it has become.</p>
+        <aside class="edge"><span class="lead">the edge</span> The tautology charge is powerful and, pressed too hard, proves far too much — a caution the fair-minded critic owes the theory before the verdict. For the same charge lies ready against every great organizing idea in science. Evolution explains survival by fitness and measures fitness by survival, and the circle has been noted often; physics declares that systems evolve so as to make a certain quantity stationary, and defines the quantity by the evolutions it governs; rational choice explains action by preference and reads preference from action. Yet no one concludes that evolutionary biology or analytical mechanics is empty, and the reason is instructive. A framework earns its keep not by the falsifiability of its central sentence but by its fruitfulness over time — by the order it imposes on scattered facts, the new questions it opens, the confirmed predictions its specific applications yield. Judged so, rational choice has been among the most generative frameworks the social sciences possess: it unified the whole theory of price, it carried economic analysis into crime and marriage and politics where Becker showed it could illuminate, it gave a common language to a dozen fields. Its value, that is, was never as a discovered law that might have been false, but as a lens that brought a vast territory into focus — and a lens is not refuted by the observation that it is a lens. The real question, which philosophers of science following Lakatos have taught us to ask, is whether the program remains progressive, still generating new and confirmed predictions, or has become degenerate, kept alive only by patches contrived to absorb each anomaly after the fact. That is a question of trajectory, not of logic, and it is the honest form of the whole behavioral challenge: not the bare charge that rational choice is circular, which every framework survives, but the wager that a more psychologically faithful program has now become the more progressive one — that the future of the science of choice lies with the model that takes the seams seriously rather than the one that explains them away.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE XII ===================== -->
+    <section class="plate reveal" id="plate-xii" data-label="Plate xii · The Best">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">xii</div>
+        <p class="plate-kicker">Plate the Twelfth &middot; The Behaviors &middot; № XXIII</p>
+        <h3 class="plate-title">The Best</h3>
+        <p class="plate-gloss">what the model captures and where it breaks; choice, preference, and the good</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what should we keep of a model so powerful and so strained — and what does it mean, in the end, to choose what is best?</q></div>
+      <div class="plate-body">
+        <p>The volume began with a single sentence — that a person chooses the option he most prefers — and built from it an apparatus of extraordinary reach. We watched the spare relation of preference acquire its axioms of completeness and transitivity, enforced by the money pump; become a utility that ranks without measuring, the ordinal index that freed economics from weighing pleasure; ground itself in the choices it could observe, by the doctrine of revealed preference; and extend into the dark of uncertainty through expected utility, from whose concave curve the whole architecture of risk-bearing — insurance, the premium, diversification — fell out almost for free. This is no small construction. It is the engine beneath every price the earlier families drew, the common form of the firm and the household and the market, general enough that Becker could carry it into crime and marriage and politics, rigorous enough to yield predictions a science can test, and serviceable at once as a description of how people choose and a standard for how a coherent agent should. Whatever its troubles, a model that does all this has earned its central place, and no honest accounting can begin by despising it.</p>
+        <p>Yet the seams are real, and they are not a scatter of isolated defects to be patched one by one. The axioms that define rationality are violated in regular ways — by the Allais and Ellsberg paradoxes, by the incommensurable goods that completeness cannot rank. The maximization the theory demands exceeds any mind, and Simon's bounded agent satisfices where the model says he optimizes. The stable preferences the theory consults are often constructed in the moment, swung by a frame and anchored to a reference point that whoever describes the choice can move. They reverse across time, the farsighted planner forever betrayed by the myopic doer, so that people pay to bind their own future hands. And they are manufactured across a life — by the advertiser who produces the want he then fills, by the culture that teaches what to desire, by the deprivation that bends desire down to fit. Beneath all of these lies the logical seam: that the central claim, with the best defined as the chosen, threatens to collapse into the empty proposition that people do what they do.</p>
+        <p>These seams converge, and where they meet is the fork on which the whole volume has come to rest. The empirical content of rational choice lives in the consistency it requires — in the axioms that forbid cycles and reversals, the conditions that make preference something an agent can be said to maximize at all. But it is exactly that consistency the behavioral findings deny, for framing and present bias and the rest are nothing other than the inconsistencies the axioms rule out. So the theory faces two roads and no third. Keep the consistency that gives it teeth, and the evidence falsifies it. Loosen the consistency to absorb the evidence, and it dissolves into the tautology that explains everything and forecasts nothing. False, or empty: the art of using the model well is, in each application, to know which of the two it has quietly become.</p>
+        <p>The conclusion this volume reaches is therefore not a verdict but a discipline, a refusal of both the verdicts that beckon. To discard the model because it is false would be folly: it remains the indispensable first approximation, the frame within which even its sharpest critics state their corrections, the baseline departures must be measured against, and across enormous stretches of behavior — where stakes are high, choices repeated, and competition sharp — it predicts well enough to be the right tool. But to believe the model, to take it for a literal account of the human chooser, would be a deeper folly, for the seams show plainly that it is an idealization, a deliberate and fruitful simplification whose worth lies precisely in its distance from the messy original. The wisdom is to hold both at once: to use the maximizing agent as the powerful fiction he is, and to keep always in view the catalogue of places where the fiction parts from the fact. A model one neither worships nor discards, but wields with a map of its own failures in hand — that is the whole of what this volume has to teach about how to think with rational choice.</p>
+        <p>And it is fitting that this should be the third plate of the last family, for the chooser examined here is the figure on whom that family turns. He is the agent <em>The Game</em> set against other agents like himself, each maximizing into the others' maximizing until their choices locked into equilibrium. He is the agent <em>The Norm</em> watched submit to the unwritten rule, choosing not always the optimum but the done thing, the expected thing, the thing the community would not punish. He is the agent whose systematic and predictable errors — the framing, the anchoring, the loss aversion, the present bias glimpsed here only in outline — the volume on <em>The Bias</em> exists to catalogue in full. Rational choice is the model; the game is its extension into strategy; the norm is its rival and supplement; the bias is its critique. To have laid the model bare, in its power and its strain alike, is to have set the foundation on which the other three Behaviors are built, and to have shown why a science of behavior needs all four.</p>
+        <p>The stakes of the inquiry run far past method, into the whole normative edifice the science has raised. For the most consequential conclusions of economics — that the consumer is sovereign, his wants the authoritative measure of his good; that competitive markets are efficient, allocating resources to their highest valued uses; that what people freely choose is, by that fact, what serves them — rest entirely on the rationality of the chooser. Let that rationality be the idealization this volume has found it to be, and the conclusions lose their footing in the same motion. Every seam was also a crack in consumer sovereignty: if preferences are framed, the market that frames them is not serving wants but writing them; if they are present-biased, the firm is not meeting a stable demand but choosing, for profit, the myopic self over the prudent one; if they are manufactured, the economy is congratulating itself for satisfying the appetites it manufactured. The optimality of markets is only as secure as the rationality of the agents who populate them, and the agent, examined honestly, is not quite rational enough to bear the weight that doctrine places on him. This is not a brief against markets, which remain the most powerful instrument of coordination yet found; it is a refusal to let their defense rest on a psychology the evidence will not support.</p>
+        <p>There remains the question the model cannot answer in its own terms, the one toward which every plate has tended. The theory takes the best for a person to be what he chooses, and what he chooses to reveal what he prefers, and his preference to define his good. But choosing is not the same as flourishing, and the gap between them is where this volume must finally leave its reader. The smoker chooses the cigarette and is not thereby served; the adapted poor choose the narrow life their poverty allowed them to want; the present-biased self chooses against the self that will inherit the morning; the manipulated consumer chooses what he was arranged to choose. In each, what is chosen and what is good have come apart, and the model, which knows only the chosen, cannot so much as see the difference — for it defined the good as the chosen at the outset, and a theory cannot find what its definitions have hidden. The volume on utility began to ask what well-being is, beneath the preferences that are its rough and ready proxy; the volume on the share asked whose well-being a just economy should weigh. This volume has shown only that the foundational identification — that a person's good is the satisfaction of whatever he happens to prefer — is too thin to bear examination, and that beneath the elegant science of choice lies an older and harder question it was built to avoid: not what a person wants, nor what he chooses, but what is genuinely good for him, and whether the two were ever the same thing. The argument remains open.</p>
+      </div>
+    </section>
+  </main>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref">Volume XXIII &middot; The Choice</span>
+    </div>
+    <p class="colophon">Volume XXIII of <em>Numéraire, A Periodic Table of Economic Life</em> — <em>The Choice</em>, the twenty-third of twenty-six and the third of The Behaviors. Twelve plates and seven engravings, each carried to the seam where the seminar and the essay usually part and held there with the rigor of the one and the grace of the other, and each scrupulous about the exact edge of what can be known. The choice is the assumption beneath the whole edifice — that a person chooses what is best for him — and this volume lays out the elegant theory built upon it, from preference and its axioms through ordinal utility and revealed preference to expected utility and the aversion to risk, and then examines honestly the seams where it strains against how anyone actually decides: the bounded mind that cannot optimize, the framing that constructs the preference it was meant to consult, the present bias that turns one chooser into a planner and a doer at war, the wants manufactured by the economy that claims to serve them, and the tautology that lurks when the best is defined as whatever is chosen. It finds a model too powerful and general to discard and too far from the fact to believe, and asks that it be held as both at once; and it leaves open the question its own definitions hide — whether what is chosen is ever the same as what is good. It hands the chooser onward to <em>The Game</em>, which set him against others like himself, and to <em>The Norm</em>, which watched him bend to the unwritten rule; it points forward to <em>The Bias</em>, which will catalogue his systematic errors; and it stands behind the whole table, whose every price assumed him. The figures stand after Bentham, Pareto, Hicks, Samuelson, von Neumann and Morgenstern, Bernoulli, Simon, Kahneman and Tversky, Allais, Ellsberg, Becker, Galbraith, Elster, Ainslie, Laibson, Gigerenzer, and Rabin. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<script>
+(function(){
+  var root=document.documentElement; root.classList.add('js');
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var bar=document.getElementById('progress');
+  var topbar=document.getElementById('topbar');
+  var title=document.querySelector('.vol-title');
+  var label=document.getElementById('tb-plate');
+  function onScroll(){
+    var doc=document.documentElement;
+    var h=doc.scrollHeight-window.innerHeight;
+    var p=h>0?Math.min(1,Math.max(0,window.scrollY/h)):0;
+    if(bar) bar.style.transform='scaleX('+p.toFixed(4)+')';
+    if(topbar){
+      var threshold=(title?title.offsetHeight:420)*0.72;
+      if(window.scrollY>threshold) topbar.classList.add('show'); else topbar.classList.remove('show');
+    }
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+  if('IntersectionObserver' in window){
+    var rev=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); rev.unobserve(e.target); } });
+    },{rootMargin:'0px 0px -10% 0px',threshold:0.06});
+    document.querySelectorAll('.reveal').forEach(function(el){ rev.observe(el); });
+    if(label){
+      var cur=new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting){ var t=e.target.getAttribute('data-label'); if(t) label.textContent=t; } });
+      },{rootMargin:'-44% 0px -50% 0px',threshold:0});
+      document.querySelectorAll('.plate[data-label]').forEach(function(el){ cur.observe(el); });
+    }
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-share.html">← The Share</a><a rel="next" href="the-bias.html">The Bias →</a></nav>
+</body>
+</html>

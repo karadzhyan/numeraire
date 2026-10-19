@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Toll — The Rent, plate i</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1;
+    --ink:#1c1a16;
+    --soft:#534e45;
+    --faint:#6e685d;
+    --faintest:#9a9384;
+    --num:#c4bcab;
+    --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16);
+    --frame:68rem;
+    --read:37rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.6rem,4vw,4rem);}
+  p{margin:0;}
+  i,em{font-style:italic;}
+  a{color:inherit;}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:4px;border-radius:1px;}
+  .fr{font-family:"Fraunces",Georgia,serif;font-feature-settings:"liga" 1,"dlig" 0;}
+
+  /* ---- heavy entrance ---- */
+  .hero{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:space-between;}
+  .bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.5rem;padding:2.5rem 0 0;}
+  .mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.3rem;letter-spacing:-.01em;}
+  .edition{font-size:.9rem;color:var(--faint);letter-spacing:.06em;}
+  .hero-foot{padding-bottom:clamp(3.5rem,8vh,7rem);text-align:center;}
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(3.4rem,12vw,11rem);line-height:.95;letter-spacing:-.03em;margin:0;}
+  .standfirst{font-size:clamp(1.16rem,1.5vw,1.36rem);line-height:1.55;color:var(--soft);
+    margin:clamp(1.6rem,3vh,2.4rem) auto 0;max-width:45rem;text-wrap:pretty;}
+
+  /* ---- reading column ---- */
+  .read{max-width:var(--read);margin:0 auto;}
+  .read p{font-size:1.07rem;line-height:1.74;color:var(--ink);margin:0;text-indent:1.4em;text-wrap:pretty;}
+  .sec-head + p,.pull + p,.opening,.plate + p,.coda + p{text-indent:0;}
+
+  .sec-head{text-align:center;margin:clamp(4rem,9vh,7.5rem) 0 clamp(1.8rem,3.5vh,2.6rem);}
+  .sec-head.first{margin-top:clamp(5rem,11vh,9rem);}
+  .sec-num{display:block;font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;
+    font-size:.98rem;letter-spacing:.06em;color:var(--faintest);margin-bottom:.85rem;}
+  .sec-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.6rem,2.6vw,2.05rem);line-height:1.12;letter-spacing:-.012em;margin:0;}
+
+  .opening::first-letter{
+    font-family:"Fraunces",serif;font-weight:500;float:left;font-size:5.3rem;line-height:.72;
+    padding:.36rem .55rem 0 0;color:var(--ink);
+  }
+
+  .pull{max-width:50rem;margin:clamp(4.5rem,9vh,7rem) auto;text-align:center;}
+  .pull p{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:clamp(2rem,4.2vw,3.1rem);line-height:1.08;letter-spacing:-.02em;color:var(--ink);
+    margin:0;text-indent:0;text-wrap:balance;}
+
+  .ref{font-size:.62em;vertical-align:.5em;line-height:0;color:var(--faint);font-style:normal;}
+  .ref a{text-decoration:none;}
+  .ref a:hover{color:var(--ink);}
+
+  /* ---- plates (diagrams) ---- */
+  .plate{max-width:var(--read);margin:clamp(3.4rem,7vh,5.2rem) auto;}
+  .plate.wide{max-width:44rem;}
+  .plate figure{margin:0;}
+  .plate svg{display:block;width:100%;height:auto;overflow:visible;}
+  .plate text{font-family:"Fraunces",Georgia,serif;fill:var(--soft);paint-order:stroke;stroke:var(--paper);stroke-width:2.6px;stroke-linejoin:round;}
+  .plate .axis{stroke:var(--soft);stroke-width:1.1;}
+  .plate .curve{fill:none;stroke:var(--ink);stroke-width:1.6;}
+  .plate .curve.sec{stroke:var(--soft);stroke-width:1.4;}
+  .plate .guide{stroke:var(--faintest);stroke-width:1;stroke-dasharray:2.4 3.4;fill:none;}
+  .plate .level{stroke:var(--faintest);stroke-width:1;stroke-dasharray:1 4;}
+  .plate .floor{stroke:var(--ink);stroke-width:1.2;stroke-dasharray:5 4;}
+  .plate .dot{fill:var(--ink);}
+  .plate .dot.open{fill:var(--paper);stroke:var(--ink);stroke-width:1.4;}
+  .plate .lbl{font-size:14px;fill:var(--soft);}
+  .plate .tick{font-size:13px;fill:var(--faint);}
+  .plate .reg{font-size:12.5px;fill:var(--faint);font-style:italic;}
+  .plate figcaption{font-size:.82rem;line-height:1.56;color:var(--faint);margin:1.2rem auto 0;
+    max-width:33rem;text-align:center;text-wrap:pretty;}
+  .plate figcaption .pn{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;
+    color:var(--faintest);letter-spacing:.05em;text-transform:uppercase;font-size:.74rem;}
+
+  /* ---- coda ---- */
+  .coda{max-width:46rem;margin:clamp(5rem,10vh,8rem) auto 0;text-align:center;}
+  .coda p{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400,"ital" 0;font-style:italic;
+    font-size:clamp(1.5rem,2.6vw,2.05rem);line-height:1.3;color:var(--soft);margin:0;text-wrap:balance;}
+
+  /* ---- notes ---- */
+  .notes{max-width:var(--read);margin:clamp(5rem,11vh,9rem) auto 0;padding-top:2.4rem;border-top:1px solid var(--hair);}
+  .notes h3{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.92rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.6rem;}
+  .note{display:flex;gap:.9rem;scroll-margin-top:2rem;font-size:.86rem;line-height:1.56;color:var(--faint);margin:0 0 1rem;text-wrap:pretty;}
+  .note .nn{flex:0 0 auto;font-family:"Fraunces",serif;color:var(--faintest);min-width:1.1rem;}
+  .note i{font-style:italic;}
+
+  /* ---- colophon ---- */
+  footer{margin-top:clamp(6rem,13vh,10rem);padding:2.6rem 0 4.5rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.5rem;margin-bottom:1.8rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.1rem;}
+  .f-ref{font-size:.82rem;color:var(--faintest);letter-spacing:.18em;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:60ch;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .r{opacity:0;transform:translateY(12px);animation:rise 1.1s cubic-bezier(.2,.6,.2,1) both;}
+    .r1{animation-delay:.06s}.r2{animation-delay:.2s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .read p{font-size:1.04rem;}
+    .opening::first-letter{font-size:4.4rem;}
+    .f-bar{flex-direction:column;gap:.7rem;}
+    .plate .lbl,.plate .reg,.plate .tick{font-size:11px;}
+  }
+
+  /* ===== revision: airier rhythm + new plate types ===== */
+  .read p{line-height:1.82;}
+  .sec-head{margin:clamp(5.5rem,12.5vh,9.5rem) 0 clamp(2.2rem,4vh,3rem);}
+  .sec-head.first{margin-top:clamp(5rem,11vh,8.5rem);}
+  .sec-head::before{content:"";display:block;width:2.4rem;height:1px;background:var(--num);margin:0 auto 1.7rem;opacity:.85;}
+  .pull{margin:clamp(5.5rem,11vh,8.5rem) auto;}
+  .plate{margin:clamp(4.4rem,9vh,6.6rem) auto;}
+  .coda{margin-top:clamp(6rem,12vh,9rem);}
+
+  /* centered closing ornament */
+  .orn{display:flex;justify-content:center;margin:clamp(5rem,10vh,7.5rem) auto 0;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;}
+  .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* ledger plate: sources -> remedies */
+  .ledger figure{margin:0;}
+  .ledger-grid{display:grid;grid-template-columns:1fr 1fr;position:relative;
+    border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);}
+  .ledger-grid::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:1px;background:var(--hair);}
+  .ledger-grid .lh{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;
+    font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);padding:1.15rem 1.5rem .55rem;}
+  .ledger-grid .lh.r{text-align:right;} .ledger-grid .lh.l{text-align:left;}
+  .ledger-grid .cell{padding:1.3rem 1.5rem;border-top:1px solid var(--hair);}
+  .ledger-grid .src{text-align:right;} .ledger-grid .rem{text-align:left;}
+  .ledger-grid .cell b{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 500;font-weight:500;
+    font-size:1.13rem;display:block;color:var(--ink);letter-spacing:-.01em;line-height:1.15;}
+  .ledger-grid .cell span{display:block;font-size:.81rem;color:var(--faint);margin-top:.34rem;line-height:1.42;}
+  .ledger-coda{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.16rem;line-height:1.42;color:var(--soft);text-align:center;margin:1.7rem auto 0;max-width:33rem;text-wrap:balance;}
+  @media (max-width:620px){
+    .ledger-grid{grid-template-columns:1fr;}
+    .ledger-grid::before{display:none;}
+    .ledger-grid .lh{display:none;}
+    .ledger-grid .src,.ledger-grid .rem{text-align:left;}
+    .ledger-grid .src{border-bottom:none;}
+    .ledger-grid .rem{border-top:none;padding-top:.1rem;padding-left:2.4rem;position:relative;}
+    .ledger-grid .rem::before{content:"\2192";position:absolute;left:1.1rem;top:.1rem;color:var(--faintest);}
+    .ledger-grid .cell{padding-bottom:.5rem;}
+    .ledger-grid .rem{padding-bottom:1.3rem;}
+  }
+
+  /* ===== frontispiece: annotated contents ===== */
+  .sec-head{scroll-margin-top:2.5rem;}
+  .contents{max-width:40rem;margin:0 auto;padding:clamp(3rem,8vh,7rem) 0 clamp(3rem,7vh,6rem);}
+  .contents .orn{margin:0 auto 2.4rem;}
+  .contents-eyebrow{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faintest);text-align:center;margin:0 0 3rem;}
+  .contents-list{list-style:none;margin:0 auto;padding:0;max-width:33rem;counter-reset:none;}
+  .contents-list li{margin:0 0 1.7rem;}
+  .contents-list li:last-child{margin-bottom:0;}
+  .contents-list a{display:grid;grid-template-columns:2.6rem 1fr;column-gap:1.1rem;
+    text-decoration:none;align-items:baseline;}
+  .contents-list .cn{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;
+    font-size:.96rem;color:var(--faintest);text-align:right;letter-spacing:.02em;}
+  .contents-list .ct{font-family:"Fraunces",serif;font-variation-settings:"opsz" 58,"wght" 500;
+    font-size:1.2rem;color:var(--ink);letter-spacing:-.012em;line-height:1.18;transition:color .25s ease;}
+  .contents-list .cg{grid-column:2;font-style:italic;font-size:.92rem;color:var(--faint);
+    margin-top:.22rem;line-height:1.42;text-wrap:pretty;}
+  .contents-list a:hover .ct{color:var(--soft);}
+  @media (max-width:600px){
+    .contents-list a{grid-template-columns:1.9rem 1fr;column-gap:.85rem;}
+    .contents-list .ct{font-size:1.1rem;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-founding">The Founding Atlas · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+
+  <section class="hero">
+    <div class="bar r r1">
+      <span class="mark">Numéraire</span>
+      <span class="edition">The Rent · № II · i</span>
+    </div>
+    <div class="hero-foot r r2">
+      <h1>The Toll</h1>
+      <p class="standfirst">There is a kind of income paid for nothing — or rather, for nothing done. The landlord who inherited an acre and lifts not a finger collects a rent from whoever farms or builds or lives upon it; the payment is real, and so is the puzzle of what it is paid for. This is the second volume of Numéraire, and its subject is that payment and all its kin. Economists call it economic rent: the surplus that scarcity hands to whoever controls the scarce thing, over and above what was needed to bring that thing into use. It is the toll collected at a gate the toll-keeper did not build. This plate sets out what rent is, why it arises wherever supply is fixed and demand presses against it, and why — unlike the wage, which is at least paid for work — rent is the purest case economics offers of an income drawn from owning rather than making. Where the first volume asked whether the wage measures worth or power, this one asks a sharper question of rent: whether it is earned at all.</p>
+    </div>
+  </section>
+
+  <nav class="contents" aria-label="Contents">
+    <div class="orn" aria-hidden="true"><svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg></div>
+    <p class="contents-eyebrow">The argument in seven movements</p>
+    <ol class="contents-list">
+      <li><a href="#s1"><span class="cn">I</span><span class="ct">The Payment for Nothing</span><span class="cg">income that answers to no labour</span></a></li>
+      <li><a href="#s2"><span class="cn">II</span><span class="ct">The Surplus</span><span class="cg">rent as payment above transfer earnings</span></a></li>
+      <li><a href="#s3"><span class="cn">III</span><span class="ct">The Fixed Factor</span><span class="cg">when supply cannot answer demand</span></a></li>
+      <li><a href="#s4"><span class="cn">IV</span><span class="ct">The Income of Ownership</span><span class="cg">the return to control, not contribution</span></a></li>
+      <li><a href="#s5"><span class="cn">V</span><span class="ct">The Many Tolls</span><span class="cg">rent beyond the field</span></a></li>
+      <li><a href="#s6"><span class="cn">VI</span><span class="ct">The Two Faces</span><span class="cg">signal and extraction</span></a></li>
+      <li><a href="#s7"><span class="cn">VII</span><span class="ct">The Argument to Come</span><span class="cg">the volume in prospect</span></a></li>
+    </ol>
+  </nav>
+
+  <article class="read">
+
+    <div class="sec-head first" id="s1"><span class="sec-num fr">I</span><h2 class="sec-title">The Payment for Nothing</h2></div>
+
+    <p class="opening">Consider two payments. The first is a wage: a person works, and is paid for the working. The second is a rent: a person owns a field, does nothing to it, and is paid by whoever wishes to use it. The wage we may quarrel about — whether it matches the work, whether power has bent it — but at least it answers to an effort; somebody did something. The rent answers to nothing of the kind. The owner of the field need not sow it, drain it, or so much as visit it; the payment arrives because the field is theirs and another needs it. What is this payment for?</p>
+
+    <p>The question is older than economics, and was for a long time economics' central preoccupation. The classical writers — Smith, Ricardo, Mill — were transfixed by rent, because it sat so awkwardly in a system meant to reward contribution. A worker earns by labour; a lender, they reasoned, earns by abstaining from present use; an enterpriser earns by organising and bearing risk. But the landlord earns, in Mill's stinging phrase, in his sleep. Rent looked like a leak in the moral plumbing of the market — an income with no visible source in anyone's effort — and the whole of this volume is an inquiry into that leak: what rent is, where it comes from, how far it spreads beyond the field, and whether the old suspicion that it is unearned can survive a careful look.<sup class="ref"><a href="#n1">1</a></sup></p>
+
+    <div class="sec-head" id="s2"><span class="sec-num fr">II</span><h2 class="sec-title">The Surplus</h2></div>
+
+    <p>To answer the question we need the thing defined, and economics defines it with unusual precision. Economic rent is the payment to a factor of production over and above the minimum that would have been needed to keep it in its present use. That minimum has a name — the factor's transfer earnings, the amount it could fetch in its next-best employment, and so the least it must be paid not to transfer away. Whatever it receives beyond that is rent: pure surplus, a payment that changes nothing about what the factor does, because by definition the factor would have done it for less.</p>
+
+    <p>Picture the supply of some factor — workers of a certain skill, acres of a certain quality — ranged from the most eager to the most reluctant. The first units come cheaply; each further unit must be coaxed out by a higher price. But in a market all units fetch the same single price, the one that draws out the last and most reluctant unit needed. Every unit more eager than that last one therefore pockets the gap between what it would have accepted and what it is actually paid. That gap, summed across all the inframarginal units, is rent.<sup class="ref"><a href="#n2">2</a></sup></p>
+
+    <div class="plate">
+      <figure>
+        <svg viewBox="0 0 640 400" role="img" aria-label="A factor market with an upward-sloping supply curve and a horizontal going price. The area below the price and above the supply curve is rent; the area below the supply curve is transfer earnings — the minimum needed to call the factor forth.">
+          <line class="axis" x1="90" y1="340" x2="594" y2="340"/>
+          <path d="M598,340 L588,336 L588,344 Z" style="fill:var(--soft)"/>
+          <line class="axis" x1="90" y1="340" x2="90" y2="60"/>
+          <path d="M90,56 L86,66 L94,66 Z" style="fill:var(--soft)"/>
+          <path d="M130,180 L400,180 L130,280 Z" style="fill:var(--sel)"/>
+          <path d="M130,280 L400,180 L400,340 L130,340 Z" style="fill:var(--hair)"/>
+          <line class="curve" x1="130" y1="280" x2="520" y2="135"/>
+          <line x1="95" y1="180" x2="400" y2="180" style="stroke:var(--soft);stroke-width:1.2"/>
+          <line class="guide" x1="400" y1="180" x2="400" y2="340"/>
+          <text class="lbl" x="523" y="138">supply</text>
+          <text class="reg" x="205" y="171" text-anchor="middle">the going price</text>
+          <text class="lbl" x="205" y="217" text-anchor="middle">rent</text>
+          <text class="reg" x="262" y="312" text-anchor="middle">transfer earnings</text>
+          <text class="reg" x="340" y="372" text-anchor="middle">quantity of the factor</text>
+          <text class="lbl" transform="translate(62,205) rotate(-90)" text-anchor="middle">payment per unit</text>
+        </svg>
+        <figcaption><span class="pn">Plate i.a&nbsp;&middot;&nbsp;</span>Rent as surplus. A factor is supplied unit by unit, each costlier to draw out than the last (the rising line). Yet the market pays every unit the same going price — the price needed to summon the final, most reluctant unit. The shaded wedge above the supply curve is the result: the surplus collected by every earlier unit, which would have served for less but is paid the full price anyway. That wedge is rent. The area beneath the supply curve is its complement — transfer earnings, the genuine minimum the factor required to be here at all. Rent is what is paid beyond necessity; it is the same quantity that appears elsewhere as producer surplus, seen now as an income.<sup class="ref"><a href="#n3">3</a></sup></figcaption>
+      </figure>
+    </div>
+
+    <div class="sec-head" id="s3"><span class="sec-num fr">III</span><h2 class="sec-title">The Fixed Factor</h2></div>
+
+    <p>The surplus is largest, and the concept purest, when the supply of the factor cannot increase at all. Imagine not a rising supply curve but a vertical one: a quantity fixed, whatever the price. Land is the standard example — the stock of a given location cannot be added to; the corner of two particular streets exists in exactly one copy, and no price, however high, will summon a second. For such a factor the whole apparatus simplifies. There are no transfer earnings to speak of, because the factor has nowhere to transfer to and would sit there at any price down to nearly nothing. The entire payment is therefore rent.</p>
+
+    <div class="plate">
+      <figure>
+        <svg viewBox="0 0 640 400" role="img" aria-label="A vertical supply curve for a factor fixed in quantity, crossed by two demand curves. A higher demand meets the fixed supply at a higher price, raising the rent, while the quantity never changes.">
+          <line class="axis" x1="90" y1="340" x2="594" y2="340"/>
+          <path d="M598,340 L588,336 L588,344 Z" style="fill:var(--soft)"/>
+          <line class="axis" x1="90" y1="340" x2="90" y2="60"/>
+          <path d="M90,56 L86,66 L94,66 Z" style="fill:var(--soft)"/>
+          <line x1="330" y1="88" x2="330" y2="340" style="stroke:var(--ink);stroke-width:2.2"/>
+          <line x1="150" y1="222" x2="508" y2="300" style="stroke:var(--soft);stroke-width:1.6"/>
+          <line x1="150" y1="162" x2="508" y2="240" style="stroke:var(--soft);stroke-width:1.6"/>
+          <circle class="dot" cx="330" cy="261" r="4"/>
+          <circle class="dot" cx="330" cy="201" r="4"/>
+          <line x1="356" y1="201" x2="356" y2="261" style="stroke:var(--soft);stroke-width:1.4"/>
+          <path d="M352,209 L360,209 L356,201 Z" style="fill:var(--soft)"/>
+          <path d="M352,253 L360,253 L356,261 Z" style="fill:var(--soft)"/>
+          <text class="lbl" x="330" y="76" text-anchor="middle">fixed supply</text>
+          <text class="reg" x="200" y="168">higher demand</text>
+          <text class="reg" x="200" y="280">lower demand</text>
+          <text class="reg" x="363" y="196">rent rises with demand</text>
+          <text class="reg" x="340" y="372" text-anchor="middle">quantity of land</text>
+          <text class="lbl" transform="translate(62,200) rotate(-90)" text-anchor="middle">rent per unit</text>
+        </svg>
+        <figcaption><span class="pn">Plate i.b&nbsp;&middot;&nbsp;</span>The pure case. When the factor cannot be multiplied — a particular acre, a particular corner — its supply curve stands straight up, and demand alone decides the price. Let demand rise (the upper line) and the rent rises with it; let demand fall and the rent falls; but the quantity never stirs, because it cannot. The whole of the payment is rent, since the land would sit here at almost any price. And the causation runs backward from the intuitive direction: the rent does not push up the price of what the land yields, as a wage or a material would. The price is set first, by demand for the produce, and the surplus it leaves is gathered up, afterward, as rent.</figcaption>
+      </figure>
+    </div>
+
+    <p>Something important follows from that backward causation, and it is worth stating plainly because it will recur throughout the volume. The rent of a fixed factor is price-determined, not price-determining. The rent of land does not enter the cost of what land produces and force its price up, the way a wage or a material cost would; it is the other way about. The price of the wheat, the housing, the retail footfall is set by demand and the cost of production at the margin, and whatever surplus that price happens to leave over is captured, after the fact, as the land's rent. Rent is not a cause of high prices. It is their consequence, collected by whoever owns the fixed thing.<sup class="ref"><a href="#n4">4</a></sup></p>
+
+    <div class="sec-head" id="s4"><span class="sec-num fr">IV</span><h2 class="sec-title">The Income of Ownership</h2></div>
+
+    <p>We can now say what rent is, in a sentence that will serve as the spine of this volume. Rent is the income of control, not of contribution. It accrues to whoever owns a scarce thing that others need, and it accrues to them because they own it — not because they made it, improved it, or do anything with it at all. The wage is paid for work; interest, on one account, for waiting; profit for enterprise and the bearing of risk. Rent is paid for none of these. It is paid for holding the gate.</p>
+
+    <p>This is the sense in which rent has always been called unearned, and it is worth being exact about the charge, because it is easy to overstate and the rest of the volume depends on getting it right. The claim is not that landlords are idle people — many work hard at other things, and some work hard at improving their land. The claim is narrower and sharper: that the part of their income which is pure rent corresponds to no contribution of theirs. Where an owner drains a marsh or raises a building, the extra payment that improvement earns is not rent at all; it is a return on capital and effort invested, a payment for something done. Pure rent is what remains after every such return is stripped away — the payment attributable to the scarce thing itself, to the bare fact of the location or the deposit or the franchise, which the owner did not create and which would command its price in any hands whatever.<sup class="ref"><a href="#n5">5</a></sup> The volume will labour to keep this distinction clean, because nearly every defence of rent, and nearly every attack on it, proceeds by blurring it: the defender folds the return on genuine improvement into &ldquo;rent&rdquo; to make it look earned, while the critic folds the reward for real enterprise into &ldquo;rent&rdquo; to make it look stolen.<sup class="ref"><a href="#n6">6</a></sup></p>
+
+    <p>Held to its exact meaning, rent is the clearest case economics affords of an income without a corresponding contribution — and that is precisely why it has been, for two centuries, the most morally charged price in the subject. The wage, even at its most exploited, is the price of doing. Rent is the price of having. The central question of this volume, asked first of land and then of everything that comes to behave like land, is whether an economy can or should allow so much of its income to flow to having rather than to doing — and what becomes of that economy when it does.</p>
+
+    <div class="sec-head" id="s5"><span class="sec-num fr">V</span><h2 class="sec-title">The Many Tolls</h2></div>
+
+    <p>If rent were confined to farmland it would be a quaint subject, a relic of the agrarian economy that obsessed the classical writers. It is not so confined. The definition we have built — a surplus accruing to the owner of something scarce, above what was needed to bring it into use — says nothing about soil. It applies to anything whose supply is limited and whose access one party controls. And once that is seen, rent appears everywhere.<sup class="ref"><a href="#n7">7</a></sup></p>
+
+    <div class="plate wide ledger">
+      <figure>
+        <div class="ledger-grid">
+          <div class="lh r">The scarce thing</div>
+          <div class="lh l">The toll its owner collects</div>
+          <div class="cell src"><b>Land</b><span>fixed by nature</span></div>
+          <div class="cell rem"><b>Ground rent</b><span>payment for a location the owner did not make</span></div>
+          <div class="cell src"><b>A monopoly</b><span>the only seller</span></div>
+          <div class="cell rem"><b>The markup</b><span>what a captive buyer cannot escape</span></div>
+          <div class="cell src"><b>A rare gift</b><span>scarce talent</span></div>
+          <div class="cell rem"><b>The star's premium</b><span>pay above what the next-best would take</span></div>
+          <div class="cell src"><b>A licence</b><span>entry the law restricts</span></div>
+          <div class="cell rem"><b>The permit's value</b><span>scarcity made by statute</span></div>
+          <div class="cell src"><b>A platform</b><span>the gate between two sides</span></div>
+          <div class="cell rem"><b>The take rate</b><span>a toll on every passage it controls</span></div>
+        </div>
+        <p class="ledger-coda">Different scarce things; one kind of income. In each, the owner is paid not for making the thing but for holding it — and that payment, the surplus that scarcity permits, is rent.</p>
+        <figcaption><span class="pn">Plate i.c&nbsp;&middot;&nbsp;</span>The many tolls. Economic rent is no peculiarity of farmland; it is the income of controlling anything scarce. Wherever supply is limited and one party holds the gate — a field, a market, a gift, a permit, a platform — that party collects a payment above what was needed to bring the thing into use. The forms look unrelated and are, at bottom, the same: a toll on scarcity. The plates that follow take them one at a time.</figcaption>
+      </figure>
+    </div>
+
+    <p>The monopolist who is the only seller of a good collects a rent: the markup above the competitive price is a surplus extracted from buyers who have nowhere else to go, and it survives only because entry is somehow barred. The performer or athlete or executive whose particular gifts are scarce collects a rent: the pay above what the next-best substitute would accept for the same role is owed not to effort — the second-best may toil just as hard — but to the scarcity of the gift. The holder of a licence, a patent, a franchise, a permit collects a rent: the law has made the thing artificially scarce, and the value of the piece of paper is the surplus that scarcity creates. The platform that stands between buyers and sellers, and that neither can easily route around, collects a rent on every transaction it gates. Each looks like a different income — monopoly profit, scarcity premium, the return to talent, licence value, platform fee<sup class="ref"><a href="#n8">8</a></sup> — and the argument of this volume is that they are, at root, one income in many costumes: a payment for controlling something scarce rather than for producing something; a toll levied at a gate. Much of the work ahead is simply the recognising of rent beneath its disguises, and the asking, of each, of the same two questions: does this toll do any useful work, and has the toll-keeper any honest claim to what it takes?</p>
+
+    <div class="sec-head" id="s6"><span class="sec-num fr">VI</span><h2 class="sec-title">The Two Faces</h2></div>
+
+    <p>Two questions, then, and they pull in opposite directions, because rent has two faces and both are real.</p>
+
+    <p>The first face is efficient. For all that rent is unearned, it does a genuine and vital job: it rations. When a thing is truly scarce, some means must decide who gets it, and a price — a rent — is the means a market uses. The rent on a prime location is high precisely because many would use it and only one can; the rent sorts them, handing the spot to whoever can wring the most value from it and so can bid the most. Abolish the rent — hand the location out for nothing — and the sorting collapses: the scarce thing goes to whoever arrives first, or shouts loudest, or knows the official, rather than to whoever can use it best. The signal a rent sends is real information, and an economy that suppressed it would squander the very scarce things it meant to share. This is the case for rent, and it is not a weak one; the volume will give it its due.<sup class="ref"><a href="#n9">9</a></sup></p>
+
+    <p>The second face is extractive. Grant that the rent must be charged — that some price must ration the scarce thing — and a further question remains, one the efficiency case quietly skips: who should pocket the proceeds? That the location must command a rent, to reach its best user, says nothing about why that rent should fall into the lap of an owner who did nothing to create either the location or its value. The worth of a corner lot is made by the city that grew up around it — the roads, the crowds, the commerce, the public works — none of it the owner's doing; yet the owner banks the rising rent. Henry George, who dominates the third plate, built a movement on this observation: that the rent of land is an unearned increment, created by the community and captured by the titleholder, and that something is deeply amiss in a system where the gains of common progress settle privately on those who merely hold the ground.<sup class="ref"><a href="#n10">10</a></sup></p>
+
+    <p>The two faces are usually run together — is rent good or bad? — and the question answered by whichever face the answerer has chosen to see. The wager of this volume is that it dissolves once the faces are separated, because they concern two different things. The efficiency case is about charging the rent; the justice case is about keeping it. And nothing requires that the same party do both. One could charge the rent in full, preserving every ounce of its rationing signal, and yet divert the proceeds from the private owner to the public whose presence created the value — charging without keeping. That this is not merely conceivable but, for the purest rents, achievable with no loss of efficiency whatever is the most remarkable result in the theory of rent, and the destination toward which the volume's middle plates are bent.<sup class="ref"><a href="#n11">11</a></sup></p>
+
+    <div class="sec-head" id="s7"><span class="sec-num fr">VII</span><h2 class="sec-title">The Argument to Come</h2></div>
+
+    <p>That is the journey. From here the volume descends, as the first did, from the clear case to the hard ones. It begins where the classical economists began, with land: first the positive theory of how land rent arises, in Ricardo's elegant law of the margin (ii), then the great moral indictment of it, in George's unearned increment (iii). It follows rent off the land and into the wider economy, where it proves to be not a special case but a general one — the return to any fixed factor (iv), the premium commanded by scarce talent (v), the value of a licence the law makes scarce (vi). It turns to the contest the two faces frame: the waste of the scramble to capture rents that produce nothing (vii), the efficiency case that rent nonetheless rations what is scarce (viii), and the old and astonishing proposal that reconciles them — to tax away the rent of fixed things while distorting nothing at all (ix). And it ends in the present, where rent has quietly become one of the largest facts of economic life: in the housing that is now the chief store of rent in the rich world (x), in the intellectual property and platforms that are the new enclosures of the digital commons (xi), and at last in the aggregate — the rising share of all income that is now rent, the return of the rentier, and the recognition that the income the first volume watched drain away from labour has been pooling, all along, in the reservoirs of those who own scarce things (xii).<sup class="ref"><a href="#n12">12</a></sup></p>
+
+    <p>The thesis the volume will defend can be set down now, to be tested against all of it. Rent is the income of owning scarcity — the purest case of a payment without a contribution — and a modern economy is, to a degree its own statistics have been slow to admit, an economy of rent. The wage was the price of labour, and we found its measure to be as much power as worth. Rent is the price of ownership, and we shall find its measure to be, far more than its defenders allow, the simple capture of what scarcity hands to whoever holds the gate.<sup class="ref"><a href="#n13">13</a></sup></p>
+
+    <div class="orn" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="coda"><p>Rent is the toll at a gate. Whether the gate is a field or a franchise, a corner or a patent, a coastline or a platform, the structure is the same: a thing made scarce, a holder who controls the passage, and a payment exacted from all who must cross. The toll-keeper need not have built the gate, nor the road that runs to it, nor the city whose traffic gives it worth. He need only hold it. The question this volume cannot stop asking is the one every traveller asks at every tollbooth and rarely dares say aloud: by what right is this collected — and what would happen if it were collected by someone else, or by everyone?</p></div>
+
+    <section class="notes">
+      <p class="note" id="n1"><span class="nn fr">1</span><span>The classical economists' preoccupation with rent ran through the disputes over the Corn Laws and shaped Ricardo's <i>Principles of Political Economy and Taxation</i> (1817). The image of the landlord enriched without effort is John Stuart Mill's: in the <i>Principles of Political Economy</i> (1848) he wrote that landlords grow richer, as it were in their sleep, without working, risking, or economising — and drew from it his proposal to tax the future unearned increment of land.</span></p>
+      <p class="note" id="n2"><span class="nn fr">2</span><span>The technical sense of economic rent — a payment above <i>transfer earnings</i>, the factor's opportunity cost in its next-best use — sharpens a usage running from the classical writers through Marshall; the term &ldquo;transfer earnings&rdquo; is owed to Joan Robinson. Note that economic rent in this sense is broader than, and not the same as, &ldquo;rent&rdquo; in everyday speech (the sum paid for the temporary use of property under a lease). The two coincide for land, but the economic concept abstracts to the surplus over opportunity cost earned by any factor whatever.</span></p>
+      <p class="note" id="n3"><span class="nn fr">3</span><span>The area below the price and above the supply curve is what an economist otherwise calls producer surplus; economic rent is that surplus regarded as an income of the factor's owner. Two limiting cases fix the idea: for a factor in perfectly elastic supply (a horizontal curve) the area vanishes and there is no rent; for one in perfectly inelastic supply (a vertical curve) it is the entire payment, all rent. Plate i.b is the second case.</span></p>
+      <p class="note" id="n4"><span class="nn fr">4</span><span>The dictum that rent is &ldquo;price-determined, not price-determining&rdquo; is Ricardo's, and follows from the fixity of land: because its supply cannot expand, the rent of land does not enter into and raise the cost of production at the margin; rather, the price of produce is set at the margin where no rent is paid, and rent is the differential surplus that price leaves on the better land. The argument is the subject of plate ii. See Ricardo, <i>Principles of Political Economy and Taxation</i> (1817), ch. 2.</span></p>
+      <p class="note" id="n5"><span class="nn fr">5</span><span>The classical taxonomy assigned each factor its income — wages to labour, profit to stock and enterprise, rent to land — and singled out rent as the one with no counterpart in productive sacrifice. Adam Smith observed in the <i>Wealth of Nations</i> (1776) that landlords love to reap where they never sowed; Mill's <i>Principles</i> (1848), Book V, made the moral point the ground of a tax proposal.</span></p>
+      <p class="note" id="n6"><span class="nn fr">6</span><span>Separating pure rent from the return on improvements is old and notoriously hard. It troubled Ricardo's own treatment, and the difficulty is practical as much as conceptual: once a site is built upon, the value of the &ldquo;unimproved&rdquo; land beneath must be imputed rather than observed. This is not a quibble but the central obstacle to taxing land values, and it is taken up directly in plate ix.</span></p>
+      <p class="note" id="n7"><span class="nn fr">7</span><span>Detaching rent from land — recognising it as a property of any scarce factor, not of soil — is the move that makes the concept general. Marshall's &ldquo;quasi-rent,&rdquo; the surplus earned by a factor whose supply is fixed in the short run though not the long (a machine, an acquired skill), is the bridge; see Alfred Marshall, <i>Principles of Economics</i> (1890), Book V. Plate iv develops the generalisation.</span></p>
+      <p class="note" id="n8"><span class="nn fr">8</span><span>The forms enumerated each have their own plate. Monopoly rent — the surplus that survives only because entry is barred — is the seller-side mirror of the monopsony treated in <i>The Wage</i>, and is taken up in vi. The premium to scarce talent is the &ldquo;economics of superstars&rdquo; of Sherwin Rosen (1981), the subject of v. The value conjured by legally restricting entry — licences, patents, franchises — runs through vi and xi. They appear here only to show rent's reach.</span></p>
+      <p class="note" id="n9"><span class="nn fr">9</span><span>That rent performs a genuine rationing function — directing a scarce resource to the use that values it most, by making every lesser use bid against it — is the core of the efficiency defence, and the reason rent cannot simply be abolished without loss. It is argued in full in plate viii.</span></p>
+      <p class="note" id="n10"><span class="nn fr">10</span><span>The charge that land rent is an &ldquo;unearned increment,&rdquo; created by the growth and works of the surrounding community and captured by the titleholder who contributed neither, is the argument of Henry George's <i>Progress and Poverty</i> (1879), among the most widely read works of economics of its century. Plate iii is given to it.</span></p>
+      <p class="note" id="n11"><span class="nn fr">11</span><span>The separation of <i>charging</i> the rent (which the efficiency case requires) from <i>keeping</i> the rent (which the justice case contests) is the hinge of the whole volume. Its sharpest form is a theorem: because the supply of a pure fixed factor does not respond to price, a tax on its rent changes no one's behaviour and so imposes no deadweight loss — the rent can be taxed away in full while every rationing signal it sends is preserved intact. The result, and the land-value tax built upon it, is the subject of plate ix.</span></p>
+      <p class="note" id="n12"><span class="nn fr">12</span><span>The plan of the volume, and its tie to the first: <i>The Wage</i> closed on labour's falling share of national income and asked where the missing share had gone. Much of the answer is rent — the return to owning scarce assets, which the national accounts have historically folded into &ldquo;capital.&rdquo; The rise of incomes from ownership relative to incomes from work is the theme Thomas Piketty made famous as <i>r &gt; g</i>, and the destination of plate xii.</span></p>
+      <p class="note" id="n13"><span class="nn fr">13</span><span>The thesis, stated for testing: rent is the income of owning scarcity, the clearest instance economics offers of a payment without a contribution; and the modern economy has become, to a degree its own measurements have been slow to register, an economy of rent.</span></p>
+    </section>
+
+  </article>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref">The Rent · plate i</span>
+    </div>
+    <p class="colophon">The first plate of <i>The Rent</i>, the second volume of Numéraire — the frame. It defines economic rent as the surplus that scarcity yields to whoever controls the scarce thing: the payment to a factor above the minimum needed to keep it in use, arising wherever supply is fixed and demand presses against it. Land is the archetype, but the plate generalises at once — to monopoly, talent, licence, and platform — and sets the volume's spine: that rent is the income of owning rather than making, the clearest case economics offers of a payment without a contribution, and the place to which the labour share of the first volume has been migrating. The companion and successor to <i>The Wage</i>; the opening of the inquiry into the price of control. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-wage-share.html">← The Share</a><a rel="next" href="the-rent-soil.html">The Soil →</a></nav>
+</body>
+</html>

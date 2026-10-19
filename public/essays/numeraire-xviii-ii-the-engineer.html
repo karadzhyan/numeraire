@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Engineer — The Rule, Plate ii · Numéraire</title>
+<meta name="description" content="mechanism design; designing the rules of the game so that self-interest is led to serve the chosen end.">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- reading-progress hairline ---- */
+  .progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--ink);z-index:10000;}
+
+  /* ---- masthead ---- */
+  .masthead{padding:clamp(2.8rem,8vh,5.6rem) 0 clamp(1.6rem,4vh,2.6rem);text-align:center;}
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;}
+  .edition{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+  .edition b{font-family:"Fraunces",serif;font-weight:500;font-style:normal;color:var(--soft);letter-spacing:.04em;}
+
+  .symbox{width:84px;height:84px;border:1px solid var(--ink);border-radius:2px;background:var(--ink);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;margin:clamp(1.4rem,3.4vh,2.2rem) auto 0;}
+  .symbox .sb-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2rem;line-height:1;color:var(--paper);letter-spacing:-.01em;}
+  .symbox .sb-num{font-family:"Fraunces",serif;font-size:.66rem;color:rgba(240,235,225,.58);margin-top:.28rem;letter-spacing:.04em;}
+
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-top:1.15rem;}
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.5rem,7vw,5rem);line-height:1.0;letter-spacing:-.028em;margin:.55rem 0 0;text-wrap:balance;}
+  .subtitle{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.05rem,1.7vw,1.32rem);color:var(--faint);margin:.5rem 0 0;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.64;color:var(--soft);
+    max-width:43rem;margin:clamp(1.3rem,3vh,1.9rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+  .status{font-size:.84rem;color:var(--soft);margin:clamp(1.2rem,2.6vh,1.7rem) auto 0;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .backrow{margin-top:clamp(1.3rem,3vh,1.9rem);padding-top:1.5rem;border-top:1px solid var(--hair);max-width:50rem;margin-left:auto;margin-right:auto;}
+  .backlink{display:inline-block;font-size:.82rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .backlink:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- generic block furniture ---- */
+  main{padding:0;}
+  .eyebrow{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.2rem;}
+
+  .block-argument{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .argument{max-width:40rem;margin:0 auto;}
+  .argument p{font-size:1.08rem;line-height:1.74;color:var(--ink);margin:0 0 1.2rem;text-wrap:pretty;}
+  .argument p:last-child{margin-bottom:0;}
+  .argument .closer{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 400;font-style:italic;color:var(--soft);font-size:1.06rem;}
+
+  /* ---- table of plates ---- */
+  .block-toc{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .toc ol{list-style:none;margin:0;padding:0;max-width:44rem;}
+  .toc li{display:grid;grid-template-columns:2.5rem 1fr;column-gap:1rem;align-items:baseline;
+    padding:.85rem 0;border-top:1px solid var(--hair);}
+  .toc li:first-child{border-top:none;}
+  .t-num{font-family:"Fraunces",serif;font-size:.92rem;color:var(--faintest);text-align:right;}
+  .t-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.08rem;color:var(--ink);line-height:1.15;text-decoration:none;}
+  a.t-title{border-bottom:1px solid var(--num);padding-bottom:1px;}
+  a.t-title:hover{border-bottom-color:var(--ink);}
+  .t-gloss{grid-column:2;font-size:.85rem;color:var(--faint);font-style:italic;margin-top:.22rem;line-height:1.4;}
+  .t-q{grid-column:2;font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:.95rem;color:var(--soft);margin-top:.42rem;line-height:1.36;}
+  .t-q .lead{font-family:"Fraunces",serif;font-style:normal;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-right:.5rem;}
+  .t-tag{display:inline-block;margin-left:.6rem;font-family:"Newsreader",serif;font-size:.64rem;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--paper);background:var(--ink);border-radius:2px;padding:.12em .5em;vertical-align:.14em;}
+  .t-read{grid-column:2;margin-top:.42rem;}
+  .t-read a{font-size:.8rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .t-read a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- the plates (essays) ---- */
+  .plates-open{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.8rem,6vh,4rem);}
+  .plates-open .eyebrow{text-align:center;}
+  .plate{max-width:54rem;margin:clamp(2.8rem,6.5vh,4.4rem) auto 0;padding-top:clamp(2.2rem,4.6vh,3rem);
+    border-top:1px solid var(--hair);position:relative;scroll-margin-top:1.4rem;}
+  .plate:first-of-type{border-top:none;margin-top:clamp(1.6rem,3.5vh,2.4rem);padding-top:0;}
+  .plate-head{margin:0 0 1.7rem;}
+  .plate-kicker{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .plate-kicker .pk-tag{margin-left:.6rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .plate-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.8rem,4.2vw,2.7rem);line-height:1.03;letter-spacing:-.02em;margin:.32rem 0 .42rem;}
+  .plate-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.02rem;color:var(--faint);max-width:36rem;line-height:1.45;}
+
+  .epigraph{max-width:34rem;margin:1.4rem 0 1.9rem;padding-left:1.1rem;border-left:1px solid var(--num);}
+  .epigraph p{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:1.04rem;line-height:1.42;color:var(--soft);margin:0;}
+  .epigraph cite{display:block;font-style:normal;font-family:"Newsreader",serif;font-size:.78rem;
+    letter-spacing:.03em;color:var(--faintest);margin-top:.55rem;}
+
+  .plate-body{max-width:37rem;}
+  .plate-body p{font-size:1.05rem;line-height:1.75;color:var(--ink);margin:0 0 1.18rem;text-wrap:pretty;}
+  .plate-body p:last-child{margin-bottom:0;}
+  .plate-body em{font-style:italic;}
+  .plate-body .lead-para::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 500;
+    float:left;font-size:3.5rem;line-height:.78;padding:.08em .14em 0 0;color:var(--ink);}
+  .plate-body h4{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);margin:1.9rem 0 .9rem;}
+
+  .break{display:flex;justify-content:center;margin:1.9rem 0;}
+  .break span{font-family:"Fraunces",serif;font-size:1.05rem;letter-spacing:.4em;color:var(--faintest);padding-left:.4em;}
+
+  /* sidenotes — inline by default, true margin notes on wide screens */
+  .sn-ref{font-family:"Fraunces",serif;font-size:.64rem;vertical-align:super;line-height:0;color:var(--soft);margin-left:.06em;}
+  .sidenote{font-family:"Newsreader",serif;font-size:.82rem;line-height:1.52;color:var(--faint);
+    border-left:2px solid var(--hair);padding-left:.9rem;margin:.7rem 0 1.05rem;}
+  .sidenote .sn-num{font-family:"Fraunces",serif;color:var(--faintest);font-size:.7rem;margin-right:.38rem;}
+  .sidenote em{font-style:italic;}
+  @media (min-width:1040px){
+    .sidenote{float:right;clear:right;width:14.5rem;margin:.25rem -17.5rem 1.15rem 0;
+      border-left:none;border-top:1px solid var(--hair);padding:.42rem 0 0;}
+  }
+
+  /* ---- coda ---- */
+  .coda{max-width:40rem;margin:clamp(2.8rem,6vh,4rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);}
+  .coda p{font-size:1.06rem;line-height:1.74;color:var(--ink);margin:0 0 1.15rem;text-wrap:pretty;}
+  .coda p:last-child{margin-bottom:0;}
+  .coda .q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .f-ref a{text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .f-ref a:hover{border-bottom-color:var(--soft);}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .progress{transition:width .08s linear;}
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}.rise.d4{animation-delay:.4s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    h1{font-size:clamp(2.2rem,11vw,3rem);}
+    .symbox{width:72px;height:72px;}
+    .symbox .sb-sym{font-size:1.7rem;}
+    .plate-body .lead-para::first-letter{font-size:3rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+
+  /* ---- standalone plate (leaf) ---- */
+  .leaf-head{max-width:54rem;margin:0 auto;padding:clamp(2.2rem,6.5vh,4.4rem) 0 0;text-align:center;}
+  .leaf-loc{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.08em;color:var(--faintest);margin-bottom:1.7rem;}
+  .leaf-loc a{text-decoration:none;color:var(--faint);border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .leaf-loc a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+  .leaf-loc .sep{margin:0 .5rem;color:var(--num);}
+  .leaf-kicker{font-family:"Fraunces",serif;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .leaf-kicker .pk-tag{margin-left:.55rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .leaf-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.2rem,5.6vw,3.7rem);line-height:1.02;letter-spacing:-.024em;margin:.42rem 0 0;text-wrap:balance;}
+  .leaf-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.06rem;color:var(--faint);
+    max-width:34rem;margin:.72rem auto 0;line-height:1.5;text-wrap:pretty;}
+  .epigraph.leaf-epigraph{margin:1.95rem auto 1.4rem;text-align:left;}
+  .leaf-body-wrap{max-width:54rem;margin:clamp(1.8rem,4vh,2.8rem) auto 0;}
+
+  .leaf-nav{max-width:54rem;margin:clamp(3rem,7vh,5.2rem) auto 0;padding-top:clamp(1.8rem,4vh,2.6rem);
+    border-top:1px solid var(--hair);display:grid;grid-template-columns:1fr auto 1fr;gap:1.3rem;align-items:start;}
+  .ln-cell{text-decoration:none;display:block;}
+  .ln-cell .lab{display:block;font-family:"Fraunces",serif;font-size:.64rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--faintest);margin-bottom:.36rem;}
+  .ln-cell .ttl{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1rem;
+    color:var(--soft);line-height:1.22;}
+  a.ln-cell:hover .ttl{color:var(--ink);}
+  .ln-prev{text-align:left;} .ln-home{text-align:center;} .ln-next{text-align:right;}
+
+  @media (max-width:600px){
+    .leaf-nav{grid-template-columns:1fr;gap:1.4rem;}
+    .ln-prev,.ln-home,.ln-next{text-align:center;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#ne-contents">Complete contents</a><a href="../editions.html#volume-rule">The Rule · both editions</a><a href="../volumes/the-rule.html">Collected volume</a></div></nav>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="frame">
+
+  <header class="leaf-head">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="leaf-loc rise d1" aria-label="Location in the series"><a href="numeraire-atlas-updated.html">Numéraire</a><span class="sep">·</span><a href="numeraire-xviii-the-rule.html">Volume XVIII · The Rule</a></nav>
+    <div class="leaf-kicker rise d2">Plate ii <span class="pk-tag">in print</span></div>
+    <h1 class="leaf-title rise d2">The Engineer</h1>
+    <div class="leaf-gloss rise d3">mechanism design; designing the rules of the game so that self-interest is led to serve the chosen end.</div>
+    <div class="epigraph leaf-epigraph rise d3">
+      <p>The ordinary science takes the rules as given and asks what they will yield; the engineer's fixes the yield he wants and asks what rules will produce it — and whether any rules can.</p>
+      <cite>— the argument of this plate, after Leonid Hurwicz, 1972</cite>
+    </div>
+  </header>
+
+  <main class="leaf-body-wrap">
+    <article class="plate">
+      <div class="plate-body">
+<p class="lead-para">The Rulebook established that a market is built — an artifact of rules that someone chose. But to say a thing is built invites the next question: built how, and how well? The plates of every prior family took some arrangement of rules for granted and traced its consequences; they asked, given the way this market is put together, what outcome will it reach. This plate turns that question over. It fixes the outcome first — the allocation the designer wants, the revenue, the efficient division, the fair result — and asks backward: what rules would bring it about? The forward question runs from rules to results; this one runs from results to rules, and it is by far the harder of the two, because the rules must work not on obedient parts but on people who have ends of their own and private knowledge of their own, and who will bend any rule that can be bent. To design a market is to solve that inverse problem, and Leonid Hurwicz was the first to pose it with precision — to map what its solution requires, and what, in the end, no solution can deliver.</p>
+
+<p>The difficulty has a precise source, and it is the same one that ran beneath the institutions before. The designer does not know what he most needs to know. He wants to send a good to whoever values it most, or to set a price that just covers cost, or to divide a surplus fairly — but the valuations, the costs, the preferences on which all of this turns are private, locked inside the people he is designing for and visible to him only through what they choose to say and do. He cannot simply ask them, for they are not disinterested witnesses: each will report whatever serves his own case, pleading a low value to pay less or a high one to be served first, so that the answers to a naive survey would be not data but strategy. The mechanism the designer builds is therefore a game.<sup class="sn-ref">1</sup> He chooses its rules — the moves each player may make, and the outcome that follows from the moves all of them make together — and then the players play, each pressing his own advantage within the rules; and the question is whether the rules can be drawn so that the play, however selfish, comes to rest on the result the designer was after.</p>
+<div class="sidenote"><span class="sn-num">1.</span> The framing makes the designer a player of a peculiar kind: he moves once, at the outset, by choosing the game itself, and then never again, while the others move only within it. Mechanism design is the study of games chosen by one of the interested parties, with the strategic responses of the rest fully foreseen and built into the choice.</div>
+
+<p>What the rules must achieve, if the designer is to trust the play at all, is a property Hurwicz named incentive compatibility. A mechanism is incentive-compatible when acting as the design intends — revealing one's true value, choosing as the designer hoped — is itself each player's best move, given that the others do the same: when private advantage and the designer's purpose are made to point the same way, so that no one stands to gain by lying or by gaming the rules. The phrase names the central demand of the whole enterprise. Lacking it, the designer builds on sand, for the players will work every gap, and the outcome he computes on the assumption of honest play is not the outcome he will get. Having it, he can take the players' behavior at face value, because they have no reason to behave otherwise — the rules have folded their interest into his.<sup class="sn-ref">2</sup> The art of design becomes, in large part, the art of building rules that are incentive-compatible: of setting the payoffs so that candor is rewarded and manipulation does not pay.</p>
+<div class="sidenote"><span class="sn-num">2.</span> Incentive compatibility comes in strengths. The most demanding asks that honesty be best whatever the others do — a dominant strategy, secure against any guess about their play; the weaker asks only that honesty be best when the others are honest too, an equilibrium that holds together if all keep to it and frays if they do not. The stronger is rarer and dearer to buy, and much of the theory turns on how much of it a given goal requires.</div>
+
+<p>But the designer cannot have all he wants at once, and the measure of what he must surrender is the deepest result of the theory. Set down the properties one would ask of an ideal mechanism: that it be incentive-compatible, so the play can be trusted, and that it be efficient, sending each good to whoever values it most and leaving no beneficial trade unmade. Each, alone, is within reach. Hurwicz proved that the two cannot in general be had together — that no mechanism can be at once efficient and proof against manipulation when the agents' values are theirs to conceal.<sup class="sn-ref">3</sup> Add the further demands one would want — that no one be forced to take part at a loss, that the scheme pay for itself with no subsidy poured in from outside — and the conflict only sharpens: in the plainest case of all, two parties bargaining over a single object, each unsure of the other's worth, no mechanism whatever can satisfy them all together. Something must give. The collision is not a failure of cleverness, to be mended by a better design; it is a wall, a limit on what any rules can do when the people they govern know things the designer does not.</p>
+<div class="sidenote"><span class="sn-num">3.</span> The tension is information's price. Were the valuations public, a mechanism could simply impose the efficient trade and split the gains; it is precisely because each party can shelter behind his private knowledge — and must be given a reason not to abuse it — that the goals fall out with one another. The designer pays for the agents' candor in one of the few currencies he has: some efficiency given up, or some subsidy spent.</div>
+
+<div class="break"><span>⁂</span></div>
+
+<p>The same way of seeing recovers something the price families had taken for granted. A market price is itself a mechanism — perhaps the most remarkable one — and what makes it remarkable, in this light, is how little it asks of the people who use it. To act on the market a trader need know only the prices and his own wants; he need not know the preferences, the costs, or the circumstances of anyone else, and yet the prices, by gathering up the pressure of all those hidden things, guide his choice as though he did. Hurwicz set this as a question of informational efficiency: of how much a mechanism must have its participants communicate in order to do its work — and the price system, measured so, is extraordinarily frugal, carrying in a single number what no census of private facts could collect.<sup class="sn-ref">4</sup> It was this lens that let the old quarrel over whether a planned economy could ever match a market be put exactly — no longer as a clash of faith but as a question about two mechanisms: what each would need its people to know, and whether either could be trusted to draw that knowledge honestly out of them.</p>
+<div class="sidenote"><span class="sn-num">4.</span> Posed this way, the contest between the market and the plan turns on two properties at once: the weight of information each lays on the center, and whether the participants can be given the incentive to report truthfully what the center would require. The market is sparing on the first count and self-enforcing on the second; the difficulty of matching it on both at the same time was the heart of the matter.</div>
+
+<p>With the general problem in view, the plates that follow can be read for what they are: not separate curiosities but instances of the one engineering. The auction is a mechanism built for a single, sharp purpose, its rules set down and their consequences reckoned to the penny. The matching of the plate after is a mechanism for the harder case in which no price is permitted to do the sorting, and the design must carry the whole weight unaided. Each is a particular answer to the inverse question — given this end, these rules — and each lives inside the limit this plate has drawn, buying the incentive to be honest at a price fixed by what the designer cannot see.<sup class="sn-ref">5</sup> What unites them is the stance: that the rules of a market are not found but made, and can be made well or badly by the same exacting test one would bring to any machine — whether it does the work it was built for, given the materials, which here are people, and self-interested ones.</p>
+<div class="sidenote"><span class="sn-num">5.</span> The test is the engineer's, and so is the temptation that rides with it: to suppose that any outcome can be reached if only the rules are made clever enough. The impossibility is the corrective — a reminder that the materials resist, that information withheld is a constraint as hard as any property of metal, and that the most a designer can honestly claim is the best result the constraints allow.</div>
+
+<p>So the Rulebook's claim that markets are built acquires its theory: the building is an engineering, with its problem stated precisely, a property — incentive compatibility — that any sound design must secure, and a hard limit on what even the best design can reach. Yet the theory, for all its rigor, leans on an assumption it does not itself examine — that there is a designer, and that he wants what the analysis supposes he wants: efficiency, fairness, a market that works. It speaks of the planner as a benevolent engineer, choosing the rules to serve a public end. The rules of real markets are not drawn by such a figure. They are written by those with the power to write them, who have ends of their own; and so the bright and exacting theory of how rules ought to be built, having shown what design can and cannot do, hands the harder question to the plates that come after — not how a market should be designed, but who designs it, and for whom.</p>
+      </div>
+    </article>
+  </main>
+
+  <nav class="leaf-nav" aria-label="Plate navigation">
+    <a class="ln-cell ln-prev" href="numeraire-xviii-i-the-rulebook.html"><span class="lab">← Previous plate</span><span class="ttl">Plate i · The Rulebook</span></a>
+    <a class="ln-cell ln-home" href="numeraire-xviii-the-rule.html"><span class="lab">The volume</span><span class="ttl">The Rule · contents</span></a>
+    <a class="ln-cell ln-next" href="numeraire-xviii-iii-the-auction.html"><span class="lab">Next plate →</span><span class="ttl">Plate iii · The Auction</span></a>
+  </nav>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref"><a href="numeraire-xviii-the-rule.html">The Rule</a> · <a href="numeraire-atlas-updated.html">the table</a></span>
+    </div>
+    <p class="colophon">Plate ii of <em>The Rule</em>, Volume the Eighteenth of <em>Numéraire</em> — a periodic table of economic life. This leaf may be read on its own or as part of the volume. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<script>
+(function(){
+  var bar=document.getElementById('progress');
+  function onScroll(){
+    var h=document.documentElement;
+    var max=(h.scrollHeight-h.clientHeight);
+    var p=max>0?(h.scrollTop||document.body.scrollTop)/max:0;
+    bar.style.width=(p*100).toFixed(2)+'%';
+  }
+  document.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="numeraire-xviii-i-the-rulebook.html">← The Rulebook</a><a rel="next" href="numeraire-xviii-iii-the-auction.html">The Auction →</a></nav>
+</body>
+</html>

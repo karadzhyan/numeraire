@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Money — Numéraire, Volume XVI</title>
+<meta name="description" content="The Money — Volume XVI of Numéraire, A Periodic Table of Economic Life. What money is, why a stranger takes a paper note for real goods, and the shared fiction of trust on which the value of the numéraire — and so of every price — finally rests.">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem; --measure:40rem;
+    --wash:rgba(28,26,22,.066); --wash2:rgba(28,26,22,.12);
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.62;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  .measure{max-width:var(--measure);margin-left:auto;margin-right:auto;}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- ornaments ---- */
+  .orn{display:flex;justify-content:center;margin:0 auto;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .divider{display:flex;align-items:center;gap:1.1rem;max-width:30rem;margin:clamp(3rem,7vh,5rem) auto;color:var(--num);}
+  .divider .ln{flex:1;height:1px;background:var(--hair);}
+  .divider svg{display:block;width:12px;height:12px;overflow:visible;flex:0 0 auto;}
+  .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* ---- progress + running head ---- */
+  #progress{position:fixed;top:0;left:0;height:2px;width:100%;transform:scaleX(0);transform-origin:0 50%;background:var(--soft);opacity:.45;z-index:10000;}
+  #topbar{position:fixed;top:0;left:0;right:0;z-index:9998;transform:translateY(-100%);transition:transform .5s cubic-bezier(.2,.6,.2,1);
+    background:rgba(240,235,225,.86);-webkit-backdrop-filter:saturate(1.1) blur(8px);backdrop-filter:saturate(1.1) blur(8px);
+    border-bottom:1px solid var(--hair);}
+  #topbar.show{transform:translateY(0);}
+  .tb-in{max-width:var(--frame);margin:0 auto;padding:.62rem clamp(1.4rem,4vw,3.4rem);display:flex;justify-content:space-between;align-items:baseline;gap:1.2rem;}
+  .tb-l{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:.86rem;letter-spacing:.01em;}
+  .tb-l span{color:var(--faintest);font-weight:400;}
+  .tb-r{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);text-align:right;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+
+  /* ---- title page ---- */
+  .vol-title{padding:clamp(3.4rem,11vh,8rem) 0 clamp(1.6rem,5vh,3rem);text-align:center;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.16rem;letter-spacing:.02em;}
+  .vol-no{font-size:.84rem;color:var(--faint);letter-spacing:.16em;text-transform:uppercase;margin-top:.55rem;}
+  h1.vol-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 380;font-weight:380;
+    font-size:clamp(2.9rem,9vw,6rem);line-height:.98;letter-spacing:-.028em;margin:clamp(1.7rem,4.5vh,2.8rem) 0 0;text-wrap:balance;}
+  .vol-sym{width:78px;height:78px;margin:clamp(1.6rem,4vh,2.4rem) auto 0;border:1px solid var(--hair);border-radius:2px;
+    display:flex;align-items:center;justify-content:center;background:var(--ink);}
+  .vol-sym span{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2.3rem;line-height:1;color:var(--paper);letter-spacing:-.01em;}
+  .vol-coords{font-family:"Fraunces",serif;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);margin-top:1.1rem;}
+  .vol-gloss{font-style:italic;color:var(--soft);font-size:1.12rem;margin:.5rem 0 0;}
+  .vol-epigraph{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 400;font-style:italic;
+    font-size:clamp(1.14rem,1.7vw,1.34rem);line-height:1.42;color:var(--soft);max-width:33rem;margin:clamp(1.8rem,4vh,2.6rem) auto 0;text-wrap:pretty;}
+  .vol-epigraph .lead{display:block;font-style:normal;font-variation-settings:"opsz" 24,"wght" 400;
+    font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.7rem;}
+  .vol-status{display:inline-flex;align-items:center;gap:.5rem;margin:clamp(1.8rem,4vh,2.4rem) auto 0;font-size:.84rem;color:var(--soft);}
+  .vol-status::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ink);}
+
+  /* ---- the argument (preface) ---- */
+  .part-head{text-align:center;margin:0 0 clamp(1.6rem,3.5vh,2.3rem);}
+  .part-kicker{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faintest);}
+  .part-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-weight:400;
+    font-size:clamp(1.5rem,3.4vw,2.1rem);letter-spacing:-.012em;margin:.4rem 0 0;}
+  .argument p{font-size:1.05rem;line-height:1.74;margin:0 0 1.15rem;text-wrap:pretty;}
+  .argument p.lede::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 420;
+    float:left;font-size:3.5em;line-height:.78;padding:.05em .1em 0 0;color:var(--ink);}
+  .argument em,.plate-body em,.coda em{font-style:italic;}
+
+  /* ---- contents ---- */
+  .toc{list-style:none;margin:0 auto;padding:0;max-width:43rem;}
+  .toc li{border-top:1px solid var(--hair);}
+  .toc li:last-child{border-bottom:1px solid var(--hair);}
+  .toc a{display:grid;grid-template-columns:2.6rem 1fr;column-gap:1.1rem;align-items:baseline;
+    padding:.82rem .3rem;text-decoration:none;transition:background .2s ease;}
+  .toc a:hover{background:rgba(28,26,22,.035);}
+  .toc-n{font-family:"Fraunces",serif;font-size:.92rem;color:var(--faintest);text-align:right;}
+  .toc-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.06rem;color:var(--ink);line-height:1.16;}
+  .toc-g{grid-column:2;font-size:.85rem;font-style:italic;color:var(--faint);margin-top:.16rem;line-height:1.38;}
+
+  /* ---- plates ---- */
+  .plate{margin:clamp(3.2rem,8vh,6rem) 0 0;padding-top:clamp(2.4rem,5.5vh,3.4rem);border-top:1px solid var(--hair);scroll-margin-top:4rem;}
+  .plate-open{max-width:var(--measure);margin-inline:auto;}
+  .plate-no{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 360;font-size:clamp(2.6rem,7vw,4.1rem);
+    line-height:.9;color:var(--num);letter-spacing:.02em;}
+  .plate-kicker{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faintest);margin:.9rem 0 .2rem;}
+  .plate-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.8rem,4.4vw,2.7rem);line-height:1.04;letter-spacing:-.018em;margin:0;text-wrap:balance;}
+  .plate-gloss{font-style:italic;color:var(--soft);font-size:1.02rem;margin:.55rem 0 0;line-height:1.4;}
+
+  .ask{max-width:var(--measure);margin:clamp(1.5rem,3.5vh,2.2rem) auto clamp(1.8rem,4vh,2.4rem);}
+  .ask .lead{display:block;font-family:"Fraunces",serif;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.55rem;}
+  .ask q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:clamp(1.18rem,1.8vw,1.38rem);line-height:1.36;color:var(--soft);quotes:none;}
+
+  .plate-body{max-width:var(--measure);margin-inline:auto;}
+  .plate-body p{margin:0 0 1.18rem;text-wrap:pretty;}
+  .plate-body > p:first-of-type::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 430;
+    float:left;font-size:3.5em;line-height:.76;padding:.04em .12em 0 0;color:var(--ink);}
+  .plate-body h4{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.76rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faint);margin:2rem 0 .9rem;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 380;font-style:italic;
+    font-size:clamp(1.4rem,2.3vw,1.7rem);line-height:1.32;color:var(--soft);text-align:center;
+    max-width:33rem;margin:clamp(2rem,4.5vh,2.8rem) auto;text-wrap:balance;}
+
+  .edge{max-width:var(--measure);margin:1.7rem auto;padding:.1rem 0 .1rem 1.15rem;border-left:1px solid var(--hair);
+    color:var(--faint);font-size:.92rem;line-height:1.62;}
+  .edge .lead{display:block;font-family:"Fraunces",serif;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.4rem;}
+  .edge em{font-style:italic;color:var(--soft);}
+
+  /* ---- figures (engravings) ---- */
+  .fig{max-width:var(--measure);margin:clamp(2.1rem,4.5vh,2.9rem) auto;}
+  .fig-frame{border:1px solid var(--hair);border-radius:2px;padding:clamp(1rem,2.4vw,1.7rem) clamp(1rem,2.4vw,1.7rem) clamp(.8rem,2vw,1.3rem);background:rgba(255,253,247,.4);}
+  .fig svg{display:block;width:100%;height:auto;}
+  figcaption{margin:.95rem auto 0;max-width:38rem;font-size:.85rem;line-height:1.5;color:var(--faint);text-wrap:pretty;}
+  figcaption .fig-n{font-family:"Fraunces",serif;font-weight:500;letter-spacing:.04em;color:var(--soft);}
+  figcaption em{font-style:italic;}
+  .ax{stroke:var(--soft);stroke-width:1.1;fill:none;}
+  .tick{stroke:var(--soft);stroke-width:1;}
+  .curve{stroke:var(--ink);stroke-width:1.5;fill:none;stroke-linecap:round;}
+  .curve2{stroke:var(--ink);stroke-width:1.3;fill:none;stroke-linecap:round;}
+  .guide{stroke:var(--faintest);stroke-width:1;fill:none;stroke-dasharray:3 3.5;}
+  .core{stroke:var(--ink);stroke-width:3;fill:none;stroke-linecap:round;}
+  .fill-cs{fill:var(--wash);}
+  .fill-dwl{fill:var(--wash2);}
+  .fill-wedge{fill:var(--wash);}
+  .fill-lens{fill:var(--wash);}
+  .hatch-line{stroke:var(--faintest);stroke-width:.8;}
+  .lbl{font-family:"Fraunces",serif;font-size:11.5px;fill:var(--faint);font-variation-settings:"opsz" 24,"wght" 400;}
+  .lbl-i{font-family:"Newsreader",serif;font-style:italic;font-size:11px;fill:var(--soft);}
+  .lbl-sm{font-family:"Fraunces",serif;font-size:9.6px;fill:var(--faintest);letter-spacing:.02em;}
+  .lbl-ax{font-family:"Fraunces",serif;font-size:9.4px;fill:var(--faintest);letter-spacing:.12em;}
+
+  /* ---- coda + colophon ---- */
+  .coda{max-width:var(--measure);margin:clamp(3rem,7vh,5rem) auto 0;}
+  .coda p{margin:0 0 1.18rem;text-wrap:pretty;}
+  .coda p.lede::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 430;
+    float:left;font-size:3.5em;line-height:.76;padding:.04em .12em 0 0;color:var(--ink);}
+  footer{margin-top:clamp(3.6rem,8vh,6rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.4rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .colophon{font-size:.85rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+
+  /* ---- motion / reveal ---- */
+  @media (prefers-reduced-motion: no-preference){
+    html.js .reveal{opacity:0;transform:translateY(14px);}
+    html.js .reveal.in{opacity:1;transform:none;}
+    .reveal{transition:opacity .9s cubic-bezier(.2,.6,.2,1),transform .9s cubic-bezier(.2,.6,.2,1);}
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.18s}.rise.d3{animation-delay:.32s}.rise.d4{animation-delay:.46s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  /* ---- responsive ---- */
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .argument p,.plate-body p,.coda p{font-size:1.01rem;}
+    .plate-body > p:first-of-type::first-letter,.argument p.lede::first-letter,.coda p.lede::first-letter{font-size:3em;}
+    .f-bar{flex-direction:column;gap:.5rem;}
+    .toc a{grid-template-columns:2rem 1fr;column-gap:.8rem;}
+    figcaption{font-size:.82rem;}
+  }
+
+  /* ---- print: a volume, in print ---- */
+  @media print{
+    html,body{background:#fff;color:#000;}
+    body{font-size:11.5pt;line-height:1.5;}
+    body::before,#progress,#topbar{display:none !important;}
+    .frame{max-width:none;padding:0;}
+    .measure,.plate-open,.plate-body,.ask,.edge,.coda{max-width:34rem;}
+    a{text-decoration:none;}
+    .plate{break-before:page;border-top:none;padding-top:0;}
+    .fig,figure{break-inside:avoid;}
+    .plate-no{color:#bbb;}
+    .reveal{opacity:1 !important;transform:none !important;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#ne-contents">Complete contents</a><a href="../editions.html#volume-money">The Money · both editions</a><a href="../essays/numeraire-xvi-the-money.html">Expanded essays</a></div></nav>
+<div id="progress" aria-hidden="true"></div>
+<div id="topbar" aria-hidden="true"><div class="tb-in">
+  <span class="tb-l">Numéraire <span>· The Money</span></span>
+  <span class="tb-r" id="tb-plate">Volume XVI</span>
+</div></div>
+
+<div class="frame">
+
+  <header class="vol-title">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="rise d1">
+      <span class="imprint">Numéraire</span>
+      <div class="vol-no">Volume XVI &middot; № XVI</div>
+    </div>
+    <h1 class="vol-name rise d2">The Money</h1>
+    <div class="vol-sym rise d3" aria-hidden="true"><span>Mo</span></div>
+    <div class="vol-coords rise d3">Group IV &middot; The Institutions</div>
+    <p class="vol-gloss rise d3">what we agree to trust</p>
+    <p class="vol-epigraph rise d4">
+      <span class="lead">The question of the volume</span>
+      Why will a stranger take a paper note in exchange for real goods?
+    </p>
+    <div class="vol-status rise d4">in print &middot; twelve plates</div>
+  </header>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <section class="argument reveal" aria-labelledby="arg-h">
+    <div class="part-head">
+      <div class="part-kicker">Numéraire &middot; Volume XVI</div>
+      <h2 class="part-title" id="arg-h">The Argument</h2>
+    </div>
+    <p class="lede">This table is named for the numéraire — the unit in which value is reckoned, the common measure against which every price is quoted. For fifteen volumes that measure has been assumed: a wage so many dollars, a rent so many, a rate a fraction per year, each price a number, and the number always in money. This volume turns at last to examine the measure itself. For money is the numéraire — the thing in which all prices are expressed — and it is the strangest object in the whole table, because, unlike the labor and land and capital whose prices the earlier volumes set, money has no use of its own. One cannot eat it, wear it, or shelter beneath it; a banknote is a scrap of paper, a bank balance a line in a ledger. And yet it commands real goods, real labor, real land. The question the volume's title poses is therefore the deepest in all of economics, and the most childlike: why will a stranger hand over real goods in exchange for a paper note that is, in itself, worth nothing?</p>
+    <p>The answer is a kind of magic, and it is perfectly circular. The stranger takes the note because she expects the next person to take it — and that person will take it because he expects the person after him to take it, and so onward without end. Money's value is the confidence that others will accept it next; it is a belief that grounds itself, a convention held aloft by nothing but the shared expectation that it will go on being held aloft. This is what the gloss of the volume means in calling money what we agree to trust. It is not a fact about money that it has value, as it is a fact about bread that it nourishes; it is an agreement among its users, a self-fulfilling faith, true only because, and for as long as, it is believed. Money is the purest instance in the table of this project's central thesis — that value is a verdict, not a fact of nature — and it is more than an instance, for money is the numéraire in which all the other verdicts are pronounced. The measure of all value turns out to have no fixed value of its own.</p>
+    <aside class="pull">One cannot eat money, wear it, or shelter beneath it. It commands real things only because everyone expects everyone else to go on accepting it — a faith that grounds itself, and holds until it does not.</aside>
+    <p>What, then, is money? It is defined less by what it is than by what it does, and it does three things: it serves as a medium of exchange, sparing us the barter-world's need for a double coincidence of wants; as a unit of account, the numéraire in which prices are quoted; and as a store of value, a vessel for carrying purchasing power across time. But beneath these offices money is a social relation — a promise, a claim, an entry in a ledger of who owes what. Three old theories contend over its nature: that money is valuable because it is, or stands for, a precious metal; that it is a creature of the state, made valuable by the sovereign's decree and the demand for taxes paid in it; and that it is, at bottom, credit — a debt, an IOU, a record of obligation. The modern answer braids all three, and adds a fact that startles every student who first meets it: that most of the money in a modern economy is created not by the state at all but by ordinary commercial banks, conjured into being by the very stroke that makes a loan. Money is largely private debt, arranged in a hierarchy with the state's money at its apex, and given its final worth by trust and by law together.</p>
+    <p>Because money is trust, its history is the history of what that trust has been anchored to. For most of recorded time it was anchored to metal — to gold and silver, whose scarcity disciplined the issue of money and steadied its value, at the cost of a rigidity that spread deflation and depression when the world needed neither. Since 1971 the anchor has been cut, and the world has used pure fiat money — money backed by nothing whatever but the authority of the state and the faith of its users, value by decree and convention alone. Fiat money is money with its nature laid bare: the metal was always only a focal point for the belief, and fiat reveals the belief itself, naked, holding the whole edifice up. The freedom this confers — to expand money in a slump, to grow it with the economy — is matched by the danger it invites, for nothing physical now restrains the printing, and the discipline must come from institutions and credibility instead of from gold.</p>
+    <p>And so the volume's darkest plates concern what happens, in the words of its brief, slowly and then all at once, when the promise comes to be doubted. When money is issued past all faith in it, its value collapses into inflation and, at the limit, into the catastrophe of hyperinflation, where prices double in days and the currency dies — the death of a shared fiction, trust evaporating in a self-feeding spiral. And when the banks that create most of our money are themselves doubted, their depositors rush at once to retrieve what only some of them can be paid, and the run that follows can fell even a sound bank — the panic that the lender of last resort exists to stop. Money is fragile precisely because it is faith, and faith can fail.</p>
+    <p>One question runs beneath all the rest: whether money is real. Is it merely a veil over the economy, as the classical economists held — a measuring-rod that alters the prices of things but not the things themselves, neutral in the end? Or is it an engine, driving the real economy, so that a contraction of money can throw millions out of work, as the monetarists charged it did in the Great Depression? The volume's answer, and the modern one, is that money is a veil in the long run and an engine in the short — neutral once prices have adjusted, but potent while they have not, the great wheel of circulation that can, when it seizes, halt the whole machine.</p>
+    <p>The thesis, for the plates to earn, may be stated plainly. Money is what we agree to trust — a social institution, a web of credit and convention and power, whose value is the purest verdict in the table, a self-fulfilling faith resting on nothing but itself and the law. And it is the numéraire, the measure in which every other value is reckoned — so that the whole table, which prices all things in money, is found at last to rest upon a foundation that is not a fact of nature but the deepest agreement of all. To examine money is to examine the ruler by which we measure everything, and to discover that the ruler has no fixed length — only the length we agree to give it.</p>
+  </section>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <section class="contents reveal" aria-labelledby="toc-h">
+    <div class="part-head">
+      <div class="part-kicker">The twelve plates of this volume</div>
+      <h2 class="part-title" id="toc-h">The Plates</h2>
+    </div>
+    <ol class="toc">
+      <li><a href="#plate-i"><span class="toc-n">i</span><span class="toc-t">The Promise</span><span class="toc-g">what money is; the three offices; money as a social relation</span></a></li>
+      <li><a href="#plate-ii"><span class="toc-n">ii</span><span class="toc-t">The Ledger</span><span class="toc-g">metal, state, and credit; the three theories of money's value</span></a></li>
+      <li><a href="#plate-iii"><span class="toc-n">iii</span><span class="toc-t">The Pyramid</span><span class="toc-g">how money is created; banks, reserves, and the hierarchy of money</span></a></li>
+      <li><a href="#plate-iv"><span class="toc-n">iv</span><span class="toc-t">The Quantity</span><span class="toc-g">the quantity theory; money and the price level; Friedman</span></a></li>
+      <li><a href="#plate-v"><span class="toc-n">v</span><span class="toc-t">The Fetters</span><span class="toc-g">commodity money and the gold standard; discipline and its disasters</span></a></li>
+      <li><a href="#plate-vi"><span class="toc-n">vi</span><span class="toc-t">The Faith</span><span class="toc-g">fiat money; value by decree and convention; the shared fiction</span></a></li>
+      <li><a href="#plate-vii"><span class="toc-n">vii</span><span class="toc-t">The Collapse</span><span class="toc-g">inflation and hyperinflation; the death of money</span></a></li>
+      <li><a href="#plate-viii"><span class="toc-n">viii</span><span class="toc-t">The Mint</span><span class="toc-g">seigniorage and the inflation tax; the revenue of issue</span></a></li>
+      <li><a href="#plate-ix"><span class="toc-n">ix</span><span class="toc-t">The Run</span><span class="toc-g">bank runs and panics; maturity mismatch; the lender of last resort</span></a></li>
+      <li><a href="#plate-x"><span class="toc-n">x</span><span class="toc-t">The Wheel</span><span class="toc-g">is money neutral? the veil, the engine, and the great wheel</span></a></li>
+      <li><a href="#plate-xi"><span class="toc-n">xi</span><span class="toc-t">The Cipher</span><span class="toc-g">the frontier of money; crypto, stablecoins, and the digital state</span></a></li>
+      <li><a href="#plate-xii"><span class="toc-n">xii</span><span class="toc-t">The Numéraire</span><span class="toc-g">the measure of all value; money as the keystone of the table</span></a></li>
+    </ol>
+  </section>
+
+  <main class="plates" id="plates">
+
+    <!-- ===================== PLATE I ===================== -->
+    <section class="plate reveal" id="plate-i" data-label="Plate i · The Promise">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">i</div>
+        <p class="plate-kicker">Plate the First &middot; The Institutions &middot; № XVI</p>
+        <h3 class="plate-title">The Promise</h3>
+        <p class="plate-gloss">what money is; the three offices; money as a social relation</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what must a thing do to be money — and what, beneath the doing, must it be?</q></div>
+      <div class="plate-body">
+        <p>Money is defined less by what it is than by what it does, and the oldest wisdom on the subject, owed to Hicks, is simply that money is what money does. It does three things. It is a medium of exchange, the thing handed over to settle a transaction, and in this office it solves a problem that would otherwise cripple commerce. In a world of barter, an exchange requires a double coincidence of wants: the baker who wants shoes must find a cobbler who happens to want bread, and at the same moment. Money dissolves the coincidence, for everyone accepts it; the baker sells bread to anyone for money and buys shoes from anyone with money, and the awkward chain of matching wants is broken. The figure shows the difference at a glance.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="fm1t fm1d">
+              <title id="fm1t">Barter and money</title>
+              <desc id="fm1d">On the left, three traders connected in a cycle, requiring a double coincidence of wants. On the right, the same three traders each connected to a central money node.</desc>
+              <line x1="222" y1="60" x2="222" y2="214" stroke="var(--faint)" stroke-width="1" stroke-dasharray="3 4"/>
+              <line x1="113" y1="86" x2="83" y2="158" stroke="var(--soft)" stroke-width="1.1" stroke-dasharray="5 3"/>
+              <line x1="86" y1="170" x2="164" y2="170" stroke="var(--soft)" stroke-width="1.1" stroke-dasharray="5 3"/>
+              <line x1="167" y1="158" x2="137" y2="86" stroke="var(--soft)" stroke-width="1.1" stroke-dasharray="5 3"/>
+              <circle cx="125" cy="75" r="14" fill="none" stroke="var(--ink)" stroke-width="1.3"/>
+              <circle cx="72" cy="170" r="14" fill="none" stroke="var(--ink)" stroke-width="1.3"/>
+              <circle cx="178" cy="170" r="14" fill="none" stroke="var(--ink)" stroke-width="1.3"/>
+              <text class="lbl" x="125" y="80" text-anchor="middle">A</text>
+              <text class="lbl" x="72" y="175" text-anchor="middle">B</text>
+              <text class="lbl" x="178" y="175" text-anchor="middle">C</text>
+              <text class="lbl-i" x="125" y="142" text-anchor="middle">?</text>
+              <text class="lbl-ax" x="125" y="46" text-anchor="middle">BARTER</text>
+              <text class="lbl-sm" x="125" y="202" text-anchor="middle">a double coincidence</text>
+              <line x1="320" y1="90" x2="320" y2="110" stroke="var(--ink)" stroke-width="1.1"/>
+              <line x1="305" y1="138" x2="280" y2="170" stroke="var(--ink)" stroke-width="1.1"/>
+              <line x1="335" y1="138" x2="360" y2="170" stroke="var(--ink)" stroke-width="1.1"/>
+              <circle cx="320" cy="128" r="20" fill="var(--faint)" stroke="var(--ink)" stroke-width="1.3"/>
+              <circle cx="320" cy="72" r="13" fill="none" stroke="var(--ink)" stroke-width="1.3"/>
+              <circle cx="266" cy="182" r="13" fill="none" stroke="var(--ink)" stroke-width="1.3"/>
+              <circle cx="374" cy="182" r="13" fill="none" stroke="var(--ink)" stroke-width="1.3"/>
+              <text class="lbl-sm" x="320" y="132" text-anchor="middle">money</text>
+              <text class="lbl" x="320" y="77" text-anchor="middle">A</text>
+              <text class="lbl" x="266" y="187" text-anchor="middle">B</text>
+              <text class="lbl" x="374" y="187" text-anchor="middle">C</text>
+              <text class="lbl-ax" x="320" y="46" text-anchor="middle">MONEY</text>
+              <text class="lbl-sm" x="320" y="216" text-anchor="middle">one intermediary</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 1.</span> Barter and money. Under barter each trader must find another who both has what is wanted and wants what is offered — a double coincidence that grows impossibly rare as goods multiply. Money breaks the chain: each trader deals only with money, selling to anyone and buying from anyone, and the tangle of matching wants collapses to a simple hub. The second office of money follows from the first — for if all prices are quoted in the one accepted thing, it becomes the unit of account, the numéraire from which this table takes its name.</figcaption>
+        </figure>
+        <p>The second office follows from the first. If everyone reckons in the one accepted thing, it becomes the unit of account — the numéraire in which prices are quoted, this table's namesake. The saving in mental labor is immense: with a hundred goods and no money, a trader must track the price of each in terms of every other, near five thousand exchange ratios; with money, a hundred prices suffice, each good against the one. And the third office is the store of value: because money holds purchasing power across time, it can be saved, hoarded, carried from today's sale to tomorrow's purchase. Of the three, the first is primary — to be money is, above all, to be the thing accepted in exchange — while the third money shares with land and shares and gold, and the second is the role this series has assumed throughout. But beneath all three offices lies something the functional list does not name: what money is, beneath what it does.</p>
+        <aside class="pull">Money is what money does; and what it does, it does only because we all expect it to.</aside>
+        <p>What money is, beneath the doing, is a social relation — a promise, a claim, a form of trust. A banknote once promised gold; now it promises nothing but its own acceptance, and is taken all the same. This is the heart of the volume's question. Why is the empty promise honored? Because a thing serves as a medium of exchange if and only if others will accept it, and others will accept it if and only if they expect still others to accept it in their turn — so that acceptance is self-fulfilling, a belief that vindicates itself by being held. Money is a focal point for a shared expectation, a convention that floats on nothing but the common faith that it will go on floating. One economist called money a form of memory — a running record of what each member has given to society and may therefore claim back from it — and the image is apt: a coin in the hand is a token of credit the world owes its bearer, honored because all agree to honor it. The promise of money is the promise that the promise will be kept; and remarkably, for the most part, it is.</p>
+        <aside class="edge"><span class="lead">the edge</span> The three offices can come apart, and when they do, the question of what counts as money grows vexed. A thing may be a fine store of value yet a poor medium of exchange — gold bullion, a house, a share of stock, none of which will buy a coffee; a thing may be the unit of account yet never change hands, as the dollar quotes the price of oil across the world without appearing at every pump; and in an inflation a currency keeps its office as medium while losing its office as store, so that people spend it the moment it is earned and save in something firmer. The textbook trinity is thus less a definition than a list of offices that one thing usually, but not always, holds together. And the money supply is correspondingly hard to bound, shading from cash through deposits to ever less liquid claims, a spectrum the statisticians carve into their aggregates by conventions that admit no sharp line. What money is, even at the threshold, resists a clean answer — the first hint of how much of money is convention rather than fact.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE II ===================== -->
+    <section class="plate reveal" id="plate-ii" data-label="Plate ii · The Ledger">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">ii</div>
+        <p class="plate-kicker">Plate the Second &middot; The Institutions &middot; № XVI</p>
+        <h3 class="plate-title">The Ledger</h3>
+        <p class="plate-gloss">metal, state, and credit; the three theories of money's value</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what gives a worthless token its worth — the metal in it, the state behind it, or the debt it records?</q></div>
+      <div class="plate-body">
+        <p>If money is accepted because it is expected to be accepted, the regress must end somewhere — some reason the faith first took hold. Three theories have contended for centuries over where that ground lies. The first is metallism, the commodity theory: money is valuable because it is, or stands for, a precious thing. Carl Menger told the classic story of its spontaneous birth — in a barter economy, some good proves more saleable than the rest, more readily taken because more readily passed on; traders accept it not to consume but to trade again; its acceptability snowballs, and the most saleable commodity becomes money of its own accord, gold and silver winning out for their durability, divisibility, and shine. On this view a banknote is a warehouse receipt for metal, and money's worth is borrowed from the commodity beneath it. The metallist's intuition is the folk intuition: that real money is gold, and paper a mere substitute for it.</p>
+        <p>The second theory is chartalism, the state theory, given its name by Georg Knapp: money is a creature of the state. The sovereign defines the unit of account, issues the money, declares it legal tender — and, decisively, creates a demand for it by requiring that taxes be paid in it. Taxes drive money. Because the subject must discharge an obligation to the state in the state's money, the subject must obtain that money, and will therefore give up goods and labor to get it; and so it circulates, valued not for any metal but because the state will take it back. Cut the link to gold entirely, and the state's money still has a floor, for the tax bill must be paid in it whatever else may happen. The chartalist locates money's ground not in a commodity but in a power — the power to tax — and modern theories of money as a creature of the state descend from this insight. The third theory is creditism, and it may be the deepest. Money, on this account, is at bottom credit — a debt, an IOU, a record of obligation. Every piece of money is someone's liability: a banknote is the central bank's, a deposit the commercial bank's, a bond the issuer's. Mitchell-Innes argued, and the anthropologist David Graeber after him, that credit and debt long preceded coinage — that the ledgers of who-owes-whom came first, and metal money far later, so that the barter origin of the metallists is a myth and the true original of money is the recorded obligation. Money, on this view, is debt made transferable, a ledger of who owes what, set into circulation.</p>
+        <aside class="pull">Every coin is a claim, every note a promise, every balance a debt. Money is a ledger of who owes what, made to circulate.</aside>
+        <p>The modern answer braids all three, for they describe not rival truths but different layers and eras of the one institution. Money today is, in its substance, credit — overwhelmingly the liabilities of banks and central banks, as the next plate will show; it is denominated in the state's unit of account and given a floor by the state's demand for taxes; and it was, for most of history though no longer, anchored in metal. Creditism describes what money now is, chartalism the power that underwrites it, metallism the discipline it has shed. And the layering points forward to the volume's recurring discovery: that money is a ledger of obligations, denominated by the state and trusted by its users — a thing of record and law and faith, and nowhere, any longer, a thing of substance.</p>
+        <aside class="edge"><span class="lead">the edge</span> The three theories are perennial because each captures something the others miss, and the attempt to crown one founders on the sheer variety of money. The metallist is right that money was metal for millennia and that a commodity anchor disciplines its issue; the chartalist is right that the tax demand floors a fiat currency and that the unit of account is a creature of law; the creditist is right that modern money is overwhelmingly credit, and that debt-records likely came before coin. Yet no one theory covers every case: commodity monies have circulated with no state behind them, from cowrie shells to the cigarettes of prison camps; state monies have collapsed despite the tax demand, in every hyperinflation; and the gold the creditist cannot reduce to anyone's liability was money for ages. The honest conclusion is that money has no single essence — that it is metal and creature and credit by turns — and that what unites these is not a substance but a function and a faith: whatever a community will take in final settlement, for whatever reason, is its money. That the search for money's one true nature never ends is itself the clue that its nature is convention.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE III ===================== -->
+    <section class="plate reveal" id="plate-iii" data-label="Plate iii · The Pyramid">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">iii</div>
+        <p class="plate-kicker">Plate the Third &middot; The Institutions &middot; № XVI</p>
+        <h3 class="plate-title">The Pyramid</h3>
+        <p class="plate-gloss">how money is created; banks, reserves, and the hierarchy of money</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if the state prints the cash, who prints the rest — and the rest is most of it?</q></div>
+      <div class="plate-body">
+        <p>Ask where money comes from and the natural answer is the mint and the printing press — the state, coining and printing the cash. The answer is true and almost beside the point, for the cash is a sliver of the money supply; the great bulk of it is the deposits in bank accounts, and those are created not by the state but by ordinary commercial banks. The mechanism astonishes everyone who first meets it, because it inverts the natural picture. A bank does not, as the old textbooks taught and intuition insists, take in deposits and lend them out. It does the reverse: when a bank makes a loan, it simply credits the borrower's account, writing a new deposit into existence with a keystroke. The loan, an asset, and the deposit, a liability, appear together on the bank's books, conjured in the same instant. Loans create deposits. The money the borrower spends did not exist a moment before; the act of lending called it into being. Most of the money in a modern economy is private bank-debt, created in this way — the creditist truth of the previous plate made concrete, money revealed as credit, brought to life by the writing of a loan.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="fm2t fm2d">
+              <title id="fm2t">The hierarchy of money</title>
+              <desc id="fm2d">A pyramid with central bank money at the narrow apex, bank deposits in the middle tier, and wider credit at the broad base; each tier is a promise to pay the tier above.</desc>
+              <polygon points="220,58 352,242 88,242" fill="none" stroke="var(--ink)" stroke-width="1.3"/>
+              <line x1="170" y1="128" x2="270" y2="128" stroke="var(--ink)" stroke-width="1"/>
+              <line x1="128" y1="186" x2="312" y2="186" stroke="var(--ink)" stroke-width="1"/>
+              <line x1="70" y1="236" x2="70" y2="76" stroke="var(--soft)" stroke-width="1.2"/>
+              <path d="M70,76 l-4,9 l8,0 z" fill="var(--soft)"/>
+              <text class="lbl" x="220" y="48" text-anchor="middle">central bank money</text>
+              <text class="lbl" x="220" y="161" text-anchor="middle">bank deposits</text>
+              <text class="lbl" x="220" y="217" text-anchor="middle">credit &amp; near-money</text>
+              <text class="lbl-sm" transform="rotate(-90 56 156)" x="56" y="156" text-anchor="middle">a promise to pay the tier above</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 2.</span> The hierarchy of money. At the narrow apex sits central bank money — reserves and cash, the ultimate means of settlement, created by the state. Below it, broader, sit the bank deposits the public actually spends, each a promise to pay central bank money on demand. Below them, broader still, the near-monies of wider credit, promises to pay deposits. Each tier is a claim on the one above, and the pyramid narrows toward the scarcest and most final money at its peak. Most of what we spend lives in the middle tier — private bank-debt, denominated in the state's unit, settled in the state's money.</figcaption>
+        </figure>
+        <p>The hierarchy the figure draws orders the whole system. At its apex is central bank money — the reserves banks hold at the central bank, and the cash that is those reserves made physical — the ultimate settlement asset, the money in which all other monies are finally redeemed, and the one money the central bank alone creates. Beneath it sits the money of commercial banks, the deposits in our accounts, which are promises to pay central bank money on demand; and beneath those, the wider circle of near-monies and credit, promises to pay deposits. Each tier is a claim on the tier above, and the structure narrows toward the scarce and final money at the peak. The old account of how the tiers relate was the money multiplier: banks, it held, lend out a fixed multiple of their reserves, and the central bank governs the money supply by governing reserves. The modern account, which the Bank of England itself set out plainly in 2014, is the reverse — money is endogenous, created by banks as they lend, in response to the demand for loans, and constrained not by a fixed reserve ratio but by the banks' capital, by the cost of funds, and by the interest rate the central bank sets. The central bank does not ration the quantity of money; it sets the price of money — the rate of <em>The Rate</em>'s eleventh plate — and the banking system creates as much as sound borrowers will take at that price.</p>
+        <aside class="pull">A bank does not lend out money that was deposited; it creates money by lending. The loan and the deposit are born together, with a keystroke.</aside>
+        <p>So the question of who makes our money has a layered answer. The state makes the base — the reserves and cash at the apex — and sets the price at which the rest is made. The banks make the bulk — the deposits we spend — by lending, each loan a small act of money-creation. And the whole edifice is denominated in the state's unit of account and settled, at the last, in the state's money. Money is thus a public-private hybrid: a state monopoly at the top, a licensed private creation in the middle, bound together into a single hierarchy of promises. The cash in a pocket and the balance in an account are both money, and both are debts — the one the central bank's, the other a commercial bank's — differing only in their rank within the pyramid.</p>
+        <aside class="edge"><span class="lead">the edge</span> That banks create money by lending, rather than lending out money already deposited, was long hidden by the multiplier story, and even now its statement provokes disbelief, for it seems to grant banks a magical power to conjure money from nothing. The disbelief is half right. Banks do create money, but not freely or without limit. Each loan creates a deposit, but the borrower soon spends it, the deposit flows to another bank, and the transfer must be settled in central bank reserves the lending bank cannot itself create; the bank is constrained by its need for reserves and capital, by the cost of funds the central bank sets, and above all by the demand for sound loans, since a loan to a borrower who cannot repay destroys the bank and not merely the borrower. The power to create money is real but disciplined — by the central bank's rate, by prudential regulation, by the hard limit of creditworthiness. The endogenous-money view overturns the textbook without making banks omnipotent; it makes them what they are, the licensed private creators of most of the money supply, creating it as credit, on a leash held jointly by the central bank and the borrower's capacity to pay.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE IV ===================== -->
+    <section class="plate reveal" id="plate-iv" data-label="Plate iv · The Quantity">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">iv</div>
+        <p class="plate-kicker">Plate the Fourth &middot; The Institutions &middot; № XVI</p>
+        <h3 class="plate-title">The Quantity</h3>
+        <p class="plate-gloss">the quantity theory; money and the price level; Friedman</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if money is created at a keystroke, what stops its creation from simply raising every price?</q></div>
+      <div class="plate-body">
+        <p>If money can be created so freely, the obvious fear is that creating more of it must, sooner or later, raise the prices of the things it buys — that to double the money is to halve its worth. This fear is the quantity theory of money, the oldest proposition in monetary economics, and it rests on an identity of disarming simplicity, the equation of exchange: the quantity of money, multiplied by the velocity with which it circulates, equals the price level multiplied by the volume of real output. The money supply times its turnover is the money value of all that is bought; and that, by definition, is prices times quantities. If velocity and real output hold roughly steady, the identity becomes a theory with teeth: changes in the quantity of money pass straight through into the price level, and more money means higher prices. David Hume framed it in the eighteenth century — double every coin in the kingdom overnight, he saw, and nothing real changes, only the prices double — and Milton Friedman pressed it in the twentieth into the famous dictum that inflation is always and everywhere a monetary phenomenon, sustained rising prices being impossible without sustained growth in money.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="fm3t fm3d">
+              <title id="fm3t">Money growth and inflation</title>
+              <desc id="fm3d">A scatter of money growth against inflation across economies, clustering loosely around the forty-five-degree line at low rates and tightly at high rates.</desc>
+              <line class="ax" x1="60" y1="252" x2="404" y2="252"/>
+              <line class="ax" x1="60" y1="252" x2="60" y2="44"/>
+              <line x1="62" y1="250" x2="380" y2="72" stroke="var(--ink)" stroke-width="1" stroke-dasharray="5 3"/>
+              <circle cx="90" cy="238" r="2.6" fill="var(--ink)"/>
+              <circle cx="112" cy="224" r="2.6" fill="var(--ink)"/>
+              <circle cx="132" cy="231" r="2.6" fill="var(--ink)"/>
+              <circle cx="152" cy="208" r="2.6" fill="var(--ink)"/>
+              <circle cx="176" cy="206" r="2.6" fill="var(--ink)"/>
+              <circle cx="182" cy="188" r="2.6" fill="var(--ink)"/>
+              <circle cx="210" cy="184" r="2.6" fill="var(--ink)"/>
+              <circle cx="232" cy="164" r="2.6" fill="var(--ink)"/>
+              <circle cx="256" cy="158" r="2.6" fill="var(--ink)"/>
+              <circle cx="290" cy="118" r="2.6" fill="var(--ink)"/>
+              <circle cx="322" cy="102" r="2.6" fill="var(--ink)"/>
+              <circle cx="360" cy="76" r="2.6" fill="var(--ink)"/>
+              <text class="lbl-sm" x="356" y="92" text-anchor="end">the 45° line</text>
+              <text class="lbl-sm" x="150" y="246">loose when low</text>
+              <text class="lbl-sm" x="300" y="138" text-anchor="end">tight when high</text>
+              <text class="lbl-ax" x="356" y="269" text-anchor="middle">MONEY GROWTH →</text>
+              <text class="lbl-ax" transform="rotate(-90 28 150)" x="28" y="150" text-anchor="middle">INFLATION</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 3.</span> Money growth and inflation. Across economies and epochs the two track each other along the line of equality — but loosely where both are low, and tightly only where both are high. At modest rates the cloud scatters widely, velocity and output muddying the link; at the extremes of rapid money growth the points snap to the line, money overwhelming all else. The quantity theory is a truth about the long run and the catastrophe, and a poor guide to the quarter.</figcaption>
+        </figure>
+        <p>The figure shows what the data deliver: a relationship real but ragged. Plot the growth of money against inflation across many economies and many decades, and the points do array themselves along the line where inflation equals money growth — but loosely at the lower end, where both are small, and tightly only at the upper, where both are large. At modest rates the cloud is wide, for velocity wanders and output grows and a dozen other forces jostle the price level, so that a given burst of money may show up as inflation, or as faster growth, or as nothing visible at all. Only at the extremes does the link become iron, the points snapping to the line as money growth swells to swamp everything else. This is why the monetarists who, in the late 1970s, persuaded central banks to steer by the growth of money aggregates were soon disappointed: velocity proved treacherous, the aggregates and the economy drifted apart, and the money targets were quietly abandoned for the interest-rate and inflation targets of <em>The Rate</em>. The quantity theory governs the long run and the catastrophe, and scarcely seems to bind the short run and the middle.</p>
+        <aside class="pull">Over years and at the extremes, money governs prices; over months and at the margin, it scarcely seems to. The quantity theory is a truth about the long run and about the catastrophe.</aside>
+        <p>What stops money-creation from simply raising every price, then, is partly that in a slack economy the new money meets idle hands and machines and calls forth output rather than inflation, and partly that velocity absorbs the shock, the new money sitting still rather than chasing goods. But these cushions are finite. Let money grow faster than output can, for long enough, and the cushions give way, and the quantity theory reasserts itself in the rising prices it predicts. The keystroke that creates money does not raise prices at once, or one-for-one, or reliably in the short run; but issue enough of it, past the economy's capacity to absorb, and prices will rise as surely as Hume foresaw — and at the limit, as the seventh plate will show, they will not merely rise but bolt.</p>
+        <aside class="edge"><span class="lead">the edge</span> The quantity theory is the most argued-over proposition in monetary economics, because it is at once nearly tautological and persistently unreliable. As an identity — money times velocity equals prices times output — it cannot be false; it is true by the definition of velocity. As a theory it claims more: that velocity and output are steady enough that money drives prices — and there the trouble begins, for velocity is not steady, shifting with interest rates and confidence and the financial innovations that blur what even counts as money. The monetarists who in the 1980s set central banks to targeting money aggregates were defeated by exactly this, and abandoned the money targets for the interest-rate targets of <em>The Rate</em>'s eleventh plate. Yet the theory cannot be dismissed, for at the extremes it is iron: no hyperinflation has occurred without a flood of money, and no flood of money has long failed to raise prices. The quantity theory is a poor guide to the next quarter and an infallible one to the next catastrophe — loose in the short run and the middle, true in the long run and at the limit, which is precisely the range in which policy must work.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE V ===================== -->
+    <section class="plate reveal" id="plate-v" data-label="Plate v · The Fetters">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">v</div>
+        <p class="plate-kicker">Plate the Fifth &middot; The Institutions &middot; № XVI</p>
+        <h3 class="plate-title">The Fetters</h3>
+        <p class="plate-gloss">commodity money and the gold standard; discipline and its disasters</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>for most of history money was anchored to metal — what did the anchor buy, and what did it cost?</q></div>
+      <div class="plate-body">
+        <p>Because money is trust, its history is the history of what the trust was anchored to, and for most of recorded time the anchor was metal. A currency was a fixed weight of gold or silver; paper was a promise to deliver that metal on demand; and under the classical gold standard that bound the great economies from the 1870s to 1914, the anchor did real and admirable work. It disciplined the issue of money, for a government could not, under a strict standard, print beyond what its gold would back, and so the value of money held steady across decades — prices on the eve of the First World War stood near where they had stood a half-century before, a stability no later regime has equalled. It fixed the exchange rates among nations, each currency being so much gold and therefore exchangeable for the others at settled ratios, and on that fixity the first great age of globalization was built. And it was, in theory, self-correcting, through the mechanism Hume had described: a nation importing more than it exported would pay the difference in gold, its money supply would shrink as the gold flowed out, its prices would fall, its goods would thereby grow competitive, and trade would right itself as the gold returned. The anchor bought discipline, stability, and an automatic balance — no small gifts.</p>
+        <p>But the anchor exacted a price, and the price was rigidity. The supply of money could grow no faster than gold was dug from the earth, and an economy growing faster than its gold stock was condemned to deflation — to falling prices, which fall hardest on debtors, whose debts are fixed in a money that steadily gains in value. The long deflation of the late nineteenth century ground the farmers of America into a fury that found its voice in William Jennings Bryan's cry that mankind should not be crucified upon a cross of gold. Worse, the anchor forbade the monetary response that hard times demand: a central bank bound to defend its gold parity must raise rates to staunch an outflow of gold even as its economy sinks, tightening into a slump rather than easing. Here lay the cruelty that Barry Eichengreen named in calling the interwar gold standard a set of golden fetters. The standard transmitted and deepened the Great Depression across the world, for every nation that clung to its parity had to deflate and contract to defend it — and the nations that broke free of gold soonest, Britain in 1931 and America in 1933, were the nations that recovered soonest. To leave gold was the precondition of recovery; to stay was to be chained to the deepening dark.</p>
+        <aside class="pull">Gold steadied the value of money and chained the hand that managed it. Its discipline and its cruelty were the same property — seen in fair weather, and in foul.</aside>
+        <p>So the anchor was cut, in stages and at last entirely. The First World War suspended convertibility as governments printed to fight; the interwar effort to restore the old standard ended in the disaster of deflation, Keynes denouncing Churchill's 1925 return to the prewar parity for the unemployment it would cost; the Depression broke what remained. Bretton Woods rebuilt a looser anchor in 1944, fixing the dollar to gold and the other currencies to the dollar, until the strain of that arrangement led President Nixon, in August 1971, to close the gold window and end the dollar's convertibility for good. With that act the last tie to metal was severed, and the world passed to pure fiat money — the subject of the next plate. The deep lesson of the gold age is that its discipline and its rigidity were a single property wearing two faces: the anchor that steadied money's value in calm weather was the same chain that prevented its rescue in the storm. To choose commodity money over fiat is to choose discipline with rigidity over flexibility with temptation — and the world, having suffered the rigidity, chose the temptation.</p>
+        <aside class="edge"><span class="lead">the edge</span> The gold standard is the great battleground of two temperaments in monetary economics, and the quarrel is not settled but only relocated. To its admirers, from the classical hard-money tradition to the modern partisans of gold, the discipline is precisely the virtue: it binds the hands of governments that would debase the currency, anchors expectations in a thing no politician can print, and delivered a long-run stability of prices no fiat regime has matched. To its critics, from Keynes and Eichengreen onward, that same discipline is a barbarous relic — a fetter that forced deflation and depression because it could not bend when the economy needed bending, and that spread the Great Depression by chaining nations to parities they should have fled. Both are right about what gold does; they differ on which danger is graver, the discretion that invites inflation or the rigidity that invites depression. The world chose flexibility in 1971, and bought with it the power to fight slumps and the temptation to debase. Whether the bargain was wise is a question the booms and busts of the fiat age keep reopening.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE VI ===================== -->
+    <section class="plate reveal" id="plate-vi" data-label="Plate vi · The Faith">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">vi</div>
+        <p class="plate-kicker">Plate the Sixth &middot; The Institutions &middot; № XVI</p>
+        <h3 class="plate-title">The Faith</h3>
+        <p class="plate-gloss">fiat money; value by decree and convention; the shared fiction</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>since 1971 money has been backed by nothing at all — so what holds it up?</q></div>
+      <div class="plate-body">
+        <p>Since the anchor was cut, the world has run on fiat money — money that is money by decree, from the Latin for let it be done. A modern banknote promises nothing; it is convertible into no metal, redeemable for no commodity; it is a slip of cotton paper, or a number in a database, declared to be money by the state and accepted as money by everyone. Its entire value is the self-fulfilling convention of the first plate, grounded in nothing but the shared expectation that it will be accepted, floored only by the state's demand that taxes be paid in it. Fiat money is the shared fiction with its mask removed: where the gold standard offered the comforting story that money stood for something real and scarce, fiat money admits that it stands for nothing but the agreement to accept it. It is, in the volume's gloss, precisely what we agree to trust — and nothing besides.</p>
+        <p>The world did not stumble into this arrangement; it chose it, for the freedom it confers. Released from the obligation to defend a gold parity, the central bank may expand money in a recession, ease in a panic, act as the lender of last resort the ninth plate describes — all the things the golden fetters forbade. The money supply may grow with the economy, sparing it the deflationary grind that fixed gold imposed, so that prices may be held gently and stably rising rather than chaotically falling. The rate of <em>The Rate</em>'s eleventh plate becomes a free instrument, no longer hostage to the gold flows. Fiat money, in short, bought the power to manage the economy and to fight its depressions — the power whose absence had made the Great Depression so deep. But the same freedom is a temptation, for nothing physical now restrains the printing, and the discipline that gold once imposed from without must be supplied from within, by institutions and by credibility — by the independence of the central bank, by the inflation target solemnly announced and defended, by the reputation for restraint that anchors expectations. The discipline of metal is replaced by the discipline of commitment; and commitment, unlike metal, can be broken.</p>
+        <aside class="pull">Fiat money is the belief without the idol. The gold was always only a focal point for the faith; fiat shows the faith itself, holding everything up.</aside>
+        <p>And here is the deepest truth the fiat age reveals: that money's value was never really in the metal. Gold itself was valuable, in large part, because it was money — a circular, conventional worth, not so different in kind from the paper's. The gold standard was a focal point for the collective belief, a shared place to rest the faith, but it was never the true ground of money's value; the ground was always the belief. Fiat money simply strips away the idol and shows the faith itself, naked, holding the whole edifice aloft. That this works — that the commerce of the world runs smoothly on tokens backed by nothing but trust — is one of the quiet marvels of modern civilization, a vast and functioning shared fiction, sustained because the faith is stable and the institutions hold. Money is here revealed, finally and without disguise, as this project has claimed all value to be: not a fact of nature but a verdict, a convention, an agreement — and in money's case, the agreement on which every other price depends.</p>
+        <aside class="edge"><span class="lead">the edge</span> Fiat money induces a vertigo the gold standard concealed, for it makes plain that the value of money rests on nothing but a shared and self-fulfilling belief, and a shared belief is a thing that can, in principle, simply evaporate. The anchor offered the comfort of a tie to something real and scarce; fiat withdraws it, revealing that beneath the belief there was only ever more belief. Yet the vertigo may mislead. Fiat money has held its value across the major economies for half a century, not by accident but because the faith is institutionally anchored — in the central bank's credibility, in the state's enduring power to tax, in the network effect of a money everyone must use. The belief is self-fulfilling in both directions: as it can collapse when doubted, so it sustains itself when trusted, each person's acceptance giving every other a reason to accept. Whether fiat money is a fragile miracle or a robust institution is the question it leaves open — and the answer is both: robust while the institutions hold and the faith endures, and catastrophically fragile in the rare hour when they do not, which is the subject of the plate that follows.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE VII ===================== -->
+    <section class="plate reveal" id="plate-vii" data-label="Plate vii · The Collapse">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">vii</div>
+        <p class="plate-kicker">Plate the Seventh &middot; The Institutions &middot; № XVI</p>
+        <h3 class="plate-title">The Collapse</h3>
+        <p class="plate-gloss">inflation and hyperinflation; the death of money</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what happens when the faith fails — when the promise that everyone will accept the note tomorrow comes to be doubted?</q></div>
+      <div class="plate-body">
+        <p>Money is faith, and faith can fail. Its ordinary failure is inflation, the slow erosion of money's worth as prices climb and each unit buys a little less. The causes are several — too much money chasing too few goods, as the quantity theory holds at the extreme; an excess of demand; a shock to the cost of oil or grain; and, most insidiously, expectations, for if everyone expects prices to rise, workers demand higher wages and firms post higher prices in anticipation, and the expectation fulfills itself in a wage-price spiral. That last cause marks inflation as kin to money itself: a thing of belief, self-confirming, a coordination of expectations that makes real what it foresees. Moderate inflation is the common cold of the fiat age, an erosion to be managed. But let it accelerate, let the faith begin to crack, and inflation can pass a threshold beyond which it becomes something else entirely — the catastrophe of hyperinflation, where money does not merely erode but dies.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="fm4t fm4d">
+              <title id="fm4t">The price level in a hyperinflation</title>
+              <desc id="fm4d">A price-level curve flat for a long while, then bending sharply upward into a near-vertical spike.</desc>
+              <line class="ax" x1="60" y1="252" x2="404" y2="252"/>
+              <line class="ax" x1="60" y1="252" x2="60" y2="44"/>
+              <polyline class="curve" fill="none" points="60,242 120,238 170,230 210,215 245,190 275,150 300,105 320,68 335,52"/>
+              <text class="lbl-sm" x="132" y="232" text-anchor="middle">slow at first</text>
+              <text class="lbl-sm" x="332" y="84" text-anchor="end">then all at once</text>
+              <text class="lbl-i" x="218" y="150" text-anchor="middle">price level</text>
+              <text class="lbl-ax" x="356" y="269" text-anchor="middle">TIME (MONTHS) →</text>
+              <text class="lbl-ax" transform="rotate(-90 28 150)" x="28" y="150" text-anchor="middle">PRICE LEVEL</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 4.</span> The death of a currency. On a linear scale the early months look almost flat — not because prices were still then, but because what came after dwarfs them beyond drawing. Past a threshold of confidence the curve bolts, prices doubling in weeks, then days, then hours, the line going vertical as the money ceases to be money. Weimar's mark fell to a trillionth of its worth; Hungary's pengő, the worst on record, halved in value about every fifteen hours. This is what it looks like when the faith of the first plate fails.</figcaption>
+        </figure>
+        <p>The mechanism of hyperinflation is a spiral, and it begins not in the central bank but in the treasury. A state that can no longer fund itself — broken by a lost war, a revolution, reparations, the dismemberment of an empire — and that can neither tax nor borrow enough, turns to the last resort of printing money to pay its bills. The new money raises prices; but as prices rise, the real value of each freshly printed note falls, so the state must print ever faster to buy the same real resources, an acceleration feeding on itself. Meanwhile the public, watching prices climb by the hour, races to spend money the instant it is received, for to hold it is to watch it melt — and this flight raises the velocity of the first plates to a frenzy, money changing hands in minutes rather than months, which drives prices higher still. Expectations of inflation become expectations of collapse, self-fulfilling and compounding, and the currency dies by stages: first it fails as a store of value, then as a unit of account as prices are quoted in foreign money, and at last as a medium of exchange as people flee to dollars, to gold, to barter. The three offices of money fall in sequence, and the shared fiction dissolves.</p>
+        <aside class="pull">There are two ways money dies: slowly, through inflation, and then all at once, through the panic that the slowness finally provokes.</aside>
+        <p>How does it end? Not gradually, but suddenly — for a crisis of confidence is cured by the restoration of confidence, and confidence can return as abruptly as it fled. Thomas Sargent, studying the great interwar hyperinflations of Austria, Hungary, Poland, and Germany, found that each ended not through a slow taming but through a decisive and credible change of regime — a new currency, an external anchor, and above all a believable end to the fiscal deficits that had driven the printing. The moment the public believed the printing would stop, the flight from the money reversed, and prices stabilized almost overnight. This is the deepest lesson of the collapse, and the sharpest proof of the volume's thesis. Money's value is the confidence that others will accept it; hyperinflation is the evaporation of that confidence; and its cure is the manufacture of new confidence, by a regime credible enough to be believed. The paper does not change — there is more of it than ever — but the faith returns, and with the faith, the money. What dies in a hyperinflation is not the currency's substance, for it had none, but its credibility; and what is reborn is the same.</p>
+        <aside class="edge"><span class="lead">the edge</span> Hyperinflation is usually told as a morality tale about the printing press — the state debases the money, and ruin follows — and the tale is true as far as it goes, but it mistakes the proximate mechanism for the root cause. The printing is real, yet it is a symptom: a government prints its way to hyperinflation only when it has lost the capacity to fund itself by taxing or borrowing, which is to say, when the underlying fiscal or political order has already collapsed. Weimar printed under the crushing weight of reparations and the occupation of the Ruhr; the great hyperinflations followed lost wars, revolutions, the breaking of empires. The flood of money is how fiscal collapse expresses itself in the monetary realm, not a vice unto itself — which is why Sargent found the cure to be fiscal as much as monetary, a credible end to the deficits that drove the press. And it is why hyperinflation, for all its horror, is rare and usually brief: it requires a state at once desperate enough to print without limit and yet capable of a regime credible enough to restore the faith. The ordinary danger of fiat money is not the spectacular death of hyperinflation but the slow erosion of moderate inflation — the gradual, and far commoner, way that money loses its worth.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE VIII ===================== -->
+    <section class="plate reveal" id="plate-viii" data-label="Plate viii · The Mint">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">viii</div>
+        <p class="plate-kicker">Plate the Eighth &middot; The Institutions &middot; № XVI</p>
+        <h3 class="plate-title">The Mint</h3>
+        <p class="plate-gloss">seigniorage and the inflation tax; the revenue of issue</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if a state can print money, why does it ever bother to tax?</q></div>
+      <div class="plate-body">
+        <p>Behind the spiral of the last plate lies a temptation that shadows all money: that the power to create it is a power to take. The profit of issue has an old name, seigniorage, from the seigneur's right of coinage. The medieval lord struck coins worth more as money than as metal and pocketed the difference; the cruder among his successors clipped and debased the coinage, thinning the silver while keeping the face, so that Rome's denarius and Henry's English penny dwindled to a fraction of their old content, the shortfall flowing to the treasury. The modern form is gentler in appearance and identical in substance: a central bank creates base money at virtually no cost and buys interest-bearing assets with it, and the interest — remitted, in the end, to the state — is the profit of being the monopoly issuer of a thing that costs nothing to make and commands real goods.</p>
+        <p>But the deeper levy is the inflation tax. When a government funds itself by creating money, and the new money raises prices, it has in effect taxed everyone who holds money or claims fixed in money, for the real value of their holdings silently erodes and the resources pass to the issuer. The rate of this tax is the rate of inflation; its base is the real stock of money the public holds; and it is, of all taxes, the one most seductive to a state, for it need not be voted by any legislature, collected by any revenue service, or even named. The government prints and spends, and the tax falls of itself, gathered automatically in the rising prices. This is why it is the revenue of desperation — the recourse of states too weak to tax or too broken to borrow, and so, as the seventh plate showed, the road to hyperinflation when discipline fails. And it is a tax peculiarly unjust: hidden, for most who pay it blame the merchants or the times rather than the mint; and regressive, for it falls hardest on those who hold their little wealth in cash and cannot flee into the real assets, the foreign currencies, the inflation-proof holdings by which the sophisticated and the rich escape it.</p>
+        <aside class="pull">Inflation is the tax that need not be voted, need not be collected, and need not even be named. The state prints, and the tax falls of itself — heaviest on those who can least escape it.</aside>
+        <p>Economists have asked what rate of this tax is best, and the purest answer, Milton Friedman's, is that money should cost nothing to hold, which calls for a slight deflation and a zero nominal rate — though this ignores both the revenue motive and the zero-lower-bound dangers of <em>The Rate</em>, and so in practice central banks aim at a small positive inflation, a modest and deliberate inflation tax accepted as the price of keeping rates off the floor and wages flexible. The seductiveness of the levy is precisely the time-inconsistency problem that <em>The Rate</em>'s eleventh plate named: a government holding the press will always be tempted to print a little more, for the gain is immediate and the cost deferred and diffuse. The history of money is in large part the history of sovereigns yielding to this temptation and of the institutions slowly built to bind them — a history that runs forward, through the bank runs of the next plate, to the independent central bank devised to keep the press out of the treasury's reach.</p>
+        <aside class="edge"><span class="lead">the edge</span> The inflation tax sits at an uneasy border between a legitimate instrument of public finance and a furtive theft, and where the line falls is genuinely contested. A modest, predictable inflation — the two percent most central banks target — is in effect a small and broadly anticipated tax on money balances, defensible as a lubricant that keeps nominal rates above zero and wages flexible, and priced into contracts so that it redistributes little. An unexpected or accelerating inflation is something else: a tax levied by surprise, falling on whoever happened to hold money, redistributing wealth by stealth from creditor to debtor and from the unwary to the nimble, and corroding the very trust on which money depends. The same mechanism is prudent statecraft at one rate and confiscation at another, and the difference is not of kind but of degree and of expectation — of whether the tax is small and foreseen or large and sprung. That a government holds, in the press, a power to tax that escapes the ordinary checks of legislation and consent is the deep reason the management of money was, in time, taken from the government's hands and given to an independent central bank — a removal the crises that follow, and the one just past, show to be as necessary as it is fragile.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE IX ===================== -->
+    <section class="plate reveal" id="plate-ix" data-label="Plate ix · The Run">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">ix</div>
+        <p class="plate-kicker">Plate the Ninth &middot; The Institutions &middot; № XVI</p>
+        <h3 class="plate-title">The Run</h3>
+        <p class="plate-gloss">bank runs and panics; maturity mismatch; the lender of last resort</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>the banks make most of our money by lending it long and owing it short — what happens when everyone asks for it back at once?</q></div>
+      <div class="plate-body">
+        <p>The banks that create most of our money, the third plate showed, do so by a trick of timing that is also a standing danger. A bank lends long and borrows short: its assets are loans and mortgages, money lent out for years and not easily recalled; its liabilities are deposits, payable on demand, withdrawable at any moment. This maturity transformation is the bank's social purpose — it reconciles the saver's wish for ready access with the borrower's need for patient funds, turning short, liquid claims into long, productive ones — and it is, in the same breath, the bank's inherent fragility. For the bank has promised every depositor instant access to money it has lent to others for years; the promise is kept only because, on any ordinary day, only a few depositors come to collect, and the bank holds cash enough for them. The whole edifice stands on the assumption that not everyone will ask at once.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="fm5t fm5d">
+              <title id="fm5t">The maturity mismatch of a bank</title>
+              <desc id="fm5d">Two balance-sheet bars of equal height: assets of long-dated loans on the left, liabilities of demand deposits on the right, with the mismatch marked between and a run pulling at the liabilities.</desc>
+              <rect class="fill-cs" x="100" y="85" width="72" height="155" stroke="var(--ink)" stroke-width="1.2"/>
+              <rect class="fill-wedge" x="268" y="85" width="72" height="155" stroke="var(--ink)" stroke-width="1.2"/>
+              <text class="lbl-sm" x="136" y="76" text-anchor="middle">what it owns</text>
+              <text class="lbl-sm" x="304" y="76" text-anchor="middle">what it owes</text>
+              <text class="lbl" x="136" y="150" text-anchor="middle">long-dated</text>
+              <text class="lbl" x="136" y="168" text-anchor="middle">loans</text>
+              <text class="lbl" x="304" y="150" text-anchor="middle">deposits</text>
+              <text class="lbl" x="304" y="168" text-anchor="middle">on demand</text>
+              <text class="lbl" x="136" y="256" text-anchor="middle">ASSETS</text>
+              <text class="lbl" x="304" y="256" text-anchor="middle">LIABILITIES</text>
+              <text class="lbl-i" x="220" y="108" text-anchor="middle">mismatch</text>
+              <line x1="176" y1="120" x2="264" y2="120" stroke="var(--soft)" stroke-width="1.1"/>
+              <path d="M176,120 l9,-4 l0,8 z" fill="var(--soft)"/>
+              <path d="M264,120 l-9,-4 l0,8 z" fill="var(--soft)"/>
+              <line x1="348" y1="150" x2="390" y2="150" stroke="var(--ink)" stroke-width="1.1"/>
+              <path d="M390,150 l-9,-4 l0,8 z" fill="var(--soft)"/>
+              <text class="lbl-sm" x="369" y="140" text-anchor="middle">the run</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 5.</span> Banking's mismatch. The bank's assets are long and illiquid — loans that cannot be called or sold quickly; its liabilities are short and liquid — deposits due the instant they are demanded. The two bars balance, and the bank is sound, so long as the depositors stay calm. But the liabilities can flee at once while the assets cannot follow, and that asymmetry is the opening through which a run pours: each depositor, fearing the others, rushes to be paid first, and the bank, unable to turn loans to cash fast enough, fails — though every loan it holds is good.</figcaption>
+        </figure>
+        <p>Let the assumption break, and the result is a run. If depositors come to fear that the bank might fail — or, more subtly, merely fear that other depositors will withdraw — then each has reason to rush to the door first, for the bank can pay only those who arrive before the cash runs out, and cannot liquidate its long loans quickly enough to satisfy all. The fear of a run causes the run; and the run can topple even a sound bank, one whose loans are good and whose assets exceed its debts, but which simply cannot turn those assets to cash on a single panicked morning. Douglas Diamond and Philip Dybvig captured this in a model of lasting influence: a bank has two possible equilibria, a good one in which no one runs and the bank performs its useful transformation, and a bad one in which everyone runs and the bank collapses — and which prevails depends not necessarily on the bank's health but on the depositors' beliefs, a self-fulfilling shift from calm to panic. It is the very structure of money's value from the first plate, turned destructive: as money is accepted because all expect it to be accepted, so a bank survives because all expect it to survive, and fails the moment enough expect it to fail.</p>
+        <aside class="pull">A bank promises everyone their money at once, having lent it to others for years. The promise is kept only so long as no one doubts it — and doubted, it breaks itself.</aside>
+        <p>Because the run is a coordination failure, its remedies work by removing the reason to run. The first is the lender of last resort: a central bank standing ready to lend freely to a solvent but illiquid bank in a panic, so that the bank can always meet withdrawals and no depositor need rush. Walter Bagehot gave the rule in 1873 — in a crisis, lend freely, at a penalty rate, against good collateral: freely, to break the panic; at a penalty, so the privilege is not abused; against good collateral, so the central bank rescues the illiquid and not the truly insolvent. The second remedy is deposit insurance, the state's guarantee of deposits up to a limit, instituted after the bank runs of the Great Depression, which removes the depositor's reason to flee by making the deposit safe whatever happens. Both work, and both breed the hazard the twelfth element, <em>The Asymmetry</em>, anatomizes: a bank that knows it will be rescued, and depositors who know they will be repaid, grow careless, so that the backstop curing the panic encourages the recklessness that makes panic likely — which is why the rescue must be hedged about with the capital rules and supervision of a perpetual regulatory contest. And the runs keep coming: the panics of the nineteenth century, the waves of failure that deepened the Depression, the run on the wholesale funding of the shadow banks in 2008, and in 2023 a run in which deposits fled a failing bank in hours, through a phone — the fragility migrating faster than the cure.</p>
+        <aside class="edge"><span class="lead">the edge</span> The bank run reveals a paradox at banking's center that no arrangement has resolved, only relocated. Maturity transformation is genuinely useful, reconciling the saver's wish for access with the borrower's need for patience, and a society that forbade it would forgo much of the investment banks finance. But the same transformation is inherently unstable, making the bank a promise that cannot be kept if called all at once, and so exposing it to runs that no degree of soundness can wholly prevent. The remedies — the lender of last resort, deposit insurance — stop the runs at the cost of moral hazard, for a bank sure of rescue and depositors sure of repayment have less reason for care, so that the backstop which cures the panic breeds the recklessness that makes panic likely, and must be answered by ever more capital rules and supervision. The 2023 runs, in which money fled through a screen in an afternoon, show the fragility outpacing the cure. Banking buys the benefits of liquidity transformation at the permanent price of fragility, and the whole apparatus of central banking and regulation is the ongoing, never-final attempt to keep the one while containing the other.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE X ===================== -->
+    <section class="plate reveal" id="plate-x" data-label="Plate x · The Wheel">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">x</div>
+        <p class="plate-kicker">Plate the Tenth &middot; The Institutions &middot; № XVI</p>
+        <h3 class="plate-title">The Wheel</h3>
+        <p class="plate-gloss">is money neutral? the veil, the engine, and the great wheel</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>is money merely the wheel that turns the economy's commerce, or can the wheel drive the machine?</q></div>
+      <div class="plate-body">
+        <p>Beneath every question in this volume lies a deeper one: whether money is real. Does it touch only the nominal surface of things — the prices, reckoned in itself — or does it reach down into the real economy of output and work and want? The classical economists gave the first answer. Money, they held, is a veil: it sets the level of prices but leaves the real economy beneath unchanged, so that to double the money is to double all prices and alter nothing real, as Hume saw. Real things — what is produced, how many are employed, the relative prices of goods, the real rate of interest — are fixed by real forces of technology and taste and endowment; money governs only the nominal, and the two are separable. This is the classical dichotomy, and its image is Adam Smith's: money as the great wheel of circulation, the great instrument of commerce, which carries the goods to market and the wages to the worker but is not itself the wealth it circulates — a lubricant, a measuring-rod, a veil drawn over the real economy that it serves without disturbing. Money, on this view, is neutral.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="fm6t fm6d">
+              <title id="fm6t">The short run and the long run after a monetary expansion</title>
+              <desc id="fm6d">After money rises, output bumps above potential and returns, while prices rise gradually to a permanently higher level.</desc>
+              <line class="ax" x1="60" y1="252" x2="404" y2="252"/>
+              <line class="ax" x1="60" y1="252" x2="60" y2="44"/>
+              <line x1="150" y1="60" x2="150" y2="252" stroke="var(--faint)" stroke-width="1" stroke-dasharray="4 4"/>
+              <polyline class="curve" fill="none" points="60,118 150,118 176,94 205,90 240,104 285,116 404,118"/>
+              <polyline class="curve2" fill="none" points="60,206 150,206 195,182 245,164 300,156 404,154"/>
+              <text class="lbl-sm" x="150" y="72" text-anchor="middle">money ↑</text>
+              <text class="lbl" x="105" y="110">output</text>
+              <text class="lbl" x="105" y="214">prices</text>
+              <text class="lbl-sm" x="215" y="80" text-anchor="middle">short run: output rises</text>
+              <text class="lbl-sm" x="338" y="170" text-anchor="middle">long run: only prices</text>
+              <text class="lbl-ax" x="356" y="269" text-anchor="middle">TIME →</text>
+              <text class="lbl-ax" transform="rotate(-90 28 150)" x="28" y="150" text-anchor="middle">LEVEL</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 6.</span> Veil and engine. When money expands, output first bumps above its potential — the engine, money biting on the real economy while prices lag — and then, as prices catch up, returns to where it began, the gain in output dissolving. Prices, meanwhile, climb to a permanently higher level. In the short run money is non-neutral and moves real things; in the long run it is neutral and moves only the price level. The central bank can smooth the cycle but cannot, by printing, make a people permanently richer.</figcaption>
+        </figure>
+        <p>The monetarists and Keynesians alike overturned this for the short run. Money, they showed, is not neutral when prices and wages are slow to adjust — and they are slow, held by contracts, by the costs of changing them, by habit. While prices lag, a change in money moves real quantities: a monetary expansion, meeting idle hands, raises output and employment before it raises prices; a monetary contraction shrinks them. The gravest evidence is the one Friedman and Schwartz pressed in their monetary history of the United States — that the Great Depression was so deep because the Federal Reserve let the money supply collapse by a third between 1929 and 1933, failing to stop the bank failures of the previous plate, and that this great contraction of money turned a recession into a catastrophe. Money was decisively non-neutral: its collapse threw millions out of work. The figure shows the synthesis the modern consensus has reached. After money expands, output bumps up while prices lag — the engine, money biting on the real economy — and then, as prices catch up, output sinks back to potential while prices settle permanently higher. Money is non-neutral in the short run and neutral in the long: the central bank can smooth the cycle, leaning against recessions with the lever of <em>The Rate</em>, but it cannot, by printing, make a nation permanently richer, for in the end the wheel turns only the prices.</p>
+        <aside class="pull">Money is a veil over the real economy — until the day it tears, and then it is the engine that stops the machine, or drives it off a cliff.</aside>
+        <p>So the great wheel is usually just that — a wheel, turning the commerce of the real economy without itself determining the harvest, a veil over things real. But when the wheel seizes — when money collapses, as in the Depression, or floods, as in a hyperinflation — it ceases to be a passive veil and becomes a violent engine, stopping the whole machine or driving it to ruin. This resolves the question of whether money is real. Money is a shared fiction, and in the long run a neutral one, a measuring-rod that does not change what it measures. And yet this fiction governs the real economy in the short run and at the extremes, so that its mismanagement wrecks real lives and its sound management is among the quiet conditions of prosperity. Money is both veil and engine — usually the one, occasionally and catastrophically the other — and the whole art of central banking, the next volumes will show, is to keep the wheel turning smoothly enough that it never becomes the engine that destroys.</p>
+        <aside class="edge"><span class="lead">the edge</span> The neutrality of money is the proposition on which the great camps of macroeconomics divide, and the division is less over the long run, where a rough consensus on neutrality holds, than over the short run and how long it lasts. That you cannot make a society permanently richer by printing is nearly universally granted; the dispute is over the short run, where the stickiness of prices makes money bite, and over just how sticky prices are and for how long. The new classical economists, pressing rational expectations, argued that even in the short run only monetary surprises move real output, a fully anticipated expansion passing straight into prices, so that systematic policy is impotent. The new Keynesians replied that prices and wages are sticky for real and documented reasons, so that even anticipated money has real effects and policy can stabilize. The modern consensus leans Keynesian for the short run and classical for the long; but the boundary between them — the speed at which the veil reasserts itself over the engine — is not a fixed fact but a contested estimate, varying with institutions and circumstance, and it is precisely this boundary that fixes how much good, or harm, the central bank's lever can do.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE XI ===================== -->
+    <section class="plate reveal" id="plate-xi" data-label="Plate xi · The Cipher">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">xi</div>
+        <p class="plate-kicker">Plate the Eleventh &middot; The Institutions &middot; № XVI</p>
+        <h3 class="plate-title">The Cipher</h3>
+        <p class="plate-gloss">the frontier of money; crypto, stablecoins, and the digital state</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if money is only what we agree to trust, can we agree to trust something with no state and no bank behind it at all?</q></div>
+      <div class="plate-body">
+        <p>The frontier of money is a challenge to the state-and-bank monopoly that the volume has described, and it has opened on three fronts at once. The first is cryptocurrency, of which Bitcoin was the herald: a money with no state, no bank, no central issuer at all, created and validated by a distributed network and capped, by an algorithm no authority can override, at a fixed supply. Its aspiration is to be a digital gold — a money whose scarcity is guaranteed by mathematics rather than by a central bank's restraint, immune to debasement and beyond the reach of the state, a return to the commodity-money logic of the fifth plate with an algorithm in the place of the metal, rejecting at a stroke both the chartalist's state and the pyramid's banks. The second front is the stablecoin: a private digital token pegged to a fiat currency and backed, in principle, by reserves, an attempt to wed crypto's digital and programmable form to fiat's stability — and, in truth, a return of privately issued money in modern dress, with all the old questions of whether the reserves are real and what becomes of the holders when the peg breaks. The third is the central bank digital currency, the state's own reply: a digital form of central bank money issued directly to the public, digital cash, which would let citizens hold the apex money of the third plate's pyramid without the intermediation of a bank.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="fm7t fm7d">
+              <title id="fm7t">A map of the forms of money</title>
+              <desc id="fm7d">Forms of money plotted by issuer, from state through private to decentralized, and by form, from physical to digital.</desc>
+              <line class="ax" x1="60" y1="252" x2="404" y2="252"/>
+              <line class="ax" x1="60" y1="252" x2="60" y2="44"/>
+              <circle cx="98" cy="205" r="3" fill="var(--ink)"/>
+              <circle cx="98" cy="100" r="3" fill="var(--ink)"/>
+              <circle cx="150" cy="78" r="3" fill="var(--ink)"/>
+              <circle cx="215" cy="108" r="3" fill="var(--ink)"/>
+              <circle cx="288" cy="92" r="3" fill="var(--ink)"/>
+              <circle cx="358" cy="80" r="3" fill="var(--ink)"/>
+              <circle cx="358" cy="210" r="3" fill="var(--ink)"/>
+              <text class="lbl-sm" x="98" y="222" text-anchor="middle">cash</text>
+              <text class="lbl-sm" x="98" y="90" text-anchor="middle">reserves</text>
+              <text class="lbl-sm" x="150" y="68" text-anchor="middle">CBDC</text>
+              <text class="lbl-sm" x="215" y="124" text-anchor="middle">deposits</text>
+              <text class="lbl-sm" x="288" y="82" text-anchor="middle">stablecoins</text>
+              <text class="lbl-sm" x="358" y="70" text-anchor="middle">Bitcoin</text>
+              <text class="lbl-sm" x="358" y="226" text-anchor="middle">gold</text>
+              <text class="lbl-ax" x="66" y="270" text-anchor="start">STATE</text>
+              <text class="lbl-ax" x="232" y="270" text-anchor="middle">PRIVATE</text>
+              <text class="lbl-ax" x="404" y="270" text-anchor="end">DECENTRALIZED</text>
+              <text class="lbl-ax" transform="rotate(-90 28 150)" x="28" y="150" text-anchor="middle">PHYSICAL → DIGITAL</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 7.</span> The forms of money, arranged by who issues them and in what form. The state's monies — cash, reserves, the proposed digital currency — cluster at the left; the banks' deposits and the private stablecoins in the middle; Bitcoin, issued by no one, at the decentralized edge; and gold, the old commodity money, alone at the lower right. The frontier is a movement up and to the right — toward the digital and away from the state — but every point on the map is, still, a thing trusted only because others trust it.</figcaption>
+        </figure>
+        <p>Each of these is best judged by the three offices of the first plate, and by that measure the verdicts are sobering. Bitcoin, hailed by its partisans as the future of money and dismissed by its detractors as a tulip, is so far a failure as money and a success as an asset: too volatile to serve as a stable unit of account or store of value, too slow and costly and power-hungry to serve well as a medium of exchange, and held in practice not to be spent but to be wagered, or to hedge against the state's monopoly — valued, like all money, by the faith of those who hold it, but lacking yet the stability that the offices require. Stablecoins promise the dollar's steadiness in digital form and deliver it only so far as their reserves are real and their issuers honest, reviving the very fragilities — the broken peg, the run — that deposit insurance and central banking were built to cure. And central bank digital currencies promise efficiency and inclusion while threatening a power over money no sovereign in history has held: for a programmable digital currency could be watched in every transaction, and could be restricted, directed, even made to expire, a tool of surveillance and control whose danger is as great as its convenience, and which would, by letting the public hold central bank money directly, drain the deposits that fund the banks and unmake the money-creation of the third plate.</p>
+        <aside class="pull">Crypto did not abolish trust; it moved it — from the state to an algorithm, from a promise to a protocol. Money remains what we agree to trust; the only contest is over whom.</aside>
+        <p>Beneath the three fronts lies a single question, and it is the question of the whole volume in a new key: who shall control money? The state, through its currency and its coming digital cash — money as a public thing, with the risks of surveillance and debasement. The banks, through the deposits that are most of our money — money as a regulated private creation, with the risk of the run. Or no one, through the decentralized protocols of crypto — money as a trustless network, with the risk of volatility and the loss of any lender of last resort. The future of money is a contest for authorship of the numéraire, fought among the state, the banks, and the network. But what none of the contenders escapes is the nature of money itself. Bitcoin works, insofar as it works, for exactly the reason a dollar works: because people agree to trust it, because each holds it expecting the next to take it — the same self-fulfilling convention of the first plate, merely anchored now in an algorithm and a community rather than in a state. The frontier does not abolish the shared fiction; it only relocates the trust, and reopens the question of who shall hold the power that trust confers.</p>
+        <aside class="edge"><span class="lead">the edge</span> The new monies draw extravagant claims and extravagant dismissals, and the truth lies in the unglamorous middle and turns on the three offices. Judged as money rather than as an asset, Bitcoin is so far a failure, too volatile to price a coffee or store a pension, yet established as a speculative holding and a hedge against the state — valued, like all money, by the faith of its holders. Stablecoins offer the dollar in digital form and deliver it only as well as their reserves are real, reviving the run and the broken peg that central banking was built to cure. And digital currencies issued by the state promise efficiency while threatening a surveillance and control over money that no sovereign has possessed, the same instrument serving liberation or domination by who wields it and under what restraint. What none escapes is the nature of money itself: each is a thing trusted because others trust it, a convention floated on belief, differing only in where the trust is anchored and who is empowered by it. The frontier of money is not the end of the shared fiction but a fresh contest over its authorship — and the stakes of that contest, for privacy and power and the stability of the whole system, are only beginning to be understood.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE XII ===================== -->
+    <section class="plate reveal" id="plate-xii" data-label="Plate xii · The Numéraire">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">xii</div>
+        <p class="plate-kicker">Plate the Twelfth &middot; The Institutions &middot; № XVI</p>
+        <h3 class="plate-title">The Numéraire</h3>
+        <p class="plate-gloss">the measure of all value; money as the keystone of the table</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if money is the measure of all value, what measures money — and what does it mean that nothing does?</q></div>
+      <div class="plate-body">
+        <p>The volume may now gather what its plates have found. Money is what we agree to trust. It is defined by what it does — serving as medium of exchange, unit of account, and store of value — but beneath the offices it is a social relation, a promise, an entry in a ledger of who owes what. Its worth has been explained by the metal in it, the state behind it, and the debt it records, and the modern answer braids all three, resolving in a fiat money that is pure convention, value by decree and faith alone. Most of it is created not by the state but by banks, conjured as credit by the writing of a loan and arranged in a hierarchy of promises. Its quantity governs the price level over the long run and at the extremes, loosely in between. Its history is the cutting of the metal anchor and the turn to fiat faith; its pathologies are the slow erosion of inflation and the sudden death of hyperinflation, the hidden inflation tax, and the self-fulfilling run on the bank. It is a veil over the real economy in the long run and an engine within it in the short. And its future is a contest over who shall control it. Through all of this runs a single thread, and it is the answer to the question the volume's title posed.</p>
+        <p>Why will a stranger take a paper note, worth nothing in itself, in exchange for real goods? Because she expects the next person to take it — and that person because he expects the one after, and so onward without end. Money's value is the confidence that others will accept it next, a belief that grounds itself, floored by the state's demand for taxes and steadied by the institutions that guard it, but resting, at the last, on nothing but the shared and circular faith that it will go on being accepted. The stranger takes the note because everyone takes the note because everyone takes the note. There is no bottom to the regress but belief; the faith holds itself aloft. This is what it means to call money what we agree to trust, and it is the purest case in the whole table of this project's thesis — that value is a verdict, not a fact of nature. Bread nourishes whether or not we believe in it; money has worth only because, and only while, we do.</p>
+        <aside class="pull">The stranger takes the note because everyone takes the note because everyone takes the note. There is no bottom to the regress but belief — and the belief holds itself aloft.</aside>
+        <p>And here the volume reaches the center of the whole edifice, for money is the numéraire. This table is named for it — the unit in which value is reckoned — and every price in every prior volume was a number, and the number was always in money: the wage so many dollars, the rent so many, the rate a fraction per year, the surplus and the markup and the share all measured against this one thing. Money is the ruler against which the table has measured everything else. And the volume has discovered that the ruler has no fixed length of its own. Unlike the meter, defined by the unbending speed of light, the numéraire is a floating convention, worth what we agree it is worth and worth a little less each year by the inflation we suffer or allow. So the whole table, which prices all things in money, is found to rest not on bedrock but on agreement — and the denaturalizing argument that began with the wage completes itself here, in the discovery that even the unit in which all prices are quoted is itself a fact of nothing but convention. The prices are verdicts; and the measure they are reckoned in is a verdict too. It is verdicts all the way down, with no natural unit, no fixed point, no bedrock of value beneath the conventions — only the web of trust and power and agreement the table has been mapping, and money at its center.</p>
+        <p>Yet this shared fiction is no triviality, for it governs the real world. Money is a veil in the long run, changing the prices of things but not the things; and an engine in the short, its collapse able to throw millions out of work and its flood to lay a nation waste. The most conventional thing in the table — the thing whose value is pure agreement — is therefore among the most consequential, because the management of this fiction determines whether the real economy prospers or fails. That is why its keeping was taken from sovereigns and given to independent institutions, and why their failures — the monetary collapse that deepened the Great Depression, the hyperinflations that have killed currencies and the orders that issued them — stand among the gravest catastrophes in the economic record. Money's value is a verdict; but it is a verdict with enormous real stakes, and the whole apparatus of central banking exists to render that verdict steadily.</p>
+        <p>The volume passes its findings on, and chiefly to its own group, the institutions. To <em>The Rate</em>, the third element, it returns what that volume lent: the rate is the price of the very money this volume has anatomized, the central bank's lever upon it, so that the price of time and the nature of money are two faces of one thing. To <em>The Cycle</em>, the nineteenth, it hands money as the engine of the tenth plate — the monetary collapses and floods that drive the booms and busts, Wicksell's cumulative process and Friedman's great contraction. To <em>The Tax</em>, the seventeenth and its near neighbor in this group, it hands the inflation tax and the seigniorage of the eighth plate, the state's furtive revenue from the press. To <em>The Rule</em>, the eighteenth, it hands the deepest institutional question money raises — rules against discretion, the independence devised to keep the press from the treasury, the discipline that fiat money demands and cannot supply itself. To <em>The Level</em>, the twenty-first, it hands the price level that money governs. And to <em>The Contract</em>, the fifteenth, it hands money as the universal promise, the institution of obligation on which, the second plate found, all money finally rests.</p>
+        <p>The series began by denaturalizing prices — every price a verdict on a hidden contest, not a fact of nature. This volume has reached the foundation. Money, the numéraire, the measure of all value, is itself the deepest verdict of all: a shared fiction, a web of credit and convention and power, resting on nothing but the confidence that others will trust it next. The whole table prices everything in money; and money, it turns out, is priced in nothing but trust. The ruler by which we measure all value has no fixed length, only the length we agree to give it — and that agreement, like every verdict in the table, is held aloft by belief, floored by power, and open, always, to doubt. To examine money is to reach the bottom of the whole edifice and find that it is not stone but faith — the deepest convention of all, beneath which there is no other. And it remains, as the series insists, an open argument: because the value of money is the confidence of the next person, and confidence is the most contingent of foundations; because the keeping of money is a perpetual contest between discipline and freedom, the state and the bank and the network, never finally won; and because whether to trust a given money — this paper, this ledger, this algorithm — is a question each generation must answer for itself, knowing that the answer, once enough come to doubt it, can change slowly, and then all at once. Money is what we agree to trust; and the agreement is never closed.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref">Volume XVI &middot; The Money</span>
+    </div>
+    <p class="colophon">Volume XVI of <em>Numéraire, A Periodic Table of Economic Life</em> — <em>The Money</em>, the sixteenth of twenty-six and the first of The Institutions. Twelve plates and seven engravings carry the question of what money is from the barter-world it abolishes and the three theories of its worth, through the hierarchy in which banks create it and the quantity relation that binds it to prices, the golden fetters it once wore and the fiat faith it wears now, the slow erosion of inflation and the sudden death of hyperinflation, the inflation tax and the bank run, and the question of whether money is a veil or an engine — to the verdict that money is the numéraire itself, the measure of all value, a shared fiction resting on nothing but the confidence that others will trust it next. It opens Group IV, The Institutions, and hands on to <em>The Rate</em>, <em>The Cycle</em>, <em>The Tax</em>, <em>The Rule</em>, and <em>The Contract</em>. The figures stand after the barter diagram and the pyramid of money, the quantity relation and the death of a currency, the maturity mismatch of banking, the great wheel of circulation, and the map of the new monies. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var root=document.documentElement; root.classList.add('js');
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var bar=document.getElementById('progress');
+  var topbar=document.getElementById('topbar');
+  var title=document.querySelector('.vol-title');
+  var label=document.getElementById('tb-plate');
+  function onScroll(){
+    var doc=document.documentElement;
+    var h=doc.scrollHeight-window.innerHeight;
+    var p=h>0?Math.min(1,Math.max(0,window.scrollY/h)):0;
+    if(bar) bar.style.transform='scaleX('+p.toFixed(4)+')';
+    if(topbar){
+      var threshold=(title?title.offsetHeight:420)*0.72;
+      if(window.scrollY>threshold) topbar.classList.add('show'); else topbar.classList.remove('show');
+    }
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+  if('IntersectionObserver' in window){
+    var rev=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); rev.unobserve(e.target); } });
+    },{rootMargin:'0px 0px -10% 0px',threshold:0.06});
+    document.querySelectorAll('.reveal').forEach(function(el){ rev.observe(el); });
+    if(label){
+      var cur=new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting){ var t=e.target.getAttribute('data-label'); if(t) label.textContent=t; } });
+      },{rootMargin:'-44% 0px -50% 0px',threshold:0});
+      document.querySelectorAll('.plate[data-label]').forEach(function(el){ cur.observe(el); });
+    }
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-contract.html">← The Contract</a><a rel="next" href="the-tax.html">The Tax →</a></nav>
+</body>
+</html>

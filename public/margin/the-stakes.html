@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Stakes — Numéraire, The Rule, Plate ii</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:66rem; --measure:35rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(2.8rem,7vh,5rem) 0 clamp(1.4rem,3.5vh,2.2rem);text-align:center;}
+
+  .crumbs{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 400;
+    font-size:.8rem;letter-spacing:.04em;color:var(--faint);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:center;gap:.55rem;}
+  .crumbs a{text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .2s ease,color .2s ease;}
+  .crumbs a:hover{border-color:var(--num);color:var(--ink);}
+  .crumbs .sep{color:var(--faintest);}
+  .crumbs .here{color:var(--ink);}
+
+  .plate-mark{width:116px;height:116px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:.18rem;line-height:1;}
+  .plate-mark.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pm-vol{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.84rem;letter-spacing:.06em;color:rgba(240,235,225,.62);}
+  .pm-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;
+    font-size:2.5rem;letter-spacing:.02em;text-transform:uppercase;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.1rem,6vw,4rem);line-height:1.03;letter-spacing:-.025em;margin:1rem 0 0;text-wrap:balance;}
+  .status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:42rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .epi{max-width:38rem;margin:clamp(2.2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .epi q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.46;color:var(--ink);quotes:none;display:block;text-wrap:pretty;}
+  .epi .cite{display:block;margin-top:.95rem;font-size:.78rem;color:var(--faintest);letter-spacing:.05em;font-style:normal;}
+  .epi .cite em{font-style:italic;}
+
+  .essay{max-width:52rem;margin:clamp(3rem,7vh,5rem) auto 0;counter-reset:sn;}
+  .essay::after{content:"";display:block;clear:both;}
+  .essay > p,.essay > .pull{max-width:var(--measure);}
+  .essay p{font-size:1.075rem;line-height:1.8;color:var(--ink);margin:0 0 1.4rem;text-wrap:pretty;}
+  .essay em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.72;padding:.08em .14em 0 0;color:var(--ink);}
+
+  .divider{display:flex;justify-content:center;margin:2.4rem 0;}
+  .divider svg{width:96px;height:12px;overflow:visible;}
+  .divider line{stroke:var(--num);stroke-width:1;} .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.5vw,1.74rem);line-height:1.34;color:var(--ink);text-align:center;
+    margin:2.4rem auto;max-width:33rem;text-wrap:balance;}
+
+  .snref{font-family:"Fraunces",serif;font-size:.64em;line-height:0;vertical-align:super;
+    color:var(--soft);counter-increment:sn;margin-left:1px;font-style:normal;}
+  .snref::after{content:counter(sn);}
+  .sn{display:block;max-width:var(--measure);margin:.1rem 0 1.4rem;padding:.15rem 0 .15rem 1.05rem;
+    border-left:1px solid var(--hair);font-size:.84rem;line-height:1.52;color:var(--faint);}
+  .sn::before{content:counter(sn);font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--faintest);margin-right:.5em;font-size:.92em;}
+  .sn em{font-style:italic;}
+
+  @media (min-width:64rem){
+    .sn{float:right;clear:right;width:15rem;margin:.35rem 0 1.3rem;padding:0;border-left:none;}
+    .divider,.pull,.apparatus{clear:both;}
+  }
+
+  .apparatus{max-width:52rem;margin:clamp(3.2rem,7vh,5rem) auto 0;padding-top:2rem;border-top:1px solid var(--hair);clear:both;}
+  .app-h{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;}
+  .app-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.4rem;}
+  .app-list li{border-top:1px solid var(--hair);}
+  .app-list li:first-child,.app-list li:nth-child(2){border-top:none;}
+  .app-list a{display:block;text-decoration:none;padding:.95rem 0;}
+  .app-list a:hover .app-t{color:var(--soft);}
+  .app-rel{display:block;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faintest);margin-bottom:.3rem;}
+  .app-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.12rem;color:var(--ink);transition:color .2s ease;}
+  .app-g{display:block;font-size:.84rem;color:var(--faint);font-style:italic;line-height:1.4;margin-top:.22rem;}
+
+  footer{margin-top:clamp(3.5rem,8vh,6rem);padding:2.2rem 0 4rem;border-top:1px solid var(--hair);}
+  .crumbs.foot{justify-content:flex-start;margin-bottom:1.3rem;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .plate-mark{width:96px;height:96px;}
+    .pm-num{font-size:2.1rem;}
+    .essay p{font-size:1.04rem;line-height:1.74;}
+    .dropcap{font-size:3rem;}
+    .app-list{grid-template-columns:1fr;}
+    .app-list li:nth-child(2){border-top:1px solid var(--hair);}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="crumbs rise d1" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-rule.html">The Rule &middot; Vol XVIII</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate ii</span>
+    </nav>
+    <div class="plate-mark lit rise d2" aria-hidden="true">
+      <span class="pm-vol">Ru</span>
+      <span class="pm-num">ii</span>
+    </div>
+    <h1 class="rise d3">The Stakes</h1>
+    <div class="status rise d3">in print &middot; The Rule &middot; plate ii</div>
+    <p class="standfirst rise d4">If the rules are made, then someone makes them — and rarely someone disinterested. To write a rule is to decide, in advance and for everyone, who shall win the bargains it governs; so the rules are the deepest prize a society contends for, and the contest to write them the deepest contest there is. This plate follows that contest, its winners, and the disguise that hides it: the made rules, dressed as the order of nature.</p>
+  </header>
+
+  <div class="epi rise d5">
+    <q>The regulation of these various and interfering interests forms the principal task of modern legislation, and involves the spirit of party and faction in the necessary and ordinary operations of the government.</q>
+    <span class="cite">James Madison, <em>The Federalist</em>, No. 10 (1787)</span>
+  </div>
+
+  <article class="essay">
+
+    <p class="lede"><span class="dropcap">T</span>he most valuable thing a contest can win is not a prize awarded under the rules, but the power to write the rules themselves. A victory under fixed rules is won once and must be won again tomorrow; a victory over the rules is won for as long as the rules endure, and decides a thousand contests not yet begun. This is why, in every society, the fiercest struggles are not over particular goods but over the institutions that allocate all goods — over who shall own, who shall owe, who shall be bound and who set free. And it is why the rules, when we meet them, so seldom look like the spoils of a fight. The winner's last and cleverest move is to make the rules he has written look like the rules things have always had.</p>
+
+    <p>The previous plate established that the market is a structure of rules, made and not found.<sup class="snref"></sup> This one asks the question that fact makes unavoidable: if the rules are made, who makes them, and to whose advantage? Begin with why the rules are worth making at all — why they are, in truth, the richest prize an economic contest offers. A rule is general where a bargain is particular: it settles not a single exchange but the whole class of exchanges it governs, and settles them in advance, for everyone, for as long as it stands. To win a favorable price in one negotiation is to gain something once; to win a favorable rule — that you alone may sell a thing, that your rival may not enter, that what you do to others is lawful and what they would do to you is not — is to gain that something automatically, in every transaction the rule touches, without ever returning to the table. The prize is not a sum of money but the terms on which all future sums will be divided. Nothing else an economy holds pays so well, or so long.</p>
+    <aside class="sn">Consider the difference between winning a sale and winning the rule that governs all such sales. Win the sale, and you have your profit this once; tomorrow you must win it again. Win the rule — that the good may be sold only by you, or that your rival may not undercut you — and you have the whole stream of sales at once, in advance, for as long as the rule holds. The return on capturing a rule is of a different order: the difference between earning a thing and owning the machine that prints it.</aside>
+
+    <p>From this a hard logic follows, and the clear-eyed have always seen it.<sup class="snref"></sup> Every economic struggle is really two struggles stacked one upon another. There is the open game — competing to make a better thing, to sell it cheaper, to outwork and outwit one's rivals under the rules as they stand. And beneath it runs the hidden game — competing to bend the rules themselves, to write the law, capture the regulator, and define what property and contract shall mean. The first rewards the qualities we praise: effort, invention, service to the buyer. The second rewards only influence, and produces nothing; it merely redirects the rules so that a larger share of what others make flows to whoever did the bending. Yet the second is the more lucrative by far, for its winnings are not a single profit but a permanent tilt in the field of play. A society can read where power believes the stakes lie by watching where it spends — on competing, or on changing the terms of competition. As fortunes swell, more goes to the latter.</p>
+    <aside class="sn">Every economic contest runs at two levels. There is the game — competing to produce and sell within the rules as they stand — and the meta-game, the struggle to set the rules themselves. The first rewards effort and ingenuity; the second rewards influence over the law, the regulator, the definition of property. Economists call gain pursued through the second channel rent-seeking, and its mark is that it produces nothing: it merely shifts the rules so more of what others make flows to the seeker. The trouble is that it pays — often better than honest production.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>Who tends to win the hidden game? Not, as a rule, the many.<sup class="snref"></sup> The contest to shape the rules is decided not by numbers but by the capacity to organize and to press, and that capacity is spread as unequally as wealth itself. Madison saw it at the founding: that the most durable source of faction is the unequal distribution of property, and that the regulation of these clashing interests is the principal business of legislation — which is to say that the writing of the rules has always been the arena where organized interests contend. A concentrated interest — a few large firms, a profession, a class with a common stake — stands to gain enormously from a single favorable rule, and finds it easy to combine and press where rules are made. A diffuse interest — consumers, taxpayers, the poor, the unborn — gains only a little from each rule apiece, and finds the labor of organizing millions around a small stake all but impossible. The result needs no conspiracy; it is a standing gradient. The rules drift, decade by decade, toward those concentrated enough to fight for them, and away from those too scattered to try.</p>
+    <aside class="sn">It is no conspiracy but a gradient. The rules are shaped by those with the means and motive to do so, and both are unequally spread. A concentrated interest — an industry, a guild, a few firms — gains much from a favorable rule and organizes easily to press for one; a diffuse interest — consumers, taxpayers, the unborn — gains little from each and can scarcely organize at all. So the rules tilt toward the concentrated and against the dispersed. Olson saw the mechanism: the small and organized beat the large and scattered nearly every time.</aside>
+
+    <p>But the victors face a difficulty, and their way of solving it is the subtlest part of the affair.<sup class="snref"></sup> A rule that is plainly the spoil of a faction is unstable: it stands exposed, resented by those it burdens, vulnerable to every shift in power that might overturn it. The winnings are insecure so long as everyone can see they were won. The remedy is to make the rule cease to look like a rule at all — to clothe it as a fact of nature, a dictate of economic law, a matter of plain common sense, the way things have simply always been done. A rule so dressed is beyond challenge, for one does not argue with the weather or petition against arithmetic; it has been lifted out of the arena of contest and filed among the fixed conditions of life. This is the winner's masterstroke, the very move the plate's opening names: to make the rules one has written look like the rules things have always had. The disguise is not ornament. It is the final and most durable form the victory takes.</p>
+    <aside class="sn">Naturalizing a rule is the contest's decisive move, not an afterthought. A rule openly known as a faction's spoil invites attack, and must be defended session after session against those it wrongs. But a rule that has come to seem natural — as fixed as supply and demand — needs no defending, for no one thinks to assail it. To make a partisan rule look like a law of nature is to win it permanently and for free, removing it from contest by removing it from view. The most economical form of power is not winning the argument but preventing it.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>And so the rules reveal themselves as the deepest instance of the verdict these volumes have traced from the first.<sup class="snref"></sup> A price is a verdict on a hidden contest, mistaken for a fact of nature — and the rules are the standing terms of the deepest hidden contest of all, the struggle over who shall write the rules. Behind every price lies the structure of rules that produces it; behind that structure lies a contest over whose interest the rules shall serve; and behind that contest lies the disguise that hides it, the naturalizing that lets a settled outcome pass for the order of things. The chain runs down through layer after layer of concealment, and at the bottom is not a fact of nature but a fight, won by someone, long ago or still under way. To take the rules of economic life as simply given — the neutral background against which the visible dramas of price and profit play out — is to commit the master mistake at the deepest level it admits of: to mistake the frozen verdict of the struggle over the rules for a feature of the world that no one chose and no one can be called to answer for.</p>
+    <aside class="sn">Trace the chain to its root. A price moves; we take it for a fact, when it is the outcome of a contest under the rules. The rules we take for a fixed frame, when they are the outcome of a deeper contest over who shall write them. And that deeper contest we scarcely see, because its winners have dressed its outcome as nature. Each layer hides the one beneath: the price hides the rules, the rules hide the contest, the disguise hides the disguising. To read the stakes is to pull the layers back.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>The argument must now meet its strongest objection, for pressed carelessly it curdles into something false.<sup class="snref"></sup> Not every rule is a spoil. A great many are genuinely impartial and serve all alike — the rule against theft, the enforcement of honest contracts, the rule of law itself, which strong and weak have equal reason to want — and some of the most important were won not by the powerful but against them: the abolition of slavery, the widening of the vote, the protections wrung for labor were victories of the many over the few. A doctrine that sees in every rule nothing but loot becomes a corrosive cynicism, unable to tell a just rule from an unjust one, and so unable to say why any rule should ever be changed. All of this is true, and none of it dissolves the argument; it sharpens it. For the impartiality of a rule is itself among the most valuable prizes in the contest — which is why those who write partisan rules work so hard to dress them as impartial. And the rules won by the weak were not handed down by nature for the asking; they were wrested from power by the assembling of a greater power — the strike, the march, the ballot made into a force that had to be reckoned with. The contest does not abolish justice. It tells us where justice comes from: just rules, like unjust ones, are won and not found — which is precisely why it matters, and matters greatly, who enters the contest, and on which side.</p>
+    <aside class="sn">The honest objection is that not every rule is a spoil. Many are genuinely impartial — the ban on theft, the enforcement of contracts, the rule of law itself — and some were wrung from the powerful by the weak: the ending of slavery, the widening of the vote, the protections of labor. To see every rule as loot is a cynicism that cannot tell the just from the unjust. Yet this sharpens the argument rather than blunting it. A rule's impartiality is itself a prize, which is why the powerful labor to make partisan rules look fair; and the rules won by the weak were won by organizing power. The contest does not abolish justice; it locates it. Just rules are won, not found.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>What the plate hands the reader, then, is a habit of suspicion turned on everything offered as simply the way things are.<sup class="snref"></sup> Of any rule presented as natural, ask the three questions the disguise exists to suppress: when this was settled, who won, and who lost — and could it have been settled otherwise? Put them to the rule that lets some workers combine and forbids it to others; that lets a creditor seize a home and bars the debtor relief; that defines what may be owned and what may be freely taken; that lays the tax here and lifts it there. Each, examined, dissolves from a fact of nature into the residue of a contest — a settlement with a victor, a casualty, and a date. There is no neutral ground on which to stand and accept such rules as given, for to accept a contested rule as natural is not to abstain from the contest. It is to cast a silent ballot for the side that won.</p>
+    <aside class="sn">The discipline the plate enjoins is a question, set against every rule one is told to accept as given. Not: is this how things are? But: when this was settled, who gained and who lost, and could it have gone otherwise? Apply it to the rules that say who may combine, who may foreclose, what may be owned, who bears the tax — and each resolves into the frozen result of a contest, with a winner, a loser, and a history. To accept such a rule as natural is not neutrality. It is a silent vote for whoever won.</aside>
+
+    <p>And here the deepest stake of all comes into view.<sup class="snref"></sup> The most complete victory in the struggle over the rules is not the rule enforced against opposition but the rule that meets no opposition, because no one any longer sees it as a choice. A price is a verdict on a hidden contest, mistaken for a fact of nature; and the supreme achievement of power is to make its verdicts so thoroughly mistaken for nature that they pass beyond the reach of politics entirely, into the silent company of things that simply are. Such a rule is safe as no merely enforced rule can be, for it has no enemies — one cannot oppose what one cannot see. It follows that the plainest act of seeing is already an act of resistance: to recognize a naturalized rule as made, contested, and answerable is to drag it back across the line from nature into politics, and so to restore the choice its winners spent their cleverness to hide. Before a rule can be argued, defended, or reformed, it must first be seen as a rule at all — and that seeing is the work this volume exists to do.</p>
+    <aside class="sn">Here is the deepest turn. The completest victory in the contest over the rules is the one never known to have been won — the rule so naturalized that it has passed out of the realm of things one can be for or against, into the realm of things that simply are. Against such a rule there is no opposition, for there is no perceived choice; it has been lifted clean out of politics and filed under nature. Which is why the mere act of seeing — recognizing a rule as made and contested — is already a political act, and the first one: the recovery of a choice the winners had hidden. Before a rule can be changed, it must be seen as a rule.</aside>
+
+    <p class="pull">The completest victory is the rule no one can see to oppose — won not by defeating the other side, but by hiding that there was ever a contest at all.</p>
+
+    <p>So the second plate completes the ground the first laid down. The Frame showed that the market is made of rules and not found in nature; The Stakes has shown what kind of made thing those rules are — not the neutral handiwork of no one in particular, but the settled outcome of the deepest contest a society conducts, written by those with the power to write them and disguised, by their last and cleverest stroke, as the order of nature itself. With this the foundation stands complete, and the particular rules can be taken up in turn: property, the first of them; the Leviathan that enforces them all; the rule of law that would bind even the enforcer; the inheritance by which the rules of the dead govern the living. In each the same contest will be found, and in each the same disguise. The rules are the deepest verdict an economy renders, and the deepest verdicts are the most carefully hidden. To study the stakes is to refuse the hiding — to hold the rules, and those who wrote them, to account. The argument remains open.</p>
+
+  </article>
+
+  <nav class="apparatus" aria-label="Related reading">
+    <h2 class="app-h">Related</h2>
+    <ul class="app-list">
+      <li><a href="the-frame.html"><span class="app-rel">In this volume</span><span class="app-t">The Frame</span><span class="app-g">plate i — the previous plate: the market made of rules, the ground on which this argument stands</span></a></li>
+      <li><a href="the-rule.html"><span class="app-rel">In this volume</span><span class="app-t">The Title</span><span class="app-g">plate iii — property, the first of the rules, and the first of the prizes contended for</span></a></li>
+      <li><a href="the-rule.html"><span class="app-rel">In this volume</span><span class="app-t">The Leviathan</span><span class="app-g">plate iv — the enforcing power, which is itself the supreme prize in the contest over the rules</span></a></li>
+      <li><a href="the-unearned.html"><span class="app-rel">In The Rent</span><span class="app-t">The Unearned</span><span class="app-g">Mill and George on the unearned increment: advantage conferred by the rules and by position, not by effort, and mistaken for natural desert</span></a></li>
+    </ul>
+  </nav>
+
+  <footer>
+    <nav class="crumbs foot" aria-label="Return">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-rule.html">The Rule &middot; Vol XVIII</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate ii &middot; The Stakes</span>
+    </nav>
+    <p class="colophon">The second plate of Volume XVIII, <em>The Rule</em>, and the completion of its opening pair — the argument toward which the volume's whole foundation has been built: that the rules of economic life are the deepest prize a society contends for, since to write a rule is to decide, in advance and wholesale, who shall win the countless bargains the rule governs; that the contest to write the rules is therefore the deepest contest there is, won most often by the concentrated and organized against the diffuse and dispersed; and that the winner's last and cleverest move is to make the made and partisan rules look natural, lifting them beyond challenge by lifting them out of view. Read the plate that precedes it, <a href="the-frame.html">The Frame</a>, or return to <a href="the-rule.html">The Rule</a>, or to <a href="numeraire-atlas.html">the complete table of volumes</a>. The epigraph is from Madison's <em>Federalist</em> No. 10; the arguments of Madison and Olson are discussed in the text. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-frame.html">← The Frame</a><a rel="next" href="the-cycle.html">The Cycle →</a></nav>
+</body>
+</html>

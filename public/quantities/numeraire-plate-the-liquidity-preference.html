@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Numéraire — The Liquidity Preference — The Rate, Plate v</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --measure:39rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:20px;line-height:1.78;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .wrap{max-width:var(--measure);margin:0 auto;padding:0 clamp(1.4rem,5vw,2rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .frontis{max-width:var(--measure);margin:0 auto;padding:clamp(1.6rem,4vh,2.4rem) clamp(1.4rem,5vw,2rem) 0;
+    display:flex;align-items:baseline;justify-content:space-between;gap:1rem;}
+  .frontis .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1rem;letter-spacing:.02em;}
+  .frontis nav{display:flex;gap:1.2rem;}
+  .frontis nav a{font-size:.76rem;color:var(--faint);letter-spacing:.04em;text-decoration:none;
+    border-bottom:1px solid transparent;transition:color .18s ease,border-color .18s ease;white-space:nowrap;}
+  .frontis nav a:hover{color:var(--ink);border-color:var(--hair);}
+
+  .opener{max-width:var(--measure);margin:clamp(2.6rem,7vh,5rem) auto 0;padding:0 clamp(1.4rem,5vw,2rem);text-align:center;}
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:118px;height:13px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .eyebrow{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;
+    font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faintest);}
+  .eyebrow a{text-decoration:none;border-bottom:1px solid var(--hair);transition:color .18s ease,border-color .18s ease;}
+  .eyebrow a:hover{color:var(--ink);border-color:var(--ink);}
+  .plate-no{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 400;font-style:italic;
+    font-size:.96rem;color:var(--faint);margin-top:1rem;}
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.5rem,7vw,4.2rem);line-height:1.02;letter-spacing:-.025em;margin:.5rem 0 0;text-wrap:balance;}
+  .dek{font-family:"Newsreader",serif;font-size:clamp(1.08rem,1.5vw,1.24rem);line-height:1.6;color:var(--soft);
+    font-style:italic;max-width:34rem;margin:1.5rem auto 0;text-wrap:pretty;}
+  .status{margin-top:1.5rem;font-size:.82rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.05em;}
+  .opener-rule{max-width:var(--measure);margin:clamp(2.6rem,6vh,4rem) auto 0;height:1px;background:var(--hair);}
+
+  .essay{margin:clamp(2.4rem,5vh,3.2rem) 0 0;}
+  .essay p{margin:0;text-wrap:pretty;}
+  .essay p + p{text-indent:1.4em;}
+  .essay .lede{text-indent:0;}
+  .essay .lede::first-letter{
+    font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    float:left;font-size:4.1rem;line-height:.78;padding:.04em .14em 0 0;color:var(--ink);}
+  .essay .start{text-indent:0;margin-top:0;}
+  .sc{font-variant:small-caps;letter-spacing:.03em;font-weight:500;}
+
+  .brk{display:flex;justify-content:center;align-items:center;margin:clamp(1.9rem,4.5vh,2.8rem) 0;}
+  .brk svg{display:block;width:96px;height:12px;overflow:visible;}
+  .brk line{stroke:var(--num);stroke-width:1;} .brk rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .pq{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:clamp(1.3rem,2.4vw,1.66rem);line-height:1.32;color:var(--ink);
+    margin:clamp(2rem,4.5vh,2.8rem) 0;padding-left:1.2rem;border-left:2px solid var(--hair);text-indent:0 !important;text-wrap:balance;}
+
+  .sources{max-width:var(--measure);margin:clamp(3.2rem,7vh,5rem) auto 0;padding:clamp(2rem,4vh,2.6rem) clamp(1.4rem,5vw,2rem) 0;border-top:1px solid var(--hair);}
+  .sources h2{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.76rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faint);margin:0 0 1.3rem;text-align:left;}
+  .sources ol{list-style:none;margin:0;padding:0;}
+  .sources li{font-size:.86rem;line-height:1.5;color:var(--faint);padding:.5rem 0 .5rem 1.5rem;text-indent:-1.5rem;}
+  .sources li b{font-family:"Fraunces",serif;font-weight:500;font-style:normal;color:var(--soft);}
+  .sources li i{font-style:italic;}
+
+  footer{max-width:var(--measure);margin:clamp(2.6rem,5vh,3.4rem) auto 0;padding:2rem clamp(1.4rem,5vw,2rem) 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.2rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1rem;}
+  .f-nav{display:flex;gap:1.2rem;flex-wrap:wrap;justify-content:flex-end;}
+  .f-nav a{font-size:.78rem;color:var(--faint);letter-spacing:.04em;text-decoration:none;border-bottom:1px solid var(--hair);transition:color .18s ease,border-color .18s ease;}
+  .f-nav a:hover{color:var(--ink);border-color:var(--ink);}
+  .f-note{margin-top:1.4rem;font-size:.8rem;line-height:1.6;color:var(--faintest);}
+  .f-note em{font-style:italic;}
+  .f-note a{color:var(--faint);text-decoration:none;border-bottom:1px solid var(--hair);transition:color .18s ease,border-color .18s ease;}
+  .f-note a:hover{color:var(--ink);border-color:var(--ink);}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.18s}.rise.d3{animation-delay:.32s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18.5px;line-height:1.74;}
+    .frontis{flex-direction:column;gap:.5rem;}
+    .frontis nav{gap:1rem;}
+    .essay .lede::first-letter{font-size:3.3rem;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-quantities">The Quantities edition · contents</a><a href="numeraire-the-table.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+
+  <div class="frontis rise d1">
+    <span class="imprint">Numéraire</span>
+    <nav>
+      <a href="numeraire-the-prices.html#rate">The Rate &middot; all twelve plates</a>
+      <a href="numeraire-the-table.html">the table &#8599;</a>
+    </nav>
+  </div>
+
+  <header class="opener">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 118 13"><line x1="0" y1="6.5" x2="46" y2="6.5"/><rect x="55" y="1.5" width="7" height="7" transform="rotate(45 58.5 5)"/><line x1="72" y1="6.5" x2="118" y2="6.5"/></svg>
+    </div>
+    <div class="eyebrow rise d2">Volume III &middot; <a href="numeraire-the-prices.html#rate">The Rate</a> &middot; The Prices</div>
+    <div class="plate-no rise d2">Plate the Fifth, of twelve</div>
+    <h1 class="rise d2">The Liquidity Preference</h1>
+    <p class="dek rise d3">Keynes's monetary theory of the rate: not the reward for waiting but the price of parting with money — for holding one's wealth in bonds rather than in cash. Fixed by the public's desire for liquidity against the quantity a central bank chooses to supply; movable, therefore, by that bank; and floored by the strange trap where money is hoarded without end and the lever slips. The price of time acquires a sovereign.</p>
+    <div class="status rise d3">in print &middot; published</div>
+  </header>
+
+  <div class="opener-rule"></div>
+
+  <main class="wrap">
+    <article class="essay">
+
+      <p class="lede">The last plate set the rate in the market for saving — the price that clears thrift against investment — and ended by naming the challenge that would unseat it. This plate is that challenge: Keynes's reconception of the rate, not as the reward for waiting but as the price of parting with money. For Keynes drove a wedge the classical theory had never seen — between the decision to <em>save</em>, to defer consumption, and the decision of how to <em>hold</em> what one has saved, as money or as a bond. Saving alone, he argued, does not set the rate; the rate is set by the second choice, the choice between liquidity and yield, between the safety of cash and the return of a bond. Interest is the reward for surrendering liquidity, and its level is fixed not by the real forces of thrift and productivity but by the quantity of money and the public's desire to hold it. This plate will lay out liquidity preference as a genuine rival to the loanable-funds theory — the rate as a monetary thing, movable by the central bank, with a strange floor below which it will not go — and will find the volume's question, carried into this monetary key, changed in its very character: the rate becomes less a competitive price than the decision of an authority, and the question of whether it is earned becomes the question of whether that authority is just.</p>
+
+      <p>Begin with the wedge. The classical theory ran the matter in a single line: to save is to abstain from consumption, and to abstain is to lend, and to lend is to supply the market for funds — so that the saver, the lender, and the supplier of loanable funds were one and the same person, and the rate was the price that cleared their supply against the borrowers' demand. Keynes broke the line in two. The decision to save — how much of one's income to withhold from consumption — is one decision; the decision of how to hold that withheld wealth — as money, idle and safe, or as a bond, working and yielding — is another, and a separate one. A man may save and yet hoard, withholding his income from consumption and then sitting upon it in cash, supplying not a penny to the market for funds. Saving, then, is not the same as lending; thrift does not of itself become a supply of loanable funds; and the rate cannot be the price that clears saving against investment, because the saving need never reach that market at all. What the rate clears is something else — the choice, made by everyone who holds wealth, between holding it as money and holding it as a bond.</p>
+
+      <div class="brk" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="38" y2="6"/><rect x="45" y="1.5" width="6" height="6" transform="rotate(45 48 4.5)"/><line x1="58" y1="6" x2="96" y2="6"/></svg></div>
+
+      <p class="start"><span class="sc">What, then,</span> is the rate? It is the price of liquidity — the reward for parting with money, for holding one's wealth in the form of a bond rather than of cash. For money has a virtue a bond has not: it is liquid, ready to hand, spendable on the instant, safe against the swings of the market; and to give it up, to lock one's wealth into a bond, is to surrender that virtue, and must be paid for. The payment is interest. And the desire to keep one's wealth liquid — Keynes's liquidity preference — has three springs. The first is the <em>transactions</em> motive, the plain need for cash to carry on the daily business of buying and selling. The second is the <em>precautionary</em> motive, the wish to hold a buffer against the unforeseen — a self-insurance in cash, the same impulse that the hired kind, examined elsewhere in the table, was built to serve. And the third, the most distinctive, is the <em>speculative</em> motive, the holding of money in expectation of a change in the rate itself: for one who thinks the rate will rise — and bond-prices fall — does well to hold money now, and to buy bonds cheaper later. So the demand for money falls as the rate rises and climbs as the rate falls; and the rate settles where this demand, the liquidity preference of the whole public, is brought level with the supply of money — the quantity the central bank has chosen to create. The rate is what makes the public content to hold just the money that exists.</p>
+
+      <p class="pq">Interest is the reward for parting with money — the price of surrendering the one thing that is always ready to hand.</p>
+
+      <div class="brk" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="38" y2="6"/><rect x="45" y="1.5" width="6" height="6" transform="rotate(45 48 4.5)"/><line x1="58" y1="6" x2="96" y2="6"/></svg></div>
+
+      <p class="start"><span class="sc">From this</span> a momentous consequence follows. If the rate is fixed by the supply of money against the desire to hold it, then whoever governs the supply of money governs the rate. And someone does: the central bank, which can create money or withdraw it at will. Let it create money — buy bonds, put cash into the public's hands — and the public, now holding more money than it wishes at the old rate, will seek to shed the excess by buying bonds, bidding bond-prices up and the rate <em>down</em>, until the rate has fallen far enough that the public is content to hold the larger quantity. Let it withdraw money, and the reverse: the rate is driven up. The rate, on the classical telling, was a real thing, the deep resultant of a society's thrift and its opportunities, no more to be set by decree than the tide; on Keynes's telling it is a monetary thing, and a central bank may move it, within limits, by the simple expedient of printing money or unprinting it. This is the theoretical charter of monetary policy — the reason a committee can alter the price of time across a whole economy by an announcement — and it is the deepest practical difference between the two theories: the loanable-funds rate is discovered by the market; the liquidity-preference rate is, in large part, set by an authority.</p>
+
+      <div class="brk" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="38" y2="6"/><rect x="45" y="1.5" width="6" height="6" transform="rotate(45 48 4.5)"/><line x1="58" y1="6" x2="96" y2="6"/></svg></div>
+
+      <p class="start"><span class="sc">But the</span> bank's power over the rate, Keynes saw, is not without limit, and the limit is strange. For there may come a point — when the rate has fallen very low — at which liquidity preference turns absolute: when the rate is so low, and bond-prices so high, that everyone believes the rate can only rise and bond-prices only fall, and so everyone prefers to hold any further money as cash, unwilling to risk a bond at the top of its price. At that point the bank pushes in vain. It may create money without end, and the public will simply absorb it all into idle balances, the rate refusing to fall a hair. This is the liquidity trap — the floor beneath which monetary policy cannot drive the rate, the point at which the central bank, as the phrase has it, pushes on a string. And it is no idle curiosity: it is the theoretical anticipation of an experience the world would later know at length, when the rates of the great economies sank toward nothing and stuck there, and their central banks found the familiar lever disconnected — the matter of a later plate, on the zero bound. In the trap, Keynes held, monetary policy fails, and only the direct hand of public spending can lift an economy from its slump. The rate, made monetary, gains a master; but in the trap even the master is powerless.</p>
+
+      <div class="brk" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="38" y2="6"/><rect x="45" y="1.5" width="6" height="6" transform="rotate(45 48 4.5)"/><line x1="58" y1="6" x2="96" y2="6"/></svg></div>
+
+      <p class="start"><span class="sc">And here</span> the plate's theory shows its true home, which is not the placid market of the loanable-funds diagram but the troubled economy of boom and slump. For Keynes built his theory of the rate inside a theory of the cycle — of how an economy can come to rest with its factories idle and its workers unwanted — and liquidity preference is one of the engines of that resting-place. In a downturn, when confidence fails, liquidity preference <em>surges</em>: frightened wealth-holders flee to the safety of cash, dumping bonds, and the rate is driven up — or kept from falling — at the very moment when cheap credit is most needed to revive investment. The money market, left to itself, may hold the rate above the level that would restore full employment; and if the slump is deep enough to sink the economy into the trap, no quantity of money will bring the rate down to where investment would recover. The rate, on this telling, is not the benign coordinator of present and future that the last plate described, gently turning thrift into capacity; it is a price that can get stuck in the wrong place — held aloft by fear at the very moment it most needs to fall — and capable of locking an economy into stagnation. The monetary theory of the rate is thus inseparable from the theory of the cycle, to which a later volume must come: the price of time is among the levers by which an economy rises and falls.</p>
+
+      <p class="pq">It is not the benign coordinator of present and future, but a price that can get stuck in the wrong place — held aloft by fear at the very moment it most needs to fall.</p>
+
+      <div class="brk" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="38" y2="6"/><rect x="45" y="1.5" width="6" height="6" transform="rotate(45 48 4.5)"/><line x1="58" y1="6" x2="96" y2="6"/></svg></div>
+
+      <p class="start"><span class="sc">What does</span> this monetary theory say to the volume's question? It both grants interest a new title to be earned and takes away the one the last plate gave. The new title is this: that interest is the price of liquidity, the reward for surrendering the safety and readiness of cash — and liquidity is a real good, genuinely valued, so that to be paid for giving it up is no more unjust than to be paid for any other real sacrifice. The lender who locks his wealth into a bond gives up something he might have wanted; the interest is his compensation; and to that extent it is earned, as honestly as the wage of waiting or the fruit of the detour. But the title the last plate gave — the innocence of a competitive price, set by no one — is exactly what liquidity preference withdraws. For if the rate is a monetary thing, movable by the central bank through the quantity of money, then it is not discovered by the impersonal market but <em>set</em>, in large part, by an authority; it is an administered price, the decision of a committee, and not the neutral verdict of supply and demand. And an administered price cannot shelter behind the market's innocence: it is a choice, with a chooser, and choices have beneficiaries. A low rate favours the borrower and the debtor and punishes the saver; a high rate does the reverse; and the central bank, in setting the rate, is choosing, willy-nilly, whom to favour — much as the state, in setting the wage floor that the labour volume examined, chose between the firm and the low-paid worker. The speculative motive deepens the difficulty, for it means that part of the rate reflects neither thrift nor productivity nor even liquidity but mere expectation, the shifting moods of bulls and bears. Under liquidity preference, then, the question of whether the price of time is earned does not vanish but transforms: it ceases to be the question of whether a market is competitive and becomes the question of whether an authority is just — whether the committee that sets the rate sets it well, and in whose interest. A price with a sovereign is a different moral object than a price without one.</p>
+
+      <div class="brk" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="38" y2="6"/><rect x="45" y="1.5" width="6" height="6" transform="rotate(45 48 4.5)"/><line x1="58" y1="6" x2="96" y2="6"/></svg></div>
+
+      <p class="start"><span class="sc">So the</span> second answer to how the rate is fixed stands opposite the first. The loanable-funds theory made the rate a real price, the market's reconciliation of thrift and opportunity, owed to no one and discovered by all. Liquidity preference makes it a monetary price, the reward for parting with money, fixed by the public's desire for liquidity against the quantity a central bank elects to supply — and movable, therefore, by that bank, within the strange limit of the trap. The two theories were in the end joined, as the last plate told, into a single account in which the rate and the level of income are settled together, by the real side and the monetary at once. But the change of key is permanent and profound. For under the monetary theory the price of time has a sovereign — the central bank — and a price with a sovereign is a different moral object than a price without one. It can be earned, as the reward for a real surrender of liquidity; but it can also be too high or too low, set well or badly, made to favour the debtor or the creditor; and the question the volume puts to every price — earned, or extracted? — becomes, for the rate, the question of whether the hand that sets it is just. How that hand actually works — the short rate the central bank fixes, and the whole architecture that hangs from it — the volume's last plate must take up; how the rate moves the cycle, a later volume; and through all of them, as the table says of every price, the argument remains open.</p>
+
+    </article>
+  </main>
+
+  <section class="sources">
+    <h2>A note on the plate's sources</h2>
+    <ol>
+      <li><b>John Maynard Keynes</b>, <i>The General Theory of Employment, Interest and Money</i> (1936) — liquidity preference, and interest as the price of parting with cash.</li>
+      <li><b>James Tobin</b>, &ldquo;Liquidity Preference as Behavior Towards Risk&rdquo; (1958) — the speculative demand for money as portfolio choice under risk.</li>
+      <li><b>William J. Baumol</b>, &ldquo;The Transactions Demand for Cash&rdquo; (1952) — the transactions motive, formalized.</li>
+      <li><b>Milton Friedman</b>, &ldquo;The Quantity Theory of Money: A Restatement&rdquo; (1956) — the monetarist reframing of the demand for money.</li>
+      <li><b>Alvin H. Hansen</b>, <i>A Guide to Keynes</i> (1953) — the liquidity trap, and the limits of monetary policy.</li>
+      <li><b>Hyman P. Minsky</b>, <i>John Maynard Keynes</i> (1975) — liquidity preference, uncertainty, and the instability of the economy.</li>
+      <li><b>Axel Leijonhufvud</b>, <i>On Keynesian Economics and the Economics of Keynes</i> (1968) — why the rate may fail to coordinate saving and investment.</li>
+    </ol>
+  </section>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <div class="f-nav">
+        <a href="numeraire-the-prices.html#rate">&#8592; The Rate</a>
+        <a href="numeraire-the-table.html">the table of twenty-six</a>
+      </div>
+    </div>
+    <p class="f-note">Plate v of Volume III, <em>The Rate</em> — set here in full. It is the monetary rival to the real market of <a href="numeraire-plate-the-loanable-funds.html">The Loanable Funds</a>: where that plate set the rate in the market for saving, this one sets it in the market for money. The administered rate it describes — a price set by an authority rather than discovered by a market — is the interest rate's counterpart to the wage floor that <a href="numeraire-plate-the-floor.html">The Floor</a> saw the state set against the market. And the precautionary hunger for cash, the holding of money against an uncertain future, is the self-insurance whose hired form was the subject of <a href="numeraire-plate-the-insurance.html">The Insurance</a>. The rate that would reconcile this monetary rate with the real rate of the market — Wicksell's natural rate — follows in <a href="numeraire-plate-the-natural-rate.html">The Natural Rate</a>. Set in Fraunces and Newsreader. <em>The argument remains open.</em></p>
+  </footer>
+
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="numeraire-plate-the-loanable-funds.html">← Numéraire</a><a rel="next" href="numeraire-plate-the-natural-rate.html">Numéraire →</a></nav>
+</body>
+</html>

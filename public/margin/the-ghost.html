@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Ghost — Numéraire, The Utility, Plate ii</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:66rem; --measure:35rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(2.8rem,7vh,5rem) 0 clamp(1.4rem,3.5vh,2.2rem);text-align:center;}
+
+  .crumbs{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 400;
+    font-size:.8rem;letter-spacing:.04em;color:var(--faint);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:center;gap:.55rem;}
+  .crumbs a{text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .2s ease,color .2s ease;}
+  .crumbs a:hover{border-color:var(--num);color:var(--ink);}
+  .crumbs .sep{color:var(--faintest);}
+  .crumbs .here{color:var(--ink);}
+
+  .plate-mark{width:116px;height:116px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:.18rem;line-height:1;}
+  .plate-mark.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pm-vol{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.84rem;letter-spacing:.06em;color:rgba(240,235,225,.62);}
+  .pm-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;
+    font-size:2.5rem;letter-spacing:.02em;text-transform:uppercase;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.1rem,6vw,4rem);line-height:1.03;letter-spacing:-.025em;margin:1rem 0 0;text-wrap:balance;}
+  .status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:42rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .epi{max-width:38rem;margin:clamp(2.2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .epi q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.46;color:var(--ink);quotes:none;display:block;text-wrap:pretty;}
+  .epi .cite{display:block;margin-top:.95rem;font-size:.78rem;color:var(--faintest);letter-spacing:.05em;font-style:normal;}
+  .epi .cite em{font-style:italic;}
+
+  .essay{max-width:52rem;margin:clamp(3rem,7vh,5rem) auto 0;counter-reset:sn;}
+  .essay::after{content:"";display:block;clear:both;}
+  .essay > p,.essay > .pull{max-width:var(--measure);}
+  .essay p{font-size:1.075rem;line-height:1.8;color:var(--ink);margin:0 0 1.4rem;text-wrap:pretty;}
+  .essay em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.72;padding:.08em .14em 0 0;color:var(--ink);}
+
+  .divider{display:flex;justify-content:center;margin:2.4rem 0;}
+  .divider svg{width:96px;height:12px;overflow:visible;}
+  .divider line{stroke:var(--num);stroke-width:1;} .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.5vw,1.74rem);line-height:1.34;color:var(--ink);text-align:center;
+    margin:2.4rem auto;max-width:33rem;text-wrap:balance;}
+
+  .snref{font-family:"Fraunces",serif;font-size:.64em;line-height:0;vertical-align:super;
+    color:var(--soft);counter-increment:sn;margin-left:1px;font-style:normal;}
+  .snref::after{content:counter(sn);}
+  .sn{display:block;max-width:var(--measure);margin:.1rem 0 1.4rem;padding:.15rem 0 .15rem 1.05rem;
+    border-left:1px solid var(--hair);font-size:.84rem;line-height:1.52;color:var(--faint);}
+  .sn::before{content:counter(sn);font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--faintest);margin-right:.5em;font-size:.92em;}
+  .sn em{font-style:italic;}
+
+  @media (min-width:64rem){
+    .sn{float:right;clear:right;width:15rem;margin:.35rem 0 1.3rem;padding:0;border-left:none;}
+    .divider,.pull,.apparatus{clear:both;}
+  }
+
+  .apparatus{max-width:52rem;margin:clamp(3.2rem,7vh,5rem) auto 0;padding-top:2rem;border-top:1px solid var(--hair);clear:both;}
+  .app-h{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;}
+  .app-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.4rem;}
+  .app-list li{border-top:1px solid var(--hair);}
+  .app-list li:first-child,.app-list li:nth-child(2){border-top:none;}
+  .app-list a{display:block;text-decoration:none;padding:.95rem 0;}
+  .app-list a:hover .app-t{color:var(--soft);}
+  .app-rel{display:block;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faintest);margin-bottom:.3rem;}
+  .app-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.12rem;color:var(--ink);transition:color .2s ease;}
+  .app-g{display:block;font-size:.84rem;color:var(--faint);font-style:italic;line-height:1.4;margin-top:.22rem;}
+
+  footer{margin-top:clamp(3.5rem,8vh,6rem);padding:2.2rem 0 4rem;border-top:1px solid var(--hair);}
+  .crumbs.foot{justify-content:flex-start;margin-bottom:1.3rem;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .plate-mark{width:96px;height:96px;}
+    .pm-num{font-size:2.1rem;}
+    .essay p{font-size:1.04rem;line-height:1.74;}
+    .dropcap{font-size:3rem;}
+    .app-list{grid-template-columns:1fr;}
+    .app-list li:nth-child(2){border-top:1px solid var(--hair);}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="crumbs rise d1" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-utility.html">The Utility &middot; Vol VIII</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate ii</span>
+    </nav>
+    <div class="plate-mark lit rise d2" aria-hidden="true">
+      <span class="pm-vol">Ut</span>
+      <span class="pm-num">ii</span>
+    </div>
+    <h1 class="rise d3">The Ghost</h1>
+    <div class="status rise d3">in print &middot; The Utility &middot; plate ii</div>
+    <p class="standfirst rise d4">Utility has one fatal peculiarity: no one has ever seen it. The want on which the whole theory of value rests is felt by the one who has it and invisible to everyone else, registering on no instrument. This plate gives the thesis on which the volume turns: that economics, unable to measure want, agreed to watch the choices want produces and to call the choices the thing — a bargain that bought a rigorous science of choice at the cost of the quantity it was built to track, and that leaves a price reading not desire but the purse.</p>
+  </header>
+
+  <div class="epi rise d5">
+    <q>Nature has kept us at a great distance from all her secrets, and has afforded us only the knowledge of a few superficial qualities of objects; while she conceals from us those powers and principles, on which the influence of those objects entirely depends.</q>
+    <span class="cite">David Hume, An Enquiry Concerning Human Understanding, 1748</span>
+  </div>
+
+  <article class="essay">
+
+    <p class="lede"><span class="dropcap">U</span>tility has one fatal peculiarity: no one has ever seen it. Want is private and silent; satisfaction leaves no mark on any dial; pleasure and pain, however vivid to the one who feels them, are invisible to everyone else. The quantity on which the whole science of value was built can be felt but not observed, suffered but not weighed — a ghost in the machine, driving every choice and registering on no instrument. So economics faced a question it has never fully answered: if want cannot be seen, how can a price be said to measure it? The answer it settled on was to stop trying to measure want at all, and to watch instead the choices that want produces — to infer the unseen cause from its visible effect. But the inference, as we shall see, runs in a circle.</p>
+
+    <p>The peculiarity is not a quibble but a chasm, and the founders of the theory peered into it from the start.<sup class="snref"></sup> William Stanley Jevons, who had placed utility at the very center of value, confessed that he doubted whether the feelings of the human heart would ever be measured directly; he proposed to read their force, instead, from the quantities of goods that men exchanged. Bentham had been bolder, dreaming of a felicific calculus in which pleasures and pains, scored for intensity and duration and certainty, might be added like sums of money — yet no one ever found the unit, the elusive util, in which the addition could be performed. Francis Edgeworth carried the dream to its limit and imagined a hedonimeter, an instrument that might register the rise and fall of a man's pleasure from instant to instant, like a barometer of the soul. The fancy is unforgettable precisely because it is impossible: there is no hedonimeter, there could be none, and the want it would measure leaves no trace on any dial that another might read. Of all the quantities the science treats, utility alone has no measuring rod.</p>
+    <aside class="sn">Jevons, who did as much as anyone to place utility at the center of value, conceded in his <em>Theory of Political Economy</em> (1871) that he doubted a direct measurement of the feelings of the human heart would ever be possible. Bentham (1789) had nonetheless dreamed of a felicific calculus that would count pleasures in units, and Francis Edgeworth (1881) imagined a "hedonimeter," an instrument that might register the height of pleasure from moment to moment — a fancy whose charm lay in the fact that no such instrument exists or could. Utility is the rare quantity science invokes for which there is no measuring rod at all.</aside>
+
+    <p>Confronted with a quantity it could not measure, economics did what a positivist age required: it stopped speaking of the inner state and redefined utility in terms of the observable.<sup class="snref"></sup> The first step was Pareto's. He showed that the whole theory of demand needs only that a person be able to rank his options — to say that he prefers this bundle to that — and not that he attach to each a magnitude of satisfaction. Cardinal utility, the countable pleasure Bentham had sought, could be dropped; ordinal utility, mere ranking, would do all the work. The second step, taken by Paul Samuelson, was more radical still. Why posit an inner preference behind the ranking at all? Let preference be defined by choice: if a person takes one bundle when another was available and within his means, then the first is, by definition, the one he prefers. Utility ceased to name a felt quantity and became a compact summary of consistent choosing. The ghost had not been found and measured; it had been replaced, for all scientific purposes, by the footprints it left in behavior.</p>
+    <aside class="sn">The retreat from the unmeasurable proceeded in two steps. Vilfredo Pareto (1906) showed that the theory of demand requires only that a consumer rank bundles, not that he assign them magnitudes — ordinal, not cardinal, utility. Paul Samuelson (1938) went further with revealed preference: dispense with the inner state entirely and define preference by choice, so that to say a bundle is preferred is just to say it is chosen when others are available and affordable. Lionel Robbins's methodology (1932) had already recast economics as the science of choice under scarcity rather than a study of feeling, sealing the operationalist temper of the age into the theory of value.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>The maneuver is a triumph of rigor, and it conceals a circle.<sup class="snref"></sup> So long as revealed preference is used to <em>describe</em> — to summarize, compactly and consistently, the choices a person makes — it is beyond reproach. The circle closes only when the same apparatus is asked to <em>explain</em>. We observe that a man chose coffee over tea; we infer that he preferred coffee; and we then explain his choosing coffee by his preference for it. But if to prefer coffee simply <em>means</em> to choose it when tea is available, the explanation collapses into identity: he chose coffee because he chose coffee. The want, invoked to account for the choice, has been defined as nothing but the choice it was meant to account for, and so can explain nothing the choice did not already display. As a description of behavior, revealed preference is unimpeachable and useful; as an account of why behavior takes the form it does, it is empty — the ghost, redefined as its own footprints, can no longer be the thing that made them.</p>
+    <aside class="sn">As a description, revealed preference is unobjectionable: it summarizes a pattern of choices compactly. The circularity arises only when it is asked to explain, for if "preferred" means "chosen," then "he chose it because he preferred it" says no more than "he chose it because he chose it." Amartya Sen pressed a related charge in "Rational Fools" (1977): that a person's choices need not express a single coherent preference at all, being shaped by commitment, habit, and norm, so that reading one want off the choosing imputes a unity the behavior may not possess.</aside>
+
+    <p>There is a formal reply to the charge of circularity, and it rescues the mathematics without rescuing the meaning.<sup class="snref"></sup> One can prove a representation theorem: that if a person's choices obey a few consistency conditions — that he can compare any two bundles, that his rankings do not cycle, that he does not, having chosen one bundle over another, later reverse himself without reason — then those choices can be represented by a utility function, a number assigned to each bundle such that the higher numbers fall to the preferred ones. This is a genuine and useful result; on it the whole apparatus of demand is raised. But the function it delivers is a bookkeeping device, not a measurement. It is fixed only up to any increasing rescaling — double every number, or take its logarithm, and it represents the same choices equally well — so it carries no information about <em>how much</em> one bundle is wanted over another, only about the order. And it is built entirely from the choices it re-describes: two people who choose alike have, by the theorem's own construction, the same utility, though one may take his coffee in quiet rapture and the other from joyless habit. The formalism is consistent, powerful, and wholly silent about want as a thing that is felt.</p>
+    <aside class="sn">The formal rescue is the representation theorem: if a consumer's choices satisfy consistency conditions — completeness, transitivity, and the weak axiom of revealed preference (Samuelson; Houthakker, 1950) — then they can be represented by a utility function. But the function so obtained is unique only up to an increasing transformation, carrying ordinal information alone; it re-describes the choices without measuring any felt magnitude. Two agents whose choices coincide have, by construction, the same utility, whatever the one feels and the other does not — which is precisely why the construction is silent about satisfaction as a felt thing.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>Suppose, though, that we waive the circularity, and grant for argument that a person's choices track his wants closely enough to stand in for them.<sup class="snref"></sup> A graver trouble remains, and it is the one this whole work has pursued. The choices a <em>market</em> records are not expressions of want but of willingness to pay — of want conjoined with the money to act on it. A price is a verdict on a hidden contest, mistaken for a fact of nature; and what a market price registers is not how keenly its buyers desire a thing but how many dollars they are willing and able to surrender for it, so that the unseen want — already reachable only through the choices it prompts — is in the market filtered a second time, through wealth. The ghost was invisible to begin with; the market's reading of it is not even a reading of the ghost but of the ghost as the purse permits it to appear. Demand, the economist's measure of how much a thing is wanted, sums dollars and not desires; and a man with no money, however desperate his want, casts no vote in it at all.</p>
+    <aside class="sn">The step from choice to market choice is the decisive one. Even granting that an individual's choices track his wants, what a market aggregates is not choices simply but purchases, and a purchase expresses willingness to pay — want conjoined with the means to act on it. The unseen want, already accessible only through choice, is in the market filtered a second time through wealth, so that market demand measures desire weighted by purchasing power. The reading a price offers is thus not of the ghost but of the ghost as the purse permits it to appear.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>Two defenses must be put at their strongest, for both are serious.<sup class="snref"></sup> The first is that unobservability is no scandal in science. Physics posits the force, the field, the electron; the biologist posited the gene long before anyone saw one; a theoretical entity earns its place not by being seen but by the predictive power of the theory that employs it, and utility-as-revealed-by-choice predicts the patterns of demand with a success few constructs in social science can match. To call it a ghost, on this view, is mere rhetoric: it is a theoretical posit like any other, and a well-confirmed one. The second defense is that the circle is not vicious, because revealed preference has real empirical content. It is not true that any behavior whatever is consistent with it: the axioms forbid certain patterns — preferring coffee to tea, tea to cocoa, and cocoa to coffee; or being pumped of one's money by a cycle of trades — and a person can be caught violating them. A theory that can be refuted by what people actually do is no tautology; it says something falsifiable about the shape of choice, and earns thereby the standing of genuine science.</p>
+    <aside class="sn">The first defense is the standard reply of scientific realism: unobservable entities — force, the gene, the electron — are routinely posited and justified by the predictive success of the theories that employ them, and utility-as-revealed-by-choice predicts demand with great success. The second is the Popperian point that revealed preference is falsifiable: the weak and strong axioms forbid certain choice patterns (intransitivities, money-pump cycles), so the theory has genuine empirical content and is no tautology. Both defenses are correct as far as they reach; the paragraph that follows marks where they stop.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>Both defenses are sound, and the thesis survives them both.<sup class="snref"></sup> Take the electron. What makes it a respectable posit is that it is confirmed by measurements the theory does not itself supply — tracks in a cloud chamber, deflections in a field, a hundred independent effects — so that the entity is triangulated from many directions and not merely read back out of the one phenomenon it was invented to explain. Utility enjoys no such triangulation: it is inferred from choice and used to explain choice, and there is no second, independent instrument — no chamber, no dial — by which the want itself might be checked against the choosing. It earns its keep as a summary of choice and draws no further salary as a measure of feeling. And grant that revealed preference is falsifiable: that it can be refuted by inconsistent choosing shows only that it constrains the <em>pattern</em> of a person's choices, not that the utility it defines measures any felt magnitude. Consistency is not feeling; a man may choose with flawless coherence and feel almost nothing, and two who choose identically share one utility by construction though one is in transport and the other numb. So utility-from-choice is a real, refutable theory <em>of choice</em> — and still no measure of want. On the market the case is plainer yet, for there the choice it reads is willingness to pay, want as wealth permits it to speak; and the point is made unanswerable by the famines Amartya Sen anatomized, which fell not where food was scarce but where some had lost the means to command it, while the market, faithfully tallying willingness to pay, reported the grain worth most in the regions that hungered least.</p>
+    <aside class="sn">The disanalogy with the electron is that the electron is confirmed by measurements independent of the theory that posits it — tracks in a chamber, deflections in a field — whereas utility is inferred only from the choices it is then used to explain, and so never reaches the independent confirmation a genuine posit enjoys. That revealed preference can be refuted by inconsistent choice shows only that it constrains the pattern of choices, not that the utility it defines measures any felt magnitude: consistency is not feeling. On the market, the willingness to pay it reads is want only as wealth permits — the lesson of Sen's famines.</aside>
+
+    <p>The want is the realest thing in any life and, to all but the one who feels it, a ghost — the silent cause of every choice and the content of no observation.<sup class="snref"></sup> A price is a verdict on a hidden contest, mistaken for a fact of nature; and the contest a price settles is hidden twice over, for the want it claims to measure cannot be seen, and the reading it offers is not of want at all but of want armed with money. Economics did not find the ghost. It agreed to watch the footprints the ghost leaves in behavior, and then, in the marketplace, to weigh those footprints by the wealth of whoever made them — and to call the result the value of things. The bargain bought a rigorous and powerful science of choice; the price of the bargain was the very quantity the science had been built to track. To say that a price measures utility is therefore to say that it measures a thing no instrument can observe, by way of choices that disclose it only in a circle, weighted by a purse that has nothing to do with wanting. The want is the foundation of value and the least visible thing in the world; and the price that claims to read it reads, in the end, the money behind it.</p>
+    <aside class="sn">The bargain economics struck was to exchange an unmeasurable inner quantity for a measurable outer one — want for choice — and then, in the market, to read that choice as willingness to pay. The science of choice so purchased is rigorous and powerful; what it is not is a measurement of satisfaction, the quantity the subjective theory named as the root of value. The plates that follow press the consequences for risk, for comparison between persons, for aggregation, and for happiness — each a further attempt to do something exact with a quantity that can be felt and never seen.</aside>
+
+    <p class="pull">No one has ever seen a want. Economics watches the choice instead — and the market counts the choice in money.</p>
+
+    <p>The ghost, then, is real and unseen, inferred only through choice and, in the market, weighted by wealth — and the volume's remaining work is to follow the consequences of building a science upon it. Whether the unmeasurable want can be pinned down through the willingness to gamble, compared across the gulf that divides one mind from another, summed into a will for a whole society, or set beside the happiness it was first meant to name: each is a further reckoning with a quantity that can be suffered and not seen. The subjective theory put value in want; this plate has put want beyond sight; and economics has lived ever since with a foundation it cannot inspect, reading the purse and calling it the heart. The argument remains open.</p>
+
+  </article>
+
+  <nav class="apparatus" aria-label="Related reading">
+    <h2 class="app-h">Related</h2>
+    <ul class="app-list">
+      <li><a href="the-want.html"><span class="app-rel">In this volume</span><span class="app-t">The Want</span><span class="app-g">plate i — the subjective theory that placed value in the very want this plate finds no instrument can see</span></a></li>
+      <li><a href="the-signal.html"><span class="app-rel">In The Asymmetry</span><span class="app-t">The Signal</span><span class="app-g">inferring the unobservable from a costly, visible act — the same move revealed preference makes, reading the unseen want off the choice (Spence)</span></a></li>
+      <li><a href="the-claim.html"><span class="app-rel">In The Stock</span><span class="app-t">The Claim</span><span class="app-g">purchasing power as a standing claim on what others produce — the purse the market price reads in place of the want</span></a></li>
+      <li><a href="the-numeraire.html"><span class="app-rel">In The Money</span><span class="app-t">The Numeraire</span><span class="app-g">money as the unit in which value is reckoned — the measure that stands in for the want no instrument can read</span></a></li>
+    </ul>
+  </nav>
+
+  <footer>
+    <nav class="crumbs foot" aria-label="Return">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-utility.html">The Utility &middot; Vol VIII</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate ii &middot; The Ghost</span>
+    </nav>
+    <p class="colophon">The second plate of Volume VIII, <em>The Utility</em>, and the thesis on which the volume turns: that the want at the root of value cannot be observed, only inferred from the choices it supposedly drives. Where the companion plate, <a href="the-want.html">The Want</a>, placed value in desire, this one places desire beyond sight — felt by the one who has it and invisible to all others, registering on no instrument, the hedonimeter Edgeworth imagined being a fancy precisely because no such device exists. Faced with an unmeasurable quantity, economics redefined it by the observable: Pareto's ordinal ranking, then Samuelson's revealed preference, which lets choice stand for want, with Robbins's methodology sealing the operationalist turn. The plate marks the circularity this breeds when choice is asked to explain what it was used to infer, the formal representation theorem that rescues the mathematics without measuring any felt magnitude, and the deeper trouble that, in a market, the choice a price reads is willingness to pay — want weighted by wealth — so that a price reads not the heart but the purse, the point made unanswerable by Sen's famines. The epigraph is from Hume. Jevons, Bentham, Edgeworth, Pareto, Samuelson, Robbins, and Sen are discussed in the text. Return to <a href="the-utility.html">The Utility</a>, or to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-want.html">← The Want</a><a rel="next" href="the-stock.html">The Stock →</a></nav>
+</body>
+</html>

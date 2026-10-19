@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Reciprocity — The Game, Plate viii · Numéraire</title>
+<meta name="description" content="the capstone: played again and again, the dilemma yields to cooperation — held among the self-interested by no altruism or authority, but by the long shadow of the future.">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- reading-progress hairline ---- */
+  .progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--ink);z-index:10000;}
+
+  /* ---- masthead ---- */
+  .masthead{padding:clamp(2.8rem,8vh,5.6rem) 0 clamp(1.6rem,4vh,2.6rem);text-align:center;}
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;}
+  .edition{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+  .edition b{font-family:"Fraunces",serif;font-weight:500;font-style:normal;color:var(--soft);letter-spacing:.04em;}
+
+  .symbox{width:84px;height:84px;border:1px solid var(--ink);border-radius:2px;background:var(--ink);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;margin:clamp(1.4rem,3.4vh,2.2rem) auto 0;}
+  .symbox .sb-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2rem;line-height:1;color:var(--paper);letter-spacing:-.01em;}
+  .symbox .sb-num{font-family:"Fraunces",serif;font-size:.66rem;color:rgba(240,235,225,.58);margin-top:.28rem;letter-spacing:.04em;}
+
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-top:1.15rem;}
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.5rem,7vw,5rem);line-height:1.0;letter-spacing:-.028em;margin:.55rem 0 0;text-wrap:balance;}
+  .subtitle{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.05rem,1.7vw,1.32rem);color:var(--faint);margin:.5rem 0 0;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.64;color:var(--soft);
+    max-width:43rem;margin:clamp(1.3rem,3vh,1.9rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+  .status{font-size:.84rem;color:var(--soft);margin:clamp(1.2rem,2.6vh,1.7rem) auto 0;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .backrow{margin-top:clamp(1.3rem,3vh,1.9rem);padding-top:1.5rem;border-top:1px solid var(--hair);max-width:50rem;margin-left:auto;margin-right:auto;}
+  .backlink{display:inline-block;font-size:.82rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .backlink:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- generic block furniture ---- */
+  main{padding:0;}
+  .eyebrow{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.2rem;}
+
+  .block-argument{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .argument{max-width:40rem;margin:0 auto;}
+  .argument p{font-size:1.08rem;line-height:1.74;color:var(--ink);margin:0 0 1.2rem;text-wrap:pretty;}
+  .argument p:last-child{margin-bottom:0;}
+  .argument .closer{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 400;font-style:italic;color:var(--soft);font-size:1.06rem;}
+
+  /* ---- table of plates ---- */
+  .block-toc{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .toc ol{list-style:none;margin:0;padding:0;max-width:44rem;}
+  .toc li{display:grid;grid-template-columns:2.5rem 1fr;column-gap:1rem;align-items:baseline;
+    padding:.85rem 0;border-top:1px solid var(--hair);}
+  .toc li:first-child{border-top:none;}
+  .t-num{font-family:"Fraunces",serif;font-size:.92rem;color:var(--faintest);text-align:right;}
+  .t-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.08rem;color:var(--ink);line-height:1.15;text-decoration:none;}
+  a.t-title{border-bottom:1px solid var(--num);padding-bottom:1px;}
+  a.t-title:hover{border-bottom-color:var(--ink);}
+  .t-gloss{grid-column:2;font-size:.85rem;color:var(--faint);font-style:italic;margin-top:.22rem;line-height:1.4;}
+  .t-q{grid-column:2;font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:.95rem;color:var(--soft);margin-top:.42rem;line-height:1.36;}
+  .t-q .lead{font-family:"Fraunces",serif;font-style:normal;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-right:.5rem;}
+  .t-tag{display:inline-block;margin-left:.6rem;font-family:"Newsreader",serif;font-size:.64rem;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--paper);background:var(--ink);border-radius:2px;padding:.12em .5em;vertical-align:.14em;}
+  .t-read{grid-column:2;margin-top:.42rem;}
+  .t-read a{font-size:.8rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .t-read a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- the plates (essays) ---- */
+  .plates-open{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.8rem,6vh,4rem);}
+  .plates-open .eyebrow{text-align:center;}
+  .plate{max-width:54rem;margin:clamp(2.8rem,6.5vh,4.4rem) auto 0;padding-top:clamp(2.2rem,4.6vh,3rem);
+    border-top:1px solid var(--hair);position:relative;scroll-margin-top:1.4rem;}
+  .plate:first-of-type{border-top:none;margin-top:clamp(1.6rem,3.5vh,2.4rem);padding-top:0;}
+  .plate-head{margin:0 0 1.7rem;}
+  .plate-kicker{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .plate-kicker .pk-tag{margin-left:.6rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .plate-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.8rem,4.2vw,2.7rem);line-height:1.03;letter-spacing:-.02em;margin:.32rem 0 .42rem;}
+  .plate-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.02rem;color:var(--faint);max-width:36rem;line-height:1.45;}
+
+  .epigraph{max-width:34rem;margin:1.4rem 0 1.9rem;padding-left:1.1rem;border-left:1px solid var(--num);}
+  .epigraph p{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:1.04rem;line-height:1.42;color:var(--soft);margin:0;}
+  .epigraph cite{display:block;font-style:normal;font-family:"Newsreader",serif;font-size:.78rem;
+    letter-spacing:.03em;color:var(--faintest);margin-top:.55rem;}
+
+  .plate-body{max-width:37rem;}
+  .plate-body p{font-size:1.05rem;line-height:1.75;color:var(--ink);margin:0 0 1.18rem;text-wrap:pretty;}
+  .plate-body p:last-child{margin-bottom:0;}
+  .plate-body em{font-style:italic;}
+  .plate-body .lead-para::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 500;
+    float:left;font-size:3.5rem;line-height:.78;padding:.08em .14em 0 0;color:var(--ink);}
+  .plate-body h4{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);margin:1.9rem 0 .9rem;}
+
+  .break{display:flex;justify-content:center;margin:1.9rem 0;}
+  .break span{font-family:"Fraunces",serif;font-size:1.05rem;letter-spacing:.4em;color:var(--faintest);padding-left:.4em;}
+
+  /* sidenotes — inline by default, true margin notes on wide screens */
+  .sn-ref{font-family:"Fraunces",serif;font-size:.64rem;vertical-align:super;line-height:0;color:var(--soft);margin-left:.06em;}
+  .sidenote{font-family:"Newsreader",serif;font-size:.82rem;line-height:1.52;color:var(--faint);
+    border-left:2px solid var(--hair);padding-left:.9rem;margin:.7rem 0 1.05rem;}
+  .sidenote .sn-num{font-family:"Fraunces",serif;color:var(--faintest);font-size:.7rem;margin-right:.38rem;}
+  .sidenote em{font-style:italic;}
+  @media (min-width:1040px){
+    .sidenote{float:right;clear:right;width:14.5rem;margin:.25rem -17.5rem 1.15rem 0;
+      border-left:none;border-top:1px solid var(--hair);padding:.42rem 0 0;}
+  }
+
+  /* ---- coda ---- */
+  .coda{max-width:40rem;margin:clamp(2.8rem,6vh,4rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);}
+  .coda p{font-size:1.06rem;line-height:1.74;color:var(--ink);margin:0 0 1.15rem;text-wrap:pretty;}
+  .coda p:last-child{margin-bottom:0;}
+  .coda .q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .f-ref a{text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .f-ref a:hover{border-bottom-color:var(--soft);}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .progress{transition:width .08s linear;}
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}.rise.d4{animation-delay:.4s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    h1{font-size:clamp(2.2rem,11vw,3rem);}
+    .symbox{width:72px;height:72px;}
+    .symbox .sb-sym{font-size:1.7rem;}
+    .plate-body .lead-para::first-letter{font-size:3rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+
+  /* ---- standalone plate (leaf) ---- */
+  .leaf-head{max-width:54rem;margin:0 auto;padding:clamp(2.2rem,6.5vh,4.4rem) 0 0;text-align:center;}
+  .leaf-loc{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.08em;color:var(--faintest);margin-bottom:1.7rem;}
+  .leaf-loc a{text-decoration:none;color:var(--faint);border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .leaf-loc a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+  .leaf-loc .sep{margin:0 .5rem;color:var(--num);}
+  .leaf-kicker{font-family:"Fraunces",serif;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .leaf-kicker .pk-tag{margin-left:.55rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .leaf-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.2rem,5.6vw,3.7rem);line-height:1.02;letter-spacing:-.024em;margin:.42rem 0 0;text-wrap:balance;}
+  .leaf-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.06rem;color:var(--faint);
+    max-width:34rem;margin:.72rem auto 0;line-height:1.5;text-wrap:pretty;}
+  .epigraph.leaf-epigraph{margin:1.95rem auto 1.4rem;text-align:left;}
+  .leaf-body-wrap{max-width:54rem;margin:clamp(1.8rem,4vh,2.8rem) auto 0;}
+
+  .leaf-nav{max-width:54rem;margin:clamp(3rem,7vh,5.2rem) auto 0;padding-top:clamp(1.8rem,4vh,2.6rem);
+    border-top:1px solid var(--hair);display:grid;grid-template-columns:1fr auto 1fr;gap:1.3rem;align-items:start;}
+  .ln-cell{text-decoration:none;display:block;}
+  .ln-cell .lab{display:block;font-family:"Fraunces",serif;font-size:.64rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--faintest);margin-bottom:.36rem;}
+  .ln-cell .ttl{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1rem;
+    color:var(--soft);line-height:1.22;}
+  a.ln-cell:hover .ttl{color:var(--ink);}
+  .ln-prev{text-align:left;} .ln-home{text-align:center;} .ln-next{text-align:right;}
+
+  @media (max-width:600px){
+    .leaf-nav{grid-template-columns:1fr;gap:1.4rem;}
+    .ln-prev,.ln-home,.ln-next{text-align:center;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#ne-contents">Complete contents</a><a href="../editions.html#volume-game">The Game · both editions</a><a href="../volumes/the-game.html">Collected volume</a></div></nav>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="frame">
+
+  <header class="leaf-head">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="leaf-loc rise d1" aria-label="Location in the series"><a href="numeraire-atlas-updated.html">Numéraire</a><span class="sep">·</span><a href="numeraire-xxv-the-game.html">Volume XXV · The Game</a></nav>
+    <div class="leaf-kicker rise d2">Plate viii <span class="pk-tag">in print</span></div>
+    <h1 class="leaf-title rise d2">The Reciprocity</h1>
+    <div class="leaf-gloss rise d3">the capstone: played again and again, the dilemma yields to cooperation — held among the self-interested by no altruism or authority, but by the long shadow of the future.</div>
+    <div class="epigraph leaf-epigraph rise d3">
+      <p>Play the dilemma once and betrayal rules; but play it again and again, between parties who will meet in the future, and a plain rule — open with trust, then answer like with like, and forgive — calls forth cooperation and holds it, not by virtue but by the long shadow that tomorrow casts back upon today.</p>
+      <cite>— the argument of this plate, after Robert Axelrod, 1984</cite>
+    </div>
+  </header>
+
+  <main class="leaf-body-wrap">
+    <article class="plate">
+      <div class="plate-body">
+<p class="lead-para">The volume has built toward a single question, posed by the prisoner's dilemma and pressed by every plate since: how can cooperation hold among self-interested players, when individual rationality drives each of them to defect? Schelling showed they might commit their way out of the trap; Selten asked which of their commitments are credible; Maynard Smith asked which strategies survive. Robert Axelrod gave the deepest and most surprising answer, and he gave it not by abstract proof alone but by a kind of experiment — a tournament of strategies. The answer turns on a single change to the game: that it is played not once but again and again, between players who expect to meet in the future. In that change, Axelrod found, lies the whole secret of cooperation; and this flagship draws the secret out, answering the volume's question and closing the family of the behaviors.</p>
+
+<p>The prisoner's dilemma's despair rests on a hidden assumption: that the game is played once, the players then parting forever. Axelrod's insight was that most of life is not like this at all. We deal with the same colleagues, neighbors, suppliers, and rivals over and over, and we expect to deal with them again tomorrow. When a game is repeated, and the players care about their future payoffs, the present acquires a shadow — for what I do to you now will shape what you do to me later. Defecting today may win a one-time gain, but if it provokes your retaliation through all the encounters still to come, that gain is dwarfed by the cumulative loss. Cooperating today may cost me a small immediate advantage, but if it earns your cooperation ever after, the reward is large and lasting. The repeated game thus reaches back from the future to discipline the present, and it can make cooperation — flatly impossible in a single play — the rational choice after all. Axelrod named this reach of tomorrow over today the shadow of the future, and it is the engine of cooperation among the self-interested.<sup class="sn-ref">1</sup></p>
+<div class="sidenote"><span class="sn-num">1.</span> The dilemma's despair assumes one-shot play, the players parting forever. But life is repeated — we deal with the same people again and again, expecting to meet tomorrow. Then the present gains a shadow: today's defection invites future retaliation, today's cooperation earns future reward, and the cumulative future dwarfs the one-time gain. Repetition reaches back to discipline the present, making cooperation — impossible in one play — rational. Axelrod called this the shadow of the future.</div>
+
+<p>To discover which strategies actually thrive in repeated play, Axelrod did something novel: he held a tournament. He invited scholars to submit strategies — rules for playing the repeated prisoner's dilemma, each specifying whether to cooperate or defect on the present round given the whole history of the encounter so far — and set them to play one another in a round-robin, over and over, tallying the total payoff each amassed. The entries ranged from the simple to the fiendishly intricate: some designed to exploit a soft opponent, some to probe for weakness, some to forgive, some to bear grudges. The winner, to widespread surprise, was the simplest strategy anyone had submitted, a rule called tit-for-tat: cooperate on the first move, and thereafter do exactly what your opponent did on the move before. It carried no machinery for exploitation, no cleverness, no deception of any kind — and it won, decisively, against all the elaborate schemes arrayed against it. Axelrod then ran the tournament a second time, publishing the first result so that entrants could study the champion and design strategies to beat it. Tit-for-tat won again.<sup class="sn-ref">2</sup></p>
+<div class="sidenote"><span class="sn-num">2.</span> Axelrod's tournament: scholars submitted strategies for the repeated dilemma — rules choosing cooperate or defect given the history — played round-robin, payoffs tallied. Entries ran from simple to fiendish. The winner was the simplest submitted: tit-for-tat — cooperate first, then copy the opponent's last move. No exploitation, no cleverness. It won decisively; and when Axelrod ran it again with the result public so entrants could target the champion, tit-for-tat won a second time.</div>
+
+<div class="break"><span>⁂</span></div>
+
+<p>Axelrod distilled the qualities that made tit-for-tat and the other high scorers succeed, and they are illuminating. The successful strategies were, first, nice: they were never the first to defect, opening every relationship with cooperation and so reaping its mutual rewards from the start. They were, second, retaliatory: they answered a defection with a defection of their own, so that they could not be exploited by the predatory strategies that fed on unconditional kindness. They were, third, forgiving: having retaliated, they returned to cooperation as soon as the opponent did, rather than nursing a single injury into an endless feud of mutual punishment. And they were, fourth, clear: simple enough that an opponent could swiftly grasp the pattern — cooperate and I cooperate, defect and I punish — and so could see for himself that cooperation paid. Niceness gathered the gains of mutual cooperation; retaliation guarded against exploitation; forgiveness escaped the spirals of revenge; clarity taught the other player the rules of the relationship. The combination beat both the relentlessly aggressive, who provoked retaliation and forfeited the gains of cooperation, and the naively kind, who were simply devoured.<sup class="sn-ref">3</sup></p>
+<div class="sidenote"><span class="sn-num">3.</span> The winning qualities. Nice: never the first to defect, so reaping cooperation's rewards. Retaliatory: answering defection with defection, so not exploited. Forgiving: returning to cooperation once the opponent does, escaping endless feuds. Clear: simple enough to teach the opponent that cooperation pays. Niceness gathers the gains, retaliation guards against exploitation, forgiveness escapes revenge, clarity instructs. The mix beat both the aggressive (who provoke retaliation) and the naive (who are devoured).</div>
+
+<p>Here is the deep result, and the answer to the volume's question. Cooperation among self-interested players requires none of the things one might have supposed it must. It does not require altruism: tit-for-tat cooperates not from kindness but from calculation, because cooperation pays when the game repeats. It does not require a central authority to enforce agreements: the discipline comes from the players themselves, from the standing threat of future retaliation, and not from any sovereign set above them — the very thing the single prisoner's dilemma had seemed to prove impossible. And, joining this plate to the last, it does not even require rationality: Axelrod showed that in a population of strategies competing by success, tit-for-tat and its cooperative kin spread and persist, very nearly an evolutionarily stable strategy, so that cooperation can evolve among creatures that never reason at all. Repetition, a memory of the last encounter, and a long enough shadow of the future — these alone suffice to turn the dilemma's mutual defection into stable mutual cooperation. The bleak equilibrium of the single game is overturned by the plain fact of meeting again.<sup class="sn-ref">4</sup></p>
+<div class="sidenote"><span class="sn-num">4.</span> The answer: cooperation among the self-interested needs none of what one supposed. Not altruism — tit-for-tat cooperates from calculation, since cooperation pays under repetition. Not a central authority — the discipline is the players' own standing threat of retaliation, the thing the one-shot dilemma deemed impossible. Not even rationality — cooperative strategies spread by success, nearly an ESS, evolving among creatures that never reason. Repetition, memory, and a long shadow suffice. Meeting again overturns the dilemma.</div>
+
+<p>Yet the result is hedged about with conditions, and the spec's own phrase — the fragile arithmetic of cooperation — is exact. Cooperation holds only if the shadow of the future is long enough: only if the players value future payoffs sufficiently against present ones, and only if the relationship is likely to continue. Let the future be discounted too steeply, or let the end of the game come clearly into view, and cooperation collapses — for in a known last round there is no future left to protect, so defection is safe; and once the last round unravels, Selten's backward induction marches the unraveling back through every round before it, exactly as it did in the chain-store paradox. Cooperation in repeated play is thus a delicate achievement, resting on an open-ended horizon, on players who can recognize one another and remember the last encounter, and on stakes modest enough that no single betrayal is worth more than a lifetime of trust. Alter any of these and the cooperative equilibrium gives way. This is why cooperation, though possible, is never guaranteed — and why so much of the labor of human institutions is precisely the lengthening of the shadow of the future.<sup class="sn-ref">5</sup></p>
+<div class="sidenote"><span class="sn-num">5.</span> The conditions, the fragile arithmetic. Cooperation holds only if the shadow is long — future payoffs valued, the relationship likely to continue. Discount the future too steeply, or let the end come into view, and it collapses: a known last round is safe to defect in, and the unraveling runs backward through every prior round, as in the chain-store paradox. Cooperation needs an open horizon, recognition, memory, and modest stakes. Hence it is never guaranteed — and institutions labor to lengthen the shadow.</div>
+
+<div class="break"><span>⁂</span></div>
+
+<p>Axelrod's tournaments are a demonstration, not a theorem, and their limits have been pressed hard. A tournament's outcome depends on which strategies happen to be entered: tit-for-tat won the fields Axelrod assembled, but against other mixtures it can be bettered, and it carries a known flaw — two tit-for-tat players, should a single move be mistaken or misread, can tumble into an unending alternation of mutual recrimination, a feud that more forgiving strategies sidestep. The folk theorem, the formal counterpart to Axelrod's experiment, proves a result at once more general and more humbling: in a repeated game with a long enough horizon, cooperation can indeed be sustained as an equilibrium — but so can a vast range of other outcomes, including thoroughly bad ones, for the theorem shows that almost anything can be made an equilibrium of a sufficiently repeated game. Repetition, that is, makes cooperation possible without making it either inevitable or unique; it opens the door without compelling anyone to walk through it. The achievement of cooperation in any actual setting still depends on the players coordinating their expectations upon the cooperative equilibrium among the many available — which returns us to Schelling's focal points, and to the work of norms and institutions.<sup class="sn-ref">6</sup></p>
+<div class="sidenote"><span class="sn-num">6.</span> The limits. A tournament's result depends on the entrants — tit-for-tat can be bettered by other fields, and has a flaw: after one mistaken move, two tit-for-tat players fall into endless mutual recrimination. The folk theorem is more humbling still: with a long horizon, cooperation is an equilibrium — but so are countless other outcomes, including bad ones. Repetition makes cooperation possible, not inevitable or unique; it opens the door without compelling passage. Coordinating on the good equilibrium returns us to focal points and norms.</div>
+
+<p>With reciprocity the volume's account of strategy is complete, and it is worth seeing how the whole of the table has quietly been playing games all along. The tragedy of the commons, treated in its own volume, is a prisoner's dilemma played by many hands over a shared resource — and Axelrod's lesson is exactly why real communities, dealing with one another year upon year, so often escape it where the one-shot logic insists they cannot. The tacit collusion of an oligopoly, met under The Power, is cooperation sustained among rival firms by the shadow of future price wars. The relational contract of The Firm and The Contract, honored faithfully though no court stands ready to compel it, is reciprocity stretched across repeated dealings. The credibility of the central bank in The Level is the subgame-perfect discipline of Selten, and the wage struck between union and employer in The Wage is the cooperative bargain of Nash. Game theory is not one more topic set beside the others but the connective tissue of the whole — the logic of interdependent choice that runs beneath markets, firms, contracts, money, and the commons alike. The behaviors, of which strategy is the most intricate, are the ground on which the rest of the table stands.<sup class="sn-ref">7</sup></p>
+<div class="sidenote"><span class="sn-num">7.</span> The table has been playing games throughout. The commons is a many-player dilemma — and repetition is why real communities escape it. Oligopoly's tacit collusion is cooperation held by the shadow of future price wars. The relational contract, kept without a court, is reciprocity across repeated dealings. Central-bank credibility is Selten's subgame perfection; the wage bargain is Nash's. Game theory is the connective tissue of economics, the logic of interdependent choice beneath markets, firms, contracts, money, and the commons.</div>
+
+<p>Beneath the mathematics lies a claim about the human condition that is worth stating plainly. We are not condemned, by our self-interest, to the war of all against all that the single prisoner's dilemma seems to foretell. The very self-interest that drives us to defect in a passing encounter drives us to cooperate in a lasting one, because we shall meet again and the future keeps accounts. Trust, on this telling, is not a sentimental exception to self-interest but its rational form under repetition — the recognition that to betray you today is to forfeit the gains of dealing with you tomorrow. This is why the institutions that lengthen the shadow of the future — stable communities, enduring firms, lasting reputations, the shared expectation of a common tomorrow — are the quiet machinery of human cooperation; and why their erosion, which shortens the horizon and makes each encounter feel like the last, is so corrosive of it. The arithmetic of cooperation is fragile, but it is not hopeless. It asks of us only two things: that we expect to meet again, and that the meeting matter. The dilemma is real, but so, and just as real, is the way out.<sup class="sn-ref">8</sup></p>
+<div class="sidenote"><span class="sn-num">8.</span> The human meaning. We are not condemned to the war of all against all: the self-interest that defects in a passing encounter cooperates in a lasting one, because we meet again and the future keeps accounts. Trust is not an exception to self-interest but its rational form under repetition. So the institutions that lengthen the shadow — stable communities, lasting firms and reputations, a shared tomorrow — are cooperation's machinery, and their erosion corrodes it. Fragile, but not hopeless: expect to meet again, and let it matter.</div>
+
+<p>When each player's best move depends on every other's, how does cooperation hold? Not by altruism, nor by the sword of a sovereign, nor even by reason — but by the shadow of the future, the simple fact that the players will meet again. Played once, the prisoner's dilemma traps the self-interested in mutual defection; played over and over, with a long enough horizon, it lets a strategy as plain as tit-for-tat — nice, retaliatory, forgiving, clear — call cooperation forth and hold it, each player disciplined not by conscience or command but by the knowledge that what he does today he will answer for tomorrow. The achievement is fragile: it needs an open horizon, players who remember, and stakes that no single betrayal can outweigh, and the folk theorem warns that repetition opens many doors and not the cooperative one alone. But it is real, and it is the foundation of the social world — for trust is self-interest that has learned to count the future, and the institutions that lengthen that future are how a species of self-interested strategists builds, out of the dilemma itself, a working peace. With the game, the behaviors deepen and the table nears its close: beneath every price and contract and market lies the strategic choice of one mind reckoning with another, and beneath that, the discovery that even the self-interested, meeting again and again, can learn to cooperate.</p>
+      </div>
+    </article>
+  </main>
+
+  <nav class="leaf-nav" aria-label="Plate navigation">
+    <a class="ln-cell ln-prev" href="numeraire-xxv-v-the-population.html"><span class="lab">← Previous plate</span><span class="ttl">Plate v · The Population</span></a>
+    <a class="ln-cell ln-home" href="numeraire-xxv-the-game.html"><span class="lab">The volume</span><span class="ttl">The Game · contents</span></a>
+    <span class="ln-cell ln-next"></span>
+  </nav>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref"><a href="numeraire-xxv-the-game.html">The Game</a> · <a href="numeraire-atlas-updated.html">the table</a></span>
+    </div>
+    <p class="colophon">Plate viii of <em>The Game</em>, Volume the Twenty-fifth of <em>Numéraire</em> — a periodic table of economic life. This leaf may be read on its own or as part of the volume. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<script>
+(function(){
+  var bar=document.getElementById('progress');
+  function onScroll(){
+    var h=document.documentElement;
+    var max=(h.scrollHeight-h.clientHeight);
+    var p=max>0?(h.scrollTop||document.body.scrollTop)/max:0;
+    bar.style.width=(p*100).toFixed(2)+'%';
+  }
+  document.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="numeraire-xxv-v-the-population.html">← The Population</a><a rel="next" href="numeraire-xxvi-the-norm.html">The Norm →</a></nav>
+</body>
+</html>

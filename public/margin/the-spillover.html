@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Spillover — Numéraire, The Externality, Plate i</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:66rem; --measure:35rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(2.8rem,7vh,5rem) 0 clamp(1.4rem,3.5vh,2.2rem);text-align:center;}
+
+  .crumbs{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 400;
+    font-size:.8rem;letter-spacing:.04em;color:var(--faint);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:center;gap:.55rem;}
+  .crumbs a{text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .2s ease,color .2s ease;}
+  .crumbs a:hover{border-color:var(--num);color:var(--ink);}
+  .crumbs .sep{color:var(--faintest);}
+  .crumbs .here{color:var(--ink);}
+
+  .plate-mark{width:116px;height:116px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:.18rem;line-height:1;}
+  .plate-mark.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pm-vol{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.84rem;letter-spacing:.06em;color:rgba(240,235,225,.62);}
+  .pm-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;
+    font-size:2.5rem;letter-spacing:.02em;text-transform:uppercase;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.1rem,6vw,4rem);line-height:1.03;letter-spacing:-.025em;margin:1rem 0 0;text-wrap:balance;}
+  .status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:42rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .epi{max-width:38rem;margin:clamp(2.2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .epi q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.46;color:var(--ink);quotes:none;display:block;text-wrap:pretty;}
+  .epi .cite{display:block;margin-top:.95rem;font-size:.78rem;color:var(--faintest);letter-spacing:.05em;font-style:normal;}
+  .epi .cite em{font-style:italic;}
+
+  .essay{max-width:52rem;margin:clamp(3rem,7vh,5rem) auto 0;counter-reset:sn;}
+  .essay::after{content:"";display:block;clear:both;}
+  .essay > p,.essay > .pull{max-width:var(--measure);}
+  .essay p{font-size:1.075rem;line-height:1.8;color:var(--ink);margin:0 0 1.4rem;text-wrap:pretty;}
+  .essay em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.72;padding:.08em .14em 0 0;color:var(--ink);}
+
+  .divider{display:flex;justify-content:center;margin:2.4rem 0;}
+  .divider svg{width:96px;height:12px;overflow:visible;}
+  .divider line{stroke:var(--num);stroke-width:1;} .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.5vw,1.74rem);line-height:1.34;color:var(--ink);text-align:center;
+    margin:2.4rem auto;max-width:33rem;text-wrap:balance;}
+
+  .snref{font-family:"Fraunces",serif;font-size:.64em;line-height:0;vertical-align:super;
+    color:var(--soft);counter-increment:sn;margin-left:1px;font-style:normal;}
+  .snref::after{content:counter(sn);}
+  .sn{display:block;max-width:var(--measure);margin:.1rem 0 1.4rem;padding:.15rem 0 .15rem 1.05rem;
+    border-left:1px solid var(--hair);font-size:.84rem;line-height:1.52;color:var(--faint);}
+  .sn::before{content:counter(sn);font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--faintest);margin-right:.5em;font-size:.92em;}
+  .sn em{font-style:italic;}
+
+  @media (min-width:64rem){
+    .sn{float:right;clear:right;width:15rem;margin:.35rem 0 1.3rem;padding:0;border-left:none;}
+    .divider,.pull,.apparatus{clear:both;}
+  }
+
+  .apparatus{max-width:52rem;margin:clamp(3.2rem,7vh,5rem) auto 0;padding-top:2rem;border-top:1px solid var(--hair);clear:both;}
+  .app-h{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;}
+  .app-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.4rem;}
+  .app-list li{border-top:1px solid var(--hair);}
+  .app-list li:first-child,.app-list li:nth-child(2){border-top:none;}
+  .app-list a{display:block;text-decoration:none;padding:.95rem 0;}
+  .app-list a:hover .app-t{color:var(--soft);}
+  .app-rel{display:block;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faintest);margin-bottom:.3rem;}
+  .app-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.12rem;color:var(--ink);transition:color .2s ease;}
+  .app-g{display:block;font-size:.84rem;color:var(--faint);font-style:italic;line-height:1.4;margin-top:.22rem;}
+
+  footer{margin-top:clamp(3.5rem,8vh,6rem);padding:2.2rem 0 4rem;border-top:1px solid var(--hair);}
+  .crumbs.foot{justify-content:flex-start;margin-bottom:1.3rem;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .plate-mark{width:96px;height:96px;}
+    .pm-num{font-size:2.1rem;}
+    .essay p{font-size:1.04rem;line-height:1.74;}
+    .dropcap{font-size:3rem;}
+    .app-list{grid-template-columns:1fr;}
+    .app-list li:nth-child(2){border-top:1px solid var(--hair);}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="crumbs rise d1" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-externality.html">The Externality &middot; Vol XI</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate i</span>
+    </nav>
+    <div class="plate-mark lit rise d2" aria-hidden="true">
+      <span class="pm-vol">Ex</span>
+      <span class="pm-num">i</span>
+    </div>
+    <h1 class="rise d3">The Spillover</h1>
+    <div class="status rise d3">in print &middot; The Externality &middot; plate i</div>
+    <p class="standfirst rise d4">A factory makes cloth, which it sells, and smoke, which it does not — a cost poured into the air for nothing, borne by neighbors who never agreed to bear it. This plate sets out the market failure in its purest form: the price, supposed to carry all that a thing costs, leaves out the part that falls on third parties. The divergence of private and social cost, and Pigou's tax to force the missing cost back into the price.</p>
+  </header>
+
+  <div class="epi rise d5">
+    <q>Smoke in large towns&hellip; inflicts a heavy uncharged loss on the community.</q>
+    <span class="cite">A. C. Pigou, <em>The Economics of Welfare</em> &middot; 1920</span>
+  </div>
+
+  <article class="essay">
+
+    <p class="lede"><span class="dropcap">E</span>very defense of the market rests, in the end, on a single claim: that when each person pursues his own advantage, paying the prices that others freely charge, the whole is led as if by an unseen hand to an outcome that serves them all. The claim has a hidden condition, so obvious that it is easily forgotten — that the price of a thing must capture the whole of what it costs to provide. And sometimes it does not. The factory that makes cloth makes smoke as well, and the smoke costs something real — soiled wash, sickened lungs, a darkened sky — but it costs the factory nothing, for the air is free to use and no one sends a bill for its fouling. The cost is real, and it is borne; it is simply borne by someone else.</p>
+
+    <p>That last phrase holds the whole of the matter, and economists have a name for what it describes.<sup class="snref"></sup> When the cost of an act falls not on the one who chooses it but on a bystander who had no say in the choosing, and reaches the chooser through no price, the cost is called external — outside his reckoning, outside the ledger he consults. The factory weighs what it must pay: the wool, the wages, the wear on its looms. These are its private costs, and they discipline it, for every shilling spent is a shilling off its profit. The smoke is different. It harms the laundress and the asthmatic and the man who must light a lamp at noon, but in no column the factory keeps; it is a cost the factory imposes and does not bear. An externality is precisely this: a cost, or a benefit, that lands on a third party and never passes through the price.</p>
+    <aside class="sn">The word is exact and worth pausing on. A cost is external when it falls outside the reckoning of the one who causes it — external to the ledger he consults when he decides how much to produce. The factory's wages and rent and wool are internal: it pays them, feels them, and weighs them against its revenue. The smoke is external: it costs the factory nothing, so it enters no calculation, though it is every bit as real a cost as the wool. An externality is simply a cost, or a benefit, that lands on a bystander and never reaches the price.</aside>
+
+    <p>The trouble this makes is not moral merely but mechanical, and it strikes at the market's central boast.<sup class="snref"></sup> The factory, being sensible, produces up to the point where one more bolt of cloth would cost it just what the bolt would fetch; beyond that it loses, so there it stops. But the cost it consults is only its private cost, and the true cost of the bolt — the social cost — is larger, for it includes the smoke that goes with the cloth. Were the factory made to count that smoke, the last few bolts would cost more than they were worth, and it would not make them. Consulting the smaller figure, it makes them anyway. The result is more cloth than the world would choose if it weighed the whole cost, and more smoke besides — an overproduction that looks, on the factory's books, like good sense, and is, on the world's, a loss.</p>
+    <aside class="sn">Economists mark the gap with two phrases. The private cost of the cloth is what the factory bears to make it; the social cost is that plus the harm the smoke does to everyone else. When the two are equal — when the maker bears the whole cost of his making — the market works as advertised. When they diverge, as they do wherever a cost escapes onto third parties, the maker, consulting only his private cost, makes more than he would if he had to answer for the whole. The wedge between private and social cost is the externality, measured in money.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>Here the market's famous promise quietly breaks, and it is worth being exact about how.<sup class="snref"></sup> The boast of a competitive market is that it reaches an outcome no rearrangement could improve — that the baker and the brewer, each chasing his own gain, are led to serve the whole as if by design. But that result was always conditional, true only where every cost and benefit of every act is carried home to its author by a price. The externality is the case where one is not. The smoke escapes the price; the factory feels a cost smaller than the true one; and in maximizing its own profit it no longer maximizes the wealth of all, because it economizes on something — clean air — that it treats as free and that is not. The invisible hand does not fail because men are greedy; it fails because a cost has gone missing from the only ledger the hand can read. Self-interest works as advertised. It is simply working on the wrong figure.</p>
+    <aside class="sn">This is the exact sense in which a market is said to fail. The famous theorem that a competitive market reaches an efficient outcome — that the invisible hand does its work — holds only on the assumption that every cost and benefit is carried by a price. Let one escape, and the proof collapses: the factory, maximizing its own gain, no longer maximizes the gain of all, for it counts the smoke as free when it is not. Self-interest and the common good, which the market was to reconcile, come apart at precisely the point where a cost has slipped the net of prices.</aside>
+
+    <p>The first to set this out with full rigor was Arthur Pigou, who in 1920 named the disease and prescribed its cure.<sup class="snref"></sup> The disease he called a divergence between private and social cost — between what an act costs its author and what it costs the world; and his cure followed with a pleasing directness. If the factory makes too much smoke because the smoke costs it nothing, then make the smoke cost it something: lay a corrective tax on it, equal to the harm it does. Faced now with a bill for its fouling, the factory will treat the smoke as it treats the wool — a cost to be economized — and will pull its output back to the very point the world would have chosen, where the last bolt's smoke costs no more than the last bolt is worth. The tax has not commanded the factory nor planned its output; it has merely corrected the price, restoring the cost that had escaped, and left the mended market to do the rest. The carbon levy argued over today is this idea, grown to the scale of a planet.</p>
+    <aside class="sn">Pigou's remedy has the beauty of working through the market rather than against it. He did not propose to ban the smoke or to plan the factory's output from a ministry; he proposed to charge for the smoke — a tax equal to the harm it does — so that the factory, now made to pay for what it had been dumping free, would count it as a cost like any other and cut back of its own accord to the point society would have chosen. The tax does not abolish the pollution. It prices it, and lets the priced market find the rest.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>What recommends the Pigovian tax, beyond its logic, is its economy of force.<sup class="snref"></sup> It does not require a regulator to know how each factory should be run, only what the smoke is worth; it leaves every firm to find its own cheapest way to pollute less, since each now has its own reason to. And it runs as readily in reverse. Where an act sheds not harm but benefit on the bystander — the orchard that feeds a neighbor's bees, the discovery others freely copy, the schooling that makes a better citizen — the market makes too little of it, for the doer is not paid for the good he scatters, and the remedy is a subsidy, the tax's mirror, to coax the scattering on. One point deserves stress, for it is endlessly mistaken: the aim is never to drive the smoke to nothing. A world with no smoke would be a world with no factories, and that is no bargain. The aim is the right amount of smoke — the amount at which one more wisp would cost the world just what it gains.</p>
+    <aside class="sn">The same reasoning, reversed, applies to the good that spills over. The householder who plants a beautiful garden, the firm whose research rivals freely copy, the citizen who is inoculated and so protects his neighbors — each confers a benefit he is not paid for, and so, left to the market, does too little of it. The Pigovian answer is a subsidy, the mirror of the tax: pay people to produce the good whose harvest others reap. And note what the tax does not seek — a world with no smoke at all, which would mean no factories, but the right amount of smoke, where the last puff's harm just equals the last bolt's worth.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>For all its elegance, the remedy hides a difficulty the rest of this volume will not let alone.<sup class="snref"></sup> To tax the smoke at the harm it does, one must first know the harm it does — must put a figure on the soiled wash, the shortened life, the warming to come; and these are the very costs that, having no market, no market has priced. The number Pigou's formula needs is precisely the one hardest to find, and a tax set by guesswork may correct too little or too much. There is, besides, a prior question a later plate will press: why is the air free in the first place? The smoke costs nothing to dump because no one owns the sky, because there is no market in clean air in which the factory must buy the right to foul it. Seen so, the externality is less a failure of the market than a place the market has never reached — a cost left wild because no property line was ever drawn around it. And if that is the trouble, a tax may not be the only cure, nor the best.</p>
+    <aside class="sn">There is a worm in the apple, and the later plates will feed on it. To set the tax at the harm the smoke does, one must know what the smoke costs — and the costs that escape the market are exactly the ones no market has measured. What is a fouled lung worth, a dimmed view, a degree of warming a century hence? Pigou's formula presumes a figure that may be unknowable, or knowable only by a guess dressed as a measurement. The remedy is clean in the diagram and treacherous in the world, for it asks the state to price what no one has ever had to price.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>Beneath the diagrams lies the claim this work has pressed throughout, and the externality is its clearest case.<sup class="snref"></sup> A price, it has argued, is a verdict on a hidden contest, mistaken for a fact of nature; and here the contest could not be plainer. The price of the cloth presents itself as a simple fact about the cloth — the cost of making it, the measure of its worth, handed down by the impartial market. But it is no such innocent thing. It is a ruling on a dispute: between the factory, which wants the air to carry off its smoke for free, and the neighbors, who want air fit to breathe. And the price has ruled for the factory — not by argument but by silence, by counting the factory's costs and saying nothing of the neighbors'. What looks like the cost of cloth is a judgment about whose costs are allowed to count, and whose may be quietly borne by those with no seat at the sale.</p>
+    <aside class="sn">Set the externality beside the book's recurring claim and it fits exactly. The price of the cloth looks like a simple fact about the cloth — what it costs to make, what it is worth. But it is a verdict, and a partial one: it has totted up the costs of the parties who struck the deal and silently struck out the costs borne by everyone outside it. The neighbor coughing in the smoke is not in the price; the price has ruled, by saying nothing, that his lungs are the factory's to use for free. What looks like the cost of cloth is a judgment about whose costs count.</aside>
+
+    <p>And one may say exactly why the price rules as it does.<sup class="snref"></sup> A price can reckon only with what someone owns, and can therefore charge for or refuse. The wool is owned; so the man who would use it must pay, and its cost enters the cloth's price faithfully. The air is owned by no one; so the factory that uses it to carry off its smoke pays nothing, and the cost of the smoke enters the price at zero — not because the smoke is harmless, which it is not, but because there is no owner to send the bill. The externality, then, is the shadow the price casts: the whole region of real costs and benefits that fall where no property line runs, to which the market, able to see only what is owned, is constitutionally blind. The price is not lying when it omits the smoke; it simply cannot see a cost no one has the standing to charge for. Where ownership stops, the price goes dark — and the dark is where the externality lives.</p>
+    <aside class="sn">The deepest way to see it is this. A price can register only what someone owns and can charge for. The wool has an owner, so the cloth's price counts it; the air has no owner, so the price counts the smoke at nothing — not because the smoke is harmless but because no one holds the right to sell or withhold the sky. The externality is the shadow the price casts: the region of real costs and benefits that fall where no property line runs, and that the market, seeing only what is owned, is therefore blind to. Where ownership ends, the price goes dark.</aside>
+
+    
+
+    <p>This is why the externality has seemed, to most economists since Pigou, the gravest of the market's failures and the one most needing the public hand. The others distort a price; this one erases it, leaving whole costs and benefits with no price at all, invisible to the mechanism meant to weigh everything. Pigou's tax is the attempt to supply the missing price from outside — to compute the cost the market could not see and charge it back to its author, so that the verdict, once partial, is made to count the claim it had ignored. It is a fine idea, and where it can be done it does great good. But it leans on two things not always to be had: a government that knows the size of the harm, and a confidence that the harm is the factory's fault to begin with, rather than a problem the parties might have settled themselves. The first doubt the volume meets in its plate on pricing the unpriced. The second it meets at once, and head on.</p>
+
+    <p class="pull">The price is not lying when it omits the smoke; it cannot see a cost that no one owns — and the dark where ownership ends is where the externality lives.</p>
+
+    <p>For there is a reply to Pigou, among the most celebrated in the discipline. It grants the whole analysis of private and social cost, then asks a question that turns the picture inside out: if the trouble is that no one owns the air, why not give someone the right to it, and let the factory and its neighbors strike their own bargain over the smoke — with no tax, no ministry, no official obliged to guess what a fouled lung is worth? The cost the price renders invisible might be made visible not by the state's reckoning but by the parties' own, if only the law would say to whom the air belongs. Whether that is salvation or wishful thinking is the subject of the plate that follows, and one of the great arguments of the century. The price has cast its shadow; the question is who shall be made to see into it. The argument remains open.</p>
+
+  </article>
+
+  <nav class="apparatus" aria-label="Related reading">
+    <h2 class="app-h">Related</h2>
+    <ul class="app-list">
+      <li><a href="the-theorem.html"><span class="app-rel">In this volume</span><span class="app-t">The Theorem</span><span class="app-g">plate ii — the celebrated reply this plate sets up: Coase, and whether the spillover needs the state at all</span></a></li>
+      <li><a href="the-externality.html"><span class="app-rel">In this volume</span><span class="app-t">The Shadow</span><span class="app-g">plate ix — the difficulty this plate flags: to tax the harm, one must first put a price on it</span></a></li>
+      <li><a href="the-externality.html"><span class="app-rel">In this volume</span><span class="app-t">The Gift</span><span class="app-g">plate iv — the spillover's kinder face: the benefit that lands on a bystander, and is therefore undermade</span></a></li>
+      <li><a href="the-power.html"><span class="app-rel">In The Power</span><span class="app-t">The Power</span><span class="app-g">the other great failure of the price: what goes wrong not when a cost escapes it, but when one side of the market grows too strong</span></a></li>
+    </ul>
+  </nav>
+
+  <footer>
+    <nav class="crumbs foot" aria-label="Return">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-externality.html">The Externality &middot; Vol XI</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate i</span>
+    </nav>
+    <p class="colophon">The first plate of Volume XI, <em>The Externality</em> — the cost that escapes the price, the divergence of private and social cost, and Pigou's tax to close it. Return to <a href="the-externality.html">the volume</a>, or to <a href="numeraire-atlas.html">the complete table of volumes</a>. The epigraph is taken from the public-domain <em>Economics of Welfare</em> of A. C. Pigou; the modern authorities are given in paraphrase. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-externality.html">← The Externality</a><a rel="next" href="the-theorem.html">The Theorem →</a></nav>
+</body>
+</html>

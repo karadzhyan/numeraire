@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Firm — Numéraire, Volume XIV</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem; --measure:40rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- ornament ---- */
+  .orn{display:flex;justify-content:center;margin:0 auto 1.9rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* ---- masthead / volume front ---- */
+  .masthead{padding:clamp(3rem,8vh,6rem) 0 clamp(1.6rem,4vh,2.6rem);text-align:center;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;text-decoration:none;}
+  .imprint:hover{color:var(--soft);}
+  .vol-dateline{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+
+  .vol-sym{width:114px;height:114px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;align-items:center;justify-content:center;
+    font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 500;font-size:3.1rem;line-height:1;letter-spacing:-.01em;}
+  .vol-sym.lit{background:var(--ink);color:var(--paper);}
+  .vol-elnum{font-family:"Fraunces",serif;font-size:.74rem;color:var(--faintest);letter-spacing:.18em;text-transform:uppercase;margin-top:1rem;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.3rem,6.5vw,4.6rem);line-height:1.02;letter-spacing:-.025em;margin:.7rem 0 0;text-wrap:balance;}
+  .vol-status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .vol-status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:44rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  /* ---- the volume question ---- */
+  .vol-q{max-width:46rem;margin:clamp(2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .vol-q .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.7rem;}
+  .vol-q q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.3rem,2.4vw,1.72rem);line-height:1.32;color:var(--ink);quotes:none;text-wrap:balance;}
+
+  /* ---- frontispiece (the argument) ---- */
+  .front{margin:clamp(3rem,7vh,5rem) auto 0;max-width:var(--measure);}
+  .front-eyebrow{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);text-align:center;
+    display:flex;align-items:center;gap:.9rem;justify-content:center;margin:0 0 2.1rem;}
+  .front-eyebrow::before,.front-eyebrow::after{content:"";height:1px;width:2.4rem;background:var(--hair);}
+  .front p{font-size:1.07rem;line-height:1.76;color:var(--ink);margin:0 0 1.35rem;text-wrap:pretty;}
+  .front p:last-child{margin-bottom:0;}
+  .front em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.74;padding:.1em .12em 0 0;color:var(--ink);}
+  .front-orn{display:flex;justify-content:center;margin:2rem 0;}
+  .front-orn svg{width:96px;height:12px;overflow:visible;}
+  .front-orn line{stroke:var(--num);stroke-width:1;} .front-orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* ---- the plates (a table within the table) ---- */
+  main{padding:clamp(3rem,7vh,5rem) 0 0;}
+  .plates-head{display:flex;align-items:baseline;gap:.9rem;margin:0 0 1.6rem;}
+  .plates-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-size:.86rem;color:var(--faintest);letter-spacing:.04em;flex:0 0 auto;}
+  .plates-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);flex:0 0 auto;}
+  .plates-rule{flex:1;height:1px;background:var(--hair);position:relative;top:-2px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:13px;}
+
+  .el{appearance:none;-webkit-appearance:none;background:var(--paper);border:1px solid var(--hair);border-radius:2px;
+    padding:14px 15px 16px;text-align:left;cursor:pointer;position:relative;min-height:152px;
+    display:flex;flex-direction:column;color:inherit;font-family:inherit;
+    transition:border-color .22s ease,background .22s ease,transform .22s ease,box-shadow .22s ease;}
+  .el:hover{border-color:var(--faintest);transform:translateY(-2px);}
+  .el-rn{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-size:.78rem;color:var(--faintest);letter-spacing:.18em;text-transform:uppercase;}
+  .pl-hero{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 500;font-size:1.34rem;line-height:1.06;margin-top:.5rem;letter-spacing:-.012em;}
+  .el-gloss{font-size:.79rem;color:var(--faint);line-height:1.36;margin-top:.5rem;font-style:italic;}
+  .pl-flag{margin-top:auto;padding-top:.7rem;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--faintest);}
+  .el.lit{background:var(--ink);border-color:var(--ink);}
+  .el.lit .pl-hero{color:var(--paper);}
+  .el.lit .el-rn{color:rgba(240,235,225,.5);}
+  .el.lit .el-gloss{color:rgba(240,235,225,.62);}
+  .el.lit .pl-flag{color:rgba(240,235,225,.7);}
+  .el.sel{box-shadow:inset 0 0 0 1.5px var(--ink);border-color:var(--ink);}
+  .el.lit.sel{box-shadow:inset 0 0 0 1.5px var(--paper);}
+
+  /* ---- detail panel (the plate, opened) ---- */
+  .detail{margin:clamp(2.4rem,5vh,3.6rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);scroll-margin-top:1.4rem;}
+  .d-head{display:flex;gap:1.3rem;align-items:flex-start;}
+  .d-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 500;font-size:1.5rem;line-height:1;
+    color:var(--ink);flex:0 0 auto;border:1px solid var(--hair);border-radius:2px;letter-spacing:.04em;
+    width:86px;height:86px;display:flex;align-items:center;justify-content:center;text-transform:uppercase;}
+  .d-sym.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .d-titles{min-width:0;}
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);}
+  .d-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.7rem,3.6vw,2.5rem);margin:.22rem 0 .35rem;line-height:1.04;letter-spacing:-.016em;}
+  .d-status{font-size:.84rem;color:var(--faint);font-style:italic;}
+  .d-status.print{color:var(--soft);font-style:normal;}
+  .d-status.print::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .d-desc{font-size:1.05rem;line-height:1.72;color:var(--ink);max-width:42rem;margin:1.3rem 0 0;text-wrap:pretty;}
+
+  .d-openq{margin:1.6rem 0 0;max-width:40rem;}
+  .d-openq .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.5rem;}
+  .d-openq q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);quotes:none;}
+
+  .d-excerpt{margin:1.8rem 0 0;max-width:42rem;border-left:1px solid var(--hair);padding:.2rem 0 .2rem 1.5rem;}
+  .d-excerpt .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.8rem;}
+  .d-excerpt p{font-size:1.04rem;line-height:1.74;color:var(--ink);margin:0;text-wrap:pretty;}
+  .d-excerpt .x-cap{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 500;font-size:1.15rem;}
+  .d-readplate{margin:1.6rem 0 0;}
+  .d-readplate a{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:.94rem;
+    letter-spacing:.01em;text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:2px;transition:border-color .2s ease,color .2s ease;}
+  .d-readplate a:hover{color:var(--soft);border-color:var(--soft);}
+  .d-readplate .arr{margin-left:.4rem;}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;text-decoration:none;}
+  .f-mark:hover{color:var(--soft);}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;}
+    .el{min-height:138px;padding:12px 12px 14px;}
+    .pl-hero{font-size:1.18rem;}
+    .el-gloss{font-size:.74rem;}
+    .vol-sym{width:92px;height:92px;font-size:2.5rem;}
+    .d-head{gap:1rem;}
+    .d-sym{width:64px;height:64px;font-size:1.25rem;}
+    .front p{font-size:1.04rem;}
+    .dropcap{font-size:3rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="rise d1">
+      <a class="imprint" href="numeraire-atlas.html">Numéraire</a>
+      <div class="vol-dateline">The Fourteenth Volume &middot; The Institutions</div>
+    </div>
+    <div class="vol-sym lit rise d2" aria-hidden="true">Fm</div>
+    <div class="vol-elnum rise d2">Element 14 &middot; Group IV</div>
+    <h1 class="rise d3">The Firm</h1>
+    <div class="vol-status rise d3">in print &middot; № XIV &middot; 2 of 12 plates</div>
+    <p class="standfirst rise d4">The market coordinates without a coordinator: no one commands the baker, yet the bread arrives. Economics has marveled at this for two centuries. Yet most of economic life takes place inside firms, where the market is switched off and command rules — where no price guides the worker, and resources move by plan. This volume examines the great exception to the price system: the firm, the island of planning in the market's sea, and the question of where the one gives way to the other.</p>
+    <div class="vol-q rise d5">
+      <span class="lead">The question of the volume</span>
+      <q>if the market needs no planner, why is so much of it conducted inside firms, which plan and nothing else?</q>
+    </div>
+  </header>
+
+  <section class="front" aria-label="The argument of the volume">
+    <div class="front-eyebrow">The argument</div>
+
+    <p><span class="dropcap">T</span>here is a marvel at the center of economics, so constant that one forgets to be astonished by it. No one is in charge of feeding a city. No official assigns the bakers their flour or the grocers their fruit, no plan decrees how many loaves shall be baked on a Tuesday in March; and yet the bread is on the shelf and the fruit in the bin, in roughly the right amounts, year upon year. The price system performs this miracle of coordination without a coordinator, harnessing the labor of millions who never meet and share no purpose. It is the deepest argument for the market, and a true one. But it carries a puzzle in its wake, and the puzzle is the subject of this volume. For if the price system coordinates so marvelously, with no one giving orders, why is so much of economic life conducted inside firms — great organizations where no price guides anyone, and orders are given all day long?</p>
+
+    <p>The puzzle was posed, with disarming simplicity, by a young economist named Ronald Coase in 1937. Look, he said, at what actually happens within a company. The worker does not sell each task to the highest bidder down the corridor; the clerk does not negotiate a fresh price with the next desk. They are told what to do, and they do it. Within the firm, the market is switched off and a kind of planning — the very planning the market was supposed to render needless — reigns instead. So why have firms at all? Why is not every transaction a market transaction, every worker a one-person business contracting for each job? Coase's answer was that using the market is not free. To buy a thing rather than to command it, one must discover the price, find a willing party, haggle, draw up the contract, and watch that it is kept; and these costs — the costs of transacting — can easily exceed the cost of simply hiring a person and directing her. Search and discovery, the haggling and the drafting, the watching for cheating and the quarreling when terms go stale — each is a toll the market levies, and the firm, by substituting a single open-ended order for a thousand little bargains, contrives to avoid it. The firm arises wherever it is cheaper to organize a task by authority than to carry it out through the market.</p>
+
+    <p>The firm, then, is an island of conscious power — the phrase is D. H. Robertson's, and Coase made it famous — in an ocean of unconscious co-operation: a patch of deliberate planning amid the spontaneous order of prices. And the image puts a question with some force. If planning by command saves the costs of the market, why not plan everything — gather the whole economy into one colossal firm and dispense with the market altogether? The twentieth century, under the name of central planning, tried very nearly that, and the attempt is a chapter for the volume on the rules. The answer is that command has costs of its own, and they swell as the organization grows: the manager's grasp falls short of his reach, incentives slacken, the paperwork multiplies. So the firm expands only to the margin where the cost of arranging one more transaction inside it equals the cost of buying that transaction outside — and there, at that fine balance, its boundary lies. Make or buy, integrate or contract out: the size and shape of every firm is this line, drawn and redrawn with each decision. And what pulls a transaction inside the line is often a particular hazard, the one Oliver Williamson made central: where a party must sink money into an asset useful only to its partner — a plant built beside a single buyer's mill, a tool good for no other job — it falls thereafter at that partner's mercy, and to bring the two under one owner is the surest escape from the holdup that would otherwise follow.</p>
+
+    <div class="front-orn" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>Cross the boundary inward and one finds not a market but a hierarchy, and a contract unlike any other. When you hire a plumber you buy a named task; when a firm hires an employee it buys the right, within limits, to direct her at tasks not yet named — and Herbert Simon saw in this exchange of obedience for a wage the very signature of the firm. Yet authority breeds troubles the market is spared. The directed worker has no price spurring her to exert herself, and must somehow be watched or motivated; the managers who run the great corporation may pursue their own comfort rather than the owners' gain, for ownership and control, fused in the old proprietor, were split asunder in the modern company, its owners a scattered crowd of shareholders and its controllers a professional few. From these frictions grew a whole literature of agency. And they provoked a deeper dispute about the firm's very nature: whether it is truly a realm of authority at all, or whether — as Alchian, Demsetz, and others argued — the boss can no more command the worker than a customer can command his grocer, so that the firm is but a nexus of contracts, the market in another dress. Against them, the theorists of ownership reply that when contracts are inevitably incomplete, the one who owns the assets holds the residual right to decide, and that this power is real.</p>
+
+    <p>The firm is, besides, a great deal more than its economics can easily hold. It is a social institution, run as much on loyalty, identity, and unwritten norm as on incentive and clause — for the contract is always incomplete, the monitor always partly blind, and what fills the gap is a culture no price can purchase. It has a history: the giant managerial corporation, in which a visible hand of administrative coordination supplanted the market's invisible one, is scarcely older than the railway, and may already be loosening, as cheap communication lets firms buy what they once had to make and dissolve toward supply chains, contractors, and platforms. And it wears forms other than the familiar one in which capital hires labor and shareholders own all — the partnership, the mutual, the worker cooperative — each raising the question of why that familiar form so nearly always wins. There is, besides, an older account of why firms exist at all, owed to Frank Knight: that someone must bear the uncertainty of an unknowable future, and the entrepreneur is the one who shoulders it — guaranteeing others their wage, and keeping for himself the residue, profit or ruin, that no contract could fix in advance. To all this the twelve plates attend, from command and the nexus of contracts through the agent, the asset, and the bearer of uncertainty, to the corporation's rise, its rivals, its culture, its shifting edge, and its purpose.</p>
+
+    <p>Beneath these inquiries runs the conviction that animates the whole table. A price, this work has held throughout, is a verdict on a hidden contest, mistaken for a fact of nature; and the firm presses a companion truth, more humbling than it first appears — that the price system is far smaller than it looks. We speak of a market economy as though all of economic life were prices the whole way down, an unbroken weave of buying and selling. But most of it, measured in hours and in value, takes place inside firms, where prices fall silent and plans and commands do the work. The price of a finished car seems the sum of the prices of its parts; yet the parts were largely made within firms, by administrative fiat, the assembly line answering to no market at all, and the prices we observe are only the visible peaks of a vast submerged planning. The market, then, is not the whole of the economy but an archipelago of price in a sea of organization — and the waterline between them, the boundary of the firm, is set by no law of nature but by the costs of transacting, and moves with every merger and every outsourcing. We take the price system for the natural and entire form of economic order; the firm reveals that order is wrought as much by authority as by exchange, and that the border between the two is itself a contested, shifting choice rather than a given. Where the volume on money examined the institution that makes prices possible, this one examines the institution that suspends them. The argument remains open.</p>
+  </section>
+
+  <main>
+    <div class="plates-head">
+      <span class="plates-num fr">№ XIV</span>
+      <span class="plates-name">The twelve plates</span>
+      <span class="plates-rule"></span>
+    </div>
+    <div class="grid" id="grid">
+      <button class="el lit" data-id="island" aria-label="Plate i — The Island — in print"><span class="el-rn">Plate i</span><span class="pl-hero">The Island</span><span class="el-gloss">why firms exist at all: the cost of using the market</span><span class="pl-flag">in print</span></button>
+      <button class="el lit" data-id="boundary" aria-label="Plate ii — The Boundary — in print"><span class="el-rn">Plate ii</span><span class="pl-hero">The Boundary</span><span class="el-gloss">where the firm stops, and the market resumes</span><span class="pl-flag">in print</span></button>
+      <button class="el" data-id="command" aria-label="Plate iii — The Command"><span class="el-rn">Plate iii</span><span class="pl-hero">The Command</span><span class="el-gloss">the wage that buys not a task but obedience</span></button>
+      <button class="el" data-id="nexus" aria-label="Plate iv — The Nexus"><span class="el-rn">Plate iv</span><span class="pl-hero">The Nexus</span><span class="el-gloss">the firm as a bundle of contracts, and the quarrel over whether it is more</span></button>
+      <button class="el" data-id="agent" aria-label="Plate v — The Agent"><span class="el-rn">Plate v</span><span class="pl-hero">The Agent</span><span class="el-gloss">the owner who cannot see, the manager who can: control and its costs</span></button>
+      <button class="el" data-id="asset" aria-label="Plate vi — The Asset"><span class="el-rn">Plate vi</span><span class="pl-hero">The Asset</span><span class="el-gloss">who owns the tools owns the residual say: the firm as property</span></button>
+      <button class="el" data-id="venture" aria-label="Plate vii — The Venture"><span class="el-rn">Plate vii</span><span class="pl-hero">The Venture</span><span class="el-gloss">the bearer of uncertainty, and profit as its wage</span></button>
+      <button class="el" data-id="scale" aria-label="Plate viii — The Scale"><span class="el-rn">Plate viii</span><span class="pl-hero">The Scale</span><span class="el-gloss">the visible hand: how the giant corporation rose</span></button>
+      <button class="el" data-id="cooperative" aria-label="Plate ix — The Cooperative"><span class="el-rn">Plate ix</span><span class="pl-hero">The Cooperative</span><span class="el-gloss">why capital hires labor, and seldom the reverse</span></button>
+      <button class="el" data-id="culture" aria-label="Plate x — The Culture"><span class="el-rn">Plate x</span><span class="pl-hero">The Culture</span><span class="el-gloss">the loyalty no contract names, and the firm as a community</span></button>
+      <button class="el" data-id="platform" aria-label="Plate xi — The Platform"><span class="el-rn">Plate xi</span><span class="pl-hero">The Platform</span><span class="el-gloss">the boundary dissolving: outsourcing, the gig, the platform</span></button>
+      <button class="el" data-id="purpose" aria-label="Plate xii — The Purpose"><span class="el-rn">Plate xii</span><span class="pl-hero">The Purpose</span><span class="el-gloss">what the firm is for, and to whom it answers</span></button>
+    </div>
+  </main>
+
+  <section class="detail" id="detail" aria-live="polite"></section>
+
+  <footer>
+    <div class="f-bar">
+      <a class="f-mark" href="numeraire-atlas.html">Numéraire</a>
+      <span class="f-ref">Volume XIV &middot; The Institutions</span>
+    </div>
+    <p class="colophon">Volume XIV, <em>The Firm</em>, opens with two plates in print — <em>The Island</em> and <em>The Boundary</em>, the reason firms exist and the limit of how far they spread. The fourteenth element of the table, and the ninth of its volumes to appear; it stands beside <a href="the-money.html">The Money</a> as the second of the institutions — for if money is the device that makes prices possible, the firm is the institution that suspends them, the planned island in the priced sea. Its founding insight, that the firm is the child of transaction costs, is the same lens Ronald Coase would later turn on the spillover in <a href="the-theorem.html">The Theorem</a>. Return to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+
+<script>
+const PLATES = {
+  island:{rn:"i",title:"The Island",family:"in print",lit:true,url:"the-island.html",
+    desc:`The question a young Ronald Coase asked in 1937, which the discipline had somehow never quite posed: if the market is so good at coordinating without a coordinator, why are there firms at all — why is not every task bought and sold, every worker a contractor of one? His answer founded a field. Using the market is itself costly: one must find the price, find the party, strike the bargain, and police it. Where those costs of transacting run higher than the cost of simply giving an order, the market is set aside and a firm appears, a patch of planning in the priced sea.`,
+    excerpt:`<span class="x-cap">T</span>here is a marvel at the center of economics, and it is easy to grow so used to it that one forgets to be amazed. No one is in charge of feeding a great city, and yet it is fed; no commissar assigns the bakers their flour or the grocers their fruit, and yet the bread is on the shelf and the apples in the bin, in roughly the right amounts, day after day. The price system does this, coordinating the labor of millions who never meet and have no common plan. But if the market is so good at coordinating without a coordinator, a strange question arises, and for a long time almost no one thought to ask it: why, then, is there any planning at all?`},
+  boundary:{rn:"ii",title:"The Boundary",family:"in print",lit:true,url:"the-boundary.html",
+    desc:`If organizing by command saves the costs of the market, why is the whole economy not a single firm — one vast planned enterprise? Because command, too, has its costs, and they mount as the firm grows: the manager's reach exceeds his grasp, incentive dulls, the bureaucracy thickens. So the firm expands only to the point where the cost of arranging one more task within it just matches the cost of buying that task outside — and there its boundary falls. Make or buy; integrate or contract out; the size of the firm is this margin, drawn and endlessly redrawn, and the deepest work on it — Williamson's — turns on a single hazard: the asset built for one partner that leaves its owner at the other's mercy.`,
+    excerpt:`<span class="x-cap">I</span>f the firm exists because directing resources by command can be cheaper than buying them in the market, an awkward question follows at once. Why not, then, direct everything by command? Why not gather the whole economy into a single great firm and dispense with the market altogether — the very proposal that, under the name of central planning, the twentieth century tried and abandoned at terrible cost? The answer must be that command has costs of its own, costs that grow with the size of the thing commanded; and the firm's true size is fixed not by how much the market wastes but by where the waste of the market and the waste of the office come, at the last bale and the last memorandum, to exactly balance.`},
+  command:{rn:"iii",title:"The Command",family:"in preparation",lit:false,
+    desc:`The contract at the heart of the firm is a strange one. When you hire a plumber you buy a defined task at a price; when a firm hires an employee it buys something else — the right, within limits, to tell her what to do, a task not yet specified. Herbert Simon saw that this is the firm's essence: the employee accepts authority, agreeing in advance to obey directions she cannot foresee, in exchange for a wage. The price mechanism, which haggles over each particular, is replaced by a standing relation of command. The wage, on this view, is not the price of a task but the price of obedience — and the volume on the wage and this one meet at that thought.`,
+    openq:`the worker is paid not for a task but for doing as she is told — what, then, has she sold?`},
+  nexus:{rn:"iv",title:"The Nexus",family:"in preparation",lit:false,
+    desc:`Not everyone grants that the firm commands at all. A powerful school — Alchian and Demsetz, later Jensen and Meckling — held that the boss's authority is an illusion: he can no more truly command the worker than a customer can command his grocer, for all either can do is withdraw his custom. On this view the firm is no hierarchy but a nexus of contracts, a knot of voluntary bargains no different in kind from the market that surrounds it, and the line between firm and market dissolves. Against them stand those for whom authority is real and ownership decisive. The quarrel is over nothing less than whether the firm is a thing apart from the market, or the market wearing a coat.`,
+    openq:`is the firm an island of authority, or only a dense tangle of the very contracts it was thought to replace?`},
+  agent:{rn:"v",title:"The Agent",family:"in preparation",lit:false,
+    desc:`The modern corporation severed two things once joined: ownership and control. Its owners are thousands of scattered shareholders who never see the books; its controllers are managers who do, and who may serve themselves — in empire, in salary, in a quiet life — rather than the owners they nominally answer to. Berle and Means named the separation in 1932; the economists who followed named its price the agency cost, the waste that arises whenever one person must act for another whose interests differ and whose eyes cannot follow. Monitors, incentives, boards, takeovers — the whole apparatus by which the principal tries, and fails, to bend the agent fully to his will.`,
+    openq:`when those who own cannot watch and those who watch do not own, in whose interest is the firm run?`},
+  asset:{rn:"vi",title:"The Asset",family:"in preparation",lit:false,
+    desc:`When contracts could specify everything, ownership would hardly matter; but contracts cannot, and so it matters greatly. The property-rights theory — Grossman, Hart, and Moore — locates the firm in the assets it owns, because owning the asset confers the residual right to decide whatever the contract left open. To integrate, to bring another's assets under one's own roof, is to seize that residual say, with all the power over the other party it brings. The firm, on this telling, is not a nexus of contracts nor a tower of command but a holding of things — and its boundary is the boundary of what it owns.`,
+    openq:`if no contract can foresee everything, who decides the rest — and is that not just to ask who owns?`},
+  venture:{rn:"vii",title:"The Venture",family:"in preparation",lit:false,
+    desc:`Before Coase, Frank Knight had given another reason for the firm, rooted not in transaction costs but in uncertainty. The future cannot be known, only guessed; someone must bear the risk of guessing wrong. The entrepreneur, in Knight's account, is that someone: he guarantees the worker a fixed wage, taking the uncertain residue — profit or loss — upon himself, and the firm is the vessel built to concentrate that uncertainty in the hands willing to carry it. Profit, on this view, is no mere return to capital but the wage of bearing what cannot be insured. The firm as a machine for housing risk, and the entrepreneur as the one who stands behind it.`,
+    openq:`if profit is the reward for bearing uncertainty, is the entrepreneur its earner — or merely its survivor?`},
+  scale:{rn:"viii",title:"The Scale",family:"in preparation",lit:false,
+    desc:`The great managerial corporation — the firm of tens of thousands, ranked and divisioned, run by salaried managers — is barely older than the railways that first required it. Alfred Chandler called the administrative coordination it brought a visible hand, set deliberately against Smith's invisible one: where the market had linked the stages of production through price, the integrated firm now linked them through plan, and often more cheaply and swiftly. The economies of scale and scope that rewarded size, the managerial hierarchies that mastered it, and the question of whether the colossus was a triumph of efficiency or merely of power.`,
+    openq:`did the giant firm rise because it produced more cheaply, or because it could?`},
+  cooperative:{rn:"ix",title:"The Cooperative",family:"in preparation",lit:false,
+    desc:`There is a fact so familiar it is rarely questioned: in the typical firm, capital hires labor. The shareholders own the enterprise and engage the workers, not the reverse — though one can imagine, and here and there one finds, the worker cooperative in which labor owns the capital instead. Why is the first arrangement nearly universal and the second rare? Henry Hansmann's answer turns on the costs of ownership — of who can bear the risk, align the many, and govern at least cost. The partnership, the mutual, the cooperative, the state enterprise, and the deep question of why one party, of all those a firm joins, is so often capital.`,
+    openq:`every firm joins capital and labor — why does the one almost always own, and the other almost always serve?`},
+  culture:{rn:"x",title:"The Culture",family:"in preparation",lit:false,
+    desc:`No firm runs on its contracts alone. The employment agreement is forever incomplete, the monitor cannot see everything, and yet work somehow gets done — because firms run also on things no clause can buy: loyalty, identity, the sense of belonging to something, the norms that make a person do well when no one is watching. The economics of identity, in Akerlof and Kranton's phrase, brings these into the ledger; the older language called it simply morale, or culture. The firm not as a contract nor a command but as a community — and the question of how much of its working rests on a glue that economics long pretended not to see.`,
+    openq:`if the contract is always incomplete, what fills the gap — and can a price ever buy it?`},
+  platform:{rn:"xi",title:"The Platform",family:"in preparation",lit:false,
+    desc:`The firm's boundary, fixed in theory by transaction costs, moves in fact as those costs do — and lately they have moved fast. Cheap communication and computation have made it easy to buy what once had to be made within: hence outsourcing, the global supply chain, the franchise, the contractor economy, and the platform that coordinates thousands of drivers or sellers it does not employ. Is this the firm dissolving back into the market, as transacting grows cheap? Or a new kind of firm, ruling through the market rather than replacing it? The boundary of the firm in an age that keeps redrawing it.`,
+    openq:`as the cost of buying falls, does the firm melt into the market — or learn to command it from without?`},
+  purpose:{rn:"xii",title:"The Purpose",family:"in preparation",lit:false,
+    desc:`What is a firm for, and to whom does it answer? One tradition, sharpened by Milton Friedman, replies without hesitation: the firm exists to make a profit for its owners, and to ask more of it is to confuse it with the state. Another holds that a body employing thousands and touching millions owes a wider duty — to its workers, its neighbors, the future — and that to serve shareholders alone is to license harm. Beneath the dispute lies a fact the other plates uncover from every side: that the firm is not only an efficient device but a concentration of power, and the question of what it is for is finally the question of how that power is to be held to account.`,
+    openq:`a firm answers to its owners — but it rules its workers and marks the world; to whom, then, should it truly answer?`}
+};
+
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+function render(id){
+  var tile=document.querySelector('.el[data-id="'+id+'"]');
+  var d=PLATES[id]; if(!d||!tile) return;
+  var h='';
+  h+='<div class="d-head">';
+  h+='<div class="d-sym'+(d.lit?' lit':'')+'">'+esc(d.rn)+'</div>';
+  h+='<div class="d-titles">';
+  h+='<div class="d-family">The Firm &middot; Plate '+esc(d.rn)+' &middot; '+esc(d.family)+'</div>';
+  h+='<h2 class="d-name">'+esc(d.title)+'</h2>';
+  h+='<div class="d-status'+(d.lit?' print':'')+'">'+esc(d.family)+'</div>';
+  h+='</div></div>';
+  h+='<p class="d-desc">'+esc(d.desc)+'</p>';
+  if(d.lit && d.excerpt){
+    h+='<div class="d-excerpt"><span class="lead">From the opening</span><p>'+d.excerpt+'</p></div>';
+  }
+  if(d.url){h+='<p class="d-readplate"><a href="'+d.url+'">Read the plate<span class="arr" aria-hidden="true">&#8594;</span></a></p>';}
+  if(!d.lit && d.openq){
+    h+='<p class="d-openq"><span class="lead">This plate will ask</span><q>'+esc(d.openq)+'</q></p>';
+  }
+  document.getElementById('detail').innerHTML=h;
+  var prev=document.querySelector('.el.sel'); if(prev) prev.classList.remove('sel');
+  tile.classList.add('sel');
+}
+
+(function(){
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.el').forEach(function(b){
+    b.addEventListener('click',function(){
+      render(b.dataset.id);
+      document.getElementById('detail').scrollIntoView({behavior:reduce?'auto':'smooth',block:'nearest'});
+    });
+  });
+  render('island');
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-steward.html">← The Steward</a><a rel="next" href="the-island.html">The Island →</a></nav>
+</body>
+</html>

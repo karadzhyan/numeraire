@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Target — The Level, Plate x · Numéraire</title>
+<meta name="description" content="Svensson; the inflation forecast as an intermediate target, and the public discipline of a conditional promise.">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- reading-progress hairline ---- */
+  .progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--ink);z-index:10000;}
+
+  /* ---- masthead ---- */
+  .masthead{padding:clamp(2.8rem,8vh,5.6rem) 0 clamp(1.6rem,4vh,2.6rem);text-align:center;}
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;}
+  .edition{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+  .edition b{font-family:"Fraunces",serif;font-weight:500;font-style:normal;color:var(--soft);letter-spacing:.04em;}
+
+  .symbox{width:84px;height:84px;border:1px solid var(--ink);border-radius:2px;background:var(--ink);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;margin:clamp(1.4rem,3.4vh,2.2rem) auto 0;}
+  .symbox .sb-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2rem;line-height:1;color:var(--paper);letter-spacing:-.01em;}
+  .symbox .sb-num{font-family:"Fraunces",serif;font-size:.66rem;color:rgba(240,235,225,.58);margin-top:.28rem;letter-spacing:.04em;}
+
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-top:1.15rem;}
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.5rem,7vw,5rem);line-height:1.0;letter-spacing:-.028em;margin:.55rem 0 0;text-wrap:balance;}
+  .subtitle{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.05rem,1.7vw,1.32rem);color:var(--faint);margin:.5rem 0 0;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.64;color:var(--soft);
+    max-width:43rem;margin:clamp(1.3rem,3vh,1.9rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+  .status{font-size:.84rem;color:var(--soft);margin:clamp(1.2rem,2.6vh,1.7rem) auto 0;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .backrow{margin-top:clamp(1.3rem,3vh,1.9rem);padding-top:1.5rem;border-top:1px solid var(--hair);max-width:50rem;margin-left:auto;margin-right:auto;}
+  .backlink{display:inline-block;font-size:.82rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .backlink:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- generic block furniture ---- */
+  main{padding:0;}
+  .eyebrow{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.2rem;}
+
+  .block-argument{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .argument{max-width:40rem;margin:0 auto;}
+  .argument p{font-size:1.08rem;line-height:1.74;color:var(--ink);margin:0 0 1.2rem;text-wrap:pretty;}
+  .argument p:last-child{margin-bottom:0;}
+  .argument .closer{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 400;font-style:italic;color:var(--soft);font-size:1.06rem;}
+
+  /* ---- table of plates ---- */
+  .block-toc{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .toc ol{list-style:none;margin:0;padding:0;max-width:44rem;}
+  .toc li{display:grid;grid-template-columns:2.5rem 1fr;column-gap:1rem;align-items:baseline;
+    padding:.85rem 0;border-top:1px solid var(--hair);}
+  .toc li:first-child{border-top:none;}
+  .t-num{font-family:"Fraunces",serif;font-size:.92rem;color:var(--faintest);text-align:right;}
+  .t-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.08rem;color:var(--ink);line-height:1.15;text-decoration:none;}
+  a.t-title{border-bottom:1px solid var(--num);padding-bottom:1px;}
+  a.t-title:hover{border-bottom-color:var(--ink);}
+  .t-gloss{grid-column:2;font-size:.85rem;color:var(--faint);font-style:italic;margin-top:.22rem;line-height:1.4;}
+  .t-q{grid-column:2;font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:.95rem;color:var(--soft);margin-top:.42rem;line-height:1.36;}
+  .t-q .lead{font-family:"Fraunces",serif;font-style:normal;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-right:.5rem;}
+  .t-tag{display:inline-block;margin-left:.6rem;font-family:"Newsreader",serif;font-size:.64rem;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--paper);background:var(--ink);border-radius:2px;padding:.12em .5em;vertical-align:.14em;}
+  .t-read{grid-column:2;margin-top:.42rem;}
+  .t-read a{font-size:.8rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .t-read a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- the plates (essays) ---- */
+  .plates-open{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.8rem,6vh,4rem);}
+  .plates-open .eyebrow{text-align:center;}
+  .plate{max-width:54rem;margin:clamp(2.8rem,6.5vh,4.4rem) auto 0;padding-top:clamp(2.2rem,4.6vh,3rem);
+    border-top:1px solid var(--hair);position:relative;scroll-margin-top:1.4rem;}
+  .plate:first-of-type{border-top:none;margin-top:clamp(1.6rem,3.5vh,2.4rem);padding-top:0;}
+  .plate-head{margin:0 0 1.7rem;}
+  .plate-kicker{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .plate-kicker .pk-tag{margin-left:.6rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .plate-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.8rem,4.2vw,2.7rem);line-height:1.03;letter-spacing:-.02em;margin:.32rem 0 .42rem;}
+  .plate-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.02rem;color:var(--faint);max-width:36rem;line-height:1.45;}
+
+  .epigraph{max-width:34rem;margin:1.4rem 0 1.9rem;padding-left:1.1rem;border-left:1px solid var(--num);}
+  .epigraph p{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:1.04rem;line-height:1.42;color:var(--soft);margin:0;}
+  .epigraph cite{display:block;font-style:normal;font-family:"Newsreader",serif;font-size:.78rem;
+    letter-spacing:.03em;color:var(--faintest);margin-top:.55rem;}
+
+  .plate-body{max-width:37rem;}
+  .plate-body p{font-size:1.05rem;line-height:1.75;color:var(--ink);margin:0 0 1.18rem;text-wrap:pretty;}
+  .plate-body p:last-child{margin-bottom:0;}
+  .plate-body em{font-style:italic;}
+  .plate-body .lead-para::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 500;
+    float:left;font-size:3.5rem;line-height:.78;padding:.08em .14em 0 0;color:var(--ink);}
+  .plate-body h4{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);margin:1.9rem 0 .9rem;}
+
+  .break{display:flex;justify-content:center;margin:1.9rem 0;}
+  .break span{font-family:"Fraunces",serif;font-size:1.05rem;letter-spacing:.4em;color:var(--faintest);padding-left:.4em;}
+
+  /* sidenotes — inline by default, true margin notes on wide screens */
+  .sn-ref{font-family:"Fraunces",serif;font-size:.64rem;vertical-align:super;line-height:0;color:var(--soft);margin-left:.06em;}
+  .sidenote{font-family:"Newsreader",serif;font-size:.82rem;line-height:1.52;color:var(--faint);
+    border-left:2px solid var(--hair);padding-left:.9rem;margin:.7rem 0 1.05rem;}
+  .sidenote .sn-num{font-family:"Fraunces",serif;color:var(--faintest);font-size:.7rem;margin-right:.38rem;}
+  .sidenote em{font-style:italic;}
+  @media (min-width:1040px){
+    .sidenote{float:right;clear:right;width:14.5rem;margin:.25rem -17.5rem 1.15rem 0;
+      border-left:none;border-top:1px solid var(--hair);padding:.42rem 0 0;}
+  }
+
+  /* ---- coda ---- */
+  .coda{max-width:40rem;margin:clamp(2.8rem,6vh,4rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);}
+  .coda p{font-size:1.06rem;line-height:1.74;color:var(--ink);margin:0 0 1.15rem;text-wrap:pretty;}
+  .coda p:last-child{margin-bottom:0;}
+  .coda .q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .f-ref a{text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .f-ref a:hover{border-bottom-color:var(--soft);}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .progress{transition:width .08s linear;}
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}.rise.d4{animation-delay:.4s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    h1{font-size:clamp(2.2rem,11vw,3rem);}
+    .symbox{width:72px;height:72px;}
+    .symbox .sb-sym{font-size:1.7rem;}
+    .plate-body .lead-para::first-letter{font-size:3rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+
+  /* ---- standalone plate (leaf) ---- */
+  .leaf-head{max-width:54rem;margin:0 auto;padding:clamp(2.2rem,6.5vh,4.4rem) 0 0;text-align:center;}
+  .leaf-loc{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.08em;color:var(--faintest);margin-bottom:1.7rem;}
+  .leaf-loc a{text-decoration:none;color:var(--faint);border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .leaf-loc a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+  .leaf-loc .sep{margin:0 .5rem;color:var(--num);}
+  .leaf-kicker{font-family:"Fraunces",serif;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .leaf-kicker .pk-tag{margin-left:.55rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .leaf-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.2rem,5.6vw,3.7rem);line-height:1.02;letter-spacing:-.024em;margin:.42rem 0 0;text-wrap:balance;}
+  .leaf-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.06rem;color:var(--faint);
+    max-width:34rem;margin:.72rem auto 0;line-height:1.5;text-wrap:pretty;}
+  .epigraph.leaf-epigraph{margin:1.95rem auto 1.4rem;text-align:left;}
+  .leaf-body-wrap{max-width:54rem;margin:clamp(1.8rem,4vh,2.8rem) auto 0;}
+
+  .leaf-nav{max-width:54rem;margin:clamp(3rem,7vh,5.2rem) auto 0;padding-top:clamp(1.8rem,4vh,2.6rem);
+    border-top:1px solid var(--hair);display:grid;grid-template-columns:1fr auto 1fr;gap:1.3rem;align-items:start;}
+  .ln-cell{text-decoration:none;display:block;}
+  .ln-cell .lab{display:block;font-family:"Fraunces",serif;font-size:.64rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--faintest);margin-bottom:.36rem;}
+  .ln-cell .ttl{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1rem;
+    color:var(--soft);line-height:1.22;}
+  a.ln-cell:hover .ttl{color:var(--ink);}
+  .ln-prev{text-align:left;} .ln-home{text-align:center;} .ln-next{text-align:right;}
+
+  @media (max-width:600px){
+    .leaf-nav{grid-template-columns:1fr;gap:1.4rem;}
+    .ln-prev,.ln-home,.ln-next{text-align:center;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#ne-contents">Complete contents</a><a href="../editions.html#volume-level">The Level · both editions</a><a href="../volumes/the-level.html">Collected volume</a></div></nav>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="frame">
+
+  <header class="leaf-head">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="leaf-loc rise d1" aria-label="Location in the series"><a href="numeraire-atlas-updated.html">Numéraire</a><span class="sep">·</span><a href="numeraire-xxi-the-level.html">Volume XXI · The Level</a></nav>
+    <div class="leaf-kicker rise d2">Plate x <span class="pk-tag">in print</span></div>
+    <h1 class="leaf-title rise d2">The Target</h1>
+    <div class="leaf-gloss rise d3">Svensson; the inflation forecast as an intermediate target, and the public discipline of a conditional promise.</div>
+    <div class="epigraph leaf-epigraph rise d3">
+      <p>To govern inflation with a delayed instrument is to choose a future path, and to make the reasons for that choice available to judgment.</p>
+      <cite>— the argument of this plate, after Lars E.O. Svensson, 1997</cite>
+    </div>
+  </header>
+
+  <main class="leaf-body-wrap">
+    <article class="plate">
+      <div class="plate-body">
+<p class="lead-para">A central bank acts today upon an inflation it will meet later. The prices now being recorded carry the residue of earlier decisions, contracts already signed, goods already ordered, and disturbances that policy cannot recall. An interest-rate decision enters this procession with a delay. It changes financing conditions, expenditure, and eventually the pressure upon prices; by the time its full effect arrives, the number that prompted it belongs to the past. The target therefore presents a problem of aim. A bank that pursues the latest reading alone can chase a movement that is already ending, or allow a disturbance still gathering force to pass unnoticed. The relevant question is what inflation is likely to become under the policy the bank chooses now. In this question the forecast changes its office. It becomes part of the means by which the future is governed, a conditional account of where a decision leads and a public object against which that decision may be judged.</p>
+<p>Lars Svensson gave this arrangement its explicit form: inflation targeting can be implemented by targeting the inflation forecast.<sup class="sn-ref">1</sup> The monetary authority begins with an announced inflation objective and a view of how its instrument affects the economy. It asks what inflation will be, over the horizon its action can influence, if it sets the instrument at one level rather than another. Under a strict inflation objective, it chooses the setting that brings the relevant forecast to the target. A forecast above the target calls for a different setting; a forecast below it calls for adjustment in the other direction, given the model's ordinary transmission mechanism. The procedure is forward-looking because the instrument works forward. Its apparent simplicity rests upon an important qualification: the forecast must be conditional upon the policy being evaluated. A projection made on the assumption that rates never change cannot by itself tell a bank what will happen if it changes them, and a forecast that already assumes the bank will correct every deviation cannot explain how the correction is to be made. Policy must appear inside its own account of the future.</p>
+<div class="sidenote"><span class="sn-num">1.</span> Svensson, <a href="https://larseosvensson.se/files/papers/intermt.pdf"><em>Inflation Forecast Targeting</em></a>, October 1996 manuscript, published in 1997, §§2 and 9. His simple model gives monetary policy a two-year control lag for inflation. That lag belongs to the model; the general argument concerns the horizon over which a particular economy's inflation responds to the instrument.</div>
+<p>The forecast supplies an intermediate target because the final target cannot be delivered on command.<sup class="sn-ref">2</sup> A central bank cannot set the price of every service, stop a harvest from failing, or prevent an unexpected disturbance from arriving between decision and outcome. It can choose a policy whose expected consequence is consistent with its objective, while acknowledging that the realized consequence will also contain news. Suppose the bank's best conditional forecast returns inflation to its target, and an unforeseen supply disruption subsequently raises prices. The miss is real; it does not establish, by itself, that the earlier decision was wrong. Conversely, a favorable shock can bring inflation to target after a poorly judged decision. Assessment must distinguish the quality of the choice on the information then available from the luck attending its result. This distinction gives the forecast a second office. Published with its assumptions, it preserves the reasoning that existed at the moment of action, allowing later readers to ask which part of the error came from policy, which from the model, and which from events the decision could not have known.</p>
+<div class="sidenote"><span class="sn-num">2.</span> Svensson, §§2–3 and 9: realized inflation differs from its conditional forecast because shocks arrive within the control lag. The forecast is an intermediate target, not a promise of exact control. Publication can improve scrutiny; it cannot make every forecast error innocent or every target hit evidence of a sound decision.</div>
+<p>A bank that also cares about employment and output must choose a path back to the target, and the speed of that return becomes part of the policy.<sup class="sn-ref">3</sup> A disturbance can raise inflation while depressing activity. Forcing the inflation forecast back immediately at the first controllable horizon may then require an unnecessarily severe further contraction. In Svensson's flexible formulation, the bank weighs deviations of inflation from its target together with deviations of output from its sustainable level. Greater weight upon output stabilization generally means a more gradual expected return of inflation toward the objective. The destination remains fixed while the route responds to the cost of reaching it. This is a disciplined reason for temporary departures, and it requires the departure to have a reason that can be stated. A vague assurance that the target will eventually be met supplies no such discipline. The forecast path must show the proposed adjustment, the slack it implies, and the judgment about how much disruption is warranted. The horizon is where a commitment to stable prices meets a concern for the lives through which stability is restored.</p>
+<div class="sidenote"><span class="sn-num">3.</span> Svensson, §6, adds an output-gap term to the loss function. In that model a larger output-stabilization weight slows the forecast's approach to the inflation target. Sustainable output is taken as a long-run constraint. The proposition neither promises a permanent employment gain from inflation nor supplies one universal return horizon.</div>
+<div class="break"><span>⁂</span></div>
+<p>The distinction between a target rule and an instrument rule now becomes consequential.<sup class="sn-ref">4</sup> A simple instrument rule specifies how the interest rate should respond to a small set of observed quantities. A target rule specifies the condition that the projected outcome should satisfy. Both can constrain discretion, but they place the constraint at different points in the chain. When the relation between interest rates and spending changes, a mechanical response to the same current inflation may produce a different future. A forecast-targeting bank must reconsider the response while continuing to explain its decision by the same objective. New information about transmission, demand, or supply can alter the instrument setting without altering what the institution is trying to achieve. This flexibility is a strength only if the forecast and the judgment entering it are exposed to examination. An objective can remain beautifully constant on paper while a pliable private forecast excuses any action the bank happens to prefer. The accountability of the method therefore resides in the connection between its stable end and its revisable means, and in whether outsiders can inspect that connection.</p>
+<div class="sidenote"><span class="sn-num">4.</span> Svensson, §8, distinguishes a rule for the target variables from a rule directly specifying the instrument. In his model the target rule depends on fewer structural parameters than the optimal instrument rule. This is a comparative robustness claim within the analysis, not a guarantee that a central bank's judgment will outperform every simple rule.</div>
+<p>Transparency gives the target its institutional force by making a conditional promise contestable.<sup class="sn-ref">5</sup> The public need not reproduce every calculation to ask whether the institution's own forecast supports its announced choice. What inflation does the bank expect? Under what interest-rate setting or path? How does the projected return differ from the alternatives, and what output cost explains that difference? A forecast without its policy assumption conceals the lever upon which its conclusion depends. A forecast without a discussion of uncertainty gives a point estimate the appearance of knowledge it cannot possess. And a forecast repeatedly revised to reconcile every decision with the same comforting destination can become a ceremony of justification. The remedy lies in an intelligible record: the assumptions, the conditional projections, the sources of uncertainty, and the reasons for choosing among feasible paths. Public criticism then has a defined object. It can challenge the estimate of the economy's condition or the weight placed upon its costs, instead of inferring the institution's purpose from the interest rate alone.</p>
+<div class="sidenote"><span class="sn-num">5.</span> Svensson, §3, studies monitoring when the bank's implicit objective differs from its official target; §9 explains why revealing the forecast helps the public evaluate decisions. The analysis assumes information conditions that real institutions only approximate. Independent forecasts can test the bank's account, while mechanically targeting outsiders' forecasts can create feedback problems.</div>
+<p>The target completes the promise made by <a href="numeraire-xxi-viii-the-anchor.html"><em>The Anchor</em></a> by giving credibility an everyday practice. An institution becomes answerable for a reasoned route from its instrument to its end, including the temporary departures that a more gradual return may require. This arrangement preserves a place for judgment, because neither the economy nor the transmission of policy holds still. It also gives judgment a burden: each departure must remain intelligible in terms of the objective, the evidence, and the costs borne along the way. The target cannot decide how heavily those costs should count. The relative weight placed upon inflation and unemployment is a social choice, and the model takes that choice as an instruction rather than producing it as a discovery. Nor can a numerical destination remove uncertainty from the journey. Its achievement is more exact and more modest: it makes a future aim present in today's decision, and gives the public a way to ask whether the decision is directed toward it. Monetary authority acquires its most durable freedom when its reasons can be followed. The argument remains open.</p>
+      </div>
+    </article>
+  </main>
+
+  <nav class="leaf-nav" aria-label="Plate navigation">
+    <a class="ln-cell ln-prev" href="numeraire-xxi-viii-the-anchor.html"><span class="lab">Prev plate ←</span><span class="ttl">Plate viii · The Anchor</span></a>
+    <a class="ln-cell ln-home" href="numeraire-xxi-the-level.html"><span class="lab">The volume</span><span class="ttl">The Level · contents</span></a>
+    <span class="ln-cell ln-next"></span>
+  </nav>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref"><a href="numeraire-xxi-the-level.html">The Level</a> · <a href="numeraire-atlas-updated.html">the table</a></span>
+    </div>
+    <p class="colophon">Plate x of <em>The Level</em>, Volume the Twenty-first of <em>Numéraire</em> — a periodic table of economic life. This leaf may be read on its own or as part of the volume. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<script>
+(function(){
+  var bar=document.getElementById('progress');
+  function onScroll(){
+    var h=document.documentElement;
+    var max=(h.scrollHeight-h.clientHeight);
+    var p=max>0?(h.scrollTop||document.body.scrollTop)/max:0;
+    bar.style.width=(p*100).toFixed(2)+'%';
+  }
+  document.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="numeraire-xxi-viii-the-anchor.html">← The Anchor</a><a href="numeraire-xxi-the-level.html">The Level · contents →</a></nav>
+</body>
+</html>

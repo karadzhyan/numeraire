@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Standing Pool — viii.g′</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d; --faintest:#9a9384;
+    --num:#c4bcab; --hair:#ddd6c7; --sel:rgba(120,94,52,.16); --tint:rgba(120,94,52,.07);
+    --accent:#785e34;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"Newsreader",Georgia,serif; font-optical-sizing:auto;
+    font-size:19px; line-height:1.62; font-weight:380;
+    text-rendering:optimizeLegibility; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+  }
+  body::before{
+    content:""; position:fixed; inset:0; z-index:9999; pointer-events:none; opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  ::selection{ background:var(--sel); }
+  :focus-visible{ outline:2px solid var(--ink); outline-offset:3px; border-radius:2px; }
+
+  h1,h2,h3,.fr{ font-family:"Fraunces",Georgia,serif; }
+  h1,h2,h3{ text-wrap:balance; }
+  p{ text-wrap:pretty; }
+  em{ font-style:italic; }
+
+  /* ---------- top bar ---------- */
+  .topbar{
+    display:flex; justify-content:space-between; align-items:baseline;
+    padding:20px clamp(20px,5vw,64px); position:absolute; top:0; left:0; right:0; z-index:5;
+  }
+  .imprint{ font-family:"Fraunces",serif; font-weight:600; font-size:15px; letter-spacing:.06em; color:var(--ink); }
+  .edition{ font-size:12.5px; letter-spacing:.04em; color:var(--faint); text-align:right; }
+
+  /* ---------- hero ---------- */
+  .hero{ min-height:100vh; display:flex; flex-direction:column; justify-content:flex-end;
+         padding:0 clamp(20px,5vw,64px) clamp(46px,8vh,96px); position:relative; }
+  .hero-inner{ max-width:1080px; }
+  .plate-no{ font-family:"Fraunces",serif; font-style:italic; font-weight:500;
+    font-size:15px; letter-spacing:.05em; color:var(--accent); margin-bottom:.7em; }
+  .title{
+    font-weight:340; font-size:clamp(58px,13vw,168px); line-height:.92;
+    letter-spacing:-.018em; margin:0 0 .42em;
+    font-variation-settings:"opsz" 144,"wght" 340;
+  }
+  .deck{
+    max-width:54ch; font-size:clamp(18px,2.1vw,22px); line-height:1.56;
+    color:var(--soft); font-weight:400; margin:0;
+  }
+  .deck .lead{ font-style:italic; color:var(--ink); }
+
+  /* ---------- main ---------- */
+  main{ max-width:1080px; margin:0 auto; padding:0 clamp(20px,5vw,64px); }
+  section{ padding:clamp(40px,7vh,86px) 0; border-top:1px solid var(--hair); }
+  section:first-of-type{ border-top:none; }
+
+  .movement{ font-weight:560; font-size:clamp(26px,3.4vw,38px); letter-spacing:-.01em; margin:0 0 .5em;
+    font-variation-settings:"opsz" 72,"wght" 560; }
+  .lede{ max-width:64ch; font-size:20px; color:var(--soft); margin:0 0 2.0em; }
+  .lede em{ color:var(--ink); }
+
+  .body-p{ max-width:64ch; margin:1.4em 0; color:var(--ink); }
+  .body-p.muted{ color:var(--soft); }
+  .body-p em{ color:var(--ink); }
+
+  /* ---------- instrument ---------- */
+  .figwrap{ margin:0 auto; }
+  .svgscroll{ overflow-x:auto; overflow-y:hidden; -webkit-overflow-scrolling:touch; }
+  .svgscroll svg{ display:block; width:100%; min-width:700px; max-width:940px; height:auto; margin:0 auto; }
+
+  /* ---------- controls ---------- */
+  .controls{ max-width:720px; margin:30px auto 0; padding:22px 24px; border:1px solid var(--hair);
+    background:rgba(255,255,255,.18); }
+  .ctl{ padding:6px 0; }
+  .ctl + .ctl{ border-top:1px solid var(--hair); margin-top:8px; padding-top:16px; }
+  .ctl-row{ display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
+  .ctl-label{ font-size:14.5px; color:var(--soft); flex:1 1 280px; line-height:1.45; }
+  .ctl-label b{ font-weight:600; color:var(--ink); }
+  .ctl-label .role{ display:block; font-size:12.5px; color:var(--faintest); font-style:italic; margin-top:2px; }
+  .vbadge{ font-family:"Fraunces",serif; font-weight:560; font-size:20px; color:var(--accent);
+    min-width:4.6ch; text-align:right; font-variant-numeric:tabular-nums; }
+  input[type=range]{ -webkit-appearance:none; appearance:none; width:100%; flex:2 1 240px;
+    background:transparent; height:24px; cursor:pointer; }
+  input[type=range]::-webkit-slider-runnable-track{ height:2px; background:var(--num); border-radius:2px; }
+  input[type=range]::-moz-range-track{ height:2px; background:var(--num); border-radius:2px; }
+  input[type=range]::-webkit-slider-thumb{ -webkit-appearance:none; appearance:none; width:16px; height:16px;
+    margin-top:-7px; border-radius:50%; background:var(--accent); border:2px solid var(--paper);
+    box-shadow:0 0 0 1px var(--accent); }
+  input[type=range]::-moz-range-thumb{ width:16px; height:16px; border-radius:50%;
+    background:var(--accent); border:2px solid var(--paper); box-shadow:0 0 0 1px var(--accent); }
+  input[type=range]:disabled{ opacity:.32; cursor:not-allowed; }
+  .scale-ends{ display:flex; justify-content:space-between; font-size:11.5px; color:var(--faintest);
+    font-style:italic; margin-top:3px; }
+
+  /* symmetry switch */
+  .switch-row{ display:flex; align-items:flex-start; gap:13px; }
+  .switch{ position:relative; flex:0 0 auto; width:38px; height:21px; margin-top:2px; }
+  .switch input{ position:absolute; opacity:0; width:100%; height:100%; margin:0; cursor:pointer; }
+  .switch .slot{ position:absolute; inset:0; background:var(--num); border-radius:11px; transition:background .18s; }
+  .switch .knob{ position:absolute; top:2.5px; left:2.5px; width:16px; height:16px; border-radius:50%;
+    background:var(--paper); box-shadow:0 0 0 1px rgba(0,0,0,.12); transition:transform .18s; }
+  .switch input:checked + .slot{ background:var(--accent); }
+  .switch input:checked + .slot + .knob{ transform:translateX(17px); }
+  .switch input:focus-visible + .slot{ outline:2px solid var(--ink); outline-offset:2px; }
+  .switch-text{ font-size:14px; color:var(--soft); line-height:1.42; }
+  .switch-text b{ color:var(--ink); font-weight:600; }
+  .switch-text .state{ font-style:italic; color:var(--accent); }
+
+  /* ---------- readouts ---------- */
+  .readouts{ display:flex; max-width:720px; margin:28px auto 0; border-top:1px solid var(--hair);
+    border-bottom:1px solid var(--hair); }
+  .ro{ flex:1; padding:14px 8px; text-align:center; position:relative; }
+  .ro + .ro::before{ content:""; position:absolute; left:0; top:18%; bottom:18%; width:1px; background:var(--hair); }
+  .ro-k{ display:block; font-size:10px; letter-spacing:.085em; text-transform:uppercase;
+    color:var(--faint); margin-bottom:.5em; line-height:1.3; }
+  .ro-v{ font-family:"Fraunces",serif; font-weight:540; font-size:clamp(22px,3.3vw,29px);
+    color:var(--ink); font-variant-numeric:tabular-nums; line-height:1; }
+  .ro-sub{ display:block; font-family:"Newsreader",serif; font-style:italic; font-weight:500;
+    font-size:11px; color:var(--faintest); margin-top:.45em; }
+  .ro.accent .ro-v{ color:var(--accent); }
+
+  .caption{ max-width:66ch; margin:30px auto 0; font-size:16px; line-height:1.6; color:var(--soft); }
+  .caption + .caption{ margin-top:14px; }
+  .caption b{ font-family:"Fraunces",serif; font-weight:600; font-style:italic; color:var(--ink);
+    letter-spacing:.01em; }
+  .caption em{ color:var(--ink); font-style:italic; }
+
+  .interlude{ max-width:62ch; margin:40px auto; text-align:center; font-family:"Fraunces",serif;
+    font-style:italic; font-weight:420; font-size:clamp(19px,2.4vw,23px); line-height:1.4; color:var(--ink);
+    font-variation-settings:"opsz" 40,"wght" 420; }
+
+  /* ---------- propositions ---------- */
+  .props h3{ font-weight:560; font-size:clamp(22px,2.8vw,28px); margin:0 0 1em;
+    font-variation-settings:"opsz" 48,"wght" 560; }
+  .prop{ display:grid; grid-template-columns:auto 1fr; gap:22px; padding:18px 0; border-top:1px solid var(--hair); align-items:start; }
+  .prop:first-of-type{ border-top:none; }
+  .prop-eq{ font-family:"Fraunces",serif; font-weight:560; font-size:clamp(17px,2.3vw,23px);
+    color:var(--accent); white-space:nowrap; padding-top:.05em; }
+  .prop-txt{ font-size:16.5px; color:var(--soft); }
+  .prop-txt em{ color:var(--ink); font-style:italic; }
+  .prop-txt b{ color:var(--ink); font-weight:600; font-family:"Newsreader",serif; }
+
+  /* ---------- strategic note ---------- */
+  .brief h3{ font-weight:560; font-size:clamp(22px,2.8vw,28px); margin:0 0 .6em;
+    font-variation-settings:"opsz" 48,"wght" 560; }
+  .brief .kicker{ font-family:"Fraunces",serif; font-style:italic; font-weight:500; font-size:14px;
+    letter-spacing:.05em; color:var(--accent); margin:0 0 1.2em; text-transform:uppercase; }
+  .move{ display:grid; grid-template-columns:auto 1fr; gap:22px; padding:16px 0; border-top:1px solid var(--hair); align-items:baseline; }
+  .move-n{ font-family:"Fraunces",serif; font-weight:560; font-size:20px; color:var(--accent); font-variant-numeric:tabular-nums; }
+  .move-t{ font-size:16.5px; color:var(--soft); max-width:62ch; }
+  .move-t b{ font-family:"Fraunces",serif; font-weight:600; color:var(--ink); font-style:italic; }
+  .move-t em{ color:var(--ink); }
+
+  /* ---------- colophon ---------- */
+  .colophon{ display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:16px;
+    color:var(--faint); font-size:13px; letter-spacing:.02em; }
+  .colophon .mark{ font-family:"Fraunces",serif; font-weight:600; font-size:15px; letter-spacing:.04em; }
+  .colophon a{ color:var(--ink); text-decoration:none; border-bottom:1px solid var(--num); }
+  .colophon a:hover{ border-color:var(--ink); }
+  .colophon .right{ text-align:right; font-style:italic; }
+
+  /* ---------- load reveal ---------- */
+  @media (prefers-reduced-motion:no-preference){
+    .reveal .hero-inner>*{ opacity:0; transform:translateY(9px); animation:rise .95s cubic-bezier(.2,.7,.2,1) forwards; }
+    .reveal .hero-inner>*:nth-child(1){ animation-delay:.08s }
+    .reveal .hero-inner>*:nth-child(2){ animation-delay:.20s }
+    .reveal .hero-inner>*:nth-child(3){ animation-delay:.34s }
+  }
+  @keyframes rise{ to{ opacity:1; transform:none } }
+
+  @media (max-width:640px){
+    .title{ font-variation-settings:"opsz" 90,"wght" 360; }
+    .readouts{ flex-wrap:wrap; }
+    .ro{ flex:1 1 33%; }
+    .ro:nth-child(4){ border-top:1px solid var(--hair); }
+    .ro:nth-child(4)::before,.ro:nth-child(5)::before{ display:none; }
+    .controls{ padding:18px 16px; }
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body class="reveal">
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-instruments">Companion Instruments · contents</a><a href="apparatus.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+
+<header class="topbar">
+  <span class="imprint">Numéraire</span>
+  <span class="edition">The Wage&nbsp;·&nbsp;№&nbsp;I&nbsp;·&nbsp;viii — the standing pool</span>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="plate-no">Plate viii.g′</div>
+    <h1 class="title">The Standing<br>Pool</h1>
+    <p class="deck"><span class="lead">The monopsonist of the textbook is a single mill in a company town.</span> A defendant can say, truthfully, that it is nothing of the kind — many rivals, free entry, every worker free to walk — and conclude the model cannot touch it. The conclusion is wrong, and the modern labour literature is built on why. Quitting takes time. A workforce is a standing pool, filled by recruitment and drained by separations, and a pool answers a wage cut only as fast as those flows allow. That sluggishness — not any scarcity of employers — is the whole of the firm's power. A restaurant whose cooks do not cross the street the instant a rival posts a better wage still pays them below their product — and the markdown runs deepest, by the evidence, exactly where pay is lowest and turnover highest, in the markets that look most competitive. Because the flows leave a trace in the firm's own records, it can be measured, bounded, and contested.</p>
+  </div>
+</section>
+
+<main>
+
+  <section class="instrument">
+    <h2 class="movement">viii.g′ — monopsony without a monopsonist</h2>
+    <p class="lede">Two knobs and a switch stand in for the whole of dynamic monopsony. The first sets <em>how sharply a firm's people quit when the wage moves</em> — the quit elasticity, the one quantity legible straight from payroll. The second sets <em>how fast the pool turns over.</em> The switch sets whether recruitment answers pay as sharply as quitting does. Move them, and three things appear at once: the firm's power, its price, and the time it takes to spend. None of it needs a single buyer — only that workers be slow.</p>
+
+    <div class="figwrap">
+      <div class="svgscroll">
+        <svg viewBox="0 0 760 800" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A three-panel instrument. Top left: recruitment and separation flows plotted against the posted wage on log scales, so each elasticity is a straight ray; the workforce pool rises with twice the slope of recruitment. Top right: the resulting markdown — the wage as a share of marginal product, falling along a curve as the labour-supply elasticity falls. Bottom: the same workforce draining in time after a rival raises pay, relaxing toward a lower floor with a half-life set by the turnover rate; the shaded wedge is the workforce the firm keeps only because leaving takes time.">
+          <defs>
+            <clipPath id="clipA"><rect x="70" y="70" width="280" height="260"/></clipPath>
+            <clipPath id="clipC"><rect x="90" y="480" width="620" height="260"/></clipPath>
+          </defs>
+
+          <!-- ============================================================
+               PANEL A : the two flows (log-log)
+               ============================================================ -->
+          <text class="panTitle" x="210" y="38" text-anchor="middle">the two flows · a pool filled and drained</text>
+          <text class="panNote" x="210" y="55" text-anchor="middle">on log scales a constant elasticity is a straight ray — its slope is the elasticity</text>
+
+          <!-- benchmark gridlines -->
+          <line class="grid" x1="175.74" y1="70" x2="175.74" y2="330"/>
+          <line class="grid" x1="70" y1="200" x2="350" y2="200"/>
+
+          <!-- axes -->
+          <line class="axis" x1="70" y1="70" x2="70" y2="330"/>
+          <line class="axis" x1="70" y1="330" x2="350" y2="330"/>
+
+          <!-- y ticks (flow index) -->
+          <line class="tickmark" x1="66" y1="256" x2="70" y2="256"/>
+          <line class="tickmark" x1="66" y1="200" x2="70" y2="200"/>
+          <line class="tickmark" x1="66" y1="144" x2="70" y2="144"/>
+          <text class="tick" x="62" y="259" text-anchor="end">½×</text>
+          <text class="tick" x="62" y="203" text-anchor="end">1×</text>
+          <text class="tick" x="62" y="147" text-anchor="end">2×</text>
+          <text class="axTitle" transform="translate(28,200) rotate(-90)" text-anchor="middle">flow rate · indexed to today</text>
+
+          <!-- x benchmark tick -->
+          <line class="tickmark" x1="175.74" y1="330" x2="175.74" y2="334"/>
+          <text class="tick" x="175.74" y="347" text-anchor="middle">w₀</text>
+          <text class="axTitle" x="210" y="370" text-anchor="middle">the posted wage&nbsp;&#8594;</text>
+          <text class="tickfaint" x="98" y="347" text-anchor="middle">lower pay</text>
+          <text class="tickfaint" x="320" y="347" text-anchor="middle">higher pay</text>
+
+          <!-- legend (above the plot box; no ray reaches it) -->
+          <g class="legend">
+            <line class="ray raySep"  x1="78"  y1="60" x2="92"  y2="66"/>
+            <text class="legLbl"      x="96"  y="65">separations</text>
+            <line class="ray rayRec"  x1="170" y1="66" x2="184" y2="60"/>
+            <text class="legLbl"      x="188" y="65">recruitment</text>
+            <line class="ray rayPool" x1="262" y1="67" x2="276" y2="57"/>
+            <text class="legLbl pool" x="280" y="65">the pool</text>
+          </g>
+
+          <!-- dynamic rays + pool callout injected here -->
+          <g id="flowsG"></g>
+
+          <!-- ============================================================
+               PANEL B : the markdown (linear share curve)
+               ============================================================ -->
+          <text class="panTitle" x="570" y="38" text-anchor="middle">the markdown · what the slowness is worth</text>
+          <text class="panNote" x="570" y="55" text-anchor="middle">the steady wage the firm posts, as a share of the worker's product</text>
+
+          <!-- ceiling (MRP) -->
+          <line class="ceiling" x1="430" y1="70" x2="710" y2="70"/>
+          <text class="ceilLbl" x="706" y="64" text-anchor="end">marginal product — the competitive wage</text>
+
+          <!-- empirical band : the separations-method range -->
+          <rect class="band" x="523.3" y="70" width="140" height="260"/>
+
+          <!-- axes -->
+          <line class="axis" x1="430" y1="70" x2="430" y2="330"/>
+          <line class="axis" x1="430" y1="330" x2="710" y2="330"/>
+
+          <!-- x ticks (eps) -->
+          <g>
+            <line class="tickmark" x1="430" y1="330" x2="430" y2="334"/>
+            <line class="tickmark" x1="500" y1="330" x2="500" y2="334"/>
+            <line class="tickmark" x1="570" y1="330" x2="570" y2="334"/>
+            <line class="tickmark" x1="640" y1="330" x2="640" y2="334"/>
+            <line class="tickmark" x1="710" y1="330" x2="710" y2="334"/>
+            <text class="tick" x="430" y="347" text-anchor="middle">0</text>
+            <text class="tick" x="500" y="347" text-anchor="middle">3</text>
+            <text class="tick" x="570" y="347" text-anchor="middle">6</text>
+            <text class="tick" x="640" y="347" text-anchor="middle">9</text>
+            <text class="tick" x="710" y="347" text-anchor="middle">12</text>
+          </g>
+          <text class="axTitle" x="570" y="370" text-anchor="middle">labour-supply elasticity&nbsp;ε</text>
+
+          <!-- y ticks (share) -->
+          <line class="tickmark" x1="426" y1="200" x2="430" y2="200"/>
+          <line class="tickmark" x1="426" y1="135" x2="430" y2="135"/>
+          <text class="tick" x="422" y="203" text-anchor="end">50%</text>
+          <text class="tick" x="422" y="138" text-anchor="end">75%</text>
+          <text class="tick" x="422" y="73" text-anchor="end">100%</text>
+          <text class="axTitle" transform="translate(384,200) rotate(-90)" text-anchor="middle">wage as share of product</text>
+
+          <!-- band label -->
+          <text class="bandLbl" x="593" y="298" text-anchor="middle">from separations · ε ≈ 4–10</text>
+          <text class="bandLbl2" x="593" y="314" text-anchor="middle">the method this plate follows</text>
+
+          <!-- share curve (filled by JS) -->
+          <path id="shareCurve" class="share" d=""/>
+
+          <!-- dynamic point + bracket injected here -->
+          <g id="markG"></g>
+
+          <!-- ============================================================
+               SECTION RULE
+               ============================================================ -->
+          <line class="sectionrule" x1="70" y1="404" x2="710" y2="404"/>
+          <text class="sectionlabel" x="390" y="396" text-anchor="middle">— and the same pool, now in time —</text>
+
+          <!-- ============================================================
+               PANEL C : the adjustment (linear, time)
+               ============================================================ -->
+          <text class="panTitle" x="400" y="450" text-anchor="middle">the slowness · why no one can leave fast enough</text>
+          <text class="panNote" x="400" y="467" text-anchor="middle">at t = 0 a rival opens paying 10% more; the firm holds its wage, and the pool drains toward a lower floor</text>
+
+          <!-- N0 reference line + label -->
+          <line class="n0line" x1="90" y1="500" x2="710" y2="500"/>
+          <text class="reflbl" x="96" y="494" text-anchor="start">N₀ — the going-rate workforce</text>
+
+          <!-- axes -->
+          <line class="axis" x1="90" y1="480" x2="90" y2="740"/>
+          <line class="axis" x1="90" y1="740" x2="710" y2="740"/>
+
+          <!-- x ticks (months) -->
+          <g>
+            <line class="tickmark" x1="90"  y1="740" x2="90"  y2="744"/>
+            <line class="tickmark" x1="193.3" y1="740" x2="193.3" y2="744"/>
+            <line class="tickmark" x1="296.7" y1="740" x2="296.7" y2="744"/>
+            <line class="tickmark" x1="400" y1="740" x2="400" y2="744"/>
+            <line class="tickmark" x1="503.3" y1="740" x2="503.3" y2="744"/>
+            <line class="tickmark" x1="606.7" y1="740" x2="606.7" y2="744"/>
+            <line class="tickmark" x1="710" y1="740" x2="710" y2="744"/>
+            <text class="tick" x="90"  y="757" text-anchor="middle">0</text>
+            <text class="tick" x="193.3" y="757" text-anchor="middle">12</text>
+            <text class="tick" x="296.7" y="757" text-anchor="middle">24</text>
+            <text class="tick" x="400" y="757" text-anchor="middle">36</text>
+            <text class="tick" x="503.3" y="757" text-anchor="middle">48</text>
+            <text class="tick" x="606.7" y="757" text-anchor="middle">60</text>
+            <text class="tick" x="710" y="757" text-anchor="middle">72</text>
+          </g>
+          <text class="axTitle" x="400" y="780" text-anchor="middle">months since the firm fell behind the market&nbsp;&#8594;</text>
+
+          <!-- y ticks (stock %) -->
+          <line class="tickmark" x1="86" y1="680" x2="90" y2="680"/>
+          <line class="tickmark" x1="86" y1="620" x2="90" y2="620"/>
+          <line class="tickmark" x1="86" y1="560" x2="90" y2="560"/>
+          <text class="tick" x="82" y="743" text-anchor="end">0</text>
+          <text class="tick" x="82" y="683" text-anchor="end">25</text>
+          <text class="tick" x="82" y="623" text-anchor="end">50</text>
+          <text class="tick" x="82" y="563" text-anchor="end">75</text>
+          <text class="tick" x="82" y="503" text-anchor="end">100%</text>
+          <text class="axTitle" transform="translate(44,610) rotate(-90)" text-anchor="middle">workforce remaining · % of N₀</text>
+
+          <!-- dynamic stock curve, asymptote, grace wedge, half-life injected here -->
+          <g id="poolG"></g>
+        </svg>
+      </div>
+
+      <!-- ============================================================
+           CONTROLS
+           ============================================================ -->
+      <div class="controls">
+        <div class="ctl">
+          <div class="ctl-row">
+            <label class="ctl-label" for="zRange"><b>How sharply quits answer pay</b> — the separation elasticity&nbsp;ζ
+              <span class="role">sets the size of the power — the depth of the markdown</span></label>
+            <input id="zRange" type="range" min="0.3" max="6" step="0.1" value="2.5" aria-label="separation elasticity zeta">
+            <span class="vbadge" id="zVal">2.5</span>
+          </div>
+          <div class="scale-ends">
+            <span>0.3 · barely move — captive</span>
+            <span>decamp at once · 6</span>
+          </div>
+        </div>
+
+        <div class="ctl">
+          <div class="ctl-row">
+            <label class="ctl-label" for="sRange"><b>How fast the pool turns over</b> — the separation rate&nbsp;s, per month
+              <span class="role">sets the speed — how long the power lasts, not how deep it runs</span></label>
+            <input id="sRange" type="range" min="0.01" max="0.12" step="0.005" value="0.04" aria-label="separation rate s per month">
+            <span class="vbadge" id="sVal">.04</span>
+          </div>
+          <div class="scale-ends">
+            <span>1%/mo · long tenure</span>
+            <span>a restaurant's churn · 12%/mo</span>
+          </div>
+        </div>
+
+        <div class="ctl">
+          <div class="switch-row">
+            <label class="switch">
+              <input id="symToggle" type="checkbox" checked aria-label="steady-state symmetry, recruitment as elastic as separations">
+              <span class="slot"></span><span class="knob"></span>
+            </label>
+            <span class="switch-text"><b>Steady-state symmetry · η = ζ.</b> In equilibrium your recruits are rivals' leavers, so recruitment answers pay as sharply as quits do — and the pool's elasticity is exactly <em>twice</em> the separation elasticity.
+              <span class="state" id="symState">on — ε = 2ζ</span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================
+           READOUTS
+           ============================================================ -->
+      <div class="readouts">
+        <div class="ro"><span class="ro-k">separation<br>elasticity ζ</span><span class="ro-v" id="roZeta">2.5</span></div>
+        <div class="ro"><span class="ro-k">supply<br>elasticity ε</span><span class="ro-v" id="roEps">5.0</span><span class="ro-sub" id="roEpsSub">= 2ζ</span></div>
+        <div class="ro"><span class="ro-k">wage as share<br>of product</span><span class="ro-v" id="roShare">83%</span></div>
+        <div class="ro accent"><span class="ro-k">the<br>markdown</span><span class="ro-v" id="roMark">17%</span></div>
+        <div class="ro"><span class="ro-k">grace —<br>half-life</span><span class="ro-v" id="roHalf">17</span><span class="ro-sub">months</span></div>
+      </div>
+
+      <p class="caption"><b>Above — the steady state.</b> Employment is a stock held where two flows balance: recruits arriving, workers separating. Plotted against the posted wage on log scales, a constant elasticity becomes a straight ray whose slope <em>is</em> the elasticity. Cut the wage and separations rise while recruitment falls — gently, because search and switching are costly — and the shallower the rays, the more captive the workforce; the firm's power is exactly that shallowness. The pool, employment itself, climbs twice as steeply, because it is fed by one flow and drained by the other, so its elasticity is their sum, η&nbsp;+&nbsp;ζ. A steady-state market forces a symmetry — your recruits are someone else's leavers, so recruitment is as wage-elastic as separation — which collapses the sum to <em>ε&nbsp;=&nbsp;2ζ</em>. That number fixes the wage at ε/(ε+1) of marginal product; the markdown is the gap to the ceiling. The switch shows the load the word <em>twice</em> carries: let recruitment be stickier than quitting and the elasticity falls below 2ζ, the markdown deepens, and a figure read from quit records alone no longer suffices. The shaded band is the measured range — estimated from separations, the best studies put ε near four to ten, a quit elasticity of two to three, a markdown of a tenth to a fifth, with the deepest markdowns, by the evidence, in low-wage high-turnover work.</p>
+
+      <p class="caption"><b>Below — the journey.</b> A slope is a claim about where the pool would <em>settle</em> at each wage; it is silent on the trip, and the trip is the point. At month zero a rival opens paying ten percent more and the firm holds its wage. Workers leave faster than they are replaced, and the stock relaxes toward a new, lower floor along an exponential whose <em>half-life is ln&nbsp;2&nbsp;∕&nbsp;s</em> — set entirely by how fast the pool turns over. The dashed floor is where the workforce would sit <em>at once</em> if anyone could leave the moment a better wage appeared; everything above it is on the payroll only because leaving takes time. That shaded wedge is the firm's grace — the below-market labour it keeps while the pool drains — and its area, (N₀−N*)∕s, is the rent friction alone collects. Here is the reconciliation the upper panel needs: the firm can hold below market <em>because</em> no one can leave fast enough to punish it, and the permanent markdown is simply this transient lived in forever — the half-life is not a by-product of the markdown but its enforcement. Now the decisive move: drag the turnover knob from a long-tenure workforce to a restaurant's churn. The wedge narrows, the grace shortens — and the floor does not move. <em>Speed is not size.</em> A workforce can turn over in months and still be marked down a fifth, because the markdown is set by how sharply quits answer pay, never by how often they happen.</p>
+    </div>
+  </section>
+
+  <p class="interlude">The company town was never the cause of the markdown.<br>The company town was only ever time — and time is everywhere.</p>
+
+  <section class="synthesis">
+    <p class="body-p">Read the two halves together and the steady markdown stops being a fact separate from the slow drain; it <em>is</em> the drain, seen from far enough away. Which is why the single buyer of the textbook turns out to be one limiting case of something far more ordinary. Classical monopsony — one employer, no alternatives — and dynamic monopsony — a thousand employers, costly switching — write the <em>same</em> wage equation: a markdown of 1/(ε+1) against a finite supply elasticity. They are observationally equivalent at the level of pay; what differs is the story behind the slope, and the story can be left unsettled, because the wedge does not depend on it. The evidence reaches the same verdict from the data — the markdown is pervasive and, in the language of the movers studies, largely independent of the forces driving classical monopsony: present with one buyer or a hundred, requiring no company, no town, no mill, only that quitting is not instantaneous.</p>
+    <p class="body-p muted">And none of it needs the boundary of "the market" to be drawn. The two parents of the firm's elasticity — how its recruitment and its retention answer the wage — sit in the firm's own personnel records: hires per posted wage, quits per posted wage. Under the symmetry the second alone recovers ε, and ε fixes the markdown; the competitive wage, the ceiling, is the one quantity never observed, and everything beneath it can be estimated from records a payroll department already keeps. That is what makes dynamic monopsony an empirical claim rather than an ideological one — and it is why the framework runs against the grain of how these cases are usually fought, where so much labour turns on defining a relevant market and counting the firms inside it.</p>
+  </section>
+
+  <section class="brief">
+    <p class="kicker">For the defence</p>
+    <h3>What the slowness gives you</h3>
+    <p class="body-p muted" style="margin-top:0">Plaintiff-side economics increasingly reaches for monopsony — to argue an employer suppressed pay below competitive levels, that a no-poach or non-solicit term had real bite, that the "we paid the market rate" defence is hollow because the market rate was itself depressed. Two fronts press hardest on a restaurant practice. One is the wave of franchise no-poach litigation — the clauses that barred a worker at one franchisee from moving to another, revived against McDonald's by the Seventh Circuit and chased out of more than two hundred chains by Washington's attorney general — where the live questions are <em>per se</em> versus the rule of reason, ancillary restraint, and, again and again, the definition of the relevant labour market. The other is the ordinary wage-and-hour case, where "the prevailing market wage" is raised as a shield. The instinct to wave the theory away — <em>we are hardly a company town</em> — is the wrong one, because dynamic monopsony says the curiosity is the general case. Meet it on its own ground, where the same structure that makes the markdown real also makes it tractable.</p>
+    <div class="move">
+      <div class="move-n">i</div>
+      <div class="move-t"><b>Bound the exposure on the measured band.</b> The markdown is 1/(ε+1), and firm-level supply elasticities estimated from separations cluster around <em>four to ten</em> (Bassier–Dube–Naidu; Sokolova–Sørensen) — a markdown of a tenth to a fifth, not a half, not nine-tenths. A claim of catastrophic suppression is, in disguise, a claim of an elasticity below anything the literature has found, and that is a falsifiable assertion an expert can be made to defend on cross. The band is a ceiling on damages before a single fact about the client is in evidence.</div>
+    </div>
+    <div class="move">
+      <div class="move-n">ii</div>
+      <div class="move-t"><b>Put the identity to the client's own records.</b> ε&nbsp;=&nbsp;2ζ means the whole question can be asked of payroll: how much do this firm's quits actually respond to its pay? If the answer is high — people do leave when a better wage appears — then ε is high and the implied markdown is small, provable from data the company already holds. The identity that lets a plaintiff <em>measure</em> power is the identity that lets a defendant <em>bound</em> it; which it does depends on the numbers, and only counsel who can read the model knows, before the expert is retained, which way they cut.</div>
+    </div>
+    <div class="move">
+      <div class="move-n">iii</div>
+      <div class="move-t"><b>Move the fight off market definition — and refuse the turnover smuggle.</b> These cases stall where plaintiffs must define a relevant labour market and prove concentration within it; the movers evidence finds the markdown <em>largely independent of concentration,</em> which means the firm-level elasticity, not the market boundary, is the real terrain — stand there. And expect churn to be offered as proof of exploitation, or low churn as proof of competition: both are sleight of hand. The lower panel is the rebuttal in a picture — turnover is speed, the markdown is size, and they are independent. The separation rate settles nothing about the separation elasticity; do not let a churn statistic be entered as a markdown, and do not lean on one yourself, because by the evidence high-turnover low-wage work runs toward <em>more</em> markdown, not less.</div>
+    </div>
+    <p class="body-p" style="margin-top:1.7em"><b>And the wage-and-hour front itself.</b> Monopsony does not stay in the antitrust lane. In a misclassification fight — the daily work of a restaurant practice — plaintiffs are learning to run the model backward: the very illiquidity that produces the markdown is offered as evidence of <em>economic dependence,</em> and economic dependence sits at the heart of the employee-versus-contractor test, under California's <em>Borello</em> factors and the federal economic-realities standard alike — a worker who cannot readily leave is, on the argument, not in business for herself. The same picture answers it: dependence is the separation <em>elasticity,</em> not the separation <em>rate,</em> and a workforce that leaves readily when paid more can hardly be called captive, whatever its churn. And where "we paid the prevailing market wage" is raised to defeat a wage claim, the model is the reason the phrase cannot close the inquiry — the prevailing wage in a frictional market already carries the markdown, so the benchmark the defence invokes is, on the plaintiff's theory, the very quantity in dispute. Better to know that before a case is built on it.</p>
+    <p class="body-p" style="margin-bottom:0">The throughline is the firm's own: a defence that understands wage formation at this depth argues from the architecture of the labour market — the flows, the friction, the identity binding them — rather than from a form book. The same equation is a sword for the plaintiff and a shield for the defendant, and the difference between them is the data. That is ground a treatise cannot reach by memorising rules. It is reached only by understanding the thing the rules are about.</p>
+  </section>
+
+  <section class="props">
+    <h3>the arithmetic of the source</h3>
+    <div class="prop">
+      <div class="prop-eq">ε&nbsp;=&nbsp;η&nbsp;+&nbsp;ζ</div>
+      <div class="prop-txt">The firm's labour-supply elasticity is the sum of <em>how its recruitment and how its retention answer the wage.</em> A stock fed by one flow and drained by another moves with both — an accounting identity, true before any economics is added.</div>
+    </div>
+    <div class="prop">
+      <div class="prop-eq">ε&nbsp;=&nbsp;2ζ</div>
+      <div class="prop-txt">In a steady-state market your recruits are rivals' leavers, so recruitment is as wage-elastic as separation (<b>η = ζ</b>) and the elasticity is twice the wage-elasticity of quits. The market boundary need never be drawn; the number lives in the quit records — <em>provided</em> the symmetry holds, which is the one assumption to name and to defend.</div>
+    </div>
+    <div class="prop">
+      <div class="prop-eq">¹⁄₍₂ζ₊₁₎</div>
+      <div class="prop-txt">The markdown. Finite friction, finite&nbsp;ζ, a positive wedge — it survives free entry and a thousand competitors. A quit elasticity of two to three, the central estimate, leaves workers paid 80–85% of their product. <em>Fewness was never required — only friction.</em></div>
+    </div>
+    <div class="prop">
+      <div class="prop-eq">one&nbsp;≡&nbsp;many&nbsp;+&nbsp;friction</div>
+      <div class="prop-txt">Classical monopsony and dynamic monopsony write the same equation — a markdown of 1/(ε+1) against a finite elasticity. They are <em>observationally equivalent</em> at the level of pay; the microfoundation is contested, the wedge is not. The evidence finds it largely independent of the forces driving the classical case.</div>
+    </div>
+    <div class="prop">
+      <div class="prop-eq">size&nbsp;≠&nbsp;speed</div>
+      <div class="prop-txt">The markdown is set by how sharply quits answer pay — the elasticity&nbsp;ζ. The pace of adjustment is set by how fast the pool turns over — the rate&nbsp;s, with half-life ln&nbsp;2&nbsp;∕&nbsp;s. <em>A workforce can churn quickly and still be marked down deeply.</em> Never read a rate as a markdown.</div>
+    </div>
+  </section>
+
+  <section class="assumptions">
+    <h3>What the picture assumes</h3>
+    <p class="lede" style="margin-bottom:1.4em">Every line in the instrument rests on a premise, and naming them is not modesty — each is a place the other side's expert can be met, and a place one's own can be checked before he is retained.</p>
+    <div class="prop">
+      <div class="prop-eq">linearity</div>
+      <div class="prop-txt"><b>Constant elasticity.</b> The rays are straight because the elasticity is held constant across the wage range. Real responses bend, and the clean markdown 1/(ε+1) holds exactly only in the neighbourhood where it is measured.</div>
+    </div>
+    <div class="prop">
+      <div class="prop-eq">symmetry</div>
+      <div class="prop-txt"><b>η = ζ in equilibrium.</b> The identity ε = 2ζ depends on a firm's recruits being rivals' leavers in a steady state. A firm that is growing or shrinking, or a market in slack, breaks the symmetry — and then the quit record alone misstates ε, in a direction one can name.</div>
+    </div>
+    <div class="prop">
+      <div class="prop-eq">flat hazard</div>
+      <div class="prop-txt"><b>A constant separation rate.</b> The exponential drain assumes a level monthly hazard. If quitting accelerates as the firm falls further behind the market, the half-life is shorter and the grace smaller than the curve shows.</div>
+    </div>
+    <div class="prop">
+      <div class="prop-eq">one cause</div>
+      <div class="prop-txt"><b>The whole gap is monopsony.</b> The plate reads the entire distance to marginal product as the wedge. Compensating differentials, mismeasured product, and rents shared for other reasons inhabit that same gap; they must be argued out, not assumed away.</div>
+    </div>
+    <p class="body-p" style="margin-bottom:0; margin-top:1.4em">Each line is a question on cross-examination — which is the use of stating them. The advocate who has named the assumptions beneath his own figure is the one prepared to test the assumptions beneath the other side's.</p>
+  </section>
+
+  <footer class="colophon">
+    <span>Drawn for <span class="mark" style="color:var(--accent)">Numéraire</span> — companion to <em>the apparatus</em>, plate&nbsp;viii.g′.</span>
+    <span class="right"><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html" data-personal-target="firm-home.html" data-personal-label="Karadzhyan">Karadzhyan</a><br>wage &amp; hour, for the defense</span>
+  </footer>
+
+</main>
+
+<script>
+(function(){
+  "use strict";
+  var NS = "http://www.w3.org/2000/svg";
+  function el(tag, attrs, parent){
+    var e = document.createElementNS(NS, tag);
+    for (var k in attrs){ if (attrs.hasOwnProperty(k)) e.setAttribute(k, attrs[k]); }
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+  function txt(attrs, content, parent){
+    var t = el("text", attrs, parent);
+    t.textContent = content;
+    return t;
+  }
+  function clear(g){ while (g && g.firstChild) g.removeChild(g.firstChild); }
+  function $(id){ return document.getElementById(id); }
+
+  /* ---------- Panel A maps (log–log) ---------- */
+  var AX0=70, AX1=350, AY0=70, AY1=330, W_LO=0.7, W_HI=1.8, F_LO=0.2, F_HI=5;
+  var lnWlo=Math.log(W_LO), lnWhi=Math.log(W_HI), lnFlo=Math.log(F_LO), lnFhi=Math.log(F_HI);
+  function ax(w){ return AX0 + (AX1-AX0)*(Math.log(w)-lnWlo)/(lnWhi-lnWlo); }
+  function ay(F){ return AY1 - (AY1-AY0)*(Math.log(F)-lnFlo)/(lnFhi-lnFlo); }
+
+  /* ---------- Panel B maps (linear) ---------- */
+  var BX0=430, BX1=710, BY0=70, BY1=330, E_MAX=12;
+  function bx(e){ return BX0 + (BX1-BX0)*Math.min(e,E_MAX)/E_MAX; }
+  function by(s){ return BY1 - (BY1-BY0)*s; }
+
+  /* ---------- Panel C maps (linear, time) ---------- */
+  var CX0=90, CX1=710, T_MAX=72, CYT=500, CYB=740;   /* N=100 -> 500 ; N=0 -> 740 */
+  function tx(t){ return CX0 + (CX1-CX0)*t/T_MAX; }
+  function ty(N){ return CYB - (CYB-CYT)*N/100; }
+  var REL_W = 0.90;   /* firm holds 10% below the new going rate */
+
+  var flowsG=$("flowsG"), markG=$("markG"), poolG=$("poolG");
+
+  /* share curve (static) — fill once */
+  (function(){
+    var d="", e;
+    for (e=0; e<=E_MAX+1e-9; e+=0.2){
+      var s=e/(e+1);
+      d += (e===0 ? "M" : "L") + bx(e).toFixed(2) + " " + by(s).toFixed(2);
+    }
+    $("shareCurve").setAttribute("d", d);
+  })();
+
+  function rayLine(slope, cls){
+    var FL=Math.pow(W_LO,slope), FR=Math.pow(W_HI,slope);
+    return el("line",{ x1:ax(W_LO).toFixed(2), y1:ay(FL).toFixed(2),
+                       x2:ax(W_HI).toFixed(2), y2:ay(FR).toFixed(2), "class":cls });
+  }
+
+  /* a point on the visible segment of the pool ray (slope=eps), ~72% up the
+     in-box wage range so the callout clears the benchmark dot at every slope */
+  function poolCallout(eps){
+    var wLo = Math.max(W_LO, Math.pow(F_LO, 1/eps));
+    var wHi = Math.min(W_HI, Math.pow(F_HI, 1/eps));
+    var w = Math.exp(Math.log(wLo) + (Math.log(wHi)-Math.log(wLo))*0.72);
+    return { x:ax(w), y:ay(Math.pow(w,eps)) };
+  }
+
+  function econ(z, sym){
+    var eta = sym ? z : z/2;
+    var eps = eta + z;
+    var share = eps/(eps+1);
+    return { eta:eta, eps:eps, share:share, mark:1-share };
+  }
+
+  function draw(){
+    var z   = parseFloat($("zRange").value);
+    var s   = parseFloat($("sRange").value);
+    var sym = $("symToggle").checked;
+    var E   = econ(z, sym);
+    var eps = E.eps, share = E.share, mark = E.mark, eta = E.eta;
+
+    /* =================== PANEL A =================== */
+    clear(flowsG);
+    var rays = el("g", { "clip-path":"url(#clipA)" }, flowsG);
+    rays.appendChild(rayLine(-z,  "ray raySep"));
+    rays.appendChild(rayLine(eta, "ray rayRec"));
+    rays.appendChild(rayLine(eps, "ray rayPool"));
+
+    el("circle", { cx:ax(1).toFixed(2), cy:ay(1).toFixed(2), r:3.3, "class":"benchDot" }, flowsG);
+
+    var pc = poolCallout(eps);
+    // offset the identity label perpendicular to the pool ray so it clears the ray at every slope
+    var KX = (AX1-AX0)/(lnWhi-lnWlo), KY = (AY1-AY0)/(lnFhi-lnFlo);
+    var ox = -KY*eps, oy = -KX, om = Math.sqrt(ox*ox + oy*oy), OFF = 17;
+    var lx = pc.x + OFF*ox/om, ly = pc.y + OFF*oy/om;
+    el("circle", { cx:pc.x.toFixed(2), cy:pc.y.toFixed(2), r:2.0, "class":"poolTick" }, flowsG);
+    txt({ x:lx.toFixed(2), y:ly.toFixed(2), "class":"poolLab", "text-anchor":"middle" },
+        sym ? "ε = 2ζ" : "ε = η + ζ", flowsG);
+
+    /* =================== PANEL B =================== */
+    clear(markG);
+    var ex = bx(eps), ey = by(share);
+
+    el("line", { x1:ex.toFixed(2), y1:ey.toFixed(2), x2:ex.toFixed(2), y2:BY1, "class":"drop" }, markG);
+    el("line", { x1:BX0, y1:ey.toFixed(2), x2:ex.toFixed(2), y2:ey.toFixed(2), "class":"drop" }, markG);
+
+    el("line", { x1:ex.toFixed(2), y1:ey.toFixed(2), x2:ex.toFixed(2), y2:BY0, "class":"markBar" }, markG);
+    el("line", { x1:(ex-5).toFixed(2), y1:BY0, x2:(ex+5).toFixed(2), y2:BY0, "class":"cap" }, markG);
+    el("line", { x1:(ex-4).toFixed(2), y1:ey.toFixed(2), x2:(ex+4).toFixed(2), y2:ey.toFixed(2), "class":"cap" }, markG);
+
+    var rightSide = ex <= 600;
+    var lblX = rightSide ? ex+10 : ex-10;
+    var lblAnchor = rightSide ? "start" : "end";
+    txt({ x:lblX.toFixed(2), y:(BY0+16).toFixed(2), "class":"markLab", "text-anchor":lblAnchor }, "the markdown", markG);
+    txt({ x:lblX.toFixed(2), y:(BY0+30).toFixed(2), "class":"markSub", "text-anchor":lblAnchor }, "= 1∕(ε+1)", markG);
+
+    el("circle", { cx:ex.toFixed(2), cy:ey.toFixed(2), r:4.4, "class":"livePt" }, markG);
+
+    /* =================== PANEL C =================== */
+    clear(poolG);
+    var Nstar = 100*Math.pow(REL_W, eps);
+    var yStar = ty(Nstar);
+    var half  = Math.log(2)/s;
+    var t, N;
+
+    /* grace wedge: between decay curve and the N* floor */
+    var d = "M" + tx(0).toFixed(2) + " " + ty(100).toFixed(2);
+    for (t=0; t<=T_MAX+1e-9; t+=1){
+      N = Nstar + (100-Nstar)*Math.exp(-s*t);
+      d += " L" + tx(t).toFixed(2) + " " + ty(N).toFixed(2);
+    }
+    d += " L" + tx(T_MAX).toFixed(2) + " " + yStar.toFixed(2) +
+         " L" + tx(0).toFixed(2)     + " " + yStar.toFixed(2) + " Z";
+    el("path", { d:d, "class":"grace" }, poolG);
+
+    /* the frictionless floor (reached at once) */
+    el("line", { x1:tx(0).toFixed(2), y1:yStar.toFixed(2), x2:tx(T_MAX).toFixed(2), y2:yStar.toFixed(2),
+                 "class":"asym" }, poolG);
+
+    /* the decay curve */
+    var dc = "";
+    for (t=0; t<=T_MAX+1e-9; t+=1){
+      N = Nstar + (100-Nstar)*Math.exp(-s*t);
+      dc += (t===0 ? "M" : "L") + tx(t).toFixed(2) + " " + ty(N).toFixed(2);
+    }
+    el("path", { d:dc, "class":"stockCurve" }, poolG);
+
+    /* floor label — placed opposite the half-life dot so the two never crowd */
+    var floorRight = tx(Math.min(half,T_MAX)) < 400;
+    var fx = floorRight ? 704 : 96, fA = floorRight ? "end" : "start";
+    txt({ x:fx, y:(yStar+15).toFixed(2), "class":"reflbl accent", "text-anchor":fA }, "N* — the new floor", poolG);
+    txt({ x:fx, y:(yStar+29).toFixed(2), "class":"reflbl-sub", "text-anchor":fA }, "depth set by ζ · reached at once if quitting were free", poolG);
+
+    /* half-life marker (pace set by s) */
+    var hC = Math.min(half, T_MAX);
+    var Nhalf = (100 + Nstar)/2;
+    var xh = tx(hC), yh = ty(Nhalf);
+    el("line", { x1:xh.toFixed(2), y1:CYB, x2:xh.toFixed(2), y2:yh.toFixed(2), "class":"hlMark" }, poolG);
+    el("circle", { cx:xh.toFixed(2), cy:yh.toFixed(2), r:3.4, "class":"hlDot" }, poolG);
+    var hlx = xh + 9, hlA = "start";
+    if (hlx > 600){ hlx = xh - 9; hlA = "end"; }
+    var hAbove = Nhalf <= 88;
+    var hy1 = hAbove ? yh - 15 : yh + 16;
+    var hy2 = hAbove ? yh - 2  : yh + 29;
+    txt({ x:hlx.toFixed(2), y:hy1.toFixed(2), "class":"hlLab", "text-anchor":hlA }, "half-life = ln 2 ∕ s", poolG);
+    txt({ x:hlx.toFixed(2), y:hy2.toFixed(2), "class":"hlSub", "text-anchor":hlA }, "≈ " + Math.round(half) + " mo · pace set by s", poolG);
+
+    /* grace-wedge label, where the wedge is tall (t ≈ 6 mo) */
+    var tL = 6;
+    var Nc = Nstar + (100-Nstar)*Math.exp(-s*tL);
+    if (yStar - ty(Nc) > 26){
+      var yMid = (ty(Nc) + yStar)/2;
+      txt({ x:(tx(tL)+7).toFixed(2), y:(yMid+4).toFixed(2), "class":"graceLab", "text-anchor":"start" }, "the grace", poolG);
+    }
+
+    /* =================== READOUTS =================== */
+    $("zVal").textContent  = z.toFixed(1);
+    $("sVal").textContent  = s.toFixed(3).replace(/^0/,"");
+    $("roZeta").textContent = z.toFixed(1);
+    $("roEps").textContent  = eps.toFixed(2).replace(/0$/,"").replace(/\.$/,"");
+    $("roEpsSub").textContent = sym ? "= 2ζ" : "= η + ζ";
+    $("roShare").textContent = Math.round(share*100) + "%";
+    $("roMark").textContent  = Math.round(mark*100) + "%";
+    $("roHalf").textContent  = Math.round(half);
+    $("symState").textContent = sym ? "on — ε = 2ζ" : "off — recruits stickier, ε = 1.5ζ";
+  }
+
+  ["zRange","sRange"].forEach(function(id){ $(id).addEventListener("input", draw); });
+  $("symToggle").addEventListener("change", draw);
+  draw();
+})();
+</script>
+
+<style>
+  /* ---------- SVG instrument styling ---------- */
+  .axis{ stroke:var(--ink); stroke-width:1.1; fill:none; }
+  .tickmark{ stroke:var(--faint); stroke-width:1; }
+  .grid{ stroke:var(--faintest); stroke-width:.8; stroke-dasharray:2 4; opacity:.75; fill:none; }
+  .ceiling{ stroke:var(--soft); stroke-width:1; stroke-dasharray:5 4; fill:none; }
+  .band{ fill:var(--tint); stroke:none; }
+  .tick{ font-family:"Newsreader",serif; font-weight:500; font-size:12px; fill:var(--faint); }
+  .tickfaint{ font-family:"Newsreader",serif; font-style:italic; font-weight:400; font-size:10.5px; fill:var(--faintest); }
+  .axTitle{ font-family:"Fraunces",serif; font-style:italic; font-weight:600; font-size:12.5px; fill:var(--soft); }
+  .panTitle{ font-family:"Fraunces",serif; font-style:italic; font-weight:600; font-size:15px; fill:var(--soft); }
+  .panNote{ font-family:"Newsreader",serif; font-style:italic; font-weight:400; font-size:11px; fill:var(--faintest); }
+  .ceilLbl{ font-family:"Newsreader",serif; font-style:italic; font-weight:500; font-size:11.5px; fill:var(--soft); }
+  .bandLbl{ font-family:"Fraunces",serif; font-style:italic; font-weight:600; font-size:12px; fill:var(--faint); }
+  .bandLbl2{ font-family:"Newsreader",serif; font-weight:500; font-size:12px; fill:var(--faint); }
+
+  .sectionrule{ stroke:var(--hair); stroke-width:1; }
+  .sectionlabel{ font-family:"Fraunces",serif; font-style:italic; font-weight:500; font-size:12.5px;
+    fill:var(--faintest); letter-spacing:.04em; }
+
+  .share{ stroke:var(--ink); stroke-width:2; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+  .ray{ fill:none; stroke-linecap:round; }
+  .raySep{ stroke:var(--soft); stroke-width:1.6; }
+  .rayRec{ stroke:var(--ink); stroke-width:1.7; }
+  .rayPool{ stroke:var(--accent); stroke-width:2.8; }
+  .benchDot{ fill:var(--paper); stroke:var(--ink); stroke-width:1.4; }
+  .poolTick{ fill:var(--accent); stroke:none; }
+
+  .legLbl{ font-family:"Newsreader",serif; font-style:italic; font-weight:500; font-size:11px; fill:var(--soft); }
+  .legLbl.pool{ fill:var(--accent); font-weight:600; }
+  .poolLab{ font-family:"Fraunces",serif; font-style:italic; font-weight:600; font-size:12.5px; fill:var(--accent); }
+  .poolSub{ font-family:"Newsreader",serif; font-weight:500; font-size:10.5px; fill:var(--accent); }
+
+  .drop{ stroke:var(--faint); stroke-width:.9; stroke-dasharray:2 3; opacity:.7; }
+  .markBar{ stroke:var(--accent); stroke-width:1.7; }
+  .cap{ stroke:var(--accent); stroke-width:1.7; }
+  .livePt{ fill:var(--accent); stroke:var(--paper); stroke-width:1.3; }
+  .markLab{ font-family:"Fraunces",serif; font-style:italic; font-weight:600; font-size:13px; fill:var(--accent); }
+  .markSub{ font-family:"Newsreader",serif; font-weight:500; font-size:11.5px; fill:var(--accent); }
+
+  /* Panel C */
+  .n0line{ stroke:var(--faintest); stroke-width:.9; stroke-dasharray:1 4; opacity:.8; }
+  .asym{ stroke:var(--soft); stroke-width:1; stroke-dasharray:5 4; }
+  .grace{ fill:var(--tint); stroke:none; }
+  .stockCurve{ stroke:var(--accent); stroke-width:2.6; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+  .hlMark{ stroke:var(--faint); stroke-width:.9; stroke-dasharray:3 3; opacity:.85; }
+  .hlDot{ fill:var(--paper); stroke:var(--accent); stroke-width:1.5; }
+  .hlLab{ font-family:"Fraunces",serif; font-style:italic; font-weight:600; font-size:12px; fill:var(--soft); }
+  .hlSub{ font-family:"Newsreader",serif; font-weight:500; font-size:11px; fill:var(--faint); }
+  .reflbl{ font-family:"Newsreader",serif; font-style:italic; font-weight:500; font-size:11.5px; fill:var(--soft); }
+  .reflbl.accent{ fill:var(--accent); font-weight:600; }
+  .reflbl-sub{ font-family:"Newsreader",serif; font-style:italic; font-weight:400; font-size:10.5px; fill:var(--faintest); }
+  .graceLab{ font-family:"Fraunces",serif; font-style:italic; font-weight:600; font-size:12px; fill:var(--accent); }
+  .graceSub{ font-family:"Newsreader",serif; font-style:italic; font-weight:400; font-size:10.5px; fill:var(--faint); }
+</style>
+
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="apparatus.html">← Monopsony</a><a rel="next" href="the-markdown-broadside.html">The Markdown →</a></nav>
+</body>
+</html>

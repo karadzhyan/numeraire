@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Game — Numéraire, Volume XXV</title>
+<meta name="description" content="The Game — Volume XXV of Numéraire, A Periodic Table of Economic Life. Strategic interdependence, Nash equilibrium, and the fragile arithmetic of cooperation: the prisoner's dilemma and the failures it explains, repeated games and the shadow of the future, commitment and credibility, bargaining, auctions, mechanism design, and the market itself understood as a game whose outcome depends on its rules.">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem; --measure:40rem;
+    --wash:rgba(28,26,22,.066); --wash2:rgba(28,26,22,.12);
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.62;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  .measure{max-width:var(--measure);margin-left:auto;margin-right:auto;}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- ornaments ---- */
+  .orn{display:flex;justify-content:center;margin:0 auto;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .divider{display:flex;align-items:center;gap:1.1rem;max-width:30rem;margin:clamp(3rem,7vh,5rem) auto;color:var(--num);}
+  .divider .ln{flex:1;height:1px;background:var(--hair);}
+  .divider svg{display:block;width:12px;height:12px;overflow:visible;flex:0 0 auto;}
+  .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* ---- progress + running head ---- */
+  #progress{position:fixed;top:0;left:0;height:2px;width:100%;transform:scaleX(0);transform-origin:0 50%;background:var(--soft);opacity:.45;z-index:10000;}
+  #topbar{position:fixed;top:0;left:0;right:0;z-index:9998;transform:translateY(-100%);transition:transform .5s cubic-bezier(.2,.6,.2,1);
+    background:rgba(240,235,225,.86);-webkit-backdrop-filter:saturate(1.1) blur(8px);backdrop-filter:saturate(1.1) blur(8px);
+    border-bottom:1px solid var(--hair);}
+  #topbar.show{transform:translateY(0);}
+  .tb-in{max-width:var(--frame);margin:0 auto;padding:.62rem clamp(1.4rem,4vw,3.4rem);display:flex;justify-content:space-between;align-items:baseline;gap:1.2rem;}
+  .tb-l{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:.86rem;letter-spacing:.01em;}
+  .tb-l span{color:var(--faintest);font-weight:400;}
+  .tb-r{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);text-align:right;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+
+  /* ---- title page ---- */
+  .vol-title{padding:clamp(3.4rem,11vh,8rem) 0 clamp(1.6rem,5vh,3rem);text-align:center;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.16rem;letter-spacing:.02em;}
+  .vol-no{font-size:.84rem;color:var(--faint);letter-spacing:.16em;text-transform:uppercase;margin-top:.55rem;}
+  h1.vol-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 380;font-weight:380;
+    font-size:clamp(2.9rem,9vw,6rem);line-height:.98;letter-spacing:-.028em;margin:clamp(1.7rem,4.5vh,2.8rem) 0 0;text-wrap:balance;}
+  .vol-sym{width:78px;height:78px;margin:clamp(1.6rem,4vh,2.4rem) auto 0;border:1px solid var(--hair);border-radius:2px;
+    display:flex;align-items:center;justify-content:center;background:var(--ink);}
+  .vol-sym span{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2.3rem;line-height:1;color:var(--paper);letter-spacing:-.01em;}
+  .vol-coords{font-family:"Fraunces",serif;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);margin-top:1.1rem;}
+  .vol-gloss{font-style:italic;color:var(--soft);font-size:1.12rem;margin:.5rem 0 0;}
+  .vol-epigraph{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 400;font-style:italic;
+    font-size:clamp(1.14rem,1.7vw,1.34rem);line-height:1.42;color:var(--soft);max-width:33rem;margin:clamp(1.8rem,4vh,2.6rem) auto 0;text-wrap:pretty;}
+  .vol-epigraph .lead{display:block;font-style:normal;font-variation-settings:"opsz" 24,"wght" 400;
+    font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.7rem;}
+  .vol-status{display:inline-flex;align-items:center;gap:.5rem;margin:clamp(1.8rem,4vh,2.4rem) auto 0;font-size:.84rem;color:var(--soft);}
+  .vol-status::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ink);}
+
+  /* ---- the argument (preface) ---- */
+  .part-head{text-align:center;margin:0 0 clamp(1.6rem,3.5vh,2.3rem);}
+  .part-kicker{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faintest);}
+  .part-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-weight:400;
+    font-size:clamp(1.5rem,3.4vw,2.1rem);letter-spacing:-.012em;margin:.4rem 0 0;}
+  .argument p{font-size:1.05rem;line-height:1.74;margin:0 0 1.15rem;text-wrap:pretty;}
+  .argument p.lede::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 420;
+    float:left;font-size:3.5em;line-height:.78;padding:.05em .1em 0 0;color:var(--ink);}
+  .argument em,.plate-body em,.coda em{font-style:italic;}
+
+  /* ---- contents ---- */
+  .toc{list-style:none;margin:0 auto;padding:0;max-width:43rem;}
+  .toc li{border-top:1px solid var(--hair);}
+  .toc li:last-child{border-bottom:1px solid var(--hair);}
+  .toc a{display:grid;grid-template-columns:2.6rem 1fr;column-gap:1.1rem;align-items:baseline;
+    padding:.82rem .3rem;text-decoration:none;transition:background .2s ease;}
+  .toc a:hover{background:rgba(28,26,22,.035);}
+  .toc-n{font-family:"Fraunces",serif;font-size:.92rem;color:var(--faintest);text-align:right;}
+  .toc-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.06rem;color:var(--ink);line-height:1.16;}
+  .toc-g{grid-column:2;font-size:.85rem;font-style:italic;color:var(--faint);margin-top:.16rem;line-height:1.38;}
+
+  /* ---- plates ---- */
+  .plate{margin:clamp(3.2rem,8vh,6rem) 0 0;padding-top:clamp(2.4rem,5.5vh,3.4rem);border-top:1px solid var(--hair);scroll-margin-top:4rem;}
+  .plate-open{max-width:var(--measure);margin-inline:auto;}
+  .plate-no{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 360;font-size:clamp(2.6rem,7vw,4.1rem);
+    line-height:.9;color:var(--num);letter-spacing:.02em;}
+  .plate-kicker{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faintest);margin:.9rem 0 .2rem;}
+  .plate-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.8rem,4.4vw,2.7rem);line-height:1.04;letter-spacing:-.018em;margin:0;text-wrap:balance;}
+  .plate-gloss{font-style:italic;color:var(--soft);font-size:1.02rem;margin:.55rem 0 0;line-height:1.4;}
+
+  .ask{max-width:var(--measure);margin:clamp(1.5rem,3.5vh,2.2rem) auto clamp(1.8rem,4vh,2.4rem);}
+  .ask .lead{display:block;font-family:"Fraunces",serif;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.55rem;}
+  .ask q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:clamp(1.18rem,1.8vw,1.38rem);line-height:1.36;color:var(--soft);quotes:none;}
+
+  .plate-body{max-width:var(--measure);margin-inline:auto;}
+  .plate-body p{margin:0 0 1.18rem;text-wrap:pretty;}
+  .plate-body > p:first-of-type::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 430;
+    float:left;font-size:3.5em;line-height:.76;padding:.04em .12em 0 0;color:var(--ink);}
+  .plate-body h4{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.76rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faint);margin:2rem 0 .9rem;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 380;font-style:italic;
+    font-size:clamp(1.4rem,2.3vw,1.7rem);line-height:1.32;color:var(--soft);text-align:center;
+    max-width:33rem;margin:clamp(2rem,4.5vh,2.8rem) auto;text-wrap:balance;}
+
+  .edge{max-width:var(--measure);margin:1.7rem auto;padding:.1rem 0 .1rem 1.15rem;border-left:1px solid var(--hair);
+    color:var(--faint);font-size:.92rem;line-height:1.62;}
+  .edge .lead{display:block;font-family:"Fraunces",serif;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faintest);margin-bottom:.4rem;}
+  .edge em{font-style:italic;color:var(--soft);}
+
+  /* ---- figures (engravings) ---- */
+  .fig{max-width:var(--measure);margin:clamp(2.1rem,4.5vh,2.9rem) auto;}
+  .fig-frame{border:1px solid var(--hair);border-radius:2px;padding:clamp(1rem,2.4vw,1.7rem) clamp(1rem,2.4vw,1.7rem) clamp(.8rem,2vw,1.3rem);background:rgba(255,253,247,.4);}
+  .fig svg{display:block;width:100%;height:auto;}
+  figcaption{margin:.95rem auto 0;max-width:38rem;font-size:.85rem;line-height:1.5;color:var(--faint);text-wrap:pretty;}
+  figcaption .fig-n{font-family:"Fraunces",serif;font-weight:500;letter-spacing:.04em;color:var(--soft);}
+  figcaption em{font-style:italic;}
+  .ax{stroke:var(--soft);stroke-width:1.1;fill:none;}
+  .tick{stroke:var(--soft);stroke-width:1;}
+  .curve{stroke:var(--ink);stroke-width:1.5;fill:none;stroke-linecap:round;}
+  .curve2{stroke:var(--ink);stroke-width:1.3;fill:none;stroke-linecap:round;}
+  .guide{stroke:var(--faintest);stroke-width:1;fill:none;stroke-dasharray:3 3.5;}
+  .core{stroke:var(--ink);stroke-width:3;fill:none;stroke-linecap:round;}
+  .fill-cs{fill:var(--wash);}
+  .fill-dwl{fill:var(--wash2);}
+  .fill-wedge{fill:var(--wash);}
+  .fill-lens{fill:var(--wash);}
+  .hatch-line{stroke:var(--faintest);stroke-width:.8;}
+  .lbl{font-family:"Fraunces",serif;font-size:11.5px;fill:var(--faint);font-variation-settings:"opsz" 24,"wght" 400;}
+  .lbl-i{font-family:"Newsreader",serif;font-style:italic;font-size:11px;fill:var(--soft);}
+  .lbl-sm{font-family:"Fraunces",serif;font-size:9.6px;fill:var(--faintest);letter-spacing:.02em;}
+  .lbl-ax{font-family:"Fraunces",serif;font-size:9.4px;fill:var(--faintest);letter-spacing:.12em;}
+
+  /* ---- coda + colophon ---- */
+  .coda{max-width:var(--measure);margin:clamp(3rem,7vh,5rem) auto 0;}
+  .coda p{margin:0 0 1.18rem;text-wrap:pretty;}
+  .coda p.lede::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 430;
+    float:left;font-size:3.5em;line-height:.76;padding:.04em .12em 0 0;color:var(--ink);}
+  footer{margin-top:clamp(3.6rem,8vh,6rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.4rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .colophon{font-size:.85rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+
+  /* ---- motion / reveal ---- */
+  @media (prefers-reduced-motion: no-preference){
+    html.js .reveal{opacity:0;transform:translateY(14px);}
+    html.js .reveal.in{opacity:1;transform:none;}
+    .reveal{transition:opacity .9s cubic-bezier(.2,.6,.2,1),transform .9s cubic-bezier(.2,.6,.2,1);}
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.18s}.rise.d3{animation-delay:.32s}.rise.d4{animation-delay:.46s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  /* ---- responsive ---- */
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .argument p,.plate-body p,.coda p{font-size:1.01rem;}
+    .plate-body > p:first-of-type::first-letter,.argument p.lede::first-letter,.coda p.lede::first-letter{font-size:3em;}
+    .f-bar{flex-direction:column;gap:.5rem;}
+    .toc a{grid-template-columns:2rem 1fr;column-gap:.8rem;}
+    figcaption{font-size:.82rem;}
+  }
+
+  /* ---- print: a volume, in print ---- */
+  @media print{
+    html,body{background:#fff;color:#000;}
+    body{font-size:11.5pt;line-height:1.5;}
+    body::before,#progress,#topbar{display:none !important;}
+    .frame{max-width:none;padding:0;}
+    .measure,.plate-open,.plate-body,.ask,.edge,.coda{max-width:34rem;}
+    a{text-decoration:none;}
+    .plate{break-before:page;border-top:none;padding-top:0;}
+    .fig,figure{break-inside:avoid;}
+    .plate-no{color:#bbb;}
+    .reveal{opacity:1 !important;transform:none !important;}
+  }
+  /* ---- live embed (operable figure) ---- */
+  .lab-embed{max-width:var(--measure);margin:clamp(2.1rem,4.5vh,2.9rem) auto;}
+  .lab-embed .le-readouts{display:flex;flex-wrap:wrap;gap:.9rem 1.6rem;margin:1.05rem 0 .2rem;padding:.85rem 0 0;border-top:1px solid var(--hair);justify-content:center;}
+  .lab-embed .le-ro{min-width:4.3rem;}
+  .lab-embed .le-ro .k{display:block;font-family:"Fraunces",serif;font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin:0 0 .16rem;}
+  .lab-embed .le-ro .v{font-family:"Fraunces",serif;font-weight:430;font-size:1.32rem;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums;font-feature-settings:"tnum";}
+  .lab-embed .le-ro.hot .v{color:#785e34;}
+  .lab-embed .le-tag{display:inline-block;font-family:"Fraunces",serif;font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:#785e34;border:1px solid rgba(120,94,52,.34);border-radius:2px;padding:.08rem .38rem;vertical-align:.1em;margin:0 .12rem;}
+  .lab-embed .pd-key{text-align:center;font-family:"Newsreader",serif;font-size:.84rem;color:var(--faint);margin:.2rem auto .9rem;max-width:30rem;line-height:1.5;}
+  .lab-embed .pd-key .you{color:var(--ink);font-weight:600;}
+  .lab-embed .pd-key .them{color:#785e34;font-weight:600;}
+  .lab-embed .pd-matrix{display:grid;grid-template-columns:7.2rem 1fr 1fr;gap:5px;max-width:30rem;margin:.2rem auto;}
+  .lab-embed .pd-chead{font-family:"Fraunces",serif;font-size:.72rem;color:var(--soft);text-align:center;align-self:end;padding:0 0 .32rem;letter-spacing:.01em;}
+  .lab-embed .pd-rhead{font-family:"Fraunces",serif;font-size:.72rem;color:var(--soft);display:flex;align-items:center;justify-content:flex-end;text-align:right;padding-right:.5rem;letter-spacing:.01em;}
+  .lab-embed .pd-cell{position:relative;border:1px solid var(--hair);border-radius:3px;background:transparent;cursor:pointer;padding:.9rem .5rem 1rem;text-align:center;transition:background .15s,border-color .15s;min-height:4.1rem;font-family:inherit;}
+  .lab-embed .pd-cell:hover{border-color:var(--soft);background:var(--wash);}
+  .lab-embed .pd-cell.sel{border-color:var(--ink);background:var(--sel);}
+  .lab-embed .pd-pay{font-family:"Fraunces",serif;font-size:1.5rem;line-height:1;font-variant-numeric:tabular-nums;font-feature-settings:"tnum";}
+  .lab-embed .pd-pay .you{color:var(--ink);}
+  .lab-embed .pd-pay .sep{color:var(--faintest);margin:0 .14rem;font-size:1.05rem;vertical-align:.06em;}
+  .lab-embed .pd-pay .them{color:#785e34;}
+  .lab-embed .pd-tag2{display:block;font-family:"Fraunces",serif;font-size:.53rem;letter-spacing:.11em;text-transform:uppercase;color:var(--faintest);margin-top:.42rem;min-height:.7rem;line-height:1.1;}
+  .lab-embed .pd-cell.sel .pd-tag2{color:var(--soft);}
+  .lab-embed .pd-toggles{display:flex;flex-wrap:wrap;gap:.55rem 1.6rem;margin:1.15rem 0 .1rem;justify-content:center;}
+  .lab-embed .pd-tg{display:flex;align-items:center;gap:.45rem;}
+  .lab-embed .pd-tg > span{font-family:"Fraunces",serif;font-size:.62rem;letter-spacing:.1em;color:var(--faintest);text-transform:uppercase;}
+  .lab-embed .pd-tbtn{font-family:"Fraunces",serif;font-size:.78rem;color:var(--soft);background:transparent;border:1px solid var(--hair);border-radius:2px;padding:.24rem .62rem;cursor:pointer;transition:all .15s;}
+  .lab-embed .pd-tbtn:hover{border-color:var(--soft);}
+  .lab-embed .pd-tbtn.on{color:var(--paper);background:var(--ink);border-color:var(--ink);}
+  .lab-embed .pd-verdict{max-width:33rem;margin:1.15rem auto .2rem;padding:.8rem 1.05rem;background:var(--wash);border-left:2px solid var(--faintest);border-radius:0 2px 2px 0;font-family:"Newsreader",serif;font-size:.97rem;line-height:1.56;color:var(--ink);}
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#ne-contents">Complete contents</a><a href="../editions.html#volume-game">The Game · both editions</a><a href="../essays/numeraire-xxv-the-game.html">Expanded essays</a></div></nav>
+<div id="progress" aria-hidden="true"></div>
+<div id="topbar" aria-hidden="true"><div class="tb-in">
+  <span class="tb-l">Numéraire <span>· The Game</span></span>
+  <span class="tb-r" id="tb-plate">Volume XXV</span>
+</div></div>
+
+<div class="frame">
+
+  <header class="vol-title">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="rise d1">
+      <span class="imprint">Numéraire</span>
+      <div class="vol-no">Volume XXV &middot; № XXV</div>
+    </div>
+    <h1 class="vol-name rise d2">The Game</h1>
+    <div class="vol-sym rise d3" aria-hidden="true"><span>Gm</span></div>
+    <div class="vol-coords rise d3">Group VI &middot; The Behaviors</div>
+    <p class="vol-gloss rise d3">strategy and equilibrium</p>
+    <p class="vol-epigraph rise d4">
+      <span class="lead">The question of the volume</span>
+      When each best move depends on every other, how does cooperation hold?
+    </p>
+    <div class="vol-status rise d4">in print &middot; twelve plates</div>
+  </header>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <section class="argument reveal" aria-labelledby="arg-h">
+    <div class="part-head">
+      <div class="part-kicker">Numéraire &middot; Volume XXV</div>
+      <h2 class="part-title" id="arg-h">The Argument</h2>
+    </div>
+    <p class="lede">Most of the table has watched a single party choose against a fixed world — the firm against its costs, the saver against the rate, the consumer against the prices on the shelf — as though the environment were a given thing, indifferent to the choice and unchanged by it. But the deepest fact about economic life is that the environment is mostly other people, who are also choosing, and whose choices depend on yours as yours depend on theirs. The price you can charge depends on what your rival charges; the wage you can win depends on what your fellows accept; the cartel holds or breaks on whether each member trusts the others to hold; the bank stands or falls on whether each depositor believes the others will not run. This is strategic interdependence, and the study of it is the subject of this volume. It is called, after the work of John von Neumann and Oskar Morgenstern that founded it, the theory of games — a name too playful for a body of thought that turns out to be the formal skeleton beneath much of the table.</p>
+    <p>A game, in this exact sense, is any situation in which the outcome for each party depends on the choices of all. It has players, who choose; strategies, the courses of action open to them; and payoffs, the outcomes that follow from each combination of choices. What makes a game more than a list of these is the peculiar form of reasoning it demands. To choose well, each player must anticipate the others; but the others are anticipating him; and he must anticipate their anticipation of him, and so into a hall of mirrors that has no natural end. The achievement of game theory was to find, in this regress, points of rest — configurations from which the reasoning does not push us away.</p>
+    <p>The central such point is the equilibrium that John Nash defined, and it is simply stated: a configuration of strategies in which no player can do better by changing his own, given what the others are doing. At a Nash equilibrium every player is doing the best he can against the rest, so no one wishes to move, and the configuration sustains itself. This is the same self-enforcing quality the volume on the norm found in a convention — and indeed a convention is an equilibrium of a coordination game, which is why the two volumes are kin. Equilibrium is the workhorse of the field; but it carries two pieces of hard news. There may be many equilibria, and the theory cannot always say which will obtain. And an equilibrium may be bad — bad for everyone in it — which is the most important thing game theory has to teach.</p>
+    <p>That lesson has a name and a shape: the prisoner's dilemma. In it, each player has a dominant move — defect, cheat, overuse, free-ride — that serves him whatever the other does; and so both choose it, and both arrive at an outcome that is worse for each than if both had cooperated. Here individual rationality and collective welfare come apart, and the invisible hand, which the early volumes watched turn private greed to public good, runs exactly backward, turning private reason to public ruin. The dilemma is the formal heart of the failures the table catalogued in its third family: the commons each exhausts, the arms race each escalates, the public good none will fund, the cartel each member betrays. Wherever self-interested parties reach an outcome all of them lament, a prisoner's dilemma is usually at the bottom of it.</p>
+    <p>If the dilemma were the last word, cooperation would be impossible and the table's many functioning markets a mystery. It is not the last word, because most dealings are not one-shot but repeated, and repetition changes everything. When the same parties meet again and again, today's defection can be answered by tomorrow's, and the shadow of the future — the prospect of reward for cooperation and punishment for betrayal — can make cooperation the rational course after all. This is the formal account of what the volumes on the contract and the norm described in the language of trust and reciprocity: that a handshake holds, and a norm endures, because the game is played more than once. Cooperation among the self-interested is possible, then, but it is fragile, resting on patience, memory, and the expectation of a future — the fragile arithmetic the volume's question names.</p>
+    <p>From this core the field reaches across the whole strategic economy. It studies the sequential games in which the order of moves matters and a credible commitment can defeat a stronger hand; the bargaining by which parties divide a surplus; the auctions by which goods are sold and prices discovered; the design of the rules themselves, so that self-interested play yields a wanted result; and the competition of firms, which is a game whose equilibrium is a price. By the end it becomes clear that the contest this entire table has invoked — the hidden contest of which every price is the verdict — is, formally, a game, and the price its equilibrium. And whether that game issues in harmony or in tragedy is not fixed by nature but follows from its structure: from the payoffs, the repetition, the information, and above all the rules, which institutions write and norms supply, and which human beings make and can remake. The Game is thus the formal floor beneath the failures, the institutions, and the behaviors; it stands second in the last family, beside <em>The Norm</em>, and it leans on a rationality that <em>The Choice</em> and <em>The Bias</em> will question. The argument remains open.</p>
+  </section>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <section class="contents reveal" aria-labelledby="toc-h">
+    <div class="part-head">
+      <div class="part-kicker">The twelve plates of this volume</div>
+      <h2 class="part-title" id="toc-h">The Plates</h2>
+    </div>
+    <ol class="toc">
+      <li><a href="#plate-i"><span class="toc-n">i</span><span class="toc-t">The Interdependence</span><span class="toc-g">what a game is; strategic interdependence; the hall of mirrors</span></a></li>
+      <li><a href="#plate-ii"><span class="toc-n">ii</span><span class="toc-t">The Equilibrium</span><span class="toc-g">Nash equilibrium; mutual best response; the self-enforcing configuration</span></a></li>
+      <li><a href="#plate-iii"><span class="toc-n">iii</span><span class="toc-t">The Dilemma</span><span class="toc-g">the prisoner's dilemma; when rational choices yield collective ruin</span></a></li>
+      <li><a href="#plate-iv"><span class="toc-n">iv</span><span class="toc-t">The Shadow</span><span class="toc-g">repeated games; the shadow of the future; how cooperation emerges</span></a></li>
+      <li><a href="#plate-v"><span class="toc-n">v</span><span class="toc-t">The Commitment</span><span class="toc-g">sequential games; backward induction; threats, promises, and credibility</span></a></li>
+      <li><a href="#plate-vi"><span class="toc-n">vi</span><span class="toc-t">The Coordination</span><span class="toc-g">many equilibria; focal points; the stag hunt and the problem of which</span></a></li>
+      <li><a href="#plate-vii"><span class="toc-n">vii</span><span class="toc-t">The Bluff</span><span class="toc-g">mixed strategies; randomization; zero-sum games and the minimax</span></a></li>
+      <li><a href="#plate-viii"><span class="toc-n">viii</span><span class="toc-t">The Bargain</span><span class="toc-g">bargaining games; dividing the surplus; the threat point and the split</span></a></li>
+      <li><a href="#plate-ix"><span class="toc-n">ix</span><span class="toc-t">The Auction</span><span class="toc-g">auctions as games; the winner's curse; price as the outcome of bidding</span></a></li>
+      <li><a href="#plate-x"><span class="toc-n">x</span><span class="toc-t">The Mechanism</span><span class="toc-g">designing the game; incentive compatibility; rules that elicit the truth</span></a></li>
+      <li><a href="#plate-xi"><span class="toc-n">xi</span><span class="toc-t">The Competition</span><span class="toc-g">the market as a game; Cournot, Bertrand, and the price as equilibrium</span></a></li>
+      <li><a href="#plate-xii"><span class="toc-n">xii</span><span class="toc-t">The Contest</span><span class="toc-g">the price as the verdict of a contest; cooperation, tragedy, and the rules</span></a></li>
+    </ol>
+  </section>
+
+  <main class="plates" id="plates">
+
+    <!-- ===================== PLATE I ===================== -->
+    <section class="plate reveal" id="plate-i" data-label="Plate i · The Interdependence">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">i</div>
+        <p class="plate-kicker">Plate the First &middot; The Behaviors &middot; № XXV</p>
+        <h3 class="plate-title">The Interdependence</h3>
+        <p class="plate-gloss">what a game is; strategic interdependence; the hall of mirrors</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>what changes when the world you choose against is not a thing but another mind, choosing back?</q></div>
+      <div class="plate-body">
+        <p>Begin with the difference that defines the subject. Through most of this table the chooser has faced a fixed world: the firm minimizing cost against given prices of inputs, the saver weighing a rate it cannot move, the consumer optimizing against the numbers on the shelf. In each case the environment is a backdrop — uncertain, perhaps, but indifferent, neither watching the chooser nor altering its behavior in response to his. A great deal can be understood by treating the world this way, and the table has understood it so. But the most important environment any economic actor faces is not a backdrop at all. It is other actors, who are choosing too, and whose choices turn on his as his turn on theirs. This is strategic interdependence, and where it is present, the placid logic of optimizing against a given world breaks down.</p>
+        <p>The instances are everywhere once one looks. The price a firm can charge depends on the price its rival sets; the wage a worker can hold out for depends on what his fellows will accept; a cartel's profits depend on whether each member trusts the rest to restrain output; a bank's survival depends on whether each depositor believes the others will keep their money in. In none of these is the relevant environment a fixed curve or a settled fact. It is a web of mutually dependent choices, and to model it as a backdrop is to miss the very thing that drives the outcome. The study of such webs is what von Neumann and Morgenstern, in the founding work of 1944, called the theory of games — a name whose lightness belies its reach, for the "games" in question are the most serious situations in economic life.</p>
+        <p>A game in this precise sense has three parts. There are the players, who choose; the strategies, the courses of action available to each; and the payoffs, the outcomes that result from every combination of the players' choices. What lifts a game above a mere catalogue of these is the kind of thinking it forces upon the players. To choose well, each must anticipate what the others will do; but each of the others is likewise anticipating him; so that he must anticipate their anticipation of him, and they his anticipation of their anticipation, in a regress of mutual expectation that mirrors back upon itself without any natural floor. This hall of mirrors is the signature of strategic thought, and it is what makes a game hard in a way that a decision against nature is not. Taming the regress — finding within it a configuration that is consistent with itself, from which the reasoning does not flee — is the problem the next plate takes up.</p>
+        <aside class="pull">Against nature, you optimize: the world does not try to outguess you. Against another mind, you must anticipate an anticipation of yourself — and that hall of mirrors is the whole of what makes a game a game.</aside>
+        <p>Seeing the economy as a tissue of games changes how its older categories look. The impersonal market forces of the earlier volumes — the price that seems to descend from nowhere, the wage that seems set by the air — resolve, on inspection, into the aggregate of strategic choices: the price is what emerges when firms contend, the wage what emerges when parties bargain, the rate what emerges when a central bank and a public anticipate each other. Game theory looks inside the impersonal force and finds reasoning agents, each responding to the others. It thereby brings the table's founding image into focus, for if every price is the verdict of a hidden contest, then the contest is, formally, a game, and the price its equilibrium — a claim the final plate of this volume will make good.</p>
+        <aside class="edge"><span class="lead">the edge</span> The line between a decision and a game is the line between nature and another mind, and it is sharper and more consequential than it first appears. When you choose against nature — planting against the weather, drilling against the geology, saving against an uncertain but indifferent future — you face a world that has no view of you, lays no trap, and will not change because it has guessed your move; you may treat it as a fixed if uncertain backdrop and optimize against it, as the earlier volumes did. When you choose against another mind, all is different, for the other is doing to you what you are doing to him: forming a picture of your reasoning and choosing in light of it, so that your best move depends on his, his on yours, and each on the picture each holds of the other. The error game theory exists to correct is the treating of the second case as the first — the firm that sets its price as though demand were a fixed curve rather than a rival's responsive choice, the general who plans as though the enemy were terrain, the policymaker who treats the public's expectations as a constant rather than a reaction to the policy itself. This last error the volume on the rate already met, in expectations that defeat the policy framed without them; here it is named in general. To mistake a strategic situation for a parametric one is to be outmaneuvered by an adversary one has declined to recognize as an adversary — and much of the practical payoff of this whole subject is simply the discipline of remembering that the other party is, like oneself, a chooser, and will choose in light of what one does.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE II ===================== -->
+    <section class="plate reveal" id="plate-ii" data-label="Plate ii · The Equilibrium">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">ii</div>
+        <p class="plate-kicker">Plate the Second &middot; The Behaviors &middot; № XXV</p>
+        <h3 class="plate-title">The Equilibrium</h3>
+        <p class="plate-gloss">Nash equilibrium; mutual best response; the self-enforcing configuration</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>in the hall of mirrors, is there any configuration from which no one wishes to step away?</q></div>
+      <div class="plate-body">
+        <p>The hall of mirrors left us without a floor: each player anticipating the others, the others anticipating him, the reasoning chasing itself with no place to stop. John Nash, in a doctoral thesis of a few pages, gave the field its floor. A configuration of strategies is an equilibrium, he proposed, if no player can do better by changing his own strategy alone, given what all the others are doing. At such a configuration every player is already playing the best reply to the rest; none has any reason to move; and so the configuration sustains itself. The regress is tamed not by following the mirrors to a bottom they do not have, but by finding the point at which the reflections agree — the configuration that, once each expects it, each confirms.</p>
+        <p>The figure shows the idea in its smallest form. Two players each choose between A and B, and the four cells give the payoffs, the first number to the row player and the second to the column. Here the reasoning is easy, for A is the best reply to whatever the other does — three beats one if the other plays A, two beats nothing if the other plays B — so each plays A, and the cell A-A is the equilibrium, ringed in the figure. Neither can improve by deviating; each is doing the best he can against the other; the point holds. In this particular game the equilibrium is also happy, the best outcome available to both, and one might be lulled into thinking equilibria generally are. The next plate will dispel that comfort.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ff1t ff1d">
+              <title id="ff1t">A Nash equilibrium</title>
+              <desc id="ff1d">A two-by-two game in which choosing A is each player's best reply to either choice of the other, so that the cell where both choose A is the unique equilibrium, ringed.</desc>
+              <text class="lbl-sm" x="190" y="68" text-anchor="middle">they choose A</text>
+              <text class="lbl-sm" x="310" y="68" text-anchor="middle">they choose B</text>
+              <rect x="130" y="80" width="240" height="180" fill="none" stroke="var(--ink)" stroke-width="1.2"/>
+              <line x1="250" y1="80" x2="250" y2="260" stroke="var(--ink)" stroke-width="1.1"/>
+              <line x1="130" y1="170" x2="370" y2="170" stroke="var(--ink)" stroke-width="1.1"/>
+              <text class="lbl-sm" transform="rotate(-90 114 125)" x="114" y="125" text-anchor="middle">you choose A</text>
+              <text class="lbl-sm" transform="rotate(-90 114 215)" x="114" y="215" text-anchor="middle">you choose B</text>
+              <rect x="158" y="113" width="64" height="22" rx="5" fill="none" stroke="var(--ink)" stroke-width="1.3"/>
+              <text class="lbl-i" x="190" y="104" text-anchor="middle">equilibrium</text>
+              <text class="lbl-sm" x="190" y="129" text-anchor="middle">3 , 3</text>
+              <text class="lbl-sm" x="310" y="129" text-anchor="middle">2 , 1</text>
+              <text class="lbl-sm" x="190" y="215" text-anchor="middle">1 , 2</text>
+              <text class="lbl-sm" x="310" y="215" text-anchor="middle">0 , 0</text>
+              <text class="lbl-sm" x="250" y="281" text-anchor="middle">a unique equilibrium, best reply to best reply</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 1.</span> A Nash equilibrium. The ringed cell is the configuration from which neither player can profit by moving alone: given that the other chooses A, each does best to choose A as well, so the expectation of A-A confirms itself. This mutual-best-reply condition is the central organizing idea of the whole subject, and it is the same self-enforcing quality the volume on the norm found in a convention — for a convention is precisely an equilibrium of a coordination game, a configuration no one wishes to leave. Nash proved that every finite game has at least one such point, though to guarantee it one must sometimes allow the players to randomize, in the manner a later plate describes.</figcaption>
+        </figure>
+        <p>The reach of the concept comes from this kinship with the self-enforcing. Everything the table has called an institution or a norm — the convention that fixes which side of the road we drive on, the practice that holds a cartel together, the expectation that sustains a currency, the custom that governs a commons — can be understood as an equilibrium of some game, a configuration that persists because no one party can gain by departing from it alone. Game theory thus supplies the precise meaning of a quality the table has invoked throughout under the looser names of trust, custom, and the done thing: to be self-enforcing is to be a Nash equilibrium. And Nash's existence theorem, that every finite game has at least one equilibrium, assures us that the search for such a resting point is never in vain, though it may lead, as the next plates show, to a point in randomized play or to one among several.</p>
+        <aside class="pull">An equilibrium is a configuration that, once expected, confirms itself: each playing the best reply to all, none wishing to move. It is where the game comes to rest — which is not at all to say where it ought to.</aside>
+        <p>For the concept carries two warnings, and they govern all that follows. The first is that a game may have many equilibria, with the theory silent as to which will prevail — an indeterminacy that the plate on coordination must confront, and that only a focal point or a convention can resolve. The second, and graver, is that an equilibrium need not be good. It is merely a configuration no one can improve upon by moving alone; whether it is good for the players together, the definition neither asks nor answers. The comfortable game in the figure, whose equilibrium is the best outcome for both, is the exception that flatters. The general case includes equilibria that are bad for everyone caught in them, and it is to the most important of these that we now turn.</p>
+        <aside class="edge"><span class="lead">the edge</span> The most important and most misunderstood feature of equilibrium is that it is a descriptive concept and not a normative one — a claim about where a game comes to rest, carrying no promise that the resting place is good. The word invites the confusion, for in ordinary speech an equilibrium sounds like a balance, and a balance sounds like a thing achieved and so desirable. But a Nash equilibrium is merely a configuration no player can improve upon by moving alone, and there is no reason such a configuration must be good for the players collectively, or fair, or efficient, or anything one might hope. The dilemma of the next plate is exactly a game whose only equilibrium is bad for everyone in it; the trap of the volume on the norm was an equilibrium that locked a whole community into misery; a discriminatory convention, a corrupt practice, a ruinous arms race — all can be equilibria, perfectly stable, no one able to do better by deviating alone. This severing of equilibrium from optimum is the hinge on which the table's whole critical enterprise turns. For if the market clears at an equilibrium, and an equilibrium need not be good, then the clearing of the market is no proof of its goodness, and the price at which it clears is no verdict of justice but merely the point at which the strategic contest happens to rest. The harmony the early volumes glimpsed in the invisible hand is real but conditional — it holds for some games and fails for others — and which of the two a given market is depends not on nature but on a structure that institutions and norms supply, and that human beings can change.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE III ===================== -->
+    <section class="plate reveal" id="plate-iii" data-label="Plate iii · The Dilemma">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">iii</div>
+        <p class="plate-kicker">Plate the Third &middot; The Behaviors &middot; № XXV</p>
+        <h3 class="plate-title">The Dilemma</h3>
+        <p class="plate-gloss">the prisoner's dilemma; when rational choices yield collective ruin</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>how can two people, each doing exactly what is best for himself, arrive together at the worst?</q></div>
+      <div class="plate-body">
+        <p>Of all the games, one matters more than the rest, for it overturns the central comfort of economics in a single four-celled table. It is the prisoner's dilemma, named for the parable of two suspects questioned apart, each offered leniency to betray the other, and each reasoning his way to a confession that leaves both worse off than silence would have. Strip away the parable and the structure stands bare. Two parties each choose to cooperate or to defect. The figure gives the payoffs, and the cruelty is in the arithmetic. If the other cooperates, you do better to defect — five beats three. If the other defects, you again do better to defect — one beats nothing. Whatever the other does, defection is your best reply; defection is, in the language of the last plate, a dominant strategy. So both defect, and both receive one, when both might have had three.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ff2t ff2d">
+              <title id="ff2t">The prisoner's dilemma</title>
+              <desc id="ff2d">A two-by-two game in which defection is each player's dominant strategy, so that both defect and reach an equilibrium worse for both than mutual cooperation would have been.</desc>
+              <text class="lbl-sm" x="190" y="68" text-anchor="middle">they cooperate</text>
+              <text class="lbl-sm" x="310" y="68" text-anchor="middle">they defect</text>
+              <rect x="130" y="80" width="240" height="180" fill="none" stroke="var(--ink)" stroke-width="1.2"/>
+              <line x1="250" y1="80" x2="250" y2="260" stroke="var(--ink)" stroke-width="1.1"/>
+              <line x1="130" y1="170" x2="370" y2="170" stroke="var(--ink)" stroke-width="1.1"/>
+              <text class="lbl-sm" transform="rotate(-90 114 125)" x="114" y="125" text-anchor="middle">you cooperate</text>
+              <text class="lbl-sm" transform="rotate(-90 114 215)" x="114" y="215" text-anchor="middle">you defect</text>
+              <text class="lbl-i" x="190" y="104" text-anchor="middle">better for both</text>
+              <text class="lbl-sm" x="190" y="129" text-anchor="middle">3 , 3</text>
+              <text class="lbl-sm" x="310" y="129" text-anchor="middle">0 , 5</text>
+              <text class="lbl-sm" x="190" y="215" text-anchor="middle">5 , 0</text>
+              <rect x="278" y="200" width="64" height="22" rx="5" fill="none" stroke="var(--ink)" stroke-width="1.3"/>
+              <text class="lbl-i" x="310" y="191" text-anchor="middle">equilibrium</text>
+              <text class="lbl-sm" x="310" y="215" text-anchor="middle">1 , 1</text>
+              <text class="lbl-sm" x="250" y="281" text-anchor="middle">both defect — the outcome neither wanted</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 2.</span> The prisoner's dilemma. The ringed cell, both defecting, is the unique equilibrium, for defection is each player's best reply to either choice of the other. Yet it is worse for both than the cell of mutual cooperation, marked above. Here individual rationality and collective welfare part ways: the players reach the bad outcome not despite acting rationally but because they do. Note that communication alone cannot save them, for a promise to cooperate is not credible — defection still pays whatever was said. The only escapes are to change the payoffs, which institutions do, or to repeat the game, which the next plate takes up.</figcaption>
+        </figure>
+                <p>The table above is fixed and annotated. Here are the same four cells, made operable &mdash; so the cruelty can be checked by hand rather than taken on faith. Set your move and the other&rsquo;s, or simply click a cell, and read off who receives what. Then try to find a single case in which cooperating serves you better than defecting: hold the other at cooperation, and your best reply is to defect; hold the other at defection, and your best reply is, again, to defect. There is no escape inside the table &mdash; and that is the whole of the dilemma, for the one cell in which neither can profitably change, where you both defect, pays each of you less than the cell you abandoned to reach it, where you both cooperated.</p>
+        <figure class="fig lab-embed" id="pd-fig">
+          <div class="pd-key">Each cell shows <span class="you">your</span> payoff and <span class="them">their</span> payoff. Higher is better. Click a cell, or set the two moves below.</div>
+          <div class="pd-matrix" id="pd-matrix">
+            <div class="pd-corner" aria-hidden="true"></div>
+            <div class="pd-chead">They cooperate</div>
+            <div class="pd-chead">They defect</div>
+            <div class="pd-rhead">You cooperate</div>
+            <button class="pd-cell sel" type="button" data-you="C" data-them="C"><span class="pd-pay"><span class="you">3</span><span class="sep">/</span><span class="them">3</span></span><span class="pd-tag2">best for both</span></button>
+            <button class="pd-cell" type="button" data-you="C" data-them="D"><span class="pd-pay"><span class="you">0</span><span class="sep">/</span><span class="them">5</span></span><span class="pd-tag2"></span></button>
+            <div class="pd-rhead">You defect</div>
+            <button class="pd-cell" type="button" data-you="D" data-them="C"><span class="pd-pay"><span class="you">5</span><span class="sep">/</span><span class="them">0</span></span><span class="pd-tag2"></span></button>
+            <button class="pd-cell" type="button" data-you="D" data-them="D"><span class="pd-pay"><span class="you">1</span><span class="sep">/</span><span class="them">1</span></span><span class="pd-tag2">Nash equilibrium</span></button>
+          </div>
+          <div class="pd-toggles">
+            <div class="pd-tg"><span>Your move</span><button class="pd-tbtn on" type="button" data-set="you" data-val="C">Cooperate</button><button class="pd-tbtn" type="button" data-set="you" data-val="D">Defect</button></div>
+            <div class="pd-tg"><span>Their move</span><button class="pd-tbtn on" type="button" data-set="them" data-val="C">Cooperate</button><button class="pd-tbtn" type="button" data-set="them" data-val="D">Defect</button></div>
+          </div>
+          <div class="le-readouts">
+            <div class="le-ro hot"><span class="k">Your payoff</span><span class="v" id="pd-ro-you">3</span></div>
+            <div class="le-ro"><span class="k">Their payoff</span><span class="v" id="pd-ro-them">3</span></div>
+            <div class="le-ro"><span class="k">Joint total</span><span class="v" id="pd-ro-sum">6</span></div>
+            <div class="le-ro"><span class="k">Your best reply</span><span class="v" id="pd-ro-br">Defect</span></div>
+          </div>
+          <div class="pd-verdict" id="pd-verdict">Both cooperate. Together you do well &mdash; yet each of you could do better still by defecting, and each knows the other knows it.</div>
+          <figcaption><span class="fig-n">Fig. 2a.</span> The dilemma, made live <span class="le-tag">operable</span>. Set both moves, or click a cell. Whatever the other does, defecting earns you more &mdash; so two rational players are driven to mutual defection (the equilibrium, lower right), the one outcome that leaves them both worse off than the cooperation they might have shared. The same instrument, gathered with twelve others, stands in the <a href="numeraire-laboratory.html">laboratory</a>.</figcaption>
+        </figure>
+        <p>This is the invisible hand run backward. The early volumes watched self-interest, in a competitive market, promote an end that was no part of anyone's intention — the public good served by private greed. The dilemma exhibits the mirror image: private reason producing public ruin, an outcome worse for all than was available, reached precisely because each pursued his own advantage. And the structure is not a curiosity. It is the formal skeleton of nearly every failure the third family of this table set out: the herdsmen who each overgraze the common until it is barren; the firms that each strip a fishery; the nations that each build arms they would all be safer without; the polluters who each foul a sky they share; the citizens who each decline to fund a good they would all enjoy. Each is a prisoner's dilemma, often with many players rather than two, and each ends where the dilemma ends — at a ruin that individual rationality built.</p>
+        <p>One feature deserves emphasis because it is so often missed: the dilemma cannot be talked away. It is not a failure to coordinate, not a confusion that better communication would cure. Let the two parties confer, swear cooperation, shake hands — and each still does better to defect when the moment comes, for the handshake changed no payoff. A promise to cooperate in a one-shot dilemma is not credible, because keeping it is against the interest of the one who made it. This is what distinguishes the dilemma from the coordination problems a later plate treats, where merely agreeing on which equilibrium to play suffices. In the dilemma, agreement is cheap and worthless; only a change in the incentives themselves can help.</p>
+        <aside class="pull">Each does exactly what is best for himself, and together they arrive at the worst. The prisoner's dilemma is the invisible hand run backward — private reason turned to public ruin — and it is the formal heart of every failure the table has named.</aside>
+        <p>And a change in the incentives is exactly what the rest of the table supplies. There are two ways to escape a dilemma, and the table has devoted whole families to each. One may change the game — rewrite the payoffs so that cooperation becomes a dominant strategy or at least an equilibrium — which is the work of institutions: the state that enforces the contract and so makes the broken promise costly, the regulator that taxes the pollution and so makes fouling the sky expensive, the authority that compels the contribution to the public good. This is why the fourth family of this table, the institutions, exists at all: they are devices for converting dilemmas into games with happier equilibria. The other escape is to repeat the game, letting the shadow of the future do what no single encounter can; and that is the subject to which we now turn.</p>
+        <aside class="edge"><span class="lead">the edge</span> The prisoner's dilemma is the single most important idea in this volume and perhaps in the whole modern theory of the economy, because it demolishes, with a four-cell table, the doctrine that self-interest reliably serves the common good. That doctrine, the harmony of interests glimpsed in the invisible hand, is true for a certain class of games — the competitive market without external effects, where each pursuing his own advantage does promote an end no part of his intention. But the dilemma exhibits another class, equally common, in which the same pursuit produces the opposite: an outcome worse for everyone than was available, reached not despite each acting rationally but because each did. And the dilemma's structure is everywhere in the third family of this table. The herdsmen who overgraze the common, the firms that exhaust a fishery, the nations that pile up arms, the polluters who foul a shared sky, the citizens who each decline to fund the public good — all are playing prisoner's dilemmas, all are individually rational, and all arrive together at a ruin none of them wanted. This is why the question of whether to trust the market cannot be answered in general but only game by game: where the structure is competitive and effects are private, the hand is benign; where the structure is a dilemma, it is malign; and the work of institutions and norms, the fourth and sixth families of this table, is precisely to change the games of the second kind into games of the first, by rewriting the payoffs through enforcement or by harnessing the repetition the next plate describes. The dilemma does not show that markets fail. It shows that whether they fail is a question about structure, and that structure is something we build.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE IV ===================== -->
+    <section class="plate reveal" id="plate-iv" data-label="Plate iv · The Shadow">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">iv</div>
+        <p class="plate-kicker">Plate the Fourth &middot; The Behaviors &middot; № XXV</p>
+        <h3 class="plate-title">The Shadow</h3>
+        <p class="plate-gloss">repeated games; the shadow of the future; how cooperation emerges</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if a single game traps us in defection, what does playing it again, and again, set free?</q></div>
+      <div class="plate-body">
+        <p>The dilemma of the last plate was a tragedy of a single encounter. But few of the encounters that matter are single. The buyer returns to the supplier, the firm faces the worker again next month, the members of a trade deal with one another for years, the neighbors share a boundary for life. When the same parties meet repeatedly, the game is no longer the one-shot dilemma but a repeated game, and repetition changes everything — for now today's defection can be answered by tomorrow's, and the prospect of that answer reaches back to alter today's choice.</p>
+        <p>This is the shadow of the future, and the volume on the contract met it already in the guise of relational dealing. The logic is a weighing of present against future. To defect today is to seize the temptation now — the five rather than the three — but to forfeit the cooperation of every tomorrow, as the other party, seeing the betrayal, withholds his own cooperation in retaliation. If the future matters enough, the stream of forfeited cooperation outweighs the one-time gain from cheating, and the rational course flips: it becomes better to cooperate, not from goodness but from prudence, because the shadow of the future has made betrayal unprofitable. A simple strategy enforces this — cooperate so long as the other does, and punish defection with defection — and the best known of these is the tit-for-tat that Robert Axelrod found triumphant in his tournaments, and that the volume on the norm met as reciprocity. Nice, retaliatory, forgiving, and clear, it sustains cooperation by making each party's future treatment hinge on his present conduct.</p>
+        <p>The condition on which all this depends can be stated precisely: cooperation can be sustained if the players weigh the future heavily enough — if they are patient, and expect the relationship to continue. Above a critical weight on the future, mutual cooperation is an equilibrium of the repeated game, self-enforcing in the exact sense of the second plate, for no one can gain by defecting once the loss of future cooperation is reckoned in. Below it — when the parties are impatient, or the relationship is unlikely to last — the future is too faint to discipline the present, and the game collapses back into the one-shot dilemma. The celebrated folk theorem records the upshot and its excess: with patient players and an open-ended horizon, not only cooperation but a vast range of outcomes can be sustained as equilibria, so many that the theorem predicts less what will happen than what can. Cooperation among the self-interested is shown to be possible; it is not shown to be inevitable.</p>
+        <aside class="pull">The handshake holds not because the parties are good but because they expect to meet again. Cooperation among the self-interested is the shadow of the future falling on the present — and it lasts only as long as the future does.</aside>
+        <p>Here, then, is the formal account of much that the table has described in the warmer language of trust and custom. The handshake of the contract holds because the parties expect to deal again; the norm of reciprocity endures because the community plays its games repeatedly; the cooperation that the third family's dilemmas seemed to forbid is recovered, in the repeated setting, as the rational equilibrium of patient parties with a future. But the same mechanism is neutral as to what it sustains, and its dark application must be named: a cartel holds its prices high by exactly this logic, each member refraining from undercutting for fear of the price war that retaliation would bring, so that the shadow of the future which underwrites the honest dealing of a trade also underwrites the collusion that fleeces its customers. Cooperation among firms is conspiracy against the public — the same equilibrium, viewed from the other side. The repeated game gives and takes away.</p>
+        <aside class="edge"><span class="lead">the edge</span> The dependence of cooperation on an open-ended future is its deepest vulnerability, and it accounts for the peculiar fragility the volume's question named. Cooperation in a repeated game rests on the threat of future punishment outweighing the present gain from defecting, which requires that there be a future worth caring about — a long or indefinite horizon, a real prospect of meeting again, a patience that does not discount tomorrow into nothing. Shorten the horizon and the calculus tips. In a game known to end at a fixed last round, the logic unravels from the back: in the final round there is no future to protect, so defect; but then the second-to-last round has no cooperative future to protect either, so defect there too; and the reasoning marches backward to the first round, dissolving cooperation entirely. Cooperation thus needs not merely repetition but repetition without a known end — an horizon that recedes as one approaches it. This is why cooperation frays whenever an ending looms: the firm about to fail stops honoring its commitments, the official in his last term stops courting the voters, the partner who is leaving stops keeping faith, the trust a long relationship built evaporates the moment one party knows it is the last encounter. And it is why so much of the institutional work of an economy is devoted to keeping the future open — to making relationships ongoing, reputations durable, and the next encounter likely — for cooperation is the shadow that the future casts upon the present, and a future that ends casts no shadow at all.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE V ===================== -->
+    <section class="plate reveal" id="plate-v" data-label="Plate v · The Commitment">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">v</div>
+        <p class="plate-kicker">Plate the Fifth &middot; The Behaviors &middot; № XXV</p>
+        <h3 class="plate-title">The Commitment</h3>
+        <p class="plate-gloss">sequential games; backward induction; threats, promises, and credibility</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>how can tying your own hands — throwing away a choice — leave you better off than keeping it?</q></div>
+      <div class="plate-body">
+        <p>So far the players have chosen at once, in ignorance of one another, and the matrix has sufficed to hold the game. But many games unfold in sequence, one party moving while the other watches and then replying, and these are drawn not as a grid but as a tree, branching from a first decision down through the responses it invites to the outcomes at its tips. Such games are solved by reasoning backward: one asks what the last player will do at each point he might reach, then what the player before him will do anticipating that, and so on up the tree to the opening move. Backward induction, this is called, and it has a way of dissolving threats that look fearsome from the front.</p>
+        <p>The figure draws the classic case. An entrant considers whether to challenge an incumbent who holds a market. If the entrant stays out, the incumbent keeps his monopoly and its handsome profit. If the entrant comes in, the incumbent must choose: fight, with a price war that bloodies them both, or accommodate, sharing the market for a smaller but positive profit each. The incumbent thunders that he will fight any entry. But reason backward. Should entry occur, the incumbent compares fighting, which loses him money, against accommodating, which earns him some; he will accommodate. His threat to fight is therefore not credible — it asks him to do, in the event, what is against his interest — and the entrant, seeing this, enters without fear. The equilibrium, traced in bold, is entry met by accommodation, and the incumbent's fearsome threat counts for nothing.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ff3t ff3d">
+              <title id="ff3t">An entry game, solved by backward induction</title>
+              <desc id="ff3d">A game tree in which an entrant chooses whether to enter a market and an incumbent then chooses whether to fight or accommodate; backward induction shows the threat to fight is not credible, so the equilibrium is entry met by accommodation.</desc>
+              <text class="lbl-i" x="210" y="32" text-anchor="middle">Entrant</text>
+              <circle cx="210" cy="45" r="5" fill="var(--ink)"/>
+              <line x1="210" y1="45" x2="110" y2="160" stroke="var(--ink)" stroke-width="1.1"/>
+              <line x1="210" y1="45" x2="310" y2="160" stroke="var(--ink)" stroke-width="2.6"/>
+              <text class="lbl-sm" x="165" y="72" text-anchor="end">stay out</text>
+              <text class="lbl-sm" x="255" y="72" text-anchor="start">enter</text>
+              <circle cx="310" cy="160" r="5" fill="var(--ink)"/>
+              <text class="lbl-i" x="322" y="162" text-anchor="start">Incumbent</text>
+              <line x1="310" y1="160" x2="250" y2="258" stroke="var(--ink)" stroke-width="1.1"/>
+              <line x1="310" y1="160" x2="380" y2="258" stroke="var(--ink)" stroke-width="2.6"/>
+              <text class="lbl-sm" x="275" y="192" text-anchor="end">fight</text>
+              <text class="lbl-sm" x="348" y="190" text-anchor="start">accommodate</text>
+              <text class="lbl-sm" x="110" y="182" text-anchor="middle">0 , 10</text>
+              <text class="lbl-sm" x="250" y="282" text-anchor="middle">−3 , −2</text>
+              <text class="lbl-sm" x="380" y="282" text-anchor="middle">4 , 4</text>
+              <text class="lbl-i" x="175" y="292" text-anchor="middle">the bold path is the equilibrium</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 3.</span> An entry game, solved by backward induction. The incumbent's threat to fight is empty, because if entry actually occurs he prefers to accommodate — fighting loses him money — and the entrant, reasoning backward, foresees this and enters. The threat fails not for want of menace but for want of credibility: it asks the incumbent to act, in the event, against his own interest. The remedy, were the incumbent to want one, is commitment — some prior and irreversible act, such as installing capacity he must use or signing contracts that penalize accommodation, that changes his own payoffs so that fighting becomes his interest after all, and the threat becomes believable precisely because he can no longer choose to abandon it.</figcaption>
+        </figure>
+        <p>The lesson generalizes into one of the deepest in the subject, and it was Thomas Schelling who drew it out. The power of a threat or a promise lies not in its making but in its credibility — in whether the party would actually carry it out when the moment came. And the way to make a threat or promise credible is, paradoxically, to surrender one's own freedom: to commit, by some prior and irreversible move, so that carrying it out becomes one's interest, or refusing it becomes impossible. The general who burns the bridge behind his army cannot retreat, and the enemy, knowing this, may yield; the incumbent who saddles himself with capacity he must run will fight any entrant, and so faces none; the negotiator who stakes his public honor on a position cannot concede it without ruin, and so the other side must move. In each case a player improves his position by destroying an option — by making himself less free, and therefore more believable.</p>
+        <aside class="pull">To bind your own hands can be to strengthen them. A threat you cannot choose to abandon is a threat the other must believe — and the power to commit is the power to change a game by changing only yourself.</aside>
+        <p>This inverts the comfortable assumption that more options are always better, and it illuminates a great deal the table has met before. The volume on the rate found a central bank unable to keep inflation low because it could not credibly promise not to inflate: the public, expecting the broken promise, built the inflation in, and only inflation resulted. The cure was commitment — rules in place of discretion, an independent bank, a published target — a deliberate tying of the monetary hands so that the promise of stability would be believed. The same logic underwrites the contract that binds, the constitution that cannot be lightly amended, the treaty whose breach brings automatic penalty. Each is a device for foreclosing a future discretion that, if kept, would render some present promise empty. The capacity to commit is itself a thing that institutions supply, and it is among the most valuable things they supply.</p>
+        <aside class="edge"><span class="lead">the edge</span> The strategic value of commitment overturns an assumption so natural that its overturning takes some getting used to: that having more options can only help, and that the freedom to choose is always an asset. In a contest against another mind, it is often the reverse. The freedom to back down is precisely what makes a threat empty, for the other party, reasoning backward, sees that you will not carry it out when carrying it out would hurt you, and so ignores it; and the freedom to renegotiate is precisely what makes a promise hollow, for the other sees that you will revise it when revision suits you. To gain the power that a credible threat or promise confers, one must give up the freedom to abandon it — burn the bridge, sign the bond, install the capacity, establish the independent authority, stake the reputation — so that backing down becomes impossible or ruinous, and the commitment becomes believable precisely because it can no longer be revoked. This is why so many of the institutions the table has examined are, at bottom, devices for tying hands: the independent central bank that cannot be ordered to inflate, the constitution that cannot be amended on a whim, the enforceable contract the courts will hold one to, the treaty whose breach brings automatic penalty. Each works by removing a discretion that, if retained, would make the relevant promise incredible. The art of strategy, Schelling saw, is often not the enlarging of one's options but their deliberate and visible foreclosure — and the deepest paradox of the game is that the player who can bind himself may rule the one who cannot.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE VI ===================== -->
+    <section class="plate reveal" id="plate-vi" data-label="Plate vi · The Coordination">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">vi</div>
+        <p class="plate-kicker">Plate the Sixth &middot; The Behaviors &middot; № XXV</p>
+        <h3 class="plate-title">The Coordination</h3>
+        <p class="plate-gloss">many equilibria; focal points; the stag hunt and the problem of which</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>when there are many equilibria and all would serve, what tells us which one we will land on?</q></div>
+      <div class="plate-body">
+        <p>Not every game is a contest of opposed interests. In a large and important class the players want, above all, to do the same thing as one another, and their difficulty is not conflict but coordination. Which side of the road shall we drive on? Either will do, provided we all choose alike; left-for-everyone and right-for-everyone are both equilibria, equally good, and the only catastrophe is to disagree. Which technical standard, which language of trade, which currency, which meeting place — a thousand such questions have many acceptable answers and only one requirement, that we converge upon a single one. These are coordination games, and they pose a problem the dilemma did not: not how to make cooperation an equilibrium, for it already is, but how to select, among several equilibria, the one we shall actually play.</p>
+        <p>Pure game theory is strikingly unhelpful here. Its central concept tells us that all-left and all-right are equilibria; it does not tell us which will prevail, for the payoffs are symmetric and the mathematics has no way to break the tie. The indeterminacy that the second plate flagged becomes acute. What resolves it lies outside the formal game, in what Schelling called a focal point: an equilibrium that stands out from the others for some reason the bare payoffs do not capture — its prominence, its tradition, its naturalness, the mere fact that everyone expects everyone to expect it. Asked to meet a stranger in a great city with no chance to confer, people converge in surprising numbers on the famous landmark at noon, not because it pays more but because it is the obvious place, the place each guesses the other will guess. The salience does the work that the incentives cannot.</p>
+        <p>And the great social supplier of focal points is the convention — which is why this plate is the near kin of the one on convention in the volume on the norm. A convention is a coordination game already solved, a standing answer to the question of which equilibrium, transmitted so that each new entrant inherits the expectation rather than having to forge it. Drive on the right; adopt the metric units; speak the language of the room; measure in the customary gauge. These are not laws of nature and not, mostly, laws of the state; they are equilibria selected by history and held in place by shared expectation, each self-enforcing in the exact sense of the second plate. Where the dilemma needed institutions to change its incentives, the coordination game needs only a convention to settle its expectations — a cheaper fix, and one that explains why so much of social order is convention rather than command.</p>
+        <aside class="pull">Some games have no good move, only a good partner: cooperation is there for the taking, an equilibrium like any other, and we fail to reach it only because each fears the others will not come. The cure is not a better incentive but a shared belief.</aside>
+        <p>Between the pure coordination game and the dilemma sits a third structure that deserves its own name, for it captures a cooperation problem of a distinct and consequential kind. It is the stag hunt of Rousseau's parable: a band may cooperate to take a stag, which feeds them all but requires every hunter to hold his post, or each may break off to catch a hare, which is meager but sure and needs no one's help. Hunting the stag together is an equilibrium — once all are committed, none wishes to defect, for the stag is the better prize. But hunting hare is also an equilibrium, the safe and defensive one, and a hunter will choose it the moment he doubts his fellows. Here cooperation is not forbidden, as in the dilemma; it is available, an equilibrium ready to be occupied. What stands between the band and the stag is not a perverse incentive but a failure of mutual confidence — each will cooperate if sure the others will, and each defects only from the fear that they will not.</p>
+        <aside class="edge"><span class="lead">the edge</span> It is worth separating with some care the two quite different troubles that go by the single name of a failure to cooperate, for they call for opposite remedies and confusing them is a standing source of bad policy. The first is the dilemma, in which cooperation is not an equilibrium at all: each party has a positive incentive to defect whatever the others do, so that no amount of mutual confidence will hold the cooperative outcome together, and the only cures are to change the payoffs or to repeat the game. The second is the assurance failure of the stag hunt, in which cooperation is a perfectly good equilibrium — no one wishes to defect once all are cooperating — and the trouble is purely one of belief: each will cooperate if confident the others will, and each defects only from the fear, perhaps groundless, that the others mean to. Here the cure is not a change of incentives but a change of expectations; nothing in the payoffs need be touched; what is wanted is the assurance that lets everyone leap together to the equilibrium that was available all along. A bank run is the standard exhibit. The depositors would all be best served by leaving their money in, and that is an equilibrium; the run is the other equilibrium, reached when each, fearing the rest will withdraw, withdraws first. The remedy is accordingly not to punish depositors or rebuild the bank's incentives but to restore confidence — a credible guarantee, a lender of last resort — that shifts everyone at once to the good equilibrium. Much of what passes for the management of panics, crises, and collapses is at bottom this: the deliberate manufacture of the shared belief on which a coordinated leap to the better equilibrium depends.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE VII ===================== -->
+    <section class="plate reveal" id="plate-vii" data-label="Plate vii · The Bluff">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">vii</div>
+        <p class="plate-kicker">Plate the Seventh &middot; The Behaviors &middot; № XXV</p>
+        <h3 class="plate-title">The Bluff</h3>
+        <p class="plate-gloss">mixed strategies; randomization; zero-sum games and the minimax</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>in a game with no stable move, what is left to a rational player but to be unpredictable?</q></div>
+      <div class="plate-body">
+        <p>Some games refuse to come to rest in any definite combination of moves. The figure shows the purest case, the game of matching pennies, in which two players each show heads or tails and one wins if the faces match, the other if they differ. Try to settle it. Wherever the players land, the loser of that cell wishes to switch; his switch makes a new loser, who wishes to switch in turn; and the best replies chase one another endlessly around the four cells, never alighting. There is no equilibrium in definite play — no pair of fixed choices from which neither would deviate — and the cycle in the figure has no exit.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ff4t ff4d">
+              <title id="ff4t">Matching pennies, a game with no equilibrium in pure strategies</title>
+              <desc id="ff4d">A zero-sum two-by-two game in which one player wins when the choices match and the other when they differ; no combination of definite moves is stable, and the best replies cycle clockwise around the four cells, so the only equilibrium is in randomized play.</desc>
+              <text class="lbl-sm" x="190" y="68" text-anchor="middle">they choose H</text>
+              <text class="lbl-sm" x="310" y="68" text-anchor="middle">they choose T</text>
+              <rect x="130" y="80" width="240" height="180" fill="none" stroke="var(--ink)" stroke-width="1.2"/>
+              <line x1="250" y1="80" x2="250" y2="260" stroke="var(--ink)" stroke-width="1.1"/>
+              <line x1="130" y1="170" x2="370" y2="170" stroke="var(--ink)" stroke-width="1.1"/>
+              <text class="lbl-sm" transform="rotate(-90 114 125)" x="114" y="125" text-anchor="middle">you choose H</text>
+              <text class="lbl-sm" transform="rotate(-90 114 215)" x="114" y="215" text-anchor="middle">you choose T</text>
+              <text class="lbl-sm" x="190" y="129" text-anchor="middle">+1 , −1</text>
+              <text class="lbl-sm" x="310" y="129" text-anchor="middle">−1 , +1</text>
+              <text class="lbl-sm" x="190" y="215" text-anchor="middle">−1 , +1</text>
+              <text class="lbl-sm" x="310" y="215" text-anchor="middle">+1 , −1</text>
+              <line x1="215" y1="108" x2="283" y2="108" stroke="var(--ink)" stroke-width="1.1"/>
+              <polygon points="285,108 279,105 279,111" fill="var(--ink)"/>
+              <line x1="335" y1="130" x2="335" y2="210" stroke="var(--ink)" stroke-width="1.1"/>
+              <polygon points="335,212 332,206 338,206" fill="var(--ink)"/>
+              <line x1="285" y1="235" x2="217" y2="235" stroke="var(--ink)" stroke-width="1.1"/>
+              <polygon points="215,235 221,232 221,238" fill="var(--ink)"/>
+              <line x1="165" y1="210" x2="165" y2="130" stroke="var(--ink)" stroke-width="1.1"/>
+              <polygon points="165,128 162,134 168,134" fill="var(--ink)"/>
+              <text class="lbl-sm" x="250" y="281" text-anchor="middle">no pure equilibrium: the best replies chase in a circle</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 4.</span> Matching pennies, a zero-sum game with no equilibrium in pure strategies. From every cell the loser wishes to switch, and the best replies cycle without end, as the arrows trace. The resolution, which Nash's theorem promised and von Neumann had found earlier for games of this pure-conflict kind, is to randomize: each player plays heads and tails with equal probability, and at this mixed equilibrium neither can be exploited, for neither can predict the other. Unpredictability, here, is not a failure of resolve but the optimal strategy — the only move an adversary cannot read.</figcaption>
+        </figure>
+        <p>The way out is to stop choosing a move and start choosing the odds. The equilibrium of matching pennies is in mixed strategies: each player randomizes, showing heads half the time and tails half the time, by some private device no opponent can foresee. At this point neither can gain from any change, because neither can be read; the unpredictability is itself the shield. This was the content of von Neumann's minimax theorem, the founding result of the whole field, proved years before Nash: in any finite game of pure conflict — any zero-sum game, where one player's gain is exactly the other's loss — there exist optimal strategies, generally randomized, and a definite value each player can secure by guarding against the worst the other can inflict. The poker player lives by this theorem. He must bluff sometimes and not others, betting strength and weakness in a calculated mixture, for a player who never bluffed would be folded against whenever he bet, and one who always bluffed would be called; only the unpredictable mixture cannot be exploited.</p>
+        <p>The same logic governs a class of economic games more sober than poker. The tax authority cannot audit every return, for auditing is dear; the taxpayer cannot safely cheat on every return, for the audit, though rare, is ruinous. So each randomizes — the authority audits with some probability, the citizen complies with some probability — and the system rests at a mixed equilibrium in which neither auditing-always nor cheating-always would pay. The regulator inspecting a firm, the employer monitoring a worker who might shirk, the customs officer searching a fraction of the cargo: all are inspection games of this shape, all without equilibrium in definite behavior, all resolved by the deliberate use of chance. Randomization, the bluff made rigorous, turns out to be a standard instrument of enforcement.</p>
+        <aside class="pull">Against an adversary who would read you, the only unreadable move is the random one. Sometimes rationality consists not in choosing well but in refusing to choose at all — in handing the decision to chance, so that no one, including you, can know it in advance.</aside>
+        <p>But a warning must close the plate, for the games of this section are games of pure conflict, and those are not the games that most of economic life consists of. In a zero-sum game there is nothing to share and nothing to negotiate; the whole of skill is the minimax, the guarding against an opponent whose interests are exactly opposed to one's own. Matching pennies is such a game, and poker, and very nearly war. The economic interactions that matter most are not. They are mixed-motive games, in which the parties' interests neither wholly align nor wholly oppose, and in which — crucially — outcomes exist that are better for everyone. To carry the habits of the zero-sum game into these is the error the edge below describes, and it is among the costliest a strategic actor can make.</p>
+        <aside class="edge"><span class="lead">the edge</span> The distinction between the zero-sum game and the mixed-motive game is among the most practically important in the subject, because the gravest and most common strategic error is to treat the second as though it were the first — to see pure conflict where there are in fact gains to be shared. A zero-sum game is one of total opposition: whatever one player wins, the other loses exactly, no outcome is better for both, cooperation is meaningless, and the whole of wisdom is the minimax. Matching pennies and poker are of this kind, and so, very nearly, is war. But the games that matter most in economic life are not. Trade is positive-sum, for both parties gain or it would not occur; a negotiation over how to divide a surplus is mostly positive-sum, for failing to agree destroys the surplus and leaves both worse off; even competition between firms, ruinous as a price war can be, is rarely the pure opposition it is imagined to be. To mistake these for zero-sum contests — to treat the trading partner as an enemy to be beaten, the negotiation as a battle in which the other's gain is one's loss, the rival as a foe to be destroyed rather than a party with whom some accommodation might enrich both — is to leave on the table the very gains from cooperation that this volume's central drama concerns. The bluff and the minimax belong to the games of pure conflict, which are real but rare. The greater danger is not being out-bluffed; it is fighting a positive-sum game as though it were a war.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE VIII ===================== -->
+    <section class="plate reveal" id="plate-viii" data-label="Plate viii · The Bargain">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">viii</div>
+        <p class="plate-kicker">Plate the Eighth &middot; The Behaviors &middot; № XXV</p>
+        <h3 class="plate-title">The Bargain</h3>
+        <p class="plate-gloss">bargaining games; dividing the surplus; the threat point and the split</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>when two parties must split a gain that exists only if they agree, what determines the line they draw?</q></div>
+      <div class="plate-body">
+        <p>Consider the most ordinary of strategic situations: two parties who can create a surplus together, but only by agreeing, and who must then divide what they have made. A buyer values a house above what the seller will part with it for, so a sale would benefit both — but at what price? An employer and a worker can together produce more than either alone, a surplus to be shared — but in what proportion of wage to profit? The structure is mixed in its motives. Both prefer agreement to none, for disagreement destroys the surplus and leaves each with nothing but his fallback; yet each prefers a larger share of what agreement creates, and over that division their interests are opposed. This is the bargaining problem, and its answer determines a great many of the prices the table has treated as if they fell from the sky.</p>
+        <p>The figure lays out its geometry. Every way of splitting the whole surplus lies on the frontier — the downward line along which one party's gain is the other's loss, since the pie is of fixed size once made. Rational parties will reach some point on this frontier, for to settle inside it would waste surplus they could divide; the question is which point. Anchoring the answer is the threat point, the marked outcome each would fall back to if no agreement were struck — the wage of the next-best job, the price from the next-best buyer, the misery of no deal at all. Neither party will accept a split that leaves him below his threat, so the bargaining range is the stretch of the frontier above both, and the line they draw must fall somewhere along it.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ff5t ff5d">
+              <title id="ff5t">The bargaining frontier</title>
+              <desc id="ff5d">A diagram with one party's payoff on each axis; a downward frontier shows the efficient divisions of a surplus, a marked threat point gives the no-agreement fallback, and a point on the frontier marks the agreed split above both threats.</desc>
+              <line class="ax" x1="60" y1="252" x2="404" y2="252"/>
+              <line class="ax" x1="60" y1="252" x2="60" y2="44"/>
+              <text class="lbl-ax" x="236" y="278" text-anchor="middle">player one's gain →</text>
+              <text class="lbl-ax" transform="rotate(-90 26 150)" x="26" y="150" text-anchor="middle">player two's gain →</text>
+              <line x1="360" y1="252" x2="60" y2="72" stroke="var(--ink)" stroke-width="1.6"/>
+              <text class="lbl-i" x="318" y="120" text-anchor="middle">efficient frontier</text>
+              <line class="guide" x1="155" y1="205" x2="210" y2="162"/>
+              <circle cx="155" cy="205" r="3.4" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.2"/>
+              <text class="lbl-sm" x="150" y="224" text-anchor="middle">no agreement</text>
+              <circle cx="210" cy="162" r="4" fill="var(--ink)"/>
+              <text class="lbl-i" x="224" y="156" text-anchor="start">the split</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 5.</span> The bargaining frontier. The line holds the efficient divisions of the surplus; the open point is the no-agreement fallback that anchors the bargain; the filled point is the split the parties settle on, somewhere in the range that leaves each above his threat. John Nash proposed that the rational split maximizes the product of the two parties' gains over their threats, which under equal strength is simply to divide the surplus evenly. Ariel Rubinstein later derived a definite split from the bargaining process itself — players trading offers while delay is costly — and found it turns on patience: the party who can better afford to wait commands the larger share. Bargaining power, in the end, is the power to refuse, to wait, and to walk away.</figcaption>
+        </figure>
+        <p>What, then, fixes the split within that range? Nash gave one answer by axioms, naming the point that maximizes the product of the parties' gains above their threats — under symmetry, the even division, the splitting of the difference that intuition expects. Rubinstein gave a deeper answer by modeling the haggling as a game in its own right, a sequence of alternating offers in which delay is costly because the future is discounted or the surplus decays. The equilibrium of that game yields a precise division, and its lesson is stark: patience is power. The party who discounts the future less, who can endure the delay of refusal while the other cannot, walks away with the larger share. To this the earlier plates add their determinants — the outside option that improves one's threat point, the commitment that makes a take-it-or-leave-it credible, the private information that lets one party feign greater resolve. Bargaining power is assembled from these: the power to wait, the power to walk, the power to refuse to move.</p>
+        <aside class="pull">A price is often not a fact read off a curve but a line drawn in a negotiation — and the line falls where it does because of who can afford to wait, who can walk away, and who can refuse to move. Distribution is bargaining power by another name.</aside>
+        <p>And here the volume rejoins the table's oldest concern. For if the wage is the split of the surplus a job creates, then the wage is a bargain, and its level turns not on some impartial marginal product alone but on the relative strength of worker and employer — on the worker's outside options, his ability to wait, his power to combine with others, against the employer's. If the price that divides the gains from trade falls within a bargaining range, then it too reflects the balance of power between buyer and seller, not merely the scarcities the early volumes invoked. The division of the surplus, which is to say the distribution of income, is in large measure a matter of who holds the stronger hand in the bargain — and that is the subject the next plates, on the auction and the mechanism, approach from the side of design, before the volume turns at last to the market itself.</p>
+        <aside class="edge"><span class="lead">the edge</span> The bargaining theory of the price carries a conclusion the table has been approaching since its first volume and can now state plainly: that the division of the gains from an exchange is, in a wide range of cases, a question of power rather than of nature, and that the answer it receives is therefore contestable in a way a natural fact could never be. Where a buyer and a seller, an employer and a worker, a landlord and a tenant face one another with some surplus to divide, the price that splits it is not handed down by an impersonal market but settled between them, and it settles according to their relative strength — which party has the better outside option and can credibly walk away, which can afford to wait while the other cannot, which can commit to a position the other must accommodate. These are the determinants of the split, and not one of them is a matter of marginal products or the impartial scarcities the early volumes invoked. They are matters of power, and power is made: by the law that does or does not permit workers to combine, by the social insurance that does or does not improve the fallback of the one who would otherwise have to take any offer, by the antitrust that does or does not check the monopolist's leverage, by the thousand arrangements that determine who, in the bargain, can afford to say no. To see the price as a bargain is to see the distribution of income as the running outcome of a contest of strength whose terms society sets — and to recognize that a different setting of those terms would draw the line in a different place. The fairness of the split is not a property of the market. It is a property of the rules under which the bargaining is conducted, and those rules are ours to write.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE IX ===================== -->
+    <section class="plate reveal" id="plate-ix" data-label="Plate ix · The Auction">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">ix</div>
+        <p class="plate-kicker">Plate the Ninth &middot; The Behaviors &middot; № XXV</p>
+        <h3 class="plate-title">The Auction</h3>
+        <p class="plate-gloss">auctions as games; the winner's curse; price as the outcome of bidding</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if the prize goes to whoever bids the most, what does the winner know that should give him pause?</q></div>
+      <div class="plate-body">
+        <p>An auction is a game stripped to its essentials, and it is also the place where the table's thesis is least in need of argument, for here the price is plainly the outcome of a contest. Bidders compete; each chooses what to offer, weighing the chance of winning against the cost of victory; and the rules determine who takes the prize and what he pays. Four classic formats recur: the ascending auction of open outcry, where the price climbs until one bidder is left; its mirror, the descending auction, where the price falls until someone accepts; the sealed first-price auction, where the highest bid wins and pays itself; and the sealed second-price auction of William Vickrey, where the highest bid wins but pays only the second. These are not mere procedures. Each is a different game, inducing a different strategy, and the differences repay study.</p>
+        <p>Vickrey's second-price rule has a small marvel hidden in it. Because the winner pays not his own bid but the next one down, he has no reason to shade his offer below what the prize is worth to him: bidding his true value is his dominant strategy, optimal whatever the others do. The auction thus coaxes the truth out of its bidders as a matter of self-interest — a property the next plate will name incentive compatibility and prize. The first-price auction, by contrast, sets a genuine strategic puzzle, for there bidding one's full value would leave no profit, and each must shade his bid below his value by an amount that trades the chance of winning against the gain from winning. And a deep theorem of Vickrey's holds that, under the right conditions, all four formats raise the same revenue on average — so that the seller's choice among them turns not on revenue but on subtler virtues of robustness and simplicity.</p>
+        <p>The most instructive complication arises when the prize has a value that is common but unknown — an oil tract, a company, a band of radio spectrum, worth roughly the same to all but estimated differently by each. The figure shows what then befalls the winner.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ff6t ff6d">
+              <title id="ff6t">The winner's curse</title>
+              <desc id="ff6d">A value axis on which several bidders' estimates of an unknown common value scatter around the true value; the highest estimate, belonging to the winner, lies well above the truth, so the winner overpays.</desc>
+              <line class="ax" x1="60" y1="170" x2="404" y2="170"/>
+              <line x1="205" y1="130" x2="205" y2="190" stroke="var(--ink)" stroke-width="1.3"/>
+              <text class="lbl-i" x="205" y="122" text-anchor="middle">true value</text>
+              <line class="guide" x1="205" y1="158" x2="300" y2="158"/>
+              <circle cx="150" cy="170" r="3" fill="var(--ink)"/>
+              <circle cx="178" cy="170" r="3" fill="var(--ink)"/>
+              <circle cx="200" cy="170" r="3" fill="var(--ink)"/>
+              <circle cx="222" cy="170" r="3" fill="var(--ink)"/>
+              <circle cx="248" cy="170" r="3" fill="var(--ink)"/>
+              <circle cx="300" cy="170" r="8" fill="none" stroke="var(--ink)" stroke-width="1.2"/>
+              <circle cx="300" cy="170" r="4.5" fill="var(--ink)"/>
+              <text class="lbl-i" x="300" y="150" text-anchor="middle">winner overpays</text>
+              <text class="lbl-sm" x="232" y="200" text-anchor="middle">the dots are bidders' estimates; their average ≈ the true value</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 6.</span> The winner's curse. Each bidder's estimate of the unknown value scatters around the truth, so that on average the estimates are unbiased. But the auction selects not the average estimate — it selects the highest, ringed at the right, which lies above the true value. The winner is therefore, almost by construction, the bidder who most overestimated, and he pays accordingly. The remedy is to shade one's bid downward by the amount winning itself reveals — to bid as though already chastened — for in a contest of estimates, victory is partly the bad news that one out-optimized the room.</figcaption>
+        </figure>
+        <p>That auction theory should be the showcase of economics as an applied science is, given its abstraction, a pleasant surprise. When governments came to sell the radio spectrum on which the wireless age would run, they turned to economists to design the auctions, and the designs — intricate ascending formats that let bidders learn and recombine as the sale proceeded — raised enormous sums while placing the licenses in the hands that valued them most. The same theory governs the auctions by which treasuries borrow, by which electricity is bought and sold, and by which the advertising beside a search result is allocated in the instant before a page loads, billions of times a day, through mechanisms descended from Vickrey's. Here the abstract study of strategic bidding became a kind of engineering, and the price it produced was visibly and admittedly the verdict of a contest its designers had built.</p>
+        <aside class="pull">To win an auction is to learn something unwelcome: that of all the bidders, you valued the prize the most — which is some reason to fear you valued it too high. Victory in a contest of estimates is the bad news that you out-optimized everyone into error.</aside>
+        <p>The auction thus makes the table's thesis concrete and adds a twist the later volumes will need. Concrete, because nowhere is it plainer that the price is the outcome of a strategic contest rather than a fact of nature: change the rules of the auction and you change the price. The twist is the winner's curse, which is the first crack in the perfect rationality this whole volume has assumed, and the edge below follows it toward the volumes still to come.</p>
+        <aside class="edge"><span class="lead">the edge</span> The winner's curse generalizes far beyond the auction house into a lesson about the epistemics of competition that the table's later volumes on behavior will take up in earnest. The curse arises because winning is not a neutral event but a piece of information — and information that should, on reflection, be unwelcome. When a prize of uncertain common value goes to the highest bidder, the winner learns, in the moment of winning, that his estimate exceeded everyone else's; and since the estimates scattered around the truth, the highest among them most likely lay above it. To win, then, is to discover that one was the most optimistic in the room, which is precisely the circumstance in which one's optimism was probably excessive. The rational response is to bid as though one had already won and been chastened — to shade one's estimate downward by the amount that winning itself reveals. The systematic failure to do this, the taking of victory at face value rather than as the bad news it partly is, recurs wherever parties compete on the strength of their estimates: in the company that overpays for the acquisition it outbid all rivals to secure, in the firm that wins the contract by most underestimating its costs, in the investor who buys the asset he was most willing to pay up for. The curse is thus a first glimpse of a theme the volumes on choice and bias will pursue — that even the rational agent of game theory, asked to reason about what his own success implies, is apt to reason badly, and that the assumption of flawless strategic cognition on which this whole volume rests is, at the edges, an idealization that real minds do not meet.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE X ===================== -->
+    <section class="plate reveal" id="plate-x" data-label="Plate x · The Mechanism">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">x</div>
+        <p class="plate-kicker">Plate the Tenth &middot; The Behaviors &middot; № XXV</p>
+        <h3 class="plate-title">The Mechanism</h3>
+        <p class="plate-gloss">designing the game; incentive compatibility; rules that elicit the truth</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if you could write the rules of the game, how would you write them so that self-interest served your end?</q></div>
+      <div class="plate-body">
+        <p>Every plate so far has read game theory forward, taking the rules as given and asking what self-interested players will do within them. The tenth plate turns the telescope around. Mechanism design — reverse game theory, its founder Leonid Hurwicz called it — begins from the outcome one wants and asks what rules would induce self-interested players to produce it. The shift is from the scientist who predicts a game's result to the architect who builds a game to a purpose: a sale that places the goods with those who value them most, a vote that reflects the electorate's will, a division that all parties will call fair, an allocation that wastes nothing. Given that the players will pursue their own ends whatever rules we set, how shall we set the rules so that, in pursuing their ends, they serve ours?</p>
+        <p>The difficulty is that the players know things the designer does not — their own values, costs, and intentions, the private information on which the volume on asymmetry turned — and will reveal it only if revealing it pays. The cardinal virtue of a mechanism is therefore incentive compatibility: that honesty, or whatever good behavior the design requires, be in each player's own interest. Vickrey's second-price auction was the model, eliciting true values because the rules made truth-telling a dominant strategy. And a remarkable theorem of Roger Myerson, the revelation principle, shows that the search for good mechanisms can without loss be confined to such honest ones: whatever any mechanism can achieve, some mechanism can achieve while making truthful revelation optimal. The designer may thus assume the players will tell the truth, provided he builds the rules so that truth is what their interest counsels.</p>
+        <p>But design has limits as firm as its powers, and a mature theory states them as impossibility theorems. Some objectives cannot be reached by any mechanism whatever. When two parties with private valuations must trade voluntarily, no mechanism can guarantee that every beneficial trade will occur; some surplus is irreducibly lost to the parties' incentive to misrepresent. When a society must choose among three or more options, no voting rule that is not a dictatorship can be wholly immune to strategic manipulation — a result that rhymes with the impossibility the volume on the rule met in Arrow. These theorems are not failures of ingenuity but boundaries of the possible, and a good designer respects them, seeking the best mechanism within the constraints rather than a perfection the mathematics forbids.</p>
+        <aside class="pull">Game theory read forward asks what the rules will do to us. Read backward, it asks what rules we should write — and answers that self-interest, rightly channeled by a well-made mechanism, can be made to serve an end it never intended.</aside>
+        <p>Within those boundaries the field has flowered into a practical art that the work of Alvin Roth best exemplifies. Where markets cannot use prices — because money is unseemly, or forbidden, or simply absent — they can still be designed. Roth and his colleagues rebuilt the system that matches medical graduates to hospitals, redesigned the assignment of children to city schools, and, most strikingly, constructed the exchanges by which incompatible kidney donors and patients are linked into chains and cycles, so that a willing donor whose kidney suits a stranger sets in motion a sequence that gives his own loved one a kidney in return. A market in organs is rightly prohibited; a designed mechanism that arranges compatible gifts is not, and it has saved many thousands of lives. Here mechanism design rejoins the volume on the rule, for an institution simply is a mechanism — a standing set of rules that channels strategic behavior — and to design a mechanism well is to design a good institution. The rules of the game, this whole table has insisted, are made by someone; this plate shows that they can be made on purpose, and made well.</p>
+        <aside class="edge"><span class="lead">the edge</span> There is a quiet politics in mechanism design that its engineering vocabulary tends to obscure, and it should be made explicit before the praise of the field is complete. To design a mechanism is to choose the rules under which others will pursue their interests, and one cannot choose those rules without choosing, at the same time, an objective they are meant to serve. The spectrum auction can be designed to maximize the revenue the treasury collects, or the efficiency with which licenses reach their best users, or the entry of new competitors against the incumbents — and these are different designs, serving different ends, favoring different parties. The matching mechanism can be tuned to favor the applicants or the institutions, the families who choose schools or the schools that choose. The optimal tax can be set to weigh efficiency heavily or equity heavily. In every case the mechanism is built by someone, for some purpose, and its neutrality is only apparent: behind the impartial machinery stands a designer with an objective, and the objective is a choice the mathematics cannot make. This is where mechanism design rejoins the volume on power, for the deepest design question in any society is not the technical one of how to achieve a given objective but the prior and political one of who gets to set it — who writes the rules of the games the rest must play, and in whose interest they are written. The capacity to design the mechanism is itself a form of power, perhaps the most consequential, and a table that has insisted throughout that the rules are made by someone must insist here that the someone, and his purposes, are never themselves given by the theory.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE XI ===================== -->
+    <section class="plate reveal" id="plate-xi" data-label="Plate xi · The Competition">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">xi</div>
+        <p class="plate-kicker">Plate the Eleventh &middot; The Behaviors &middot; № XXV</p>
+        <h3 class="plate-title">The Competition</h3>
+        <p class="plate-gloss">the market as a game; Cournot, Bertrand, and the price as equilibrium</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if the market is itself a game, what is the price but the configuration at which the contest comes to rest?</q></div>
+      <div class="plate-body">
+        <p>It remains to turn the apparatus upon the market itself, for the market is a game, and one this volume has been circling from the start. The perfectly competitive market of the early volumes — a swarm of sellers so numerous that none could move the price, each a passive taker of a number the multitude set — is the limiting case, valuable as an idealization but rare in fact. Most markets are peopled by few enough firms that each must reckon with the others: the price one can charge depends on what rivals charge, the quantity one should make depends on what rivals make, and the placid price-taking of the textbook gives way to strategic contention. This is oligopoly, the general case of which perfect competition and monopoly are the two extremes.</p>
+        <p>Augustin Cournot drew the first picture of it in 1838, more than a century before the field had a name, and the figure reproduces his insight. Two firms choose quantities; the combined output sets the price through demand; and each firm's best quantity depends on the other's, since the more the rival floods the market the less it pays to add. Each firm's reaction curve traces its best output against every output of the other, and where the two curves cross lies the equilibrium — each producing exactly its best reply to the other, neither wishing to change. It is a Nash equilibrium in all but name, found by Cournot a hundred and twelve years before Nash. And it sits between the extremes: the price it yields stands above the marginal cost that pure competition would enforce, for the firms retain some power, yet below the monopoly price, for they suffer some rivalry — and as the number of firms grows, the equilibrium slides toward the competitive floor.</p>
+        <figure class="fig">
+          <div class="fig-frame">
+            <svg viewBox="0 0 440 300" role="img" aria-labelledby="ff7t ff7d">
+              <title id="ff7t">Cournot competition: reaction curves and equilibrium</title>
+              <desc id="ff7d">Two downward-sloping reaction curves, one for each firm, giving each firm's best output for every output of the other; they cross at the Cournot-Nash equilibrium, where each produces its best reply to the other.</desc>
+              <line class="ax" x1="60" y1="252" x2="404" y2="252"/>
+              <line class="ax" x1="60" y1="252" x2="60" y2="44"/>
+              <text class="lbl-ax" x="232" y="278" text-anchor="middle">firm one's output →</text>
+              <text class="lbl-ax" transform="rotate(-90 26 150)" x="26" y="150" text-anchor="middle">firm two's output →</text>
+              <line x1="60" y1="120" x2="380" y2="211" stroke="var(--ink)" stroke-width="1.5"/>
+              <line x1="130" y1="80" x2="280" y2="251" stroke="var(--ink)" stroke-width="1.5"/>
+              <text class="lbl-i" x="320" y="182" text-anchor="start">firm one</text>
+              <text class="lbl-i" x="150" y="100" text-anchor="start">firm two</text>
+              <line class="guide" x1="200" y1="160" x2="200" y2="252"/>
+              <line class="guide" x1="60" y1="160" x2="200" y2="160"/>
+              <circle cx="200" cy="160" r="4" fill="var(--ink)"/>
+              <text class="lbl-i" x="214" y="150" text-anchor="start">the equilibrium</text>
+              <text class="lbl-sm" x="200" y="266" text-anchor="middle">q₁*</text>
+              <text class="lbl-sm" x="48" y="163" text-anchor="middle">q₂*</text>
+            </svg>
+          </div>
+          <figcaption><span class="fig-n">Fig. 7.</span> Cournot competition. The two downward lines are the firms' reaction curves, each giving a firm's best output for every output of its rival; their crossing is the equilibrium, where each produces its best reply to the other and neither will move. The price it implies lies between the monopoly price and the competitive one, and approaches the competitive floor as more firms enter. Cournot's diagram of 1838 is a Nash equilibrium drawn before Nash — the earliest proof that the market is a game, and the price the point at which its contest rests.</figcaption>
+        </figure>
+        <p>That the outcome turns on the rules, and not on the scarcities alone, the comparison with Joseph Bertrand makes vivid. Bertrand objected that firms set prices, not quantities, and worked the model again on that assumption — with a startling result. If two firms sell the same good and compete by price, each undercutting the other to capture the whole market, the price is driven all the way down to marginal cost, the competitive outcome, by two firms alone. Quantity competition leaves a markup; price competition annihilates it; and nothing has changed but the variable over which the firms contend. The lesson is the volume's thesis in miniature: the price is not dictated by cost and demand alone but by the form of the competition, the strategic structure of the game the firms are playing. And that structure admits a third possibility the fourth plate prepared — collusion, in which the firms, playing a repeated game, hold their prices high under the threat of mutual punishment, lifting the price from the Bertrand floor toward the monopoly ceiling. Between marginal cost and monopoly the price may rest anywhere, and where it rests is a fact about the game, not about nature.</p>
+        <aside class="pull">The market is a game, and the price is where it comes to rest — the equilibrium of a contest among firms whose terms are set by how many they are, what they compete on, and whether they can collude. The price of a thing is the verdict of that contest, and the contest has rules we write.</aside>
+        <p>So the volume arrives, by way of the market, at the claim it was built to make. The price that the first family of this table examined one kind at a time — the wage, the rent, the rate, the premium, the spread — is in each case the equilibrium of a strategic game: the configuration at which the contest among the interested parties comes to rest. It is not read from the meeting of supply and demand as from a dial; it is the resting point of a game whose structure determines it, and whose structure is shaped by the institutions that count the firms, define what they may compete on, guard or open the gates to entry, and permit or forbid their collusion. The competitive price of the early volumes is revealed as the equilibrium of one game among many — the game of many sellers contending freely — and where that game is not the one in play, the price rests elsewhere. The final plate gathers what this means for the whole table.</p>
+        <aside class="edge"><span class="lead">the edge</span> The recognition that the market is a game dissolves the last illusion that the price is a fact of nature, and it does so by exhibiting the price as exquisitely sensitive to the structure of the contest that produces it. Two firms competing on price, selling the same good, drive the price to the floor of marginal cost; the same two firms competing on quantity hold it well above; the same two, able to collude across a repeated game, may lift it nearly to the monopoly ceiling. Nothing in the underlying scarcities — the costs, the demand, the resources — has changed across these cases; only the rules of the strategic interaction have, and the price has swung across the whole range from competitive to monopolistic in answer. The price, then, is not read off the meeting of supply and demand as though from a dial. It is the equilibrium of a particular game, and which game is played depends on the number of competitors, the variable they contend over, the barriers that keep entrants out, the information they hold, and the institutions that permit or forbid their collusion — every one of which is a feature of the rules rather than of nature, and every one of which society shapes through its antitrust, its regulation, its patents, its standards, its law of entry and combination. The competitive price the early volumes treated as the natural resting point of a market turns out to be the equilibrium of one game among many, and where that game is not the one being played, the price rests elsewhere, higher, reflecting the power the structure confers. To set the rules of the competition is therefore to set, within wide limits, the price; and the table's insistence that the rules are made by someone reaches here its sharpest economic point, for the someone who sets the rules of competition sets, thereby, the terms on which everyone else must buy and sell.</aside>
+      </div>
+    </section>
+
+    <!-- ===================== PLATE XII ===================== -->
+    <section class="plate reveal" id="plate-xii" data-label="Plate xii · The Contest">
+      <div class="plate-open">
+        <div class="plate-no" aria-hidden="true">xii</div>
+        <p class="plate-kicker">Plate the Twelfth &middot; The Behaviors &middot; № XXV</p>
+        <h3 class="plate-title">The Contest</h3>
+        <p class="plate-gloss">the price as the verdict of a contest; cooperation, tragedy, and the rules</p>
+      </div>
+      <div class="ask"><span class="lead">The plate asks</span> <q>if every price is the verdict of a contest, and every contest a game, then what, in the end, is an economy?</q></div>
+      <div class="plate-body">
+        <p>This table announced at its outset that every price is a verdict on a hidden contest, and asked, volume upon volume, what each contest was and who was party to it. The present volume has supplied the form of the answer. The contest is a game — a situation of strategic interdependence, in which the outcome for each depends on the choices of all — and the price is its equilibrium, the configuration at which the contest comes to rest. The wage is the resting point of a game between worker and employer; the rate, of a game between lender, borrower, and the bank that anticipates them both; the price of a good, of a game among the firms that make it and the buyers who want it. What the metaphor of the contest expressed in figure, the theory of games states in form: the price is the Nash equilibrium of a strategic interaction, and to ask why a price is what it is, is to ask what game produced it.</p>
+        <p>Seen so, the strategic skeleton stands revealed beneath the whole table, and the families fall into place upon it. The failures of the third family are games gone wrong — prisoner's dilemmas, in which each party, acting rationally, helps to bring about a ruin none of them wanted: the exhausted common, the fouled sky, the unfunded public good, the arms race no one can stop. The institutions of the fourth family are devices for changing those games — for rewriting the payoffs by enforcement, regulation, and tax so that cooperation, impossible as an equilibrium of the original game, becomes the equilibrium of the altered one; mechanism design is the formal study of how this is done. The norms of the sixth family, beside which this volume sits, are equilibria of repeated games — the informal, self-enforcing configurations that the shadow of the future and the discipline of reciprocity hold in place without any enforcer at all. And the prices of the first family are, as we have just seen, the equilibria of strategic contests among the interested. The game is what all of these have in common; it is the substructure of which they are the aspects.</p>
+        <p>Upon this substructure the deepest tension of the table is at last resolved — not dissolved, but located. From the first volume two visions have contended: the harmony of the invisible hand, in which self-interest is turned to the common good, and the tragedy of the dilemma, in which self-interest is turned to common ruin. The theory of games shows that neither is the truth of markets as such, because which of them obtains is not a fact of nature but a property of the game's structure. A competitive market without external effects is a game whose equilibrium is benign, and there the hand is real. A prisoner's dilemma is a game whose equilibrium is malign, and there the tragedy is real. The very same self-interested agents, no better and no worse, produce harmony in the one game and ruin in the other; what differs is not the men but the rules under which they meet. Self-interest, the table may now conclude, is neither the benefactor the early economists hoped nor the villain their critics feared. It is a force whose issue depends entirely on the structure into which it is channeled — and the structure is something we build.</p>
+        <p>For the rules are made. This has been the steady insistence of the whole work, and the theory of games gives it a final and exact sense. The payoffs that decide whether a game is a harmony or a dilemma are set by the institutions of property, contract, and liability; the repetition that lets cooperation hold is sustained by the relationships and reputations a society maintains; the number of players, the variable they compete on, the barriers to their entry, and the collusion they may or may not practice are fixed by the law of competition; the very capacity to commit, on which credible promising depends, is supplied by institutions built for the purpose. Not one of these is given by nature, and every one of them is a human arrangement, contested and revisable. The market is therefore not a natural object obeying immutable laws but a game whose outcome follows from its rules — and the price, being the equilibrium of that game, is not a verdict of nature or of justice but the resting point of a contest whose terms we have set, and might set otherwise. A different structure would yield a different equilibrium: a different price, a different division of the surplus, a different distribution of the whole. The equilibrium is real, but it is not fate.</p>
+        <p>Honesty requires that the powers of this beautiful theory be matched against its limits, for it has both in full measure. Its powers are not in doubt: it is the common language of strategic life, the apparatus that unified the failures, the institutions, the norms, and the prices under a single account, and it has descended from the seminar into the world to design the auctions that sell the spectrum, the markets that match the willing, and the regulations that discipline the few. But its assumptions are strong, and at their edges they fray. It supposes the players perfectly rational, flawless best-responders reasoning without error — and the volumes on choice and bias, still to come, will show how far real minds depart from that ideal, as the ultimatum game of the norm and the winner's curse of the auction have already hinted. It supposes their rationality common knowledge, each knowing the others rational and knowing that they know, in a tower of mutual awareness that real people do not build. And it suffers a chronic indeterminacy, for many games have many equilibria and the theory cannot say which will prevail, but must borrow from outside itself — from focal points, conventions, norms, and history — the selection it cannot supply. Game theory is thus a lens of great power and a poor oracle: it reveals the strategic structure of a situation and the dependence of its outcome on the rules, but it rarely foretells the outcome, and it crowns no equilibrium as just. It shows us the game; it does not play it for us, nor tell us which game we ought to build.</p>
+        <p>This volume stands second in the last family of the table, beside the norm, and the two are twins. What the norm described in the warm language of custom, reciprocity, and trust, the game restates in the cool language of equilibrium, repetition, and best reply; the convention of the one is the coordination equilibrium of the other, the reciprocity of the one is the repeated-game strategy of the other, the self-enforcing rule of the one is the Nash equilibrium of the other. Together they give cooperation its two faces, the institutional and the formal, and show it to be at once a social achievement and a strategic possibility. And both lean upon a foundation they do not themselves examine — the rationality of the agent who chooses and reasons and reckons — which the remaining volumes of this family, on the choice and the bias, are written to inspect. The game has assumed that agent flawless; the choice will model him; the bias will catch him erring. The Behaviors complete themselves only when the strategist of this volume is set beside the chooser of the next and the erring mind of the one after.</p>
+        <p>So we may say, at the close, what an economy is. It is a vast and intricate web of interlocking games — strategic contests whose equilibria are the prices, wages, rents, and rates this table has examined one by one; whose structures decide, game by game, whether self-interest issues in the harmony of mutual gain or the tragedy of mutual ruin; and whose rules are written, amended, and fought over by the human beings who must then play them. The price is the verdict of a contest, the contest is a game, and the game has rules that are ours to make. A numéraire of honesty, toward which this whole work has reached, would begin from exactly this admission: that the price is not the impartial judgment of nature upon the worth of things but the equilibrium of a contest we have structured, and that to take responsibility for the price is to take responsibility for the rules. What those rules should be, the theory does not decide. It hands the question back to us, where it belongs. The argument remains open.</p>
+      </div>
+    </section>
+</main>
+
+  <div class="divider" aria-hidden="true"><span class="ln"></span><svg viewBox="0 0 12 12"><rect x="3" y="3" width="6" height="6" transform="rotate(45 6 6)"/></svg><span class="ln"></span></div>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref">Volume XXV &middot; The Game</span>
+    </div>
+    <p class="colophon">Volume XXV of <em>Numéraire, A Periodic Table of Economic Life</em> — <em>The Game</em>, the twenty-fifth of twenty-six and the second of The Behaviors, set beside <em>The Norm</em> in the sixth and final family. Twelve plates, seven engravings, and a living figure, written with the rigor of the seminar and the grace of the essay, and scrupulous throughout about the exact edge of what can be known. A game is any situation of strategic interdependence, in which the outcome for each party turns on the choices of all; the theory of it is the mathematics of that interdependence — of strategy, of equilibrium, and of the fragile arithmetic by which cooperation among self-interested parties holds together or comes apart. This volume asks how cooperation can survive when each best move depends on every other, and finds the contest of which every price is the verdict to be, in form, a game, and the price its equilibrium — the configuration at which a strategic contest comes to rest. It finds, too, that whether self-interest issues in the harmony of the invisible hand or the tragedy of the dilemma is no fact of nature but a property of the game's structure, which institutions and norms supply and human beings make and remake; that the failures are games gone wrong, the institutions devices to change them, the norms equilibria of repeated play, and the prices the resting points of strategic contests; and that the market is therefore not a natural object but a game whose rules are ours to write. It is the formal twin of <em>The Norm</em>, whose custom and reciprocity it restates as equilibrium and repeated play; the apparatus beneath the oligopoly of <em>The Power</em> and the collusion it practices; the formal account of the shadow of the future that holds the handshake of <em>The Contract</em>; and the anatomy of the dilemma that ruins <em>The Commons</em>. It assumes a rationality that <em>The Choice</em> will model and <em>The Bias</em> will catch erring, and so hands the family toward its close. The figures stand after von Neumann and Morgenstern, Nash and Schelling, Cournot and Bertrand, Axelrod and Vickrey — with Rubinstein, Harsanyi, Selten, Aumann, Hurwicz, Maskin, Myerson, Roth, and Maynard Smith standing behind. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<script>
+(function(){
+  var root=document.documentElement; root.classList.add('js');
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var bar=document.getElementById('progress');
+  var topbar=document.getElementById('topbar');
+  var title=document.querySelector('.vol-title');
+  var label=document.getElementById('tb-plate');
+  function onScroll(){
+    var doc=document.documentElement;
+    var h=doc.scrollHeight-window.innerHeight;
+    var p=h>0?Math.min(1,Math.max(0,window.scrollY/h)):0;
+    if(bar) bar.style.transform='scaleX('+p.toFixed(4)+')';
+    if(topbar){
+      var threshold=(title?title.offsetHeight:420)*0.72;
+      if(window.scrollY>threshold) topbar.classList.add('show'); else topbar.classList.remove('show');
+    }
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+  if('IntersectionObserver' in window){
+    var rev=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); rev.unobserve(e.target); } });
+    },{rootMargin:'0px 0px -10% 0px',threshold:0.06});
+    document.querySelectorAll('.reveal').forEach(function(el){ rev.observe(el); });
+    if(label){
+      var cur=new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting){ var t=e.target.getAttribute('data-label'); if(t) label.textContent=t; } });
+      },{rootMargin:'-44% 0px -50% 0px',threshold:0});
+      document.querySelectorAll('.plate[data-label]').forEach(function(el){ cur.observe(el); });
+    }
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
+})();
+</script>
+<script>
+(function(){
+  var pay={'C':{'C':[3,3],'D':[0,5]},'D':{'C':[5,0],'D':[1,1]}};
+  var verdicts={
+    'CC':'Both cooperate. Together you do well \u2014 yet each of you could do better still by defecting, and each knows the other knows it.',
+    'CD':'You cooperated; they defected. You take the sucker\u2019s payoff, the worst of the four, while they take the most.',
+    'DC':'You defected while they cooperated. You take the most \u2014 entirely at their expense.',
+    'DD':'Both defect. This is the only stable outcome: neither can do better by changing alone. And yet you have both ended worse than had you cooperated. That gap \u2014 between what is individually rational and what is collectively best \u2014 is the dilemma.'
+  };
+  var you='C', them='C';
+  function $(id){return document.getElementById(id);}
+  function bestReply(t){ var d=pay['D'][t][0], c=pay['C'][t][0]; return d>c?'Defect':(d<c?'Cooperate':'Either'); }
+  function render(){
+    document.querySelectorAll('#pd-matrix .pd-cell').forEach(function(c){
+      c.classList.toggle('sel', c.getAttribute('data-you')===you && c.getAttribute('data-them')===them);
+    });
+    document.querySelectorAll('.pd-tbtn').forEach(function(b){
+      var on=(b.getAttribute('data-set')==='you' && b.getAttribute('data-val')===you) || (b.getAttribute('data-set')==='them' && b.getAttribute('data-val')===them);
+      b.classList.toggle('on', on);
+    });
+    var pr=pay[you][them];
+    if($('pd-ro-you')) $('pd-ro-you').textContent=pr[0];
+    if($('pd-ro-them')) $('pd-ro-them').textContent=pr[1];
+    if($('pd-ro-sum')) $('pd-ro-sum').textContent=(pr[0]+pr[1]);
+    if($('pd-ro-br')) $('pd-ro-br').textContent=bestReply(them);
+    if($('pd-verdict')) $('pd-verdict').textContent=verdicts[you+them];
+  }
+  var m=$('pd-matrix');
+  if(m){ m.addEventListener('click',function(e){ var c=e.target.closest('.pd-cell'); if(!c)return; you=c.getAttribute('data-you'); them=c.getAttribute('data-them'); render(); }); }
+  document.querySelectorAll('.pd-tbtn').forEach(function(b){
+    b.addEventListener('click',function(){ if(b.getAttribute('data-set')==='you'){you=b.getAttribute('data-val');} else {them=b.getAttribute('data-val');} render(); });
+  });
+  render();
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-bias.html">← The Bias</a><a rel="next" href="the-norm.html">The Norm →</a></nav>
+</body>
+</html>

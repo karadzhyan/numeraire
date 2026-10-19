@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Numéraire — The Holding — The Spread, Plate v</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --measure:39rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:20px;line-height:1.78;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .wrap{max-width:var(--measure);margin:0 auto;padding:0 clamp(1.4rem,5vw,2rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .frontis{max-width:var(--measure);margin:0 auto;padding:clamp(1.6rem,4vh,2.4rem) clamp(1.4rem,5vw,2rem) 0;
+    display:flex;align-items:baseline;justify-content:space-between;gap:1rem;}
+  .frontis .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1rem;letter-spacing:.02em;}
+  .frontis nav{display:flex;gap:1.2rem;}
+  .frontis nav a{font-size:.76rem;color:var(--faint);letter-spacing:.04em;text-decoration:none;
+    border-bottom:1px solid transparent;transition:color .18s ease,border-color .18s ease;white-space:nowrap;}
+  .frontis nav a:hover{color:var(--ink);border-color:var(--hair);}
+
+  .opener{max-width:var(--measure);margin:clamp(2.6rem,7vh,5rem) auto 0;padding:0 clamp(1.4rem,5vw,2rem);text-align:center;}
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:118px;height:13px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .eyebrow{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;
+    font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faintest);}
+  .eyebrow a{text-decoration:none;border-bottom:1px solid var(--hair);transition:color .18s ease,border-color .18s ease;}
+  .eyebrow a:hover{color:var(--ink);border-color:var(--ink);}
+  .plate-no{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 400;font-style:italic;
+    font-size:.96rem;color:var(--faint);margin-top:1rem;}
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.5rem,7vw,4.2rem);line-height:1.02;letter-spacing:-.025em;margin:.5rem 0 0;text-wrap:balance;}
+  .dek{font-family:"Newsreader",serif;font-size:clamp(1.08rem,1.5vw,1.24rem);line-height:1.6;color:var(--soft);
+    font-style:italic;max-width:34rem;margin:1.5rem auto 0;text-wrap:pretty;}
+  .status{margin-top:1.5rem;font-size:.82rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.05em;}
+  .opener-rule{max-width:var(--measure);margin:clamp(2.6rem,6vh,4rem) auto 0;height:1px;background:var(--hair);}
+
+  .essay{margin:clamp(2.4rem,5vh,3.2rem) 0 0;}
+  .essay p{margin:0;text-wrap:pretty;}
+  .essay p + p{text-indent:1.4em;}
+  .essay .lede{text-indent:0;}
+  .essay .lede::first-letter{
+    font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    float:left;font-size:4.1rem;line-height:.78;padding:.04em .14em 0 0;color:var(--ink);}
+  .essay .start{text-indent:0;margin-top:0;}
+  .sc{font-variant:small-caps;letter-spacing:.03em;font-weight:500;}
+
+  .brk{display:flex;justify-content:center;align-items:center;margin:clamp(1.9rem,4.5vh,2.8rem) 0;}
+  .brk svg{display:block;width:96px;height:12px;overflow:visible;}
+  .brk line{stroke:var(--num);stroke-width:1;} .brk rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .pq{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:clamp(1.3rem,2.4vw,1.66rem);line-height:1.32;color:var(--ink);
+    margin:clamp(2rem,4.5vh,2.8rem) 0;padding-left:1.2rem;border-left:2px solid var(--hair);text-indent:0 !important;text-wrap:balance;}
+
+  .sources{max-width:var(--measure);margin:clamp(3.2rem,7vh,5rem) auto 0;padding:clamp(2rem,4vh,2.6rem) clamp(1.4rem,5vw,2rem) 0;border-top:1px solid var(--hair);}
+  .sources h2{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.76rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faint);margin:0 0 1.3rem;text-align:left;}
+  .sources ol{list-style:none;margin:0;padding:0;}
+  .sources li{font-size:.86rem;line-height:1.5;color:var(--faint);padding:.5rem 0 .5rem 1.5rem;text-indent:-1.5rem;}
+  .sources li b{font-family:"Fraunces",serif;font-weight:500;font-style:normal;color:var(--soft);}
+  .sources li i{font-style:italic;}
+
+  footer{max-width:var(--measure);margin:clamp(2.6rem,5vh,3.4rem) auto 0;padding:2rem clamp(1.4rem,5vw,2rem) 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.2rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1rem;}
+  .f-nav{display:flex;gap:1.2rem;flex-wrap:wrap;justify-content:flex-end;}
+  .f-nav a{font-size:.78rem;color:var(--faint);letter-spacing:.04em;text-decoration:none;border-bottom:1px solid var(--hair);transition:color .18s ease,border-color .18s ease;}
+  .f-nav a:hover{color:var(--ink);border-color:var(--ink);}
+  .f-note{margin-top:1.4rem;font-size:.8rem;line-height:1.6;color:var(--faintest);}
+  .f-note em{font-style:italic;}
+  .f-note a{color:var(--faint);text-decoration:none;border-bottom:1px solid var(--hair);transition:color .18s ease,border-color .18s ease;}
+  .f-note a:hover{color:var(--ink);border-color:var(--ink);}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.18s}.rise.d3{animation-delay:.32s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18.5px;line-height:1.74;}
+    .frontis{flex-direction:column;gap:.5rem;}
+    .frontis nav{gap:1rem;}
+    .essay .lede::first-letter{font-size:3.3rem;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-quantities">The Quantities edition · contents</a><a href="numeraire-the-table.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+
+  <div class="frontis rise d1">
+    <span class="imprint">Numéraire</span>
+    <nav>
+      <a href="numeraire-the-prices.html#spread">The Spread &middot; all twelve plates</a>
+      <a href="numeraire-the-table.html">the table &#8599;</a>
+    </nav>
+  </div>
+
+  <header class="opener">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 118 13"><line x1="0" y1="6.5" x2="46" y2="6.5"/><rect x="55" y="1.5" width="7" height="7" transform="rotate(45 58.5 5)"/><line x1="72" y1="6.5" x2="118" y2="6.5"/></svg>
+    </div>
+    <div class="eyebrow rise d2">Volume V &middot; <a href="numeraire-the-prices.html#spread">The Spread</a> &middot; The Prices</div>
+    <div class="plate-no rise d2">Plate the Fifth, of twelve</div>
+    <h1 class="rise d2">The Holding</h1>
+    <p class="dek rise d3">The second face of the spread: the risk the dealer bears in carrying what he buys while he waits for a buyer to appear. Having bought at the bid, he is left holding the thing, and in the interval its price may move against him and turn his intended profit to a loss — so he warehouses, reluctantly, a risk he never wanted, the unavoidable byproduct of standing ready to trade. The inventory theory of the spread, by which the dealer skews his two quotes to steer his position back toward neutral; and the recognition that this component of the gap is a risk premium under another name — the cleanest wage in the volume, and the spread's closest kinship with the price of risk.</p>
+    <div class="status rise d3">in print &middot; published</div>
+  </header>
+
+  <div class="opener-rule"></div>
+
+  <main class="wrap">
+    <article class="essay">
+
+      <p class="lede">The last plate turned the first face of the dealer's gap, the immediacy he sells; this plate turns the second, the risk he is left holding when he sells it. For the dealer's two prices imagine a tidy round trip — buy at the bid from a seller, sell at the ask to a buyer, keep the difference — but the trip is rarely so neat, because the seller and the buyer do not arrive together. When the dealer buys at his bid, he takes the thing onto his own books and must carry it, sometimes for a few seconds, sometimes for hours or days, until a buyer appears to take it off his hands. And in that interval, however brief, the price of the thing may move — and if it moves the wrong way, if he has bought and the price then falls, his loss on the inventory can swallow whole the spread he meant to earn, and more. So the dealer bears, as the unavoidable cost of standing ready to trade, the risk that what he is holding loses value before he can pass it on. He never wanted to hold it; his whole desire is to be flat, to buy and sell in the same breath and carry nothing at all. But someone must hold the thing in the gap between the seller who is done with it and the buyer not yet come, and bear its risk in the meantime, and that someone is the dealer. The part of his spread that pays for this is the subject of the plate, and it is, of all the gap conceals, the piece the volume can most readily call earned — for it is a risk premium under another name.</p>
+
+      <p>It helps to see the dealer rightly, for he is easily mistaken for a speculator and is nearly his opposite. The speculator wants a position: he buys because he believes the price will rise, and the holding of the thing is the whole point of his trade. The dealer wants no position at all. He buys not because he expects the price to rise but because someone needed to sell, and he sells not because he expects it to fall but because someone needed to buy; the inventory he accumulates is a byproduct he would shed in an instant if he could. He is, in truth, a warehouseman — but a warehouseman of a peculiar and uncomfortable kind, for what he warehouses is not inert goods that sit safely on a shelf but live financial claims whose value shifts from moment to moment while they are in his keeping. An ordinary warehouseman is paid to store a thing whose worth does not change as it waits; the dealer is paid to store a thing whose worth may change a great deal, and against him, before the waiting ends. His warehousing is therefore a bearing of risk, not merely a holding of stock, and the rent he charges for it must cover not just the space and the time but the hazard — the chance that the price will turn while the thing is his, and the round trip he meant to profit from will end instead in a loss.</p>
+
+      <div class="brk" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="38" y2="6"/><rect x="45" y="1.5" width="6" height="6" transform="rotate(45 48 4.5)"/><line x1="58" y1="6" x2="96" y2="6"/></svg></div>
+
+      <p class="start"><span class="sc">Because he</span> so dislikes holding, the dealer manages his inventory actively, and the chief tool he manages it with is the very pair of prices he quotes. The inventory theory of the spread, worked out by Garman, by Amihud and Mendelson, by Ho and Stoll, shows that the dealer does not set his bid and ask symmetrically around some fixed estimate of the thing's worth and leave them there. He shades them according to what he is holding. When he has bought too much and is uncomfortably long, he lowers both his bid and his ask: the lower ask tempts buyers to relieve him of his excess, and the lower bid warns sellers that he is in no mood to take on more. When he is short, he raises both, to attract sellers and repel buyers. His quotes thus lean with his position, and the midpoint between them — which a careless observer might take for the market's settled view of the thing's value — drifts with the dealer's inventory as much as with any news, sliding down when he is overstocked and up when he is bare. The spread itself, meanwhile, widens with the riskiness of the holding: the more violently the thing's price can move while he carries it, the more he must charge to bear the carrying, so that volatile and skittish instruments wear wider spreads than calm and steady ones, for exactly the reason that a larger risk demands a larger wage.</p>
+
+      <p class="pq">The dealer's two prices are not a reading of the thing's worth alone; they lean with what he is holding, shading low to be rid of a surplus and high to draw in what he lacks.</p>
+
+      <div class="brk" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="38" y2="6"/><rect x="45" y="1.5" width="6" height="6" transform="rotate(45 48 4.5)"/><line x1="58" y1="6" x2="96" y2="6"/></svg></div>
+
+      <p class="start"><span class="sc">What the</span> dealer is being paid for here is, quite precisely, the bearing of risk — and so the inventory component of his spread is a risk premium, the same creature the fourth volume of this table anatomized at length, merely wearing the costume of a market-maker. Recall what that volume found: that someone must bear the risks a world of uncertainty throws off, that the risk-averse will pay to be spared them, and that the wage of bearing what others wish to shed is, at its core, honestly earned. The dealer is one such bearer. The impatient seller who must sell now, before a buyer has been found, is paying to shed the risk of holding his position any longer; the impatient buyer who must buy now, before a seller has appeared, is paying to acquire at once rather than wait; and the dealer, by stepping between them and carrying the thing across the interval that separates their two trades, takes onto himself the risk that neither wished to bear in that interval. His compensation for doing so is a premium for risk, indistinguishable in kind from the premium an insurer earns for carrying the risks his policyholders shed, or the premium an investor earns for holding an asset that might fall. The whole apparatus of the fourth volume — that such a premium is genuinely earned at its core, however it may be swollen or mismeasured at its edges — applies to the dealer's holding exactly as it applied to any other bearer of risk.</p>
+
+      <div class="brk" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="38" y2="6"/><rect x="45" y="1.5" width="6" height="6" transform="rotate(45 48 4.5)"/><line x1="58" y1="6" x2="96" y2="6"/></svg></div>
+
+      <p class="start"><span class="sc">This is</span> why, of the three things folded into the dealer's gap, the wage of the holding is the one the volume can most cleanly call earned. The cost of processing an order is real but small and dull; the loss to the informed trader, which the next plate takes up, is real but shadowy and hard to measure; but the risk of the holding is real, substantial, and — almost uniquely among the things this volume weighs — measurable. One can say how volatile a thing is, how far and how fast its price can move, and therefore how much risk a dealer takes in carrying it for a given span; and the spread, in its inventory part, answers to that measure, widening honestly with the wildness of the thing and narrowing with its calm. There is no mystery in it and little room for disguise: a dealer in a placid, heavily traded government bond, which barely moves while he holds it, charges a sliver of a spread for the holding; a dealer in a thin and skittish stock, which can lurch a tenth of its value before he finds a buyer, charges far more, and visibly should. The wage tracks the risk, as a wage for risk-bearing ought, and the customer who pays it is paying for a service whose cost he could, in principle, himself compute. Of all the spread's components, this is the one that wears its justification on its face.</p>
+
+      <p class="pq">The wage of the holding is the cleanest the gap conceals, for it answers to a risk one can measure, and widens honestly with the wildness of the thing — a larger risk commanding, as it should, a larger wage.</p>
+
+      <div class="brk" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="38" y2="6"/><rect x="45" y="1.5" width="6" height="6" transform="rotate(45 48 4.5)"/><line x1="58" y1="6" x2="96" y2="6"/></svg></div>
+
+      <p class="start"><span class="sc">And yet</span> even this, the cleanest of the spread's wages, does not entirely escape the volume's question, for two reasons the fourth volume itself supplied. The first is that the dealer need not bear the whole of the risk he charges for. Much of the risk in any single holding is idiosyncratic — particular to that one thing — and a dealer who holds a great many positions at once finds the idiosyncratic gains on some washing out the idiosyncratic losses on others, so that his portfolio of inventories is far less risky than the sum of its parts; what remains, and what he truly cannot escape, is the systematic risk, the danger that the whole market moves against everything he holds at once. A dealer who charges each customer for the full risk of his single position, while quietly diversifying most of that risk away across his book, is collecting a premium for a hazard he has largely shed — and that excess, like every excess in this volume, is a toll wearing the costume of a wage. The second reason is that the size of the risk is the dealer's to judge and the customer's to take on faith: the customer cannot easily see how volatile the thing truly is, how quickly the dealer can in fact offload it, or how much of the risk he has hedged, and so cannot check whether the inventory charge is honest or inflated. Even the most measurable of the gap's components, then, is measurable chiefly to the dealer, and the customer pays what he is told the risk is worth.</p>
+
+      <div class="brk" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="38" y2="6"/><rect x="45" y="1.5" width="6" height="6" transform="rotate(45 48 4.5)"/><line x1="58" y1="6" x2="96" y2="6"/></svg></div>
+
+      <p class="start"><span class="sc">Still, when</span> all the caveats are entered, the holding remains the face of the spread that looks back at the volume most honestly. Its core is a genuine risk, genuinely borne: the dealer truly does carry the thing across the interval between the seller and the buyer, truly does stand exposed to the price's movement while he carries it, and truly does deserve, for bearing what the impatient on both sides wished to be spared, a wage proportioned to the hazard. The toll that can creep in — the premium charged for risk diversified away, the inflation of a risk the customer cannot verify — is real, but it is the exception that qualifies the rule, not the rule itself; the inventory spread is, in the main, what it claims to be, the price of a risk that someone had to bear. Of the dealer's whole gap, this component is the closest in kind to the most defensible of all the prices in the table, the wage of bearing risk, and it inherits that price's verdict almost intact: earned at its core, for the risk is real and the bearing genuine; liable to be swollen at its edges, for the bearer can shed what he charges for and inflate what cannot be checked; but, in its essence, the honest premium of the interval — the wage of standing between two trades that did not arrive together, and holding the world's risk in the gap between them.</p>
+
+      <div class="brk" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="38" y2="6"/><rect x="45" y="1.5" width="6" height="6" transform="rotate(45 48 4.5)"/><line x1="58" y1="6" x2="96" y2="6"/></svg></div>
+
+      <p class="start"><span class="sc">So the</span> second face of the dealer's gap is the spread at its most clearly earned, and its nearest kinship with the price of risk — the inventory premium that is a risk premium under another name, owed to the dealer for warehousing, across the interval of his trade, a hazard the impatient on either side declined to hold. The matter belongs, by that kinship, to the volume on the premium, where the wage of bearing risk is weighed in full, with all its honest core and all its swollen edges. Two of the gap's three faces are now turned: the immediacy the dealer sells, and the inventory he is left holding. The third is the darkest, and the hardest both to forgive and to dismiss — the loss the dealer suffers not to the movement of the price by chance but to the people who trade with him precisely because they know something he does not, and against whom his only defense is to widen his spread against everyone alike. To that informed trader, and the shadow he casts across every quote, the next plate is given. As the table says of every price, first to last: the argument remains open.</p>
+
+    </article>
+  </main>
+
+  <section class="sources">
+    <h2>A note on the plate's sources</h2>
+    <ol>
+      <li><b>Mark B. Garman</b>, &ldquo;Market Microstructure&rdquo; (1976) — the dealer as a stochastic inventory problem, and the peril of imbalance.</li>
+      <li><b>Yakov Amihud &amp; Haim Mendelson</b>, &ldquo;Dealership Market: Market-Making with Inventory&rdquo; (1980) — the bid and ask set to steer the dealer's position.</li>
+      <li><b>Thomas Ho &amp; Hans R. Stoll</b>, &ldquo;Optimal Dealer Pricing under Transactions and Return Uncertainty&rdquo; (1981) — the spread as the price of bearing return risk on inventory.</li>
+      <li><b>Sanford J. Grossman &amp; Merton H. Miller</b>, &ldquo;Liquidity and Market Structure&rdquo; (1988) — the market-maker who bears risk in the interval between buyer and seller.</li>
+      <li><b>Ananth Madhavan &amp; Seymour Smidt</b>, &ldquo;An Analysis of Changes in Specialist Inventories and Quotations&rdquo; (1993) — the empirics of quotes that move with what the dealer holds.</li>
+      <li><b>Stefan Nagel</b>, &ldquo;Evaporating Liquidity&rdquo; (2012) — the return to liquidity provision as the reward for inventory risk that spikes in turbulence.</li>
+      <li><b>Joel Hasbrouck</b>, <i>Empirical Market Microstructure</i> (2007) — the decomposition of the spread into its inventory and information parts.</li>
+    </ol>
+  </section>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <div class="f-nav">
+        <a href="numeraire-the-prices.html#spread">&#8592; The Spread</a>
+        <a href="numeraire-the-table.html">the table of twenty-six</a>
+      </div>
+    </div>
+    <p class="f-note">Plate v of Volume V, <em>The Spread</em> — set here in full. It turns the second of the gap's three faces, after the immediacy of <a href="numeraire-plate-the-liquidity.html">The Liquidity</a>: the risk the dealer carries while the other side is sought, which is the cleanest wage in the volume, for it is a risk premium under another name. The dealer's bearing, on behalf of impatient sellers and buyers, of the hazard they would pay to shed is the wage of bearing risk that opened the price of risk in <a href="numeraire-plate-the-aversion.html">The Aversion</a>; and that he need not bear the whole of it — much washing out across his many positions — is the lesson of <a href="numeraire-plate-the-diversification.html">The Diversification</a>. The third and darkest face of that gap, the loss the dealer takes to those who trade knowing more than he does, is the subject of <a href="numeraire-plate-the-informed.html">The Informed</a>. Set in Fraunces and Newsreader. <em>The argument remains open.</em></p>
+  </footer>
+
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="numeraire-plate-the-liquidity.html">← Numéraire</a><a rel="next" href="numeraire-plate-the-informed.html">Numéraire →</a></nav>
+</body>
+</html>

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Rate — Numéraire, Volume III</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem; --measure:40rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.9rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(3rem,8vh,6rem) 0 clamp(1.6rem,4vh,2.6rem);text-align:center;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;text-decoration:none;}
+  .imprint:hover{color:var(--soft);}
+  .vol-dateline{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+
+  .vol-sym{width:114px;height:114px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;align-items:center;justify-content:center;
+    font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 500;font-size:3.1rem;line-height:1;letter-spacing:-.01em;}
+  .vol-sym.lit{background:var(--ink);color:var(--paper);}
+  .vol-elnum{font-family:"Fraunces",serif;font-size:.74rem;color:var(--faintest);letter-spacing:.18em;text-transform:uppercase;margin-top:1rem;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.3rem,6.5vw,4.6rem);line-height:1.02;letter-spacing:-.025em;margin:.7rem 0 0;text-wrap:balance;}
+  .vol-status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .vol-status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:44rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .vol-q{max-width:46rem;margin:clamp(2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .vol-q .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.7rem;}
+  .vol-q q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.3rem,2.4vw,1.72rem);line-height:1.32;color:var(--ink);quotes:none;text-wrap:balance;}
+
+  .front{margin:clamp(3rem,7vh,5rem) auto 0;max-width:var(--measure);}
+  .front-eyebrow{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);text-align:center;
+    display:flex;align-items:center;gap:.9rem;justify-content:center;margin:0 0 2.1rem;}
+  .front-eyebrow::before,.front-eyebrow::after{content:"";height:1px;width:2.4rem;background:var(--hair);}
+  .front p{font-size:1.07rem;line-height:1.76;color:var(--ink);margin:0 0 1.35rem;text-wrap:pretty;}
+  .front p:last-child{margin-bottom:0;}
+  .front em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.74;padding:.1em .12em 0 0;color:var(--ink);}
+  .front-orn{display:flex;justify-content:center;margin:2rem 0;}
+  .front-orn svg{width:96px;height:12px;overflow:visible;}
+  .front-orn line{stroke:var(--num);stroke-width:1;} .front-orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  main{padding:clamp(3rem,7vh,5rem) 0 0;}
+  .plates-head{display:flex;align-items:baseline;gap:.9rem;margin:0 0 1.6rem;}
+  .plates-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-size:.86rem;color:var(--faintest);letter-spacing:.04em;flex:0 0 auto;}
+  .plates-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);flex:0 0 auto;}
+  .plates-rule{flex:1;height:1px;background:var(--hair);position:relative;top:-2px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:13px;}
+
+  .el{appearance:none;-webkit-appearance:none;background:var(--paper);border:1px solid var(--hair);border-radius:2px;
+    padding:14px 15px 16px;text-align:left;cursor:pointer;position:relative;min-height:152px;
+    display:flex;flex-direction:column;color:inherit;font-family:inherit;
+    transition:border-color .22s ease,background .22s ease,transform .22s ease,box-shadow .22s ease;}
+  .el:hover{border-color:var(--faintest);transform:translateY(-2px);}
+  .el-rn{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-size:.78rem;color:var(--faintest);letter-spacing:.18em;text-transform:uppercase;}
+  .pl-hero{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 500;font-size:1.34rem;line-height:1.06;margin-top:.5rem;letter-spacing:-.012em;}
+  .el-gloss{font-size:.79rem;color:var(--faint);line-height:1.36;margin-top:.5rem;font-style:italic;}
+  .pl-flag{margin-top:auto;padding-top:.7rem;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--faintest);}
+  .el.lit{background:var(--ink);border-color:var(--ink);}
+  .el.lit .pl-hero{color:var(--paper);}
+  .el.lit .el-rn{color:rgba(240,235,225,.5);}
+  .el.lit .el-gloss{color:rgba(240,235,225,.62);}
+  .el.lit .pl-flag{color:rgba(240,235,225,.7);}
+  .el.sel{box-shadow:inset 0 0 0 1.5px var(--ink);border-color:var(--ink);}
+  .el.lit.sel{box-shadow:inset 0 0 0 1.5px var(--paper);}
+
+  .detail{margin:clamp(2.4rem,5vh,3.6rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);scroll-margin-top:1.4rem;}
+  .d-head{display:flex;gap:1.3rem;align-items:flex-start;}
+  .d-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 500;font-size:1.5rem;line-height:1;
+    color:var(--ink);flex:0 0 auto;border:1px solid var(--hair);border-radius:2px;letter-spacing:.04em;
+    width:86px;height:86px;display:flex;align-items:center;justify-content:center;text-transform:uppercase;}
+  .d-sym.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .d-titles{min-width:0;}
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);}
+  .d-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.7rem,3.6vw,2.5rem);margin:.22rem 0 .35rem;line-height:1.04;letter-spacing:-.016em;}
+  .d-status{font-size:.84rem;color:var(--faint);font-style:italic;}
+  .d-status.print{color:var(--soft);font-style:normal;}
+  .d-status.print::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .d-desc{font-size:1.05rem;line-height:1.72;color:var(--ink);max-width:42rem;margin:1.3rem 0 0;text-wrap:pretty;}
+
+  .d-openq{margin:1.6rem 0 0;max-width:40rem;}
+  .d-openq .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.5rem;}
+  .d-openq q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);quotes:none;}
+
+  .d-excerpt{margin:1.8rem 0 0;max-width:42rem;border-left:1px solid var(--hair);padding:.2rem 0 .2rem 1.5rem;}
+  .d-excerpt .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.8rem;}
+  .d-excerpt p{font-size:1.04rem;line-height:1.74;color:var(--ink);margin:0;text-wrap:pretty;}
+  .d-excerpt .x-cap{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 500;font-size:1.15rem;}
+  .d-readplate{margin:1.6rem 0 0;}
+  .d-readplate a{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:.94rem;
+    letter-spacing:.01em;text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:2px;transition:border-color .2s ease,color .2s ease;}
+  .d-readplate a:hover{color:var(--soft);border-color:var(--soft);}
+  .d-readplate .arr{margin-left:.4rem;}
+
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;text-decoration:none;}
+  .f-mark:hover{color:var(--soft);}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;}
+    .el{min-height:138px;padding:12px 12px 14px;}
+    .pl-hero{font-size:1.18rem;}
+    .el-gloss{font-size:.74rem;}
+    .vol-sym{width:92px;height:92px;font-size:2.5rem;}
+    .d-head{gap:1rem;}
+    .d-sym{width:64px;height:64px;font-size:1.25rem;}
+    .front p{font-size:1.04rem;}
+    .dropcap{font-size:3rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="rise d1">
+      <a class="imprint" href="numeraire-atlas.html">Numéraire</a>
+      <div class="vol-dateline">The Third Volume &middot; The Prices</div>
+    </div>
+    <div class="vol-sym lit rise d2" aria-hidden="true">Rt</div>
+    <div class="vol-elnum rise d2">Element 03 &middot; Group I</div>
+    <h1 class="rise d3">The Rate</h1>
+    <div class="vol-status rise d3">in print &middot; № III &middot; 2 of 12 plates</div>
+    <p class="standfirst rise d4">The interest rate is the price of time: the measure of how much more a dollar today is worth than a dollar tomorrow, and the number on which the whole architecture of finance — every loan, bond, and mortgage, the cost of a nation's debt — is raised. This volume anatomizes it. It weighs the theories that make the rate a fact of nature — the reward for abstinence, the premium of impatience and productivity — against the recognition that the price of time is set, not given: a number a central bank moves, and the verdict of a contest, older than economics, between those who can wait and those who must pay for not waiting.</p>
+    <div class="vol-q rise d5">
+      <span class="lead">The question of the volume</span>
+      <q>the rate looks like the natural discount the future must suffer — but who decides what an hour of waiting is worth, and in whose favor is the price of time set?</q>
+    </div>
+  </header>
+
+  <section class="front" aria-label="The argument of the volume">
+    <div class="front-eyebrow">The argument</div>
+
+    <p><span class="dropcap">O</span>f all the prices in this table, none is at once so abstract and so consequential as the price of time. The interest rate is what a dollar today fetches when lent until tomorrow, and what a dollar promised for tomorrow is worth if claimed today; it is the rate at which the future is discounted into the present and the present compounded into the future. On it the entire edifice of finance is raised — every loan and bond and mortgage, every weighing of a cost borne now against a benefit reaped later, every valuation of a company or a claim. To move it is to move the worth of all these at once. And yet, for all its reach, the rate is a single number, and the question this volume presses is the oldest and simplest one about it: where does that number come from, and who decides what an hour of waiting is worth?</p>
+
+    <p>Why the future should trade at a discount at all has been answered, by the classical tradition, from the side of nature and necessity. Men are impatient: they prefer their enjoyments now, and must be tempted to defer them. One who lends abstains from the present use of his wealth, and interest, Nassau Senior held, is the just reward of that abstinence, as wages are the reward of labor. And present goods are genuinely more fruitful than future ones, for Eugen von Böhm-Bawerk argued that production which takes the long way round — building tools before bread, machines before cloth — yields more in the end, so that command over resources now is worth a premium over the same command later. Irving Fisher gathered these threads into the modern theory: the rate of interest is the price that reconciles impatience, the preference for the present, with opportunity, the return that present resources can earn if invested — the meeting point of human desire and the world's productivity across time.</p>
+
+    <p>On these accounts the rate is about as natural as anything the science treats. It springs from the deep facts of the human relation to time and from the technical fruitfulness of capital, not from anyone's will; it is discovered, like the freezing point of water, rather than chosen. A positive rate, on this view, is no imposition but a reading of reality — the price the world attaches to waiting, written into the order of things. There would be interest, the classical economist could say, on a desert island or in a state of nature, wherever a present good could be turned to future advantage and wherever men preferred sooner to later. The rate is the price of time, and time's price, like time itself, seems to belong to nature and not to us.</p>
+
+    <p>But the appearance of nature does not survive a closer look. John Maynard Keynes denied that the rate rewards waiting at all: saving alone, he argued, earns nothing; what earns interest is the surrender of liquidity — the giving up of money's unique safety and flexibility — so that the rate is the price of parting with money, governed by the demand to hold it against the supply, a monetary phenomenon and not a real one. Knut Wicksell had already split the rate in two: a natural rate, which would balance saving and investment and hold prices steady, and the market rate that banks in fact charge, which can stray from it and drive a cumulative inflation or slump until the two are forced back together. But the natural rate, it emerged, cannot be observed; it can only be guessed at. What actually rules an economy is the market rate — and the market rate is set, by a banking system and, at its center, by a central bank. The price of time, on inspection, is not read from nature. It is made.</p>
+
+    <div class="front-orn" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>And what is made by some is borne by others. A central bank that raises the rate enriches those who hold claims and squeezes those who owe; one that lowers it does the reverse, punishing the saver to relieve the borrower and lifting the price of every asset along the way. There is no setting of the rate that is neutral among the parties, for the price of time is also the rate at which the future is traded for the present, and every level of it favors someone. A price is a verdict on a hidden contest, mistaken for a fact of nature; and the interest rate, presented as the objective discount the future must suffer, is in truth the administered outcome of a contest — between creditor and debtor, lender and borrower, the patient and the pressed — over who shall command resources now and who shall wait. The power to set the price of time is among the greatest in any economy, and it is wielded, not found.</p>
+
+    <p>That the price of time is a matter of power, and not merely of nature, is no modern discovery; it is the oldest intuition about interest there is. For most of recorded history, to lend at interest was condemned as usury: Aristotle pronounced money barren and its breeding unnatural, the medieval Church forbade the taking of interest outright, and the prohibition, however freely evaded, rested on a conviction that to charge a man for the time he needs to repay is to feed upon his necessity rather than to earn by one's own labor. Jeremy Bentham answered, in his defense of usury, that time is truly valuable and the free bargain over its price no business of the law. The quarrel runs unsettled still. But it was never merely technical, for beneath it lay a question of power: the lender's leverage over the borrower's need. A price is a verdict on a hidden contest, mistaken for a fact of nature; and the rate that wears the look of patience rewarded is the visible settlement of who possesses the means to wait, and who must pay for lacking them.</p>
+
+    <p>None of this renders the rate arbitrary, or the real theories idle, and the volume will not pretend otherwise. Impatience is a genuine fact of the human heart; capital employed in roundabout ways is genuinely productive; a society that consumed its whole substance and saved nothing would build no future, and the rate that coaxes some to wait answers to a real need. The central bank's power over the rate is itself hedged — by the discipline of inflation, by the flight of capital, by the expectations of those it would steer. The price of time is neither a pure fact of nature nor a pure act of will, but a thing made at the meeting of the two: shaped by real impatience and real productivity, and set, within the room those forces leave, by a power that chooses. The volume's work is to mark that meeting precisely — to separate what the rate genuinely reflects about the scarcity of present resources from what it conceals about the contest over their command, and the policy that settles it.</p>
+
+    <p>The twelve plates follow the price of time from its simplest statement to its gravest stakes. They set out the discount itself — why tomorrow's dollar is worth less than today's — and the usury that asks whether interest is the just price of waiting or the measure of power over need; the abstinence by which the classics justified the reward of the saver, the impatience through which Fisher reconciled desire with opportunity, and the detour by which Böhm-Bawerk found interest in the productivity of capital; the hoard from which Keynes drew the rate, and the natural rate by which Wicksell divided the real from the monetary; the lever by which a central bank moves the whole architecture of interest, the bond in which the rate is made visible as the price of a promise, and the zero below which the price of time was once thought it could not fall; the compound through which interest transfers, without rest, from those who owe to those who own; and, at the last, the future, and what rate, if any, may justly weigh the welfare of those not yet born. Other volumes border this one: the money the rate is the price of lending, anatomized in the volume the table is named for; the stock, which is a flow of income capitalized at the rate; the cycle, in which the rate figures as both cause and cure; and the premium, the price of risk that the next of the prices will take up where this one, the price of time, leaves off. The interest rate is the price of time, and the question of who sets it, and in whose favor, is the question the volume holds open. The argument remains open.</p>
+
+  </section>
+
+  <main>
+    <div class="plates-head">
+      <span class="plates-num fr">№ III</span>
+      <span class="plates-name">The twelve plates</span>
+      <span class="plates-rule"></span>
+    </div>
+
+    <div class="grid" id="grid">
+      <button class="el lit" data-id="discount" aria-label="Plate i — The Discount — in print"><span class="el-rn">Plate i</span><span class="pl-hero">The Discount</span><span class="el-gloss">the price of time: why a dollar tomorrow is worth less than a dollar today, and how discounting converts any future sum into its present worth</span><span class="pl-flag">in print</span></button>
+      <button class="el lit" data-id="usury" aria-label="Plate ii — The Usury — in print"><span class="el-rn">Plate ii</span><span class="pl-hero">The Usury</span><span class="el-gloss">the contest beneath the price of time: is interest the just reward of waiting or the measure of power over need — and who decides what an hour of waiting is worth?</span><span class="pl-flag">in print</span></button>
+      <button class="el" data-id="abstinence" aria-label="Plate iii — The Abstinence"><span class="el-rn">Plate iii</span><span class="pl-hero">The Abstinence</span><span class="el-gloss">Senior's abstinence theory: interest as the reward for forgoing present consumption, and the supply of saving the price of time must coax forth</span></button>
+      <button class="el" data-id="impatience" aria-label="Plate iv — The Impatience"><span class="el-rn">Plate iv</span><span class="pl-hero">The Impatience</span><span class="el-gloss">Fisher's synthesis: the rate as the price reconciling impatience (the preference for now) with opportunity (the return to investment)</span></button>
+      <button class="el" data-id="detour" aria-label="Plate v — The Detour"><span class="el-rn">Plate v</span><span class="pl-hero">The Detour</span><span class="el-gloss">Böhm-Bawerk's roundaboutness: interest as the premium present goods command because capital, employed in detoured production, is genuinely more productive</span></button>
+      <button class="el" data-id="hoard" aria-label="Plate vi — The Hoard"><span class="el-rn">Plate vi</span><span class="pl-hero">The Hoard</span><span class="el-gloss">Keynes's liquidity preference: interest as the reward not for waiting but for parting with money — the price of coaxing wealth out of the hoard</span></button>
+      <button class="el" data-id="natural" aria-label="Plate vii — The Natural"><span class="el-rn">Plate vii</span><span class="pl-hero">The Natural</span><span class="el-gloss">Wicksell's natural rate versus the market rate, and the cumulative process when they diverge — an essential benchmark that can never be directly seen</span></button>
+      <button class="el" data-id="lever" aria-label="Plate viii — The Lever"><span class="el-rn">Plate viii</span><span class="pl-hero">The Lever</span><span class="el-gloss">the rate as policy: the central bank's power to set a single number that moves the whole architecture of interest — the administered price of time</span></button>
+      <button class="el" data-id="bond" aria-label="Plate ix — The Bond"><span class="el-rn">Plate ix</span><span class="pl-hero">The Bond</span><span class="el-gloss">the bond as a promise of money over time: discounting future cash flows into a price, the inverse of yield and price, and the yield curve's reading of the future</span></button>
+      <button class="el" data-id="zero" aria-label="Plate x — The Zero"><span class="el-rn">Plate x</span><span class="pl-hero">The Zero</span><span class="el-gloss">the zero lower bound and negative rates: why the price of time cannot easily fall below zero, and what it means when waiting goes unrewarded — or penalized</span></button>
+      <button class="el" data-id="compound" aria-label="Plate xi — The Compound"><span class="el-rn">Plate xi</span><span class="pl-hero">The Compound</span><span class="el-gloss">compound interest and the debtor's burden: the relentless multiplication that turns the saver's friend into the borrower's master, and the rate as a transfer</span></button>
+      <button class="el" data-id="future" aria-label="Plate xii — The Future"><span class="el-rn">Plate xii</span><span class="pl-hero">The Future</span><span class="el-gloss">the capstone: the ethics of discounting the far future — how the choice of a rate decides what the present owes posterity, as in the economics of climate</span></button>
+    </div>
+  </main>
+
+  <section class="detail" id="detail" aria-live="polite"></section>
+
+  <footer>
+    <div class="f-bar">
+      <a class="f-mark" href="numeraire-atlas.html">Numéraire</a>
+      <span class="f-ref">Volume III &middot; The Prices</span>
+    </div>
+    <p class="colophon">Volume III, <em>The Rate</em>, opens with two plates in print — <em>The Discount</em> and <em>The Usury</em>, the price of time and the ancient contest over who sets it. The third element of the table, and the twenty-first of its volumes to appear; it joins <a href="the-wage.html">The Wage</a> and <a href="the-rent.html">The Rent</a> among the prices — the wage the price of labor, the rent the return to ownership, and now the rate the price of time itself. It borders the volume the table is named for, <a href="the-money.html">The Money</a>, for the rate is the price of lending money; <a href="the-stock.html">The Stock</a>, since any fortune is a flow of income capitalized at the rate; and <a href="the-cycle.html">The Cycle</a>, in which the rate figures as both the cause of the slump and its attempted cure. The thesis is that the rate, which wears the look of a natural discount the future must suffer, is in truth set — a number a central bank moves, and the verdict of a contest between those who can wait and those who must pay for not waiting. Return to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+
+<script>
+const PLATES = {
+  discount:{rn:"i",title:"The Discount",family:"in print",lit:true,url:"the-discount.html",
+    desc:`The volume opens with the plainest fact of finance: that a dollar today is worth more than a dollar tomorrow, and that the interest rate is the exact measure of the difference. This plate sets out the price of time. It explains why the future trades at a discount — the uncertainty of tomorrow, the pressure of present wants, the use to which a dollar in hand can be put in the interval — and how the single operation of discounting converts any future sum into its worth today, so that a promise of money next year is valued at a little less than money now. From this one idea the whole architecture of finance is raised: the pricing of loans, bonds, and mortgages, the comparison of costs borne now with benefits reaped later. Time, the plate shows, is never free; the rate is its price.`,
+    excerpt:`<span class="x-cap">A</span> dollar today is worth more than a dollar tomorrow. Everyone knows it, though few ask why; and the whole of finance is built on the difference. To prefer the present dollar is not mere greed or shortsightedness — tomorrow is uncertain, wants press now, and a dollar in hand can be put to work in the interval. The interest rate is the exact measure of this preference: the price at which a sum now exchanges for a larger sum later, the rate at which the future is discounted into the present. Lend a dollar at five percent and you are paid five cents for the year's waiting; value a promise of a dollar next year and it is worth, today, a little less than a dollar. The rate is the price of time, and time, it turns out, is never free.`},
+  usury:{rn:"ii",title:"The Usury",family:"in print",lit:true,url:"the-usury.html",
+    desc:`If the rate is the price of time, the deepest question is who sets that price, and whether it is just — and here the volume meets a quarrel older than economics itself. This plate gives the thesis on which the volume turns. For most of history lending at interest was condemned: Aristotle called money barren, the medieval Church forbade usury, and the prohibition rested on the sense that to charge for time is to profit from a borrower's need. The defenders held that time is genuinely valuable and interest its just price. But beneath the dispute lies the volume's claim: that the rate which appears the natural reward of patience is in truth a verdict on a contest — between creditor and debtor, between those who can wait and those who must pay for not waiting — and that the power to set the price of time, once the lender's, is now the central bank's. The discount is real; the question is who commands it.`,
+    excerpt:`<span class="x-cap">F</span>or most of history, to lend at interest was a sin. Aristotle called money barren and its breeding against nature; the medieval Church forbade usury outright; and the prohibition, however widely evaded, rested on an intuition that has never quite died — that to charge a man for the time he takes to repay is to profit from his need rather than from any labor of one's own. The defenders answered that time is genuinely valuable, that the lender forgoes its use, that interest is the just price of waiting. But beneath the long quarrel lay a question neither side could settle by theory alone: who decides what an hour of waiting is worth — and is the rate the natural reward of patience, or the measure of one party's power over another's necessity?`},
+  abstinence:{rn:"iii",title:"The Abstinence",family:"in preparation",lit:false,
+    desc:`Why must anyone be paid to lend at all? The classical answer, given its sharpest form by Nassau Senior, was abstinence: the lender forgoes the present enjoyment of his wealth, and interest is the reward for that forbearance, as wages reward labor. This plate sets out the abstinence theory of interest and the supply of saving it explains — the notion that deferring consumption is itself a sacrifice deserving payment, and that the rate is what coaxes the patient to part with their command over goods for a time. It traces the dignity the theory conferred on the saver, the scorn it drew from those who thought waiting no great hardship for the rich, and the kernel of truth it preserves: that someone, somewhere, must release present resources for the future to be built, and the rate is the price of their release.`,
+    openq:`is the patience of the saver a sacrifice that earns its reward, or a small thing for the rich and a great one only for the poor?`},
+  impatience:{rn:"iv",title:"The Impatience",family:"in preparation",lit:false,
+    desc:`Irving Fisher gave the theory of interest its modern and most complete form by joining two forces that earlier writers had pulled apart. On one side stands impatience — the human preference for enjoyment now over enjoyment later, varying with temperament, income, and the length of one's horizon. On the other stands opportunity — the return that present resources can earn if invested rather than consumed. This plate sets out Fisher's synthesis: the rate of interest as the price that brings the two into balance, equating the impatience of those who would consume with the productivity available to those who would invest. It is the most elegant of the real theories, picturing the rate as the meeting point of desire and possibility across time. The plate marks both its power and the assumption it makes — that the price of time emerges from these forces, rather than being set above them.`,
+    openq:`if the rate is where impatience meets opportunity, what fixes it when the two are themselves shaped by who already holds the wealth?`},
+  detour:{rn:"v",title:"The Detour",family:"in preparation",lit:false,
+    desc:`Eugen von Böhm-Bawerk located the source of interest not in psychology but in production itself. Roundabout methods — making tools before making bread, building the machine before the cloth — yield more in the end than direct ones, so that capital is genuinely productive and present goods, which can be set to such roundabout work, command a premium over future goods. This plate sets out the productivity, or "roundaboutness," theory of interest: the claim that a positive rate reflects a real technical fact about the world, that the detour through capital actually creates more. It traces Böhm-Bawerk's grounds for the premium on present goods, the debates his theory provoked over whether capital's productivity can explain interest without already presupposing it, and the enduring intuition that interest answers, at least in part, to something real about how wealth is made.`,
+    openq:`does capital's productivity explain interest — or does the value of capital already presuppose the rate it is meant to justify?`},
+  hoard:{rn:"vi",title:"The Hoard",family:"in preparation",lit:false,
+    desc:`John Maynard Keynes denied that interest is the reward for waiting at all. Saving, he argued, does not by itself command a return; what earns interest is parting with liquidity — surrendering the safety and flexibility of money for a less liquid claim, coaxing wealth out of the hoard. The rate is therefore the price of liquidity, set by the demand to hold money against the quantity supplied, a monetary phenomenon rather than a real one. This plate sets out the theory of liquidity preference and its challenge to the classical view. If the rate is governed by the desire to hold money — itself swayed by confidence, fear, and expectation — then it need not settle where saving meets investment, and may sit too high for full employment, holding an economy below its capacity. The price of time, on this account, is a creature of the money market, and an unruly one.`,
+    openq:`if interest is the price of parting with money, not of waiting, then the rate is a monetary thing — and may sit wherever fear and confidence leave it?`},
+  natural:{rn:"vii",title:"The Natural",family:"in preparation",lit:false,
+    desc:`Knut Wicksell drew a distinction that has haunted monetary economics ever since: between the market rate of interest, which banks actually charge, and a natural rate, the rate that would balance saving and investment and keep prices stable. When the market rate falls below the natural rate, he argued, borrowing swells, demand outruns supply, and prices rise in a cumulative process that continues until the rates are realigned. This plate sets out the natural rate and the cumulative process, and the deep difficulty they expose: that the natural rate cannot be directly observed, only inferred, so that a central bank steering by it is aiming at a target it cannot see. The idea organizes much of modern monetary policy and embarrasses it in equal measure — a benchmark that is essential, invisible, and forever estimated.`,
+    openq:`the natural rate cannot be seen, only guessed — so what is a central bank steering by when it steers by it?`},
+  lever:{rn:"viii",title:"The Lever",family:"in preparation",lit:false,
+    desc:`Whatever interest is in theory, in practice a committee sets it. This plate sets out the rate as an instrument of policy: the central bank's power to fix the short-term rate and, through it, to move the whole architecture of interest — the cost of mortgages, the yield on bonds, the price a nation pays to service its debt. It traces how a single administered number propagates outward through the financial system, how the authority raises the rate to cool inflation and lowers it to revive employment, and how each adjustment redistributes — from savers to borrowers or back, from debtors to creditors, from present to future. The plate confronts the plainest evidence for the volume's thesis: that the price of time is not read from nature but decided in a room, by people answerable, in the end, to politics — a fact the language of the "natural rate" both acknowledges and obscures.`,
+    openq:`if a committee sets the price of time, in whose interest does it move — and can the choice ever be merely technical?`},
+  bond:{rn:"ix",title:"The Bond",family:"in preparation",lit:false,
+    desc:`A bond is a promise of money over time, and its price is the rate made visible. This plate sets out the financial architecture the rate governs: how future cash flows are discounted into a present price, how the yield on a bond moves inversely to that price, and how the structure of rates across different horizons — the yield curve — encodes the market's expectations of the future. It explains why a rise in rates lowers the value of every existing promise to pay, why long-dated claims swing more violently than short ones, and how the curve's shape is read for omens of growth or recession. Here the abstract price of time becomes the concrete machinery of trillions in debt — the mortgages, the treasuries, the corporate paper — all of them future sums valued, today, through the single lens of the rate.`,
+    openq:`a bond is a promise discounted to a price — but whose expectations does the curve encode, and how often are they wrong?`},
+  zero:{rn:"x",title:"The Zero",family:"in preparation",lit:false,
+    desc:`Can the price of time be zero? Can it be less than nothing? For most of history the question seemed absurd, yet in recent decades rates have fallen to zero and below, and lenders have paid borrowers to take their money. This plate sets out the puzzle of the lower bound. It explains why a rate cannot easily fall far below zero — since holders can always retreat to cash, which yields zero — and why that floor disables the central bank's chief lever just when it is most needed, in a slump deep enough to call for a negative price of time. It traces the strange world of negative yields, the search for tools beyond the rate when the rate can fall no further, and the unsettling possibility the episode raises: that the natural reward of waiting, far from a fixed feature of nature, may in some conditions be nothing at all, or worse.`,
+    openq:`can the price of time be zero, or less — and if it can, what becomes of the claim that interest is the natural reward of waiting?`},
+  compound:{rn:"xi",title:"The Compound",family:"in preparation",lit:false,
+    desc:`Interest received by one party is interest paid by another, and this plate follows the rate to the debtor through the arithmetic that governs him. It sets out compound interest — the relentless multiplication by which a debt left unpaid grows upon itself, the same force that builds a saver's fortune turned against the borrower — and the long history of its consequences: the debt bondage of antiquity, the periodic crises of sovereign default, the modern household stretched across mortgage and card. The plate makes concrete the contest the volume's thesis names. For the rate is not a neutral fact but a transfer, continuous and vast, from those who owe to those who own; and the level of the rate, the terms of the loan, the law of bankruptcy that limits or enforces the debt are all settled by a balance of power that the language of a freely agreed price tends to hide. Who lends and who borrows is rarely a matter of chance.`,
+    openq:`compound interest transfers, without rest, from those who owe to those who own — so is the rate a price, or a tribute?`},
+  future:{rn:"xii",title:"The Future",family:"in preparation",lit:false,
+    desc:`The volume ends at the largest question the rate poses: how much the present should value the future at all. To discount is to count a benefit less the longer it is deferred, and over long horizons the discount rate becomes decisive — a cost or a life a century hence, discounted at a few percent a year, shrinks almost to nothing in today's reckoning. This final plate sets out the ethics of discounting: the fierce debate over what rate, if any, should be used to weigh the welfare of future generations, as in the economics of climate change, where the choice of a discount rate all but determines what the present owes posterity. It asks whether the price of time, a serviceable convention for pricing a one-year loan, can bear the moral weight placed on it when the "later" is measured in centuries — and whether a society's discount rate is, in the end, a measure of its regard for those who come after.`,
+    openq:`discounted at a few percent, a catastrophe a century hence all but vanishes today — so what rate, if any, may we use to weigh the lives of those not yet born?`}
+};
+
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+function render(id){
+  var tile=document.querySelector('.el[data-id="'+id+'"]');
+  var d=PLATES[id]; if(!d||!tile) return;
+  var h='';
+  h+='<div class="d-head">';
+  h+='<div class="d-sym'+(d.lit?' lit':'')+'">'+esc(d.rn)+'</div>';
+  h+='<div class="d-titles">';
+  h+='<div class="d-family">The Rate &middot; Plate '+esc(d.rn)+' &middot; '+esc(d.family)+'</div>';
+  h+='<h2 class="d-name">'+esc(d.title)+'</h2>';
+  h+='<div class="d-status'+(d.lit?' print':'')+'">'+esc(d.family)+'</div>';
+  h+='</div></div>';
+  h+='<p class="d-desc">'+esc(d.desc)+'</p>';
+  if(d.lit && d.excerpt){
+    h+='<div class="d-excerpt"><span class="lead">From the opening</span><p>'+d.excerpt+'</p></div>';
+  }
+  if(d.url){h+='<p class="d-readplate"><a href="'+d.url+'">Read the plate<span class="arr" aria-hidden="true">&#8594;</span></a></p>';}
+  if(!d.lit && d.openq){
+    h+='<p class="d-openq"><span class="lead">This plate will ask</span><q>'+esc(d.openq)+'</q></p>';
+  }
+  document.getElementById('detail').innerHTML=h;
+  var prev=document.querySelector('.el.sel'); if(prev) prev.classList.remove('sel');
+  tile.classList.add('sel');
+}
+
+(function(){
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.el').forEach(function(b){
+    b.addEventListener('click',function(){
+      render(b.dataset.id);
+      document.getElementById('detail').scrollIntoView({behavior:reduce?'auto':'smooth',block:'nearest'});
+    });
+  });
+  render('discount');
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-unearned.html">← The Unearned</a><a rel="next" href="the-discount.html">The Discount →</a></nav>
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Middleman — Numéraire, The Spread, Plate i</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:66rem; --measure:35rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(2.8rem,7vh,5rem) 0 clamp(1.4rem,3.5vh,2.2rem);text-align:center;}
+
+  .crumbs{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 400;
+    font-size:.8rem;letter-spacing:.04em;color:var(--faint);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:center;gap:.55rem;}
+  .crumbs a{text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .2s ease,color .2s ease;}
+  .crumbs a:hover{border-color:var(--num);color:var(--ink);}
+  .crumbs .sep{color:var(--faintest);}
+  .crumbs .here{color:var(--ink);}
+
+  .plate-mark{width:116px;height:116px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:.18rem;line-height:1;}
+  .plate-mark.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pm-vol{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.84rem;letter-spacing:.06em;color:rgba(240,235,225,.62);}
+  .pm-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;
+    font-size:2.5rem;letter-spacing:.02em;text-transform:uppercase;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.1rem,6vw,4rem);line-height:1.03;letter-spacing:-.025em;margin:1rem 0 0;text-wrap:balance;}
+  .status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:42rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .epi{max-width:38rem;margin:clamp(2.2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .epi q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.46;color:var(--ink);quotes:none;display:block;text-wrap:pretty;}
+  .epi .cite{display:block;margin-top:.95rem;font-size:.78rem;color:var(--faintest);letter-spacing:.05em;font-style:normal;}
+  .epi .cite em{font-style:italic;}
+
+  .essay{max-width:52rem;margin:clamp(3rem,7vh,5rem) auto 0;counter-reset:sn;}
+  .essay::after{content:"";display:block;clear:both;}
+  .essay > p,.essay > .pull{max-width:var(--measure);}
+  .essay p{font-size:1.075rem;line-height:1.8;color:var(--ink);margin:0 0 1.4rem;text-wrap:pretty;}
+  .essay em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.72;padding:.08em .14em 0 0;color:var(--ink);}
+
+  .divider{display:flex;justify-content:center;margin:2.4rem 0;}
+  .divider svg{width:96px;height:12px;overflow:visible;}
+  .divider line{stroke:var(--num);stroke-width:1;} .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.5vw,1.74rem);line-height:1.34;color:var(--ink);text-align:center;
+    margin:2.4rem auto;max-width:33rem;text-wrap:balance;}
+
+  .snref{font-family:"Fraunces",serif;font-size:.64em;line-height:0;vertical-align:super;
+    color:var(--soft);counter-increment:sn;margin-left:1px;font-style:normal;}
+  .snref::after{content:counter(sn);}
+  .sn{display:block;max-width:var(--measure);margin:.1rem 0 1.4rem;padding:.15rem 0 .15rem 1.05rem;
+    border-left:1px solid var(--hair);font-size:.84rem;line-height:1.52;color:var(--faint);}
+  .sn::before{content:counter(sn);font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--faintest);margin-right:.5em;font-size:.92em;}
+  .sn em{font-style:italic;}
+
+  @media (min-width:64rem){
+    .sn{float:right;clear:right;width:15rem;margin:.35rem 0 1.3rem;padding:0;border-left:none;}
+    .divider,.pull,.apparatus{clear:both;}
+  }
+
+  .apparatus{max-width:52rem;margin:clamp(3.2rem,7vh,5rem) auto 0;padding-top:2rem;border-top:1px solid var(--hair);clear:both;}
+  .app-h{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;}
+  .app-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.4rem;}
+  .app-list li{border-top:1px solid var(--hair);}
+  .app-list li:first-child,.app-list li:nth-child(2){border-top:none;}
+  .app-list a{display:block;text-decoration:none;padding:.95rem 0;}
+  .app-list a:hover .app-t{color:var(--soft);}
+  .app-rel{display:block;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faintest);margin-bottom:.3rem;}
+  .app-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.12rem;color:var(--ink);transition:color .2s ease;}
+  .app-g{display:block;font-size:.84rem;color:var(--faint);font-style:italic;line-height:1.4;margin-top:.22rem;}
+
+  footer{margin-top:clamp(3.5rem,8vh,6rem);padding:2.2rem 0 4rem;border-top:1px solid var(--hair);}
+  .crumbs.foot{justify-content:flex-start;margin-bottom:1.3rem;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .plate-mark{width:96px;height:96px;}
+    .pm-num{font-size:2.1rem;}
+    .essay p{font-size:1.04rem;line-height:1.74;}
+    .dropcap{font-size:3rem;}
+    .app-list{grid-template-columns:1fr;}
+    .app-list li:nth-child(2){border-top:1px solid var(--hair);}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="crumbs rise d1" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-spread.html">The Spread &middot; Vol V</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate i</span>
+    </nav>
+    <div class="plate-mark lit rise d2" aria-hidden="true">
+      <span class="pm-vol">Sp</span>
+      <span class="pm-num">i</span>
+    </div>
+    <h1 class="rise d3">The Middleman</h1>
+    <div class="status rise d3">in print &middot; The Spread &middot; plate i</div>
+    <p class="standfirst rise d4">The spread is the price of standing between — the cut taken by the third party who joins a buyer to a seller. This first plate of the volume sets out that price and the services it is meant to pay for: the finding of a counterparty, the immediacy of a market always open, the bearing of goods and risk in the interval, the trust that lets strangers deal. Each is real work, and the spread is, in the first place, its wage. The plate makes the strongest case that the middleman earns his cut — and then marks the question the rest of the volume will press: whether the service, by itself, can ever fix the size of the spread, or whether something else does.</p>
+  </header>
+
+  <div class="epi rise d5">
+    <q>Go into the Exchange in London, that place more venerable than many a court; there the Jew, the Mahometan, and the Christian deal with one another as if they were of the same religion, and reserve the name of infidel for those who go bankrupt.</q>
+    <span class="cite">Voltaire, <em>Letters Concerning the English Nation</em>, 1733</span>
+  </div>
+
+  <article class="essay">
+
+    <p class="lede"><span class="dropcap">B</span>etween every buyer and every seller there is often a third party, and he is rarely there for free. The broker who finds you a house and takes his percent, the dealer who quotes one price to buy and a higher one to sell, the platform that hosts the market and skims a share of every sale, the wholesaler between the farm and the shop — each stands in the gap between the two who would trade, and each takes a cut for standing there. The cut is the spread: the difference between what the buyer pays and what the seller receives, captured by the one in the middle. He earns it, when he earns it, by doing what the parties cannot easily do for themselves — finding each other, trusting each other, trading at once instead of waiting. The spread is the price of being spared the trouble of going direct; the question is how much of it is the price of that service, and how much the toll of a man who has placed himself where you must pass.</p>
+
+    <p>Once you look for him, the middleman is everywhere. The groceries on the shelf passed through an importer, a wholesaler, a distributor, and the shop before they reached you, each taking a margin. The shares in a pension fund were bought through a broker, on an exchange, from a market-maker, with a custodian holding them and a clearinghouse standing behind the trade — a half-dozen intermediaries to a single transaction. The loan that built the house came from a saver by way of a bank; the holiday was booked through an agent or a platform; the very wage that paid for all of it was perhaps set by a recruiter who stood between the worker and the firm. Direct exchange — buyer dealing with seller, no one in between — is the exception, and a vanishing one. We live inside a thick weave of intermediation, and a large and rising share of what is paid in any economy goes not to those who make or consume but to those who stand between them.<sup class="snref"></sup></p>
+    <aside class="sn">The intermediating sectors — wholesale and retail distribution, finance, insurance, brokerage, and the platform economy that has lately swelled them — account, in a modern economy, for a large fraction of all output and employment, and their share has climbed for a century. Some of this is the natural deepening of the division of labor, which multiplies the points at which a good changes hands. How much is that, and how much the spread of the spread itself, is among the questions the volume exists to press.</aside>
+
+    <p>Why should anyone pay to keep a third party in the middle? Begin with the oldest service: the middleman finds the other party. A seller with goods and a buyer with money are of no use to each other until they meet, and meeting is far from free — the world is wide, the parties scattered, and neither knows where the other is. The middleman knows. He keeps the standing register of who wishes to sell and who to buy; he is the one place both sides think to look. Friedrich Hayek saw that the deepest economic problem is the use of a knowledge no one holds in full — the knowledge, dispersed among millions, of particular wants and particular surpluses, of the shortage here and the glut there — and that the man on the spot, who knows his own corner, is the one positioned to act on it. The middleman is that man professionalized: the broker who knows which house and which buyer, the agency that knows which worker and which post, the merchant who knows where the grain is dear and where it is cheap.<sup class="snref"></sup> Without him, each party would search the world alone, and many a trade that ought to have happened never would.</p>
+    <aside class="sn">The economics of search, developed by Peter Diamond, Dale Mortensen, and Christopher Pissarides, made formal what the matchmaker always knew: that willing parties are kept apart by frictions, that finding takes time and effort and often fails, and that an intermediary who lowers the cost of finding can raise the number of trades that ever come off. The unemployment that lingers while workers and jobs fail to meet, the house left empty while its buyer looks elsewhere, are the measure of search's cost — and of what a matcher is worth.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>The second service is immediacy: the middleman will trade with you now. Even where buyer and seller can find each other, they seldom wish to trade at the same instant — the seller would sell today, the buyer would buy next week — and without someone to bridge the interval each must wait upon the other's convenience. The market-maker abolishes the wait. He stands always ready to buy, at a price, and always ready to sell, at a slightly higher one, so that either party may transact the moment he wishes, against the dealer rather than against a counterparty who has not yet arrived. The gap between his buying price and his selling price is the bid-ask spread, and Harold Demsetz gave it its classic reading: the spread is the price of immediacy, the fee the impatient pay to trade at once rather than wait.<sup class="snref"></sup> It is a real service with a real cost. The dealer ties up capital in the inventory he must hold; he bears the risk that prices move against him while he holds it; and he runs the constant danger of trading with someone who knows more than he does, and buys from him just before the fall. The spread must cover all of this, or no one would make the market at all.</p>
+    <aside class="sn">Demsetz's account of 1968 treated the spread as the cost of transacting immediately; later work added that part of it is the price of ignorance — the dealer widens his quote to guard against the better-informed traders who pick him off, so that the honest and the patient pay a little more to cover the losses he takes to the sharp. The width of the bid-ask thus measures two things at once: how costly immediacy is to provide, and how much remains unknown about what a thing is worth.</aside>
+
+    <p>Behind immediacy lie two further services, easy to overlook because performed in silence. The first is bearing. To stand between a seller ready now and a buyer ready later, the middleman must own the thing in the meantime — hold the goods, carry the security, take the position onto himself — and ownership across the interval is ownership of its risks. Richard Cantillon, three centuries ago, made just this the definition of the merchant: the man who buys at a price he knows in order to sell at a price he does not, and whose profit is the wage of the uncertainty he shoulders between. The second service is trust. A buyer and seller who have never met, and never will again, have every reason to cheat and little to trust, and much good trade dies of that mutual suspicion before it is born. The middleman interposes his own credit between them: he is known, he will be there tomorrow, he has a name to keep — and so the stranger who will not trust the other stranger will trust him.<sup class="snref"></sup> The escrow who holds the money, the exchange that guarantees the trade, the merchant whose word is his bond — each lets a deal go forward that distrust alone would have killed.</p>
+    <aside class="sn">The middleman's trustworthiness is itself an asset he has invested in and must protect: because he trades repeatedly and in public while the parties trade once and in private, he has a reason to keep his word that they do not, and that reason is what they buy when they route their deal through him. His reputation is capital, slowly built and quickly lost, and the spread is in part its return — the price of borrowing a credit more durable than one's own.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+    <p>Set the services side by side — finding, immediacy, bearing, vouching — and the spread begins to look like an honest wage, the sum of real costs incurred and real values supplied. And often it is precisely that. But a price is a verdict on a hidden contest, mistaken for a fact of nature; and even here, in the cleanest case, the spread conceals a question the services do not answer. For the cost of providing them sets a floor beneath the spread, not its level: it tells you the least the middleman could charge and survive, not the most he can charge and keep your custom. Between that floor and that ceiling lies a range, and where in the range the spread actually falls is fixed not by the worth of the work but by something the single number hides — how badly the parties need him, how easily they could do without him, how far apart he can contrive to keep them.<sup class="snref"></sup> The same spread that pays for a service may also, in the very same coin, pay for a position; and nothing on the face of it marks the one part from the other. The middleman earns his keep. The question this volume will press is whether he earns all of it.</p>
+    <aside class="sn">Competition among middlemen drives the spread toward its floor — the cost of the service plus a normal return; the absence of competition lets it rise toward the ceiling the parties' need will bear. The spread is thus jointly determined, by the cost of the service from below and by the middleman's market power from above, and the two contributions arrive fused in a single figure — which is exactly why the question of their proportion is so hard, and so easily evaded.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>The case that the middleman earns his cut is strong, and deserves its strongest statement before any doubt is entered. The decisive fact is that the parties pay him willingly. No law compels you to use a broker; you do so because finding the house yourself would cost more, in time and error, than his fee. The middleman survives only where the parties, free to go around him, choose not to — and that choice, repeated billions of times a day, is evidence that he is worth at least what he charges. Ronald Coase taught that exchange is never costless: that finding, bargaining, contracting, and enforcing all consume real resources, and that institutions arise to economize on them. The middleman is such an institution. A world without him would not be one of frictionless direct trade but one of costlier search, thinner markets, more broken bargains, and trades that simply never happen. Measured against that world — the true alternative, not an imagined one of perfect contact — he is no tax on exchange but one of the things that make exchange possible, and the spread is the price of a service the parties would otherwise have to render for themselves at greater cost.<sup class="snref"></sup></p>
+    <aside class="sn">The argument from revealed preference is powerful but bounded. That the parties prefer paying the spread to going direct shows the middleman is worth more to them than his price — not that his price is just, nor that the alternative is fair. A man may pay the only keeper of the only road and still be overcharged; his paying proves only that the road was worth more to him than the toll, which we knew already.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>That last distinction is the whole of the matter. To say the parties pay willingly is to say the middleman is worth more to them than he charges — that they are better off with him, at his price, than without him. It is not to say that his charge equals what it costs him, nor that they could not have had it for less. The two questions — is he worth his price, and is his price worth his service — are different, and only the first is answered by his being paid. The gap between them is the space in which a spread can swell beyond the cost of the work, and the willingness of the parties says nothing of its width, because they are choosing not between this spread and a fair one but between this spread and none.<sup class="snref"></sup> A monopolist's customers are willing too. The voluntariness that proves the middleman useful cannot, by itself, prove him fairly paid; and because the cost of his service and the premium of his position arrive in one number, the part that is the wage of work and the part that is the rent of place cannot be told apart from outside. This is not yet an accusation. It is the recognition that the spread, even at its most honest, settles a question it does not display.</p>
+    <aside class="sn">From outside one sees only the spread, never its anatomy: the quoted gap does not arrive labeled with the share that covers costs and the share that reflects how few dealers there are. To decompose it one would need to know what the spread would fall to if entry were free — a number rarely observable, which is why the middleman's defenders and accusers can read in the same figure, with equal conviction, a fair fee or a private tax.</aside>
+
+    <p>So even the bare concept of the spread, before any particular middleman is judged, carries the volume's suspicion folded inside it. A price is a verdict on a hidden contest, mistaken for a fact of nature; and the spread, however much it is the honest wage of finding and bearing and vouching, is at the same time a verdict on a contest — between the two parties and the one who joins them — over how the gains from their meeting shall be divided. For there are gains: the buyer values the thing above its price, the seller values the price above the thing, and the difference between them is a surplus the trade creates, which someone must get. The middleman who makes the trade possible has a claim on part of that surplus, and a strong one. But how large a part is not written in the service; it is settled by the contest, and the spread is its settlement.<sup class="snref"></sup> The plates that follow take the services one by one and ask, of each, where the wage of the work ends and the rent of the position begins. This first plate asks only that we see the question is there — that the most ordinary spread, the plainest cut of the plainest middleman, is already a verdict, and merely looks like a fee.</p>
+    <aside class="sn">That every trade creates a surplus to be divided, and that the division turns on relative bargaining power rather than on nature, is the lesson of the volume on surplus; the spread is among the instruments by which that division is made. The middleman does not only take a fee for a service — he takes a position in the bargaining over the gains from trade, and his cut is, in part, the share of those gains his position lets him claim.</aside>
+
+    <p class="pull">A spread is the price of a service and the price of a position at once — a single coin that says nothing of how it divides.</p>
+
+    <p>What follows, then, is an anatomy of that single coin. The Tribute takes up directly the question this plate has only opened — when the spread is the wage of a service and when the toll of a position — and the plates beyond it sort the services this one gathered together: The Match, the finding; The Dealer, the immediacy and the bid-ask; The Hub, the platform whose position is its network; The Escrow, the manufacture of trust; The Chain and The Merchant, the margins of distribution; The Banker, the spread of finance; The Arbitrage, the profit of a price gap; The Bypass, the dream of doing without him; and, at the last, The Passage, the politics of the toll. Through all of them the surplus that every exchange creates is the thing being divided, and the firm, that other great economizer on the costs of dealing, stands as the middleman's near kin and sometime rival. The middleman is no parasite; he is, more often than not, the reason the trade happens at all. But the spread he takes is a verdict on a contest he is himself party to, and how much of it he has earned is a question this plate leaves to the next. The argument remains open.</p>
+
+  </article>
+
+  <nav class="apparatus" aria-label="Related plates">
+    <p class="app-h">Related</p>
+    <ul class="app-list">
+      <li><a href="the-tribute.html"><span class="app-rel">The Spread &middot; Plate ii</span><span class="app-t">The Tribute</span><span class="app-g">the thesis this plate opens onto: when the middleman earns his cut, and when he merely levies a toll on the passage he controls</span></a></li>
+      <li><a href="the-gain.html"><span class="app-rel">The Surplus &middot; Plate i</span><span class="app-t">The Gain</span><span class="app-g">the surplus every exchange creates — the thing the spread divides between the parties and the one who joins them</span></a></li>
+      <li><a href="the-island.html"><span class="app-rel">The Firm &middot; Plate i</span><span class="app-t">The Island</span><span class="app-g">the firm as the other great economizer on the costs of dealing — the middleman's near kin in the work of making exchange cheap</span></a></li>
+      <li><a href="the-lemon.html"><span class="app-rel">The Asymmetry &middot; Plate i</span><span class="app-t">The Lemon</span><span class="app-g">the trust that distrust would have killed — the problem the middleman's vouching exists to solve</span></a></li>
+    </ul>
+  </nav>
+
+  <footer>
+    <nav class="crumbs foot" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-spread.html">The Spread &middot; Vol V</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate i &middot; The Middleman</span>
+    </nav>
+    <p class="colophon">Plate i of <em>The Spread</em>, the volume's opening, which sets out the price of standing between and the services it is meant to pay for, before its companion <a href="the-tribute.html">The Tribute</a> takes up when those services explain the spread and when only the middleman's power does. The four services of intermediation — the finding of a counterparty, the immediacy of a market always open, the bearing of goods and risk across the interval, and the trust that lets strangers deal — are anatomized here: Friedrich Hayek on the dispersed knowledge the man on the spot can act upon, Harold Demsetz on the bid-ask as the price of immediacy, Richard Cantillon on the merchant who bears the uncertainty between a known price and an unknown one, and Ronald Coase on the costs of exchange that make such an intermediary an institution rather than a parasite, are discussed in the text. The argument is that the cost of the service sets only a floor beneath the spread, never its level — that the parties' willingness to pay proves the middleman worth his price, not his price worth his service — and that the spread, even at its most honest, is a verdict on how the gains from trade are divided between the parties and the one who joins them. Read the volume at <a href="the-spread.html">The Spread</a>, or return to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-spread.html">← The Spread</a><a rel="next" href="the-tribute.html">The Tribute →</a></nav>
+</body>
+</html>

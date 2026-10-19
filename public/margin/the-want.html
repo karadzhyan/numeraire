@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Want — Numéraire, The Utility, Plate i</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:66rem; --measure:35rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(2.8rem,7vh,5rem) 0 clamp(1.4rem,3.5vh,2.2rem);text-align:center;}
+
+  .crumbs{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 400;
+    font-size:.8rem;letter-spacing:.04em;color:var(--faint);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:center;gap:.55rem;}
+  .crumbs a{text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .2s ease,color .2s ease;}
+  .crumbs a:hover{border-color:var(--num);color:var(--ink);}
+  .crumbs .sep{color:var(--faintest);}
+  .crumbs .here{color:var(--ink);}
+
+  .plate-mark{width:116px;height:116px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:.18rem;line-height:1;}
+  .plate-mark.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pm-vol{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.84rem;letter-spacing:.06em;color:rgba(240,235,225,.62);}
+  .pm-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;
+    font-size:2.5rem;letter-spacing:.02em;text-transform:uppercase;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.1rem,6vw,4rem);line-height:1.03;letter-spacing:-.025em;margin:1rem 0 0;text-wrap:balance;}
+  .status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:42rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .epi{max-width:38rem;margin:clamp(2.2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .epi q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.46;color:var(--ink);quotes:none;display:block;text-wrap:pretty;}
+  .epi .cite{display:block;margin-top:.95rem;font-size:.78rem;color:var(--faintest);letter-spacing:.05em;font-style:normal;}
+  .epi .cite em{font-style:italic;}
+
+  .essay{max-width:52rem;margin:clamp(3rem,7vh,5rem) auto 0;counter-reset:sn;}
+  .essay::after{content:"";display:block;clear:both;}
+  .essay > p,.essay > .pull{max-width:var(--measure);}
+  .essay p{font-size:1.075rem;line-height:1.8;color:var(--ink);margin:0 0 1.4rem;text-wrap:pretty;}
+  .essay em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.72;padding:.08em .14em 0 0;color:var(--ink);}
+
+  .divider{display:flex;justify-content:center;margin:2.4rem 0;}
+  .divider svg{width:96px;height:12px;overflow:visible;}
+  .divider line{stroke:var(--num);stroke-width:1;} .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.5vw,1.74rem);line-height:1.34;color:var(--ink);text-align:center;
+    margin:2.4rem auto;max-width:33rem;text-wrap:balance;}
+
+  .snref{font-family:"Fraunces",serif;font-size:.64em;line-height:0;vertical-align:super;
+    color:var(--soft);counter-increment:sn;margin-left:1px;font-style:normal;}
+  .snref::after{content:counter(sn);}
+  .sn{display:block;max-width:var(--measure);margin:.1rem 0 1.4rem;padding:.15rem 0 .15rem 1.05rem;
+    border-left:1px solid var(--hair);font-size:.84rem;line-height:1.52;color:var(--faint);}
+  .sn::before{content:counter(sn);font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--faintest);margin-right:.5em;font-size:.92em;}
+  .sn em{font-style:italic;}
+
+  @media (min-width:64rem){
+    .sn{float:right;clear:right;width:15rem;margin:.35rem 0 1.3rem;padding:0;border-left:none;}
+    .divider,.pull,.apparatus{clear:both;}
+  }
+
+  .apparatus{max-width:52rem;margin:clamp(3.2rem,7vh,5rem) auto 0;padding-top:2rem;border-top:1px solid var(--hair);clear:both;}
+  .app-h{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;}
+  .app-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.4rem;}
+  .app-list li{border-top:1px solid var(--hair);}
+  .app-list li:first-child,.app-list li:nth-child(2){border-top:none;}
+  .app-list a{display:block;text-decoration:none;padding:.95rem 0;}
+  .app-list a:hover .app-t{color:var(--soft);}
+  .app-rel{display:block;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faintest);margin-bottom:.3rem;}
+  .app-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.12rem;color:var(--ink);transition:color .2s ease;}
+  .app-g{display:block;font-size:.84rem;color:var(--faint);font-style:italic;line-height:1.4;margin-top:.22rem;}
+
+  footer{margin-top:clamp(3.5rem,8vh,6rem);padding:2.2rem 0 4rem;border-top:1px solid var(--hair);}
+  .crumbs.foot{justify-content:flex-start;margin-bottom:1.3rem;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .plate-mark{width:96px;height:96px;}
+    .pm-num{font-size:2.1rem;}
+    .essay p{font-size:1.04rem;line-height:1.74;}
+    .dropcap{font-size:3rem;}
+    .app-list{grid-template-columns:1fr;}
+    .app-list li:nth-child(2){border-top:1px solid var(--hair);}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="crumbs rise d1" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-utility.html">The Utility &middot; Vol VIII</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate i</span>
+    </nav>
+    <div class="plate-mark lit rise d2" aria-hidden="true">
+      <span class="pm-vol">Ut</span>
+      <span class="pm-num">i</span>
+    </div>
+    <h1 class="rise d3">The Want</h1>
+    <div class="status rise d3">in print &middot; The Utility &middot; plate i</div>
+    <p class="standfirst rise d4">Value, the marginalists taught, is not a property of things but a relation between things and wants: a thing is worth not the labor that made it but the desire it answers. This plate sets out the subjective theory of value — the inversion that moved worth from the object to the subject and placed utility, the measure of want, at the foundation of the modern science. It honors the theory as true, and marks what the doctrine, in its democratic dress, conceals: that the wants a price counts are weighted by the means to pay them.</p>
+  </header>
+
+  <div class="epi rise d5">
+    <q>in no case do we strive for, wish for, long for, or desire anything, because we deem it to be good, but on the other hand we deem a thing to be good, because we strive for it, wish for it, long for it, or desire it.</q>
+    <span class="cite">Baruch Spinoza, Ethics, 1677</span>
+  </div>
+
+  <article class="essay">
+
+    <p class="lede"><span class="dropcap">V</span>alue, the marginalists taught, is not a property of things but a relation between things and wants. A loaf of bread is worth nothing to the man who cannot eat another bite, and everything to the starving; the diamond is dear not because it costs much to find but because it is wanted and scarce. What a thing is worth, on this view, is fixed not by the labor it took to make nor the cost of its making but by the want it satisfies — by its utility, the service it renders to desire. This was the great inversion of the nineteenth century: value moved from the object to the subject, from the sweat in a thing to the wanting of it. And at the center of the new science stood utility, the measure of want, on which every price was now said to rest.</p>
+
+    <p>To grasp the inversion one must first see what it inverted.<sup class="snref"></sup> For the great classical economists, value came from the side of production. Adam Smith held that the real measure of a thing's worth was the labor it could command or the toil it had cost; David Ricardo refined this into the proposition that the relative values of goods are governed, in the main, by the relative quantities of labor required to produce them; and Karl Marx carried the labor theory to its most rigorous and most radical conclusion, making value the socially necessary labor congealed in a thing, and profit the portion of that labor the worker is not paid for. However they differed, the classicals agreed on the essential point: worth was rooted in the making, an objective residue of the effort and the resources a thing embodied. Value was something a thing carried within it, deposited there by the labor of its production — a property of the object, to be discovered by tracing it back to its cost.</p>
+    <aside class="sn">The labor theory of value runs from Adam Smith's <em>Wealth of Nations</em> (1776), where labor is called the real measure of exchangeable value, through David Ricardo's <em>Principles</em> (1817), which made relative labor quantities the chief governor of relative prices, to Karl Marx's <em>Capital</em> (1867), where value is the socially necessary labor time embodied in a commodity and surplus value the unpaid labor appropriated as profit. The tradition located worth objectively, in the conditions of production, and treated price as the expression of that embodied labor — a view whose moral appeal lay in tying value to human effort.</aside>
+
+    <p>Against this rooted and reassuring picture stood a puzzle the classicals could acknowledge but not dissolve.<sup class="snref"></sup> Smith himself had posed it: nothing is more useful than water, yet it will buy almost nothing; a diamond has scarcely any use, yet commands a great price. If value flowed from utility, water should be precious beyond reckoning; if from labor, the puzzle only sharpened, for much that costs great labor is cheap and much that costs little is dear. The classical answer was to cleave value in two — a value in use, which water has in abundance, and a value in exchange, which it lacks — and then to let exchange-value be governed by cost of production, quietly setting use-value aside as irrelevant to price. The distinction was old, older than Aristotle's separation of the proper use of a sandal from its use in barter; but as a solution it was an evasion, for it named the difficulty without explaining it. Why usefulness and price should diverge so wildly remained dark, and the darkness lay at the very center of the theory of value.</p>
+    <aside class="sn">The paradox of value — that water, supremely useful, is nearly free, while diamonds, of little use, are dear — is stated in <em>The Wealth of Nations</em>, though the distinction it rests on, between value in use and value in exchange, reaches back through the Scholastics to Aristotle, who in the <em>Politics</em> separated a thing's proper use from its use in exchange. The classical economists used the distinction to set use-value aside and let cost of production govern exchange-value; its full resolution, through the diminishing utility of successive units, is the subject of <em>The Paradox</em> in the volume on the margin.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>The overturning came in the eighteen-seventies, and it came three times at once.<sup class="snref"></sup> Working in ignorance of one another, William Stanley Jevons in Manchester, Carl Menger in Vienna, and Léon Walras in Lausanne arrived within a few years at the same revolutionary thought: that value originates not in the cost of a thing but in the want it satisfies — that a good is valuable because, and exactly insofar as, someone desires it. The thought was not wholly new. The Abbé de Condillac had argued a century earlier that things take their value from our need and our esteem, not from the labor in them; Ferdinando Galiani, earlier still, had made value a compound of utility and scarcity. But the marginalists made the insight systematic and raised a science upon it. Value, in their hands, ceased to be a property residing in the object and became a relation between an object and a desiring subject — and it was the subject's want, not the object's cost, that was the wellspring. The thing did not contain its value; the wanting conferred it.</p>
+    <aside class="sn">The marginal revolution is conventionally dated to the near-simultaneous works of William Stanley Jevons (<em>Theory of Political Economy</em>, 1871), Carl Menger (<em>Grundsätze</em>, 1871), and Léon Walras (<em>Éléments</em>, 1874), with Hermann Heinrich Gossen (1854) an unread precursor. Earlier still, Étienne Bonnot de Condillac had grounded value in utility and need (1776), and Ferdinando Galiani had defined it as a ratio of utility to scarcity (1751). What the marginalists added was system: a complete theory of price built upward from the subjective valuations of individuals.</aside>
+
+    <p>The new doctrine triumphed because it explained what the old could not.<sup class="snref"></sup> It accounted at once for what the labor theory had to treat as anomaly: that the same loaf is worth nothing to the sated man and everything to the starving, though the labor in it is identical; that value rises and falls with circumstance, season, and mood while the toil embodied stays fixed; that a thing made with enormous effort but wanted by no one is worthless, while a thing got for nothing but keenly desired is dear. By placing value in want, the marginalists made demand a source of price alongside supply, where the classicals had let cost reign nearly alone. The psychological ground had been prepared by Jeremy Bentham, who made pleasure and pain the springs of all human action, so that to want a thing was to anticipate the pleasure it would bring; utility was simply that capacity to please or to serve, scaled to the wanting. And the ancient paradox began to dissolve — its full resolution belonging to the value of the last unit, worked out in the volume on the margin, but its direction now plain: water is cheap not because it is useless but because it is abundant, so that one more draught is wanted little. Within a generation, value-from-want was no longer heresy but the foundation of the field.</p>
+    <aside class="sn">The explanatory gain was decisive: the subjective theory accounted for variations in value — across persons, times, and circumstances — that the labor theory could treat only as departures from a norm. By making want a determinant of price, it restored demand to a partnership with supply, where Ricardo had subordinated it; Alfred Marshall would later figure the two as the blades of a scissors. The psychological foundation was Jeremy Bentham's (1789), whose reduction of motive to pleasure and pain supplied the marginalists with a calculus of wanting on which to raise their theory of worth.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>There is a democratic music to this doctrine, and it is worth hearing before one hears the discord beneath it.<sup class="snref"></sup> To locate value in want is to make the ordinary person's desire the source of worth, to crown the consumer sovereign, to ask of no one that he justify what he wants: his wanting is itself the ground of value, as good as any other's. Value becomes a fact about what people actually desire — a natural fact about the human heart, which price merely reads off and reports. A price is a verdict on a hidden contest, mistaken for a fact of nature; and here is the first place the mistaking enters, for the wants a market counts are not all wants but only those armed with the means to pay. Desire alone moves no market; desire backed by money does. The subjective theory, by defining value as want, lets the moneyed whim and the penniless need both pass under the single name of demand, and so presents as a neutral reading of what people want what is in truth a reading of what people want weighted by what they have. The consumer is sovereign, but the votes are counted in dollars.</p>
+    <aside class="sn">The democratic reading of the subjective theory — that it makes every person's desire an equal source of value — is genuine, and was felt as such; it is part of why the doctrine displaced the more hierarchical notions of intrinsic or natural value. The objection is not that the reading is false but that it is incomplete: market demand registers desire only as backed by purchasing power, so that the equality of wants as sources of value is, in the market's accounting, an equality weighted by wealth. The consumer's sovereignty is real, but it is a sovereignty exercised in proportion to means.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>Two defenses of the doctrine must be set down at their full strength.<sup class="snref"></sup> The first is that the subjective theory is simply correct as an account of value in exchange, and the labor theory simply wrong: things do trade at rates governed by the utility and scarcity of the last unit, and no rival theory survives contact with a found diamond, an old master, or a glass of water in a desert, none of which can be priced by the labor in them. To observe that markets weight wants by money is not to refute this account but to restate it, for a theory of price must reflect what people will actually give, and what they will give depends on what they have. The second defense is that placing value in want was a liberation, not an imposition: it freed economics from the metaphysics of intrinsic worth — from the notion that things possess a value independent of any valuer — and grounded value instead in real human preference rather than in custom, authority, or decree. Far from demeaning the ordinary person, it honors his desires as the very source of worth, asking no priest or aristocrat to certify what is good. On this view the subjective theory is the most respectful, and the most truthful, theory of value there has ever been.</p>
+    <aside class="sn">The first defense is the empirical adequacy of marginal-utility theory: it predicts and explains relative prices where the labor theory cannot, and its account of demand is among the most thoroughly confirmed in economics. The second is the philosophical case made by the Austrian school above all — that subjective value frees the discipline from unanswerable questions about intrinsic worth and respects the autonomy of individual preference. Both are addressed in the paragraph that follows, which grants each its truth and locates, in that very truth, the limit the defenses overlook.</aside>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>Both defenses are sound, and neither reaches the difficulty.<sup class="snref"></sup> Grant that the subjective theory describes exchange truly and the labor theory fails: that very truth is what exposes the theory's limit as a measure of desire, for to describe how prices form is to show that the wants they register are filtered through wealth, and a filtered want is not the same as a want. The theory's correctness about the market is precisely its insufficiency about the heart. And grant the liberation: still the relocation of value from labor to want was never the innocent discovery it appeared. The labor theory had carried a claim — that the laborer, making the value, held a title to it — and the subjective theory quietly dissolved that claim, for if value springs from want and not from work, the worker creates no value to which he holds special right, and his wage, like every price, merely records a marginal contribution. The turn from labor to want thus cleared the ground for the marginal-productivity theory of distribution, in which each factor is paid its marginal product and the question of desert is declared already answered. A doctrine that decides, in passing, what the worker may claim of the worth he handles is doing work in a quarrel, however true its account of how a thing comes to have a price. It can be right about exchange and partisan about justice in the same breath.</p>
+    <aside class="sn">The historical point is that the marginal theory of value underwrote a marginal theory of distribution: if each unit's value is its marginal utility, then by a parallel argument each factor of production — labor included — is paid the value of its marginal product, a doctrine developed by John Bates Clark (1899) and others. Where the labor theory had grounded a claim by labor to the whole product, the marginal-productivity theory presented the existing distribution as the outcome of each factor's own contribution, the question of desert thereby treated as settled. The connection is pursued in <em>The Product</em> in the volume on the margin and in the volume on the wage.</aside>
+
+    <p>The subjective theory of value is the foundation of the modern science, and the foundation is sound: value is a relation between things and wants, and the centuries spent seeking worth inside the thing were centuries spent looking in the wrong place.<sup class="snref"></sup> A price is a verdict on a hidden contest, mistaken for a fact of nature; and to have shown that value is want is to have located the contest, not to have dissolved it. For the wants a price records are weighted by the means to satisfy them, so that what is offered as a reading of desire is a reading of desire backed by money; and the doctrine that worth springs from wanting arrived in the world as a move in the long contest over how the product of labor should be divided. The want is real, and the theory that names it is true. But a price built upon that want measures desire only as far as wealth permits desire to speak, and calls the result the value of things. To read a price as a report on what human beings want, one must ask not what is wanted merely, but what is wanted by those who can pay — and, beneath that, whether the want it claims to register can be seen at all.</p>
+    <aside class="sn">The discipline the plate urges is to read a price not as a measure of want but as a measure of want as wealth permits it to register — to ask, of any price, not only what it shows people to desire but whose desires it is counting. This leaves the subjective theory standing as the true account of where value lives, while denying it the further claim, often smuggled in, that a price therefore measures human satisfaction. The deeper difficulty — that the want at the root of value cannot be directly observed at all — is the subject of <em>The Ghost</em>, the plate that follows.</aside>
+
+    <p class="pull">Value is not in the thing but in the wanting of it. A market counts the wants — but it counts them in dollars.</p>
+
+    <p>The want, then, is where value lives, and the marginalists were right to put it there. But a foundation one cannot inspect is an uneasy thing to build upon, and the want at the root of all value is, of all quantities, the least observable: felt with perfect certainty by the one who has it, and invisible to everyone else. The theory of value rests, that is, on a quantity that can be suffered but not seen, inferred but never measured directly — a circumstance the next plate examines, and finds more troubling than the triumph of the subjective theory has let most of its heirs admit. Value is a relation to human desire; whether that desire can be known is the question on which everything built upon it depends. The argument remains open.</p>
+
+  </article>
+
+  <nav class="apparatus" aria-label="Related reading">
+    <h2 class="app-h">Related</h2>
+    <ul class="app-list">
+      <li><a href="the-ghost.html"><span class="app-rel">In this volume</span><span class="app-t">The Ghost</span><span class="app-g">plate ii — the want this plate roots value in cannot be observed, only inferred from the choices it drives: the ghost no instrument can read</span></a></li>
+      <li><a href="the-paradox.html"><span class="app-rel">In The Margin</span><span class="app-t">The Paradox</span><span class="app-g">water, diamonds, and the riddle cost could not solve — the puzzle whose resolution drove value from the thing into the want</span></a></li>
+      <li><a href="the-maximizer.html"><span class="app-rel">In The Choice</span><span class="app-t">The Maximizer</span><span class="app-g">the chooser the subjective theory presumes: the agent whose ranked wants are taken as the very source of value</span></a></li>
+      <li><a href="the-divide.html"><span class="app-rel">In The Surplus</span><span class="app-t">The Divide</span><span class="app-g">the contest over the gain from exchange — the division this plate finds already at work in the turn from labor to want</span></a></li>
+    </ul>
+  </nav>
+
+  <footer>
+    <nav class="crumbs foot" aria-label="Return">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-utility.html">The Utility &middot; Vol VIII</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate i &middot; The Want</span>
+    </nav>
+    <p class="colophon">The first plate of Volume VIII, <em>The Utility</em>, and the doctrine on which the modern theory of value rests: that worth is not a property of things but a relation between things and human wants. This plate sets out the subjective theory of value — the great inversion by which Jevons, Menger, and Walras, with Condillac and Bentham behind them, moved value from the object to the subject, displacing the labor and cost theories of Smith, Ricardo, and Marx, and beginning to dissolve the paradox of water and diamonds that the classical view could not solve. The argument honors the theory as true — value is want, and the long search for worth in the thing was a search in the wrong place — while marking what the doctrine conceals: that the wants a price records are weighted by the means to satisfy them, so that a price measures not desire but willingness to pay; and that the relocation of value from labor to want, far from a neutral discovery, was a verdict in the contest over the product's division. The companion plate, <a href="the-ghost.html"><em>The Ghost</em></a>, presses the deeper trouble — that the want at the root of value cannot be observed at all. The epigraph is from Spinoza. Smith, Ricardo, Marx, Jevons, Menger, Walras, Bentham, and Condillac are discussed in the text. Return to <a href="the-utility.html">The Utility</a>, or to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-utility.html">← The Utility</a><a rel="next" href="the-ghost.html">The Ghost →</a></nav>
+</body>
+</html>

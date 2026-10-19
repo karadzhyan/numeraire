@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Cycle — Numéraire, Volume XIX</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem; --measure:40rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- ornament ---- */
+  .orn{display:flex;justify-content:center;margin:0 auto 1.9rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* ---- masthead / volume front ---- */
+  .masthead{padding:clamp(3rem,8vh,6rem) 0 clamp(1.6rem,4vh,2.6rem);text-align:center;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;text-decoration:none;}
+  .imprint:hover{color:var(--soft);}
+  .vol-dateline{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+
+  .vol-sym{width:114px;height:114px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;align-items:center;justify-content:center;
+    font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 500;font-size:3.1rem;line-height:1;letter-spacing:-.01em;}
+  .vol-sym.lit{background:var(--ink);color:var(--paper);}
+  .vol-elnum{font-family:"Fraunces",serif;font-size:.74rem;color:var(--faintest);letter-spacing:.18em;text-transform:uppercase;margin-top:1rem;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.3rem,6.5vw,4.6rem);line-height:1.02;letter-spacing:-.025em;margin:.7rem 0 0;text-wrap:balance;}
+  .vol-status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .vol-status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:44rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  /* ---- the volume question ---- */
+  .vol-q{max-width:46rem;margin:clamp(2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .vol-q .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.7rem;}
+  .vol-q q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.3rem,2.4vw,1.72rem);line-height:1.32;color:var(--ink);quotes:none;text-wrap:balance;}
+
+  /* ---- frontispiece (the argument) ---- */
+  .front{margin:clamp(3rem,7vh,5rem) auto 0;max-width:var(--measure);}
+  .front-eyebrow{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);text-align:center;
+    display:flex;align-items:center;gap:.9rem;justify-content:center;margin:0 0 2.1rem;}
+  .front-eyebrow::before,.front-eyebrow::after{content:"";height:1px;width:2.4rem;background:var(--hair);}
+  .front p{font-size:1.07rem;line-height:1.76;color:var(--ink);margin:0 0 1.35rem;text-wrap:pretty;}
+  .front p:last-child{margin-bottom:0;}
+  .front em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.74;padding:.1em .12em 0 0;color:var(--ink);}
+  .front-orn{display:flex;justify-content:center;margin:2rem 0;}
+  .front-orn svg{width:96px;height:12px;overflow:visible;}
+  .front-orn line{stroke:var(--num);stroke-width:1;} .front-orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* ---- the plates (a table within the table) ---- */
+  main{padding:clamp(3rem,7vh,5rem) 0 0;}
+  .plates-head{display:flex;align-items:baseline;gap:.9rem;margin:0 0 1.6rem;}
+  .plates-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-size:.86rem;color:var(--faintest);letter-spacing:.04em;flex:0 0 auto;}
+  .plates-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);flex:0 0 auto;}
+  .plates-rule{flex:1;height:1px;background:var(--hair);position:relative;top:-2px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:13px;}
+
+  .el{appearance:none;-webkit-appearance:none;background:var(--paper);border:1px solid var(--hair);border-radius:2px;
+    padding:14px 15px 16px;text-align:left;cursor:pointer;position:relative;min-height:152px;
+    display:flex;flex-direction:column;color:inherit;font-family:inherit;
+    transition:border-color .22s ease,background .22s ease,transform .22s ease,box-shadow .22s ease;}
+  .el:hover{border-color:var(--faintest);transform:translateY(-2px);}
+  .el-rn{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-size:.78rem;color:var(--faintest);letter-spacing:.18em;text-transform:uppercase;}
+  .pl-hero{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 500;font-size:1.34rem;line-height:1.06;margin-top:.5rem;letter-spacing:-.012em;}
+  .el-gloss{font-size:.79rem;color:var(--faint);line-height:1.36;margin-top:.5rem;font-style:italic;}
+  .pl-flag{margin-top:auto;padding-top:.7rem;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--faintest);}
+  .el.lit{background:var(--ink);border-color:var(--ink);}
+  .el.lit .pl-hero{color:var(--paper);}
+  .el.lit .el-rn{color:rgba(240,235,225,.5);}
+  .el.lit .el-gloss{color:rgba(240,235,225,.62);}
+  .el.lit .pl-flag{color:rgba(240,235,225,.7);}
+  .el.sel{box-shadow:inset 0 0 0 1.5px var(--ink);border-color:var(--ink);}
+  .el.lit.sel{box-shadow:inset 0 0 0 1.5px var(--paper);}
+
+  /* ---- detail panel (the plate, opened) ---- */
+  .detail{margin:clamp(2.4rem,5vh,3.6rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);scroll-margin-top:1.4rem;}
+  .d-head{display:flex;gap:1.3rem;align-items:flex-start;}
+  .d-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 500;font-size:1.5rem;line-height:1;
+    color:var(--ink);flex:0 0 auto;border:1px solid var(--hair);border-radius:2px;letter-spacing:.04em;
+    width:86px;height:86px;display:flex;align-items:center;justify-content:center;text-transform:uppercase;}
+  .d-sym.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .d-titles{min-width:0;}
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);}
+  .d-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.7rem,3.6vw,2.5rem);margin:.22rem 0 .35rem;line-height:1.04;letter-spacing:-.016em;}
+  .d-status{font-size:.84rem;color:var(--faint);font-style:italic;}
+  .d-status.print{color:var(--soft);font-style:normal;}
+  .d-status.print::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .d-desc{font-size:1.05rem;line-height:1.72;color:var(--ink);max-width:42rem;margin:1.3rem 0 0;text-wrap:pretty;}
+
+  .d-openq{margin:1.6rem 0 0;max-width:40rem;}
+  .d-openq .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.5rem;}
+  .d-openq q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);quotes:none;}
+
+  .d-excerpt{margin:1.8rem 0 0;max-width:42rem;border-left:1px solid var(--hair);padding:.2rem 0 .2rem 1.5rem;}
+  .d-excerpt .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.8rem;}
+  .d-excerpt p{font-size:1.04rem;line-height:1.74;color:var(--ink);margin:0;text-wrap:pretty;}
+  .d-excerpt .x-cap{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 500;font-size:1.15rem;}
+  .d-readplate{margin:1.6rem 0 0;}
+  .d-readplate a{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:.94rem;
+    letter-spacing:.01em;text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:2px;transition:border-color .2s ease,color .2s ease;}
+  .d-readplate a:hover{color:var(--soft);border-color:var(--soft);}
+  .d-readplate .arr{margin-left:.4rem;}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;text-decoration:none;}
+  .f-mark:hover{color:var(--soft);}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;}
+    .el{min-height:138px;padding:12px 12px 14px;}
+    .pl-hero{font-size:1.18rem;}
+    .el-gloss{font-size:.74rem;}
+    .vol-sym{width:92px;height:92px;font-size:2.5rem;}
+    .d-head{gap:1rem;}
+    .d-sym{width:64px;height:64px;font-size:1.25rem;}
+    .front p{font-size:1.04rem;}
+    .dropcap{font-size:3rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="rise d1">
+      <a class="imprint" href="numeraire-atlas.html">Numéraire</a>
+      <div class="vol-dateline">The Nineteenth Volume &middot; The Aggregates</div>
+    </div>
+    <div class="vol-sym lit rise d2" aria-hidden="true">Cy</div>
+    <div class="vol-elnum rise d2">Element 19 &middot; Group V</div>
+    <h1 class="rise d3">The Cycle</h1>
+    <div class="vol-status rise d3">in print &middot; № XIX &middot; 2 of 12 plates</div>
+    <p class="standfirst rise d4">The classical promise is that a market economy rights itself — that gluts are fleeting, that idle men and idle machines are a passing disequilibrium the market will clear, that anyone truly willing to work at the going wage will in time find it. This volume is about the scandal that promise cannot explain: the deep slump, in which willing workers and willing employers fail to meet, not for any shortage of want or means, but for a failure of the whole to coordinate. Whether that failure is real, and what if anything cures it, is the unsettled heart of macroeconomics.</p>
+    <div class="vol-q rise d5">
+      <span class="lead">The question of the volume</span>
+      <q>why can a willing worker, at the going wage, fail to find work?</q>
+    </div>
+  </header>
+
+  <section class="front" aria-label="The argument of the volume">
+    <div class="front-eyebrow">The argument</div>
+
+    <p><span class="dropcap">T</span>here is a promise buried in the foundations of economics, usually unspoken because it is thought too obvious to state: that a market economy, left to itself, tends to employ everyone who wishes to work. Gluts, on this understanding, are passing things — a momentary mismatch, too much of one good and too little of another, soon corrected as one price falls and another rises. Idle men and idle machines are a disequilibrium, and disequilibrium is by its nature temporary, for the market is forever at work dissolving it: the unsold thing is marked down until it sells, the unemployed man offers to work for less until he is hired, and the system settles back, as water finds its level, at full employment. It is a reassuring picture, and over long stretches it is even roughly true. And then, every so often, it fails — not at the margin but catastrophically, with a quarter of the workforce thrown out of work and the factories standing dark for years on end — and that failure, which the reassuring picture cannot account for, is the thing this volume exists to understand.</p>
+
+    <p>The picture rested, at bottom, on a proposition named for Jean-Baptiste Say, though he was by no means alone in holding it: that there can be no such thing as a general glut. A particular good may be overproduced — too many hats, too few coats, the hatter ruined while the tailor thrives — but not everything at once, for the act of producing anything generates precisely the income needed to buy it. Every sale is someone's purchase; every wage paid is a wage waiting to be spent; and so supply, taken in the aggregate, creates its own demand, and a universal surplus is a contradiction in terms. Money, on this view, is a mere veil over a barter beneath — goods are in the last analysis bought with goods — and cannot itself be the source of a shortfall, since no one holds it save to spend it. A few dissented, Malthus most stubbornly and Sismondi beside him, insisting that demand might indeed fall short across the whole, that men might choose to hoard rather than spend and leave the warehouses full and the hands idle; and they were judged to have had the worse of the argument. For a century the orthodoxy held, and the slumps that came and went were laid to particular shocks and particular follies, never to a general deficiency that the market would not in time repair.</p>
+
+    <p>It was the Great Depression, and the book Keynes wrote in its depths, that broke the orthodoxy open. His claim was as plain to state as it was radical in effect: that the level of output, and with it the number of men employed, is governed not by the labor market and the wage but by the total — the <em>effective</em> — demand for what the economy produces, and that nothing whatever guarantees this demand will be enough to employ everyone. An economy can come to rest in full equilibrium, every market quietly balanced, with a great mass of its workers involuntarily idle — willing to work at the going wage, and unable to find anyone to hire them — and it can remain there indefinitely, because the forces the classics trusted to lift it out do not reliably operate. The thrift that is prudence in a single household becomes, when all practise it at once and the savings find no outlet in investment, a destroyer of the very demand on which every income depends: the paradox of thrift, one instance of the larger fallacy of supposing that what holds for each must hold for all. And the investment that might have taken up the slack rests, Keynes saw, on expectations of a future that cannot really be calculated, and so at last on what he called animal spirits — a confidence that can drain away overnight and carry the whole economy down behind it.</p>
+
+    <div class="front-orn" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>The revolution did not go uncontested, and the counter-attack, when it came, was formidable. Milton Friedman led it, conceding less to Keynes than at first appeared: the great slumps, he argued, were not failures of the market but failures of the authorities who managed its money — the Depression itself deepened into catastrophe by a central bank that let the supply of money collapse. And there was, he insisted, a natural rate of unemployment, fixed by the real structure of the economy and its frictions, below which demand might push for a season but only at the cost of an ever-accelerating inflation; so that the apparent tradeoff between inflation and unemployment was a short-run illusion, and the long-run relation a vertical line. The new classical economists who followed pressed further still. If people form their expectations rationally, Robert Lucas argued, then any systematic policy is foreseen and undone, and the management of demand is powerless even in the short run; and the real-business-cycle theorists carried the logic to its limit, recasting the cycle not as a failure at all but as the economy's efficient and optimal response to real shocks — the adjustments of a system that is always, even in the trough of a recession, doing the best that can be done. The slump, having been redescribed by Keynes as a curable disease, was redescribed again as an equilibrium; and in it there was no involuntary idleness anywhere.</p>
+
+    <p>The argument has not ended so much as deepened, and the present state of the science is a guarded and unfinished synthesis. Most economists now grant that prices and wages are slow to adjust, that this stickiness gives demand real power over output in the short run, and that a central bank can and should lean against the cycle — a conclusion substantially Keynes's, but rebuilt on the rational, optimizing agents the new classics demanded. And then, in 2008, the thing returned that the elegant models had half-persuaded themselves lay safely in the past: a collapse of demand, a scramble for the safety of money, mass unemployment among the plainly willing, and interest rates driven to the zero floor where they lost their purchase — the liquidity trap Keynes had described, made real again, and the old questions with it. Money turned out to matter after all, in the manner the later plates of <em>The Money</em> set out; the labor market refused to clear, in the manner the plates of <em>The Wage</em> would lead one to expect; and the scandal of the willing worker who cannot find work stood once more in plain sight, owing nothing to any failure of the harvest or the machines.</p>
+
+    <p>What divides the two great parties, beneath the whole apparatus of models, is a question about nature. To the classics and their heirs, the market's tendency to full employment is something close to a law — mass idleness a temporary deviation the system will correct, or, in the boldest version, no deviation at all but a freely chosen adjustment, an equilibrium to be accepted rather than a failure to be cured. To Keynes and those who follow him, that same idleness is a coordination failure of the whole — a thing no single person wills and no single market mends, in which willing workers and willing buyers fail to find one another for want of nothing but the spending that would join them, and which therefore can, and should, be remedied by a hand from outside the market. The deepest question macroeconomics has, and the one on which it cannot agree, is whether involuntary unemployment is real. Behind it stands the suspicion that runs through the whole of this table, raised now to the scale of the aggregate: that mass idleness, presented as a natural and self-correcting equilibrium, may be instead a remediable failure mistaken for a law of nature. The twelve plates that follow trace the cycle from the glut and the effective demand that governs it, through the multiplier and the animal spirits, the sticky wage and the scramble for money, the monetarist counter and the Phillips tradeoff, rational expectations and the real-business-cycle denial, down into the debt-deflation trap and out again to the unsettled equilibrium where the argument now rests. Where the classics see a market clearing, this volume looks for the willing workers it left standing in the street. The argument remains open.</p>
+  </section>
+
+  <main>
+    <div class="plates-head">
+      <span class="plates-num fr">№ XIX</span>
+      <span class="plates-name">The twelve plates</span>
+      <span class="plates-rule"></span>
+    </div>
+    <div class="grid" id="grid">
+      <button class="el lit" data-id="glut" aria-label="Plate i — The Glut — in print"><span class="el-rn">Plate i</span><span class="pl-hero">The Glut</span><span class="el-gloss">Say's Law, and whether there can be too much of everything</span><span class="pl-flag">in print</span></button>
+      <button class="el lit" data-id="demand" aria-label="Plate ii — The Demand — in print"><span class="el-rn">Plate ii</span><span class="pl-hero">The Demand</span><span class="el-gloss">Keynes, effective demand, and the underemployment trap</span><span class="pl-flag">in print</span></button>
+      <button class="el" data-id="multiplier" aria-label="Plate iii — The Multiplier"><span class="el-rn">Plate iii</span><span class="pl-hero">The Multiplier</span><span class="el-gloss">how a dollar of spending becomes more than a dollar</span></button>
+      <button class="el" data-id="spirits" aria-label="Plate iv — The Spirits"><span class="el-rn">Plate iv</span><span class="pl-hero">The Spirits</span><span class="el-gloss">animal spirits, uncertainty, and the swings of confidence</span></button>
+      <button class="el" data-id="wage" aria-label="Plate v — The Wage"><span class="el-rn">Plate v</span><span class="pl-hero">The Wage</span><span class="el-gloss">why wages don't fall to clear the labor market</span></button>
+      <button class="el" data-id="money" aria-label="Plate vi — The Money"><span class="el-rn">Plate vi</span><span class="pl-hero">The Money</span><span class="el-gloss">liquidity, the interest rate, and the trap at zero</span></button>
+      <button class="el" data-id="counter" aria-label="Plate vii — The Counter"><span class="el-rn">Plate vii</span><span class="pl-hero">The Counter</span><span class="el-gloss">Friedman, monetarism, and the natural rate</span></button>
+      <button class="el" data-id="tradeoff" aria-label="Plate viii — The Tradeoff"><span class="el-rn">Plate viii</span><span class="pl-hero">The Tradeoff</span><span class="el-gloss">the Phillips curve, and its breaking in the 1970s</span></button>
+      <button class="el" data-id="expectation" aria-label="Plate ix — The Expectation"><span class="el-rn">Plate ix</span><span class="pl-hero">The Expectation</span><span class="el-gloss">rational expectations, and policy that cannot fool</span></button>
+      <button class="el" data-id="real" aria-label="Plate x — The Real"><span class="el-rn">Plate x</span><span class="pl-hero">The Real</span><span class="el-gloss">the cycle as the economy's optimal response to shocks</span></button>
+      <button class="el" data-id="trap" aria-label="Plate xi — The Trap"><span class="el-rn">Plate xi</span><span class="pl-hero">The Trap</span><span class="el-gloss">debt-deflation, the zero bound, and the deep slump</span></button>
+      <button class="el" data-id="equilibrium" aria-label="Plate xii — The Equilibrium"><span class="el-rn">Plate xii</span><span class="pl-hero">The Equilibrium</span><span class="el-gloss">is involuntary unemployment real? the unsettled question</span></button>
+    </div>
+  </main>
+
+  <section class="detail" id="detail" aria-live="polite"></section>
+
+  <footer>
+    <div class="f-bar">
+      <a class="f-mark" href="numeraire-atlas.html">Numéraire</a>
+      <span class="f-ref">Volume XIX &middot; The Aggregates</span>
+    </div>
+    <p class="colophon">Volume XIX, <em>The Cycle</em>, opens with two plates in print — <em>The Glut</em> and <em>The Demand</em>, the question and the revolution that answered it. The nineteenth element of the table by its fixed order; the fifth volume to leave preparation, since the volumes are published as they ripen rather than as they are numbered. It is the first of the aggregates, where the questions cease to be about a single price and become about the whole — and its scandal, the willing worker who cannot find work at the going wage, runs straight back to <a href="the-wage.html">The Wage</a>, whose own plates anatomize the labor market this volume finds refusing to clear. Return to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+
+<script>
+const PLATES = {
+  glut:{rn:"i",title:"The Glut",family:"in print",lit:true,url:"the-glut.html",
+    desc:`The question on which everything else depends: can there be a general glut — too much of everything at once, more produced than the whole economy will buy? The classical answer, Say's Law, was no: every sale is a purchase, supply makes its own demand, and gluts can only ever be local, a surfeit of one thing answered by a shortage of another. Malthus and Sismondi dissented, and were thought to have lost. Then the worst slump in history reopened the case.`,
+    excerpt:`<span class="x-cap">T</span>here can be no such thing, the classical economists held, as a general glut. A particular good might be overproduced — too many hats, too few coats, the hatter ruined while the tailor thrives — but not everything at once, for a universal surplus is a contradiction: to produce is to earn, and to earn is to be able to buy, so that every addition to supply is, in the same motion, an addition to demand. Goods, in James Mill's phrase, are bought with goods; money is only the veil over the barter beneath. Say put it most confidently of all, and the proposition took his name. For the better part of a century it stood as the rock on which the optimism of the science was built — until a decade arrived in which the warehouses filled, the workers were turned away, and the demand that supply was supposed to create was nowhere to be found.`},
+  demand:{rn:"ii",title:"The Demand",family:"in print",lit:true,url:"the-demand.html",
+    desc:`The Keynesian revolution in a single idea: that what governs how much an economy produces, and how many it employs, is the total demand for its output — and that this demand can settle, and stay, at a level too low to employ everyone willing to work. The end of the presumption that the labor market clears like any other, and the unsettling discovery that a slump can be an equilibrium, not a passing disorder the market is bound to repair.`,
+    excerpt:`<span class="x-cap">I</span>n 1936, in the depths of the worst depression the industrial world had known, John Maynard Keynes published a book that began by denying the thing every economist had taken for granted: that an economy left to itself tends to employ everyone who wants to work. Not so, he argued. The level of employment is set not in the labor market, by the wage, but in the market for goods as a whole, by the total demand for what the economy can produce — and there is no law that compels that demand to be high enough to put everyone to work. An economy can come to rest, in full equilibrium, with its factories half-idle and its workers walking the streets, and stay there, not for want of any resource but for want of spending; and nothing in the market's own machinery need ever lift it out.`},
+  multiplier:{rn:"iii",title:"The Multiplier",family:"in preparation",lit:false,
+    desc:`The arithmetic of amplification. A dollar of new spending does not stop when it is spent: the builder pays the carpenter, who buys bread, and the baker buys shoes, each dollar setting off a chain of further spending, so that the whole effect on income exceeds the first outlay. Richard Kahn and Keynes made this the multiplier; paired with the accelerator, by which rising demand itself calls forth new investment, it is the engine that turns a small shock into a large swing.`,
+    openq:`if every dollar spent becomes income that is spent again, how large a wave does a single stone make?`},
+  spirits:{rn:"iv",title:"The Spirits",family:"in preparation",lit:false,
+    desc:`Why investment, the most volatile part of demand, swings as wildly as it does. Keynes saw that the returns to a long-lived investment cannot really be calculated — the future is not merely risky but unknowable — so the decision to build rests at last on what he called animal spirits, a spontaneous optimism that waxes and wanes. The cycle as a thing partly of the mind: confidence and its collapse, and the beauty-contest logic of a market forever guessing at its own mood.`,
+    openq:`if the future cannot be calculated, what is confidence — and what happens to an economy when it drains away?`},
+  wage:{rn:"v",title:"The Wage",family:"in preparation",lit:false,
+    desc:`The puzzle at the labor market's heart. If men are idle and willing, why does the wage not simply fall until every one of them is hired, as the price of any unsold thing would? Wage rigidity and its sources — contracts, morale, fairness, the fear of being first to cut — and Keynes's deeper and more disturbing claim: that even perfectly flexible wages might fail to cure unemployment, since falling wages mean falling incomes, and falling incomes, falling demand. The plate that joins this volume to The Wage.`,
+    openq:`if cutting wages also cuts the incomes that buy the goods, can a fall in wages ever cure a slump?`},
+  money:{rn:"vi",title:"The Money",family:"in preparation",lit:false,
+    desc:`Money's part in the cycle, and the channel through which much of policy must work. Liquidity preference and the interest rate as the price of parting with cash; the way a panic becomes a scramble for money that starves the economy of spending; and the liquidity trap, where the rate has fallen as far as it can and the central bank, pushing on a string, finds money will no longer do the work. The cycle as, in part, a monetary disorder — the plate that joins this volume to The Money.`,
+    openq:`when everyone scrambles at once for the safety of money, who is left to do the spending?`},
+  counter:{rn:"vii",title:"The Counter",family:"in preparation",lit:false,
+    desc:`The monetarist counter-revolution. Milton Friedman's case that the great slumps were not failures of the market but failures of the men who managed its money, and that the economy has a natural rate of unemployment, set by its real structure, which no amount of demand can permanently beat — only inflate around. The long-run vertical line that denied Keynes his lasting tradeoff, and returned to the classics much of what he had taken from them.`,
+    openq:`if demand can buy lower unemployment only for a while, what is the reckoning when the while is up?`},
+  tradeoff:{rn:"viii",title:"The Tradeoff",family:"in preparation",lit:false,
+    desc:`The Phillips curve, and the most consequential empirical claim of postwar economics: that a society might buy lower unemployment with a little more inflation, choosing its place on a stable menu between the two. How that menu became the centerpiece of policy in the 1960s — and how it dissolved in the 1970s, when inflation and unemployment climbed together, vindicating those who had warned the tradeoff would vanish the moment people came to expect the inflation.`,
+    openq:`if a little inflation once bought less unemployment, why did buying more of it stop working?`},
+  expectation:{rn:"ix",title:"The Expectation",family:"in preparation",lit:false,
+    desc:`The new classical revolution, and the most radical answer of all. If people form their expectations rationally — using, in effect, the true model of the economy — then any policy they can foresee is already undone before it acts, and systematic attempts to manage demand are neutralized by the very expectations they provoke. Robert Lucas's challenge, and the critique that bears his name: that the rules of the economy themselves shift the moment policy tries to exploit them.`,
+    openq:`if people see the policy coming and act on it in advance, what is the policy still able to do?`},
+  real:{rn:"x",title:"The Real",family:"in preparation",lit:false,
+    desc:`The boldest denial of the Keynesian scandal: that the cycle is no failure at all, but the economy's efficient and optimal response to real shocks — to the irregular march of technology and productivity — with no involuntary idleness anywhere, only the rational adjustment of work and leisure to a changing world. Real business cycle theory, its austere elegance, and the discomfort of a view in which a depression becomes a thing very nearly chosen.`,
+    openq:`if a recession is the best response to bad luck, is there any idleness left in it to cure?`},
+  trap:{rn:"xi",title:"The Trap",family:"in preparation",lit:false,
+    desc:`When the cycle becomes a catastrophe. Irving Fisher's debt-deflation, in which falling prices swell the real weight of debt and drive the economy down the very slope it is struggling to climb; the liquidity trap and the zero floor beneath interest rates; the Great Depression and the crisis of 2008; and the return of fiscal policy once monetary policy has run out of room. The anatomy of the slump that will not end on its own.`,
+    openq:`when prices fall and debts do not, and the interest rate can fall no further, what is left to pull an economy up?`},
+  equilibrium:{rn:"xii",title:"The Equilibrium",family:"in preparation",lit:false,
+    desc:`The question the whole volume circles, posed at last directly: is there such a thing as involuntary unemployment — men idled by a failure of the system — or is every idleness, rightly seen, a choice or an adjustment, the economy always on its supply curve after all? The new-Keynesian synthesis of sticky prices and rational agents, the still-unsettled state of macroeconomics, and what it means that the science cannot agree whether its central scandal is even real.`,
+    openq:`after a century of argument, is mass unemployment a failure to be cured, or an equilibrium to be accepted?`}
+};
+
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+function render(id){
+  var tile=document.querySelector('.el[data-id="'+id+'"]');
+  var d=PLATES[id]; if(!d||!tile) return;
+  var h='';
+  h+='<div class="d-head">';
+  h+='<div class="d-sym'+(d.lit?' lit':'')+'">'+esc(d.rn)+'</div>';
+  h+='<div class="d-titles">';
+  h+='<div class="d-family">The Cycle &middot; Plate '+esc(d.rn)+' &middot; '+esc(d.family)+'</div>';
+  h+='<h2 class="d-name">'+esc(d.title)+'</h2>';
+  h+='<div class="d-status'+(d.lit?' print':'')+'">'+esc(d.family)+'</div>';
+  h+='</div></div>';
+  h+='<p class="d-desc">'+esc(d.desc)+'</p>';
+  if(d.lit && d.excerpt){
+    h+='<div class="d-excerpt"><span class="lead">From the opening</span><p>'+d.excerpt+'</p></div>';
+  }
+  if(d.url){h+='<p class="d-readplate"><a href="'+d.url+'">Read the plate<span class="arr" aria-hidden="true">&#8594;</span></a></p>';}
+  if(!d.lit && d.openq){
+    h+='<p class="d-openq"><span class="lead">This plate will ask</span><q>'+esc(d.openq)+'</q></p>';
+  }
+  document.getElementById('detail').innerHTML=h;
+  var prev=document.querySelector('.el.sel'); if(prev) prev.classList.remove('sel');
+  tile.classList.add('sel');
+}
+
+(function(){
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.el').forEach(function(b){
+    b.addEventListener('click',function(){
+      render(b.dataset.id);
+      document.getElementById('detail').scrollIntoView({behavior:reduce?'auto':'smooth',block:'nearest'});
+    });
+  });
+  render('glut');
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-stakes.html">← The Stakes</a><a rel="next" href="the-glut.html">The Glut →</a></nav>
+</body>
+</html>

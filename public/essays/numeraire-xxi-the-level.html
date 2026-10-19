@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Level — Numéraire, Volume XXI</title>
+<meta name="description" content="Numéraire, Volume XXI: The Level — money's value over time; what a unit of money is worth across the years, and the strange power to move it. The quantity theory, that the price level tracks the quantity of money and money is a veil over real wealth (Hume); the Phillips tradeoff and the natural rate, by which inflation buys lower unemployment only by surprise and never for long (Phelps); hyperinflation, where the value of money flees toward zero in a self-feeding panic (Cagan); the inflation bias of discretion, and why the power to inflate must be bound (Kydland and Prescott); and the deepest truth of all — that modern money is backed by nothing but belief, so its value rests on the credibility of the regime, and the power to set it must be insulated to be trusted (Sargent).">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- reading-progress hairline ---- */
+  .progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--ink);z-index:10000;}
+
+  /* ---- masthead ---- */
+  .masthead{padding:clamp(2.8rem,8vh,5.6rem) 0 clamp(1.6rem,4vh,2.6rem);text-align:center;}
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;}
+  .edition{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+  .edition b{font-family:"Fraunces",serif;font-weight:500;font-style:normal;color:var(--soft);letter-spacing:.04em;}
+
+  .symbox{width:84px;height:84px;border:1px solid var(--ink);border-radius:2px;background:var(--ink);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;margin:clamp(1.4rem,3.4vh,2.2rem) auto 0;}
+  .symbox .sb-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2rem;line-height:1;color:var(--paper);letter-spacing:-.01em;}
+  .symbox .sb-num{font-family:"Fraunces",serif;font-size:.66rem;color:rgba(240,235,225,.58);margin-top:.28rem;letter-spacing:.04em;}
+
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-top:1.15rem;}
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.5rem,7vw,5rem);line-height:1.0;letter-spacing:-.028em;margin:.55rem 0 0;text-wrap:balance;}
+  .subtitle{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.05rem,1.7vw,1.32rem);color:var(--faint);margin:.5rem 0 0;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.64;color:var(--soft);
+    max-width:43rem;margin:clamp(1.3rem,3vh,1.9rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+  .status{font-size:.84rem;color:var(--soft);margin:clamp(1.2rem,2.6vh,1.7rem) auto 0;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .backrow{margin-top:clamp(1.3rem,3vh,1.9rem);padding-top:1.5rem;border-top:1px solid var(--hair);max-width:50rem;margin-left:auto;margin-right:auto;}
+  .backlink{display:inline-block;font-size:.82rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .backlink:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- generic block furniture ---- */
+  main{padding:0;}
+  .eyebrow{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.2rem;}
+
+  .block-argument{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .argument{max-width:40rem;margin:0 auto;}
+  .argument p{font-size:1.08rem;line-height:1.74;color:var(--ink);margin:0 0 1.2rem;text-wrap:pretty;}
+  .argument p:last-child{margin-bottom:0;}
+  .argument .closer{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 400;font-style:italic;color:var(--soft);font-size:1.06rem;}
+
+  /* ---- table of plates ---- */
+  .block-toc{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .toc ol{list-style:none;margin:0;padding:0;max-width:44rem;}
+  .toc li{display:grid;grid-template-columns:2.5rem 1fr;column-gap:1rem;align-items:baseline;
+    padding:.85rem 0;border-top:1px solid var(--hair);}
+  .toc li:first-child{border-top:none;}
+  .t-num{font-family:"Fraunces",serif;font-size:.92rem;color:var(--faintest);text-align:right;}
+  .t-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.08rem;color:var(--ink);line-height:1.15;text-decoration:none;}
+  a.t-title{border-bottom:1px solid var(--num);padding-bottom:1px;}
+  a.t-title:hover{border-bottom-color:var(--ink);}
+  .t-gloss{grid-column:2;font-size:.85rem;color:var(--faint);font-style:italic;margin-top:.22rem;line-height:1.4;}
+  .t-q{grid-column:2;font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:.95rem;color:var(--soft);margin-top:.42rem;line-height:1.36;}
+  .t-q .lead{font-family:"Fraunces",serif;font-style:normal;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-right:.5rem;}
+  .t-tag{display:inline-block;margin-left:.6rem;font-family:"Newsreader",serif;font-size:.64rem;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--paper);background:var(--ink);border-radius:2px;padding:.12em .5em;vertical-align:.14em;}
+  .t-read{grid-column:2;margin-top:.42rem;}
+  .t-read a{font-size:.8rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .t-read a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- the plates (essays) ---- */
+  .plates-open{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.8rem,6vh,4rem);}
+  .plates-open .eyebrow{text-align:center;}
+  .plate{max-width:54rem;margin:clamp(2.8rem,6.5vh,4.4rem) auto 0;padding-top:clamp(2.2rem,4.6vh,3rem);
+    border-top:1px solid var(--hair);position:relative;scroll-margin-top:1.4rem;}
+  .plate:first-of-type{border-top:none;margin-top:clamp(1.6rem,3.5vh,2.4rem);padding-top:0;}
+  .plate-head{margin:0 0 1.7rem;}
+  .plate-kicker{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .plate-kicker .pk-tag{margin-left:.6rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .plate-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.8rem,4.2vw,2.7rem);line-height:1.03;letter-spacing:-.02em;margin:.32rem 0 .42rem;}
+  .plate-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.02rem;color:var(--faint);max-width:36rem;line-height:1.45;}
+
+  .epigraph{max-width:34rem;margin:1.4rem 0 1.9rem;padding-left:1.1rem;border-left:1px solid var(--num);}
+  .epigraph p{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:1.04rem;line-height:1.42;color:var(--soft);margin:0;}
+  .epigraph cite{display:block;font-style:normal;font-family:"Newsreader",serif;font-size:.78rem;
+    letter-spacing:.03em;color:var(--faintest);margin-top:.55rem;}
+
+  .plate-body{max-width:37rem;}
+  .plate-body p{font-size:1.05rem;line-height:1.75;color:var(--ink);margin:0 0 1.18rem;text-wrap:pretty;}
+  .plate-body p:last-child{margin-bottom:0;}
+  .plate-body em{font-style:italic;}
+  .plate-body .lead-para::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 500;
+    float:left;font-size:3.5rem;line-height:.78;padding:.08em .14em 0 0;color:var(--ink);}
+  .plate-body h4{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);margin:1.9rem 0 .9rem;}
+
+  .break{display:flex;justify-content:center;margin:1.9rem 0;}
+  .break span{font-family:"Fraunces",serif;font-size:1.05rem;letter-spacing:.4em;color:var(--faintest);padding-left:.4em;}
+
+  /* sidenotes — inline by default, true margin notes on wide screens */
+  .sn-ref{font-family:"Fraunces",serif;font-size:.64rem;vertical-align:super;line-height:0;color:var(--soft);margin-left:.06em;}
+  .sidenote{font-family:"Newsreader",serif;font-size:.82rem;line-height:1.52;color:var(--faint);
+    border-left:2px solid var(--hair);padding-left:.9rem;margin:.7rem 0 1.05rem;}
+  .sidenote .sn-num{font-family:"Fraunces",serif;color:var(--faintest);font-size:.7rem;margin-right:.38rem;}
+  .sidenote em{font-style:italic;}
+  @media (min-width:1040px){
+    .sidenote{float:right;clear:right;width:14.5rem;margin:.25rem -17.5rem 1.15rem 0;
+      border-left:none;border-top:1px solid var(--hair);padding:.42rem 0 0;}
+  }
+
+  /* ---- coda ---- */
+  .coda{max-width:40rem;margin:clamp(2.8rem,6vh,4rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);}
+  .coda p{font-size:1.06rem;line-height:1.74;color:var(--ink);margin:0 0 1.15rem;text-wrap:pretty;}
+  .coda p:last-child{margin-bottom:0;}
+  .coda .q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .f-ref a{text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .f-ref a:hover{border-bottom-color:var(--soft);}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .progress{transition:width .08s linear;}
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}.rise.d4{animation-delay:.4s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    h1{font-size:clamp(2.2rem,11vw,3rem);}
+    .symbox{width:72px;height:72px;}
+    .symbox .sb-sym{font-size:1.7rem;}
+    .plate-body .lead-para::first-letter{font-size:3rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#ne-contents">Complete contents</a><a href="../editions.html#volume-level">The Level · both editions</a><a href="../volumes/the-level.html">Collected volume</a></div></nav>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="rise d1">
+      <span class="imprint">Numéraire</span>
+      <div class="edition"><b>Volume the Twenty-first</b> &middot; of the table of twenty-six</div>
+    </div>
+    <div class="symbox rise d2" aria-hidden="true"><span class="sb-sym">Lv</span><span class="sb-num">21</span></div>
+    <div class="d-family rise d2">The Aggregates &middot; Group V &middot; № 21 &middot; Lv</div>
+    <h1 class="rise d2">The Level</h1>
+    <div class="subtitle rise d3">money's value over time</div>
+    <p class="standfirst rise d3">The level is the third of the aggregates, and it concerns the worth of the very thing in which the other two are counted. Growth is the long rise of real output and the cycle its fluctuation around the trend; but output and wages, debts and savings, are all measured in money, and money itself has a value that changes over time. The level is that value — what a unit of money will buy, and why it rises or falls across the years. Its inverse is the price level, so the value of money is the story of inflation and deflation: of money losing worth as prices climb, or gaining it as prices fall. The volume begins with the oldest answer, the quantity theory, that the value of money tracks its abundance, so that sustained inflation is at bottom too much money chasing too few goods. It then traces the temptations and catastrophes that a power so great invites: the false hope that a little inflation might buy lasting employment, which the natural rate dispels; the catastrophe of hyperinflation, where the value of money flees toward zero in a self-feeding panic; and the structural temptation that biases even a well-meaning authority toward inflation. Beneath all of it lies a startling truth about modern money, which is backed by nothing physical at all: that its value rests on belief, sustained by the credibility of the institution that governs it. And so the volume arrives at the question the author set it — who should hold the strange and awesome power to move the value of every price at once.</p>
+    <div class="status rise d3">in print &middot; № XXI &middot; 6 of 12 plates</div>
+    <div class="backrow rise d4">
+      <a class="backlink" href="numeraire-atlas-updated.html">← The complete table of volumes</a>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="block-argument">
+      <div class="argument">
+        <p class="eyebrow">The argument of the volume</p>
+        <p>Begin with the value of money itself, for it is the thing the whole volume is about. What a unit of money is worth is simply what it will buy, the inverse of the price level; so the value of money over time is the story of the price level, of inflation and deflation. The oldest and most fundamental account is the quantity theory, stated with unmatched clarity by David Hume: the price level is governed by the quantity of money relative to the quantity of goods, so that doubling the money, with goods unchanged, doubles all prices and leaves real wealth exactly where it stood. Money, in this view, is a veil over the real economy — its quantity sets the level at which prices are quoted but not, in the long run, how much is produced or who owns what in real terms. From this follows the central fact about inflation: that a sustained rise in every price at once is not the work of grasping merchants or powerful unions, which can only raise one price against others, but requires money growing faster than goods. Sustained inflation is, at bottom, a monetary phenomenon. Yet in the short run the veil lifts, for new money reaches some hands before others, quickening activity and shifting real wealth toward those who receive it first — the source of money's power over real things, and of its danger.</p>
+        <p>If the value of money can be moved, the temptation arises to move it for gain, and the volume turns to the temptations and catastrophes that follow. Edmund Phelps dispelled the most seductive hope, that a little inflation might purchase lasting employment: the Phillips curve seemed to offer such a trade, but inflation lowers unemployment only by fooling workers with wages worth less than they expected, and once the inflation is anticipated the effect vanishes, leaving only the rising prices, as the stagflation of the 1970s confirmed. Phillip Cagan studied the opposite extreme, hyperinflation, where a government printing money to pay its bills sets off a flight from the currency: as prices erupt, people spend money the instant they get it, its velocity soars, and prices rise faster still, in a self-feeding spiral that devours the inflation tax's own base and ends only when the printing credibly stops. And Finn Kydland and Edward Prescott found the temptation built into the power itself: a central bank free to inflate will be expected to inflate, and so will be forced to deliver an inflation it gains nothing from — the inflation bias of discretion — unless it surrenders the freedom to choose, binding itself to a rule or to independence so that its promise of stable money can be believed.</p>
+        <p>Beneath the temptations lies the deepest truth, which the flagship draws out. Modern money is backed by nothing — no gold, no metal, only a paper claim on nothing at all — and yet it holds its value, because everyone believes it will and trusts that others will take it in exchange. Its worth is a social fact, a shared confidence, and what people expect it to be worth tomorrow is what it is worth today. Thomas Sargent showed the principle at its sharpest: the great inflations end not gradually but at a stroke, the moment the public believes the regime behind the money has truly changed, for money's value is ruled by expectations of those who control it, not by the quantity of money alone. The central bank's deepest task is therefore to be the anchor of that confidence, which is why the power to set the value of money is given to an institution insulated and committed enough to be believed — the paradox of an unaccountable power at the heart of a democracy, held there because it must be insulated to be trusted. So the volume answers the question it set itself, who should hold the power to change the value of every price at once: an anchor, a credibly committed and independent institution, bound by a clear mandate and placed beyond the reach of the temptations that would unmoor it. One motion of the aggregate then remains — not the worth of the measure but the division of what it counts, between those who labor and those who own, which is the share.</p>
+        <p class="closer">The argument remains open. What follows is an attempt to fix its exact edges.</p>
+      </div>
+    </section>
+
+    <section class="block-toc toc">
+      <p class="eyebrow">The twelve plates of this volume</p>
+      <ol>
+        <li>
+          <span class="t-num">i</span>
+          <a class="t-title" href="numeraire-xxi-i-the-quantity.html">The Quantity<span class="t-tag">in print</span></a>
+          <span class="t-gloss">Hume; the price level tracks the quantity of money, so money is a veil over real wealth and inflation is, at bottom, too much money.</span>
+          <span class="t-read"><a href="numeraire-xxi-i-the-quantity.html">Read the plate →</a></span>
+        </li>
+        <li>
+          <span class="t-num">ii</span>
+          <span class="t-title">The Neutral</span>
+          <span class="t-gloss">the neutrality of money; whether money can move real things or, in the long run, only the prices at which they are quoted.</span>
+          <span class="t-q"><span class="lead">would ask</span>is money merely a veil over the real economy, or can it move real things?</span>
+        </li>
+        <li>
+          <span class="t-num">iii</span>
+          <a class="t-title" href="numeraire-xxi-iii-the-tradeoff.html">The Tradeoff<span class="t-tag">in print</span></a>
+          <span class="t-gloss">Phelps; the Phillips curve and the natural rate — inflation buys lower unemployment only by surprise, and never for long.</span>
+          <span class="t-read"><a href="numeraire-xxi-iii-the-tradeoff.html">Read the plate →</a></span>
+        </li>
+        <li>
+          <span class="t-num">iv</span>
+          <a class="t-title" href="numeraire-xxi-iv-the-flight.html">The Flight<span class="t-tag">in print</span></a>
+          <span class="t-gloss">Cagan; hyperinflation, where the value of money flees toward zero in a self-feeding panic as people rush to be rid of it.</span>
+          <span class="t-read"><a href="numeraire-xxi-iv-the-flight.html">Read the plate →</a></span>
+        </li>
+        <li>
+          <span class="t-num">v</span>
+          <a class="t-title" href="numeraire-xxi-v-the-temptation.html">The Temptation<span class="t-tag">in print</span></a>
+          <span class="t-gloss">Kydland and Prescott; the inflation bias of discretion, and why the power to inflate must be bound to a rule to be trusted.</span>
+          <span class="t-read"><a href="numeraire-xxi-v-the-temptation.html">Read the plate →</a></span>
+        </li>
+        <li>
+          <span class="t-num">vi</span>
+          <span class="t-title">The Erosion</span>
+          <span class="t-gloss">the costs of inflation; the silent tax on cash and savings, and the arbitrary redistribution between debtor and creditor.</span>
+          <span class="t-q"><span class="lead">would ask</span>who pays the silent tax of inflation, and who escapes it?</span>
+        </li>
+        <li>
+          <span class="t-num">vii</span>
+          <span class="t-title">The Descent</span>
+          <span class="t-gloss">deflation; the silent trap of falling prices, the rising real burden of debt, and the floor beneath which interest cannot fall.</span>
+          <span class="t-q"><span class="lead">would ask</span>why is falling money feared more than rising money?</span>
+        </li>
+        <li>
+          <span class="t-num">viii</span>
+          <a class="t-title" href="numeraire-xxi-viii-the-anchor.html">The Anchor<span class="t-tag">in print</span></a>
+          <span class="t-gloss">the capstone: money is backed by nothing but belief, so its value rests on the credibility of the regime, and the power to set it must be insulated to be trusted.</span>
+          <span class="t-read"><a href="numeraire-xxi-viii-the-anchor.html">Read the plate →</a></span>
+        </li>
+        <li>
+          <span class="t-num">ix</span>
+          <span class="t-title">The Specie</span>
+          <span class="t-gloss">the gold standard; the metallic anchor that once gave money a worth beyond any government's word, and why the anchor was cut.</span>
+          <span class="t-q"><span class="lead">would ask</span>what anchored the value of money before policy did, and why was the anchor cut?</span>
+        </li>
+        <li>
+          <span class="t-num">x</span>
+          <a class="t-title" href="numeraire-xxi-x-the-target.html">The Target<span class="t-tag">in print</span></a>
+          <span class="t-gloss">Svensson; the inflation forecast as an intermediate target, and the public discipline of a conditional promise.</span>
+          <span class="t-read"><a href="numeraire-xxi-x-the-target.html">Read the plate →</a></span>
+        </li>
+        <li>
+          <span class="t-num">xi</span>
+          <span class="t-title">The Transmission</span>
+          <span class="t-gloss">monetary transmission; the levers, the interest rate and the open-market operation, by which a central bank actually moves the value of money.</span>
+          <span class="t-q"><span class="lead">would ask</span>by what levers does a central bank actually move the value of money?</span>
+        </li>
+        <li>
+          <span class="t-num">xii</span>
+          <span class="t-title">The Mandate</span>
+          <span class="t-gloss">central bank independence; the uneasy bargain by which a democracy places the power over money beyond the reach of its own voters.</span>
+          <span class="t-q"><span class="lead">would ask</span>should the power over money's value answer to the voters, or be insulated from them?</span>
+        </li>
+      </ol>
+    </section>
+
+    <section class="coda">
+      <p class="eyebrow">In closing</p>
+      <p>This volume took up the third of the aggregates, the level — the value of money itself across time, the changing worth of the very unit in which growth and the cycle, wages and debts and savings, are all reckoned. Its subject was inflation and deflation, the rise and fall of money's worth; and the question the author set it was the deepest one a theory of money's value can pose: who should hold the power to move the value of every price at once.</p>
+      <p>The volume traced that value from its foundation to its frontier. David Hume gave the quantity theory, that the price level tracks the quantity of money relative to goods, so that money is a veil over real wealth and sustained inflation is at bottom too much money chasing too few goods. Edmund Phelps dispelled the hope that inflation might buy lasting employment, showing the Phillips tradeoff to work only by surprise and to vanish once anticipated, leaving only the rising prices. Phillip Cagan anatomized hyperinflation, the value of money fleeing toward zero in a self-feeding panic as a government printing to pay its bills sets off a flight from its own currency. And Finn Kydland and Edward Prescott exposed the temptation built into the power itself — the inflation bias of a bank free to inflate — and the remedy of binding it to a rule, so that its promise of stable money might be believed.</p>
+      <p>Beneath the mechanisms the volume found the deepest truth of the modern money. Thomas Sargent showed that money, backed by nothing physical, holds its value only by belief, and that the great inflations end the instant the public believes the regime behind the money has truly changed — so that money's worth is ruled by expectations of those who control it, not by its quantity alone. The central bank's deepest task is to be the anchor of that confidence, and the power to set the value of money is therefore given to an institution insulated and committed enough to be believed, an unaccountable power placed at the heart of a democracy precisely so that it can resist the temptations the accountable could not. The level is growth's quieter companion: where growth is the trend of real output and the cycle its fluctuation, the level is the worth of the money that counts them both. One motion of the aggregate yet remains. The level governs the worth of the measure; but how is the thing measured, the national product, divided between those who labor and those who own? That is the share.</p>
+      <p class="q">Modern money is backed by nothing, and holds its value only because all believe it will; its worth rests, in the end, on the credibility of the institution that governs it. That institution can move, by a single lever, the value of every wage and debt and savings account at once — a power vast and, by design, insulated from the vote. So the question the level leaves open is the one the volume was set to ask: who should hold the power to change the value of every price at once?</p>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref"><a href="numeraire-atlas-updated.html">The table of volumes</a></span>
+    </div>
+    <p class="colophon">Volume the Twenty-first of <em>Numéraire</em>, a periodic table of economic life: twenty-six primitives gathered in six families, each turned inside out at the seam where the seminar and the essay usually part — with the rigor of the one and the grace of the other — and each scrupulous about the exact edge of what can be known. <em>The Level</em> is in print, the third of the fifth family, the aggregates — the great motions of the whole economy — joining <em>The Growth</em> and <em>The Cycle</em>. Six of its twelve plates are published, and the eighth, <em>The Anchor</em>, stands as the flagship of the volume: that modern money is backed by nothing but belief, so that its value rests on the credibility of the regime that governs it, and the power to set it must be insulated to be trusted. Where growth is the long upward trend of the aggregate economy and the cycle its fluctuation around the trend, the level is the worth of the money in which both are counted — and one motion of the whole remains, the division of the product between labor and capital, the share, awaiting its turn. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var bar=document.getElementById('progress');
+  function onScroll(){
+    var h=document.documentElement;
+    var max=(h.scrollHeight-h.clientHeight);
+    var p=max>0?(h.scrollTop||document.body.scrollTop)/max:0;
+    bar.style.width=(p*100).toFixed(2)+'%';
+  }
+  document.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="numeraire-xx-xi-the-slowdown.html">← The Slowdown</a><a rel="next" href="numeraire-xxi-i-the-quantity.html">The Quantity →</a></nav>
+</body>
+</html>

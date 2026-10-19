@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Growth — Numéraire, Volume XX</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem; --measure:40rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- ornament ---- */
+  .orn{display:flex;justify-content:center;margin:0 auto 1.9rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* ---- masthead / volume front ---- */
+  .masthead{padding:clamp(3rem,8vh,6rem) 0 clamp(1.6rem,4vh,2.6rem);text-align:center;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;text-decoration:none;}
+  .imprint:hover{color:var(--soft);}
+  .vol-dateline{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+
+  .vol-sym{width:114px;height:114px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;align-items:center;justify-content:center;
+    font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 500;font-size:3.1rem;line-height:1;letter-spacing:-.01em;}
+  .vol-sym.lit{background:var(--ink);color:var(--paper);}
+  .vol-elnum{font-family:"Fraunces",serif;font-size:.74rem;color:var(--faintest);letter-spacing:.18em;text-transform:uppercase;margin-top:1rem;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.3rem,6.5vw,4.6rem);line-height:1.02;letter-spacing:-.025em;margin:.7rem 0 0;text-wrap:balance;}
+  .vol-status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .vol-status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:44rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  /* ---- the volume question ---- */
+  .vol-q{max-width:46rem;margin:clamp(2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .vol-q .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.7rem;}
+  .vol-q q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.3rem,2.4vw,1.72rem);line-height:1.32;color:var(--ink);quotes:none;text-wrap:balance;}
+
+  /* ---- frontispiece (the argument) ---- */
+  .front{margin:clamp(3rem,7vh,5rem) auto 0;max-width:var(--measure);}
+  .front-eyebrow{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);text-align:center;
+    display:flex;align-items:center;gap:.9rem;justify-content:center;margin:0 0 2.1rem;}
+  .front-eyebrow::before,.front-eyebrow::after{content:"";height:1px;width:2.4rem;background:var(--hair);}
+  .front p{font-size:1.07rem;line-height:1.76;color:var(--ink);margin:0 0 1.35rem;text-wrap:pretty;}
+  .front p:last-child{margin-bottom:0;}
+  .front em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.74;padding:.1em .12em 0 0;color:var(--ink);}
+  .front-orn{display:flex;justify-content:center;margin:2rem 0;}
+  .front-orn svg{width:96px;height:12px;overflow:visible;}
+  .front-orn line{stroke:var(--num);stroke-width:1;} .front-orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* ---- the plates (a table within the table) ---- */
+  main{padding:clamp(3rem,7vh,5rem) 0 0;}
+  .plates-head{display:flex;align-items:baseline;gap:.9rem;margin:0 0 1.6rem;}
+  .plates-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-size:.86rem;color:var(--faintest);letter-spacing:.04em;flex:0 0 auto;}
+  .plates-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);flex:0 0 auto;}
+  .plates-rule{flex:1;height:1px;background:var(--hair);position:relative;top:-2px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:13px;}
+
+  .el{appearance:none;-webkit-appearance:none;background:var(--paper);border:1px solid var(--hair);border-radius:2px;
+    padding:14px 15px 16px;text-align:left;cursor:pointer;position:relative;min-height:152px;
+    display:flex;flex-direction:column;color:inherit;font-family:inherit;
+    transition:border-color .22s ease,background .22s ease,transform .22s ease,box-shadow .22s ease;}
+  .el:hover{border-color:var(--faintest);transform:translateY(-2px);}
+  .el-rn{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-size:.78rem;color:var(--faintest);letter-spacing:.18em;text-transform:uppercase;}
+  .pl-hero{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 500;font-size:1.34rem;line-height:1.06;margin-top:.5rem;letter-spacing:-.012em;}
+  .el-gloss{font-size:.79rem;color:var(--faint);line-height:1.36;margin-top:.5rem;font-style:italic;}
+  .pl-flag{margin-top:auto;padding-top:.7rem;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--faintest);}
+  .el.lit{background:var(--ink);border-color:var(--ink);}
+  .el.lit .pl-hero{color:var(--paper);}
+  .el.lit .el-rn{color:rgba(240,235,225,.5);}
+  .el.lit .el-gloss{color:rgba(240,235,225,.62);}
+  .el.lit .pl-flag{color:rgba(240,235,225,.7);}
+  .el.sel{box-shadow:inset 0 0 0 1.5px var(--ink);border-color:var(--ink);}
+  .el.lit.sel{box-shadow:inset 0 0 0 1.5px var(--paper);}
+
+  /* ---- detail panel (the plate, opened) ---- */
+  .detail{margin:clamp(2.4rem,5vh,3.6rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);scroll-margin-top:1.4rem;}
+  .d-head{display:flex;gap:1.3rem;align-items:flex-start;}
+  .d-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 60,"wght" 500;font-size:1.5rem;line-height:1;
+    color:var(--ink);flex:0 0 auto;border:1px solid var(--hair);border-radius:2px;letter-spacing:.04em;
+    width:86px;height:86px;display:flex;align-items:center;justify-content:center;text-transform:uppercase;}
+  .d-sym.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .d-titles{min-width:0;}
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);}
+  .d-name{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.7rem,3.6vw,2.5rem);margin:.22rem 0 .35rem;line-height:1.04;letter-spacing:-.016em;}
+  .d-status{font-size:.84rem;color:var(--faint);font-style:italic;}
+  .d-status.print{color:var(--soft);font-style:normal;}
+  .d-status.print::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .d-desc{font-size:1.05rem;line-height:1.72;color:var(--ink);max-width:42rem;margin:1.3rem 0 0;text-wrap:pretty;}
+
+  .d-openq{margin:1.6rem 0 0;max-width:40rem;}
+  .d-openq .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.5rem;}
+  .d-openq q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);quotes:none;}
+
+  .d-excerpt{margin:1.8rem 0 0;max-width:42rem;border-left:1px solid var(--hair);padding:.2rem 0 .2rem 1.5rem;}
+  .d-excerpt .lead{font-family:"Fraunces",serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);display:block;margin-bottom:.8rem;}
+  .d-excerpt p{font-size:1.04rem;line-height:1.74;color:var(--ink);margin:0;text-wrap:pretty;}
+  .d-excerpt .x-cap{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 500;font-size:1.15rem;}
+  .d-readplate{margin:1.6rem 0 0;}
+  .d-readplate a{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:.94rem;
+    letter-spacing:.01em;text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:2px;transition:border-color .2s ease,color .2s ease;}
+  .d-readplate a:hover{color:var(--soft);border-color:var(--soft);}
+  .d-readplate .arr{margin-left:.4rem;}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;text-decoration:none;}
+  .f-mark:hover{color:var(--soft);}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;}
+    .el{min-height:138px;padding:12px 12px 14px;}
+    .pl-hero{font-size:1.18rem;}
+    .el-gloss{font-size:.74rem;}
+    .vol-sym{width:92px;height:92px;font-size:2.5rem;}
+    .d-head{gap:1rem;}
+    .d-sym{width:64px;height:64px;font-size:1.25rem;}
+    .front p{font-size:1.04rem;}
+    .dropcap{font-size:3rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <div class="rise d1">
+      <a class="imprint" href="numeraire-atlas.html">Numéraire</a>
+      <div class="vol-dateline">The Twentieth Volume &middot; The Aggregates</div>
+    </div>
+    <div class="vol-sym lit rise d2" aria-hidden="true">Gr</div>
+    <div class="vol-elnum rise d2">Element 20 &middot; Group V</div>
+    <h1 class="rise d3">The Growth</h1>
+    <div class="vol-status rise d3">in print &middot; № XX &middot; 2 of 12 plates</div>
+    <p class="standfirst rise d4">The volume before this one studied the economy's wobble — the boom, the slump, the trade cycle's passing weather. But the wobble is small beside the path it wobbles along. For nearly all of human history that path was flat: the great-grandchild no richer than the great-grandparent, the whole species held near subsistence. Then, two centuries ago, in a few places, output per person began to rise and did not stop. This volume is the study of that rising path — the long-run trend rather than the short-run swing, the wealth and the poverty of nations.</p>
+    <div class="vol-q rise d5">
+      <span class="lead">The question of the volume</span>
+      <q>what lifted a few nations out of the poverty that bound all of history before — and why have so many been left behind?</q>
+    </div>
+  </header>
+
+  <section class="front" aria-label="The argument of the volume">
+    <div class="front-eyebrow">The argument</div>
+
+    <p><span class="dropcap">T</span>he volume before this one studied the economy's wobble. The trade cycle — the boom that overreaches and the slump that follows, the alternation of confidence and fear — is real, and painful, and the proper subject of a science; but it is a small thing beside the path along which the wobbling occurs. Step back far enough, and the booms and busts of a century shrink to ripples on a swell that has, in the last two hundred years and in a part of the world, risen higher than in all the ages before combined. For nearly the whole of human history the standard of living was a flat line: the ordinary person lived near subsistence, and the great-grandchild was no richer than the great-grandparent who had labored under a different king. Then, around the year 1800, in a few places, the line bent upward and did not come down. This volume is the study of that bend — not the economy's fluctuations but its trend, the long-run rise or stagnation of what a people can make and have. It is the oldest and the largest question economics asks: the wealth, and the poverty, of nations.</p>
+
+    <p>The magnitude of the change is almost impossible to feel from inside it. For ten millennia, growth was so slow as to be invisible within any single life; the Roman and the medieval peasant were, in the things that matter to a body, about equally poor, and a man of 1700 would have found the daily economic life of antiquity entirely familiar. Since 1800, output per person in the countries that grew has multiplied perhaps twenty or thirty times over — the great enrichment, historians have called it, or, from the shape it traces on any chart of the long run, the hockey stick: a nearly flat line running back through all recorded time, and then, at the very end, a sudden vertical ascent. It is the whole difference between a life that was, for almost everyone who ever lived, short and hungry and hemmed in, and one that — for those the enrichment reached — grew longer, freer, and unimaginably more abundant in every material thing. No fact within the reach of economics is larger or carries more weight; and it poses the two questions this volume turns upon: where does growth come from, that it should have appeared at all — and why has it come to some places and not to others?</p>
+
+    <p>The first guess at the source of wealth is the obvious one: accumulation. A people grows rich, surely, by piling up tools and machines, by working each year with more capital than the last. There is truth in this, and yet — the founding surprise of the modern study of growth — it is the smaller part of the truth. When economists set out to measure where growth comes from, dividing it into the contribution of more capital, the contribution of more labor, and a remainder, they found the remainder to be the largest piece by far: most of the rise in output sprang not from laboring with more, but from drawing more out of the same. That remainder they named the residual, and it is, in plain terms, productivity — the rising efficiency with which a society turns its inputs into outputs. Solow showed why the residual, and not accumulation, must be the lasting engine. Capital obeys diminishing returns; a society that only saves and invests finds each new machine adding less than the last, until it reaches a steady state and grows no more. Sustained growth must come from the residual — which, in Solow's own model, was left unexplained, a rate of progress assumed to fall from the sky like manna. The deepest quantity in the theory of wealth was a confession of ignorance.</p>
+
+    <div class="front-orn" aria-hidden="true">
+      <svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg>
+    </div>
+
+    <p>What, then, is the residual made of? The modern theory offers two answers, and this work leans hard on the second. The first is ideas. Ideas, Romer saw, are unlike every tangible thing in one decisive respect: they are nonrival. Two factories cannot run on the same machine, but the whole world can use the same idea at once — the same theorem, the same blueprint, the same technique — and one person's use subtracts nothing from another's. From this it follows that knowledge, unlike capital, need never exhaust its returns: its accumulation can drive growth without end, and because ideas are made on purpose, by people seeking to gain from them, growth is endogenous, generated within the economy rather than rained upon it. But ideas are made, and capital is amassed, only where a society's arrangements reward the making and the amassing — only where what one builds, one may keep. And so the residual, pressed hard enough, resolves into something deeper than technique: into the rules a people lives under, the institutions that decide whether effort is protected or plundered. The engine of wealth turns out to be, in the last analysis, a matter of the rules. And the rules, this work has insisted throughout, are never given by nature; they are settled by contest.</p>
+
+    <p>This recasts the gravest question of all — why some nations are rich and others wretchedly poor — and clears away the old and ugly answers. The divergence is not, in the main, a matter of geography: nations poor in every natural gift have grown fabulously rich, and nations sitting on oceans of oil have stayed poor. It is not race, and it is not culture as a fixed inheritance. The institutional turn in the study of growth holds that nations diverge because their institutions diverge. Some societies came to be governed by inclusive arrangements — property secure, power checked and broadly shared, the gains of effort left in the hands that earned them — and these rewarded investment and invention, and grew. Others fell under extractive ones — power and property gripped by a narrow few, the surplus drained upward, the many given no reason to build what would only be seized — and these stagnated. And these arrangements, inclusive or extractive, are themselves the residue of long struggles over who should rule and who should keep the fruits of the common labor. The great divergence, on this account, is the divergent outcome of those struggles, hardened into the rules a people cannot easily escape. A nation's wealth is not a fact of its nature; it is the long shadow of a contest, won or lost.</p>
+
+    <p>So the volume arrives, at the largest scale the work commands, at the conviction that has governed it throughout. A price is a verdict on a hidden contest, mistaken for a fact of nature — and the wealth or poverty of a whole people is that same verdict, written across continents and centuries. We are forever tempted to read the map of rich and poor as we read the map of mountains and seas: as a fact of the world, a matter of where a people happens to dwell or what it happens to be. It is nothing of the kind. The wealth of nations is the residue of contests — over institutions, over power, over whether the surplus is shared and reinvested or seized and squandered — settled, in a few places in a few centuries, in favor of the rules that let growth happen, and lost, in many more, to the rules that strangle it. To call a nation's poverty natural is the gravest form of the very mistake this work was written to undo: it takes the verdict of a contest over power for a decree of geography or fate. And the correction cuts two ways at once, sobering and hopeful together — sobering, because the poverty of billions is then not nature's doing but humanity's, the outcome of contests that might have gone otherwise; hopeful, for precisely the same reason, since what contest made, contest can remake. The twelve plates trace the ascent of the modern world and the residual that drives it; the accumulation that cannot suffice and the ideas that can; the divergence of nations and the institutional settlement beneath it; the Malthusian snare and the latecomer's narrow escape; the parts played by population and by resource; the limits the planet may yet impose; and the mystery, never wholly dispelled, of why the great enrichment came when and where it did. Where the volume on the cycle studied the economy's passing weather, this one studies its climate — and the long contest that set it. The argument remains open.</p>
+  </section>
+
+  <main>
+    <div class="plates-head">
+      <span class="plates-num fr">№ XX</span>
+      <span class="plates-name">The twelve plates</span>
+      <span class="plates-rule"></span>
+    </div>
+    <div class="grid" id="grid">
+      <button class="el lit" data-id="ascent" aria-label="Plate i — The Ascent — in print"><span class="el-rn">Plate i</span><span class="pl-hero">The Ascent</span><span class="el-gloss">the great enrichment: the escape from the poverty that bound all of history</span><span class="pl-flag">in print</span></button>
+      <button class="el lit" data-id="residual" aria-label="Plate ii — The Residual — in print"><span class="el-rn">Plate ii</span><span class="pl-hero">The Residual</span><span class="el-gloss">growth is mostly productivity, not accumulation: the engine we cannot fully name</span><span class="pl-flag">in print</span></button>
+      <button class="el" data-id="accumulation" aria-label="Plate iii — The Accumulation"><span class="el-rn">Plate iii</span><span class="pl-hero">The Accumulation</span><span class="el-gloss">more capital per worker, and why saving alone runs into the wall of diminishing returns</span></button>
+      <button class="el" data-id="idea" aria-label="Plate iv — The Idea"><span class="el-rn">Plate iv</span><span class="pl-hero">The Idea</span><span class="el-gloss">ideas are nonrival: why knowledge, unlike capital, can grow without end</span></button>
+      <button class="el" data-id="divergence" aria-label="Plate v — The Divergence"><span class="el-rn">Plate v</span><span class="pl-hero">The Divergence</span><span class="el-gloss">why a few nations raced ahead and the gap between rich and poor exploded</span></button>
+      <button class="el" data-id="settlement" aria-label="Plate vi — The Settlement"><span class="el-rn">Plate vi</span><span class="pl-hero">The Settlement</span><span class="el-gloss">inclusive rules or extractive ones: the institutions on which wealth turns</span></button>
+      <button class="el" data-id="snare" aria-label="Plate vii — The Snare"><span class="el-rn">Plate vii</span><span class="pl-hero">The Snare</span><span class="el-gloss">the Malthusian snare, where every gain was eaten by another mouth — and the escape</span></button>
+      <button class="el" data-id="latecomer" aria-label="Plate viii — The Latecomer"><span class="el-rn">Plate viii</span><span class="pl-hero">The Latecomer</span><span class="el-gloss">the advantage of backwardness: why some poor nations catch up and others do not</span></button>
+      <button class="el" data-id="population" aria-label="Plate ix — The Population"><span class="el-rn">Plate ix</span><span class="pl-hero">The Population</span><span class="el-gloss">more mouths or more minds: demography as the drag and the engine of growth</span></button>
+      <button class="el" data-id="resource" aria-label="Plate x — The Resource"><span class="el-rn">Plate x</span><span class="pl-hero">The Resource</span><span class="el-gloss">the curse of plenty: why resource-rich nations so often stay poor</span></button>
+      <button class="el" data-id="limit" aria-label="Plate xi — The Limit"><span class="el-rn">Plate xi</span><span class="pl-hero">The Limit</span><span class="el-gloss">can growth go on forever? the planet, the stationary state, and the question of enough</span></button>
+      <button class="el" data-id="mystery" aria-label="Plate xii — The Mystery"><span class="el-rn">Plate xii</span><span class="pl-hero">The Mystery</span><span class="el-gloss">why the West, why then: the part of growth the science has never explained</span></button>
+    </div>
+  </main>
+
+  <section class="detail" id="detail" aria-live="polite"></section>
+
+  <footer>
+    <div class="f-bar">
+      <a class="f-mark" href="numeraire-atlas.html">Numéraire</a>
+      <span class="f-ref">Volume XX &middot; The Aggregates</span>
+    </div>
+    <p class="colophon">Volume XX, <em>The Growth</em>, opens with two plates in print — <em>The Ascent</em> and <em>The Residual</em>, the fact of the modern enrichment and the productivity that drives it. The twentieth element of the table, and the twelfth of its volumes to appear; it stands beside <a href="the-cycle.html">The Cycle</a> as the second of the aggregates — for where the one studies the economy's short-run swing, its booms and its slumps, the other studies the long-run path along which it swings, the rising or stagnant level of what a people can produce. The enrichment it traces is, in the end, the long ascent of the standard of living — of the <a href="the-wage.html">wage</a> a day's labor commands. Return to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+
+<script>
+const PLATES = {
+  ascent:{rn:"i",title:"The Ascent",family:"in print",lit:true,url:"the-ascent.html",
+    desc:`For all but the last sliver of human history, the economic life of the species was a flat line. A peasant in eighteenth-century France lived not obviously better than a peasant under the Caesars; the great-grandchild inherited the poverty of the great-grandparent, and the idea of a rising standard of living would have seemed a fantasy. Then, in a corner of the world around the year 1800, the line bent upward and did not come back down. Output per person in the countries that grew has since risen some twenty or thirty times over — an ascent so steep and so sudden that, drawn on a chart of all human history, it looks less like a trend than like a wall. This plate sets out the fact before the explanations: the great enrichment, the most consequential event economics has to study.`,
+    excerpt:`<span class="x-cap">F</span>or ten thousand years, almost nothing happened. Empires rose and fell, religions spread, art and philosophy reached heights never surpassed — and through it all the ordinary person stayed poor, as poor in the age of Newton as in the age of Pericles, living on the rough equivalent of a few dollars a day. Then, in the space of a few generations, in a few places, the oldest fact of human life quietly ended. Output per person began to rise, and kept rising, and the descendants of the poor became rich beyond any prior reckoning. Nothing else economics studies is remotely so large; beside it, the booms and slumps of the previous volume are weather passing over a climate that had, for the first time, begun to change.`},
+  residual:{rn:"ii",title:"The Residual",family:"in print",lit:true,url:"the-residual.html",
+    desc:`Where does the enrichment come from? The natural guess is accumulation — more tools, more machines, more capital piled up behind each pair of hands. When economists tried to measure it, however, they met a surprise that has shaped the field ever since. Decomposing growth into its sources — more capital, more labor, and whatever is left — they found the leftover, the residual, to be the largest part by far: most of the rise in output came not from working with more, but from getting more from the same. The residual is productivity, and Solow showed why it must be the true engine: capital alone meets diminishing returns and peters out in a steady state, so lasting growth has to come from the residual. Yet the residual was, in his own model, unexplained — a rate of progress assumed rather than accounted for. The deepest term in the theory of wealth was, embarrassingly, a name for what the theory could not yet name.`,
+    excerpt:`<span class="x-cap">I</span>t is a peculiar thing to build a science around a residual — around, that is, the part of the answer that is left over when everything one can measure has been subtracted out. Yet that is very nearly what the study of growth has had to do. Add up the contribution of all the extra machines and all the extra workers to the rising output of a wealthy nation, and you find that they account for less than half of it; the larger share is a remainder, a quantity with no name of its own but the one the economists gave it in their chagrin — the residual, or, more honestly, the measure of our ignorance. The whole engine of modern prosperity sits inside that word, and the word is a confession.`},
+  accumulation:{rn:"iii",title:"The Accumulation",family:"in preparation",lit:false,
+    desc:`The oldest theory of growth is the simplest: to grow richer, save and invest — turn part of today's output into the tools and machines that make tomorrow's. There is truth in it, and the Solow model gave the truth its precise shape; but it also gave it a precise limit. Capital, like everything else, has diminishing returns: the hundredth machine added to a workshop adds less than the tenth, and a society that does nothing but accumulate will find each new increment of saving buying less and less growth, until it arrives at a steady state and stops. The Soviet Union, which accumulated ferociously and grew impressively for a time before stalling, was the great natural experiment in the limits of accumulation. Saving builds the level; it cannot, by itself, sustain the climb.`,
+    openq:`if more capital yields ever less, then what a society saves can lift it only so high — so what carries it higher?`},
+  idea:{rn:"iv",title:"The Idea",family:"in preparation",lit:false,
+    desc:`If accumulation cannot sustain growth, something else must, and the modern theory's answer is: ideas. An idea — a recipe, a design, a technique — has a property that sets it apart from every tangible thing: it is nonrival. Your use of a machine prevents my using it, but your use of the Pythagorean theorem, or the design of a transistor, takes nothing from mine; an idea, once made, can be used by everyone at once, everywhere, forever. From this single fact great consequences flow. Knowledge need not run into the diminishing returns that bound capital, so its accumulation can drive growth without end; and because ideas are deliberately made, at cost, by people who hope to profit from them, growth becomes endogenous — produced from within the system rather than falling on it like manna. The wealth of the modern world is, at bottom, its stock of ideas.`,
+    openq:`if an idea can be used by all at once and never used up, what does it cost, what is it worth, and who should own it?`},
+  divergence:{rn:"v",title:"The Divergence",family:"in preparation",lit:false,
+    desc:`The enrichment did not arrive everywhere at once, and the gap it opened is the central scandal of the modern world. Before 1800, the richest societies were perhaps three or four times as rich as the poorest; today the ratio between the wealthiest nations and the most destitute is thirty or forty to one. This is the great divergence — the explosive widening, over two centuries, of what had been a narrow band of near-universal poverty. To explain growth is, in the end, to explain this: why the ascent began where it did, spread where it spread, and passed by — or has not yet reached — so much of humanity. Every theory of growth is finally a theory of the divergence, and the stakes of getting it right are measured in the life chances of billions.`,
+    openq:`why did the ascent lift some nations and not others — and is the gap a stage that will pass, or a gulf that will hold?`},
+  settlement:{rn:"vi",title:"The Settlement",family:"in preparation",lit:false,
+    desc:`Press the question of why nations diverge, and the most powerful modern answer is: institutions — the rules, written and unwritten, under which a people lives and works. Where those rules are inclusive — property secure, contracts enforced, power broadly held and checked, the fruits of effort kept by those who make them — investment and invention are rewarded, and growth follows. Where they are extractive — power and property gripped by a narrow elite, the surplus siphoned upward, effort taxed away by the strong — there is little reason to build or invent, and stagnation follows. But institutions are not handed down by nature; they are the settlement of an old and bitter contest over who shall hold power and who shall keep the gains. A nation's prosperity, on this view, is the long shadow of how that contest was resolved — inclusive settlements making the rich nations, extractive ones the poor.`,
+    openq:`if wealth follows the rules, and the rules are won and lost in struggles over power, is any nation's poverty truly its fate?`},
+  snare:{rn:"vii",title:"The Snare",family:"in preparation",lit:false,
+    desc:`To grasp how strange the modern ascent is, one must see the snare it escaped. For all of prior history, humanity was caught in what later economists named the Malthusian trap. Any improvement in productivity — a better plow, a new crop, a spell of peace — did raise output; but the extra food fed extra children, the population grew until it pressed again on the limits of the land, and living standards sank back to the subsistence from which they had briefly risen. Progress was real but self-defeating, converted into more people rather than richer ones, so that for ten thousand years the average life stayed poor. The deepest puzzle of growth is not why the modern world is rich but why it broke this iron logic — why, uniquely, productivity began to outrun population, and the gains at last stayed in the pocket instead of the cradle.`,
+    openq:`for all of history, every gain became another mouth and the poor stayed poor — what broke the snare, and could it close again?`},
+  latecomer:{rn:"viii",title:"The Latecomer",family:"in preparation",lit:false,
+    desc:`There is, in principle, a consolation for the nations that started late: they need not reinvent what the pioneers discovered. A poor country can, in theory, grow faster than a rich one by importing its capital and copying its technology, vaulting in decades the distance the leaders took centuries to cross — Gerschenkron called this the advantage of backwardness, and the convergence it promises would, in time, close the great divergence. Sometimes it happens: the economies of East Asia rose from poverty to abundance within living memory, exactly as the theory allows. But far more often it does not; the gap holds, or widens, and the poor stay poor while the rich grow richer. The puzzle of the latecomer is why the advantage of backwardness is so seldom seized — why convergence is the exception and not, as the simple theory expects, the rule.`,
+    openq:`if the poor can grow by borrowing what the rich invented, why do so few catch up, and so many fall further behind?`},
+  population:{rn:"ix",title:"The Population",family:"in preparation",lit:false,
+    desc:`Population stands on both sides of the ledger of growth, and the tension between them runs through the whole subject. On one side is the Malthusian fear, ancient and recurrent: more people mean more mouths, a heavier press on finite land, a drag on the wealth of each. On the other is a newer and more hopeful thought: more people mean more minds, and since ideas are the engine of growth and any mind might produce one, a larger population is a larger engine — more inventors, more discoveries, faster progress. Which force prevails has turned, in history, on whether a society was caught in the trap or had escaped it. The demographic transition — the fall in birth rates that follows enrichment — has eased the old fear in the rich world even as it raises new ones, of aging populations and shrinking workforces. Demography is neither simply curse nor simply blessing, but the arithmetic in which the fate of growth is partly cast.`,
+    openq:`are more people a heavier burden on what the earth can yield, or more minds to discover how to yield more?`},
+  resource:{rn:"x",title:"The Resource",family:"in preparation",lit:false,
+    desc:`Common sense expects the wealth of a nation to track its natural endowments — its land, its minerals, its oil. The record mocks the expectation. Some of the richest nations on earth are gardens of scarcity, poor in everything but people and rules: Japan, Switzerland, the city-state of Singapore. Some of the poorest sit atop fabulous mineral wealth, impoverished in the midst of plenty. Economists speak of a resource curse: a windfall of oil or diamonds, far from assuring prosperity, often corrodes it, inviting plunder, propping up tyrants, and rotting the institutions on which real growth depends, while a high currency strangles every other industry. The lesson sharpens the institutional case. What a nation has beneath its soil matters far less than the rules above it; geography is not destiny, and the deepest wealth of a people is not in the ground but in the order they keep.`,
+    openq:`if the resource-poor grow rich and the resource-rich stay poor, how much can nature's bounty really explain?`},
+  limit:{rn:"xi",title:"The Limit",family:"in preparation",lit:false,
+    desc:`Can the ascent go on forever? The question has been asked in alarm since growth began, and it wears two faces. One is physical: a finite planet, it is argued, cannot sustain output that doubles and doubles again, and the rising tide of production is also a rising tide of waste, of carbon, of exhaustion — the externalities of growth, gathered to a planetary scale. The other is moral: even where growth can continue, should it, and does more output actually make for better lives? Mill, long ago, imagined a stationary state not as catastrophe but as fulfillment — a settled prosperity in which humanity, no longer scrambling for more, might turn to living well. The modern argument between those who would limit growth to save the planet and those who would green it to save both is among the most consequential of the age, and it returns growth, at the last, to the question of ends: enrichment for the sake of what?`,
+    openq:`if growth strains the planet that bears it, and buys less happiness than it promises, is more output still the goal — or is there such a thing as enough?`},
+  mystery:{rn:"xii",title:"The Mystery",family:"in preparation",lit:false,
+    desc:`After all the models and all the histories, an unsettling fact remains: we do not really know why nations grow. The deepest term in the theory is a residual that names our ignorance; the deepest question — why the West, why the eighteenth century, why not China or Rome, which had so much of what seemed required — has no answer that commands assent. The institutional account is powerful, but institutions themselves must be explained, and the explanations run back into the fog of history. And the practical record is humbling: for all the theory, the deliberate creation of growth has defeated decades of earnest effort, the grand schemes of development failing as often as they have succeeded. Perhaps growth has no laws, only histories; perhaps it can be recognized but not commanded. This last plate sits with the mystery rather than dissolving it — for honesty about how little is settled is itself a kind of knowledge, and the question of why some peoples thrive and others languish remains the most important, and the most open, in all of economics.`,
+    openq:`if the engine of our prosperity is a thing we have named but cannot explain, how much do we truly know — and how much do we only describe?`}
+};
+
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+function render(id){
+  var tile=document.querySelector('.el[data-id="'+id+'"]');
+  var d=PLATES[id]; if(!d||!tile) return;
+  var h='';
+  h+='<div class="d-head">';
+  h+='<div class="d-sym'+(d.lit?' lit':'')+'">'+esc(d.rn)+'</div>';
+  h+='<div class="d-titles">';
+  h+='<div class="d-family">The Growth &middot; Plate '+esc(d.rn)+' &middot; '+esc(d.family)+'</div>';
+  h+='<h2 class="d-name">'+esc(d.title)+'</h2>';
+  h+='<div class="d-status'+(d.lit?' print':'')+'">'+esc(d.family)+'</div>';
+  h+='</div></div>';
+  h+='<p class="d-desc">'+esc(d.desc)+'</p>';
+  if(d.lit && d.excerpt){
+    h+='<div class="d-excerpt"><span class="lead">From the opening</span><p>'+d.excerpt+'</p></div>';
+  }
+  if(d.url){h+='<p class="d-readplate"><a href="'+d.url+'">Read the plate<span class="arr" aria-hidden="true">&#8594;</span></a></p>';}
+  if(!d.lit && d.openq){
+    h+='<p class="d-openq"><span class="lead">This plate will ask</span><q>'+esc(d.openq)+'</q></p>';
+  }
+  document.getElementById('detail').innerHTML=h;
+  var prev=document.querySelector('.el.sel'); if(prev) prev.classList.remove('sel');
+  tile.classList.add('sel');
+}
+
+(function(){
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.el').forEach(function(b){
+    b.addEventListener('click',function(){
+      render(b.dataset.id);
+      document.getElementById('detail').scrollIntoView({behavior:reduce?'auto':'smooth',block:'nearest'});
+    });
+  });
+  render('ascent');
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-demand.html">← The Demand</a><a rel="next" href="the-ascent.html">The Ascent →</a></nav>
+</body>
+</html>

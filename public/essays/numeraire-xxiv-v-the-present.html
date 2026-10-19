@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Present — The Bias, Plate v · Numéraire</title>
+<meta name="description" content="Laibson; hyperbolic discounting and present bias, the preference that reverses as the future becomes the present, and the divided intertemporal self.">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- reading-progress hairline ---- */
+  .progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--ink);z-index:10000;}
+
+  /* ---- masthead ---- */
+  .masthead{padding:clamp(2.8rem,8vh,5.6rem) 0 clamp(1.6rem,4vh,2.6rem);text-align:center;}
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;}
+  .edition{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+  .edition b{font-family:"Fraunces",serif;font-weight:500;font-style:normal;color:var(--soft);letter-spacing:.04em;}
+
+  .symbox{width:84px;height:84px;border:1px solid var(--ink);border-radius:2px;background:var(--ink);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;margin:clamp(1.4rem,3.4vh,2.2rem) auto 0;}
+  .symbox .sb-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2rem;line-height:1;color:var(--paper);letter-spacing:-.01em;}
+  .symbox .sb-num{font-family:"Fraunces",serif;font-size:.66rem;color:rgba(240,235,225,.58);margin-top:.28rem;letter-spacing:.04em;}
+
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-top:1.15rem;}
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.5rem,7vw,5rem);line-height:1.0;letter-spacing:-.028em;margin:.55rem 0 0;text-wrap:balance;}
+  .subtitle{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.05rem,1.7vw,1.32rem);color:var(--faint);margin:.5rem 0 0;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.64;color:var(--soft);
+    max-width:43rem;margin:clamp(1.3rem,3vh,1.9rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+  .status{font-size:.84rem;color:var(--soft);margin:clamp(1.2rem,2.6vh,1.7rem) auto 0;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .backrow{margin-top:clamp(1.3rem,3vh,1.9rem);padding-top:1.5rem;border-top:1px solid var(--hair);max-width:50rem;margin-left:auto;margin-right:auto;}
+  .backlink{display:inline-block;font-size:.82rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .backlink:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- generic block furniture ---- */
+  main{padding:0;}
+  .eyebrow{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.2rem;}
+
+  .block-argument{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .argument{max-width:40rem;margin:0 auto;}
+  .argument p{font-size:1.08rem;line-height:1.74;color:var(--ink);margin:0 0 1.2rem;text-wrap:pretty;}
+  .argument p:last-child{margin-bottom:0;}
+  .argument .closer{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 400;font-style:italic;color:var(--soft);font-size:1.06rem;}
+
+  /* ---- table of plates ---- */
+  .block-toc{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .toc ol{list-style:none;margin:0;padding:0;max-width:44rem;}
+  .toc li{display:grid;grid-template-columns:2.5rem 1fr;column-gap:1rem;align-items:baseline;
+    padding:.85rem 0;border-top:1px solid var(--hair);}
+  .toc li:first-child{border-top:none;}
+  .t-num{font-family:"Fraunces",serif;font-size:.92rem;color:var(--faintest);text-align:right;}
+  .t-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.08rem;color:var(--ink);line-height:1.15;text-decoration:none;}
+  a.t-title{border-bottom:1px solid var(--num);padding-bottom:1px;}
+  a.t-title:hover{border-bottom-color:var(--ink);}
+  .t-gloss{grid-column:2;font-size:.85rem;color:var(--faint);font-style:italic;margin-top:.22rem;line-height:1.4;}
+  .t-q{grid-column:2;font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:.95rem;color:var(--soft);margin-top:.42rem;line-height:1.36;}
+  .t-q .lead{font-family:"Fraunces",serif;font-style:normal;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-right:.5rem;}
+  .t-tag{display:inline-block;margin-left:.6rem;font-family:"Newsreader",serif;font-size:.64rem;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--paper);background:var(--ink);border-radius:2px;padding:.12em .5em;vertical-align:.14em;}
+  .t-read{grid-column:2;margin-top:.42rem;}
+  .t-read a{font-size:.8rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .t-read a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- the plates (essays) ---- */
+  .plates-open{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.8rem,6vh,4rem);}
+  .plates-open .eyebrow{text-align:center;}
+  .plate{max-width:54rem;margin:clamp(2.8rem,6.5vh,4.4rem) auto 0;padding-top:clamp(2.2rem,4.6vh,3rem);
+    border-top:1px solid var(--hair);position:relative;scroll-margin-top:1.4rem;}
+  .plate:first-of-type{border-top:none;margin-top:clamp(1.6rem,3.5vh,2.4rem);padding-top:0;}
+  .plate-head{margin:0 0 1.7rem;}
+  .plate-kicker{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .plate-kicker .pk-tag{margin-left:.6rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .plate-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.8rem,4.2vw,2.7rem);line-height:1.03;letter-spacing:-.02em;margin:.32rem 0 .42rem;}
+  .plate-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.02rem;color:var(--faint);max-width:36rem;line-height:1.45;}
+
+  .epigraph{max-width:34rem;margin:1.4rem 0 1.9rem;padding-left:1.1rem;border-left:1px solid var(--num);}
+  .epigraph p{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:1.04rem;line-height:1.42;color:var(--soft);margin:0;}
+  .epigraph cite{display:block;font-style:normal;font-family:"Newsreader",serif;font-size:.78rem;
+    letter-spacing:.03em;color:var(--faintest);margin-top:.55rem;}
+
+  .plate-body{max-width:37rem;}
+  .plate-body p{font-size:1.05rem;line-height:1.75;color:var(--ink);margin:0 0 1.18rem;text-wrap:pretty;}
+  .plate-body p:last-child{margin-bottom:0;}
+  .plate-body em{font-style:italic;}
+  .plate-body .lead-para::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 500;
+    float:left;font-size:3.5rem;line-height:.78;padding:.08em .14em 0 0;color:var(--ink);}
+  .plate-body h4{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);margin:1.9rem 0 .9rem;}
+
+  .break{display:flex;justify-content:center;margin:1.9rem 0;}
+  .break span{font-family:"Fraunces",serif;font-size:1.05rem;letter-spacing:.4em;color:var(--faintest);padding-left:.4em;}
+
+  /* sidenotes — inline by default, true margin notes on wide screens */
+  .sn-ref{font-family:"Fraunces",serif;font-size:.64rem;vertical-align:super;line-height:0;color:var(--soft);margin-left:.06em;}
+  .sidenote{font-family:"Newsreader",serif;font-size:.82rem;line-height:1.52;color:var(--faint);
+    border-left:2px solid var(--hair);padding-left:.9rem;margin:.7rem 0 1.05rem;}
+  .sidenote .sn-num{font-family:"Fraunces",serif;color:var(--faintest);font-size:.7rem;margin-right:.38rem;}
+  .sidenote em{font-style:italic;}
+  @media (min-width:1040px){
+    .sidenote{float:right;clear:right;width:14.5rem;margin:.25rem -17.5rem 1.15rem 0;
+      border-left:none;border-top:1px solid var(--hair);padding:.42rem 0 0;}
+  }
+
+  /* ---- coda ---- */
+  .coda{max-width:40rem;margin:clamp(2.8rem,6vh,4rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);}
+  .coda p{font-size:1.06rem;line-height:1.74;color:var(--ink);margin:0 0 1.15rem;text-wrap:pretty;}
+  .coda p:last-child{margin-bottom:0;}
+  .coda .q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .f-ref a{text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .f-ref a:hover{border-bottom-color:var(--soft);}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .progress{transition:width .08s linear;}
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}.rise.d4{animation-delay:.4s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    h1{font-size:clamp(2.2rem,11vw,3rem);}
+    .symbox{width:72px;height:72px;}
+    .symbox .sb-sym{font-size:1.7rem;}
+    .plate-body .lead-para::first-letter{font-size:3rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+
+  /* ---- standalone plate (leaf) ---- */
+  .leaf-head{max-width:54rem;margin:0 auto;padding:clamp(2.2rem,6.5vh,4.4rem) 0 0;text-align:center;}
+  .leaf-loc{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.08em;color:var(--faintest);margin-bottom:1.7rem;}
+  .leaf-loc a{text-decoration:none;color:var(--faint);border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .leaf-loc a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+  .leaf-loc .sep{margin:0 .5rem;color:var(--num);}
+  .leaf-kicker{font-family:"Fraunces",serif;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .leaf-kicker .pk-tag{margin-left:.55rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .leaf-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.2rem,5.6vw,3.7rem);line-height:1.02;letter-spacing:-.024em;margin:.42rem 0 0;text-wrap:balance;}
+  .leaf-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.06rem;color:var(--faint);
+    max-width:34rem;margin:.72rem auto 0;line-height:1.5;text-wrap:pretty;}
+  .epigraph.leaf-epigraph{margin:1.95rem auto 1.4rem;text-align:left;}
+  .leaf-body-wrap{max-width:54rem;margin:clamp(1.8rem,4vh,2.8rem) auto 0;}
+
+  .leaf-nav{max-width:54rem;margin:clamp(3rem,7vh,5.2rem) auto 0;padding-top:clamp(1.8rem,4vh,2.6rem);
+    border-top:1px solid var(--hair);display:grid;grid-template-columns:1fr auto 1fr;gap:1.3rem;align-items:start;}
+  .ln-cell{text-decoration:none;display:block;}
+  .ln-cell .lab{display:block;font-family:"Fraunces",serif;font-size:.64rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--faintest);margin-bottom:.36rem;}
+  .ln-cell .ttl{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1rem;
+    color:var(--soft);line-height:1.22;}
+  a.ln-cell:hover .ttl{color:var(--ink);}
+  .ln-prev{text-align:left;} .ln-home{text-align:center;} .ln-next{text-align:right;}
+
+  @media (max-width:600px){
+    .leaf-nav{grid-template-columns:1fr;gap:1.4rem;}
+    .ln-prev,.ln-home,.ln-next{text-align:center;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#ne-contents">Complete contents</a><a href="../editions.html#volume-bias">The Bias · both editions</a><a href="../volumes/the-bias.html">Collected volume</a></div></nav>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="frame">
+
+  <header class="leaf-head">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="leaf-loc rise d1" aria-label="Location in the series"><a href="numeraire-atlas-updated.html">Numéraire</a><span class="sep">·</span><a href="numeraire-xxiv-the-bias.html">Volume XXIV · The Bias</a></nav>
+    <div class="leaf-kicker rise d2">Plate v <span class="pk-tag">in print</span></div>
+    <h1 class="leaf-title rise d2">The Present</h1>
+    <div class="leaf-gloss rise d3">Laibson; hyperbolic discounting and present bias, the preference that reverses as the future becomes the present, and the divided intertemporal self.</div>
+    <div class="epigraph leaf-epigraph rise d3">
+      <p>Seen from a distance, the wiser, later reward is plainly the one to take, and we resolve upon it; but let the moment arrive, and the nearer, smaller reward swells until it blots out the greater, and we break the very resolve we made — and break it again each time the far becomes the near, so that a person is not one chooser but a procession of them, each undoing the plans of the last.</p>
+      <cite>— the argument of this plate, after David Laibson, 1997</cite>
+    </div>
+  </header>
+
+  <main class="leaf-body-wrap">
+    <article class="plate">
+      <div class="plate-body">
+<p class="lead-para">The departures gathered so far live in a single instant — the valuing of a gamble, the guessing of a likelihood, decisions made and done with at the moment of choosing. But a great many choices reach across time: to save or to spend, to study or to idle, to diet or to indulge, to bear a small cost now for a larger benefit later. The rational account of such choices, which the volume on the rate of interest set out, is that a person discounts future rewards at a steady rate — each period of delay shrinking a reward by the same proportion, the way compound interest grows a sum by the same proportion each year. This steady, exponential discounting has one priceless property: it is consistent through time. If from where you stand today the patient reward outranks the impatient one, it will still outrank it when the day of reckoning comes; the calendar may advance, but the ranking holds, and the plan you lay down today is one your future self will be content to carry out. It is exactly this property — the agreement of a person with the selves he will become — that real choosers, in a way as regular as anything in this volume, fail to honor.</p>
+
+<p>The failure has a shape, and the shape is that we discount the near future far more steeply than the far future. The standard demonstration is disarmingly plain. Offer a person a hundred dollars today or a hundred and ten a week from today, and a great many seize the hundred now, unwilling to wait a week for a tenth more — a ferociously steep rate of discount over that near horizon. Then offer the same person a hundred dollars fifty-two weeks from now or a hundred and ten fifty-three weeks from now, and almost everyone now waits the extra week for the extra ten; over that distant horizon the same one-week delay is shrugged off. But the two offers embed the identical tradeoff — seven days against ten percent — merely slid a year down the calendar. A steady discounter would treat them the same, taking the ten percent in both cases or neither. People reverse, grasping at the sooner reward when it is upon them and patiently preferring the later one when both lie far off. The discount rate is not constant; it is high in the immediate term and low in the distant — a curve the literature calls hyperbolic, bowed so that the present moment towers over even the near future, which in turn towers little over the far.<sup class="sn-ref">1</sup></p>
+<div class="sidenote"><span class="sn-num">1.</span> The failure's shape: we discount the near future far more steeply than the far. Offer a hundred dollars today or a hundred and ten in a week, and many seize the hundred now — a ferocious near-term discount. Offer a hundred in fifty-two weeks or a hundred and ten in fifty-three, and almost all wait the extra week. The two embed the identical tradeoff — seven days against ten percent — slid a year out. A steady discounter treats them alike; people reverse. The discount rate is high in the immediate term, low in the distant — a hyperbolic curve, the present towering over even the near future.</div>
+
+<p>From that bowed curve follows the central affliction, dynamic inconsistency: a reversal of preference brought on by nothing but the passage of time. At a distance you are the soul of prudence. You resolve that next month you will begin to save, that tomorrow you will rise early and exercise, that this evening you will eat lightly and work late. The patient choice, viewed from afar, plainly dominates. But the future does not stay future. Next month becomes this month, tomorrow becomes this morning, this evening becomes now — and as the moment of the patient choice arrives, the immediate reward it asks you to forgo swells up, exactly as the hyperbola predicts, and overtops the distant benefit you had so calmly preferred. So you spend, and resolve to save the month after; you hit the snooze, and resolve to rise tomorrow; you take the second helping, and resolve to begin in earnest next week. The resolution is sincere each time it is made and broken each time its hour comes, because the self who makes the plan stands at a distance from the reward and the self who must keep it stands right beside it, and they rank the options differently. The impatient self is not an occasional intruder; it is whoever happens to be holding the present moment, and since every moment is eventually the present, it gets its turn at every choice.<sup class="sn-ref">2</sup></p>
+<div class="sidenote"><span class="sn-num">2.</span> From the bowed curve follows dynamic inconsistency: a preference reversal brought on by nothing but the passage of time. At a distance you resolve to save next month, rise early tomorrow, eat lightly tonight. But next month becomes this month, tomorrow this morning — and as the patient choice arrives, the immediate reward it asks you to forgo swells and overtops the distant benefit. So you spend, snooze, indulge, and resolve again. The plan is sincere when made, broken when its hour comes — the planning self stands far from the reward, the acting self right beside it, and they rank the options differently.</div>
+
+<div class="break"><span>⁂</span></div>
+
+<p>The recognition came in stages, from three hands. The rigorous origin was Robert Strotz, who in 1955 proved the general result of which all this is the consequence: that any discounting departing from the steady exponential form must breed inconsistency, a chooser who will not abide by his own prior plans, and who therefore faces a strategic problem against his future selves. Strotz saw the two ways out as well — to PRECOMMIT, binding the later self by removing its options in advance, or to plan as a realist who foresees his own defection and chooses, now, only among the paths his future self will actually walk. The psychological depth came from George Ainslie, who traced the impatience to the deep machinery of motivation, portrayed the person frankly as a community of successive selves bargaining and warring over a shared estate, and showed how willpower might be assembled — by bundling many choices together so that today's indulgence is felt to forfeit not one reward but the whole future series, and by the private rules and resolutions that let the far-sighted self get leverage on the near. And the entry into modern economics came from David Laibson, who in 1997 gave the idea a tractable form — a single extra discount applied to everything beyond the present moment, laid over the ordinary steady discounting among future periods — and drew out its consequences for the great intertemporal choice of a life, the choice to save, explaining why people so reliably save less than they themselves intend, and why locking savings away where the impatient self cannot reach it does more good than exhortation ever could.<sup class="sn-ref">3</sup></p>
+<div class="sidenote"><span class="sn-num">3.</span> The recognition came from three hands. Robert Strotz (1955) proved the general result: any discounting departing from the steady exponential form breeds inconsistency, a chooser who will not abide his own plans, facing a strategic problem against his future selves — the two ways out being to PRECOMMIT or to plan as a realist who foresees his own defection. George Ainslie gave the psychology — the person as a community of warring selves, willpower assembled by bundling choices and private rules. David Laibson (1997) gave the modern economic form — one extra discount on everything beyond the present — and drew out the consequences for saving.</div>
+
+<p>The consequences reach across a life and an economy. Present bias is the engine of under-saving — the retirement perpetually deferred, the intention to put money by that next month's spending forever overrides — and of procrastination in all its forms, the task that is always better begun tomorrow. It is, at the limit, the mechanism of addiction, the addict resolving each morning to stop and each evening overwhelmed by a present craving that the morning self had so reasonably discounted. And it gives rise to one of the most telling institutions in all of economic life: the COMMITMENT DEVICE, the arrangement a person enters precisely to bind his own future hand. The savings club that locks money away until the holidays, the gym membership paid in advance, the cigarettes handed to a friend with instructions to refuse them back, the retirement plan that deducts before the paycheck is ever seen and makes saving the path of least resistance — each is a tool by which the far-sighted self reaches forward to constrain the impatient one. Their very existence is the proof of the bias, for a steady, consistent discounter would never pay a penny to narrow his own future choices; only a person who knows he will otherwise betray his own plans has reason to tie himself to the mast in advance.<sup class="sn-ref">4</sup></p>
+<div class="sidenote"><span class="sn-num">4.</span> The consequences reach across a life. Present bias is the engine of under-saving — retirement perpetually deferred — and of procrastination, the task always better begun tomorrow; at the limit, of addiction, the resolve of each morning overwhelmed each evening. And it gives rise to the COMMITMENT DEVICE: the savings club locking money till the holidays, the prepaid gym, the cigarettes handed to a friend, the retirement plan that deducts before the paycheck is seen. Their existence proves the bias — a consistent discounter would never pay to narrow his own future choices; only one who knows he will betray his plans ties himself to the mast.</div>
+
+<p>So the person dissolves, under this lens, into a procession — the planner and the doer, the far self and the near, a sequence of choosers with conflicting wills, and self-control becomes not a faculty one simply has but a strategic contest among them, won by foresight and commitment or lost to the moment. Of the three great departures this volume sets out, present bias carries the plainest cost: the gambler fooled by a frame may lose little, the judge who neglects a base rate may be right often enough, but the chooser who cannot keep faith with his future selves under-saves, procrastinates, and succumbs, and is worse off by his own considered lights — the far self's lights, which are the ones he endorses in every calm hour. If any of the departures deserves the harsh name of defect, it would seem to be this one.<sup class="sn-ref">5</sup> And yet even here the verdict is not quite secure, for the future is genuinely uncertain — the later reward may never arrive, the promise may be broken, the chooser himself may not be there to collect — and a mind that weights the bird in hand has not obviously erred against a world in which the bird in the bush so often flies. Whether to weight the present heavily is foolishness or hard-won wisdom is not a question the discounting curve can settle by itself; it depends on the world the curve is meant to meet. And that — whether the departures this volume has charted are failures of reason or fittings to reality — is the question the volume has been building toward. The flagship takes it up.</p>
+<div class="sidenote"><span class="sn-num">5.</span> The person dissolves into a procession — planner and doer, far self and near — and self-control becomes a strategic contest among them. Of the three great departures, present bias carries the plainest cost: the under-saver, procrastinator, and addict are worse off by their own considered lights, the far self's, endorsed in every calm hour. If any departure deserves the name of defect, it is this. Yet even here the future is genuinely uncertain, and a mind weighting the bird in hand has not obviously erred against a world where the bird in the bush so often flies.</div>
+      </div>
+    </article>
+  </main>
+
+  <nav class="leaf-nav" aria-label="Plate navigation">
+    <a class="ln-cell ln-prev" href="numeraire-xxiv-iv-the-shortcut.html"><span class="lab">← Previous plate</span><span class="ttl">Plate iv · The Shortcut</span></a>
+    <a class="ln-cell ln-home" href="numeraire-xxiv-the-bias.html"><span class="lab">The volume</span><span class="ttl">The Bias · contents</span></a>
+    <a class="ln-cell ln-next" href="numeraire-xxiv-viii-the-ecology.html"><span class="lab">Next plate →</span><span class="ttl">Plate viii · The Ecology</span></a>
+  </nav>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref"><a href="numeraire-xxiv-the-bias.html">The Bias</a> · <a href="numeraire-atlas-updated.html">the table</a></span>
+    </div>
+    <p class="colophon">Plate v of <em>The Bias</em>, Volume the Twenty-fourth of <em>Numéraire</em> — a periodic table of economic life. This leaf may be read on its own or as part of the volume. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<script>
+(function(){
+  var bar=document.getElementById('progress');
+  function onScroll(){
+    var h=document.documentElement;
+    var max=(h.scrollHeight-h.clientHeight);
+    var p=max>0?(h.scrollTop||document.body.scrollTop)/max:0;
+    bar.style.width=(p*100).toFixed(2)+'%';
+  }
+  document.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="numeraire-xxiv-iv-the-shortcut.html">← The Shortcut</a><a rel="next" href="numeraire-xxiv-viii-the-ecology.html">The Ecology →</a></nav>
+</body>
+</html>
