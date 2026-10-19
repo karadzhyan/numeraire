@@ -6,9 +6,9 @@ Canonical source repository: [karadzhyan/numeraire](https://github.com/karadzhya
 
 This repository contains the complete static website, including its distinct editions, essays, instruments, original figures, fonts, PDFs, and reading interfaces. The files in `public/` are the exact website files served in production; the initial import preserves the existing writing, design, and interactive pieces.
 
-The current edition completes Volume IX, **The Stock**, at twelve of twelve expanded essays. The expanded Utility edition contains **210 completed essays and 102 preparation slots**; its first nine volumes are complete. The separate Collected edition retains all 26 volumes and 312 plates. Earlier editions remain available alongside the expanded essays.
+The current edition completes Volume X, **The Power**, at twelve of twelve expanded essays. The expanded Utility edition contains **216 completed essays and 96 preparation slots**; its first ten volumes are complete. The separate Collected edition retains all 26 volumes and 312 plates. Earlier editions remain available alongside the expanded essays.
 
-The six completed Stock leaves are The Hoard, The Wearing, The Debt, The Annuity, The Concentration, and The Inheritance. Their colophons identify earlier treatments and distinguish adaptations from developed continuations.
+The six completed Power leaves are The Markup, The Segment, The Grid, The Tribute, The Gatekeeper, and The Markdown. Their colophons identify earlier treatments and distinguish adaptations from developed continuations.
 
 ## Read Locally
 
@@ -18,7 +18,7 @@ No build step or package installation is required. From the repository root, run
 python3 -m http.server 8000 --bind 127.0.0.1 --directory public
 ```
 
-Open [the volume atlas](http://127.0.0.1:8000/), [all editions](http://127.0.0.1:8000/editions.html), or [The Stock](http://127.0.0.1:8000/essays/numeraire-ix-the-stock.html).
+Open [the volume atlas](http://127.0.0.1:8000/), [all editions](http://127.0.0.1:8000/editions.html), or [The Power](http://127.0.0.1:8000/essays/numeraire-x-the-power.html).
 
 ## Check Local References
 

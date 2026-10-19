@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Gatekeeper — The Power, Plate xi · Numéraire</title>
+<meta name="description" content="the platform&#x27;s new dominion: the network that gives itself away and grows mightier the more it is used, the winner that takes all, and the data moat the old antitrust was not built to breach.">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- reading-progress hairline ---- */
+  .progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--ink);z-index:10000;}
+
+  /* ---- masthead ---- */
+  .masthead{padding:clamp(2.8rem,8vh,5.6rem) 0 clamp(1.6rem,4vh,2.6rem);text-align:center;}
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;}
+  .edition{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+  .edition b{font-family:"Fraunces",serif;font-weight:500;font-style:normal;color:var(--soft);letter-spacing:.04em;}
+
+  .symbox{width:84px;height:84px;border:1px solid var(--ink);border-radius:2px;background:var(--ink);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;margin:clamp(1.4rem,3.4vh,2.2rem) auto 0;}
+  .symbox .sb-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2rem;line-height:1;color:var(--paper);letter-spacing:-.01em;}
+  .symbox .sb-num{font-family:"Fraunces",serif;font-size:.66rem;color:rgba(240,235,225,.58);margin-top:.28rem;letter-spacing:.04em;}
+
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-top:1.15rem;}
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.5rem,7vw,5rem);line-height:1.0;letter-spacing:-.028em;margin:.55rem 0 0;text-wrap:balance;}
+  .subtitle{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.05rem,1.7vw,1.32rem);color:var(--faint);margin:.5rem 0 0;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.64;color:var(--soft);
+    max-width:43rem;margin:clamp(1.3rem,3vh,1.9rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+  .status{font-size:.84rem;color:var(--soft);margin:clamp(1.2rem,2.6vh,1.7rem) auto 0;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .backrow{margin-top:clamp(1.3rem,3vh,1.9rem);padding-top:1.5rem;border-top:1px solid var(--hair);max-width:50rem;margin-left:auto;margin-right:auto;}
+  .backlink{display:inline-block;font-size:.82rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .backlink:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- generic block furniture ---- */
+  main{padding:0;}
+  .eyebrow{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.2rem;}
+
+  .block-argument{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .argument{max-width:40rem;margin:0 auto;}
+  .argument p{font-size:1.08rem;line-height:1.74;color:var(--ink);margin:0 0 1.2rem;text-wrap:pretty;}
+  .argument p:last-child{margin-bottom:0;}
+  .argument .closer{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 400;font-style:italic;color:var(--soft);font-size:1.06rem;}
+
+  /* ---- table of plates ---- */
+  .block-toc{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .toc ol{list-style:none;margin:0;padding:0;max-width:44rem;}
+  .toc li{display:grid;grid-template-columns:2.5rem 1fr;column-gap:1rem;align-items:baseline;
+    padding:.85rem 0;border-top:1px solid var(--hair);}
+  .toc li:first-child{border-top:none;}
+  .t-num{font-family:"Fraunces",serif;font-size:.92rem;color:var(--faintest);text-align:right;}
+  .t-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.08rem;color:var(--ink);line-height:1.15;text-decoration:none;}
+  a.t-title{border-bottom:1px solid var(--num);padding-bottom:1px;}
+  a.t-title:hover{border-bottom-color:var(--ink);}
+  .t-gloss{grid-column:2;font-size:.85rem;color:var(--faint);font-style:italic;margin-top:.22rem;line-height:1.4;}
+  .t-q{grid-column:2;font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:.95rem;color:var(--soft);margin-top:.42rem;line-height:1.36;}
+  .t-q .lead{font-family:"Fraunces",serif;font-style:normal;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-right:.5rem;}
+  .t-tag{display:inline-block;margin-left:.6rem;font-family:"Newsreader",serif;font-size:.64rem;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--paper);background:var(--ink);border-radius:2px;padding:.12em .5em;vertical-align:.14em;}
+  .t-read{grid-column:2;margin-top:.42rem;}
+  .t-read a{font-size:.8rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .t-read a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- the plates (essays) ---- */
+  .plates-open{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.8rem,6vh,4rem);}
+  .plates-open .eyebrow{text-align:center;}
+  .plate{max-width:54rem;margin:clamp(2.8rem,6.5vh,4.4rem) auto 0;padding-top:clamp(2.2rem,4.6vh,3rem);
+    border-top:1px solid var(--hair);position:relative;scroll-margin-top:1.4rem;}
+  .plate:first-of-type{border-top:none;margin-top:clamp(1.6rem,3.5vh,2.4rem);padding-top:0;}
+  .plate-head{margin:0 0 1.7rem;}
+  .plate-kicker{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .plate-kicker .pk-tag{margin-left:.6rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .plate-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.8rem,4.2vw,2.7rem);line-height:1.03;letter-spacing:-.02em;margin:.32rem 0 .42rem;}
+  .plate-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.02rem;color:var(--faint);max-width:36rem;line-height:1.45;}
+
+  .epigraph{max-width:34rem;margin:1.4rem 0 1.9rem;padding-left:1.1rem;border-left:1px solid var(--num);}
+  .epigraph p{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:1.04rem;line-height:1.42;color:var(--soft);margin:0;}
+  .epigraph cite{display:block;font-style:normal;font-family:"Newsreader",serif;font-size:.78rem;
+    letter-spacing:.03em;color:var(--faintest);margin-top:.55rem;}
+
+  .plate-body{max-width:37rem;}
+  .plate-body p{font-size:1.05rem;line-height:1.75;color:var(--ink);margin:0 0 1.18rem;text-wrap:pretty;}
+  .plate-body p:last-child{margin-bottom:0;}
+  .plate-body em{font-style:italic;}
+  .plate-body .lead-para::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 500;
+    float:left;font-size:3.5rem;line-height:.78;padding:.08em .14em 0 0;color:var(--ink);}
+  .plate-body h4{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);margin:1.9rem 0 .9rem;}
+
+  .break{display:flex;justify-content:center;margin:1.9rem 0;}
+  .break span{font-family:"Fraunces",serif;font-size:1.05rem;letter-spacing:.4em;color:var(--faintest);padding-left:.4em;}
+
+  /* sidenotes — inline by default, true margin notes on wide screens */
+  .sn-ref{font-family:"Fraunces",serif;font-size:.64rem;vertical-align:super;line-height:0;color:var(--soft);margin-left:.06em;}
+  .sidenote{font-family:"Newsreader",serif;font-size:.82rem;line-height:1.52;color:var(--faint);
+    border-left:2px solid var(--hair);padding-left:.9rem;margin:.7rem 0 1.05rem;}
+  .sidenote .sn-num{font-family:"Fraunces",serif;color:var(--faintest);font-size:.7rem;margin-right:.38rem;}
+  .sidenote em{font-style:italic;}
+  @media (min-width:1040px){
+    .sidenote{float:right;clear:right;width:14.5rem;margin:.25rem -17.5rem 1.15rem 0;
+      border-left:none;border-top:1px solid var(--hair);padding:.42rem 0 0;}
+  }
+
+  /* ---- coda ---- */
+  .coda{max-width:40rem;margin:clamp(2.8rem,6vh,4rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);}
+  .coda p{font-size:1.06rem;line-height:1.74;color:var(--ink);margin:0 0 1.15rem;text-wrap:pretty;}
+  .coda p:last-child{margin-bottom:0;}
+  .coda .q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .f-ref a{text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .f-ref a:hover{border-bottom-color:var(--soft);}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .progress{transition:width .08s linear;}
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}.rise.d4{animation-delay:.4s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    h1{font-size:clamp(2.2rem,11vw,3rem);}
+    .symbox{width:72px;height:72px;}
+    .symbox .sb-sym{font-size:1.7rem;}
+    .plate-body .lead-para::first-letter{font-size:3rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+
+  /* ---- standalone plate (leaf) ---- */
+  .leaf-head{max-width:54rem;margin:0 auto;padding:clamp(2.2rem,6.5vh,4.4rem) 0 0;text-align:center;}
+  .leaf-loc{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.08em;color:var(--faintest);margin-bottom:1.7rem;}
+  .leaf-loc a{text-decoration:none;color:var(--faint);border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .leaf-loc a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+  .leaf-loc .sep{margin:0 .5rem;color:var(--num);}
+  .leaf-kicker{font-family:"Fraunces",serif;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .leaf-kicker .pk-tag{margin-left:.55rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .leaf-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.2rem,5.6vw,3.7rem);line-height:1.02;letter-spacing:-.024em;margin:.42rem 0 0;text-wrap:balance;}
+  .leaf-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.06rem;color:var(--faint);
+    max-width:34rem;margin:.72rem auto 0;line-height:1.5;text-wrap:pretty;}
+  .epigraph.leaf-epigraph{margin:1.95rem auto 1.4rem;text-align:left;}
+  .leaf-body-wrap{max-width:54rem;margin:clamp(1.8rem,4vh,2.8rem) auto 0;}
+
+  .leaf-nav{max-width:54rem;margin:clamp(3rem,7vh,5.2rem) auto 0;padding-top:clamp(1.8rem,4vh,2.6rem);
+    border-top:1px solid var(--hair);display:grid;grid-template-columns:1fr auto 1fr;gap:1.3rem;align-items:start;}
+  .ln-cell{text-decoration:none;display:block;}
+  .ln-cell .lab{display:block;font-family:"Fraunces",serif;font-size:.64rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--faintest);margin-bottom:.36rem;}
+  .ln-cell .ttl{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1rem;
+    color:var(--soft);line-height:1.22;}
+  a.ln-cell:hover .ttl{color:var(--ink);}
+  .ln-prev{text-align:left;} .ln-home{text-align:center;} .ln-next{text-align:right;}
+
+  @media (max-width:600px){
+    .leaf-nav{grid-template-columns:1fr;gap:1.4rem;}
+    .ln-prev,.ln-home,.ln-next{text-align:center;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#ne-contents">Complete contents</a><a href="../editions.html#volume-power">The Power · both editions</a><a href="../volumes/the-power.html">Collected volume</a></div></nav>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="frame">
+
+  <header class="leaf-head">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="leaf-loc rise d1" aria-label="Location in the series"><a href="numeraire-atlas-updated.html">Numéraire</a><span class="sep">·</span><a href="numeraire-x-the-power.html">Volume X · The Power</a></nav>
+    <div class="leaf-kicker rise d2">Plate xi <span class="pk-tag">in print</span></div>
+    <h1 class="leaf-title rise d2">The Gatekeeper</h1>
+    <div class="leaf-gloss rise d3">the platform's new dominion: the network that gives itself away and grows mightier the more it is used, the winner that takes all, and the data moat the old antitrust was not built to breach.</div>
+    <div class="epigraph leaf-epigraph rise d3">
+      <p>The owner of the passage can compete for an audience and still govern access to it.</p>
+      <cite>— the argument of this plate, after Armstrong (2006)</cite>
+    </div>
+  </header>
+
+  <main class="leaf-body-wrap">
+    <article class="plate">
+<div class="plate-body">
+<p class="lead-para">The platform gathers nearly every theme of this volume into a single place. It builds a meeting ground, brings the two sides together, and then owns the passage between them. Buyers come because the sellers are there; sellers come because the buyers have arrived. The service can be considerable: the stranger found, the payment secured, the reputation made legible, the small merchant admitted to a market he could never have assembled for himself. Yet the owner of that service also writes the terms of admission. He determines who may enter, what may be displayed, which transaction may leave the enclosure, and what must be paid to remain. The platform becomes a gatekeeper when those who need the people on the other side cannot reach them on comparable terms by another route. Its power concerns the conditions under which others can trade, and its most effective gate may stand inside a service that costs the ordinary visitor nothing.</p>
+<p>The free entrance is intelligible once the whole exchange is kept in view. A marketplace may charge its merchants to attract its shoppers; an audience may receive a service financed by those seeking its attention. Each group's presence changes the value of participation to the other, so the owner has reason to consider the prices together. This was the problem of <a href="numeraire-v-ix-the-platform.html">The Platform</a> in the family of the spread: how to bring both sides aboard. Here the further question is what happens after they have come. A zero price to one group can accompany vigorous competition for that group, a valuable subsidy to participation, and a substantial charge for access to it. Looking at the free side alone cannot settle which of these forces governs the whole arrangement. Nor does a high charge to the other side settle the matter by itself, since the paying side may help finance the audience it wants to reach. The inquiry must follow the service, the costs, the terms, and the alternatives across both sides of the gate.<sup class="sn-ref">1</sup></p>
+<div class="sidenote"><span class="sn-num">1.</span> Jean-Charles Rochet and Jean Tirole, <a href="https://doi.org/10.1162/154247603322493212">“Platform Competition in Two-Sided Markets”</a> (2003), §1, pp. 990–994, develop the distinction between the level and the allocation of platform charges, including cross-group benefits and participation on several platforms. A charge on one side alone is an incomplete description of the business model.</div>
+<p>A particularly revealing gate can exist even when two platforms compete fiercely. Suppose each reader uses one service, while an advertiser can buy access to readers on both. The advertiser's presence on the second service does not reach the readers who remain exclusively on the first. Each platform therefore controls access to its own audience, though neither controls the entire audience of the market. Mark Armstrong calls this a competitive bottleneck. The platforms may spend heavily, improve their services, or reduce their reader charges to win the exclusive users whose presence they can sell to advertisers. Competition for the audience can consequently coexist with power over access to that audience. Even small overall profits would not disprove this arrangement: the proceeds from the paying side may have been competed away in recruiting the other. The relevant alternative must be an alternative for the particular exchange. Two applications on the seller's telephone do little for him if the customers he needs can be reached through only one of them.<sup class="sn-ref">2</sup></p>
+<div class="sidenote"><span class="sn-num">2.</span> Mark Armstrong, <a href="https://doi.org/10.1111/j.1756-2171.2006.tb00037.x">“Competition in Two-Sided Markets”</a> (2006), §5, pp. 677–680, and Discussion, pp. 687–689. The competitive-bottleneck framework assumes one group joins a single platform and the other can join several; the latter's members are individually small. Its access-power result is conditional on this pattern of participation, not a claim that every platform controls an exclusive audience.</div>
+<div class="break"><span>⁂</span></div>
+<p>The network helps explain why an audience may stay together, but it does not make every incumbent permanent. Consider a user who values a service's own features at three units and receives another unit for each of nine relevant contacts already there: the total is twelve. A rival's features are worth eight, but only two contacts are present, giving ten. The better isolated product loses the comparison because the user wants the people as well as the product. If five contacts become reachable through the rival, its value rises to thirteen and it can win; a switching cost of two would reverse that comparison again. These are illustrative numbers, not an estimate of any actual network. They expose the separate work done by quality, reachable participation, and the cost of moving. The same discipline belongs in a claim about data. Past transactions may improve matching or detection of fraud, but an argument that they protect an incumbent must establish what additional advantage they confer, whether another source can supply it, and whether that advantage persists. A large archive is evidence of accumulated activity; its competitive importance depends on what it enables the owner to do.<sup class="sn-ref">3</sup></p>
+<div class="sidenote"><span class="sn-num">3.</span> The contact arithmetic is this plate's illustration, with values added linearly and contact counts held fixed. Bernard Caillaud and Bruno Jullien, <a href="https://www.jstor.org/stable/1593720">“Chicken &amp; Egg: Competition among Intermediation Service Providers”</a> (2003), Introduction, pp. 309–311, and §6, pp. 323–324, show how participation, matching, prices, and use of several intermediaries can support different market structures and efficiencies. The data questions here identify what an application would need to establish; the cited model does not estimate a data advantage.</div>
+<p>Once the passage matters, the rules governing it become part of the economic price. Imagine a merchant who has earned a reputation through years of satisfactory transactions. A rule that lets customers inspect that record can make trade safer and more abundant. A rule that prevents the merchant from carrying any verifiable part of it to another marketplace can also make departure costly. The two rules may be embodied in the same system, yet they perform different work. So may a ranking that helps customers find a suitable offer and a ranking that gives the owner's offer priority regardless of its suitability. These are possible mechanisms whose consequences must be examined in the circumstances of their use. The owner may have sound reasons to authenticate sellers, prevent fraud, or limit access to sensitive information. The question is how much of the restriction supplies that protection and how much makes a rival route harder to use. A monetary charge of zero leaves this question fully alive, because usefulness, reliability, privacy, and the freedom to deal elsewhere all enter the terms on which the service is received.<sup class="sn-ref">4</sup></p>
+<div class="sidenote"><span class="sn-num">4.</span> The reputation and ranking cases are hypothetical applications, not findings about named firms. Rochet and Tirole (2003), §8, pp. 1017–1020, explain how transaction costs, fixed participation costs, nonprice attributes, and platform rules affect participation and the ability to pass charges between the sides. It supplies a reason to examine the whole arrangement rather than treating a displayed fee as its complete economic terms.</div>
+<p>A remedy therefore has to specify the alternative it would make usable. Carrying a merchant's records to a rival may reduce one switching cost while leaving the customers elsewhere. Allowing communication between services may let a newcomer reach those customers, while raising questions about authentication, abuse, and who pays to maintain the connection. Removing an exclusivity condition may permit participation on several services, though that permission is useful only if the second service supplies an exchange the participant wants. Each proposal changes a particular constraint; its success depends on the response of both groups and on the costs of the new arrangement. Armstrong's bottleneck gives the point a precise form: access ceases to be exclusive to a platform for users who can be reached through another. It does not establish that every means of creating such access is costless or desirable. The comparison is between workable arrangements that deliver the service, recover its costs, and leave different degrees of room for those who would enter or depart.<sup class="sn-ref">5</sup></p>
+<div class="sidenote"><span class="sn-num">5.</span> Armstrong (2006), Discussion, pp. 687–689, identifies the limits imposed by the assumed participation pattern and explains how users joining several platforms weaken exclusive control over access to them. The record-transfer and communication examples are conditional institutional comparisons developed here; no particular legal duty or present regulatory regime is asserted.</div>
+<p>The gatekeeper's position thus preserves the old distinction between making a service valuable and controlling the route through which its value is obtained. The two can grow together. Better matching attracts the people whose presence makes the route important; the importance of the route then gives its owner authority over people who helped make it valuable. This is why the service deserves a full account and the control deserves one too. The merchant needs the market, the market needs merchants, and their mutual dependence does not guarantee an equal power to set the terms. The visible toll may be a commission, an advertising charge, or a condition of entry. It may also take the form of a low payment to those who supply what the platform sells. At that point the gate turns toward the other side of the exchange. The power that has so far charged for passage becomes the power to decide how little the supplier will receive — the buyer's power, and the final mirror of this volume.</p>
+</div>
+    </article>
+  </main>
+
+  <nav class="leaf-nav" aria-label="Plate navigation">
+    <a class="ln-cell ln-prev" href="numeraire-x-x-the-tribute.html"><span class="lab">← Previous plate</span><span class="ttl">Plate x · The Tribute</span></a>
+    <a class="ln-cell ln-home" href="numeraire-x-the-power.html"><span class="lab">The volume</span><span class="ttl">The Power · contents</span></a>
+    <a class="ln-cell ln-next" href="numeraire-x-xii-the-markdown.html"><span class="lab">Next plate →</span><span class="ttl">Plate xii · The Markdown</span></a>
+  </nav>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref"><a href="numeraire-x-the-power.html">The Power</a> · <a href="numeraire-atlas-updated.html">the table</a></span>
+    </div>
+    <p class="colophon">Plate xi of <em>The Power</em>, Volume the Tenth of <em>Numéraire</em> — a periodic table of economic life. An adaptation for the Utility edition of the collected <a href="../volumes/the-power.html#plate-xi">Platform</a> and the Margin edition’s <a href="../margin/the-tribute.html">Tribute</a>, developed around control of access and the competitive bottleneck. The earlier treatments remain available in their original editions. This leaf may be read on its own or as part of the volume. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<script>
+(function(){
+  var bar=document.getElementById('progress');
+  function onScroll(){
+    var h=document.documentElement;
+    var max=(h.scrollHeight-h.clientHeight);
+    var p=max>0?(h.scrollTop||document.body.scrollTop)/max:0;
+    bar.style.width=(p*100).toFixed(2)+'%';
+  }
+  document.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="numeraire-x-x-the-tribute.html">← The Tribute</a><a rel="next" href="numeraire-x-xii-the-markdown.html">The Markdown →</a></nav>
+</body>
+</html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Tribute — The Power, Plate x · Numéraire</title>
+<meta name="description" content="rent-seeking: the real resources — the lobbying, the lawyering, the courting of power — spent to win and keep a monopoly, a waste beyond the deadweight loss, for the prize of privilege is fought over with treasure that vanishes in the fighting.">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- reading-progress hairline ---- */
+  .progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--ink);z-index:10000;}
+
+  /* ---- masthead ---- */
+  .masthead{padding:clamp(2.8rem,8vh,5.6rem) 0 clamp(1.6rem,4vh,2.6rem);text-align:center;}
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;}
+  .edition{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+  .edition b{font-family:"Fraunces",serif;font-weight:500;font-style:normal;color:var(--soft);letter-spacing:.04em;}
+
+  .symbox{width:84px;height:84px;border:1px solid var(--ink);border-radius:2px;background:var(--ink);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;margin:clamp(1.4rem,3.4vh,2.2rem) auto 0;}
+  .symbox .sb-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2rem;line-height:1;color:var(--paper);letter-spacing:-.01em;}
+  .symbox .sb-num{font-family:"Fraunces",serif;font-size:.66rem;color:rgba(240,235,225,.58);margin-top:.28rem;letter-spacing:.04em;}
+
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-top:1.15rem;}
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.5rem,7vw,5rem);line-height:1.0;letter-spacing:-.028em;margin:.55rem 0 0;text-wrap:balance;}
+  .subtitle{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.05rem,1.7vw,1.32rem);color:var(--faint);margin:.5rem 0 0;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.64;color:var(--soft);
+    max-width:43rem;margin:clamp(1.3rem,3vh,1.9rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+  .status{font-size:.84rem;color:var(--soft);margin:clamp(1.2rem,2.6vh,1.7rem) auto 0;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .backrow{margin-top:clamp(1.3rem,3vh,1.9rem);padding-top:1.5rem;border-top:1px solid var(--hair);max-width:50rem;margin-left:auto;margin-right:auto;}
+  .backlink{display:inline-block;font-size:.82rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .backlink:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- generic block furniture ---- */
+  main{padding:0;}
+  .eyebrow{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.2rem;}
+
+  .block-argument{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .argument{max-width:40rem;margin:0 auto;}
+  .argument p{font-size:1.08rem;line-height:1.74;color:var(--ink);margin:0 0 1.2rem;text-wrap:pretty;}
+  .argument p:last-child{margin-bottom:0;}
+  .argument .closer{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 400;font-style:italic;color:var(--soft);font-size:1.06rem;}
+
+  /* ---- table of plates ---- */
+  .block-toc{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .toc ol{list-style:none;margin:0;padding:0;max-width:44rem;}
+  .toc li{display:grid;grid-template-columns:2.5rem 1fr;column-gap:1rem;align-items:baseline;
+    padding:.85rem 0;border-top:1px solid var(--hair);}
+  .toc li:first-child{border-top:none;}
+  .t-num{font-family:"Fraunces",serif;font-size:.92rem;color:var(--faintest);text-align:right;}
+  .t-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.08rem;color:var(--ink);line-height:1.15;text-decoration:none;}
+  a.t-title{border-bottom:1px solid var(--num);padding-bottom:1px;}
+  a.t-title:hover{border-bottom-color:var(--ink);}
+  .t-gloss{grid-column:2;font-size:.85rem;color:var(--faint);font-style:italic;margin-top:.22rem;line-height:1.4;}
+  .t-q{grid-column:2;font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:.95rem;color:var(--soft);margin-top:.42rem;line-height:1.36;}
+  .t-q .lead{font-family:"Fraunces",serif;font-style:normal;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-right:.5rem;}
+  .t-tag{display:inline-block;margin-left:.6rem;font-family:"Newsreader",serif;font-size:.64rem;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--paper);background:var(--ink);border-radius:2px;padding:.12em .5em;vertical-align:.14em;}
+  .t-read{grid-column:2;margin-top:.42rem;}
+  .t-read a{font-size:.8rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .t-read a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- the plates (essays) ---- */
+  .plates-open{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.8rem,6vh,4rem);}
+  .plates-open .eyebrow{text-align:center;}
+  .plate{max-width:54rem;margin:clamp(2.8rem,6.5vh,4.4rem) auto 0;padding-top:clamp(2.2rem,4.6vh,3rem);
+    border-top:1px solid var(--hair);position:relative;scroll-margin-top:1.4rem;}
+  .plate:first-of-type{border-top:none;margin-top:clamp(1.6rem,3.5vh,2.4rem);padding-top:0;}
+  .plate-head{margin:0 0 1.7rem;}
+  .plate-kicker{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .plate-kicker .pk-tag{margin-left:.6rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .plate-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.8rem,4.2vw,2.7rem);line-height:1.03;letter-spacing:-.02em;margin:.32rem 0 .42rem;}
+  .plate-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.02rem;color:var(--faint);max-width:36rem;line-height:1.45;}
+
+  .epigraph{max-width:34rem;margin:1.4rem 0 1.9rem;padding-left:1.1rem;border-left:1px solid var(--num);}
+  .epigraph p{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:1.04rem;line-height:1.42;color:var(--soft);margin:0;}
+  .epigraph cite{display:block;font-style:normal;font-family:"Newsreader",serif;font-size:.78rem;
+    letter-spacing:.03em;color:var(--faintest);margin-top:.55rem;}
+
+  .plate-body{max-width:37rem;}
+  .plate-body p{font-size:1.05rem;line-height:1.75;color:var(--ink);margin:0 0 1.18rem;text-wrap:pretty;}
+  .plate-body p:last-child{margin-bottom:0;}
+  .plate-body em{font-style:italic;}
+  .plate-body .lead-para::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 500;
+    float:left;font-size:3.5rem;line-height:.78;padding:.08em .14em 0 0;color:var(--ink);}
+  .plate-body h4{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);margin:1.9rem 0 .9rem;}
+
+  .break{display:flex;justify-content:center;margin:1.9rem 0;}
+  .break span{font-family:"Fraunces",serif;font-size:1.05rem;letter-spacing:.4em;color:var(--faintest);padding-left:.4em;}
+
+  /* sidenotes — inline by default, true margin notes on wide screens */
+  .sn-ref{font-family:"Fraunces",serif;font-size:.64rem;vertical-align:super;line-height:0;color:var(--soft);margin-left:.06em;}
+  .sidenote{font-family:"Newsreader",serif;font-size:.82rem;line-height:1.52;color:var(--faint);
+    border-left:2px solid var(--hair);padding-left:.9rem;margin:.7rem 0 1.05rem;}
+  .sidenote .sn-num{font-family:"Fraunces",serif;color:var(--faintest);font-size:.7rem;margin-right:.38rem;}
+  .sidenote em{font-style:italic;}
+  @media (min-width:1040px){
+    .sidenote{float:right;clear:right;width:14.5rem;margin:.25rem -17.5rem 1.15rem 0;
+      border-left:none;border-top:1px solid var(--hair);padding:.42rem 0 0;}
+  }
+
+  /* ---- coda ---- */
+  .coda{max-width:40rem;margin:clamp(2.8rem,6vh,4rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);}
+  .coda p{font-size:1.06rem;line-height:1.74;color:var(--ink);margin:0 0 1.15rem;text-wrap:pretty;}
+  .coda p:last-child{margin-bottom:0;}
+  .coda .q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .f-ref a{text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .f-ref a:hover{border-bottom-color:var(--soft);}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .progress{transition:width .08s linear;}
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}.rise.d4{animation-delay:.4s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    h1{font-size:clamp(2.2rem,11vw,3rem);}
+    .symbox{width:72px;height:72px;}
+    .symbox .sb-sym{font-size:1.7rem;}
+    .plate-body .lead-para::first-letter{font-size:3rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+
+  /* ---- standalone plate (leaf) ---- */
+  .leaf-head{max-width:54rem;margin:0 auto;padding:clamp(2.2rem,6.5vh,4.4rem) 0 0;text-align:center;}
+  .leaf-loc{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.08em;color:var(--faintest);margin-bottom:1.7rem;}
+  .leaf-loc a{text-decoration:none;color:var(--faint);border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .leaf-loc a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+  .leaf-loc .sep{margin:0 .5rem;color:var(--num);}
+  .leaf-kicker{font-family:"Fraunces",serif;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .leaf-kicker .pk-tag{margin-left:.55rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .leaf-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.2rem,5.6vw,3.7rem);line-height:1.02;letter-spacing:-.024em;margin:.42rem 0 0;text-wrap:balance;}
+  .leaf-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.06rem;color:var(--faint);
+    max-width:34rem;margin:.72rem auto 0;line-height:1.5;text-wrap:pretty;}
+  .epigraph.leaf-epigraph{margin:1.95rem auto 1.4rem;text-align:left;}
+  .leaf-body-wrap{max-width:54rem;margin:clamp(1.8rem,4vh,2.8rem) auto 0;}
+
+  .leaf-nav{max-width:54rem;margin:clamp(3rem,7vh,5.2rem) auto 0;padding-top:clamp(1.8rem,4vh,2.6rem);
+    border-top:1px solid var(--hair);display:grid;grid-template-columns:1fr auto 1fr;gap:1.3rem;align-items:start;}
+  .ln-cell{text-decoration:none;display:block;}
+  .ln-cell .lab{display:block;font-family:"Fraunces",serif;font-size:.64rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--faintest);margin-bottom:.36rem;}
+  .ln-cell .ttl{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1rem;
+    color:var(--soft);line-height:1.22;}
+  a.ln-cell:hover .ttl{color:var(--ink);}
+  .ln-prev{text-align:left;} .ln-home{text-align:center;} .ln-next{text-align:right;}
+
+  @media (max-width:600px){
+    .leaf-nav{grid-template-columns:1fr;gap:1.4rem;}
+    .ln-prev,.ln-home,.ln-next{text-align:center;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#ne-contents">Complete contents</a><a href="../editions.html#volume-power">The Power · both editions</a><a href="../volumes/the-power.html">Collected volume</a></div></nav>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="frame">
+
+  <header class="leaf-head">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="leaf-loc rise d1" aria-label="Location in the series"><a href="numeraire-atlas-updated.html">Numéraire</a><span class="sep">·</span><a href="numeraire-x-the-power.html">Volume X · The Power</a></nav>
+    <div class="leaf-kicker rise d2">Plate x <span class="pk-tag">in print</span></div>
+    <h1 class="leaf-title rise d2">The Tribute</h1>
+    <div class="leaf-gloss rise d3">rent-seeking: the real resources — the lobbying, the lawyering, the courting of power — spent to win and keep a monopoly, a waste beyond the deadweight loss, for the prize of privilege is fought over with treasure that vanishes in the fighting.</div>
+    <div class="epigraph leaf-epigraph rise d3">
+      <p>A protected income invites a second expenditure in the struggle to receive it.</p>
+      <cite>— the argument of this plate, after Tullock (1967) and Krueger (1974)</cite>
+    </div>
+  </header>
+
+  <main class="leaf-body-wrap">
+    <article class="plate">
+<div class="plate-body">
+<p class="lead-para">A monopoly has a value to whoever can acquire it, and that value sets a second market in motion around the market it commands. The firm sells its goods; beyond the counter, people work to obtain the exclusive position, defend it, or break into it. The previous plate followed the inventor whose improvement wins a temporary lead. Here the effort is directed toward the protection of the lead itself: the restriction that keeps a rival out, the concession that admits one supplier, the condition written so that only the incumbent can satisfy it. Such a position can attract extraordinary ingenuity. It can also absorb resources without improving the service delivered to anyone. The tribute of this plate is the real expenditure called forth by the prospect of monopoly income, and its question is what a society loses in the struggle over who may collect.</p>
+<p>The cost of securing a monopoly belongs beside the cost of operating it. Gordon Tullock's analysis made this addition to the familiar account of the high price and the trades it prevents. The buyers' extra payment reaches the seller, while the beneficial trades that disappear leave a loss received by no one; effort spent securing the position creates a further item. Consider a deliberately simple market in which willingness to pay for the next unit is twelve minus the quantity already supplied, and each unit costs two to produce. With no fixed cost, outside effects or income effects, the competitive quantity is ten, sold at two. A seller charging one uniform monopoly price chooses five, sold at seven. His profit is twenty-five, the buyers retain twelve and a half in surplus, and twelve and a half of possible gains go unrealized. Suppose the successful applicant and his unsuccessful rivals have also used eight of real resources solely to determine who receives this exclusive position. The loss against the competitive allocation becomes twenty and a half. The profit of twenty-five still reaches someone. The eight records additional work and material consumed in obtaining the right to receive it.<sup class="sn-ref">1</sup></p>
+<div class="sidenote"><span class="sn-num">1.</span> Gordon Tullock, <a href="https://microf20.classes.ryansafner.com/readings/Tullock-1967.pdf">“The Welfare Costs of Tariffs, Monopolies, and Theft,” <em>Western Economic Journal</em> 5 (1967), pp. 224–232</a>, especially pp. 228–232. The numbers are an illustration: inverse demand is <em>P</em> = 12 − <em>Q</em>, marginal cost is 2, and monopoly marginal revenue is 12 − 2<em>Q</em>. Competitive surplus is 50; monopoly surplus before the contest cost is 37.5. The stipulated cost of 8 is not an equilibrium prediction or an estimate.</div>
+<p>A payment for the right and a resource spent obtaining it therefore need separate entries. Suppose instead that the same one-period monopoly is assigned by an auction, all bidders can operate it equally well, and the winning payment is twenty-five. The treasury receives what the operator would otherwise have kept. If the fee is fixed independently of subsequent sales, the operator still finds five units at seven the most profitable operating choice: paying for the privilege has changed its recipient, while leaving the incentive to restrict output in place. Preparing bids, administering the auction and enforcing the award may consume resources of their own; those belong in a further account. The purchase price itself is a transfer within the society being considered. This also explains why the successful monopolist's books cannot reveal the whole cost of the contest. Other applicants may have lost money and time without appearing anywhere in his accounts. Conversely, a large payment to an earlier owner can leave a new owner earning an ordinary return on the price he paid for the business, even while customers continue to face monopoly terms. The acquisition price has capitalized the privilege; it has given us no independent measure of the resources wasted acquiring or maintaining it.<sup class="sn-ref">2</sup></p>
+<div class="sidenote"><span class="sn-num">2.</span> The auction is an accounting comparison under the stated fixed-fee and identical-operator assumptions, with the monopoly restriction held in place. An auction awarding the franchise to the bidder offering customers the lowest price would pose a different problem. Tullock, pp. 231–232, treats the capital value of expected monopoly receipts and the expenditures of unsuccessful seekers. <a href="numeraire-vii-xi-the-scramble.html">The Scramble</a> develops a separate contest model in which the amount dissipated follows from explicit effort choices.</div>
+<div class="break"><span>⁂</span></div>
+<p>The rule governing the award helps determine what form the expenditure takes. Anne Krueger's study of import licensing supplies a particularly concrete example: when a firm's entitlement to licenses depends on its installed capacity, additional plant can improve its claim even if the existing plant is already underused. The physical investment has two possible rewards, production and a better position in the allocation of licenses, and the second can induce construction that the first would never justify. A rule favoring incumbency, waiting or personal access invites a different use of resources. The important inquiry is what an additional expense changes about the chance of receiving or retaining the privilege. This is why rent-seeking can be entirely lawful and can occupy part of an otherwise productive business. The name describes an economic use of effort. It does not identify a criminal offense, and a company's useful output does not settle the character of every expense it incurs. The same distinction reaches the regulator of the preceding plates: information needed to operate a network and influence sought to shelter its owner can arrive in the same submission, under the same letterhead.<sup class="sn-ref">3</sup></p>
+<div class="sidenote"><span class="sn-num">3.</span> Anne O. Krueger, <a href="https://cameroneconomics.com/kreuger%201974.pdf">“The Political Economy of the Rent-Seeking Society,” <em>American Economic Review</em> 64 (1974), pp. 291–303</a>, introduction and §I.A, pp. 291–293, including notes 1–3. The capacity example turns on the license-allocation rule. The later application to a regulatory submission is an analytical comparison; no finding about a named firm or proceeding is asserted.</div>
+<p>The prospect of protected income can also redirect enterprise before any visible contest begins. William Baumol's account of entrepreneurship gives the institutional argument its wider reach: the rewards attached to different activities help determine where enterprising people put their abilities. An engineer can improve a process; someone with the same command of its details can devise a technical requirement that only the incumbent meets. A manager can prepare a new market entry or organize a campaign against someone else's. The forgone alternative matters in both cases. It is the basis on which the work devoted to protection has an opportunity cost, even when everyone doing it receives a wage and every invoice is paid. This connects the tribute to the gale. A reward for successful invention may encourage the discovery of a better product; a reward for preventing its rival's arrival may encourage the obstruction of that discovery. The expected profit can look similar in the two business plans. Their effects on what the public can buy, and on what future competitors can attempt, supply the difference that matters.<sup class="sn-ref">4</sup></p>
+<div class="sidenote"><span class="sn-num">4.</span> William J. Baumol, <a href="https://diomavro.wordpress.com/wp-content/uploads/2012/05/baumol_1990_2.pdf">“Entrepreneurship: Productive, Unproductive, and Destructive,” <em>Journal of Political Economy</em> 98 (1990), pp. 893–921</a>, introduction and §I, pp. 893–896, and §VII, pp. 918–919. His hypothesis concerns the allocation of entrepreneurial activity as relative rewards change; he allows its total supply and composition to change as well. The engineering and management examples illustrate the mechanism.</div>
+<p>Measuring the tribute requires distinguishing resources consumed from value created or protected along the way. A patent contest can produce an invention. A legal challenge can remove an exclusionary rule. A technical objection can reveal a danger that a public authority genuinely needs to understand. The presence of a valuable private prize settles none of those benefits. An appraisal must compare the activity with a feasible alternative, including the information, enforcement and investment that alternative would require. It must also follow the people who fail, and distinguish a recurring expense from the present value of years of receipts. The monopoly's annual profit cannot simply be added to the annual cost of its lawyers and called the social loss. Some receipts are transfers; some expenses have useful products; some costs fall outside the owner's accounts. In the numerical example the eight was specified as pure resource use with no such benefit, so it could be added exactly. In an actual industry that specification would be the central matter to establish. The prize's size makes a contest worth examining; it leaves the amount dissipated to the evidence.<sup class="sn-ref">5</sup></p>
+<div class="sidenote"><span class="sn-num">5.</span> Tullock, pp. 228–232, includes attempts to prevent transfers, unsuccessful monopolization and the difficulty of measurement; Krueger, pp. 301–303, states the institutional implications of her particular model. The examples here distinguish possible benefits from pure dissipation without assigning a numerical net value to litigation, patents or regulatory participation. The economic cost is the resource opportunity cost, with productive consequences and the comparison institution accounted for.</div>
+<p>The tribute shows how a market position can become a project in its own right. A firm that earns a protected surplus has a reason to preserve the conditions that produce it, and others have a reason to seek the same position. The resulting expenditures belong in the account of power alongside the price paid and the trade lost. Their presence also changes the policy question. Opening entry, revising an allocation rule or choosing a different way to finance a necessary network changes both the available surplus and the rewards for pursuing it. Each arrangement must be judged by the opportunities it creates for useful work as well as by the interests it serves. The next plate, <a href="numeraire-x-xi-the-gatekeeper.html">The Gatekeeper</a>, carries that inquiry into the platform: a market whose operator supplies a meeting place and also controls the terms on which others may reach it. There, the service that creates the position and the conduct that protects it are especially close neighbors.</p>
+</div>
+    </article>
+  </main>
+
+  <nav class="leaf-nav" aria-label="Plate navigation">
+    <a class="ln-cell ln-prev" href="numeraire-x-ix-the-gale.html"><span class="lab">← Previous plate</span><span class="ttl">Plate ix · The Gale</span></a>
+    <a class="ln-cell ln-home" href="numeraire-x-the-power.html"><span class="lab">The volume</span><span class="ttl">The Power · contents</span></a>
+    <a class="ln-cell ln-next" href="numeraire-x-xi-the-gatekeeper.html"><span class="lab">Next plate →</span><span class="ttl">Plate xi · The Gatekeeper</span></a>
+  </nav>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref"><a href="numeraire-x-the-power.html">The Power</a> · <a href="numeraire-atlas-updated.html">the table</a></span>
+    </div>
+    <p class="colophon">Plate x of <em>The Power</em>, Volume the Tenth of <em>Numéraire</em> — a periodic table of economic life. An adaptation for the Utility edition of the earlier <a href="../quantities/numeraire-plate-the-rent-seeking.html">Rent-Seeking</a> and the collected <a href="../volumes/the-rent.html#plate-vi">Seeking</a>, developed around the costs of acquiring and defending market power. The earlier treatments remain available in their original editions. This leaf may be read on its own or as part of the volume. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<script>
+(function(){
+  var bar=document.getElementById('progress');
+  function onScroll(){
+    var h=document.documentElement;
+    var max=(h.scrollHeight-h.clientHeight);
+    var p=max>0?(h.scrollTop||document.body.scrollTop)/max:0;
+    bar.style.width=(p*100).toFixed(2)+'%';
+  }
+  document.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="numeraire-x-ix-the-gale.html">← The Gale</a><a rel="next" href="numeraire-x-xi-the-gatekeeper.html">The Gatekeeper →</a></nav>
+</body>
+</html>

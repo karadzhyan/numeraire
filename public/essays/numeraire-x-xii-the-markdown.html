@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Markdown — The Power, Plate xii · Numéraire</title>
+<meta name="description" content="the mirror of monopoly: not the giant that sells too dear but the one that buys too cheap, the single buyer who marks down the wage or the price he pays — monopsony, met first in the wage, now seen entire.">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- reading-progress hairline ---- */
+  .progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--ink);z-index:10000;}
+
+  /* ---- masthead ---- */
+  .masthead{padding:clamp(2.8rem,8vh,5.6rem) 0 clamp(1.6rem,4vh,2.6rem);text-align:center;}
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;}
+  .edition{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+  .edition b{font-family:"Fraunces",serif;font-weight:500;font-style:normal;color:var(--soft);letter-spacing:.04em;}
+
+  .symbox{width:84px;height:84px;border:1px solid var(--ink);border-radius:2px;background:var(--ink);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;margin:clamp(1.4rem,3.4vh,2.2rem) auto 0;}
+  .symbox .sb-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2rem;line-height:1;color:var(--paper);letter-spacing:-.01em;}
+  .symbox .sb-num{font-family:"Fraunces",serif;font-size:.66rem;color:rgba(240,235,225,.58);margin-top:.28rem;letter-spacing:.04em;}
+
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-top:1.15rem;}
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.5rem,7vw,5rem);line-height:1.0;letter-spacing:-.028em;margin:.55rem 0 0;text-wrap:balance;}
+  .subtitle{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.05rem,1.7vw,1.32rem);color:var(--faint);margin:.5rem 0 0;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.64;color:var(--soft);
+    max-width:43rem;margin:clamp(1.3rem,3vh,1.9rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+  .status{font-size:.84rem;color:var(--soft);margin:clamp(1.2rem,2.6vh,1.7rem) auto 0;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .backrow{margin-top:clamp(1.3rem,3vh,1.9rem);padding-top:1.5rem;border-top:1px solid var(--hair);max-width:50rem;margin-left:auto;margin-right:auto;}
+  .backlink{display:inline-block;font-size:.82rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .backlink:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- generic block furniture ---- */
+  main{padding:0;}
+  .eyebrow{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.2rem;}
+
+  .block-argument{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .argument{max-width:40rem;margin:0 auto;}
+  .argument p{font-size:1.08rem;line-height:1.74;color:var(--ink);margin:0 0 1.2rem;text-wrap:pretty;}
+  .argument p:last-child{margin-bottom:0;}
+  .argument .closer{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 400;font-style:italic;color:var(--soft);font-size:1.06rem;}
+
+  /* ---- table of plates ---- */
+  .block-toc{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .toc ol{list-style:none;margin:0;padding:0;max-width:44rem;}
+  .toc li{display:grid;grid-template-columns:2.5rem 1fr;column-gap:1rem;align-items:baseline;
+    padding:.85rem 0;border-top:1px solid var(--hair);}
+  .toc li:first-child{border-top:none;}
+  .t-num{font-family:"Fraunces",serif;font-size:.92rem;color:var(--faintest);text-align:right;}
+  .t-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.08rem;color:var(--ink);line-height:1.15;text-decoration:none;}
+  a.t-title{border-bottom:1px solid var(--num);padding-bottom:1px;}
+  a.t-title:hover{border-bottom-color:var(--ink);}
+  .t-gloss{grid-column:2;font-size:.85rem;color:var(--faint);font-style:italic;margin-top:.22rem;line-height:1.4;}
+  .t-q{grid-column:2;font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:.95rem;color:var(--soft);margin-top:.42rem;line-height:1.36;}
+  .t-q .lead{font-family:"Fraunces",serif;font-style:normal;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-right:.5rem;}
+  .t-tag{display:inline-block;margin-left:.6rem;font-family:"Newsreader",serif;font-size:.64rem;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--paper);background:var(--ink);border-radius:2px;padding:.12em .5em;vertical-align:.14em;}
+  .t-read{grid-column:2;margin-top:.42rem;}
+  .t-read a{font-size:.8rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .t-read a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- the plates (essays) ---- */
+  .plates-open{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.8rem,6vh,4rem);}
+  .plates-open .eyebrow{text-align:center;}
+  .plate{max-width:54rem;margin:clamp(2.8rem,6.5vh,4.4rem) auto 0;padding-top:clamp(2.2rem,4.6vh,3rem);
+    border-top:1px solid var(--hair);position:relative;scroll-margin-top:1.4rem;}
+  .plate:first-of-type{border-top:none;margin-top:clamp(1.6rem,3.5vh,2.4rem);padding-top:0;}
+  .plate-head{margin:0 0 1.7rem;}
+  .plate-kicker{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .plate-kicker .pk-tag{margin-left:.6rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .plate-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.8rem,4.2vw,2.7rem);line-height:1.03;letter-spacing:-.02em;margin:.32rem 0 .42rem;}
+  .plate-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.02rem;color:var(--faint);max-width:36rem;line-height:1.45;}
+
+  .epigraph{max-width:34rem;margin:1.4rem 0 1.9rem;padding-left:1.1rem;border-left:1px solid var(--num);}
+  .epigraph p{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:1.04rem;line-height:1.42;color:var(--soft);margin:0;}
+  .epigraph cite{display:block;font-style:normal;font-family:"Newsreader",serif;font-size:.78rem;
+    letter-spacing:.03em;color:var(--faintest);margin-top:.55rem;}
+
+  .plate-body{max-width:37rem;}
+  .plate-body p{font-size:1.05rem;line-height:1.75;color:var(--ink);margin:0 0 1.18rem;text-wrap:pretty;}
+  .plate-body p:last-child{margin-bottom:0;}
+  .plate-body em{font-style:italic;}
+  .plate-body .lead-para::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 500;
+    float:left;font-size:3.5rem;line-height:.78;padding:.08em .14em 0 0;color:var(--ink);}
+  .plate-body h4{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);margin:1.9rem 0 .9rem;}
+
+  .break{display:flex;justify-content:center;margin:1.9rem 0;}
+  .break span{font-family:"Fraunces",serif;font-size:1.05rem;letter-spacing:.4em;color:var(--faintest);padding-left:.4em;}
+
+  /* sidenotes — inline by default, true margin notes on wide screens */
+  .sn-ref{font-family:"Fraunces",serif;font-size:.64rem;vertical-align:super;line-height:0;color:var(--soft);margin-left:.06em;}
+  .sidenote{font-family:"Newsreader",serif;font-size:.82rem;line-height:1.52;color:var(--faint);
+    border-left:2px solid var(--hair);padding-left:.9rem;margin:.7rem 0 1.05rem;}
+  .sidenote .sn-num{font-family:"Fraunces",serif;color:var(--faintest);font-size:.7rem;margin-right:.38rem;}
+  .sidenote em{font-style:italic;}
+  @media (min-width:1040px){
+    .sidenote{float:right;clear:right;width:14.5rem;margin:.25rem -17.5rem 1.15rem 0;
+      border-left:none;border-top:1px solid var(--hair);padding:.42rem 0 0;}
+  }
+
+  /* ---- coda ---- */
+  .coda{max-width:40rem;margin:clamp(2.8rem,6vh,4rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);}
+  .coda p{font-size:1.06rem;line-height:1.74;color:var(--ink);margin:0 0 1.15rem;text-wrap:pretty;}
+  .coda p:last-child{margin-bottom:0;}
+  .coda .q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .f-ref a{text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .f-ref a:hover{border-bottom-color:var(--soft);}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .progress{transition:width .08s linear;}
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}.rise.d4{animation-delay:.4s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    h1{font-size:clamp(2.2rem,11vw,3rem);}
+    .symbox{width:72px;height:72px;}
+    .symbox .sb-sym{font-size:1.7rem;}
+    .plate-body .lead-para::first-letter{font-size:3rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+
+  /* ---- standalone plate (leaf) ---- */
+  .leaf-head{max-width:54rem;margin:0 auto;padding:clamp(2.2rem,6.5vh,4.4rem) 0 0;text-align:center;}
+  .leaf-loc{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.08em;color:var(--faintest);margin-bottom:1.7rem;}
+  .leaf-loc a{text-decoration:none;color:var(--faint);border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .leaf-loc a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+  .leaf-loc .sep{margin:0 .5rem;color:var(--num);}
+  .leaf-kicker{font-family:"Fraunces",serif;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .leaf-kicker .pk-tag{margin-left:.55rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .leaf-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.2rem,5.6vw,3.7rem);line-height:1.02;letter-spacing:-.024em;margin:.42rem 0 0;text-wrap:balance;}
+  .leaf-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.06rem;color:var(--faint);
+    max-width:34rem;margin:.72rem auto 0;line-height:1.5;text-wrap:pretty;}
+  .epigraph.leaf-epigraph{margin:1.95rem auto 1.4rem;text-align:left;}
+  .leaf-body-wrap{max-width:54rem;margin:clamp(1.8rem,4vh,2.8rem) auto 0;}
+
+  .leaf-nav{max-width:54rem;margin:clamp(3rem,7vh,5.2rem) auto 0;padding-top:clamp(1.8rem,4vh,2.6rem);
+    border-top:1px solid var(--hair);display:grid;grid-template-columns:1fr auto 1fr;gap:1.3rem;align-items:start;}
+  .ln-cell{text-decoration:none;display:block;}
+  .ln-cell .lab{display:block;font-family:"Fraunces",serif;font-size:.64rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--faintest);margin-bottom:.36rem;}
+  .ln-cell .ttl{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1rem;
+    color:var(--soft);line-height:1.22;}
+  a.ln-cell:hover .ttl{color:var(--ink);}
+  .ln-prev{text-align:left;} .ln-home{text-align:center;} .ln-next{text-align:right;}
+
+  @media (max-width:600px){
+    .leaf-nav{grid-template-columns:1fr;gap:1.4rem;}
+    .ln-prev,.ln-home,.ln-next{text-align:center;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#ne-contents">Complete contents</a><a href="../editions.html#volume-power">The Power · both editions</a><a href="../volumes/the-power.html">Collected volume</a></div></nav>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="frame">
+
+  <header class="leaf-head">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="leaf-loc rise d1" aria-label="Location in the series"><a href="numeraire-atlas-updated.html">Numéraire</a><span class="sep">·</span><a href="numeraire-x-the-power.html">Volume X · The Power</a></nav>
+    <div class="leaf-kicker rise d2">Plate xii <span class="pk-tag">in print</span></div>
+    <h1 class="leaf-title rise d2">The Markdown</h1>
+    <div class="leaf-gloss rise d3">the mirror of monopoly: not the giant that sells too dear but the one that buys too cheap, the single buyer who marks down the wage or the price he pays — monopsony, met first in the wage, now seen entire.</div>
+    <div class="epigraph leaf-epigraph rise d3">
+      <p>The buyer can improve the terms of the purchases he keeps by declining others worth making.</p>
+      <cite>— the argument of this plate, after Langella and Manning (2021)</cite>
+    </div>
+  </header>
+
+  <main class="leaf-body-wrap">
+    <article class="plate">
+<div class="plate-body">
+<p class="lead-para">Every exchange has two sides, and so does power. The seller who restricts what he offers to raise the price has a mirror in the buyer who restricts what he purchases to lower it. The employer in <a href="numeraire-i-viii-the-monopsony.html">The Monopsony</a> was one instance of this larger relation. A processor may be the only convenient destination for a farmer's perishable crop; a retailer may be the principal route by which a manufacturer reaches its customers. The person bringing something to market then confronts an offer shaped by the weakness of his alternatives. He may still prefer to accept it, since rejection is costly, and his acceptance does not establish that the buyer has taken the price as given. The relevant question is what happens to the buyer's available supply when he changes the terms. Where he can pay less without losing it all, he has room to choose the payment. The markdown is the wedge that such a choice can open between what another unit is worth to him and what its supplier receives.</p>
+<p>The simplest mechanism requires a common price for all the units purchased. Suppose a processor can obtain a larger quantity only by offering a higher price, and that this higher price must be paid on his earlier purchases too. The next unit then costs him its own payment plus the increase on all the others. Its marginal expenditure exceeds the price written on the invoice. A buyer seeking the greatest profit expands only until the unit's marginal value covers that larger expenditure, and stops while the marginal value still exceeds the price the supplier receives. The farmer sees a valuable sale the processor declines to make; the processor sees the cost of changing the terms of every sale already made. Both descriptions belong to the same transaction. The common-price rule gives the buyer a reason to hold purchases down, just as the seller's common-price rule gave the monopolist a reason to hold sales down. The mirror is exact within these assumptions: the firm's choice sacrifices some advantageous exchanges to improve the terms on those it retains.<sup class="sn-ref">1</sup></p>
+<div class="sidenote"><span class="sn-num">1.</span> Monica Langella and Alan Manning, <a href="https://doi.org/10.1093/jeea/jvab039">“Marshall Lecture 2020: The Measure of Monopsony”</a> (2021), §2.1, give the static uniform-wage first-order condition for a firm facing upward-sloping labor supply. The processor here is an explicitly derived application of the same expenditure mechanism to a divisible input: if payment is p(q), total expenditure is p(q)q and marginal expenditure is p(q) + qp′(q).</div>
+<p>A small account makes the restriction visible. Let the suppliers' price be twenty plus the quantity supplied, and let each additional unit be worth eighty minus the quantity to the processor. Assume that this marginal value also measures the social benefit of the input's use, that the supply schedule measures its opportunity cost, and that there are no other costs or external effects. Competitive trade would reach thirty units at a price of fifty, where the two schedules meet. The single buyer paying a common price instead faces marginal expenditure of twenty plus twice the quantity. He stops at twenty units, where marginal expenditure and marginal value both equal sixty, and pays forty. Thus the last purchased unit is worth sixty to him and costs its supplier forty at the margin, yet the ten further beneficial units are left unbought. There is no arithmetic mistake in the buyer's account. His extra private expenditure includes the higher payments that expanding his order would give to suppliers of units he already buys; those payments are a transfer within the wider account, but they are a cost in his own.<sup class="sn-ref">2</sup></p>
+<div class="sidenote"><span class="sn-num">2.</span> This plate's continuous example has p(q) = 20 + q and marginal value v(q) = 80 − q. Gross value is 80q − q²/2; expenditure is 20q + q²; profit is 60q − 3q²/2, strictly concave and maximized at q = 20. Competitive quantity solves v = p and equals 30. All amounts are illustrative; the social calculation explicitly equates the two schedules with marginal social benefit and cost.</div>
+<div class="break"><span>⁂</span></div>
+<p>The size of the wedge depends on how readily supply responds to the buyer's offer, but its denominator must be named. In the example, a small rise in price from forty draws a proportionately larger rise in quantity from twenty: the supply elasticity at that point is two. The gap of twenty between marginal value and payment is one-half of the payment, the inverse of that elasticity. It is one-third of marginal value. Calling both ratios the markdown without saying which is meant would turn one correct account into two apparently conflicting estimates. In the general static calculation, the value-payment gap divided by payment equals the inverse supply elasticity; divided by marginal value, it equals one divided by one plus the elasticity. The relevant supply is the supply facing this buyer, with the other circumstances of the choice held fixed. A count of firms cannot substitute for it. Several buyers may be poor alternatives for a particular supplier, while a readily accessible rival may constrain an otherwise large purchaser severely.<sup class="sn-ref">3</sup></p>
+<div class="sidenote"><span class="sn-num">3.</span> Langella and Manning (2021), §§2.1–2.2, equation (1), normalize the gap by the wage paid. With ε = (dq/dp)(p/q), the analogous input formula is (v − p)/p = 1/ε; hence (v − p)/v = 1/(1 + ε). In this example ε = 2. Section 2.2 also explains why concentration and comparisons with average revenue product do not by themselves identify exercised monopsony power.</div>
+<p>The welfare account separates the supplier's lost receipts from the exchanges lost altogether. In the example, total gains from trade would be nine hundred at the competitive quantity and are eight hundred under the single buyer's common price. One hundred disappears because the units between twenty and thirty, each worth more than its opportunity cost, are not traded. The change in the division of the remaining gains is larger: the buyer's surplus rises from four hundred and fifty to six hundred, while suppliers' surplus falls from four hundred and fifty to two hundred. Their loss of two hundred and fifty contains the buyer's gain of one hundred and fifty and the hundred gained by nobody. Now alter the payment rule. If the buyer could identify every unit's reservation cost and pay exactly that amount, each additional purchase would cost only its own opportunity cost. He would buy all thirty beneficial units and retain all nine hundred of the gains. Quantity would be efficient in this limiting case, while the division would favor the buyer completely. The efficiency of the amount traded and the fairness of the payment remain separate questions.<sup class="sn-ref">4</sup></p>
+<div class="sidenote"><span class="sn-num">4.</span> The accounting and perfect-discrimination case are derived from the stated example. Total surplus is ∫₀ᵠ[(80 − x) − (20 + x)]dx = 60q − q². Supplier surplus under a common price is q²/2. Perfect discrimination assumes the buyer knows and can pay each unit's exact reservation cost without arbitrage, resistance, or contracting costs; it is a limiting comparison, not a claim that these conditions ordinarily hold.</div>
+<p>A low purchase price, taken alone, therefore cannot tell this story for us. Suppose production becomes cheaper, shifting the suppliers' schedule down to ten plus quantity while the marginal value of use remains eighty minus quantity. Competitive trade now reaches thirty-five units at forty-five: a lower payment accompanies more trade and greater total gains. The lower price in this comparison comes from a changed opportunity cost. In the earlier one it came from the buyer's restriction with costs unchanged. Actual identification must establish which margins moved. The labor case adds another discipline: search and differences among jobs can give individual employers upward-sloping supply without a company town, while the wage actually paid also depends on institutions and the constraints on the employer's choice. The same caution carries into procurement. Quality, transport, timing, risk, and the terms of a contract may change together with its nominal price. Establishing a markdown requires an account of the alternative supply and of marginal value; a large purchaser's cheap invoice is the beginning of that inquiry.<sup class="sn-ref">5</sup></p>
+<div class="sidenote"><span class="sn-num">5.</span> David Card, <a href="https://davidcard.berkeley.edu/papers/Card-presidential-address.pdf">“Who Set Your Wage?”</a>, January 2022 working version, §II, pp. 4–7, distinguishes search-based and differentiated-job foundations of firm-level labor supply. Langella and Manning (2021), §§1–2, distinguish potential from exercised power and describes the identification problem. The competitive lower-cost comparison is this plate's control: q = 35, p = 45, and total surplus 1,225.</div>
+<p>The buyer's mirror completes the anatomy of power because it places the supplier inside the same inquiry that began with the customer. The freedom to choose a price can work through the charge demanded or the payment offered; the absence of a useful alternative can burden the person buying a necessity or the person selling his labor, crop, or workmanship. In the common-price model, monopoly restricts what it sells and monopsony restricts what it buys. Each improves its terms on the exchanges it keeps and leaves other valuable exchanges undone. Yet the models also show why a verdict must follow the mechanism: a payment may fall with costs, a transfer may change hands without destroying value, and a different contract may restore the quantity while concentrating its gains. The enduring question of the volume is what makes an alternative real enough to discipline the stronger party. The market's two sides need the answer equally, for the standing freedom to walk away matters as much to the person bringing something to sell as to the person arriving to buy.</p>
+</div>
+    </article>
+  </main>
+
+  <nav class="leaf-nav" aria-label="Plate navigation">
+    <a class="ln-cell ln-prev" href="numeraire-x-xi-the-gatekeeper.html"><span class="lab">← Previous plate</span><span class="ttl">Plate xi · The Gatekeeper</span></a>
+    <a class="ln-cell ln-home" href="numeraire-x-the-power.html"><span class="lab">The volume</span><span class="ttl">The Power · contents</span></a>
+    <span class="ln-cell ln-next"></span>
+  </nav>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref"><a href="numeraire-x-the-power.html">The Power</a> · <a href="numeraire-atlas-updated.html">the table</a></span>
+    </div>
+    <p class="colophon">Plate xii of <em>The Power</em>, Volume the Tenth of <em>Numéraire</em> — a periodic table of economic life. An adaptation for the Utility edition of the collected <a href="../volumes/the-power.html#plate-vii">Buyer</a>, with the fuller labor treatment in the Margin edition’s <a href="../margin/the-monopsony.html">Monopsony</a>. The procurement example and the distinctions among payment, quantity, and surplus develop the general buyer-power inquiry here; the earlier texts remain available in their original editions. This leaf may be read on its own or as part of the volume. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<script>
+(function(){
+  var bar=document.getElementById('progress');
+  function onScroll(){
+    var h=document.documentElement;
+    var max=(h.scrollHeight-h.clientHeight);
+    var p=max>0?(h.scrollTop||document.body.scrollTop)/max:0;
+    bar.style.width=(p*100).toFixed(2)+'%';
+  }
+  document.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="numeraire-x-xi-the-gatekeeper.html">← The Gatekeeper</a><a rel="next" href="numeraire-xi-the-externality.html">The Externality →</a></nav>
+</body>
+</html>
