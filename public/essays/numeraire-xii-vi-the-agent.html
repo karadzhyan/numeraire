@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Agent — The Asymmetry, Plate vi · Numéraire</title>
+<meta name="description" content="the principal and the agent; incentive pay, the informativeness principle, and the price of being unable to watch.">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- reading-progress hairline ---- */
+  .progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--ink);z-index:10000;}
+
+  /* ---- masthead ---- */
+  .masthead{padding:clamp(2.8rem,8vh,5.6rem) 0 clamp(1.6rem,4vh,2.6rem);text-align:center;}
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;}
+  .edition{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+  .edition b{font-family:"Fraunces",serif;font-weight:500;font-style:normal;color:var(--soft);letter-spacing:.04em;}
+
+  .symbox{width:84px;height:84px;border:1px solid var(--ink);border-radius:2px;background:var(--ink);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;margin:clamp(1.4rem,3.4vh,2.2rem) auto 0;}
+  .symbox .sb-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2rem;line-height:1;color:var(--paper);letter-spacing:-.01em;}
+  .symbox .sb-num{font-family:"Fraunces",serif;font-size:.66rem;color:rgba(240,235,225,.58);margin-top:.28rem;letter-spacing:.04em;}
+
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-top:1.15rem;}
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.5rem,7vw,5rem);line-height:1.0;letter-spacing:-.028em;margin:.55rem 0 0;text-wrap:balance;}
+  .subtitle{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.05rem,1.7vw,1.32rem);color:var(--faint);margin:.5rem 0 0;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.64;color:var(--soft);
+    max-width:43rem;margin:clamp(1.3rem,3vh,1.9rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+  .status{font-size:.84rem;color:var(--soft);margin:clamp(1.2rem,2.6vh,1.7rem) auto 0;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .backrow{margin-top:clamp(1.3rem,3vh,1.9rem);padding-top:1.5rem;border-top:1px solid var(--hair);max-width:50rem;margin-left:auto;margin-right:auto;}
+  .backlink{display:inline-block;font-size:.82rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .backlink:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- generic block furniture ---- */
+  main{padding:0;}
+  .eyebrow{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.2rem;}
+
+  .block-argument{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .argument{max-width:40rem;margin:0 auto;}
+  .argument p{font-size:1.08rem;line-height:1.74;color:var(--ink);margin:0 0 1.2rem;text-wrap:pretty;}
+  .argument p:last-child{margin-bottom:0;}
+  .argument .closer{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 400;font-style:italic;color:var(--soft);font-size:1.06rem;}
+
+  /* ---- table of plates ---- */
+  .block-toc{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .toc ol{list-style:none;margin:0;padding:0;max-width:44rem;}
+  .toc li{display:grid;grid-template-columns:2.5rem 1fr;column-gap:1rem;align-items:baseline;
+    padding:.85rem 0;border-top:1px solid var(--hair);}
+  .toc li:first-child{border-top:none;}
+  .t-num{font-family:"Fraunces",serif;font-size:.92rem;color:var(--faintest);text-align:right;}
+  .t-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.08rem;color:var(--ink);line-height:1.15;text-decoration:none;}
+  a.t-title{border-bottom:1px solid var(--num);padding-bottom:1px;}
+  a.t-title:hover{border-bottom-color:var(--ink);}
+  .t-gloss{grid-column:2;font-size:.85rem;color:var(--faint);font-style:italic;margin-top:.22rem;line-height:1.4;}
+  .t-q{grid-column:2;font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:.95rem;color:var(--soft);margin-top:.42rem;line-height:1.36;}
+  .t-q .lead{font-family:"Fraunces",serif;font-style:normal;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-right:.5rem;}
+  .t-tag{display:inline-block;margin-left:.6rem;font-family:"Newsreader",serif;font-size:.64rem;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--paper);background:var(--ink);border-radius:2px;padding:.12em .5em;vertical-align:.14em;}
+  .t-read{grid-column:2;margin-top:.42rem;}
+  .t-read a{font-size:.8rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .t-read a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- the plates (essays) ---- */
+  .plates-open{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.8rem,6vh,4rem);}
+  .plates-open .eyebrow{text-align:center;}
+  .plate{max-width:54rem;margin:clamp(2.8rem,6.5vh,4.4rem) auto 0;padding-top:clamp(2.2rem,4.6vh,3rem);
+    border-top:1px solid var(--hair);position:relative;scroll-margin-top:1.4rem;}
+  .plate:first-of-type{border-top:none;margin-top:clamp(1.6rem,3.5vh,2.4rem);padding-top:0;}
+  .plate-head{margin:0 0 1.7rem;}
+  .plate-kicker{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .plate-kicker .pk-tag{margin-left:.6rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .plate-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.8rem,4.2vw,2.7rem);line-height:1.03;letter-spacing:-.02em;margin:.32rem 0 .42rem;}
+  .plate-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.02rem;color:var(--faint);max-width:36rem;line-height:1.45;}
+
+  .epigraph{max-width:34rem;margin:1.4rem 0 1.9rem;padding-left:1.1rem;border-left:1px solid var(--num);}
+  .epigraph p{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:1.04rem;line-height:1.42;color:var(--soft);margin:0;}
+  .epigraph cite{display:block;font-style:normal;font-family:"Newsreader",serif;font-size:.78rem;
+    letter-spacing:.03em;color:var(--faintest);margin-top:.55rem;}
+
+  .plate-body{max-width:37rem;}
+  .plate-body p{font-size:1.05rem;line-height:1.75;color:var(--ink);margin:0 0 1.18rem;text-wrap:pretty;}
+  .plate-body p:last-child{margin-bottom:0;}
+  .plate-body em{font-style:italic;}
+  .plate-body .lead-para::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 500;
+    float:left;font-size:3.5rem;line-height:.78;padding:.08em .14em 0 0;color:var(--ink);}
+  .plate-body h4{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);margin:1.9rem 0 .9rem;}
+
+  .break{display:flex;justify-content:center;margin:1.9rem 0;}
+  .break span{font-family:"Fraunces",serif;font-size:1.05rem;letter-spacing:.4em;color:var(--faintest);padding-left:.4em;}
+
+  /* sidenotes — inline by default, true margin notes on wide screens */
+  .sn-ref{font-family:"Fraunces",serif;font-size:.64rem;vertical-align:super;line-height:0;color:var(--soft);margin-left:.06em;}
+  .sidenote{font-family:"Newsreader",serif;font-size:.82rem;line-height:1.52;color:var(--faint);
+    border-left:2px solid var(--hair);padding-left:.9rem;margin:.7rem 0 1.05rem;}
+  .sidenote .sn-num{font-family:"Fraunces",serif;color:var(--faintest);font-size:.7rem;margin-right:.38rem;}
+  .sidenote em{font-style:italic;}
+  @media (min-width:1040px){
+    .sidenote{float:right;clear:right;width:14.5rem;margin:.25rem -17.5rem 1.15rem 0;
+      border-left:none;border-top:1px solid var(--hair);padding:.42rem 0 0;}
+  }
+
+  /* ---- coda ---- */
+  .coda{max-width:40rem;margin:clamp(2.8rem,6vh,4rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);}
+  .coda p{font-size:1.06rem;line-height:1.74;color:var(--ink);margin:0 0 1.15rem;text-wrap:pretty;}
+  .coda p:last-child{margin-bottom:0;}
+  .coda .q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .f-ref a{text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .f-ref a:hover{border-bottom-color:var(--soft);}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .progress{transition:width .08s linear;}
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}.rise.d4{animation-delay:.4s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    h1{font-size:clamp(2.2rem,11vw,3rem);}
+    .symbox{width:72px;height:72px;}
+    .symbox .sb-sym{font-size:1.7rem;}
+    .plate-body .lead-para::first-letter{font-size:3rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+
+  /* ---- standalone plate (leaf) ---- */
+  .leaf-head{max-width:54rem;margin:0 auto;padding:clamp(2.2rem,6.5vh,4.4rem) 0 0;text-align:center;}
+  .leaf-loc{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.08em;color:var(--faintest);margin-bottom:1.7rem;}
+  .leaf-loc a{text-decoration:none;color:var(--faint);border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .leaf-loc a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+  .leaf-loc .sep{margin:0 .5rem;color:var(--num);}
+  .leaf-kicker{font-family:"Fraunces",serif;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .leaf-kicker .pk-tag{margin-left:.55rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .leaf-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.2rem,5.6vw,3.7rem);line-height:1.02;letter-spacing:-.024em;margin:.42rem 0 0;text-wrap:balance;}
+  .leaf-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.06rem;color:var(--faint);
+    max-width:34rem;margin:.72rem auto 0;line-height:1.5;text-wrap:pretty;}
+  .epigraph.leaf-epigraph{margin:1.95rem auto 1.4rem;text-align:left;}
+  .leaf-body-wrap{max-width:54rem;margin:clamp(1.8rem,4vh,2.8rem) auto 0;}
+
+  .leaf-nav{max-width:54rem;margin:clamp(3rem,7vh,5.2rem) auto 0;padding-top:clamp(1.8rem,4vh,2.6rem);
+    border-top:1px solid var(--hair);display:grid;grid-template-columns:1fr auto 1fr;gap:1.3rem;align-items:start;}
+  .ln-cell{text-decoration:none;display:block;}
+  .ln-cell .lab{display:block;font-family:"Fraunces",serif;font-size:.64rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--faintest);margin-bottom:.36rem;}
+  .ln-cell .ttl{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1rem;
+    color:var(--soft);line-height:1.22;}
+  a.ln-cell:hover .ttl{color:var(--ink);}
+  .ln-prev{text-align:left;} .ln-home{text-align:center;} .ln-next{text-align:right;}
+
+  @media (max-width:600px){
+    .leaf-nav{grid-template-columns:1fr;gap:1.4rem;}
+    .ln-prev,.ln-home,.ln-next{text-align:center;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#ne-contents">Complete contents</a><a href="../editions.html#volume-asymmetry">The Asymmetry · both editions</a><a href="../volumes/the-asymmetry.html">Collected volume</a></div></nav>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="frame">
+
+  <header class="leaf-head">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="leaf-loc rise d1" aria-label="Location in the series"><a href="numeraire-atlas-updated.html">Numéraire</a><span class="sep">·</span><a href="numeraire-xii-the-asymmetry.html">Volume XII · The Asymmetry</a></nav>
+    <div class="leaf-kicker rise d2">Plate vi <span class="pk-tag">in print</span></div>
+    <h1 class="leaf-title rise d2">The Agent</h1>
+    <div class="leaf-gloss rise d3">the principal and the agent; incentive pay, the informativeness principle, and the price of being unable to watch.</div>
+    <div class="epigraph leaf-epigraph rise d3">
+      <p>The contract pays for action through the evidence it leaves.</p>
+      <cite>— the argument of this plate, after Holmström (1979, 2016)</cite>
+    </div>
+  </header>
+
+  <main class="leaf-body-wrap">
+    <article class="plate">
+<div class="plate-body">
+<p class="lead-para">The principal hires another person to do something he cannot do, or cannot do as cheaply, himself. The landlord employs a tenant, the owner a manager, the customer a representative. Delegation puts someone else's judgment and effort to work, while leaving the person who pays unable to watch everything for which he is paying. The difficulty deepens when the result combines the agent's action with circumstances neither party controls. A harvest carries news of the farmer and the weather; a sale carries news of the salesman and the market. The principal can observe the total without being able to separate its authors. A contract must give the agent a reason to act well before the result arrives, using evidence that will become available afterward. The price of delegation includes the cost of making that evidence govern pay.</p>
+<p>An incentive contract must make the intended action worth choosing and the whole engagement worth accepting. Suppose a worker can choose low effort at no personal cost or high effort at a cost equivalent to three money units. Success has a probability of one-quarter under low effort and three-quarters under high effort. The worker is risk-neutral, knows these probabilities, and receives eight on success and nothing on failure. High effort then yields an expected six in pay less three in effort cost, leaving three; low effort yields two. If the worker's outside opportunity is worth two, he accepts and works hard. Both comparisons matter. An attractive job can encourage the wrong action, while a contract that favors the right action can still leave the worker better off elsewhere. Here the bonus must exceed six to make high effort strictly preferable. Eight is an illustration of a working inducement, with no claim that it is the principal's cheapest contract.<sup class="sn-ref">1</sup></p>
+<div class="sidenote"><span class="sn-num">1.</span> The example is hypothetical. With success bonus <em>b</em>, high effort beats low effort when <em>(¾ − ¼)b &gt; 3</em>, or <em>b &gt; 6</em>; at six the worker is indifferent. Participation compares the chosen action's net expected payoff with the outside option. For the general distinction, see Bengt Holmström, <a href="https://gwern.net/doc/economics/1979-holmstrom.pdf">“Moral Hazard and Observability”</a> (1979), §2, pp. 75–79. The numerical worker is risk-neutral; Holmström's main model assumes a risk-averse agent.</div>
+<p>A risk-averse worker also cares about the uncertainty this inducement creates. A fixed wage would insure his income against the accident of success, but in the example it would leave him bearing the cost of extra effort without receiving any extra expected pay. Tying income to success restores the inducement while exposing him to chance. The principal may have to offer compensation for that exposure. The inherited sharecropping arrangement gives the trade-off a familiar form: the tenant keeps part of each additional harvest, and the landlord absorbs part of each shortfall. The precise best share depends on preferences, technology, available evidence, and the contracts the parties can enforce. If action itself becomes contractible, the principal can reward it directly and insure against unrelated bad luck. If an agent is risk-neutral and can bear the required transfers, giving him the residual can remove the particular insurance obstacle. Hidden action alone does not establish that every occupation needs the same compromise.<sup class="sn-ref">2</sup></p>
+<div class="sidenote"><span class="sn-num">2.</span> Holmström (1979), §§1–2, pp. 74–79, states the risk-aversion, common-information and contracting assumptions. His analysis distinguishes observable action from an outcome that only imperfectly reveals it. The sharecropping illustration describes a possible risk–incentive compromise; it asserts neither a universal optimal share nor that risk-sharing alone explains an actual tenancy.</div>
+<div class="break"><span>⁂</span></div>
+<p>Additional evidence can reduce the price of separating effort from luck. Holmström's informativeness principle asks whether a measure adds information about the agent's action beyond the information already in the contracted outcome. Under the paper's regularity conditions, with a risk-averse agent, a unique interior action under the original contract, freely usable information and a sufficiently flexible set of contracts, such an informative signal permits an improvement. The relevant comparison is conditional. A market index may say nothing about a manager's effort by itself, yet help interpret a profit figure observed alongside it. Conversely, an impressive-looking statistic can add nothing once the existing evidence is known. Information has contractual value through the distinction it enables between explanations of a result. Obtaining, verifying, or administering it may cost more than that value; the principle supplies a criterion for useful information before these expenses are charged.<sup class="sn-ref">3</sup></p>
+<div class="sidenote"><span class="sn-num">3.</span> Holmström (1979), §§4–5, pp. 81–88, especially Proposition 3, pp. 84–86, and the qualifications on restricted contract classes and costly signals, pp. 86–88. The result concerns information beyond the existing outcome, expressed through a sufficient-statistic condition. It does not make every correlated measure useful or every informative system worth purchasing.</div>
+<p>A simple comparison shows why evidence outside the agent's control can improve the contract. Let measured output equal effort plus a common market shock plus an individual shock. Suppose the two shocks are independent, with mean zero and variances nine and one, and a separately observable index records the common shock exactly. A bonus proportional to raw output contains noise of variance ten. A bonus with the same slope on output minus the index contains noise of variance one. The reward for an extra unit of effort remains the same, while the common disturbance falls out of pay. These figures hold effort fixed and establish the variance comparison, without calculating an optimal bonus. An independent coin toss would accomplish no such filtering. An index that the agent could manipulate, or whose movement also reflected his productive action, would require a different calculation. Relative performance is useful when the comparison helps identify what happened, with its own sources of error kept in view.<sup class="sn-ref">4</sup></p>
+<div class="sidenote"><span class="sn-num">4.</span> In this illustration, <em>y = e + z + ε</em> and the index is <em>m = z</em>. For bonus slope <em>b</em>, conditional pay variance falls from <em>10b²</em> to <em>b²</em>, while its sensitivity to effort remains <em>b</em>. If the common shock already has zero variance, filtering it brings no reduction. The example illustrates the conditional-information argument; no distribution-specific optimal contract is asserted.</div>
+<p>The agent's whole job also matters when deciding which result deserves a reward. A seller can close today's sale and preserve the firm's relationship with tomorrow's customer. If those activities compete for attention, a strong commission on the easily counted sale can draw effort away from the harder-to-measure relationship. Holmström's later account of multitasking makes this an allocation problem within the job. Weakening a reward on one task can lower the opportunity cost of doing another. Even a perfectly accurate count can be poorly aligned with what the principal values. A salary, supervision, a division of responsibilities, or a balanced set of measures may therefore achieve more than a larger bonus on the clearest number. The appropriate arrangement depends on how activities interact; tasks whose costs are independent do not create the same diversion merely because they belong to one employee.<sup class="sn-ref">5</sup></p>
+<div class="sidenote"><span class="sn-num">5.</span> Holmström, <a href="https://www.nobelprize.org/uploads/2018/06/holmstrom-lecture.pdf">“Pay for Performance and Beyond”</a>, Nobel lecture (2016), §IV, pp. 427–431, especially the distinction between separable tasks and substitutes in §IV.A, and the measurement and low-powered-incentive arguments in §§IV.B and IV.D.</div>
+<p>Delegation creates a demand for institutions that turn partial knowledge into workable obligations. The wage, the commission, the share, and the performance review are different ways of distributing the return and the uncertainty attached to another person's action. Their success depends on what can be learned, what can be promised, and which other activities the promise encourages. The same inquiry reaches beyond the employment relationship. A buyer who cannot inspect a product's hidden quality must decide whether the seller's assurance deserves payment. In <a href="numeraire-xii-vii-the-warranty.html">The Warranty</a>, the seller answers by placing something of his own at stake: a payment if the product fails, or the future value of a name that failure can damage.</p>
+</div>
+    </article>
+  </main>
+
+  <nav class="leaf-nav" aria-label="Plate navigation">
+    <a class="ln-cell ln-prev" href="numeraire-xii-v-the-hazard.html"><span class="lab">← Previous plate</span><span class="ttl">Plate v · The Hazard</span></a>
+    <a class="ln-cell ln-home" href="numeraire-xii-the-asymmetry.html"><span class="lab">The volume</span><span class="ttl">The Asymmetry · contents</span></a>
+    <a class="ln-cell ln-next" href="numeraire-xii-vii-the-warranty.html"><span class="lab">Next plate →</span><span class="ttl">Plate vii · The Warranty</span></a>
+  </nav>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref"><a href="numeraire-xii-the-asymmetry.html">The Asymmetry</a> · <a href="numeraire-atlas-updated.html">the table</a></span>
+    </div>
+    <p class="colophon">Plate vi of <em>The Asymmetry</em>, Volume the Twelfth of <em>Numéraire</em> — a periodic table of economic life. This Utility plate adapts the earlier Collected <a href="../volumes/the-asymmetry.html#plate-v">The Incentive</a>, developing its delegation and insurance inquiry through explicit effort, information and multitasking comparisons. The separate <a href="../margin/the-asymmetry.html">Margin edition</a> also records an Incentive plan. The earlier text and plan remain intact. This leaf may be read on its own or as part of the volume. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<script>
+(function(){
+  var bar=document.getElementById('progress');
+  function onScroll(){
+    var h=document.documentElement;
+    var max=(h.scrollHeight-h.clientHeight);
+    var p=max>0?(h.scrollTop||document.body.scrollTop)/max:0;
+    bar.style.width=(p*100).toFixed(2)+'%';
+  }
+  document.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="numeraire-xii-v-the-hazard.html">← The Hazard</a><a rel="next" href="numeraire-xii-vii-the-warranty.html">The Warranty →</a></nav>
+</body>
+</html>
