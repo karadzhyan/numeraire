@@ -1,6 +1,6 @@
 # Working on Numéraire
 
-The canonical public source repository is `karadzhyan/numeraire`. The complete website lives in `public/`; use that directory as the deployment output.
+The canonical public source repository is `karadzhyan/numeraire`. The complete, exact website files live in `public/`; use that directory as the deployment output. Any ChatGPT account or cloud development environment can clone or read the public source and prepare changes without the AK Sites connector.
 
 ## Preserve the Edition
 
@@ -28,6 +28,8 @@ This check covers local file targets, not fragment identifiers, external website
 
 ## Deployment and Current Content
 
-The site has no build or runtime dependencies. Keep `vercel.json` configured with `framework: null`, `outputDirectory: "public"`, and `cleanUrls: true`. Do not add a catch-all single-page-app rewrite. The GitHub repository is connected to the `numeraire` Vercel project in `karadzhyans-projects`; pushes to `main` trigger production deployment. Verify the actual deployment and domain results before reporting a release complete.
+The site has no build or runtime dependencies. Keep `vercel.json` configured with `framework: null`, `outputDirectory: "public"`, and `cleanUrls: true`. Do not add a catch-all single-page-app rewrite. The GitHub repository is connected to the `numeraire` Vercel project in `karadzhyans-projects`; pushes to `main` automatically trigger production deployment, and other branches provide previews.
+
+Reading and preparing changes requires no repository write permission. Committing locally does not publish them. Push authorized changes using authenticated GitHub access with permission to write to this repository; a ChatGPT account alone does not supply that access. The production workflow uses GitHub and Vercel directly, without the AK Sites connector. Verify the resulting deployment before reporting publication. DNS configuration and domain verification are separate operations; do not infer their status from a successful push.
 
 At this repository's initial import, The Stock has twelve expanded essays; the Utility edition has 210 completed essays and 102 preparation slots. The first nine expanded volumes and all 26 Collected volumes are complete. Derive revised counts from the actual edition when subsequent work changes them.
