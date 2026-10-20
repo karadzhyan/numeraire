@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Bearer — Numéraire, The Premium, Plate x</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:66rem; --measure:35rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(2.8rem,7vh,5rem) 0 clamp(1.4rem,3.5vh,2.2rem);text-align:center;}
+
+  .crumbs{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 400;
+    font-size:.8rem;letter-spacing:.04em;color:var(--faint);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:center;gap:.55rem;}
+  .crumbs a{text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .2s ease,color .2s ease;}
+  .crumbs a:hover{border-color:var(--num);color:var(--ink);}
+  .crumbs .sep{color:var(--faintest);}
+  .crumbs .here{color:var(--ink);}
+
+  .plate-mark{width:116px;height:116px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:.18rem;line-height:1;}
+  .plate-mark.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pm-vol{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.84rem;letter-spacing:.06em;color:rgba(240,235,225,.62);}
+  .pm-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;
+    font-size:2.5rem;letter-spacing:.02em;text-transform:uppercase;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.1rem,6vw,4rem);line-height:1.03;letter-spacing:-.025em;margin:1rem 0 0;text-wrap:balance;}
+  .status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:42rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .epi{max-width:38rem;margin:clamp(2.2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .epi q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.46;color:var(--ink);quotes:none;display:block;text-wrap:pretty;}
+  .epi .cite{display:block;margin-top:.95rem;font-size:.78rem;color:var(--faintest);letter-spacing:.05em;font-style:normal;}
+  .epi .cite em{font-style:italic;}
+
+  .essay{max-width:52rem;margin:clamp(3rem,7vh,5rem) auto 0;counter-reset:sn;}
+  .essay::after{content:"";display:block;clear:both;}
+  .essay > p,.essay > .pull{max-width:var(--measure);}
+  .essay p{font-size:1.075rem;line-height:1.8;color:var(--ink);margin:0 0 1.4rem;text-wrap:pretty;}
+  .essay em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.72;padding:.08em .14em 0 0;color:var(--ink);}
+
+  .divider{display:flex;justify-content:center;margin:2.4rem 0;}
+  .divider svg{width:96px;height:12px;overflow:visible;}
+  .divider line{stroke:var(--num);stroke-width:1;} .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.5vw,1.74rem);line-height:1.34;color:var(--ink);text-align:center;
+    margin:2.4rem auto;max-width:33rem;text-wrap:balance;}
+
+  .snref{font-family:"Fraunces",serif;font-size:.64em;line-height:0;vertical-align:super;
+    color:var(--soft);counter-increment:sn;margin-left:1px;font-style:normal;}
+  .snref::after{content:counter(sn);}
+  .sn{display:block;max-width:var(--measure);margin:.1rem 0 1.4rem;padding:.15rem 0 .15rem 1.05rem;
+    border-left:1px solid var(--hair);font-size:.84rem;line-height:1.52;color:var(--faint);}
+  .sn::before{content:counter(sn);font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--faintest);margin-right:.5em;font-size:.92em;}
+  .sn em{font-style:italic;}
+
+  @media (min-width:64rem){
+    .sn{float:right;clear:right;width:15rem;margin:.35rem 0 1.3rem;padding:0;border-left:none;}
+    .divider,.pull,.apparatus{clear:both;}
+  }
+
+  .apparatus{max-width:52rem;margin:clamp(3.2rem,7vh,5rem) auto 0;padding-top:2rem;border-top:1px solid var(--hair);clear:both;}
+  .app-h{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;}
+  .app-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.4rem;}
+  .app-list li{border-top:1px solid var(--hair);}
+  .app-list li:first-child,.app-list li:nth-child(2){border-top:none;}
+  .app-list a{display:block;text-decoration:none;padding:.95rem 0;}
+  .app-list a:hover .app-t{color:var(--soft);}
+  .app-rel{display:block;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faintest);margin-bottom:.3rem;}
+  .app-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.12rem;color:var(--ink);transition:color .2s ease;}
+  .app-g{display:block;font-size:.84rem;color:var(--faint);font-style:italic;line-height:1.4;margin-top:.22rem;}
+
+  footer{margin-top:clamp(3.5rem,8vh,6rem);padding:2.2rem 0 4rem;border-top:1px solid var(--hair);}
+  .crumbs.foot{justify-content:flex-start;margin-bottom:1.3rem;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .plate-mark{width:96px;height:96px;}
+    .pm-num{font-size:2.1rem;}
+    .essay p{font-size:1.04rem;line-height:1.74;}
+    .dropcap{font-size:3rem;}
+    .app-list{grid-template-columns:1fr;}
+    .app-list li:nth-child(2){border-top:1px solid var(--hair);}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="crumbs rise d1" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-premium.html">The Premium &middot; Vol IV</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate x</span>
+    </nav>
+    <div class="plate-mark lit rise d2" aria-hidden="true">
+      <span class="pm-vol">Pm</span>
+      <span class="pm-num">x</span>
+    </div>
+    <h1 class="rise d3">The Bearer</h1>
+    <div class="status rise d3">in print &middot; The Premium &middot; plate x</div>
+    <p class="standfirst rise d4">A risk can leave an account while remaining in the world. This plate follows the difference between an agreed transfer and a change in exposure imposed after the bargain, using debt, guarantees and the financing of a crisis to locate who gains and who pays. It asks when protection enables a useful undertaking, when it makes an inferior choice privately attractive, and what must be known before a reward can be called the wage of bearing.</p>
+  </header>
+
+  <div class="epi rise d5"><q>Follow the loss as carefully as the return.</q><span class="cite">The argument of this plate</span></div>
+
+  <article class="essay">
+<p class="lede"><span class="dropcap">A</span> risk can leave one person's account without leaving the world. Insurance makes that movement its business: a household pays a certain sum so that someone with a wider pool will meet an uncertain loss. The transfer can make both parties better off. Yet the same change in the location of a loss can also separate the person who chooses a danger from the person who ultimately bears it. The return remains visible beside the chooser's name; the cost appears somewhere else. Before calling that return the wage of courage, the volume has to follow both sides of the account.</p>
+<p>The relevant distinction begins with the terms on which the risk moves. An insurer can knowingly accept a specified exposure, collect a price for it and arrange capital against the claims. A lender can accept the possibility of default in return for a promised payment and protections over the borrower's conduct. Neither bargain requires that the original owner retain every risk. Specialization in bearing can be useful precisely because different people have different capacities to withstand a loss. The question is whether the danger accepted is the danger subsequently imposed, and whether the price received covers the undertaking that has actually been made.</p>
+<p>Conduct can change after the bargain. A person whose losses are partly paid by another may choose differently from one who bears the whole consequence. This is the incentive problem called moral hazard. Its force depends on what can be observed, what can be contracted for and what the decision maker still has at stake. Michael Jensen and William Meckling made one version particularly clear in their account of the firm: shareholders with a fixed debt ahead of them may prefer an investment that raises their own claim's value while reducing the value left to creditors. The gain to the chooser can come partly from changing somebody else's exposure.<sup class="snref"></sup></p>
+<aside class="sn"><a href="https://josephmahoney.web.illinois.edu/BA549_Fall%202018/Session%205/5_Jensen_Meckling%20%281976%29.pdf">Jensen and Meckling, “Theory of the Firm: Managerial Behavior, Agency Costs and Ownership Structure” (1976), §4.1, pp. 334–337</a>. Their debt example distinguishes a transfer between claimants at unchanged total firm value from an incentive to select a project that reduces total value. The illustration below is separately constructed with risk-neutral parties, no discounting and fixed debt terms.</aside>
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"></line><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"></rect><line x1="60" y1="6" x2="96" y2="6"></line></svg></div>
+<p>Suppose an imagined company owes eighty and its owners can choose between two projects of equal cost. The first pays one hundred and ten for certain. Creditors receive eighty and shareholders receive thirty. The second pays one hundred and fifty or fifty with equal probability. In the favorable outcome, creditors still receive eighty and shareholders receive seventy. In the unfavorable one, creditors receive the available fifty and shareholders receive nothing; the owners have no further liability. The risky project gives shareholders an expected thirty-five, five more than the safer project. It gives creditors an expected sixty-five, fifteen less. Total expected receipts fall from one hundred and ten to one hundred. The shareholders' preference and the loss to the undertaking are perfectly compatible.</p>
+<p>The source of that preference becomes clearer if the owners finance the whole project themselves. They then compare the safe one hundred and ten with the risky average of one hundred and choose the former under the example's risk-neutral rule. Debt has changed the division of outcomes and, through that division, the choice. This does not make a hazardous project inherently wasteful. If its added possibilities produce enough additional value, taking it may improve the undertaking. The defect in this example is specific: an inferior total return becomes attractive to the decision maker because another claimant bears more of the downside.</p>
+<p>Creditors who foresee the choice can respond before lending. They may offer less for the debt, demand a covenant or require information that makes deviation harder. Jensen and Meckling emphasize this response: anticipated behavior enters the terms, so their argument does not depend on creditors being indefinitely fooled. But an accurately priced incentive problem can still be costly. A lower price for the debt can return the loss to the original owner without making the inferior project superior; monitoring and contractual restrictions can themselves consume resources or prevent useful changes. A sound arrangement has to compare these costs with the loss it prevents.<sup class="snref"></sup></p>
+<aside class="sn"><a href="https://josephmahoney.web.illinois.edu/BA549_Fall%202018/Session%205/5_Jensen_Meckling%20%281976%29.pdf">Jensen and Meckling, §4, pp. 335–339, including notes 42–49</a>. Lender anticipation changes the initial price of the claim. The authors separately consider costly covenants, monitoring and bonding, rather than treating all financial risk transfer as exploitation.</aside>
+<p>A guarantee can move the same loss one stage farther. Imagine that an outside guarantor promises to make these creditors whole for eighty, charges nothing and leaves shareholders' project choice unchanged. Under the risky project, it pays thirty in the bad outcome and nothing in the good one: an expected payment of fifteen. Creditors are now protected, while shareholders retain their expected thirty-five. The missing fifteen appears in the guarantor's account. A risk-sensitive fee of fifteen charged to the shareholders would reduce their expected net receipt to twenty, below the safe project's thirty. Under these assumptions the fee restores the preference for the better project. Real guarantees bring questions of observability, financing and credibility that the simple arithmetic has deliberately held fixed.</p>
+<p>The guarantor need not be a stranger, and the guarantee need not be written where the exposure first appears. A bank can move a loan into a separate vehicle and still promise that vehicle funding when its usual lenders withdraw. In his account of the credit crisis of 2007–2008, Markus Brunnermeier describes precisely this return path: liquidity backstops and holdings of structured claims left substantial exposures within the banking system. Selling a security changed the immediate owner of a claim. Establishing who remained at risk required reading the promises around the sale as well as the sale itself.<sup class="snref"></sup></p>
+<aside class="sn"><a href="https://www.princeton.edu/~markus/research/papers/liquidity_credit_crunch.pdf">Brunnermeier, “Deciphering the Liquidity and Credit Crunch 2007–2008” (2009), pp. 78–82</a>. This is a historical account of securitization, short-term financing and liquidity backstops during that episode. Its distinction between a transferred claim and retained exposure does not establish that every securitization has the same result.</aside>
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"></line><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"></rect><line x1="60" y1="6" x2="96" y2="6"></line></svg></div>
+<p>Some consequences also reach people outside the original bargain. A firm selling assets under pressure can depress prices used as collateral by others, tightening their borrowing constraints and inducing further sales. The resulting loss is more than a rearrangement of the first firm's contractual claims when it disrupts otherwise useful activity. Workers, suppliers and customers may encounter the consequence through a lost job, an interrupted payment or a service that disappears. Establishing such a cost requires the actual connection; the mere fact that an owner earned a return and somebody else later suffered does not identify one. But where the connection exists, an account confined to the owner's stake omits part of the risk the decision created.<sup class="snref"></sup></p>
+<aside class="sn"><a href="https://www.princeton.edu/~markus/research/papers/liquidity_credit_crunch.pdf">Brunnermeier (2009), “Amplifying Mechanisms and Recurring Themes,” pp. 91–98</a>. The operative mechanisms include collateral-linked loss and margin spirals, lending constraints and counterparty effects. The discussion of consequences beyond the original contract applies those mechanisms; it is not a claim that every failure produces a systemic externality.</aside>
+<p>Rescue brings the distinction between a present choice and an earlier incentive into view. Once a failure threatens a wider loss, support may prevent damage that letting the institution collapse would cause. The fact that support is useful at that moment does not determine who should have paid for the exposure beforehand or which claimants should retain value afterward. Conversely, preserving incentives does not require treating every avoidable disruption as a desirable punishment. These questions concern different margins: preventing a loss already in motion, allocating its burden, and changing the decisions that will generate the next exposure. They have to be considered together without pretending they are the same act.</p>
+<p>The account of profit in the preceding plate already contained this difficulty. Knight recognized that contractual incomes can carry imperfect guarantees and that responsibility can be distributed among managers, financiers and the providers of productive services. A business can therefore offer real protection to others while leaving them with some uncertainty; it can also obtain protection for its owners while passing danger outward. Neither arrangement can be judged from the label on the income. The comparison must trace the enforceable commitments, the freedom to alter them, the resources available when they fall due and the consequences for people who supplied no consent at all.<sup class="snref"></sup></p>
+<aside class="sn"><a href="https://www.econlib.org/library/Knight/knRUP.html?chapter_num=11">Knight, <i>Risk, Uncertainty, and Profit</i> (1921), part III, chapter IX, concluding discussion of divided entrepreneurship and imperfect guarantees</a>. The final paragraphs expressly allow suppliers of productive services to share the uncertainty despite receiving contractual claims.</aside>
+<p class="pull">A return can reward the bearing of risk only to the extent that the risk has actually been borne.</p>
+<p>The bearer is thus a position to establish, not an honor bestowed by the size of a reward. A well-designed transfer can put danger where it is best managed and make an undertaking possible. An unpriced transfer can make the undertaking look safer to its chooser precisely by exposing someone else. The premium acquires its meaning from that difference. The next plate asks what happens when the price of bearing is itself encouraged by the calm it helps to sustain, and when a market's confidence grows faster than its capacity to meet the promises confidence has produced. The argument remains open.</p>
+</article>
+
+  <nav class="apparatus" aria-label="Related reading"><h2 class="app-h">Related</h2><ul class="app-list"><li><a href="the-premium-uncertainty.html"><span class="app-rel">The residual and its guarantees</span><span class="app-t">The Uncertainty</span><span class="app-g">Why an entrepreneur’s claim on the remainder does not locate every exposure.</span></a></li><li><a href="the-premium-policy.html"><span class="app-rel">An agreed transfer</span><span class="app-t">The Policy</span><span class="app-g">How coverage, exclusions and the price of a promise distribute risk.</span></a></li><li><a href="the-premium-bubble.html"><span class="app-rel">Exposure built in the calm</span><span class="app-t">The Bubble</span><span class="app-g">How financing decisions can magnify the danger behind an apparently quiet return.</span></a></li><li><a href="../essays/numeraire-xi-xi-the-contagion.html"><span class="app-rel">Losses beyond the bargain</span><span class="app-t">The Contagion — Utility</span><span class="app-g">How funding constraints and related balance sheets carry an initial loss into other accounts.</span></a></li></ul></nav>
+
+  <footer>
+    <nav class="crumbs foot" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-premium.html">The Premium &middot; Vol IV</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate x &middot; The Bearer</span>
+    </nav>
+    <p class="colophon">The tenth plate of Volume IV, <em>The Premium</em>, developed for the original Margin Bearer question from the related inquiries in <a href="../volumes/the-premium.html#plate-vii">The Care</a> and <a href="../volumes/the-premium.html#plate-xii">The Assurance in the Collected Premium</a>, together with <a href="../quantities/numeraire-plate-the-reward.html">The Reward</a> and <a href="../quantities/numeraire-plate-the-fortune.html">The Fortune in Quantities</a>. These earlier texts supply the risk-transfer, incentive and desert questions; the present debt-and-guarantee argument develops the planned plate. Each earlier edition remains intact, and the epigraph states this plate’s argument. Return to <a href="the-premium.html">the volume</a>, or to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-premium-uncertainty.html">← The Uncertainty</a><a rel="next" href="the-premium-bubble.html">The Bubble →</a></nav>
+</body>
+</html>

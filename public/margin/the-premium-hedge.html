@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Hedge — Numéraire, The Premium, Plate vi</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:66rem; --measure:35rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(2.8rem,7vh,5rem) 0 clamp(1.4rem,3.5vh,2.2rem);text-align:center;}
+
+  .crumbs{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 400;
+    font-size:.8rem;letter-spacing:.04em;color:var(--faint);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:center;gap:.55rem;}
+  .crumbs a{text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .2s ease,color .2s ease;}
+  .crumbs a:hover{border-color:var(--num);color:var(--ink);}
+  .crumbs .sep{color:var(--faintest);}
+  .crumbs .here{color:var(--ink);}
+
+  .plate-mark{width:116px;height:116px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:.18rem;line-height:1;}
+  .plate-mark.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pm-vol{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.84rem;letter-spacing:.06em;color:rgba(240,235,225,.62);}
+  .pm-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;
+    font-size:2.5rem;letter-spacing:.02em;text-transform:uppercase;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.1rem,6vw,4rem);line-height:1.03;letter-spacing:-.025em;margin:1rem 0 0;text-wrap:balance;}
+  .status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:42rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .epi{max-width:38rem;margin:clamp(2.2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .epi q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.46;color:var(--ink);quotes:none;display:block;text-wrap:pretty;}
+  .epi .cite{display:block;margin-top:.95rem;font-size:.78rem;color:var(--faintest);letter-spacing:.05em;font-style:normal;}
+  .epi .cite em{font-style:italic;}
+
+  .essay{max-width:52rem;margin:clamp(3rem,7vh,5rem) auto 0;counter-reset:sn;}
+  .essay::after{content:"";display:block;clear:both;}
+  .essay > p,.essay > .pull{max-width:var(--measure);}
+  .essay p{font-size:1.075rem;line-height:1.8;color:var(--ink);margin:0 0 1.4rem;text-wrap:pretty;}
+  .essay em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.72;padding:.08em .14em 0 0;color:var(--ink);}
+
+  .divider{display:flex;justify-content:center;margin:2.4rem 0;}
+  .divider svg{width:96px;height:12px;overflow:visible;}
+  .divider line{stroke:var(--num);stroke-width:1;} .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.5vw,1.74rem);line-height:1.34;color:var(--ink);text-align:center;
+    margin:2.4rem auto;max-width:33rem;text-wrap:balance;}
+
+  .snref{font-family:"Fraunces",serif;font-size:.64em;line-height:0;vertical-align:super;
+    color:var(--soft);counter-increment:sn;margin-left:1px;font-style:normal;}
+  .snref::after{content:counter(sn);}
+  .sn{display:block;max-width:var(--measure);margin:.1rem 0 1.4rem;padding:.15rem 0 .15rem 1.05rem;
+    border-left:1px solid var(--hair);font-size:.84rem;line-height:1.52;color:var(--faint);}
+  .sn::before{content:counter(sn);font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--faintest);margin-right:.5em;font-size:.92em;}
+  .sn em{font-style:italic;}
+
+  @media (min-width:64rem){
+    .sn{float:right;clear:right;width:15rem;margin:.35rem 0 1.3rem;padding:0;border-left:none;}
+    .divider,.pull,.apparatus{clear:both;}
+  }
+
+  .apparatus{max-width:52rem;margin:clamp(3.2rem,7vh,5rem) auto 0;padding-top:2rem;border-top:1px solid var(--hair);clear:both;}
+  .app-h{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;}
+  .app-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.4rem;}
+  .app-list li{border-top:1px solid var(--hair);}
+  .app-list li:first-child,.app-list li:nth-child(2){border-top:none;}
+  .app-list a{display:block;text-decoration:none;padding:.95rem 0;}
+  .app-list a:hover .app-t{color:var(--soft);}
+  .app-rel{display:block;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faintest);margin-bottom:.3rem;}
+  .app-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.12rem;color:var(--ink);transition:color .2s ease;}
+  .app-g{display:block;font-size:.84rem;color:var(--faint);font-style:italic;line-height:1.4;margin-top:.22rem;}
+
+  footer{margin-top:clamp(3.5rem,8vh,6rem);padding:2.2rem 0 4rem;border-top:1px solid var(--hair);}
+  .crumbs.foot{justify-content:flex-start;margin-bottom:1.3rem;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .plate-mark{width:96px;height:96px;}
+    .pm-num{font-size:2.1rem;}
+    .essay p{font-size:1.04rem;line-height:1.74;}
+    .dropcap{font-size:3rem;}
+    .app-list{grid-template-columns:1fr;}
+    .app-list li:nth-child(2){border-top:1px solid var(--hair);}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="crumbs rise d1" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-premium.html">The Premium &middot; Vol IV</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate vi</span>
+    </nav>
+    <div class="plate-mark lit rise d2" aria-hidden="true">
+      <span class="pm-vol">Pm</span>
+      <span class="pm-num">vi</span>
+    </div>
+    <h1 class="rise d3">The Hedge</h1>
+    <div class="status rise d3">in print &middot; The Premium &middot; plate vi</div>
+    <p class="standfirst rise d4">A collection can be steadier than its parts because their fortunes differ. This plate follows that saving in risk from Markowitz’s portfolio arithmetic into the conditional pricing argument that rewards common exposure. It then returns to the owner whose employment, business or financing prevents an easy spreading, and asks what a premium explains when the freedom to diversify is itself unevenly held.</p>
+  </header>
+
+  <div class="epi rise d5"><q>The second holding protects the first only insofar as it brings a different fate.</q><span class="cite">The argument of this plate</span></div>
+
+  <article class="essay">
+<p class="lede"><span class="dropcap">A</span> ship may come home safely while another is lost. A harvest may fail in one valley while the next has rain. The owner who divides a fortune between ventures whose fortunes differ can make the whole less precarious without asking either venture to become less precarious itself. This is the modest miracle of diversification: a change in ownership can remove a danger that no change in production has removed. The crops still fail, the ships still sink, and the separate accounts still record their losses. What changes is the chance that one person must meet all those losses together. Here the justification of the premium encounters an awkward economy. If an owner can shed a risk merely by spreading a holding, why should anyone pay that owner to keep it?</p>
+
+<p>There is a precise argument beneath the proverb about baskets. The expected return on a portfolio is the weighted average of the expected returns on its parts. Its variance also depends on the relations between them. A share that is volatile by itself may steady a collection if its movements offset those of the other holdings; a second apparently different business may add little protection if both businesses prosper and suffer for the same reasons. Harry Markowitz made these relations the center of portfolio choice. The question became which combinations offered the least variance for a given expected return, or the greatest expected return for a given variance. Counting names on a statement could not answer it. A hundred names might conceal one exposure.<sup class="snref"></sup></p>
+<aside class="sn"><a href="https://traders.studentorg.berkeley.edu/papers/Markowitz.pdf">Harry Markowitz, “Portfolio Selection” (1952)</a>, pp. 79–83 and 89–91. Portfolio variance contains the covariances between holdings. Markowitz’s comparison concerns expected return and variance; his concluding discussion also recognizes other features of distributions and the judgment required to estimate the inputs.</aside>
+
+<p>Take an invented pair of ventures, each equally likely to return nothing or twenty percent in a year. Each offers an expected ten percent, with a standard deviation of ten percentage points. If their outcomes are independent, an equal holding in both returns nothing one quarter of the time, ten percent half the time, and twenty percent one quarter of the time. The expected return remains ten percent; the standard deviation falls to about 7.07 percentage points. No dividend has been sacrificed to obtain the reduction. But let the ventures always succeed and fail together, and the equal holding fluctuates just as much as either one alone. The second certificate has bought no second fate. The gain arose from the relationship between the outcomes, and it disappears when that relationship changes.<sup class="snref"></sup></p>
+<aside class="sn">An invented comparison with equal weights and no costs. The individual variance is 100 in squared percentage-point units; the independent portfolio variance is 50. Perfect positive co-movement instead leaves the variance at 100. The comparison preserves the component means and distributions while changing their joint behavior.</aside>
+
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg></div>
+
+<p>The distinction between a venture’s own hazard and a shared hazard can be made equally clear. Suppose, again by invention, that every return consists of an expected ten percent, a common disturbance with a standard deviation of eight percentage points, and a separate disturbance with a standard deviation of twelve. Let all the separate disturbances be independent of one another and of the common one. With equal holdings, four ventures give a portfolio standard deviation of ten percentage points; a hundred bring it down to about 8.09. Adding ventures keeps reducing the separate part, while the common part remains. The limiting eight is the risk of the condition to which every venture is exposed. Diversification has done exactly what was asked of it. The condition was never among the things that this particular spreading could cancel.<sup class="snref"></sup></p>
+<aside class="sn">For this invented common-factor model, portfolio variance is 64 + 144/n, where n is the number of equally weighted ventures. Independence and equal component variances are assumptions. The formula approaches 64, not zero. A different opportunity set, including claims that offset the common factor, would change the possibilities.</aside>
+
+<p>The phrase “for free” therefore deserves its full meaning. In the first example, diversification lowers variance without lowering the weighted average expected return. It does not promise that every safer collection has the expected return of its most lucrative member, that trading has no cost, or that every desired combination can be purchased. Changing weights may change both mean and risk. Fees, taxes, indivisible investments and limits on borrowing can alter the feasible set. More fundamentally, variance need not describe everything an owner fears: a distribution’s asymmetry, the size of an extreme loss and the date at which money will be needed can matter. The mathematical gain remains. Its practical value depends on the opportunity to assemble and hold the collection through the period for which the calculation was made.</p>
+
+<p>Nor does this arithmetic by itself establish what the market will pay. That requires a further argument about the people who set prices. If investors can obtain diversified portfolios, compete over the same assets, and evaluate risk in the manner the model specifies, the price of a holding responds to the risk it contributes to a portfolio. An avoidable fluctuation peculiar to one company supplies no independent reason for a higher expected return in that equilibrium. William Sharpe’s capital-asset-pricing argument develops the step from selection to price under strong common conditions, including shared assessments of returns and access to borrowing and lending at a common risk-free rate. The conditions do real work. They connect the owner’s opportunity to diversify with the market’s refusal to reward an exposure that diversification can eliminate.<sup class="snref"></sup></p>
+<aside class="sn"><a href="https://www.sfu.ca/~kkasa/Sharpe_64.pdf">William F. Sharpe, “Capital Asset Prices: A Theory of Market Equilibrium under Conditions of Risk” (1964)</a>, especially pp. 433–442. The equilibrium argument follows a mean–standard-deviation framework and stated financing and belief assumptions. A portfolio identity alone is not a theorem about expected asset prices.</aside>
+
+<p>The familiar measure is beta: a holding’s covariance with the market portfolio divided by the market portfolio’s variance. Within the model, the expected excess return on the holding is its beta times the expected market excess return. Invent a risk-free rate of two percent and an expected market return of eight. A beta of one and a half then calls for an expected return of eleven percent. A beta of zero calls for two, even if the holding fluctuates violently for reasons unrelated to the market. The second holding has not become safe in isolation. The model says that its separate fluctuations do not require compensation from a diversified holder. And the eleven percent is an expectation embodied in a price, not a promise that the account will show eleven at the end of the year.<sup class="snref"></sup></p>
+<aside class="sn">The invented pricing calculation is 2% + 1.5 × (8% − 2%) = 11%. Sharpe’s pp. 438–440 relate expected returns to the systematic part of risk. Zero beta does not imply zero variance; an actual realized return need not equal its expectation.</aside>
+
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg></div>
+
+<p>A loss is costly in relation to the circumstances in which it arrives. A claim that pays when other resources are abundant supplies something different from a claim that pays when they are scarce. Consumption-based pricing expresses that relation through the value of an additional unit of consumption in each possible state. Market covariance is one particular way of organizing the relevant exposure; it is not a definition of every danger that could command a price in every model. “Systematic” also does not mean that every asset must fall on every bad day. It concerns a relationship across possible outcomes. The amount of compensation required for the shared exposure still needs explaining. That is the question taken up by <a href="the-premium-equity.html">The Equity</a>.<sup class="snref"></sup></p>
+<aside class="sn"><a href="https://rajnishmehra.com/wp-content/uploads/2023/09/FAJ-RM.pdf">Rajnish Mehra, “The Equity Premium: Why Is It a Puzzle?” (2003)</a>, pp. 55–60, corrected February 2003 version. The consumption-pricing argument values payoffs by marginal utility across states and explains why an asset’s own variance is insufficient to determine its premium.</aside>
+
+<p>The owner in this argument has a freedom that some owners lack. A worker’s future earnings may already depend on the employer whose shares appear in a retirement account. A home, a local business and the demand for the owner’s labor may depend on the same town. None is made independent by being entered on a different line of a balance sheet. The person can understand diversification perfectly and still lack a market in which to sell the labor income, move the home without cost, or divide the business while retaining the work it provides. A market price set through the opportunities of investors who can spread their holdings need not compensate this person for every additional burden of concentration. The price and the burden answer different questions, and can coexist without contradiction.</p>
+
+<p>Concentration may also be part of producing the return. An entrepreneur can bring judgment, control and sustained attention to a venture in which much of her wealth is tied. Spreading the wealth may change those incentives or require relinquishing control; it is then more than the exchange of one passive financial claim for another. The risk that accompanies this commitment cannot establish by itself how much of the eventual proceeds represents effort, information, scarcity, luck or bargaining power. Neither can the success of a concentrated holding establish that concentration earned its reward. The earlier distinction between peril and fortune survives the portfolio: an exposure can be deliberately taken, valuable work can accompany it, and the realized windfall can still contain a large gift of circumstances.</p>
+
+<p>A further difficulty appears when the owners’ financing connects ventures that seemed separate in their operating accounts. Losses can exhaust an investor’s capital; a demand for more collateral can force sales; the sales can depress prices and weaken other balance sheets. Markus Brunnermeier’s account of the 2007–2008 crisis distinguishes the liquidity of a market from the funding needed to keep a position open, and shows how the two can reinforce each other. The mechanism requires the relevant frictions and constrained resources. It does not make every correlation equal to one. It does mean that common creditors, common funding terms and common needs for immediate cash can become part of the dependence a portfolio must bear. Geographic variety on the asset side will not necessarily diversify the demand made by one balance sheet on all its assets at once.<sup class="snref"></sup></p>
+<aside class="sn"><a href="https://www.princeton.edu/~markus/research/papers/liquidity_credit_crunch.pdf">Markus K. Brunnermeier, “Deciphering the Liquidity and Credit Crunch 2007–2008” (2009)</a>, pp. 91–98. The loss and margin spirals depend on funding constraints, market liquidity and the capacity of other investors to absorb sales; they are mechanisms of amplification, not a universal assertion about all correlations.</aside>
+
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg></div>
+
+<p>The hedge thus economizes on risk-bearing and exposes the conditions under which risk-bearing can be sold. Where cancellation is possible, assembling the collection can be a real service: fewer resources need stand ready against losses that will not all arrive together. Where a common exposure remains, someone must still be willing and able to absorb it. The premium gives a price to that willingness under a particular distribution of wealth and opportunities. It cannot, merely by existing, vindicate the distribution that makes one person able to wait through a loss and another unable to meet next month’s bills. The capacity to spread is itself an economic advantage, and the price formed by those who possess it can be intelligible without describing the experience of those who do not.</p>
+
+<p class="pull">Spreading a fortune can remove a danger; it cannot tell us who was free to spread.</p>
+
+<p>In the ideal diversified market, the premium attaches to the exposure a holding contributes to the relevant whole. The venture’s avoidable, separate hazard supplies no additional claim merely because one owner chooses to carry it alone. Outside that model, the task is to identify the actual opportunity set, the actual dependence and the actual people whose resources stand behind the return. <a href="the-premium-policy.html">The Policy</a> asks how a pool can bear the claims of many; <a href="the-premium-tail.html">The Tail</a> asks what happens when the losses arrive together or exceed the pool. The hedge has narrowed the justification of the premium and made its remaining burden more exact. It has not abolished the burden. The argument remains open.</p>
+</article>
+
+  <nav class="apparatus" aria-label="Related reading"><h2 class="app-h">Related</h2><ul class="app-list"><li><a href="the-premium-policy.html"><span class="app-rel">The collective bearer</span><span class="app-t">The Policy</span><span class="app-g">How pooling makes individual losses more bearable, and what a pool must hold against its promises.</span></a></li><li><a href="the-premium-equity.html"><span class="app-rel">The price of what remains</span><span class="app-t">The Equity</span><span class="app-g">Why the historical reward for common market exposure exceeds what a particular benchmark model can explain.</span></a></li><li><a href="the-premium-tail.html"><span class="app-rel">The dependence in adversity</span><span class="app-t">The Tail</span><span class="app-g">The catastrophe and the common financing pressure that a long list of holdings may still share.</span></a></li><li><a href="the-premium-bearer.html"><span class="app-rel">The capacity behind the price</span><span class="app-t">The Bearer</span><span class="app-g">The distribution of resources that determines who can retain a loss and who must pass it on.</span></a></li></ul></nav>
+
+  <footer>
+    <nav class="crumbs foot" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-premium.html">The Premium &middot; Vol IV</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate vi &middot; The Hedge</span>
+    </nav>
+    <p class="colophon">The sixth plate of Volume IV, <em>The Premium</em>, adapted for the Margin edition from <a href="../quantities/numeraire-plate-the-diversification.html">The Diversification</a> and <a href="../quantities/numeraire-plate-the-beta.html">The Beta in Quantities</a>, <a href="../volumes/the-premium.html#plate-viii">The Basket</a> and <a href="../volumes/the-premium.html#plate-ix">The Beta in the Collected Premium</a>, and the Utility treatments of <a href="../essays/numeraire-iv-iv-the-basket.html">The Basket</a> and <a href="../essays/numeraire-iv-v-the-systematic.html">The Systematic</a>. The original Margin question directs this account of diversification and its limits. The earlier editions retain their distinct writing and form. The epigraph states the argument of this plate. Return to <a href="the-premium.html">the volume</a>, or to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-premium-policy.html">← The Policy</a><a rel="next" href="the-premium-equity.html">The Equity →</a></nav>
+</body>
+</html>
