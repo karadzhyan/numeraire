@@ -6,9 +6,9 @@ Canonical source repository: [karadzhyan/numeraire](https://github.com/karadzhya
 
 This repository contains the complete static website, including its distinct editions, essays, instruments, original figures, fonts, PDFs, and reading interfaces. The files in `public/` are the exact website files served in production; the initial import preserves the existing writing, design, and interactive pieces.
 
-The current edition completes Volume XX, **The Growth**, at twelve of twelve expanded essays. The expanded Utility edition contains **276 completed essays and 36 preparation slots**; its first twenty volumes are complete. The separate Collected edition retains all 26 volumes and 312 plates. Earlier editions remain available alongside the expanded essays.
+The current edition completes Volume XXI, **The Level**, at twelve of twelve expanded essays. The expanded Utility edition contains **282 completed essays and 30 preparation slots**; its first twenty-one volumes are complete. The separate Collected edition retains all 26 volumes and 312 plates. Earlier editions remain available alongside the expanded essays.
 
-The six completed Growth leaves are The Takeoff, The Talent, The Multitude, The Map, The Measure, and The Ceiling. Their colophons identify earlier treatments and distinguish adaptations from developed continuations.
+The six completed Level leaves are The Neutral, The Erosion, The Descent, The Specie, The Transmission, and The Mandate. All six are adaptations; their colophons identify the earlier treatments, which remain available.
 
 ## Read Locally
 
@@ -18,7 +18,7 @@ No build step or package installation is required. From the repository root, run
 python3 -m http.server 8000 --bind 127.0.0.1 --directory public
 ```
 
-Open [the volume atlas](http://127.0.0.1:8000/), [all editions](http://127.0.0.1:8000/editions.html), or [The Growth](http://127.0.0.1:8000/essays/numeraire-xx-the-growth.html).
+Open [the volume atlas](http://127.0.0.1:8000/), [all editions](http://127.0.0.1:8000/editions.html), or [The Level](http://127.0.0.1:8000/essays/numeraire-xxi-the-level.html).
 
 ## Check Local References
 
