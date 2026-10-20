@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Coordination — The Game, Plate vi · Numéraire</title>
+<meta name="description" content="coordination games and focal points; when several outcomes would suit everyone, how players settle, without a word, on the same one.">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- reading-progress hairline ---- */
+  .progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--ink);z-index:10000;}
+
+  /* ---- masthead ---- */
+  .masthead{padding:clamp(2.8rem,8vh,5.6rem) 0 clamp(1.6rem,4vh,2.6rem);text-align:center;}
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;}
+  .edition{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+  .edition b{font-family:"Fraunces",serif;font-weight:500;font-style:normal;color:var(--soft);letter-spacing:.04em;}
+
+  .symbox{width:84px;height:84px;border:1px solid var(--ink);border-radius:2px;background:var(--ink);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;margin:clamp(1.4rem,3.4vh,2.2rem) auto 0;}
+  .symbox .sb-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2rem;line-height:1;color:var(--paper);letter-spacing:-.01em;}
+  .symbox .sb-num{font-family:"Fraunces",serif;font-size:.66rem;color:rgba(240,235,225,.58);margin-top:.28rem;letter-spacing:.04em;}
+
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-top:1.15rem;}
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.5rem,7vw,5rem);line-height:1.0;letter-spacing:-.028em;margin:.55rem 0 0;text-wrap:balance;}
+  .subtitle{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.05rem,1.7vw,1.32rem);color:var(--faint);margin:.5rem 0 0;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.64;color:var(--soft);
+    max-width:43rem;margin:clamp(1.3rem,3vh,1.9rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+  .status{font-size:.84rem;color:var(--soft);margin:clamp(1.2rem,2.6vh,1.7rem) auto 0;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .backrow{margin-top:clamp(1.3rem,3vh,1.9rem);padding-top:1.5rem;border-top:1px solid var(--hair);max-width:50rem;margin-left:auto;margin-right:auto;}
+  .backlink{display:inline-block;font-size:.82rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .backlink:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- generic block furniture ---- */
+  main{padding:0;}
+  .eyebrow{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.2rem;}
+
+  .block-argument{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .argument{max-width:40rem;margin:0 auto;}
+  .argument p{font-size:1.08rem;line-height:1.74;color:var(--ink);margin:0 0 1.2rem;text-wrap:pretty;}
+  .argument p:last-child{margin-bottom:0;}
+  .argument .closer{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 400;font-style:italic;color:var(--soft);font-size:1.06rem;}
+
+  /* ---- table of plates ---- */
+  .block-toc{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .toc ol{list-style:none;margin:0;padding:0;max-width:44rem;}
+  .toc li{display:grid;grid-template-columns:2.5rem 1fr;column-gap:1rem;align-items:baseline;
+    padding:.85rem 0;border-top:1px solid var(--hair);}
+  .toc li:first-child{border-top:none;}
+  .t-num{font-family:"Fraunces",serif;font-size:.92rem;color:var(--faintest);text-align:right;}
+  .t-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.08rem;color:var(--ink);line-height:1.15;text-decoration:none;}
+  a.t-title{border-bottom:1px solid var(--num);padding-bottom:1px;}
+  a.t-title:hover{border-bottom-color:var(--ink);}
+  .t-gloss{grid-column:2;font-size:.85rem;color:var(--faint);font-style:italic;margin-top:.22rem;line-height:1.4;}
+  .t-q{grid-column:2;font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:.95rem;color:var(--soft);margin-top:.42rem;line-height:1.36;}
+  .t-q .lead{font-family:"Fraunces",serif;font-style:normal;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-right:.5rem;}
+  .t-tag{display:inline-block;margin-left:.6rem;font-family:"Newsreader",serif;font-size:.64rem;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--paper);background:var(--ink);border-radius:2px;padding:.12em .5em;vertical-align:.14em;}
+  .t-read{grid-column:2;margin-top:.42rem;}
+  .t-read a{font-size:.8rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .t-read a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- the plates (essays) ---- */
+  .plates-open{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.8rem,6vh,4rem);}
+  .plates-open .eyebrow{text-align:center;}
+  .plate{max-width:54rem;margin:clamp(2.8rem,6.5vh,4.4rem) auto 0;padding-top:clamp(2.2rem,4.6vh,3rem);
+    border-top:1px solid var(--hair);position:relative;scroll-margin-top:1.4rem;}
+  .plate:first-of-type{border-top:none;margin-top:clamp(1.6rem,3.5vh,2.4rem);padding-top:0;}
+  .plate-head{margin:0 0 1.7rem;}
+  .plate-kicker{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .plate-kicker .pk-tag{margin-left:.6rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .plate-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.8rem,4.2vw,2.7rem);line-height:1.03;letter-spacing:-.02em;margin:.32rem 0 .42rem;}
+  .plate-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.02rem;color:var(--faint);max-width:36rem;line-height:1.45;}
+
+  .epigraph{max-width:34rem;margin:1.4rem 0 1.9rem;padding-left:1.1rem;border-left:1px solid var(--num);}
+  .epigraph p{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:1.04rem;line-height:1.42;color:var(--soft);margin:0;}
+  .epigraph cite{display:block;font-style:normal;font-family:"Newsreader",serif;font-size:.78rem;
+    letter-spacing:.03em;color:var(--faintest);margin-top:.55rem;}
+
+  .plate-body{max-width:37rem;}
+  .plate-body p{font-size:1.05rem;line-height:1.75;color:var(--ink);margin:0 0 1.18rem;text-wrap:pretty;}
+  .plate-body p:last-child{margin-bottom:0;}
+  .plate-body em{font-style:italic;}
+  .plate-body .lead-para::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 500;
+    float:left;font-size:3.5rem;line-height:.78;padding:.08em .14em 0 0;color:var(--ink);}
+  .plate-body h4{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);margin:1.9rem 0 .9rem;}
+
+  .break{display:flex;justify-content:center;margin:1.9rem 0;}
+  .break span{font-family:"Fraunces",serif;font-size:1.05rem;letter-spacing:.4em;color:var(--faintest);padding-left:.4em;}
+
+  /* sidenotes — inline by default, true margin notes on wide screens */
+  .sn-ref{font-family:"Fraunces",serif;font-size:.64rem;vertical-align:super;line-height:0;color:var(--soft);margin-left:.06em;}
+  .sidenote{font-family:"Newsreader",serif;font-size:.82rem;line-height:1.52;color:var(--faint);
+    border-left:2px solid var(--hair);padding-left:.9rem;margin:.7rem 0 1.05rem;}
+  .sidenote .sn-num{font-family:"Fraunces",serif;color:var(--faintest);font-size:.7rem;margin-right:.38rem;}
+  .sidenote em{font-style:italic;}
+  @media (min-width:1040px){
+    .sidenote{float:right;clear:right;width:14.5rem;margin:.25rem -17.5rem 1.15rem 0;
+      border-left:none;border-top:1px solid var(--hair);padding:.42rem 0 0;}
+  }
+
+  /* ---- coda ---- */
+  .coda{max-width:40rem;margin:clamp(2.8rem,6vh,4rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);}
+  .coda p{font-size:1.06rem;line-height:1.74;color:var(--ink);margin:0 0 1.15rem;text-wrap:pretty;}
+  .coda p:last-child{margin-bottom:0;}
+  .coda .q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .f-ref a{text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .f-ref a:hover{border-bottom-color:var(--soft);}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .progress{transition:width .08s linear;}
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}.rise.d4{animation-delay:.4s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    h1{font-size:clamp(2.2rem,11vw,3rem);}
+    .symbox{width:72px;height:72px;}
+    .symbox .sb-sym{font-size:1.7rem;}
+    .plate-body .lead-para::first-letter{font-size:3rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+
+  /* ---- standalone plate (leaf) ---- */
+  .leaf-head{max-width:54rem;margin:0 auto;padding:clamp(2.2rem,6.5vh,4.4rem) 0 0;text-align:center;}
+  .leaf-loc{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.08em;color:var(--faintest);margin-bottom:1.7rem;}
+  .leaf-loc a{text-decoration:none;color:var(--faint);border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .leaf-loc a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+  .leaf-loc .sep{margin:0 .5rem;color:var(--num);}
+  .leaf-kicker{font-family:"Fraunces",serif;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .leaf-kicker .pk-tag{margin-left:.55rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .leaf-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.2rem,5.6vw,3.7rem);line-height:1.02;letter-spacing:-.024em;margin:.42rem 0 0;text-wrap:balance;}
+  .leaf-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.06rem;color:var(--faint);
+    max-width:34rem;margin:.72rem auto 0;line-height:1.5;text-wrap:pretty;}
+  .epigraph.leaf-epigraph{margin:1.95rem auto 1.4rem;text-align:left;}
+  .leaf-body-wrap{max-width:54rem;margin:clamp(1.8rem,4vh,2.8rem) auto 0;}
+
+  .leaf-nav{max-width:54rem;margin:clamp(3rem,7vh,5.2rem) auto 0;padding-top:clamp(1.8rem,4vh,2.6rem);
+    border-top:1px solid var(--hair);display:grid;grid-template-columns:1fr auto 1fr;gap:1.3rem;align-items:start;}
+  .ln-cell{text-decoration:none;display:block;}
+  .ln-cell .lab{display:block;font-family:"Fraunces",serif;font-size:.64rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--faintest);margin-bottom:.36rem;}
+  .ln-cell .ttl{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1rem;
+    color:var(--soft);line-height:1.22;}
+  a.ln-cell:hover .ttl{color:var(--ink);}
+  .ln-prev{text-align:left;} .ln-home{text-align:center;} .ln-next{text-align:right;}
+
+  @media (max-width:600px){
+    .leaf-nav{grid-template-columns:1fr;gap:1.4rem;}
+    .ln-prev,.ln-home,.ln-next{text-align:center;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#ne-contents">Complete contents</a><a href="../editions.html#volume-game">The Game · both editions</a><a href="../volumes/the-game.html">Collected volume</a></div></nav>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="frame">
+
+  <header class="leaf-head">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="leaf-loc rise d1" aria-label="Location in the series"><a href="numeraire-atlas-updated.html">Numéraire</a><span class="sep">·</span><a href="numeraire-xxv-the-game.html">Volume XXV · The Game</a></nav>
+    <div class="leaf-kicker rise d2">Plate vi <span class="pk-tag">in print</span></div>
+    <h1 class="leaf-title rise d2">The Coordination</h1>
+    <div class="leaf-gloss rise d3">coordination games and focal points; when several outcomes would suit everyone, how players settle, without a word, on the same one.</div>
+    <div class="epigraph leaf-epigraph rise d3">
+      <p>An answer can suit everyone before anyone knows how to meet there.</p>
+      <cite>— the argument of this plate, after Hume and Schelling</cite>
+    </div>
+  </header>
+
+  <main class="leaf-body-wrap">
+    <article class="plate">
+<div class="plate-body">
+<p class="lead-para">Several arrangements can serve everyone while none tells us how to arrive there together. The earlier Collected <em>Coordination</em> began with the side of the road: either side can serve in an otherwise symmetric world, provided the drivers agree. Once traffic is moving, each driver has an excellent reason to follow its convention; before a convention exists, that reason leaves a choice unresolved. Which technical standard, which language of trade, which meeting place — the gain from convergence does not necessarily select its destination. Here the difficulty of cooperation takes a different form from the dilemma. An agreed arrangement can already be an equilibrium, with nobody wanting to depart alone. What remains to be explained is how separate people, considering one another’s choices, come to inhabit the same arrangement. The good answer can be plural even when the action must be common.</p>
+<p>The symmetry becomes visible in a small invented game in which two strangers must choose the same door. There are two doors, East and West; each person receives six units of satisfaction if their choices match and zero if they differ. East with East and West with West are both equilibria. Either participant, finding the other at East, would lose by moving alone; the same reasoning holds at West. Independently tossing fair coins makes them meet only half the time, for an expected return of three each. A single public coin, with a shared rule assigning its result to a door, could make them meet every time if both follow the rule. The gain comes from linking their choices. Nothing about the original rewards supplies that link, and describing the two successful outcomes as equilibria has not yet explained which door the strangers will open.<sup class="sn-ref">1</sup></p>
+<div class="sidenote"><span class="sn-num">1.</span> The doors, payoffs and coins are invented. The distinction between identifying coordinated outcomes and finding a way to select one follows <a href="https://ncmr.lps.library.cmu.edu/article/87/galley/90/download/">Schelling, <em>Bargaining, Communication, and Limited War</em> (1957)</a>, “Tacit Co-ordination,” pp. 199–202 of the retained 2008 reprint. The public coin introduces an additional shared device.</div>
+<p>A focal point supplies a clue by making one answer stand out as the answer the other person might also recognize. Schelling’s meeting problem asked people to name a place and time in New York without consulting their partners. In his expressly unscientific sample, Grand Central’s information booth and noon attracted the answers; he also noted that the sample’s New Haven setting might matter. The lesson lies in the relation between recognition and expectation. My favourite café will not help if you have never heard of it. A conspicuous landmark may help if each of us expects its conspicuousness to matter to the other. Such clues can come from a unique object, a familiar name or a shared occasion. They depend on a history outside the numerical rewards, and two people with different histories may see different answers as obvious. The focal point works through the expectation that its visibility is shared.<sup class="sn-ref">2</sup></p>
+<div class="sidenote"><span class="sn-num">2.</span> <a href="https://ncmr.lps.library.cmu.edu/article/87/galley/90/download/">Schelling</a>, retained reprint pp. 199–202, including n. 1 on p. 200. These informal responses illustrate contextual salience; they do not establish a universal meeting place or a guaranteed selection rule.</div>
+<div class="break"><span>⁂</span></div>
+<p>A convention carries an answer forward so that each new participant need not invent it again. Hume pictured two people pulling the oars of a boat without having exchanged promises: each action refers to the other, and the shared interest becomes known through their conduct. He extended the argument to practices that gain force gradually, as experience teaches people what to expect. In the world of the earlier plate, the customary gauge and the language of the room perform this work. An inherited rule can make coordination inexpensive to each person who adopts it, because the difficult act of selection has already occurred. Yet the same expectation can make change difficult. In an imagined network whose machines all use one connector, the owner who installs an incompatible replacement alone loses access to the others. A proposed improvement must therefore answer a second question: how will the users move together?<sup class="sn-ref">3</sup></p>
+<div class="sidenote"><span class="sn-num">3.</span> <a href="https://davidhume.org/texts/t/3/2/2">Hume, <em>Treatise</em>, 3.2.2.9–10</a>, especially the oarsmen, gradual formation and mutually known interest; the complete section distinguishes the origin of the rules from their moral approval. The connector example is an invented application, not Hume’s example or a history of a particular standard.</div>
+<p>A common interest in agreement can coexist with a dispute about who benefits most from it. Alter the doors so that meeting at East gives the first person six and the second five, while meeting at West reverses those rewards; a mismatch still gives both zero. Both would rather meet than fail, but each favours a different meeting. The first game’s symmetry has acquired a distributive question, and a familiar label now competes with the attraction of a larger share. Crawford, Gneezy and Rottenstreich found this fragility in their one-shot coordination experiments: even small payoff asymmetries could sharply reduce coordination when the attraction of the labels conflicted with the payoffs. Some of their other treatments retained strong coordination despite asymmetry. A salient answer can therefore help settle a disagreement without commanding every setting. The visible meeting place does not erase what each participant stands to gain by meeting elsewhere.<sup class="sn-ref">4</sup></p>
+<div class="sidenote"><span class="sn-num">4.</span> <a href="https://econweb.ucsd.edu/~vcrawfor/CrawfordGneezyRottenstreichAER08.pdf">Crawford, Gneezy and Rottenstreich (2008)</a>, pp. 1443–50 and 1453–56, report their X–Y and Pie games and the qualifications across treatments. The six/five door game is invented; the experimental findings are not a theorem that any conflict defeats a focal point.</div>
+<p>A public rule can make the route to coordination more definite, provided people have reason to expect that it will be followed. Return to the imagined connector: a published standard, an announced changeover date and a credible plan for making the necessary replacements could give each owner evidence about the others’ next move. These arrangements answer different parts of the difficulty. The standard specifies the destination; the timetable specifies when to move; the replacements make compliance feasible. A command backed by penalties would also alter the rewards of refusing, while assistance with replacement would alter the cost of joining. Institutions can work through several of these channels at once. Their success cannot be inferred from the clarity of the announcement alone. A perfectly legible plan that the users cannot afford to implement may leave everyone waiting beside a machine that no longer connects.<sup class="sn-ref">5</sup></p>
+<div class="sidenote"><span class="sn-num">5.</span> <a href="https://ncmr.lps.library.cmu.edu/article/87/galley/90/download/">Schelling</a>, retained reprint pp. 206–08, develops the coordinating force of shared precedents, conspicuous arrangements and a mutually visible pointer. The changeover, costs and institutional distinctions here are the plate’s applications; the source supplies no guarantee that an announced transition succeeds.</div>
+<p>When several outcomes would suit everyone, a shared history, a recognizable clue or a public arrangement can bring their expectations to the same one. Each gives people something on which to condition their conduct; none follows merely from the existence of mutual gains. That is why an established convention can feel as solid as the landscape while depending on the expectation that others will continue to respect it. It is also why the success of coordination leaves questions of distribution and change open. An arrangement may be easy to anticipate, difficult to leave and costly for some of the people who sustain it. To explain how they meet is already to explain a considerable part of social order. To decide whether this is where they ought to meet requires a further account of their alternatives, their burdens and their power to choose another destination.</p>
+</div>
+    </article>
+  </main>
+
+  <nav class="leaf-nav" aria-label="Plate navigation">
+    <a class="ln-cell ln-prev" href="numeraire-xxv-v-the-population.html"><span class="lab">← Previous plate</span><span class="ttl">Plate v · The Population</span></a>
+    <a class="ln-cell ln-home" href="numeraire-xxv-the-game.html"><span class="lab">The volume</span><span class="ttl">The Game · contents</span></a>
+    <a class="ln-cell ln-next" href="numeraire-xxv-vii-the-fog.html"><span class="lab">Next plate →</span><span class="ttl">Plate vii · The Fog</span></a>
+  </nav>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref"><a href="numeraire-xxv-the-game.html">The Game</a> · <a href="numeraire-atlas-updated.html">the table</a></span>
+    </div>
+    <p class="colophon">Plate vi of <em>The Game</em>, Volume the Twenty-fifth of <em>Numéraire</em> — a periodic table of economic life. A new adaptation of <a href="../volumes/the-game.html#plate-vi">The Coordination</a> in the Collected edition, following the distinct Utility plan. The separate <a href="../margin/the-game.html">Margin Coordination plan</a> remains an unlit plan. The earlier editions remain intact. This leaf may be read on its own or as part of the volume. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<script>
+(function(){
+  var bar=document.getElementById('progress');
+  function onScroll(){
+    var h=document.documentElement;
+    var max=(h.scrollHeight-h.clientHeight);
+    var p=max>0?(h.scrollTop||document.body.scrollTop)/max:0;
+    bar.style.width=(p*100).toFixed(2)+'%';
+  }
+  document.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="numeraire-xxv-v-the-population.html">← The Population</a><a rel="next" href="numeraire-xxv-vii-the-fog.html">The Fog →</a></nav>
+</body>
+</html>

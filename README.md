@@ -6,9 +6,9 @@ Canonical source repository: [karadzhyan/numeraire](https://github.com/karadzhya
 
 This repository contains the complete static website, including its distinct editions, essays, instruments, original figures, fonts, PDFs, and reading interfaces. The files in `public/` are the exact website files served in production; the initial import preserves the existing writing, design, and interactive pieces.
 
-The current edition completes Volume XXIV, **The Bias**, at twelve of twelve expanded essays. The expanded Utility edition contains **300 completed essays and 12 preparation slots**; its first twenty-four volumes are complete. The separate Collected edition retains all 26 volumes and 312 plates. Earlier editions remain available alongside the expanded essays.
+The current edition completes Volume XXV, **The Game**, at twelve of twelve expanded essays. The expanded Utility edition contains **306 completed essays and 6 preparation slots**; its first twenty-five volumes are complete. The separate Collected edition retains all 26 volumes and 312 plates. Earlier editions remain available alongside the expanded essays.
 
-The six completed Bias leaves are The Endowment, The Sunk, The Conceit, The Heat, The Vivid, and The Baseline. Five adapt earlier treatments; The Heat develops the original plan and related temporal-self writing. Their colophons identify this lineage, and earlier writing remains available.
+The six completed Game leaves are The Coordination, The Fog, The Brink, The Design, The Coalition, and The Hunt. Coordination, Design, and Hunt adapt earlier writing; Fog, Brink, and Coalition develop their surviving plans with related treatments. Their colophons identify this lineage, and earlier writing remains available.
 
 ## Read Locally
 
@@ -18,7 +18,7 @@ No build step or package installation is required. From the repository root, run
 python3 -m http.server 8000 --bind 127.0.0.1 --directory public
 ```
 
-Open [the volume atlas](http://127.0.0.1:8000/), [all editions](http://127.0.0.1:8000/editions.html), or [The Bias](http://127.0.0.1:8000/essays/numeraire-xxiv-the-bias.html).
+Open [the volume atlas](http://127.0.0.1:8000/), [all editions](http://127.0.0.1:8000/editions.html), or [The Game](http://127.0.0.1:8000/essays/numeraire-xxv-the-game.html).
 
 ## Check Local References
 
