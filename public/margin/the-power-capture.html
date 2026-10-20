@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Capture — Numéraire, The Power, Plate x</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:66rem; --measure:35rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(2.8rem,7vh,5rem) 0 clamp(1.4rem,3.5vh,2.2rem);text-align:center;}
+
+  .crumbs{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 400;
+    font-size:.8rem;letter-spacing:.04em;color:var(--faint);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:center;gap:.55rem;}
+  .crumbs a{text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .2s ease,color .2s ease;}
+  .crumbs a:hover{border-color:var(--num);color:var(--ink);}
+  .crumbs .sep{color:var(--faintest);}
+  .crumbs .here{color:var(--ink);}
+
+  .plate-mark{width:116px;height:116px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:.18rem;line-height:1;}
+  .plate-mark.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pm-vol{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.84rem;letter-spacing:.06em;color:rgba(240,235,225,.62);}
+  .pm-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;
+    font-size:2.5rem;letter-spacing:.02em;text-transform:uppercase;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.1rem,6vw,4rem);line-height:1.03;letter-spacing:-.025em;margin:1rem 0 0;text-wrap:balance;}
+  .status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:42rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .epi{max-width:38rem;margin:clamp(2.2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .epi q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.46;color:var(--ink);quotes:none;display:block;text-wrap:pretty;}
+  .epi .cite{display:block;margin-top:.95rem;font-size:.78rem;color:var(--faintest);letter-spacing:.05em;font-style:normal;}
+  .epi .cite em{font-style:italic;}
+
+  .essay{max-width:52rem;margin:clamp(3rem,7vh,5rem) auto 0;counter-reset:sn;}
+  .essay::after{content:"";display:block;clear:both;}
+  .essay > p,.essay > .pull{max-width:var(--measure);}
+  .essay p{font-size:1.075rem;line-height:1.8;color:var(--ink);margin:0 0 1.4rem;text-wrap:pretty;}
+  .essay em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.72;padding:.08em .14em 0 0;color:var(--ink);}
+
+  .divider{display:flex;justify-content:center;margin:2.4rem 0;}
+  .divider svg{width:96px;height:12px;overflow:visible;}
+  .divider line{stroke:var(--num);stroke-width:1;} .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.5vw,1.74rem);line-height:1.34;color:var(--ink);text-align:center;
+    margin:2.4rem auto;max-width:33rem;text-wrap:balance;}
+
+  .snref{font-family:"Fraunces",serif;font-size:.64em;line-height:0;vertical-align:super;
+    color:var(--soft);counter-increment:sn;margin-left:1px;font-style:normal;}
+  .snref::after{content:counter(sn);}
+  .sn{display:block;max-width:var(--measure);margin:.1rem 0 1.4rem;padding:.15rem 0 .15rem 1.05rem;
+    border-left:1px solid var(--hair);font-size:.84rem;line-height:1.52;color:var(--faint);}
+  .sn::before{content:counter(sn);font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--faintest);margin-right:.5em;font-size:.92em;}
+  .sn em{font-style:italic;}
+
+  @media (min-width:64rem){
+    .sn{float:right;clear:right;width:15rem;margin:.35rem 0 1.3rem;padding:0;border-left:none;}
+    .divider,.pull,.apparatus{clear:both;}
+  }
+
+  .apparatus{max-width:52rem;margin:clamp(3.2rem,7vh,5rem) auto 0;padding-top:2rem;border-top:1px solid var(--hair);clear:both;}
+  .app-h{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;}
+  .app-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.4rem;}
+  .app-list li{border-top:1px solid var(--hair);}
+  .app-list li:first-child,.app-list li:nth-child(2){border-top:none;}
+  .app-list a{display:block;text-decoration:none;padding:.95rem 0;}
+  .app-list a:hover .app-t{color:var(--soft);}
+  .app-rel{display:block;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faintest);margin-bottom:.3rem;}
+  .app-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.12rem;color:var(--ink);transition:color .2s ease;}
+  .app-g{display:block;font-size:.84rem;color:var(--faint);font-style:italic;line-height:1.4;margin-top:.22rem;}
+
+  footer{margin-top:clamp(3.5rem,8vh,6rem);padding:2.2rem 0 4rem;border-top:1px solid var(--hair);}
+  .crumbs.foot{justify-content:flex-start;margin-bottom:1.3rem;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .plate-mark{width:96px;height:96px;}
+    .pm-num{font-size:2.1rem;}
+    .essay p{font-size:1.04rem;line-height:1.74;}
+    .dropcap{font-size:3rem;}
+    .app-list{grid-template-columns:1fr;}
+    .app-list li:nth-child(2){border-top:1px solid var(--hair);}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="crumbs rise d1" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-power.html">The Power &middot; Vol X</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate x</span>
+    </nav>
+    <div class="plate-mark lit rise d2" aria-hidden="true">
+      <span class="pm-vol">Pw</span>
+      <span class="pm-num">x</span>
+    </div>
+    <h1 class="rise d3">The Capture</h1>
+    <div class="status rise d3">in print &middot; The Power &middot; plate x</div>
+    <p class="standfirst rise d4">A public rule can become an asset worth acquiring and defending. Stigler’s account of organized interests and Tullock’s account of the costs of seeking transfers reveal how a restriction can create a prize and divert effort toward it. Distinguishing payments from real costs, expertise from dependence and useful safeguards from exclusion makes capture an inquiry that can be tested.</p>
+  </header>
+
+  <div class="epi rise d5"><q>The rule can become the asset that power invests in protecting.</q><span class="cite">The argument of this plate, after Stigler and Tullock</span></div>
+
+  <article class="essay">
+<p class="lede"><span class="dropcap">T</span>he permission to enter a market can become more valuable than the skill required to serve it. A firm that must improve its product to keep a customer faces one kind of discipline. A firm that can persuade the state to keep the customer from reaching a rival faces another. Its most profitable investment may then be made in the rule rather than the factory. The institution created to restrain private power has become a possible source of that power, and the people it supervises have a reason to attend closely to its decisions. Capture begins with this change in the object of effort: the return available from shaping the public terms on which others may compete.</p>
+<p>Stigler's theory asked economists to explain regulation as something interested groups would seek, rather than assume that its announced purpose explained its results.<sup class="snref"></sup> The state can confer a subsidy, restrict entry, constrain a substitute or support a favorable price. Each instrument can be valuable to a producer, though not every producer benefits in the same way and not every demand is granted. An entrant may want the opposite of an incumbent; one industry's protection may injure another. The theory therefore asks who wants a rule, what its political acquisition costs and how its benefits can be kept. It is an account of incentives surrounding public authority, not a demonstration that every exercise of that authority is a private purchase.</p>
+<aside class="sn"><a href="https://cooperative-individualism.org/stigler-george_the-theory-of-economic-regulation-1971-spring.pdf">George J. Stigler, “The Theory of Economic Regulation” (1971), §I, pp. 3–7</a>, identifies forms of state assistance and the limits and conflicts facing their acquisition. The published original, <em>Bell Journal of Economics and Management Science</em> 2(1), pp. 3–21, supplies the theory; its historical examples are not treated here as current findings about particular industries.</aside>
+<p>The distribution of the stakes helps explain why the participants arrive unequally prepared. Imagine four firms that would each receive twenty-five thousand from an entry restriction, while ten thousand households would each lose twelve. The firms' combined gain is a hundred thousand; the households' combined loss is a hundred and twenty thousand. The larger aggregate interest is on the households' side. Yet a household that must spend twenty merely to understand and oppose the proposal cannot recover that private cost from its own twelve-dollar loss. An organization could spread the work across many households, just as the firms could spread theirs across a trade association. Whether such an organization exists, can collect contributions and can represent the affected people is part of the outcome. Adding the stakes does not perform that work.</p>
+<p>Political advantage is consequently more complicated than the largest check.<sup class="snref"></sup> Stigler considered votes, organization and the resources required to support political action, as well as the benefits an industry sought. A compact group may monitor a specialized rule repeatedly while the costs are scattered among people who seldom encounter its name. But the dispersion does not make opposition impossible. A salient injury can mobilize those affected; a rival industry may have both an interest and an organization; officials may answer to commitments that the beneficiaries cannot supply. These are conditions under which the mechanism can weaken or fail. Calling capture inevitable would make its explanation unnecessary precisely where it should help identify the conditions that permit resistance.</p>
+<aside class="sn"><a href="https://cooperative-individualism.org/stigler-george_the-theory-of-economic-regulation-1971-spring.pdf">Stigler, §II, pp. 10–13</a>, develops the political-organization argument, including limits on what industries can offer and the difficulty of collective action. The four-firm example is an illustration with fixed, stipulated gains and losses. It establishes a difference in individual stakes, not a prediction that the rule must pass or a measure of corruption.</aside>
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg></div>
+<p>A captured restriction can produce a transfer and a loss at the same time. To keep the two visible, imagine a market whose price is twenty minus the quantity sold, with each unit costing four to supply. There are no fixed costs, external harms or changes in quality. Competitive pricing at four would sell sixteen units and leave a total gain of a hundred and twenty-eight. A single seller allowed to choose one price maximizes profit by selling eight at twelve. Buyers then receive thirty-two in surplus, and the seller receives sixty-four in profit. Total gains fall to ninety-six. The missing thirty-two comes from units for which willingness to pay still exceeded cost but which were not supplied. The sixty-four received by the seller is a different object: part of what the buyers would otherwise have kept has changed hands.</p>
+<p>The struggle to secure that protected position can consume further resources.<sup class="snref"></sup> If the successful and unsuccessful applicants together use twelve in real effort that would otherwise have produced something valuable, the total loss in the example becomes forty-four: thirty-two from forgone exchanges and twelve from the contest. A fee of twenty paid to the treasury for the same privilege would have a different first effect. With output and real administrative costs unchanged, it moves twenty from the privilege holder to the public account. It does not itself destroy twenty of resources. The fee can alter behavior and the use of its proceeds can matter, but those consequences must be shown separately. A payment is not made into waste merely by calling it a cost to the payer.</p>
+<aside class="sn"><a href="https://microf20.classes.ryansafner.com/readings/Tullock-1967.pdf">Gordon Tullock, “The Welfare Costs of Tariffs, Monopolies, and Theft” (1967), “Dynamics: The Cost of Transfers,” pp. 228–232</a>, distinguishes transfers from resources devoted to obtaining or defending them. The model here uses P = 20 − Q and constant marginal cost 4: the single-price monopoly has Q = 8, P = 12, profit 64 and deadweight loss 32. Contest cost 12 is stipulated, not inferred from the size of the rent.</aside>
+<p>The size of the rent therefore does not reveal how much was spent seeking it. Some privileges may be secured cheaply because a beneficiary already holds a favored position; others may attract many costly attempts. Money paid to a consultant may purchase real labor diverted from another use, while money paid for an existing license may largely transfer the value of an expected income stream. Even a large contest need not dissipate the whole prize. Tullock's addition to the account was to make the pursuit and defense of transfers visible, including unsuccessful effort, not to supply a universal instruction to count every dollar of monopoly profit twice. The relevant question is what the pursuit displaced and how the world would differ without it.</p>
+<p>The boundary becomes harder when the information needed to regulate an industry is held by the industry itself. An agency may need detailed knowledge of a technology, a balance sheet or a production process. People with that knowledge may also have worked for the businesses being supervised or expect to work for them later. Those connections can create incentives that deserve scrutiny, but the connection is not the whole explanation. Experience can improve a decision; dependence on one interested source can impair it. A useful inquiry asks which information is independently contestable, which decisions can be examined, and whether a personal prospect changes the treatment of a regulated party. Merely drawing an arrow between two jobs cannot establish what a particular decision served.</p>
+<p>A standard that excludes some suppliers is likewise not, for that reason alone, a captured standard. Suppose a safety requirement uses three of resources per unit and prevents harm worth eight under the stated conditions. Its resource effect is a gain of five, before any further consequences. If the same requirement prevents no harm and serves only to block an equally capable entrant, the three is a cost without that compensating benefit. The difference lies in the evidence about the requirement and its alternatives. An incumbent's support does not establish either case. The firm may favor a useful safeguard, a costly obstacle or a useful safeguard written in an unnecessarily exclusionary form. A serious account of capture must be able to tell these possibilities apart rather than infer the public result from the identity of the advocate.</p>
+<p>Rules about entry can also turn yesterday's privilege into today's claim of reliance.<sup class="snref"></sup> A purchaser who paid for an existing license may earn only an ordinary return on that price even though the license continues to restrict access. Removing the restriction can injure the purchaser; leaving it in place can continue to burden those excluded. The accounting cannot settle the transition. It does show why a normal current return is not proof that no protected rent exists: the expected advantage may already have been paid to the previous owner. An institution considering reform has to distinguish the source of the restriction from the people who now hold claims built around it. Otherwise the resale of a privilege can make its public justification disappear from view.</p>
+<aside class="sn"><a href="https://www.marxists.org/reference/subject/economics/marshall/bk5ch09.htm">Marshall, <em>Principles of Economics</em>, V.IX §2 and note 2</a>, distinguishes capitalized income from the explanation of that income and applies the point to protected businesses. <a href="the-rent-rentier.html">The Rentier</a> and <a href="../essays/numeraire-ii-xi-the-license.html">The License</a> develop the related inquiry. Here the purchaser's possible loss and the continuing exclusion of others are separate consequences, neither erased by the other.</aside>
+<p>The theory's practical force lies in changing the questions asked of the regulator.<sup class="snref"></sup> An announced public purpose should be connected to a consequence that can be examined; a restriction should be compared with feasible ways of achieving that purpose at lower cost or with less exclusion. Those who bear the cost need a route by which their evidence can enter the decision. These arrangements do not abolish judgment or remove every conflict of interest. They make it harder for a concentrated beneficiary to supply both the rule and the only account of why the rule is necessary. The alternative is an institution that appears independent because its decisions are formally public, while the knowledge and incentives shaping them remain narrowly private.</p>
+<aside class="sn"><a href="https://cooperative-individualism.org/stigler-george_the-theory-of-economic-regulation-1971-spring.pdf">Stigler, concluding discussion, pp. 17–18</a>, argues that reform must understand the political environment and the incentives of decision-makers. The procedural implications in this paragraph are this plate's institutional reasoning, not a claim that Stigler proved a single design would prevent capture.</aside>
+<p class="pull">The rule can become the asset that the powerful invest in protecting.</p>
+<p>Capture makes the cure for market power another site at which power must be explained. It does not establish that the cure should be abandoned, any more than a failure of competition establishes that every private decision should be replaced. The task is to preserve the public capacity to act while exposing the uses to which that capacity is put. A regulation may protect a common interest, transfer an advantage or do both; the labor of distinguishing them cannot be delegated to the beneficiary's account. The market in influence matters because its prize is often the rule governing everyone else's market. The argument remains open.</p>
+</article>
+
+  <nav class="apparatus" aria-label="Related reading"><h2 class="app-h">Related</h2><ul class="app-list"><li><a href="../volumes/the-rule.html#plate-v"><span class="app-rel">The regulatory antecedent</span><span class="app-t">The Captive</span><span class="app-g">The earlier treatment asks how the body charged with oversight can become dependent on the interests it watches.</span></a></li><li><a href="../volumes/the-rent.html#plate-vi"><span class="app-rel">The pursuit of the prize</span><span class="app-t">The Seeking</span><span class="app-g">Resources spent acquiring a protected return must be distinguished from the return transferred and from useful productive effort.</span></a></li><li><a href="the-rent-rentier.html"><span class="app-rel">A privilege capitalized</span><span class="app-t">The Rentier</span><span class="app-g">A purchaser can earn an ordinary return on a price that already contains the expected value of exclusion; resale does not settle the rule’s justification.</span></a></li><li><a href="the-power-platform.html"><span class="app-rel">Next in this volume</span><span class="app-t">The Platform</span><span class="app-g">Private governance of a route to the market raises a related question about who determines the terms on which others may participate.</span></a></li></ul></nav>
+
+  <footer>
+    <nav class="crumbs foot" aria-label="Return">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-power.html">The Power &middot; Vol X</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate x</span>
+    </nav>
+    <p class="colophon">Adapted from the earlier <a href="../volumes/the-rule.html#plate-v">Collected Captive</a> and <a href="../volumes/the-rent.html#plate-vi">Collected Seeking</a>. Their regulation-and-rent inquiry is developed here with separate accounts of transfers, forgone exchanges and resources used to obtain or defend a privilege. The original editions remain intact; this is an adaptation of those treatments, not a recovered exact manuscript of the missing Margin Capture. The epigraph is original to this plate. Return to <a href="the-power.html">the volume</a>, or to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-power-counterweight.html">← The Counterweight</a><a rel="next" href="the-power-platform.html">The Platform →</a></nav>
+</body>
+</html>
