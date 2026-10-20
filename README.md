@@ -6,9 +6,9 @@ Canonical source repository: [karadzhyan/numeraire](https://github.com/karadzhya
 
 This repository contains the complete static website, including its distinct editions, essays, instruments, original figures, fonts, PDFs, and reading interfaces. The files in `public/` are the exact website files served in production; the initial import preserves the existing writing, design, and interactive pieces.
 
-The current edition completes Volume XVII, **The Tax**, at twelve of twelve expanded essays. The expanded Utility edition contains **258 completed essays and 54 preparation slots**; its first seventeen volumes are complete. The separate Collected edition retains all 26 volumes and 312 plates. Earlier editions remain available alongside the expanded essays.
+The current edition completes Volume XVIII, **The Rule**, at twelve of twelve expanded essays. The expanded Utility edition contains **264 completed essays and 48 preparation slots**; its first eighteen volumes are complete. The separate Collected edition retains all 26 volumes and 312 plates. Earlier editions remain available alongside the expanded essays.
 
-The six completed Tax leaves are The Land, The Bracket, The Restraint, The Consent, The Loophole, and The Deficit. Their colophons identify earlier treatments and distinguish adaptations from developed continuations.
+The six completed Rule leaves are The Standard, The Forum, The Spoils, The Compact, The Treaty, and The Cipher. Their colophons identify earlier treatments and distinguish adaptations from developed continuations.
 
 ## Read Locally
 
@@ -18,7 +18,7 @@ No build step or package installation is required. From the repository root, run
 python3 -m http.server 8000 --bind 127.0.0.1 --directory public
 ```
 
-Open [the volume atlas](http://127.0.0.1:8000/), [all editions](http://127.0.0.1:8000/editions.html), or [The Tax](http://127.0.0.1:8000/essays/numeraire-xvii-the-tax.html).
+Open [the volume atlas](http://127.0.0.1:8000/), [all editions](http://127.0.0.1:8000/editions.html), or [The Rule](http://127.0.0.1:8000/essays/numeraire-xviii-the-rule.html).
 
 ## Check Local References
 
