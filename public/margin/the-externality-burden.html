@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Burden — Numéraire, The Externality, Plate x</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:66rem; --measure:35rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(2.8rem,7vh,5rem) 0 clamp(1.4rem,3.5vh,2.2rem);text-align:center;}
+
+  .crumbs{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 400;
+    font-size:.8rem;letter-spacing:.04em;color:var(--faint);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:center;gap:.55rem;}
+  .crumbs a{text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .2s ease,color .2s ease;}
+  .crumbs a:hover{border-color:var(--num);color:var(--ink);}
+  .crumbs .sep{color:var(--faintest);}
+  .crumbs .here{color:var(--ink);}
+
+  .plate-mark{width:116px;height:116px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:.18rem;line-height:1;}
+  .plate-mark.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pm-vol{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.84rem;letter-spacing:.06em;color:rgba(240,235,225,.62);}
+  .pm-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;
+    font-size:2.5rem;letter-spacing:.02em;text-transform:uppercase;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.1rem,6vw,4rem);line-height:1.03;letter-spacing:-.025em;margin:1rem 0 0;text-wrap:balance;}
+  .status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:42rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .epi{max-width:38rem;margin:clamp(2.2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .epi q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.46;color:var(--ink);quotes:none;display:block;text-wrap:pretty;}
+  .epi .cite{display:block;margin-top:.95rem;font-size:.78rem;color:var(--faintest);letter-spacing:.05em;font-style:normal;}
+  .epi .cite em{font-style:italic;}
+
+  .essay{max-width:52rem;margin:clamp(3rem,7vh,5rem) auto 0;counter-reset:sn;}
+  .essay::after{content:"";display:block;clear:both;}
+  .essay > p,.essay > .pull{max-width:var(--measure);}
+  .essay p{font-size:1.075rem;line-height:1.8;color:var(--ink);margin:0 0 1.4rem;text-wrap:pretty;}
+  .essay em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.72;padding:.08em .14em 0 0;color:var(--ink);}
+
+  .divider{display:flex;justify-content:center;margin:2.4rem 0;}
+  .divider svg{width:96px;height:12px;overflow:visible;}
+  .divider line{stroke:var(--num);stroke-width:1;} .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.5vw,1.74rem);line-height:1.34;color:var(--ink);text-align:center;
+    margin:2.4rem auto;max-width:33rem;text-wrap:balance;}
+
+  .snref{font-family:"Fraunces",serif;font-size:.64em;line-height:0;vertical-align:super;
+    color:var(--soft);counter-increment:sn;margin-left:1px;font-style:normal;}
+  .snref::after{content:counter(sn);}
+  .sn{display:block;max-width:var(--measure);margin:.1rem 0 1.4rem;padding:.15rem 0 .15rem 1.05rem;
+    border-left:1px solid var(--hair);font-size:.84rem;line-height:1.52;color:var(--faint);}
+  .sn::before{content:counter(sn);font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--faintest);margin-right:.5em;font-size:.92em;}
+  .sn em{font-style:italic;}
+
+  @media (min-width:64rem){
+    .sn{float:right;clear:right;width:15rem;margin:.35rem 0 1.3rem;padding:0;border-left:none;}
+    .divider,.pull,.apparatus{clear:both;}
+  }
+
+  .apparatus{max-width:52rem;margin:clamp(3.2rem,7vh,5rem) auto 0;padding-top:2rem;border-top:1px solid var(--hair);clear:both;}
+  .app-h{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;}
+  .app-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.4rem;}
+  .app-list li{border-top:1px solid var(--hair);}
+  .app-list li:first-child,.app-list li:nth-child(2){border-top:none;}
+  .app-list a{display:block;text-decoration:none;padding:.95rem 0;}
+  .app-list a:hover .app-t{color:var(--soft);}
+  .app-rel{display:block;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faintest);margin-bottom:.3rem;}
+  .app-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.12rem;color:var(--ink);transition:color .2s ease;}
+  .app-g{display:block;font-size:.84rem;color:var(--faint);font-style:italic;line-height:1.4;margin-top:.22rem;}
+
+  footer{margin-top:clamp(3.5rem,8vh,6rem);padding:2.2rem 0 4rem;border-top:1px solid var(--hair);}
+  .crumbs.foot{justify-content:flex-start;margin-bottom:1.3rem;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .plate-mark{width:96px;height:96px;}
+    .pm-num{font-size:2.1rem;}
+    .essay p{font-size:1.04rem;line-height:1.74;}
+    .dropcap{font-size:3rem;}
+    .app-list{grid-template-columns:1fr;}
+    .app-list li:nth-child(2){border-top:1px solid var(--hair);}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="crumbs rise d1" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-externality.html">The Externality &middot; Vol XI</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate x</span>
+    </nav>
+    <div class="plate-mark lit rise d2" aria-hidden="true">
+      <span class="pm-vol">Ex</span>
+      <span class="pm-num">x</span>
+    </div>
+    <h1 class="rise d3">The Burden</h1>
+    <div class="status rise d3">in print &middot; The Externality &middot; plate x</div>
+    <p class="standfirst rise d4">The smoke and the remedy both have a distribution. Exposure, vulnerability, responsibility and ability to adjust can place the same household on several sides of the account. Following local damages, price incidence, public revenue and property values shows how policy can change that distribution—and why neither a uniform charge nor a positive aggregate settles the claims of the people who continue to bear the harm.</p>
+  </header>
+
+  <div class="epi rise d5"><q>The smoke settles somewhere.</q><span class="cite">The argument of this plate</span></div>
+
+  <article class="essay">
+<p class="lede"><span class="dropcap">T</span>he smoke settles somewhere. The diagram gives it a height above the private cost curve, and the height can be added to the cost of another unit of output. The people breathing it have addresses, histories, incomes and different means of leaving. Moving from those people to a single curve is an act of aggregation: useful for one question, capable of concealing another. A policy can reduce the total measured harm while leaving some of the most exposed people worse off. It can also burden households through the remedy while benefiting them through cleaner air. The question of justice begins by refusing to let either side of that account disappear inside the total.</p>
+<p>Exposure, vulnerability and responsibility are different relations to the same pollution. One person can live near a source, another can be especially susceptible to its effects, and a third can profit from the activity that produces it. These positions may coincide, but they need not. Income alone will not describe the pattern. Nor does a count of tons tell us what reaches a particular body: the pollutant, the height and location of release, the weather, the surrounding sources and the person's circumstances all matter. Before deciding who should bear a cost, the inquiry must establish which cost is already being borne. Otherwise the proposed remedy risks treating an unequal starting position as though everyone had begun in the same place.</p>
+<p>Empirical work can make the pattern visible without explaining every part of its history.<sup class="snref"></sup> Tessum and his coauthors modeled fine-particle pollution from domestic anthropogenic sources in the contiguous United States using 2014 emissions and residential population data. They found that people of color had disproportionate population-weighted exposure across the major source categories they examined, with substantial differences within particular categories and places. The disparity appeared across income levels. The study's measure was modeled outdoor concentration at residential locations, not each person's complete dose or a finding about the motive behind every facility's siting. Those limits do not erase the pattern. They identify the evidence on which a more local inquiry into exposure, health and responsibility must build.</p>
+<aside class="sn">Christopher Tessum and coauthors, <a href="https://doi.org/10.1126/sciadv.abf4491">“PM<sub>2.5</sub> polluters disproportionately and systemically affect people of color in the United States”</a>, <em>Science Advances</em> 7 (2021), eabf4491, pp. 1–6. The paper combines the 2014 National Emissions Inventory, 2012–2016 American Community Survey data and the InMAP model. Its results, discussion and methods qualify the national pattern, acknowledge source and model uncertainty, and distinguish major categories from individual source types and local exceptions.</aside>
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg></div>
+<p>A market in identical emission permits can conceal such differences if the regulated units are not identical in their consequences. Consider two invented sources, each able to remove one ton. Removal costs one at the first and three at the second. The corresponding avoided damages are two and eight. If the stipulated target is simply to remove one ton at least cost, the first source is selected: one is less than three. But its net gain is one, whereas removal at the second produces a net gain of five. The tonnage target has omitted information about where the harm falls. The example does not show that trading must fail. It shows why defining the unit to be traded is part of the environmental decision.</p>
+<p>Location-sensitive charges, trading restrictions or additional exposure limits can change that result. Each requires information and administration; each also makes a different commitment about what is to be protected. A charge based on local marginal damage can make the private choice answer to a more complete account. A binding exposure limit can protect a particular community even where an unweighted monetary total would favor a different allocation. These approaches can be combined. The decision between them cannot be made by repeating that a market achieves its specified target cheaply. The target and the unit have to be adequate to the harm before cheap compliance becomes the relevant success.</p>
+<p>The remedy creates another distribution of costs and benefits.<sup class="snref"></sup> A charge legally remitted by a factory need not remain entirely with its owners. Some can pass into product prices, some into wages or employment, some into the return on capital. Consumers and workers can also benefit from the environmental improvement. Fullerton separates these channels from the allocation of scarcity rents, the disruption of transition and changes in asset values. The same household may stand on several sides of the account. A worker can pay more for energy, breathe cleaner air, receive a dividend and face a loss on skills tied to the old process. Counting only the increased bill would miss benefits; counting only the cleaner air would miss the cost of adjustment.</p>
+<aside class="sn">Don Fullerton, <a href="https://www.nber.org/system/files/working_papers/w16703/w16703.pdf">“Six Distributional Effects of Environmental Policy”</a>, NBER Working Paper 16703 (January 2011), §§1–7, pp. 1–11. The paper distinguishes product prices, factor returns, scarcity rents, environmental benefits, transition and capitalization. It identifies mechanisms and possible patterns; their net effect depends on the policy, market conditions and the way households are classified.</aside>
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg></div>
+<p>The disposition of revenue can change the immediate household account. Take two illustrative households with incomes of one thousand and ten thousand. Suppose a charge of one per unit is fully passed through to them and, at their stipulated purchases of ten and thirty units, adds ten and thirty to their bills. The larger bill belongs to the richer household, but the shares of income are one percent and three-tenths of one percent. Give each a fixed transfer of twenty, independent of its own purchases, and the first is ten better off in this cash account while the second is ten worse off. The transfers use the forty collected at these quantities. The figures hold purchases and incomes fixed and omit environmental benefits; they show a distributional possibility, not the full welfare effect or an equilibrium forecast.</p>
+<p>The marginal incentive survives because the transfer in the example is fixed, rather than a refund of the household's own payment.<sup class="snref"></sup> Buying another unit still costs another unit of money. If the policy instead returns every extra payment to the person who made it, that part of the incentive disappears. The difference matters to a design that seeks both cleaner choices and protection against hardship. A refund can compensate a household for being poor without compensating it for continuing to pollute; whether the actual arrangement succeeds depends on its coverage, timing and practical accessibility. The aggregate receipt is not a distributional policy until someone has decided who receives it and on what terms.</p>
+<aside class="sn">The two-household cash example is constructed for the plate, with full pass-through, unchanged purchases and an announced lump-sum transfer independent of the recipient's use. Budget balance is shown at the stated quantities; it is not an assertion that revenue remains fixed after behavior changes. Fullerton, <a href="https://www.nber.org/system/files/working_papers/w16703/w16703.pdf">§§1 and 3</a>, distinguishes price burdens from the uses of revenue and scarcity rents. IPCC, <a href="https://www.ipcc.ch/report/ar6/syr/downloads/report/IPCC_AR6_SYR_SPM.pdf">2023 Summary, §C.6.4</a>, likewise identifies support for low-income households as one use of carbon-pricing revenue.</aside>
+<p>A gain can also reach the person who owns a place rather than the person who continues to occupy it.<sup class="snref"></sup> Cleaner surroundings may raise the value of nearby housing. The existing owner can benefit through that appreciation; a renter may obtain a better environment while facing higher rent. The full outcome depends on housing supply, tenure, mobility and the extent to which the improvement was anticipated. Capitalization also warns the analyst against counting the same environmental service twice, once as the value of cleaner surroundings and again as the entire property-price gain it produces. A dollar total needs a consistent boundary. An account of justice additionally needs to say who captures the gain when the boundary is drawn.</p>
+<aside class="sn">Fullerton, <a href="https://www.nber.org/system/files/working_papers/w16703/w16703.pdf">§6 and note 9, pp. 9–10</a>, discusses capitalization, ownership and the conditions under which environmental benefits are reflected in property values. Perfect information and the absence of transaction costs are limiting assumptions; supply and other frictions affect the incidence. Section 5 separately considers transition losses, including specialized human capital.</aside>
+<p>Potential compensation remains different from compensation paid. The earlier <a href="../volumes/the-surplus.html#plate-x">Collected Standard</a> asks what is assumed when one person's monetary gain is added to another's loss. Here the distinction acquires an address: the community exposed to a continuing burden cannot spend the compensation that an analyst says the winners could afford. Actual transfers can help, but they may not restore a lost place, an impaired health prospect or a relationship to land. Nor does accepting a transfer necessarily mean that the original distribution of rights was just. The account must identify the bargain being made and the alternatives available to the people asked to accept it.</p>
+<p>The climate extends this distribution across borders and generations.<sup class="snref"></sup> The IPCC's 2023 assessment finds that communities that have contributed least to climate change are disproportionately affected and that vulnerability varies with conditions including marginalization and inequality. These are reasons to examine contribution, capacity and exposure separately rather than assign every country the same history. They also show why participation matters. People who know the local pattern can reveal losses that a national average has hidden, while the process must still test claims against evidence and consider people unable to attend. Voice is a means of improving and contesting the decision, not a guarantee that every participant will agree.</p>
+<aside class="sn">IPCC, <a href="https://www.ipcc.ch/report/ar6/syr/downloads/report/IPCC_AR6_SYR_SPM.pdf">2023 Summary, §A.2 and §C.5, pp. 5–6 and 31</a>. The assessment distinguishes observed impacts and vulnerability from the conditions supporting equitable and sustained action, including meaningful participation. It does not imply that every exposed individual or country has the same contribution, circumstances or preferred remedy.</aside>
+<p class="pull">A price can change the burden. It cannot decide, by itself, whose claim should prevail.</p>
+<p>Efficiency and justice meet in the design without becoming the same question. A fuller account of damages can improve the price; a different use of revenue can alter who pays; an exposure limit can preserve a protection the monetary sum would otherwise trade away. Each can be evaluated, argued over and revised. The price answers the distributive question only to the extent that a distributive judgment has already been built into its weights, its limits and the disposition of its proceeds. Making that judgment visible is part of the work. The smoke's cost should enter the account, but the people bearing it should not disappear when it does.</p>
+</article>
+
+  <nav class="apparatus" aria-label="Related reading"><h2 class="app-h">Related</h2><ul class="app-list"><li><a href="the-externality-shadow.html"><span class="app-rel">The preceding measure</span><span class="app-t">The Shadow</span><span class="app-g">The value assigned to a harm depends on the physical comparison, the people represented and the weights applied to consequences through time.</span></a></li><li><a href="../volumes/the-surplus.html#plate-x"><span class="app-rel">Collected edition</span><span class="app-t">The Standard</span><span class="app-g">The earlier welfare inquiry exposes the difference between potential compensation and payment, and the distributional judgment inside an unweighted sum.</span></a></li><li><a href="the-externality-atmosphere.html"><span class="app-rel">The shared stock</span><span class="app-t">The Atmosphere</span><span class="app-g">Responsibility, capacity and exposure cross borders and generations in the climate bargain, widening the question of who should carry the transition.</span></a></li><li><a href="the-externality-standard.html"><span class="app-rel">Next in this volume</span><span class="app-t">The Standard</span><span class="app-g">The next plate examines direct rules and prohibitions, where a protection is specified before the parties choose how to comply.</span></a></li></ul></nav>
+
+  <footer>
+    <nav class="crumbs foot" aria-label="Return">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-externality.html">The Externality &middot; Vol XI</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate x</span>
+    </nav>
+    <p class="colophon">A developed continuation of the original Margin Burden plan, drawing on the distributional questions in the complete <a href="../volumes/the-externality.html#plate-ii">Collected Smoke</a> and <a href="../volumes/the-externality.html#plate-xi">Climate</a>, and the compensation inquiry of the <a href="../volumes/the-surplus.html#plate-x">Collected Standard</a>. The argument follows unequal exposure and the distinct incidence of the remedy through an environmental-justice inquiry. The earlier editions remain intact. The epigraph is original to this plate. Return to <a href="the-externality.html">the volume</a>, or to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-externality-shadow.html">← The Shadow</a><a rel="next" href="the-externality-standard.html">The Standard →</a></nav>
+</body>
+</html>
