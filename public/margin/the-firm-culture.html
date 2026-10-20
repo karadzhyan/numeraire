@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Culture — Numéraire, The Firm, Plate x</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:66rem; --measure:35rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(2.8rem,7vh,5rem) 0 clamp(1.4rem,3.5vh,2.2rem);text-align:center;}
+
+  .crumbs{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 400;
+    font-size:.8rem;letter-spacing:.04em;color:var(--faint);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:center;gap:.55rem;}
+  .crumbs a{text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .2s ease,color .2s ease;}
+  .crumbs a:hover{border-color:var(--num);color:var(--ink);}
+  .crumbs .sep{color:var(--faintest);}
+  .crumbs .here{color:var(--ink);}
+
+  .plate-mark{width:116px;height:116px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:.18rem;line-height:1;}
+  .plate-mark.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pm-vol{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.84rem;letter-spacing:.06em;color:rgba(240,235,225,.62);}
+  .pm-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;
+    font-size:2.5rem;letter-spacing:.02em;text-transform:uppercase;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.1rem,6vw,4rem);line-height:1.03;letter-spacing:-.025em;margin:1rem 0 0;text-wrap:balance;}
+  .status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:42rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .epi{max-width:38rem;margin:clamp(2.2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .epi q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.46;color:var(--ink);quotes:none;display:block;text-wrap:pretty;}
+  .epi .cite{display:block;margin-top:.95rem;font-size:.78rem;color:var(--faintest);letter-spacing:.05em;font-style:normal;}
+  .epi .cite em{font-style:italic;}
+
+  .essay{max-width:52rem;margin:clamp(3rem,7vh,5rem) auto 0;counter-reset:sn;}
+  .essay::after{content:"";display:block;clear:both;}
+  .essay > p,.essay > .pull{max-width:var(--measure);}
+  .essay p{font-size:1.075rem;line-height:1.8;color:var(--ink);margin:0 0 1.4rem;text-wrap:pretty;}
+  .essay em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.72;padding:.08em .14em 0 0;color:var(--ink);}
+
+  .divider{display:flex;justify-content:center;margin:2.4rem 0;}
+  .divider svg{width:96px;height:12px;overflow:visible;}
+  .divider line{stroke:var(--num);stroke-width:1;} .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.5vw,1.74rem);line-height:1.34;color:var(--ink);text-align:center;
+    margin:2.4rem auto;max-width:33rem;text-wrap:balance;}
+
+  .snref{font-family:"Fraunces",serif;font-size:.64em;line-height:0;vertical-align:super;
+    color:var(--soft);counter-increment:sn;margin-left:1px;font-style:normal;}
+  .snref::after{content:counter(sn);}
+  .sn{display:block;max-width:var(--measure);margin:.1rem 0 1.4rem;padding:.15rem 0 .15rem 1.05rem;
+    border-left:1px solid var(--hair);font-size:.84rem;line-height:1.52;color:var(--faint);}
+  .sn::before{content:counter(sn);font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--faintest);margin-right:.5em;font-size:.92em;}
+  .sn em{font-style:italic;}
+
+  @media (min-width:64rem){
+    .sn{float:right;clear:right;width:15rem;margin:.35rem 0 1.3rem;padding:0;border-left:none;}
+    .divider,.pull,.apparatus{clear:both;}
+  }
+
+  .apparatus{max-width:52rem;margin:clamp(3.2rem,7vh,5rem) auto 0;padding-top:2rem;border-top:1px solid var(--hair);clear:both;}
+  .app-h{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;}
+  .app-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.4rem;}
+  .app-list li{border-top:1px solid var(--hair);}
+  .app-list li:first-child,.app-list li:nth-child(2){border-top:none;}
+  .app-list a{display:block;text-decoration:none;padding:.95rem 0;}
+  .app-list a:hover .app-t{color:var(--soft);}
+  .app-rel{display:block;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faintest);margin-bottom:.3rem;}
+  .app-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.12rem;color:var(--ink);transition:color .2s ease;}
+  .app-g{display:block;font-size:.84rem;color:var(--faint);font-style:italic;line-height:1.4;margin-top:.22rem;}
+
+  footer{margin-top:clamp(3.5rem,8vh,6rem);padding:2.2rem 0 4rem;border-top:1px solid var(--hair);}
+  .crumbs.foot{justify-content:flex-start;margin-bottom:1.3rem;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .plate-mark{width:96px;height:96px;}
+    .pm-num{font-size:2.1rem;}
+    .essay p{font-size:1.04rem;line-height:1.74;}
+    .dropcap{font-size:3rem;}
+    .app-list{grid-template-columns:1fr;}
+    .app-list li:nth-child(2){border-top:1px solid var(--hair);}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="crumbs rise d1" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-firm.html">The Firm &middot; Vol XIV</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate x</span>
+    </nav>
+    <div class="plate-mark lit rise d2" aria-hidden="true">
+      <span class="pm-vol">Fm</span>
+      <span class="pm-num">x</span>
+    </div>
+    <h1 class="rise d3">The Culture</h1>
+    <div class="status rise d3">in print &middot; The Firm &middot; plate x</div>
+    <p class="standfirst rise d4">A contract leaves room for conduct that no supervisor can fully observe or specify. Identity, professional pride and the standards of a workgroup help explain what fills that room, but their contribution depends on the conduct they encourage. Following the extra check, the wage, the group and the right to dissent reveals how money can support a community and why membership must remain open to judgment.</p>
+  </header>
+
+  <div class="epi rise d5"><q>A shared standard lives through ordinary choices.</q><span class="cite">The argument of this plate</span></div>
+
+  <article class="essay">
+<p class="lede"><span class="dropcap">T</span>he shift is nearly over when a worker notices that the part on the next bench has been fitted the wrong way round. It is someone else’s work; the mistake will not appear in her count; the supervisor has already gone. She can put down her tools or walk across and put it right. An employment agreement may require care, cooperation and reasonable diligence, but no document can arrive at every such moment and make the decision. The workshop needs something that reaches the unobserved act. Sometimes it is fear that the fault will be traced, sometimes the prospect of a favor returned, sometimes pride in the work or concern for the person who will use it. The firm’s culture begins in this space between the conduct a contract can specify and the conduct that makes the enterprise work.</p>
+<p>The gap is wider than a missing incentive, because people can understand the same task in different ways.<sup class="snref"></sup> One worker sees the extra check as an imposition outside the job; another sees it as what a competent member of the trade would do. A third checks because the team has promised to protect one another’s work. These motives need not coincide. Professional pride may require resisting a manager’s instruction, while loyalty to a colleague may require concealing an error the organization needs to know about. To speak of culture is therefore to ask which conduct a group treats as fitting, whose example supplies the standard, and what a member feels when she falls below it. A common purpose can fill part of the contract’s silence. A common bad habit can fill it too.</p>
+<aside class="sn">George A. Akerlof and Rachel E. Kranton, <a href="https://sites.duke.edu/rachelkranton/files/2016/12/identityeconomicsoforganizations-jep-akerlofandkranton.pdf">“Identity and the Economics of Organizations”</a>, <i>Journal of Economic Perspectives</i> 19(1), Winter 2005, pp. 12–16, define identity through social categories, norms and gains or losses from conformity to an ideal. The workshop and its choices are constructed illustrations.</aside>
+<p>Akerlof and Kranton bring this difference into the economic account by allowing the worker’s sense of self to enter her preferences. In their simple model an insider identifies with the organization and loses something by departing from its ideal of effort; an outsider follows a different ideal. The same payment schedule can consequently produce different conduct. This is a change in what the worker values, beyond a change in the probability of being caught or promoted. It also makes the account less comfortable for management. Calling someone an insider does not establish that she feels like one, and the model’s assumption that an organization can invest in identity leaves a practical question: what experience could make that identification credible? A badge can be issued in a moment. Membership has to acquire a meaning.</p>
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg></div>
+<p>A small invented comparison makes the distinction visible.<sup class="snref"></sup> Suppose the extra check costs the worker three units of effort and yields an expected monetary reward worth one unit to her. Set aside detection, future favors and every other consequence. Without a further motive, checking leaves her two units worse off. If avoiding a departure from her own standard is worth four units, checking leaves her two better off: one plus four, less three. The additional four are a stipulated value in her decision, not four units of revenue earned by the employer. They explain how the check can be chosen without a sufficiently large bonus. They do not prove that the firm has created four units of social wealth, or that the worker can afford a smaller wage.</p>
+<aside class="sn">This is a separate, risk-neutral illustration in common utility-equivalent units: 1 − 3 = −2; 1 + 4 − 3 = 2. The basic wage and outside option are held fixed. Akerlof and Kranton’s <a href="https://sites.duke.edu/rachelkranton/files/2016/12/identityeconomicsoforganizations-jep-akerlofandkranton.pdf">own model, pp. 13–15</a>, uses risk aversion and a participation constraint; its identity term can reduce the contingent wage differential needed to induce a specified high-effort action.</aside>
+<p>The wage still matters at more than one margin. It supports the worker’s life, determines whether she can take the job, and can itself convey how the organization values her contribution. In the invented comparison, a reward of four would induce the check even without the additional motive. With identity held fixed, a larger reward still makes checking more attractive. The harder possibility is that the offer changes the meaning of the act: a gesture of mutual care may come to seem a separate service, or a well-chosen payment may confirm that care is respected. There is no general rule that money destroys loyalty, or that loyalty makes incentives unnecessary. Akerlof and Kranton expressly allow the two to be complements when a firm chooses a higher level of effort. The economic question concerns their interaction, not a choice between a paid workforce and a devoted one.</p>
+<p>The group can supply an ideal that differs from the employer’s.<sup class="snref"></sup> A workroom may honor the person who helps a novice, but it may also punish the person whose speed raises everyone else’s expected output. A team may preserve a useful practice against an ill-informed instruction, or preserve a dangerous practice because admitting the danger would discredit its senior members. Akerlof and Kranton’s workgroup analysis makes room for this divergence. Identification with fellow workers can change the response to supervision, and close monitoring can itself change the relationship it is meant to oversee. A uniform culture is not a necessary condition of cooperation. What matters is whether its different loyalties can be made compatible with work worth doing and with the people who depend on it.</p>
+<aside class="sn">Akerlof and Kranton, <a href="https://sites.duke.edu/rachelkranton/files/2016/12/identityeconomicsoforganizations-jep-akerlofandkranton.pdf">pp. 22–27</a>, develop workgroup identity and a model of supervision, then discuss its applications. They distinguish this explanation from repeated-game incentives while noting that the two can imply similar behavior. The group examples here identify possibilities rather than report a particular workplace.</aside>
+<p>The way an organization receives bad news helps determine which loyalty will prevail. Return to the wrongly fitted part. If the worker who reports it is blamed for slowing production, the firm has made concealment compatible with self-protection. If the report leads to a correction, an explanation and a better process, care has somewhere to go. A declaration of values reaches the workshop through decisions of this kind: who is promoted, whose objection is heard, which deadline can be questioned, which failure is punished and which is examined. The organization teaches through what it repeatedly does. Its members can learn a standard quite different from the one printed on the wall.</p>
+<p>Culture also consumes resources, even where its contribution does not come with a separate price.<sup class="snref"></sup> Teaching a newcomer, discussing a failed job and keeping a promise during a difficult month require time or money that could have been used elsewhere. In the identity model, the organization compares the cost of changing workers’ identification with the benefits it expects from doing so. In an actual institution, the benefits depend on responses that management cannot simply order into existence. A promise of fair treatment may support cooperation only if the people making it can be held to it. Paid time for learning can make a professed standard practicable. A wage sufficient to let a worker remain can preserve the relationship in which trust develops. Here a price helps sustain the conditions of membership without buying membership as a finished commodity.</p>
+<aside class="sn">Akerlof and Kranton, <a href="https://sites.duke.edu/rachelkranton/files/2016/12/identityeconomicsoforganizations-jep-akerlofandkranton.pdf">pp. 15–16 and 27–29</a>, treat investment in identity as costly and conclude that identity can affect organizational form and incentives. The distinction between an expenditure and a delivered change in allegiance is developed here from that conditional mechanism.</aside>
+<p>The same power can be used to make a worker bear costs she would reject in a more candid bargain. A firm that calls itself a family may ask its members to accept sacrifices while leaving the return entirely at management’s discretion. The language can turn an ordinary disagreement over pay, safety or time into a charge of disloyalty. This possibility follows from the mechanism that makes culture productive: if belonging enters the worker’s sense of self, exclusion and disapproval become powerful sanctions. An account concerned only with the employer’s lower monitoring bill would miss the cost of those sanctions to the person who feels them. The value of a culture must be judged partly by the conduct it permits its members to question.</p>
+<p>For that reason, a community inside the firm needs ways to correct itself.<sup class="snref"></sup> A professional standard that allows a worker to challenge a bad instruction may serve the enterprise better than an unqualified duty to agree. A team able to revise an inherited practice can keep its solidarity without preserving its mistake. A promise of mutual obligation becomes more credible when its breach can be named by someone with less authority. The earlier inquiry into conscience showed how a rule can live within a person; the inquiry into authority showed how much the firm leaves to later direction. Culture joins those questions. It concerns the rules people carry into the space left open by the bargain, and the power to revise them while they are there.</p>
+<aside class="sn">The related earlier treatments are the complete <a href="../volumes/the-norm.html#plate-iv">Collected Conscience</a>, <a href="../volumes/the-norm.html#plate-x">Crowding</a> and <a href="../volumes/the-firm.html#plate-viii">Authority</a>. Their inquiries into internalized norms, incentives and direction supply the starting points for this distinct firm-culture question.</aside>
+<p class="pull">The contract leaves room for a culture. The culture must leave room for judgment.</p>
+<p>A price can reward an act, support a relationship and help make a standard worth keeping. It cannot establish, merely by being paid, what the act means to the person who performs it. That meaning grows among practices, expectations and experiences, and it can join people in work or make them obedient to a harmful ideal. The firm as a community is therefore an institutional achievement to be examined, not a sentiment to be presumed. Its unwritten life matters precisely because it reaches conduct the written bargain cannot settle. The next plate follows the boundary outward, to an organization that coordinates people who may share its customers and depend on its rules without ever belonging to its staff. The argument remains open.</p>
+</article>
+
+  <nav class="apparatus" aria-label="Related reading"><h2 class="app-h">Related</h2><ul class="app-list"><li><a href="the-firm-command.html"><span class="app-rel">The direction within the bargain</span><span class="app-t">The Command</span><span class="app-g">The employment relation leaves later decisions to an authority; culture follows the motives and standards that shape conduct within that open space.</span></a></li><li><a href="../volumes/the-norm.html#plate-iv"><span class="app-rel">Collected edition</span><span class="app-t">The Conscience</span><span class="app-g">The earlier treatment asks how a rule can govern unobserved conduct, supplying a related foundation for the distinct inquiry into identity at work.</span></a></li><li><a href="the-firm-cooperative.html"><span class="app-rel">The members and their institution</span><span class="app-t">The Cooperative</span><span class="app-g">Ownership and voice can give membership a different structure, while leaving the practical work of cooperation and accountability to be done.</span></a></li><li><a href="the-firm-platform.html"><span class="app-rel">Beyond the staff</span><span class="app-t">The Platform</span><span class="app-g">A firm can coordinate people who never become its employees, raising another question about membership, dependence and the reach of its rules.</span></a></li></ul></nav>
+
+  <footer>
+    <nav class="crumbs foot" aria-label="Return">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-firm.html">The Firm &middot; Vol XIV</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate x</span>
+    </nav>
+    <p class="colophon">A developed continuation of the original Margin Culture plan, drawing on the complete <a href="../volumes/the-norm.html#plate-iv">Collected Conscience</a>, <a href="../volumes/the-norm.html#plate-x">Crowding</a> and <a href="../volumes/the-firm.html#plate-viii">Authority</a>. Their related inquiries into norms, motivation and direction are developed into the firm-identity question through Akerlof and Kranton’s models and new constructed illustrations. The earlier editions remain intact. The epigraph is original to this plate. Return to <a href="the-firm.html">the volume</a>, or to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-firm-cooperative.html">← The Cooperative</a><a rel="next" href="the-firm-platform.html">The Platform →</a></nav>
+</body>
+</html>
