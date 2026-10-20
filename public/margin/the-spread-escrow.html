@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Escrow — Numéraire, The Spread, Plate vii</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:66rem; --measure:35rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(2.8rem,7vh,5rem) 0 clamp(1.4rem,3.5vh,2.2rem);text-align:center;}
+
+  .crumbs{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 400;
+    font-size:.8rem;letter-spacing:.04em;color:var(--faint);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:center;gap:.55rem;}
+  .crumbs a{text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .2s ease,color .2s ease;}
+  .crumbs a:hover{border-color:var(--num);color:var(--ink);}
+  .crumbs .sep{color:var(--faintest);}
+  .crumbs .here{color:var(--ink);}
+
+  .plate-mark{width:116px;height:116px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:.18rem;line-height:1;}
+  .plate-mark.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pm-vol{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.84rem;letter-spacing:.06em;color:rgba(240,235,225,.62);}
+  .pm-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;
+    font-size:2.5rem;letter-spacing:.02em;text-transform:uppercase;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.1rem,6vw,4rem);line-height:1.03;letter-spacing:-.025em;margin:1rem 0 0;text-wrap:balance;}
+  .status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:42rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .epi{max-width:38rem;margin:clamp(2.2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .epi q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.46;color:var(--ink);quotes:none;display:block;text-wrap:pretty;}
+  .epi .cite{display:block;margin-top:.95rem;font-size:.78rem;color:var(--faintest);letter-spacing:.05em;font-style:normal;}
+  .epi .cite em{font-style:italic;}
+
+  .essay{max-width:52rem;margin:clamp(3rem,7vh,5rem) auto 0;counter-reset:sn;}
+  .essay::after{content:"";display:block;clear:both;}
+  .essay > p,.essay > .pull{max-width:var(--measure);}
+  .essay p{font-size:1.075rem;line-height:1.8;color:var(--ink);margin:0 0 1.4rem;text-wrap:pretty;}
+  .essay em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.72;padding:.08em .14em 0 0;color:var(--ink);}
+
+  .divider{display:flex;justify-content:center;margin:2.4rem 0;}
+  .divider svg{width:96px;height:12px;overflow:visible;}
+  .divider line{stroke:var(--num);stroke-width:1;} .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.5vw,1.74rem);line-height:1.34;color:var(--ink);text-align:center;
+    margin:2.4rem auto;max-width:33rem;text-wrap:balance;}
+
+  .snref{font-family:"Fraunces",serif;font-size:.64em;line-height:0;vertical-align:super;
+    color:var(--soft);counter-increment:sn;margin-left:1px;font-style:normal;}
+  .snref::after{content:counter(sn);}
+  .sn{display:block;max-width:var(--measure);margin:.1rem 0 1.4rem;padding:.15rem 0 .15rem 1.05rem;
+    border-left:1px solid var(--hair);font-size:.84rem;line-height:1.52;color:var(--faint);}
+  .sn::before{content:counter(sn);font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--faintest);margin-right:.5em;font-size:.92em;}
+  .sn em{font-style:italic;}
+
+  @media (min-width:64rem){
+    .sn{float:right;clear:right;width:15rem;margin:.35rem 0 1.3rem;padding:0;border-left:none;}
+    .divider,.pull,.apparatus{clear:both;}
+  }
+
+  .apparatus{max-width:52rem;margin:clamp(3.2rem,7vh,5rem) auto 0;padding-top:2rem;border-top:1px solid var(--hair);clear:both;}
+  .app-h{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;}
+  .app-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.4rem;}
+  .app-list li{border-top:1px solid var(--hair);}
+  .app-list li:first-child,.app-list li:nth-child(2){border-top:none;}
+  .app-list a{display:block;text-decoration:none;padding:.95rem 0;}
+  .app-list a:hover .app-t{color:var(--soft);}
+  .app-rel{display:block;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faintest);margin-bottom:.3rem;}
+  .app-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.12rem;color:var(--ink);transition:color .2s ease;}
+  .app-g{display:block;font-size:.84rem;color:var(--faint);font-style:italic;line-height:1.4;margin-top:.22rem;}
+
+  footer{margin-top:clamp(3.5rem,8vh,6rem);padding:2.2rem 0 4rem;border-top:1px solid var(--hair);}
+  .crumbs.foot{justify-content:flex-start;margin-bottom:1.3rem;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .plate-mark{width:96px;height:96px;}
+    .pm-num{font-size:2.1rem;}
+    .essay p{font-size:1.04rem;line-height:1.74;}
+    .dropcap{font-size:3rem;}
+    .app-list{grid-template-columns:1fr;}
+    .app-list li:nth-child(2){border-top:1px solid var(--hair);}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="crumbs rise d1" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-spread.html">The Spread &middot; Vol V</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate vii</span>
+    </nav>
+    <div class="plate-mark lit rise d2" aria-hidden="true">
+      <span class="pm-vol">Sp</span>
+      <span class="pm-num">vii</span>
+    </div>
+    <h1 class="rise d3">The Escrow</h1>
+    <div class="status rise d3">in print &middot; The Spread &middot; plate vii</div>
+    <p class="standfirst rise d4">A price agreed by strangers can remain a bargain neither will begin. This plate develops the original Margin inquiry into the trusted keeper: the conditions that make delivery and payment dependable, the different work of custody and guarantees, and the incentives behind a reliable name. It then asks how the fee changes when the assurance has become indispensable and the parties can no longer carry their trust through another route.</p>
+  </header>
+
+  <div class="epi rise d5"><q>The keeper makes the first step possible, and acquires a place between every step.</q><span class="cite">The argument of this plate</span></div>
+
+  <article class="essay">
+<p class="lede"><span class="dropcap">T</span>wo strangers have found each other and agreed a price, and the trade still cannot begin. The buyer will pay when the goods arrive; the seller will send them when the payment arrives. Each can see the other's temptation more clearly than the other's honesty. Between them the escrow offers a third place for the money: neither party may simply seize it, and its release depends on the conditions they have agreed. The service is to make the first step bearable. Much of the middleman's value lies in this quiet rearrangement of who must trust whom, for a bargain that cannot be safely performed is a price without a trade. Yet the rearrangement gives the keeper a position that neither stranger possessed. Once both depend on his account of what happened, the price of confidence can become the price of access to the one person allowed to settle it.</p>
+
+<p>The simplest arrangement changes possession before it changes belief. Imagine a buyer who places the agreed payment with a custodian, a seller who delivers against that commitment, and a release rule keyed to evidence both have accepted. If the condition fails, the money returns under the agreed terms; if it is satisfied, payment goes through. This is a stylized escrow, whose usefulness depends on the condition being observable and the custodian following the instruction. It need not establish that every promise about the goods is true. A receipt can show that a parcel arrived while leaving its contents disputed; a certificate can describe an inspection while leaving a latent defect undiscovered. Choosing the evidence and deciding a contested case are part of the service. The word trust gathers these tasks together, but the arrangement succeeds only as far as the tasks are actually performed.</p>
+
+<p>A small invented bargain shows how much can turn on that arrangement. Let the good be worth 130 to the buyer, cost eighty to supply, and carry an agreed price of a hundred. Suppose the buyer believes that paying in advance brings only a seventy-percent chance of receiving it, with no recovery if it fails to arrive. His expected return from prepayment is then minus nine, and he declines. Even an honest seller can lose the sale to that suspicion. Now suppose an escrow makes conforming delivery perfectly verifiable, protects the deposited funds, and charges the buyer five. The seller supplies the good for a return of twenty; the buyer receives a net benefit of twenty-five. If providing the escrow uses three of resources, its operator retains two, and the total net gain is forty-seven. The fee is five, the resource cost three, and the trade's surplus after that cost forty-seven. These numbers describe different things, even though all of them pass through the same arrangement.<sup class="snref"></sup></p>
+<aside class="sn">Invented, risk-neutral comparison: 0.7 × 130 − 100 = −9 before assurance; 130 − 100 − 5 = 25 for the buyer after assurance; 100 − 80 = 20 for the seller; 5 − 3 = 2 for the operator. The successful arrangement assumes verifiable conformity, protected funds and faithful release. The buyer's initial belief is an assumption, not a measured fraud rate.</aside>
+
+<p>The cost of making performance verifiable limits what this illustration can establish. Someone must identify the parties, record the terms, hold the assets, obtain the evidence and handle a disagreement. Funds may be tied up while this work is done, and an unresolved dispute can make delay itself a bargaining weapon. The buyer who can indefinitely block release gains leverage over a seller who has already supplied; the seller who can secure release with an inadequate receipt gains leverage over the buyer. A sound arrangement must specify what each can prove and what follows when the evidence is incomplete. The earlier Warranty and Bond treated the machinery around a promise as part of what makes the promise credible. Escrow brings that machinery into a third party's hands, where its operating costs and its allocation of discretion become part of the price.<sup class="snref"></sup></p>
+<aside class="sn">This develops the distinct inquiries in <a href="../volumes/the-contract.html#plate-x">The Warranty</a> and <a href="../volumes/the-contract.html#plate-xii">The Bond</a> in the Collected Contract. A promise to remedy a defect and an instruction to hold and release property perform different functions.</aside>
+
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg></div>
+
+<p>The family of trusted intermediaries contains several different promises. A certifier supplies information about an object or a person. A custodian safeguards an asset. An escrow conditions its release. A guarantor undertakes a financial obligation if someone else fails. These services can be combined, but the combination must be built and paid for; a reassuring name cannot supply the missing undertaking. The distinction becomes especially consequential in financial markets. The CPSS–IOSCO framework describes a central counterparty as interposing itself as buyer to sellers and seller to buyers. It thereby takes on exposures that a mere recordkeeper would not. The same framework treats safekeeping, securities settlement and central counterparty functions separately. To ask what the intermediary earns, one must first establish which of these jobs he has accepted, and which risks remain with the parties.<sup class="snref"></sup></p>
+<aside class="sn"><a href="https://www.bis.org/publications/principles-financial-market-infrastructures.pdf">CPSS–IOSCO, <em>Principles for Financial Market Infrastructures</em> (April 2012)</a>, §§1.8–1.13, pp. 7–9. Its institutional definitions distinguish the functions and recognize that one entity can combine them. These are the named framework's categories.</aside>
+
+<p>Linking the two sides of an exchange can remove one danger while leaving others intact. Delivery versus payment makes the final delivery of securities conditional on final payment and conversely, addressing the danger that one party gives the full principal and receives nothing in return. Such linkage does not guarantee the future value of what was bought, the uninterrupted availability of every participant, or the absence of liquidity strain. The protection has a defined object. In the ordinary parcel example, the corresponding question is whether receipt, conformity or some other event triggers release; in a securities system, it concerns the final discharge of linked obligations. A person paying for assurance needs to know which failure it prevents. Otherwise the strength of one safeguard can be mistaken for protection against a different loss.<sup class="snref"></sup></p>
+<aside class="sn">CPSS–IOSCO (2012), Principle 12, pp. 76–77, including note 112: linked final settlement removes principal risk, while systemic and liquidity disruptions can remain. The framework also explains that the final settlements need not be simultaneous. The parcel comparison is this plate's analogy.</aside>
+
+<p>The keeper introduces a further exposure because the assets must now be safe in his keeping. Custody risk includes loss through insolvency, fraud, negligence or failed administration; the 2012 framework consequently addresses protection and timely access as well as investment risk. Economically, the point is straightforward. Money held against a purchase is not spare money merely because the seller cannot yet withdraw it. If its keeper uses it to fund a risky venture, the buyer and seller have acquired an exposure they may never have meant to buy. An impressive yield can subsidize a low visible charge while moving the cost into a possible shortfall. The apparent price of assurance then leaves out part of its own risk. The arrangement must be judged by the handling of the stake and the resources behind its promises, alongside the fee printed on the invoice.<sup class="snref"></sup></p>
+<aside class="sn">CPSS–IOSCO (2012), complete Principle 16, pp. 92–93. The custody and investment distinction supplies the institutional reference; the risky-venture example is an analytical illustration of how a low fee could conceal an exposure.</aside>
+
+<p>A reputation can help discipline the keeper, provided the future it puts at risk is large enough and a breach can be discovered. Suppose, in another invented example, that honest operation earns thirty each period and that diversion yields an extra two hundred now, while detection ends all future business. With certain detection and a discount factor of nine tenths, the future honest receipts at stake are 270, so keeping the business is worth more than the diversion. At a discount factor of one half, those future receipts are only thirty. Even at nine tenths, a one-half chance of detection reduces the expected forfeiture to 135 in this simple comparison. The name on the door disciplines conduct through what its owner expects to lose, and through the evidence that would make the loss follow. A large reputation is neither an inexhaustible asset nor a substitute for accounting that can reveal a breach.<sup class="snref"></sup></p>
+<aside class="sn">The reputation argument develops <a href="../volumes/the-asymmetry.html#plate-ix">The Witness in the Collected Asymmetry</a>. In the invented one-deviation comparison, future rents are δ × 30/(1 − δ), and expected forfeiture is that amount times the probability of detection. The extra gain is measured relative to honest operation today. No recovery, penalty or other incentive is included.</aside>
+
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg></div>
+
+<p>The incentive supplied by future business gives the trusted intermediary a substantial defense of part of his return. Reliability takes investment, and a continuing income can make betrayal expensive. But this account supplies no blank justification for whatever the keeper can charge. The needed reward depends on the gain from misconduct, the chance of discovery, the assets already at stake and the other protections in place. Better verification or more secure custody can alter that calculation. A high fee may support reliable service, reflect scarce expertise, recover a costly system, or exploit the lack of a usable alternative; its amount alone identifies none of these. The comparison must preserve the assurance while asking whether the same assurance could be supplied on better terms. Otherwise every monopoly of confidence can declare its own monopoly rent a necessary condition of honesty.</p>
+
+<p>Dependence becomes power when leaving the keeper means losing the ability to deal. A participant may face the expense of joining another system, persuading its counterparties to join, obtaining recognition for its records, or replacing the credit on which its transactions depend. These are distinct costs. Some arise from the genuine work of maintaining compatible and reliable arrangements; others can be increased by rules that bind a service to an unnecessary exclusive relationship. The consequence is that a fee can rise while its users still prefer paying to leaving. Their decision establishes the value of the available service relative to the available exit. It cannot tell us how the exit became so costly. The original question therefore reaches beyond the trust the middleman creates to the conditions under which that trust can be used elsewhere.</p>
+
+<p>Opening access requires a distinction between protection of the arrangement and protection of its incumbent users. A participant whose failure would endanger others may reasonably have to meet financial and operational conditions. Yet a condition can also exclude a capable rival, particularly when access determines who can compete in the market beyond the system. The 2012 framework's access principle joins fair access to risk-related requirements, while its disclosure principle calls for intelligible rules and service-level fees. The combination matters. A price can be compared only if the service and its obligations are known, and an exclusion can be tested only if its purpose is stated. Disclosure itself creates no competing route; it makes the terms on which a route is denied or supplied more capable of examination. The keeper's assurance becomes more accountable when the basis of the charge and the basis of admission can each be inspected.<sup class="snref"></sup></p>
+<aside class="sn">CPSS–IOSCO (2012), complete Principles 18 and 23, pp. 101–104 and 121–123. Access is conditioned on risk and efficiency within the relevant legal setting; disclosure protects sensitive information.</aside>
+
+<p class="pull">The third party can make the strangers safe from each other while leaving both dependent on his terms.</p>
+
+<p>The trusted middleman's charge is thus the price of an arrangement and a verdict on the alternatives to it. He earns a place by turning mutual hesitation into a transaction that can be performed: holding the stake, checking the condition, accepting a defined exposure, or making a promise more credible than either stranger's own. The fee deserves an account of that work and of the risks still carried by those who pay it. Where the keeper also controls the only workable path, the same charge can collect the value of being unavoidable. The remedy cannot be to discard the safeguard and call the resulting exposure freedom. It must make reliable passage available on terms that can be understood, compared and challenged. The next plate follows the payment through a longer route, where many intermediaries each take a margin and the final price conceals how their separate claims accumulate. The argument remains open.</p>
+</article>
+
+  <nav class="apparatus" aria-label="Related reading"><h2 class="app-h">Related</h2><ul class="app-list"><li><a href="the-spread-hub.html"><span class="app-rel">The place everyone uses</span><span class="app-t">The Hub</span><span class="app-g">How the usefulness of a shared marketplace can shape the cost of carrying business elsewhere.</span></a></li><li><a href="the-spread-arbitrage.html"><span class="app-rel">The obligation behind the quote</span><span class="app-t">The Arbitrage</span><span class="app-g">Why a visible price difference still requires the means to perform both sides of the trade.</span></a></li><li><a href="../volumes/the-asymmetry.html#plate-ix"><span class="app-rel">The name put at stake</span><span class="app-t">The Witness — Collected</span><span class="app-g">The earlier inquiry into reputation, certification and the witnesses a market builds around hidden quality.</span></a></li><li><a href="../volumes/the-contract.html#plate-xii"><span class="app-rel">The promise across time</span><span class="app-t">The Bond — Collected</span><span class="app-g">The earlier synthesis of enforceable promises, incomplete terms and the relationships that sustain cooperation.</span></a></li></ul></nav>
+
+  <footer>
+    <nav class="crumbs foot" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-spread.html">The Spread &middot; Vol V</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate vii &middot; The Escrow</span>
+    </nav>
+    <p class="colophon">The seventh plate of Volume V, <em>The Spread</em>, developed for the original Margin Escrow question from the trust-and-intermediation account of <a href="../quantities/numeraire-plate-the-middleman.html">The Middleman in Quantities</a>, <a href="../volumes/the-asymmetry.html#plate-ix">The Witness in the Collected Asymmetry</a>, and <a href="../volumes/the-contract.html#plate-x">The Warranty</a> and <a href="../volumes/the-contract.html#plate-xii">The Bond in the Collected Contract</a>. These distinct earlier treatments supply the reputation, assurance and promise arguments; this plate develops custody, conditional release and dependence on a trusted intermediary. The earlier texts remain intact. The epigraph states this plate’s argument. Return to <a href="the-spread.html">the volume</a>, or to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-spread-arbitrage.html">← The Arbitrage</a><a rel="next" href="the-spread-chain.html">The Chain →</a></nav>
+</body>
+</html>

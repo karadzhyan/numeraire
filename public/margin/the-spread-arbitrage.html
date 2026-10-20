@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Arbitrage — Numéraire, The Spread, Plate vi</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:66rem; --measure:35rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(2.8rem,7vh,5rem) 0 clamp(1.4rem,3.5vh,2.2rem);text-align:center;}
+
+  .crumbs{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 400;
+    font-size:.8rem;letter-spacing:.04em;color:var(--faint);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:center;gap:.55rem;}
+  .crumbs a{text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .2s ease,color .2s ease;}
+  .crumbs a:hover{border-color:var(--num);color:var(--ink);}
+  .crumbs .sep{color:var(--faintest);}
+  .crumbs .here{color:var(--ink);}
+
+  .plate-mark{width:116px;height:116px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:.18rem;line-height:1;}
+  .plate-mark.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pm-vol{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.84rem;letter-spacing:.06em;color:rgba(240,235,225,.62);}
+  .pm-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;
+    font-size:2.5rem;letter-spacing:.02em;text-transform:uppercase;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.1rem,6vw,4rem);line-height:1.03;letter-spacing:-.025em;margin:1rem 0 0;text-wrap:balance;}
+  .status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:42rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .epi{max-width:38rem;margin:clamp(2.2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .epi q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.46;color:var(--ink);quotes:none;display:block;text-wrap:pretty;}
+  .epi .cite{display:block;margin-top:.95rem;font-size:.78rem;color:var(--faintest);letter-spacing:.05em;font-style:normal;}
+  .epi .cite em{font-style:italic;}
+
+  .essay{max-width:52rem;margin:clamp(3rem,7vh,5rem) auto 0;counter-reset:sn;}
+  .essay::after{content:"";display:block;clear:both;}
+  .essay > p,.essay > .pull{max-width:var(--measure);}
+  .essay p{font-size:1.075rem;line-height:1.8;color:var(--ink);margin:0 0 1.4rem;text-wrap:pretty;}
+  .essay em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.72;padding:.08em .14em 0 0;color:var(--ink);}
+
+  .divider{display:flex;justify-content:center;margin:2.4rem 0;}
+  .divider svg{width:96px;height:12px;overflow:visible;}
+  .divider line{stroke:var(--num);stroke-width:1;} .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.5vw,1.74rem);line-height:1.34;color:var(--ink);text-align:center;
+    margin:2.4rem auto;max-width:33rem;text-wrap:balance;}
+
+  .snref{font-family:"Fraunces",serif;font-size:.64em;line-height:0;vertical-align:super;
+    color:var(--soft);counter-increment:sn;margin-left:1px;font-style:normal;}
+  .snref::after{content:counter(sn);}
+  .sn{display:block;max-width:var(--measure);margin:.1rem 0 1.4rem;padding:.15rem 0 .15rem 1.05rem;
+    border-left:1px solid var(--hair);font-size:.84rem;line-height:1.52;color:var(--faint);}
+  .sn::before{content:counter(sn);font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--faintest);margin-right:.5em;font-size:.92em;}
+  .sn em{font-style:italic;}
+
+  @media (min-width:64rem){
+    .sn{float:right;clear:right;width:15rem;margin:.35rem 0 1.3rem;padding:0;border-left:none;}
+    .divider,.pull,.apparatus{clear:both;}
+  }
+
+  .apparatus{max-width:52rem;margin:clamp(3.2rem,7vh,5rem) auto 0;padding-top:2rem;border-top:1px solid var(--hair);clear:both;}
+  .app-h{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;}
+  .app-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.4rem;}
+  .app-list li{border-top:1px solid var(--hair);}
+  .app-list li:first-child,.app-list li:nth-child(2){border-top:none;}
+  .app-list a{display:block;text-decoration:none;padding:.95rem 0;}
+  .app-list a:hover .app-t{color:var(--soft);}
+  .app-rel{display:block;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faintest);margin-bottom:.3rem;}
+  .app-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.12rem;color:var(--ink);transition:color .2s ease;}
+  .app-g{display:block;font-size:.84rem;color:var(--faint);font-style:italic;line-height:1.4;margin-top:.22rem;}
+
+  footer{margin-top:clamp(3.5rem,8vh,6rem);padding:2.2rem 0 4rem;border-top:1px solid var(--hair);}
+  .crumbs.foot{justify-content:flex-start;margin-bottom:1.3rem;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .plate-mark{width:96px;height:96px;}
+    .pm-num{font-size:2.1rem;}
+    .essay p{font-size:1.04rem;line-height:1.74;}
+    .dropcap{font-size:3rem;}
+    .app-list{grid-template-columns:1fr;}
+    .app-list li:nth-child(2){border-top:1px solid var(--hair);}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="crumbs rise d1" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-spread.html">The Spread &middot; Vol V</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate vi</span>
+    </nav>
+    <div class="plate-mark lit rise d2" aria-hidden="true">
+      <span class="pm-vol">Sp</span>
+      <span class="pm-num">vi</span>
+    </div>
+    <h1 class="rise d3">The Arbitrage</h1>
+    <div class="status rise d3">in print &middot; The Spread &middot; plate vi</div>
+    <p class="standfirst rise d4">The arbitrageur can earn his reward by closing the price difference that makes the reward possible. This plate follows that service through executable quotations, delivery costs and the financing needed to sustain a trade, then gives control of the passage to a single merchant. The comparison separates the gain from reconciling prices from the gain from restricting the flow, and asks what an observed profit can tell us about either.</p>
+  </header>
+
+  <div class="epi rise d5"><q>The gap rewards its closer, and can also reward its keeper.</q><span class="cite">The argument of this plate</span></div>
+
+  <article class="essay">
+<p class="lede"><span class="dropcap">T</span>he same thing has two prices, and a man makes his living by passing between them. He buys where it is cheap and sells where it is dear; the difference, after the passage is paid for, is his reward. In the earlier account of the middleman, this is among the clearest services a private appetite can perform. The purchase strengthens demand at the cheaper counter, the sale adds supply at the dearer, and the trader's effort presses the two quotations together. He can earn his money by removing the occasion for earning it again. Yet the same man may own the route, control the stock, or prevent another trader from making the crossing. Then the difference he collects can endure because he keeps it open. The question is what his profit makes happen to the passage: whether it carries more through, or pays him to hold some back.</p>
+
+<p>The clean financial comparison begins with identical promises and executable prices. Suppose, by invention, that a claim can be bought for a hundred in one market and sold for a hundred and three in another, with both commitments available together and the full cost of completing them equal to one. If the purchased claim can meet the sold obligation, the remaining two is locked in by the pair of trades. The future fortunes of the underlying enterprise are beside that particular calculation: the entitlement on one side discharges the entitlement on the other. Dates, currencies, delivery rights and default provisions belong inside this identity. So do the quantities actually offered. A cheap midpoint and a dear midpoint will not pay a trader who must buy at an ask above the first and sell at a bid below the second. The gap becomes an opportunity only when its two ends can be held at once.<sup class="snref"></sup></p>
+<aside class="sn"><a href="https://faculty.chicagobooth.edu/-/media/faculty/richard-thaler/assets/files/can-the-stock-market-add-and-subtract.pdf">Owen A. Lamont and Richard H. Thaler, “Can the Market Add and Subtract? Mispricing in Tech Stock Carve-outs” (2003)</a>, pp. 227–232, distinguish identical cash flows, model risk, convergence and transaction costs. The 100/103 prices and one-unit cost are an invented executable-trade example.</aside>
+
+<p>The law of one price is the discipline supplied by that alternative. When equivalent claims can be freely bought and sold without cost, a price difference invites a trade whose future obligations cancel. Competition for it puts pressure on the difference to disappear. Where passage costs something, the discipline leaves room for a band of prices: a gap smaller than the complete cost of crossing it supplies no profit for crossing again. Nor must the two quotations meet halfway. Their movement depends on the buyers and sellers available at each end, and on how much each will trade. The arbitrageur reconciles terms; he does not establish an independently known true value for everything those terms describe. Two prices can agree while both embody the same extravagant expectation. The particular strength of arbitrage is that relative inconsistency can be exposed without first settling the whole value of the enterprise.</p>
+
+<p>A passage through space adds work that the comparison between identical claims can hide. Grain available beside a field and grain available at a distant bakery differ in location, date and readiness for use. Transport, storage, spoilage and the capital committed during the journey may explain a difference in their prices. The merchant who buys one and supplies the other is making the later, more useful availability possible. If he buys before securing the resale, he also accepts an uncertainty that a simultaneous purchase and sale would have removed. The name arbitrage is used broadly enough to cover this commerce, but the services and dangers must remain visible inside the name. A rise in the price at the field and a fall at the bakery can accompany a larger volume of trade and a gain overall, while benefiting the bakery's customers and the farmer differently. The merchant's receipt and the distribution of the gain are separate accounts.<sup class="snref"></sup></p>
+<aside class="sn">The location-and-time argument develops <a href="../quantities/numeraire-plate-the-middleman.html">The Middleman in Quantities</a>. Its comparison is between delivered services, not identical securities. Lamont and Thaler, pp. 228–230, explain why similarity, risk and transaction costs matter when claims are compared.</aside>
+
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg></div>
+
+<p>Even a sound comparison can require more money than its author can keep available. Shleifer and Vishny begin their account of limited arbitrage with two futures positions whose final obligations are provisionally assumed to match. A movement against one side can require cash today while the offsetting gain remains in the future. The final hedge does not itself pay the intervening margin call. Their central model then separates the specialist who understands the opportunity from the investors who finance him. If a discrepancy widens, his reported performance deteriorates; investors who cannot fully observe his strategy may withdraw funds, leaving him least able to act when the eventual return appears most attractive. The model assumes final convergence, which makes the financing obstacle especially clear. With merely similar assets, an additional danger survives: the comparison may have been wrong. A trader can need patience and capital, and still have no claim to eventual vindication.<sup class="snref"></sup></p>
+<aside class="sn"><a href="https://web.stanford.edu/~piazzesi/Reading/ShleiferVishny1997.pdf">Andrei Shleifer and Robert W. Vishny, “The Limits of Arbitrage” (1997)</a>, pp. 35–43 and 54. The opening distinguishes the simplifying identical-contract assumption from actual differences; section I specifies performance-sensitive funding and final convergence. Its informational and financing assumptions are part of the result.</aside>
+
+<p>The missing means of execution can be as specific as a share that cannot be borrowed. Lamont and Thaler's study of technology-stock carve-outs examines the Palm–3Com discrepancy of March 2000: the parent's market price was below the value of the subsidiary shares it had announced an intention to distribute. Buying the parent and selling the corresponding subsidiary shares short suggested an extraordinary comparison. The expensive shares, however, could be costly or impossible to borrow for delivery. The authors explicitly distinguish the visible mispricing from an exploitable profit after shorting costs. Their example gives the argument a useful limit. A price difference may persist because the corrective trade is obstructed, even when the arithmetic is public. Persistence alone does not tell us whether the obstruction is a necessary cost, an unavailable resource, or a restriction whose owner profits from keeping it in place.<sup class="snref"></sup></p>
+<aside class="sn">Lamont and Thaler, pp. 230–232. The announced distribution was conditional; the paper's 1998–2000 carve-out sample and short-sale finding are historical. The institutional alternatives in the closing sentence are the present plate's questions, not a finding that the authors attributed the episode to deliberate restriction.</aside>
+
+<p>Control over a passage changes the trader's decision from how much of a difference to exploit to how much of it to preserve. Consider an invented trade between two places. At a shipment of q units, the supplying market's price is 20 + q and the receiving market's price is 50 − q; carriage costs ten per unit. The goods are homogeneous, the schedule of costs and demand is known, and there are no other charges or losses. With competing carriers free to expand trade, shipment reaches ten. The prices then stand at thirty and forty, leaving exactly the ten required for carriage. The initial gap of thirty has narrowed to the cost of connecting the markets. Competition has used the room above that cost to enlarge the flow.</p>
+
+<p>Give one merchant exclusive control of that same passage and the profitable flow becomes smaller. Suppose he buys every unit at the supplying market's resulting price, sells every unit at the receiving market's resulting price, and can prevent anyone else from carrying the remainder. His profit is q times the difference left after carriage: q(20 − 2q). It is largest at five units. He buys at twenty-five, sells at forty-five, spends ten on each crossing and keeps fifty overall. Five further units would have moved under competition. The exclusive merchant still narrows the original gap, and still performs real carriage, but he preserves a larger difference than the cost of carriage requires. He need not destroy the goods or deceive either party. The power to limit the crossing is enough to make withheld trade profitable.<sup class="snref"></sup></p>
+<aside class="sn">An invented model of an exclusive intermediary facing upward supply and downward demand, with uniform prices at each end. Profit is 20q − 2q², maximized at q = 5; competitive passage gives q = 10. Net gains from trade are ∫₀ᑫ[(50 − x) − (20 + x) − 10]dx = 20q − q²: 75 under the exclusive quantity and 100 under competitive passage. The missing 25 is lost surplus, distinct from the merchant's 50 receipt.</aside>
+
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg></div>
+
+<p>The counterfactual makes the judgment precise. In the invented market, the merchant's fifty is not fifty of resources destroyed. It is a private receipt within a total gain of seventy-five. The resource loss from restriction is the twenty-five of further net gains that the withheld units would have created. Under the exclusive quantity, the producer and consumer sides each retain twelve and a half; under competitive passage, each retains fifty. Both the division and the size of the gain change. An observed profit therefore cannot be read directly as either social benefit or social waste. One must identify the alternative flow, the costs of making it, and the power that keeps it from occurring. The comparison also explains why the merchant's useful activity cannot settle the charge against his restriction: the same five journeys are useful in both accounts.</p>
+
+<p>A resale market poses the same question without supplying its answer in advance. A ticket transferred by someone whose plans changed can reach a person who values attendance more. A specialist may find that person, verify the ticket and bear the risk of failing to sell it. Acquiring control of scarce tickets can also make later buyers dependent on the holder's terms. The existence of a resale price above the original price establishes neither how many tickets were withheld nor which allocation would have occurred without the reseller. An initially low price may ration by waiting, chance or connections; willingness to pay also depends on wealth. The right comparison asks how access changes, what work is performed and what alternatives are foreclosed. Calling the transaction arbitrage supplies no welfare verdict for either the original allocation or the resale.</p>
+
+<p>The trader's position is most defensible where another trader can make the same useful crossing. Entry can press a discrepancy toward the costs of discovery, carriage, finance and execution, while leaving a return sufficient to keep that work available. An exclusive route instead makes the residual depend on the owner's power to deny passage. But opening the route must preserve the things that make passage real. A settlement rule may prevent a cheap purchase from being paired with an undeliverable sale; a borrowing requirement may protect an owner whose share is lent. The task is to identify the work of the restriction and compare a feasible alternative. Coase's insistence on the actual institutions of exchange applies here with particular force. The imagined frictionless crossing is useful as a benchmark; the achievable crossing has rules, resources and people who must perform them.<sup class="snref"></sup></p>
+<aside class="sn"><a href="https://www.nobelprize.org/prizes/economic-sciences/1991/coase/lecture/">Ronald H. Coase, “The Institutional Structure of Production,” Nobel lecture (1991)</a>, the discussions of transaction costs and the rules of stock and produce exchanges. The comparative test here distinguishes a restriction's service from the position it confers; it does not infer a universal remedy from the model of exclusive passage.</aside>
+
+<p class="pull">The profit from a crossing can reward the opening of the road, or the power to keep part of it closed.</p>
+
+<p>The arbitrageur thus belongs to both sides of the volume's inquiry. He can reconcile prices, carry goods toward demand and expose an inconsistency that no statement of fundamental value was needed to discover. He can also hold a passage narrow enough to preserve the difference on which he lives. His gain answers the original question only when the trades and the withheld trades are put beside it. What matters is how far the gap falls, why a remainder survives, and whether others are free to close it further on workable terms. The next plate turns from the man who joins prices to the institution that joins promises: the trusted keeper through whom strangers can safely exchange. There, too, a service can become a position, and the passage that makes trade possible can acquire a price of its own. The argument remains open.</p>
+</article>
+
+  <nav class="apparatus" aria-label="Related reading"><h2 class="app-h">Related</h2><ul class="app-list"><li><a href="the-spread-dealer.html"><span class="app-rel">The executable price</span><span class="app-t">The Dealer</span><span class="app-g">The bid and the ask that a trader must actually obtain before a difference becomes a gain.</span></a></li><li><a href="the-spread-escrow.html"><span class="app-rel">The completed passage</span><span class="app-t">The Escrow</span><span class="app-g">The custody and settlement arrangements that let the promised purchase and sale be performed.</span></a></li><li><a href="the-tribute.html"><span class="app-rel">The power over entry</span><span class="app-t">The Tribute</span><span class="app-g">The native account of the service and the position collected in the same charge.</span></a></li><li><a href="../essays/numeraire-v-vi-the-arbitrage.html"><span class="app-rel">The earlier financial comparison</span><span class="app-t">The Arbitrage — Utility</span><span class="app-g">The later treatment of identical claims, short-sale constraints and capital that can run out before convergence.</span></a></li></ul></nav>
+
+  <footer>
+    <nav class="crumbs foot" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-spread.html">The Spread &middot; Vol V</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate vi &middot; The Arbitrage</span>
+    </nav>
+    <p class="colophon">The sixth plate of Volume V, <em>The Spread</em>, adapted for the Margin edition from <a href="../quantities/numeraire-plate-the-arbitrage.html">The Arbitrage in Quantities</a> and the later <a href="../essays/numeraire-v-vi-the-arbitrage.html">Utility Arbitrage</a>, with the spatial-service argument of <a href="../quantities/numeraire-plate-the-middleman.html">The Middleman in Quantities</a>. The original Margin question directs the distinction between closing a price gap and controlling the passage that could close it. The earlier editions retain their own writing; the epigraph states this plate’s argument. Return to <a href="the-spread.html">the volume</a>, or to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-spread-hub.html">← The Hub</a><a rel="next" href="the-spread-escrow.html">The Escrow →</a></nav>
+</body>
+</html>

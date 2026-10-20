@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Hub — Numéraire, The Spread, Plate v</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:66rem; --measure:35rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(2.8rem,7vh,5rem) 0 clamp(1.4rem,3.5vh,2.2rem);text-align:center;}
+
+  .crumbs{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 400;
+    font-size:.8rem;letter-spacing:.04em;color:var(--faint);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:center;gap:.55rem;}
+  .crumbs a{text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .2s ease,color .2s ease;}
+  .crumbs a:hover{border-color:var(--num);color:var(--ink);}
+  .crumbs .sep{color:var(--faintest);}
+  .crumbs .here{color:var(--ink);}
+
+  .plate-mark{width:116px;height:116px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:.18rem;line-height:1;}
+  .plate-mark.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pm-vol{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.84rem;letter-spacing:.06em;color:rgba(240,235,225,.62);}
+  .pm-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;
+    font-size:2.5rem;letter-spacing:.02em;text-transform:uppercase;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.1rem,6vw,4rem);line-height:1.03;letter-spacing:-.025em;margin:1rem 0 0;text-wrap:balance;}
+  .status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:42rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .epi{max-width:38rem;margin:clamp(2.2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .epi q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.46;color:var(--ink);quotes:none;display:block;text-wrap:pretty;}
+  .epi .cite{display:block;margin-top:.95rem;font-size:.78rem;color:var(--faintest);letter-spacing:.05em;font-style:normal;}
+  .epi .cite em{font-style:italic;}
+
+  .essay{max-width:52rem;margin:clamp(3rem,7vh,5rem) auto 0;counter-reset:sn;}
+  .essay::after{content:"";display:block;clear:both;}
+  .essay > p,.essay > .pull{max-width:var(--measure);}
+  .essay p{font-size:1.075rem;line-height:1.8;color:var(--ink);margin:0 0 1.4rem;text-wrap:pretty;}
+  .essay em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.72;padding:.08em .14em 0 0;color:var(--ink);}
+
+  .divider{display:flex;justify-content:center;margin:2.4rem 0;}
+  .divider svg{width:96px;height:12px;overflow:visible;}
+  .divider line{stroke:var(--num);stroke-width:1;} .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.5vw,1.74rem);line-height:1.34;color:var(--ink);text-align:center;
+    margin:2.4rem auto;max-width:33rem;text-wrap:balance;}
+
+  .snref{font-family:"Fraunces",serif;font-size:.64em;line-height:0;vertical-align:super;
+    color:var(--soft);counter-increment:sn;margin-left:1px;font-style:normal;}
+  .snref::after{content:counter(sn);}
+  .sn{display:block;max-width:var(--measure);margin:.1rem 0 1.4rem;padding:.15rem 0 .15rem 1.05rem;
+    border-left:1px solid var(--hair);font-size:.84rem;line-height:1.52;color:var(--faint);}
+  .sn::before{content:counter(sn);font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--faintest);margin-right:.5em;font-size:.92em;}
+  .sn em{font-style:italic;}
+
+  @media (min-width:64rem){
+    .sn{float:right;clear:right;width:15rem;margin:.35rem 0 1.3rem;padding:0;border-left:none;}
+    .divider,.pull,.apparatus{clear:both;}
+  }
+
+  .apparatus{max-width:52rem;margin:clamp(3.2rem,7vh,5rem) auto 0;padding-top:2rem;border-top:1px solid var(--hair);clear:both;}
+  .app-h{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;}
+  .app-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.4rem;}
+  .app-list li{border-top:1px solid var(--hair);}
+  .app-list li:first-child,.app-list li:nth-child(2){border-top:none;}
+  .app-list a{display:block;text-decoration:none;padding:.95rem 0;}
+  .app-list a:hover .app-t{color:var(--soft);}
+  .app-rel{display:block;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faintest);margin-bottom:.3rem;}
+  .app-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.12rem;color:var(--ink);transition:color .2s ease;}
+  .app-g{display:block;font-size:.84rem;color:var(--faint);font-style:italic;line-height:1.4;margin-top:.22rem;}
+
+  footer{margin-top:clamp(3.5rem,8vh,6rem);padding:2.2rem 0 4rem;border-top:1px solid var(--hair);}
+  .crumbs.foot{justify-content:flex-start;margin-bottom:1.3rem;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .plate-mark{width:96px;height:96px;}
+    .pm-num{font-size:2.1rem;}
+    .essay p{font-size:1.04rem;line-height:1.74;}
+    .dropcap{font-size:3rem;}
+    .app-list{grid-template-columns:1fr;}
+    .app-list li:nth-child(2){border-top:1px solid var(--hair);}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="crumbs rise d1" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-spread.html">The Spread &middot; Vol V</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate v</span>
+    </nav>
+    <div class="plate-mark lit rise d2" aria-hidden="true">
+      <span class="pm-vol">Sp</span>
+      <span class="pm-num">v</span>
+    </div>
+    <h1 class="rise d3">The Hub</h1>
+    <div class="status rise d3">in print &middot; The Spread &middot; plate v</div>
+    <p class="standfirst rise d4">A platform must persuade both sides to assemble, and the division of its fees can determine whether they do. The resulting network supplies value while making departure depend on the choices of other participants. This plate follows price structure, multihoming, investment and control of access to distinguish the service of maintaining a marketplace from the power to tax a gathering that its users cannot readily move.</p>
+  </header>
+
+  <div class="epi rise d5"><q>The crowd gives the meeting place its value; the gate determines who may charge for reaching it.</q><span class="cite">The argument of this plate</span></div>
+
+  <article class="essay">
+<p class="lede"><span class="dropcap">T</span>he marketplace is valuable because other people are there. A buyer comes looking for sellers, a seller looking for buyers, and each gives the other a reason to return. The platform gathers these reasons in one place and charges for the gathering. It may supply the means of discovery, the rules of exchange, the record of what was promised and a remedy when the promise fails. Yet the most valuable thing it offers can be something it does not produce alone: access to the people who have assembled around it. Its take rate is the price of entering that common presence. The question is how much of the price pays for making the meeting possible, and how much for owning the place where everyone has learned to meet.</p>
+<p>The rate itself is a small piece of arithmetic. If a platform takes ten pounds from a transaction valued at a hundred, the take rate on that stated base is ten per cent. It does not follow that the platform earns ten pounds of profit, or that the seller bears all ten in the ultimate division of the gains. Processing the transaction can cost money; maintaining the marketplace can cost money when no transaction occurs; buyer and seller can sometimes adjust their own terms in response to the fee. Fixed charges, subscriptions and payments for additional services complicate the comparison further. A low percentage applied to a broad base may collect more than a higher percentage applied to a narrow one. Before judging the cut, one must know what has been counted as the sale, which payments have been counted as the fee, and what service those payments obtain.</p>
+<p>Unlike an ordinary seller courting one class of customer, the hub must often persuade two sides to arrive. Cheap access for buyers can make participation more valuable to sellers; a useful range of sellers can make buyers willing to join. Charging each side according to the expense incurred in serving it separately can miss these effects, because the presence of one side is part of the service supplied to the other. Rochet and Tirole distinguish the <em>level</em> of a platform’s combined charge from its <em>structure</em>, the way that charge is divided. The distinction explains why a marketplace might ask little or nothing of one group while collecting much of its revenue from the other. Unequal prices can help assemble an exchange. Their inequality alone does not establish either generosity or abuse.<sup class="snref"></sup></p>
+<aside class="sn">Rochet and Tirole, <a href="https://www.edegan.com/pdfs/Rochet%20Tirole%20%282003%29%20-%20Platform%20Competition%20in%20Two%20Sided%20Markets.pdf">“Platform Competition in Two-Sided Markets”</a> (2003), §§1–2, pp. 990–998, distinguish price structure from price level and model the effect of both sides’ participation. Their basic monopoly model uses transaction charges and heterogeneous benefits, with no fixed user cost.</aside>
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"></line><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"></rect><line x1="60" y1="6" x2="96" y2="6"></line></svg></div>
+<p>Suppose, in an invented example, that using a platform gives a buyer three pounds of benefit and a seller twelve, relative to their respective alternatives. Hold the underlying sale price fixed and suppose the parties cannot make another transfer between themselves. A fee of five pounds on each side prevents the transaction: the buyer loses two by participating. A fee of zero on the buyer and ten on the seller leaves the buyer three better off and the seller two better off, so both participate. The platform’s total charge is ten either way. Its allocation changes whether the meeting occurs. The free entrance on one side can therefore be part of selling a useful service to both, even though only one of them appears to pay at the door.<sup class="snref"></sup></p>
+<aside class="sn">The benefits and fees are invented. With fees (5, 5), net benefits are (−2, 7); with (0, 10), they are (3, 2). Both fee structures total 10. This illustrates the participation mechanism in <a href="https://www.edegan.com/pdfs/Rochet%20Tirole%20%282003%29%20-%20Platform%20Competition%20in%20Two%20Sided%20Markets.pdf">Rochet–Tirole §2</a>; it is not a calibration or a claim about a named marketplace.</aside>
+<p>The assumption about transfers does real work. If the seller could give the buyer three pounds under the five-and-five arrangement, their net benefits would become one and four. The trade could then proceed without changing the platform’s total charge. It is not enough, therefore, to find a buyer on one side and a seller on the other and declare the division of fees decisive. One must ask whether their own prices or payments can undo it. Rochet and Tirole explain why they sometimes cannot: transaction costs, costs incurred before any particular exchange, and platform rules can obstruct the adjustment. A charge can be two-sided in its economic effect when that obstruction matters. Without it, what looks like cross-subsidizing a side may be offset elsewhere in the transaction.<sup class="snref"></sup></p>
+<aside class="sn">Rochet and Tirole, <a href="https://www.edegan.com/pdfs/Rochet%20Tirole%20%282003%29%20-%20Platform%20Competition%20in%20Two%20Sided%20Markets.pdf">§8, pp. 1017–1020</a>, give the coordination and pass-through qualifications, including notes 31–36. The three-pound transfer is invented: −2 + 3 = 1 and 7 − 3 = 4. The total user surplus remains 5. Neutrality of the fee division does not by itself establish that the total fee is efficient.</aside>
+<p>The hub’s larger power comes from a related problem of coordination. A seller considering a cheaper venue cannot take its audience for granted. A buyer has little reason to visit an empty market. Each can prefer the new venue if the others move, yet prefer the old one if they do not. The difficulty of moving together gives the established gathering a value beyond the quality of its machinery. A technically better register with nobody in it may be a worse marketplace. That is the substance of the network effect in the original question: participation helps produce the thing participants want. It also explains why a service can remain indispensable to a person who has no affection for its owner. The person needs the others, and the owner controls the route to them.</p>
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"></line><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"></rect><line x1="60" y1="6" x2="96" y2="6"></line></svg></div>
+<p>That advantage is powerful without being a theorem that one platform must rule forever. Some users can maintain several presences; some transactions require specialized services; some audiences can be reached through another channel. A rival can subsidize the group it needs first, offer a better match, or make participation inexpensive enough to test. These possibilities do not guarantee that entry succeeds. They identify the conditions on which the incumbent’s position depends. To say that a network creates value is to describe a benefit from participation. To say that its owner can extract an enduring monopoly return requires a further account of why an effective alternative cannot assemble, serve or reach that participation. The first proposition does not supply the second merely by becoming large.<sup class="snref"></sup></p>
+<aside class="sn">Caillaud and Jullien, <a href="https://www.edegan.com/pdfs/Caillaud%20Jullien%20%282003%29%20-%20Chicken%20and%20Egg.pdf">“Chicken &amp; Egg”</a> (2003), §§2–4, analyze competing matchmakers, indirect network effects, registration and transaction fees, and single- or multiple-platform use. Their model permits different equilibrium structures. Its assumptions include homogeneous populations, imperfect matching and efficient bargaining over the surplus of a completed match.</aside>
+<p>A particularly useful warning comes from their exclusive-services benchmark. With the specified pricing instruments and no fixed entry cost, one intermediary serves all users, yet competition from a potential rival leaves it zero profit. The rival can try to attract one side with a subsidy and recover the expense by attracting the other; the incumbent must price with that possibility in view. A concentrated gathering is therefore compatible, in that model, with a strongly contested return. The result is not an assurance about actual dominant platforms, where the assumptions may fail. It is a counterexample to the inference that gathering all the users in one place makes its owner untouchable. The relevant evidence concerns the moves open to the rival and the users, not simply the photograph of where everyone currently stands.<sup class="snref"></sup></p>
+<aside class="sn">Caillaud and Jullien, <a href="https://www.edegan.com/pdfs/Caillaud%20Jullien%20%282003%29%20-%20Chicken%20and%20Egg.pdf">§2, pp. 313–315, Proposition 1 and its accompanying reasoning</a>. Exclusive registration, homogeneous users, the ability to subsidize registration and charge for transactions, and the absence of fixed entry costs are material. Zero profit is the benchmark model’s result, not an estimate for an existing platform.</aside>
+<p>Allowing people to use several hubs changes the comparison again. A second registration can reveal a match the first service missed, or give the same pair a cheaper way to complete a match both services found. It can also leave one side paying for access to groups that do not move, while rivalry concentrates on attracting the more mobile side. In Caillaud and Jullien’s model, nonexclusive services can soften the competition that prevailed under exclusivity and permit positive profits. The useful lesson is not that openness is harmful, but that the ability to join and the incentive to direct a transaction are different things. A rival account that nobody can profitably use is a weak alternative. An alternative that can complete the same valuable exchange is a stronger one. Price instruments and the pattern of participation determine the difference.<sup class="snref"></sup></p>
+<aside class="sn">Caillaud and Jullien, <a href="https://www.edegan.com/pdfs/Caillaud%20Jullien%20%282003%29%20-%20Chicken%20and%20Egg.pdf">§3, pp. 315–320, and §4, pp. 320–322</a>, separate first-source and second-source strategies and the efficiency and profit effects of multihoming. Their efficiency comparison concerns the matching structure; it excludes distortions of trade within an already matched pair. It is not a general recommendation for exclusive dealing.</aside>
+<p>The owner has nevertheless paid to make a place worth visiting. Someone must build the system, attract the early participants, deal with unsuccessful attempts and provide a service credible enough for strangers to try. A market that allows no prospect of recovering those expenses may never be assembled. The expense of the next transaction is therefore an incomplete measure of what a sustainable take rate must cover. But the historical expense does not settle every future fee. Once an investment is made, its sunk amount neither measures the ongoing cost nor establishes how much charge is necessary to induce the next useful investment. A defensible account must connect the prospective return to service and investment, rather than treating the fact that building was costly as an unlimited claim on the people who now use it.</p>
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"></line><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"></rect><line x1="60" y1="6" x2="96" y2="6"></line></svg></div>
+<p>Those people also help make the service valuable. Sellers bring goods, descriptions and a willingness to answer inquiries. Buyers bring demand and information about what is wanted. Repeated participation can make search more productive and give the venue a history on which later strangers rely. The platform organizes these contributions; organization itself is work, not an illusion exposed by noticing that others contribute. Yet ownership of the organizing apparatus does not turn every source of its value into the owner’s solitary creation. The distinction matters when a fee is defended by pointing to the whole surplus of the gathering. That surplus is what the parties and the platform produce together. How much the platform can capture depends on who can credibly withhold or redirect a contribution, and on whether useful alternatives remain possible.</p>
+<p>The same control can protect a market and deepen dependence on it. A rule requiring a transaction to remain inside the venue may support a guarantee, a record of payment or a procedure for resolving disputes. It may also prevent a buyer and seller who already trust one another from exchanging on cheaper terms. Which effect matters cannot be read from the rule’s name. Removing the restriction while imagining that every protection remains free would overstate the benefit of leaving; invoking a useful protection without examining its cost would overstate the need to stay. The comparison should preserve what participants actually value and ask whether that value can be supplied with less restriction. A gate becomes easier to judge when the purpose of keeping it is stated precisely enough to be tested.</p>
+<p>Nor does the platform’s interest in more transactions ensure that it chooses the best terms for the people trading. In Rochet and Tirole’s monopoly model, a profit-maximizing owner balances how prices affect participation on each side. A welfare-maximizing platform subject to budget balance must also account for the surplus each side’s participation creates for the other. The objectives can yield different fee structures as well as different total charges. The distinction persists even when everyone accepts voluntarily and every completed exchange is useful. A profitable marketplace can leave valuable exchanges unmade, or arrange the division of charges differently from the arrangement that best serves its participants. Counting transactions is evidence of a service supplied; it is not a complete measure of the opportunities the chosen fees exclude.<sup class="snref"></sup></p>
+<aside class="sn">Rochet and Tirole, <a href="https://www.edegan.com/pdfs/Rochet%20Tirole%20%282003%29%20-%20Platform%20Competition%20in%20Two%20Sided%20Markets.pdf">§2.1–2.2, pp. 996–998, Propositions 1–2</a>. The private monopoly’s condition differs from the budget-balanced Ramsey condition by terms reflecting average user surpluses. This is a comparison within their specified model, not a measured welfare loss for a present-day business.</aside>
+<p>What would make the toll contestable is accordingly more demanding than the existence of another website. Participants need a practicable way to discover one another, understand the competing terms and carry out the exchange with the qualities that matter to them. Depending on the service, that can require transferable information, usable access, a coordinated move, or an independent way of supplying a protection formerly bundled with the venue. Each has costs and possible effects on trust, so none is a remedy merely by being named. But together they identify what the inquiry must follow: the path by which a dissatisfied participant could do more than express dissatisfaction. Where no such path can work, the owner’s ability to raise the charge comes partly from the difficulty of assembling an alternative to a crowd the participants themselves help constitute.</p>
+<p class="pull">The platform owns the meeting place; its power grows when the people who give that place its value cannot carry the meeting with them.</p>
+<p>The take rate can thus pay for a marketplace and collect a toll on the same transaction. To distinguish the two, follow the service, the investment, the participation and the alternatives, rather than asking the percentage to reveal its own justification. The network effect explains why gathering matters; it does not absolve the owner of explaining the charge, and it does not convict him merely because the gathering has succeeded. The hard case is the useful platform whose control permits a return beyond what comparable service and effective contest would sustain. There the parties keep arriving because the others are there, and the price of reaching one another becomes the price of the position in between. The next plate follows a different connection: the trader who moves between markets because the same thing commands different prices, and whose profit depends on the gap he helps to close.</p>
+</article>
+
+  <nav class="apparatus" aria-label="Related reading"><h2 class="app-h">Related</h2><ul class="app-list"><li><a href="the-spread-dealer.html"><span class="app-rel">The preceding plate</span><span class="app-t">The Dealer</span><span class="app-g">The price of standing ready to trade and the evidence needed to distinguish that service from a protected return.</span></a></li><li><a href="the-spread-arbitrage.html"><span class="app-rel">The next plate</span><span class="app-t">The Arbitrage</span><span class="app-g">The trader connects separated markets by acting on a price difference, earning from the gap he helps to close.</span></a></li><li><a href="../essays/numeraire-v-ix-the-platform.html"><span class="app-rel">An earlier treatment</span><span class="app-t">The Platform</span><span class="app-g">The Utility edition separates the platform’s total charge from its allocation between the two sides.</span></a></li><li><a href="the-tribute.html"><span class="app-rel">The governing question</span><span class="app-t">The Tribute</span><span class="app-g">A useful service can coexist with a toll; the parties’ willingness to pay cannot alone settle the division.</span></a></li></ul></nav>
+
+  <footer>
+    <nav class="crumbs foot" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-spread.html">The Spread &middot; Vol V</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate v &middot; The Hub</span>
+    </nav>
+    <p class="colophon">The fifth plate of the Margin edition’s <em>The Spread</em>, adapted and developed from the Quantities edition’s <a href="../quantities/numeraire-plate-the-take-rate.html">The Take Rate</a>, the Utility edition’s <a href="../essays/numeraire-v-ix-the-platform.html">The Platform</a>, and the Collected edition’s <a href="../volumes/the-spread.html#plate-xi">The Middleman</a>. The original Margin question is retained. Platform pricing and the conditions of contest are developed through Rochet–Tirole and Caillaud–Jullien; the earlier editions remain in place. The epigraph is original to this plate. Return to <a href="the-spread.html">the volume</a>, or to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-spread-dealer.html">← The Dealer</a><a rel="next" href="the-spread-arbitrage.html">The Arbitrage →</a></nav>
+</body>
+</html>

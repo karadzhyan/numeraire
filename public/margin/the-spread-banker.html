@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Banker — Numéraire, The Spread, Plate x</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:66rem; --measure:35rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(2.8rem,7vh,5rem) 0 clamp(1.4rem,3.5vh,2.2rem);text-align:center;}
+
+  .crumbs{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 400;
+    font-size:.8rem;letter-spacing:.04em;color:var(--faint);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:center;gap:.55rem;}
+  .crumbs a{text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .2s ease,color .2s ease;}
+  .crumbs a:hover{border-color:var(--num);color:var(--ink);}
+  .crumbs .sep{color:var(--faintest);}
+  .crumbs .here{color:var(--ink);}
+
+  .plate-mark{width:116px;height:116px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:.18rem;line-height:1;}
+  .plate-mark.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pm-vol{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.84rem;letter-spacing:.06em;color:rgba(240,235,225,.62);}
+  .pm-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;
+    font-size:2.5rem;letter-spacing:.02em;text-transform:uppercase;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.1rem,6vw,4rem);line-height:1.03;letter-spacing:-.025em;margin:1rem 0 0;text-wrap:balance;}
+  .status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:42rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .epi{max-width:38rem;margin:clamp(2.2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .epi q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.46;color:var(--ink);quotes:none;display:block;text-wrap:pretty;}
+  .epi .cite{display:block;margin-top:.95rem;font-size:.78rem;color:var(--faintest);letter-spacing:.05em;font-style:normal;}
+  .epi .cite em{font-style:italic;}
+
+  .essay{max-width:52rem;margin:clamp(3rem,7vh,5rem) auto 0;counter-reset:sn;}
+  .essay::after{content:"";display:block;clear:both;}
+  .essay > p,.essay > .pull{max-width:var(--measure);}
+  .essay p{font-size:1.075rem;line-height:1.8;color:var(--ink);margin:0 0 1.4rem;text-wrap:pretty;}
+  .essay em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.72;padding:.08em .14em 0 0;color:var(--ink);}
+
+  .divider{display:flex;justify-content:center;margin:2.4rem 0;}
+  .divider svg{width:96px;height:12px;overflow:visible;}
+  .divider line{stroke:var(--num);stroke-width:1;} .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.5vw,1.74rem);line-height:1.34;color:var(--ink);text-align:center;
+    margin:2.4rem auto;max-width:33rem;text-wrap:balance;}
+
+  .snref{font-family:"Fraunces",serif;font-size:.64em;line-height:0;vertical-align:super;
+    color:var(--soft);counter-increment:sn;margin-left:1px;font-style:normal;}
+  .snref::after{content:counter(sn);}
+  .sn{display:block;max-width:var(--measure);margin:.1rem 0 1.4rem;padding:.15rem 0 .15rem 1.05rem;
+    border-left:1px solid var(--hair);font-size:.84rem;line-height:1.52;color:var(--faint);}
+  .sn::before{content:counter(sn);font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--faintest);margin-right:.5em;font-size:.92em;}
+  .sn em{font-style:italic;}
+
+  @media (min-width:64rem){
+    .sn{float:right;clear:right;width:15rem;margin:.35rem 0 1.3rem;padding:0;border-left:none;}
+    .divider,.pull,.apparatus{clear:both;}
+  }
+
+  .apparatus{max-width:52rem;margin:clamp(3.2rem,7vh,5rem) auto 0;padding-top:2rem;border-top:1px solid var(--hair);clear:both;}
+  .app-h{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;}
+  .app-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.4rem;}
+  .app-list li{border-top:1px solid var(--hair);}
+  .app-list li:first-child,.app-list li:nth-child(2){border-top:none;}
+  .app-list a{display:block;text-decoration:none;padding:.95rem 0;}
+  .app-list a:hover .app-t{color:var(--soft);}
+  .app-rel{display:block;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faintest);margin-bottom:.3rem;}
+  .app-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.12rem;color:var(--ink);transition:color .2s ease;}
+  .app-g{display:block;font-size:.84rem;color:var(--faint);font-style:italic;line-height:1.4;margin-top:.22rem;}
+
+  footer{margin-top:clamp(3.5rem,8vh,6rem);padding:2.2rem 0 4rem;border-top:1px solid var(--hair);}
+  .crumbs.foot{justify-content:flex-start;margin-bottom:1.3rem;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .plate-mark{width:96px;height:96px;}
+    .pm-num{font-size:2.1rem;}
+    .essay p{font-size:1.04rem;line-height:1.74;}
+    .dropcap{font-size:3rem;}
+    .app-list{grid-template-columns:1fr;}
+    .app-list li:nth-child(2){border-top:1px solid var(--hair);}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="crumbs rise d1" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-spread.html">The Spread &middot; Vol V</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate x</span>
+    </nav>
+    <div class="plate-mark lit rise d2" aria-hidden="true">
+      <span class="pm-vol">Sp</span>
+      <span class="pm-num">x</span>
+    </div>
+    <h1 class="rise d3">The Banker</h1>
+    <div class="status rise d3">in print &middot; The Spread &middot; plate x</div>
+    <p class="standfirst rise d4">The bank combines promises that fall due at different times and depend on different information. This plate distinguishes its measured interest margin from profit, delegated monitoring from liquidity provision, and deposit creation from the funding needed after a payment leaves. It asks how the service can be valuable while the institution’s central position, exposure to common shocks and public support complicate the interpretation of its return.</p>
+  </header>
+
+  <div class="epi rise d5"><q>A promise available today can rest on work still unfinished.</q><span class="cite">The argument of this plate</span></div>
+
+  <article class="essay">
+<p class="lede"><span class="dropcap">T</span>he banker sells an assurance about time. The borrower receives resources that can remain committed to an undertaking; the depositor receives a claim that may be available much sooner. Between those promises sits a balance sheet. Its assets earn one stream of payments and its liabilities require another, leaving a difference from which the institution must pay for its work and absorb its failures. The spread looks like a charge for standing between two people. What distinguishes the bank is that it changes the promises each can obtain, while making their fulfillment depend on what happens elsewhere in the same institution.</p>
+<p>The simplest picture puts a saver on one side and a borrower on the other. It captures part of the service but conceals several transformations. Small claims can support a larger undertaking; a professional lender can investigate a business that an individual saver cannot sensibly investigate; a demandable deposit can coexist with a loan that will take years to repay. These are different achievements. Pooling amounts does not by itself solve the information problem, and assessing a sound borrower does not ensure that the loan can be turned into cash whenever a depositor asks. Each promise needs its own account.</p>
+<p>Even the name of the margin needs care. Suppose an imagined bank holds average earning assets of two hundred yielding six percent over a year. It funds them with deposits of one hundred and eighty costing two percent and equity of twenty. Interest income is twelve; interest expense is three point six. Net interest income is eight point four, or four point two percent of average earning assets. The difference between the two quoted rates is four percentage points, but the measured net interest margin is four point two percent because the rates apply to different amounts. If operating expenses are three and credit-loss expense is two, the remainder before tax is three point four, assuming no other income or expense. A margin is neither a profit figure nor a measure of excess profit.<sup class="snref"></sup></p>
+<aside class="sn"><a href="https://www.fdic.gov/analysis/risk-review/2024-risk-review/2024-risk-review-glossary.pdf">FDIC, <i>2024 Risk Review</i>, glossary, p. 72, “Net Interest Margin”</a>. The denominator is average earning assets; the numerator nets interest paid to depositors and other creditors against interest and dividends earned. The balance sheet here is illustrative and held constant over the measurement period. The remainder also has to compensate the owners' capital before it can be called economic surplus.</aside>
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"></line><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"></rect><line x1="60" y1="6" x2="96" y2="6"></line></svg></div>
+<p>Information supplies one reason to incur the institution's costs. If many small lenders each need to check the same business, they can duplicate the same investigation. If each waits for another to undertake it, too little checking may be done. A delegated monitor can collect information once and use it on behalf of the group. The value lies in something more exact than the banker's reputation for judgment: the institution can make a contract depend on facts it is equipped to learn and enforce, allowing finance on terms that would be costly or unavailable if every small claimant had to act alone.</p>
+<p>Delegation also creates a new question. Who assures the depositors that their monitor is doing its work and passing on what it receives? Diamond's account of financial intermediation puts this cost inside the explanation rather than leaving the banker outside the agency problem. Diversification can help make the intermediary's promises credible: a sufficiently broad collection of independent projects need not fail together, so the costs associated with its own failure can fall. The result depends on the structure of those returns and contracts. A hundred borrowers exposed to one common collapse are not a hundred independent protections against it.<sup class="snref"></sup></p>
+<aside class="sn"><a href="https://bpb-us-w2.wpmucdn.com/sites.uwm.edu/dist/8/268/files/2019/01/Diamond-1984-RES-1xhg2wp.pdf">Diamond, “Financial Intermediation and Delegated Monitoring” (1984), introduction, pp. 393–395, and §3, pp. 398–403</a>. His mechanism includes the costs of providing incentives to the monitor. The limiting diversification result assumes independent bounded project returns; the extension with common observable factors uses contingent contracts or hedging. Size alone is not the theorem.</aside>
+<p>This distinction matters to the price of lending. A bank that finds reliable borrowers and monitors cheaply may earn a return by reducing a real cost. One that lends to borrowers exposed to greater losses may quote a higher rate simply to cover those losses. One that enjoys an exclusive relationship may retain more of the gain from finance. The same observed interest receipt can contain all three elements. To separate them requires information about funding, operating costs, expected losses, capital and the terms available elsewhere. Comparing two headline spreads without those differences can mistake danger for efficiency or a useful relationship for a license to charge anything.</p>
+<p>Liquidity is another service, with a different weakness. A depositor may need funds before an investment can be completed. In Diamond and Dybvig's model, pooling these uncertain needs allows a bank to offer better insurance over the timing of consumption than direct ownership of the assets supplies. Yet the ordinary demand-deposit contract also admits a run. If enough depositors expect others to withdraw, withdrawing first can become individually sensible, even though early liquidation destroys value that waiting would preserve. The loan need not have become worthless at maturity for the promise of immediate payment to become fragile.<sup class="snref"></sup></p>
+<aside class="sn"><a href="https://knowledge.uchicago.edu/records/3sa4m-hvw53/files/Bank-Runs-Deposit-Insurance-and-Liquidity.pdf">Diamond and Dybvig, “Bank Runs, Deposit Insurance, and Liquidity” (1983), §§I–II, pp. 401–410</a>. The model deliberately uses a riskless long-term technology to isolate liquidity insurance and the run equilibrium. Its sequential-service contract and privately observed consumption needs are material assumptions; the result does not identify the cause of every actual bank failure.</aside>
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"></line><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"></rect><line x1="60" y1="6" x2="96" y2="6"></line></svg></div>
+<p>The bank's position between promises is also more active than the image of forwarding an existing deposit suggests. A commercial bank making a loan can credit a new deposit to the borrower. In the Bank of England's 2014 account, the act of lending creates the matching deposit, expanding both sides of the bank's balance sheet. A loan of twenty accompanied by a deposit of twenty adds an asset and a liability; it does not create twenty of equity for the bank. The borrower can spend the deposit, but remains liable for the loan. New money and new net wealth are different things.</p>
+<p>Nor does creating the deposit settle the cost of keeping the loan. If the borrower pays someone at another bank, the lending bank may have to transfer reserves and obtain or retain funding. It must also allow for losses and satisfy the constraints on its balance sheet. The Bank of England's account therefore joins deposit creation to competition for loans and funding, credit and liquidity risk, capital requirements and monetary policy. The capacity to enter a claim in an account is not the capacity to support any volume of lending profitably. The funding question returns when the newly created promise is used.<sup class="snref"></sup></p>
+<aside class="sn"><a href="https://www.bankofengland.co.uk/-/media/boe/files/quarterly-bulletin/2014/money-creation-in-the-modern-economy.pdf">McLeay, Radia and Thomas, “Money Creation in the Modern Economy” (2014), pp. 15–21</a>. The complete creation-and-limits discussion distinguishes an individual bank's funding from the banking system's creation of deposits. It describes the United Kingdom's arrangements at that date; the balance-sheet example uses the accounting mechanism without treating every historical operating detail as a current universal rule.</aside>
+<p>Centrality gives the bank's failure a reach beyond the owners' return. A payment delayed or a credit line withdrawn can interrupt someone else's undertaking. Measures that keep useful promises credible can therefore have a value not captured by the bank's private earnings. Diamond and Dybvig show how deposit insurance can remove the run incentive under their model's fiscal and contractual conditions. They also identify what their riskless-asset model leaves open: once managers can choose portfolio risk, protection changes incentives and its design becomes part of the problem. The public support that stabilizes a service and the private reward earned behind that support belong in the same inquiry.<sup class="snref"></sup></p>
+<aside class="sn"><a href="https://knowledge.uchicago.edu/records/3sa4m-hvw53/files/Bank-Runs-Deposit-Insurance-and-Liquidity.pdf">Diamond and Dybvig (1983), §§V–VI, pp. 413–418</a>. Their strongest insurance result uses a government capable of the specified tax policy. The conclusion explicitly discusses portfolio-choice moral hazard and limits to the equivalence between insurance and last-resort lending. The policy comparison here preserves those qualifications.</aside>
+<p>A narrow margin, then, can mean keen competition, expensive funding, safer assets or an institution failing to price the danger it is assuming. A wide one can reflect costly service, expected loss or power over customers whose alternatives are poor. None of these interpretations follows from the number alone. Where a bank's relationships make it difficult for a borrower to leave, the same information that permits useful lending may also weaken competition for that borrower. Where a depositor can move cheaply to a comparable promise, the bank has less freedom to reduce what it pays. The relevant comparisons concern equivalent services and exposures, not merely another institution displaying a rate.</p>
+<p class="pull">The bank's spread lies between promises; its justification depends on what makes those promises good.</p>
+<p>The banker earns something when pooling, judgment and liquidity make finance less costly or more useful. What he earns from that contribution still has to be distinguished from what he can retain because the passage is difficult to avoid, and from what others bear when his commitments fail. The volume now turns to the tempting response: remove the intermediary and let the parties meet. The response is strongest when it follows every promise that must survive the removal. Otherwise the name disappears while the obligation waits for another bearer. The argument remains open.</p>
+</article>
+
+  <nav class="apparatus" aria-label="Related reading"><h2 class="app-h">Related</h2><ul class="app-list"><li><a href="../quantities/numeraire-plate-the-delegate.html"><span class="app-rel">The entrusted investigation</span><span class="app-t">The Delegate — Quantities</span><span class="app-g">The earlier treatment of monitoring on behalf of dispersed lenders.</span></a></li><li><a href="the-rate-bond.html"><span class="app-rel">The price of a promise</span><span class="app-t">The Bond</span><span class="app-g">How dated payments, discounting and the terms of a claim determine its value.</span></a></li><li><a href="the-premium-bearer.html"><span class="app-rel">The exposure behind the contract</span><span class="app-t">The Bearer</span><span class="app-g">Why moving a claim does not by itself establish who bears its loss.</span></a></li><li><a href="the-spread-bypass.html"><span class="app-rel">The alternative arrangement</span><span class="app-t">The Bypass</span><span class="app-g">Whether direct finance removes an institution, a cost or only a visible fee.</span></a></li></ul></nav>
+
+  <footer>
+    <nav class="crumbs foot" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-spread.html">The Spread &middot; Vol V</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate x &middot; The Banker</span>
+    </nav>
+    <p class="colophon">The tenth plate of Volume V, <em>The Spread</em>, adapted for the Margin edition from <a href="../quantities/numeraire-plate-the-delegate.html">The Delegate in Quantities</a>, <a href="../volumes/the-spread.html#plate-ix">The Bank in the Collected Spread</a> and the later <a href="../essays/numeraire-v-vii-the-bank.html">Utility Bank</a>. The original Margin question is preserved; the distinct earlier treatments remain in their own editions. The epigraph states the argument of this plate. Return to <a href="the-spread.html">the volume</a>, or to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-spread-merchant.html">← The Merchant</a><a rel="next" href="the-spread-bypass.html">The Bypass →</a></nav>
+</body>
+</html>
