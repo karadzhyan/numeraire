@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Ledger — Numéraire, The Stock, Plate iv</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:66rem; --measure:35rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(2.8rem,7vh,5rem) 0 clamp(1.4rem,3.5vh,2.2rem);text-align:center;}
+
+  .crumbs{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 400;
+    font-size:.8rem;letter-spacing:.04em;color:var(--faint);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:center;gap:.55rem;}
+  .crumbs a{text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .2s ease,color .2s ease;}
+  .crumbs a:hover{border-color:var(--num);color:var(--ink);}
+  .crumbs .sep{color:var(--faintest);}
+  .crumbs .here{color:var(--ink);}
+
+  .plate-mark{width:116px;height:116px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:.18rem;line-height:1;}
+  .plate-mark.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pm-vol{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.84rem;letter-spacing:.06em;color:rgba(240,235,225,.62);}
+  .pm-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;
+    font-size:2.5rem;letter-spacing:.02em;text-transform:uppercase;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.1rem,6vw,4rem);line-height:1.03;letter-spacing:-.025em;margin:1rem 0 0;text-wrap:balance;}
+  .status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:42rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .epi{max-width:38rem;margin:clamp(2.2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .epi q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.46;color:var(--ink);quotes:none;display:block;text-wrap:pretty;}
+  .epi .cite{display:block;margin-top:.95rem;font-size:.78rem;color:var(--faintest);letter-spacing:.05em;font-style:normal;}
+  .epi .cite em{font-style:italic;}
+
+  .essay{max-width:52rem;margin:clamp(3rem,7vh,5rem) auto 0;counter-reset:sn;}
+  .essay::after{content:"";display:block;clear:both;}
+  .essay > p,.essay > .pull{max-width:var(--measure);}
+  .essay p{font-size:1.075rem;line-height:1.8;color:var(--ink);margin:0 0 1.4rem;text-wrap:pretty;}
+  .essay em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.72;padding:.08em .14em 0 0;color:var(--ink);}
+
+  .divider{display:flex;justify-content:center;margin:2.4rem 0;}
+  .divider svg{width:96px;height:12px;overflow:visible;}
+  .divider line{stroke:var(--num);stroke-width:1;} .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.5vw,1.74rem);line-height:1.34;color:var(--ink);text-align:center;
+    margin:2.4rem auto;max-width:33rem;text-wrap:balance;}
+
+  .snref{font-family:"Fraunces",serif;font-size:.64em;line-height:0;vertical-align:super;
+    color:var(--soft);counter-increment:sn;margin-left:1px;font-style:normal;}
+  .snref::after{content:counter(sn);}
+  .sn{display:block;max-width:var(--measure);margin:.1rem 0 1.4rem;padding:.15rem 0 .15rem 1.05rem;
+    border-left:1px solid var(--hair);font-size:.84rem;line-height:1.52;color:var(--faint);}
+  .sn::before{content:counter(sn);font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--faintest);margin-right:.5em;font-size:.92em;}
+  .sn em{font-style:italic;}
+
+  @media (min-width:64rem){
+    .sn{float:right;clear:right;width:15rem;margin:.35rem 0 1.3rem;padding:0;border-left:none;}
+    .divider,.pull,.apparatus{clear:both;}
+  }
+
+  .apparatus{max-width:52rem;margin:clamp(3.2rem,7vh,5rem) auto 0;padding-top:2rem;border-top:1px solid var(--hair);clear:both;}
+  .app-h{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;}
+  .app-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.4rem;}
+  .app-list li{border-top:1px solid var(--hair);}
+  .app-list li:first-child,.app-list li:nth-child(2){border-top:none;}
+  .app-list a{display:block;text-decoration:none;padding:.95rem 0;}
+  .app-list a:hover .app-t{color:var(--soft);}
+  .app-rel{display:block;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faintest);margin-bottom:.3rem;}
+  .app-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.12rem;color:var(--ink);transition:color .2s ease;}
+  .app-g{display:block;font-size:.84rem;color:var(--faint);font-style:italic;line-height:1.4;margin-top:.22rem;}
+
+  footer{margin-top:clamp(3.5rem,8vh,6rem);padding:2.2rem 0 4rem;border-top:1px solid var(--hair);}
+  .crumbs.foot{justify-content:flex-start;margin-bottom:1.3rem;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .plate-mark{width:96px;height:96px;}
+    .pm-num{font-size:2.1rem;}
+    .essay p{font-size:1.04rem;line-height:1.74;}
+    .dropcap{font-size:3rem;}
+    .app-list{grid-template-columns:1fr;}
+    .app-list li:nth-child(2){border-top:1px solid var(--hair);}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="crumbs rise d1" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-stock.html">The Stock &middot; Vol IX</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate iv</span>
+    </nav>
+    <div class="plate-mark lit rise d2" aria-hidden="true">
+      <span class="pm-vol">Sk</span>
+      <span class="pm-num">iv</span>
+    </div>
+    <h1 class="rise d3">The Ledger</h1>
+    <div class="status rise d3">in print &middot; The Stock &middot; plate iv</div>
+    <p class="standfirst rise d4">Net worth adds the value of holdings and subtracts the obligations against their owner. This plate examines the dates, prices and estimates behind that subtraction, separates a marked position from cash available for use, and follows the way debt concentrates a change in value upon the residual. It then widens the account to show why internal claims must be consolidated and why the boundary of a wealth measure matters.</p>
+  </header>
+
+  <div class="epi rise d5"><q>The total keeps the limits of its account.</q><span class="cite">The argument of this plate</span></div>
+
+  <article class="essay">
+<p class="lede"><span class="dropcap">T</span>he ledger gives a fortune the appearance of a settled fact by placing a line beneath it. Above the line stand a house, an interest in a business, deposits, shares and debts; below it stands a number, net worth, in which their differences seem to have been resolved. The subtraction is simple. What has been valued, how it has been valued, and whose claim it represents are harder questions. The number measures a position at a date within the boundaries of an account. It can tell us something indispensable about what a person holds without telling us what that person could spend tomorrow, what the holdings will fetch in a hurried sale, or what the whole of that person’s life is worth.</p>
+<p>The account begins by distinguishing the property from the obligations attached to its holder.<sup class="snref"></sup> Consider an invented household with a house valued at six hundred thousand dollars, forty thousand in deposits, and shares valued at one hundred and sixty thousand. Its assets sum to eight hundred thousand. A mortgage of four hundred and fifty thousand leaves net worth of three hundred and fifty thousand. Calling the house “a six-hundred-thousand-dollar asset” is consistent with this account; calling the household six hundred thousand richer because it bought the house would ignore how the purchase was financed. If it now borrows fifty thousand and keeps the proceeds in its account, both assets and liabilities rise by fifty thousand. Its cash has increased and its net worth has stayed still. The two columns record why.</p>
+<aside class="sn">Original household illustration, in thousands: 600 + 40 + 160 − 450 = 350; borrowing and retaining 50 gives 850 − 500 = 350. The definition of net worth and the dated balance sheet are set out in the <a href="https://unstats.un.org/unsd/nationalaccount/docs/SNA2008.pdf#page=315"><em>System of National Accounts 2008</em>, §§13.1–13.7</a>. The household figures are invented, not survey estimates.</aside>
+<p>The date on the ledger matters because a purchase price and a present valuation answer different questions.<sup class="snref"></sup> The price paid records the bargain by which an asset entered the account. A current estimate asks what the holding is worth under conditions now. A house bought for three hundred thousand may be worth six hundred thousand at the date of the statement, while a business bought for six hundred thousand may now command three hundred thousand. Keeping the purchase prices would preserve useful history and conceal the change in the positions held. Revaluing them makes the change visible while requiring evidence for a price that may never have been tested on those particular assets. Both numbers can be recorded; the account becomes obscure when one is presented as though it were the other.</p>
+<aside class="sn"><a href="https://unstats.un.org/unsd/nationalaccount/docs/SNA2008.pdf#page=319">SNA 2008, §§13.16–13.25</a>, distinguishes observed current prices, estimates for untraded assets, depreciated replacement values and present-value methods. These are the named statistical framework’s conventions, not a claim that every personal, company or tax account uses one valuation rule.</aside>
+<p>A quoted price is stronger evidence than an unsupported guess, but multiplying it by a large holding makes an additional assumption. A share sold this afternoon establishes a transaction at that price for the quantity traded. A statement that values a million identical shares at the same price extends the quotation across the holding. That is a workable way of marking a position, and a meaningful one when the market is active. It does not promise a buyer for the whole million at once. The price of disposing of a large block may depend on the time allowed, the buyers available and the rights that travel with the block. A controlling interest can also command benefits that scattered shares lack. The apparent precision of the multiplication should preserve the distinction between evidence about a unit and terms for exchanging an entire position.</p>
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg></div>
+<p>An unlisted business makes that distinction harder to hide.<sup class="snref"></sup> Its shares may not have changed hands for years. An appraiser can examine a recent transaction, comparable companies, the value of the underlying assets, or the present value of expected returns. Each route needs an account of what makes the comparison fit. A recent sale may have preceded the loss of a customer; a comparable company may have more secure earnings; the sum of equipment values may omit what makes the enterprise work as a going concern. A forecast can incorporate those differences while introducing assumptions about their duration. The 2008 national-accounts framework consequently offered several methods for unlisted equity without imposing a universal ranking, and required the method used to be made clear. A range tied to defensible assumptions can be more informative than additional digits in a single estimate.</p>
+<aside class="sn"><a href="https://unstats.un.org/unsd/nationalaccount/docs/SNA2008.pdf#page=324">SNA 2008, §§13.69–13.74</a>, gives the listed/unlisted distinction, alternative methods and the absence of a standard ranking; §13.73 calls for transparency about the method. The control qualification also appears in <a href="https://www.econlib.org/library/YPDBooks/Fisher/fshToI.html?chapter_num=5">Fisher, I note 6</a>. The appraiser’s comparisons here are illustrative.</aside>
+<p>Liquidity asks a further question about the same property: how readily can its value be used? A household may have considerable housing equity and little cash to meet a bill. Selling costs money and takes time; borrowing against the house requires another party to accept the claim and creates an obligation to repay. The balance-sheet value therefore has to be read beside the forms in which it is held and the dates on which debts fall due. In the invented household, forty thousand in deposits and one hundred and sixty thousand in shares play different immediate roles from six hundred thousand in housing. If a sale of the house incurs fifteen thousand in costs, those costs reduce what remains from that transaction. The original total was a valuation before that particular sale, not a guarantee of its net proceeds.</p>
+<p>Debt makes a small movement in an asset’s value a larger movement in the owner’s residual.<sup class="snref"></sup> The six-hundred-thousand-dollar house initially carries one hundred and fifty thousand of equity after its mortgage. Let its value fall by one fifth to four hundred and eighty thousand while the mortgage balance stays four hundred and fifty thousand. The housing equity is now thirty thousand: a fall of four fifths. The physical house can be unchanged throughout. In the whole household ledger, deposits and shares held constant, net worth falls from three hundred and fifty thousand to two hundred and thirty thousand. The mortgage is a prior claim against the owner’s position; the residual absorbs the revaluation. A total that omits leverage misses the mechanism by which a modest price change can consume much of a family’s stake.</p>
+<aside class="sn">Original leverage calculation: housing equity falls from 600 − 450 = 150 to 480 − 450 = 30, an 80-percent fall following a 20-percent asset-price fall. Total household net worth becomes 480 + 40 + 160 − 450 = 230. The example fixes the debt balance and excludes repayments, interest, taxes, fees and other valuation changes.</aside>
+<p>The same discipline prevents a shareholding from being counted twice when the account widens.<sup class="snref"></sup> Suppose a company owns a machine worth one hundred and owes forty to a creditor; in this simplified account its shares are worth sixty. The shareholder records the sixty, the creditor the forty, and the company the machine and the claims against it. Adding the machine to the shareholder’s sixty and the creditor’s forty as though all three were independent additions would report two hundred from a hundred of underlying property. When the accounts are consolidated, the internal financial claims cancel against their counterparts. Their distribution remains consequential: the creditor and shareholder bear different risks and hold different rights. The cancellation prevents duplication; it does not make the arrangement of ownership disappear from economic life.</p>
+<aside class="sn">This develops the earlier Utility <a href="../essays/numeraire-ix-iv-the-balance.html">The Balance</a>. In the original example, 100 of non-financial assets is financed by 40 of debt and 60 of equity. <a href="https://unstats.un.org/unsd/nationalaccount/docs/SNA2008.pdf#page=315">SNA 2008, §13.4</a>, states the aggregate national-wealth relation. <a href="https://unstats.un.org/unsd/nationalaccount/docs/SNA2008.pdf#page=100">§3.36</a> distinguishes equity from fixed financial claims and recognizes the monetary-gold exception; the example does not classify every financial asset as a debt.</aside>
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg></div>
+<p>The boundary around the account determines what its total can mean.<sup class="snref"></sup> A household’s financial position, a company’s accounts and a national balance sheet are different constructions. The national-accounts asset boundary is built around economic ownership and benefits; it is broader than an inventory of physical objects and narrower than an inventory of everything that makes life possible. In the 2008 system, human capital falls outside it, and consumer durables used by households are supplementary information rather than part of the core asset total. A personal inventory may include the car and furniture. Neither convention warrants saying that education, health or a reliable public service has no value. Their treatment tells the reader what the account was designed to collect. Comparing totals whose boundaries differ can make a difference in classification look like a difference in wealth.</p>
+<aside class="sn"><a href="https://unstats.un.org/unsd/nationalaccount/docs/SNA2008.pdf#page=99">SNA 2008, §§3.18–3.49</a>, defines benefits, ownership and the asset boundary. §§3.46–3.49 explain exclusions, including consumer durables and human capital. These passages support the distinction between a specified wealth account and a comprehensive measure of well-being.</aside>
+<p>The balance sheet’s usefulness survives these limits because a conditional measurement can still answer a concrete question. At a stated date, with identified methods, it can show how much of the household’s position rests on one asset, how much is available in liquid form, and how much is offset by obligations. A movement in its total can disclose a change that a wage statement misses. What it cannot do alone is explain that movement. Saving, borrowing, receiving a gift, selling an asset, improving a building and benefiting from a price rise have different effects on the columns and on net worth. To read the closing figure beside the opening one without an account of those events invites the very confusion that keeping two books was supposed to cure.</p>
+<p class="pull">The line beneath the ledger sums a position; it does not erase the conditions of holding it.</p>
+<p>The figure for someone’s wealth therefore measures a valued claim upon resources under a declared set of accounting choices. Its precision comes from making those choices visible: the date, the included assets, the obligations, the price evidence and the means by which an estimate was formed. It is neither a promise of immediate cash nor a complete measure of power, security or happiness, though it bears upon all three. The next plate follows the movement that most sharply exposes the difference between the books. An asset stays with its owner, no wage arrives, and the line at the bottom rises. The ledger has recorded the windfall; the task is to say what has happened, whose gain it is, and how it should be treated.</p>
+</article>
+
+  <nav class="apparatus" aria-label="Related reading"><h2 class="app-h">Related</h2><ul class="app-list"><li><a href="the-stock-multiple.html"><span class="app-rel">The preceding plate</span><span class="app-t">The Multiple</span><span class="app-g">Discounting converts an expected stream into the value that enters the asset column.</span></a></li><li><a href="the-stock-windfall.html"><span class="app-rel">The next plate</span><span class="app-t">The Windfall</span><span class="app-g">The ledger can rise through revaluation before a sale supplies cash or a tax event.</span></a></li><li><a href="the-stock-buffer.html"><span class="app-rel">What the position permits</span><span class="app-t">The Buffer</span><span class="app-g">The form and availability of holdings matter to the security and freedom that wealth can provide.</span></a></li><li><a href="../essays/numeraire-ix-iv-the-balance.html"><span class="app-rel">The original Utility treatment</span><span class="app-t">The Balance</span><span class="app-g">The earlier national account follows financial claims and the stock of resources behind them.</span></a></li></ul></nav>
+
+  <footer>
+    <nav class="crumbs foot" aria-label="Return">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-stock.html">The Stock &middot; Vol IX</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate iv &middot; The Ledger</span>
+    </nav>
+    <p class="colophon">The fourth plate of the Margin edition’s <em>The Stock</em>, adapted and developed from the original Utility edition’s <a href="../essays/numeraire-ix-iv-the-balance.html">The Balance</a>, with continuity from the native <a href="the-reservoir.html">The Reservoir</a>. The earlier account of assets, liabilities and consolidation is developed through household examples and the explicit valuation and asset-boundary conventions of the <em>System of National Accounts 2008</em>. The original Margin question and distinct earlier editions are preserved. The epigraph is original to this plate. Return to <a href="the-stock.html">the volume</a>, or to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-stock-multiple.html">← The Multiple</a><a rel="next" href="the-stock-windfall.html">The Windfall →</a></nav>
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Windfall — Numéraire, The Stock, Plate v</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:66rem; --measure:35rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(2.8rem,7vh,5rem) 0 clamp(1.4rem,3.5vh,2.2rem);text-align:center;}
+
+  .crumbs{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 400;
+    font-size:.8rem;letter-spacing:.04em;color:var(--faint);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:center;gap:.55rem;}
+  .crumbs a{text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .2s ease,color .2s ease;}
+  .crumbs a:hover{border-color:var(--num);color:var(--ink);}
+  .crumbs .sep{color:var(--faintest);}
+  .crumbs .here{color:var(--ink);}
+
+  .plate-mark{width:116px;height:116px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:.18rem;line-height:1;}
+  .plate-mark.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pm-vol{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.84rem;letter-spacing:.06em;color:rgba(240,235,225,.62);}
+  .pm-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;
+    font-size:2.5rem;letter-spacing:.02em;text-transform:uppercase;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.1rem,6vw,4rem);line-height:1.03;letter-spacing:-.025em;margin:1rem 0 0;text-wrap:balance;}
+  .status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:42rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .epi{max-width:38rem;margin:clamp(2.2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .epi q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.46;color:var(--ink);quotes:none;display:block;text-wrap:pretty;}
+  .epi .cite{display:block;margin-top:.95rem;font-size:.78rem;color:var(--faintest);letter-spacing:.05em;font-style:normal;}
+  .epi .cite em{font-style:italic;}
+
+  .essay{max-width:52rem;margin:clamp(3rem,7vh,5rem) auto 0;counter-reset:sn;}
+  .essay::after{content:"";display:block;clear:both;}
+  .essay > p,.essay > .pull{max-width:var(--measure);}
+  .essay p{font-size:1.075rem;line-height:1.8;color:var(--ink);margin:0 0 1.4rem;text-wrap:pretty;}
+  .essay em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.72;padding:.08em .14em 0 0;color:var(--ink);}
+
+  .divider{display:flex;justify-content:center;margin:2.4rem 0;}
+  .divider svg{width:96px;height:12px;overflow:visible;}
+  .divider line{stroke:var(--num);stroke-width:1;} .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.5vw,1.74rem);line-height:1.34;color:var(--ink);text-align:center;
+    margin:2.4rem auto;max-width:33rem;text-wrap:balance;}
+
+  .snref{font-family:"Fraunces",serif;font-size:.64em;line-height:0;vertical-align:super;
+    color:var(--soft);counter-increment:sn;margin-left:1px;font-style:normal;}
+  .snref::after{content:counter(sn);}
+  .sn{display:block;max-width:var(--measure);margin:.1rem 0 1.4rem;padding:.15rem 0 .15rem 1.05rem;
+    border-left:1px solid var(--hair);font-size:.84rem;line-height:1.52;color:var(--faint);}
+  .sn::before{content:counter(sn);font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--faintest);margin-right:.5em;font-size:.92em;}
+  .sn em{font-style:italic;}
+
+  @media (min-width:64rem){
+    .sn{float:right;clear:right;width:15rem;margin:.35rem 0 1.3rem;padding:0;border-left:none;}
+    .divider,.pull,.apparatus{clear:both;}
+  }
+
+  .apparatus{max-width:52rem;margin:clamp(3.2rem,7vh,5rem) auto 0;padding-top:2rem;border-top:1px solid var(--hair);clear:both;}
+  .app-h{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;}
+  .app-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.4rem;}
+  .app-list li{border-top:1px solid var(--hair);}
+  .app-list li:first-child,.app-list li:nth-child(2){border-top:none;}
+  .app-list a{display:block;text-decoration:none;padding:.95rem 0;}
+  .app-list a:hover .app-t{color:var(--soft);}
+  .app-rel{display:block;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faintest);margin-bottom:.3rem;}
+  .app-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.12rem;color:var(--ink);transition:color .2s ease;}
+  .app-g{display:block;font-size:.84rem;color:var(--faint);font-style:italic;line-height:1.4;margin-top:.22rem;}
+
+  footer{margin-top:clamp(3.5rem,8vh,6rem);padding:2.2rem 0 4rem;border-top:1px solid var(--hair);}
+  .crumbs.foot{justify-content:flex-start;margin-bottom:1.3rem;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .plate-mark{width:96px;height:96px;}
+    .pm-num{font-size:2.1rem;}
+    .essay p{font-size:1.04rem;line-height:1.74;}
+    .dropcap{font-size:3rem;}
+    .app-list{grid-template-columns:1fr;}
+    .app-list li:nth-child(2){border-top:1px solid var(--hair);}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="crumbs rise d1" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-stock.html">The Stock &middot; Vol IX</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate v</span>
+    </nav>
+    <div class="plate-mark lit rise d2" aria-hidden="true">
+      <span class="pm-vol">Sk</span>
+      <span class="pm-num">v</span>
+    </div>
+    <h1 class="rise d3">The Windfall</h1>
+    <div class="status rise d3">in print &middot; The Stock &middot; plate v</div>
+    <p class="standfirst rise d4">An asset can rise in value while its owner keeps it and receives no payment. This plate separates that revaluation from saving and improvement, distinguishes nominal gain from purchasing power, and follows the different events recorded by a wealth account and a tax account. An original comparison shows the value of tax deferral before the argument returns to the source of the gain and the claim that it was earned.</p>
+  </header>
+
+  <div class="epi rise d5"><q>A rise in value leaves its cause to be explained.</q><span class="cite">The argument of this plate</span></div>
+
+  <article class="essay">
+<p class="lede"><span class="dropcap">A</span> share is worth a hundred at the opening of the year and a hundred and thirty at its close. The owner has kept it throughout. No buyer has handed over the additional thirty, yet a statement of the owner’s holdings records it, and a sale at the closing price would turn it into money. The gain has arrived through a change in the value of what was already held. It need not have arrived through an act of its holder. This is the windfall’s unsettling place in the account of wealth: a position can enlarge before anything is sold, and the event that makes the enlargement spendable may come long after the event that made it valuable.</p>
+<p>The first discipline is to distinguish the revaluation from the other ways a stock changes.<sup class="snref"></sup> Saving part of a wage adds resources to the account. Receiving a gift transfers them from another holder. Improving a building changes the asset itself. A holding gain instead changes the value of an existing position because its price changes. These events can occur together, which is why comparing two year-end totals cannot by itself identify how much was saved or how much was gained. The national accounts supply a reconciliation between opening and closing positions, separating transactions, other changes and revaluation. A fortune’s growth requires a similar account if it is to support an argument about its source. The total tells us how much the position changed; its components tell us by what route.</p>
+<aside class="sn"><a href="https://unstats.un.org/unsd/nationalaccount/docs/SNA2008.pdf#page=306">SNA 2008, §§12.73–12.86</a>, defines nominal holding gains and reconciles stocks with transactions and other changes. §§12.94–12.96 distinguish a price change from improvement or deterioration of a fixed asset. The hundred-to-one-hundred-and-thirty example is invented and holds the number of shares constant.</aside>
+<p>Realizing the gain changes the form in which the owner holds it. Sell the share for a hundred and thirty, with no expenses, and the account exchanges a share worth that amount for cash worth the same amount. The sale supplies money and an observed price. It does not create another hundred and thirty of wealth on top of the share, or another thirty of appreciation on top of the gain already recorded. If the price falls before sale, the earlier increase can disappear. That possibility makes the recorded gain uncertain as a resource for future spending, but it does not make an actual offer irrelevant while it exists. A holding can confer command without being sold; an unrealized gain can also reverse before its holder uses it.</p>
+<p>Whether the thirty is called income depends on the question the account is answering.<sup class="snref"></sup> Fisher’s account of income centered on benefits enjoyed and separated them from appreciation in the capital that might provide later enjoyment. The 2008 national accounts likewise place holding gains in the revaluation account rather than assimilating them to their measure of income, while explicitly discussing the case for a broader measure. For another purpose, one can define a person’s economic gain over a period as consumption plus the change in net worth, with appropriate treatment of transfers and a consistent valuation standard. In the invented example, if the share also pays five which the owner spends, and there are no other changes, that broader reckoning records thirty-five. Five was consumed and thirty remains in the position. The phrase “never income” cannot settle the choice of account; the definition has to do that work.</p>
+<aside class="sn"><a href="https://www.econlib.org/library/YPDBooks/Fisher/fshToI.html?chapter_num=5">Fisher, I §14 and notes 9–11</a>, expressly distinguishes enjoyed income from accumulation and discusses the possibility of adding them. <a href="https://unstats.un.org/unsd/nationalaccount/docs/SNA2008.pdf#page=308">SNA 2008, §§12.89–12.93</a>, discusses broader income and its practical limits. Consumption plus change in wealth is used here as an explicitly defined comparison; it is not asserted to be the tax base or the national-accounts measure.</aside>
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg></div>
+<p>Even a measured gain in money needs a second reckoning in purchasing power.<sup class="snref"></sup> Suppose the same asset rises from one hundred to one hundred and thirty while the price of a representative basket rises by ten percent. Ten of the nominal thirty merely keeps pace with that basket. The remaining twenty, measured in closing-period dollars, is the increase beyond that neutral adjustment; in opening-period purchasing power the asset is worth about one hundred and eighteen dollars and eighteen cents. A gain of thirty in the ledger therefore does not mean thirty more units of the old consumption opportunity. Choosing an index introduces a further question about what purchasing power matters to the comparison. The same nominal change can matter differently to someone buying a home, funding a retirement, or measuring command over a broad basket of goods.</p>
+<aside class="sn">Original calculation: neutral holding gain 100 × .10 = 10; real holding gain in closing-period dollars 30 − 10 = 20; closing value in opening-period purchasing power 130/1.10 = 118.1818. <a href="https://unstats.un.org/unsd/nationalaccount/docs/SNA2008.pdf#page=308">SNA 2008, §§12.87–12.93</a>, explains the index choice and nominal, neutral and real gains. These are different units, not conflicting answers.</aside>
+<p>The source of appreciation matters as much as its size to any claim about earning it. A company’s prospects can improve because people have developed a useful product; they can also improve because rivals have been excluded or customers have fewer alternatives. A site can rise in value when a public connection makes it easier to reach. A fixed payment can become more valuable when the rate used to discount it falls. Each change can enter an owner’s account as appreciation, although the contributions behind them differ. The accounting category identifies the form of the gain. It does not establish who produced the benefit, whether anyone produced an additional benefit at all, or whether the owner’s larger claim is matched by a better position for others.</p>
+<p>The timing of ownership determines who captures a surprise.<sup class="snref"></sup> The earlier plate on the increment imagined a railway making a site more useful without an act by the site’s owner. The holder when the unexpected advantage becomes known can receive the increase in price. Someone who buys after it is fully anticipated pays for the prospect in the purchase price. That later buyer may receive the expected rents without receiving the same windfall. John Stuart Mill’s discussion of taxing spontaneous increases in land rent confronted both differences: improvements made by the proprietor had to be distinguished from general growth, and buyers might already have paid for expectations of future gains. His difficulty survives the railway example. Identifying a gain requires a starting point; assigning it to effort or circumstance requires a history.</p>
+<aside class="sn">This develops the later Margin <a href="the-rent-increment.html">The Increment</a>. <a href="https://www.econlib.org/library/Mill/mlP.html?chapter_num=67">Mill, <em>Principles</em>, V.II §§5–6</a> (Ashley edition, 1909), distinguishes proprietor-produced improvements, spontaneous growth and purchasers’ expectations. His proposal is historical; it is not presented as a current tax rule or as a formula for identifying every gain.</aside>
+<p>The tax account adds a decision about when a gain should become a charge.<sup class="snref"></sup> Under the ordinary U.S. federal rule described by the IRS for a sale of a capital asset, the calculation compares the amount realized with adjusted basis. In the simple share example, if basis is one hundred and there are no adjustments or sale expenses, a sale for one hundred and thirty produces a gain of thirty. Holding the appreciated share and selling it are consequently different tax events, even though the valuation may be the same immediately before and after sale. The rule has exceptions and neighboring regimes, including constructive sales and mark-to-market treatment of specified contracts. The general choice to wait for realization is therefore a way of administering a tax, with defined qualifications; it is not a conclusion that appreciation cannot be measured or counted until ordinary cash changes hands.</p>
+<aside class="sn"><a href="https://www.irs.gov/taxtopics/tc409">IRS, Topic 409, “Capital gains and losses”</a>, reviewed September 24, 2026, states the sale/adjusted-basis rule. <a href="https://www.irs.gov/publications/p550">Publication 550 (2025), chapter 4</a>, supplies the qualifications under “Constructive Sales of Appreciated Financial Positions” and “Section 1256 Contracts Marked to Market,” including exceptions. These regimes distinguish an actual sale from a transaction or year-end valuation that the rules treat as a sale.</aside>
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg></div>
+<p>Deferral can have value even when the same stated tax rate eventually applies.<sup class="snref"></sup> Take another invented account: one hundred invested for two years, appreciating by ten percent in each year, with no distributions, losses or costs. Imagine a twenty-percent tax on gains. If the tax is collected annually from the investment, the first year’s gain of ten leaves eight after tax, and the second year’s gain on the remaining one hundred and eight leaves eight dollars and sixty-four cents. The holder ends with one hundred and sixteen dollars and sixty-four cents. If the investment compounds untouched to one hundred and twenty-one and the tax is collected only then, the gain of twenty-one attracts four dollars and twenty cents of tax, leaving one hundred and sixteen dollars and eighty cents. The difference is small over these two years, but exact: money not yet paid in tax remained at work for the holder.</p>
+<aside class="sn">Original policy comparison, not existing law: annual taxation gives 100[1 + .10(1 − .20)]² = 116.64; deferred taxation gives 100(1.10)² − .20[100(1.10)² − 100] = 116.80. Annual tax is paid by reducing the invested holding. Rates, gains and final disposal are fixed; basis is adjusted consistently and losses, fees and other taxes are excluded.</aside>
+<p>Waiting for sale eases some problems while creating others. A sale supplies a price and usually resources from which a charge can be paid; an annual assessment must value holdings that may be illiquid and can demand cash before the holding yields any. Yet allowing the holder to choose the realization date also gives a reason to retain an appreciated asset when changing investments would otherwise be attractive. A system that taxes gains as they accrue has to decide how to value them and how losses reverse earlier charges. A realization system has to decide what happens to postponed gains and how to address the advantage of delay. Deferring payment with an appropriate charge for time is another possible design. Each choice distributes valuation risk, cash demands and the benefit of waiting between the owner and the public.</p>
+<p>The argument about desert reaches beyond the tax clock. A person may have worked to create an enterprise, borne a genuine possibility of loss, or bought a claim from someone who did. Another person may simply hold the fortunate title when circumstances improve. Those histories can coexist within one asset’s price and even within one period’s increase. The relevant comparison asks what the holder contributed, what risks and costs were borne, and what changes came from others or from the rules that protect the claim. Neither the word “windfall” nor the word “return” performs that inquiry. The owner can have a legally effective gain whose moral or political division remains disputed. Recording the gain accurately keeps that dispute from being decided by an accounting label.</p>
+<p class="pull">A gain enters the holder’s account before its cause has been assigned.</p>
+<p>The fortune that swells without a receipt has therefore undergone a recognizable event: a revaluation of a claim already held. The gain can be recorded before sale, separated from saving and transfers, and measured in money or in purchasing power. Taxation can reach it at different times and on different terms; calling it earned requires a further account of its origin. Keeping these questions apart strengthens the inquiry into wealth, because each then has to be answered on its own evidence. The next plate follows the claim across a more decisive change of holder. What appreciation enlarged during a life can pass to someone who had no part in acquiring it. The windfall leads to the patrimony, where the history of the asset and the history of its owner divide.</p>
+</article>
+
+  <nav class="apparatus" aria-label="Related reading"><h2 class="app-h">Related</h2><ul class="app-list"><li><a href="the-stock-ledger.html"><span class="app-rel">The preceding plate</span><span class="app-t">The Ledger</span><span class="app-g">A dated balance sheet records the position whose change must then be explained.</span></a></li><li><a href="the-stock-patrimony.html"><span class="app-rel">The next plate</span><span class="app-t">The Patrimony</span><span class="app-g">The claim passes between generations, separating the heir’s history from the history of the assets received.</span></a></li><li><a href="the-stock-levy.html"><span class="app-rel">The choice of tax base</span><span class="app-t">The Levy</span><span class="app-g">Taxing holdings, receipts or gains reaches different aspects of wealth and creates different valuation and payment demands.</span></a></li><li><a href="the-rent-increment.html"><span class="app-rel">A source of appreciation</span><span class="app-t">The Increment</span><span class="app-g">Public change can enter a private asset price, raising a question about the division of the resulting gain.</span></a></li></ul></nav>
+
+  <footer>
+    <nav class="crumbs foot" aria-label="Return">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-stock.html">The Stock &middot; Vol IX</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate v &middot; The Windfall</span>
+    </nav>
+    <p class="colophon">The fifth plate of the Margin edition’s <em>The Stock</em>, adapted and developed from the native <a href="the-reservoir.html">The Reservoir</a> and the subsequently completed Margin Rent plate <a href="the-rent-increment.html">The Increment</a>. Their treatments of revaluation and the source of an increase are developed through Fisher, Mill, national-accounts definitions, the stated U.S. tax guidance and original calculations. The Rent completion is a later related treatment, not an archival manuscript of this Stock plate. The original Margin question is retained; the earlier publications remain available. The epigraph is original to this plate. Return to <a href="the-stock.html">the volume</a>, or to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-stock-ledger.html">← The Ledger</a><a rel="next" href="the-stock-patrimony.html">The Patrimony →</a></nav>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Buffer — Numéraire, The Stock, Plate x</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:66rem; --measure:35rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(2.8rem,7vh,5rem) 0 clamp(1.4rem,3.5vh,2.2rem);text-align:center;}
+
+  .crumbs{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 400;
+    font-size:.8rem;letter-spacing:.04em;color:var(--faint);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:center;gap:.55rem;}
+  .crumbs a{text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .2s ease,color .2s ease;}
+  .crumbs a:hover{border-color:var(--num);color:var(--ink);}
+  .crumbs .sep{color:var(--faintest);}
+  .crumbs .here{color:var(--ink);}
+
+  .plate-mark{width:116px;height:116px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:.18rem;line-height:1;}
+  .plate-mark.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pm-vol{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.84rem;letter-spacing:.06em;color:rgba(240,235,225,.62);}
+  .pm-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;
+    font-size:2.5rem;letter-spacing:.02em;text-transform:uppercase;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.1rem,6vw,4rem);line-height:1.03;letter-spacing:-.025em;margin:1rem 0 0;text-wrap:balance;}
+  .status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:42rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .epi{max-width:38rem;margin:clamp(2.2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .epi q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.46;color:var(--ink);quotes:none;display:block;text-wrap:pretty;}
+  .epi .cite{display:block;margin-top:.95rem;font-size:.78rem;color:var(--faintest);letter-spacing:.05em;font-style:normal;}
+  .epi .cite em{font-style:italic;}
+
+  .essay{max-width:52rem;margin:clamp(3rem,7vh,5rem) auto 0;counter-reset:sn;}
+  .essay::after{content:"";display:block;clear:both;}
+  .essay > p,.essay > .pull{max-width:var(--measure);}
+  .essay p{font-size:1.075rem;line-height:1.8;color:var(--ink);margin:0 0 1.4rem;text-wrap:pretty;}
+  .essay em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.72;padding:.08em .14em 0 0;color:var(--ink);}
+
+  .divider{display:flex;justify-content:center;margin:2.4rem 0;}
+  .divider svg{width:96px;height:12px;overflow:visible;}
+  .divider line{stroke:var(--num);stroke-width:1;} .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.5vw,1.74rem);line-height:1.34;color:var(--ink);text-align:center;
+    margin:2.4rem auto;max-width:33rem;text-wrap:balance;}
+
+  .snref{font-family:"Fraunces",serif;font-size:.64em;line-height:0;vertical-align:super;
+    color:var(--soft);counter-increment:sn;margin-left:1px;font-style:normal;}
+  .snref::after{content:counter(sn);}
+  .sn{display:block;max-width:var(--measure);margin:.1rem 0 1.4rem;padding:.15rem 0 .15rem 1.05rem;
+    border-left:1px solid var(--hair);font-size:.84rem;line-height:1.52;color:var(--faint);}
+  .sn::before{content:counter(sn);font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--faintest);margin-right:.5em;font-size:.92em;}
+  .sn em{font-style:italic;}
+
+  @media (min-width:64rem){
+    .sn{float:right;clear:right;width:15rem;margin:.35rem 0 1.3rem;padding:0;border-left:none;}
+    .divider,.pull,.apparatus{clear:both;}
+  }
+
+  .apparatus{max-width:52rem;margin:clamp(3.2rem,7vh,5rem) auto 0;padding-top:2rem;border-top:1px solid var(--hair);clear:both;}
+  .app-h{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;}
+  .app-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.4rem;}
+  .app-list li{border-top:1px solid var(--hair);}
+  .app-list li:first-child,.app-list li:nth-child(2){border-top:none;}
+  .app-list a{display:block;text-decoration:none;padding:.95rem 0;}
+  .app-list a:hover .app-t{color:var(--soft);}
+  .app-rel{display:block;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faintest);margin-bottom:.3rem;}
+  .app-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.12rem;color:var(--ink);transition:color .2s ease;}
+  .app-g{display:block;font-size:.84rem;color:var(--faint);font-style:italic;line-height:1.4;margin-top:.22rem;}
+
+  footer{margin-top:clamp(3.5rem,8vh,6rem);padding:2.2rem 0 4rem;border-top:1px solid var(--hair);}
+  .crumbs.foot{justify-content:flex-start;margin-bottom:1.3rem;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .plate-mark{width:96px;height:96px;}
+    .pm-num{font-size:2.1rem;}
+    .essay p{font-size:1.04rem;line-height:1.74;}
+    .dropcap{font-size:3rem;}
+    .app-list{grid-template-columns:1fr;}
+    .app-list li:nth-child(2){border-top:1px solid var(--hair);}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="crumbs rise d1" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-stock.html">The Stock &middot; Vol IX</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate x</span>
+    </nav>
+    <div class="plate-mark lit rise d2" aria-hidden="true">
+      <span class="pm-vol">Sk</span>
+      <span class="pm-num">x</span>
+    </div>
+    <h1 class="rise d3">The Buffer</h1>
+    <div class="status rise d3">in print &middot; The Stock &middot; plate x</div>
+    <p class="standfirst rise d4">A reserve gives its holder time to recover, search and decline an unfavorable bargain. Whether it can do so depends on accessible resources, unavoidable expenses and dependable support, not merely a headline net worth. Following an interruption of income and an opportunity to retrain makes the inequality of waiting visible while leaving room for liquidity, insurance and public provision to change the comparison.</p>
+  </header>
+
+  <div class="epi rise d5"><q>A reserve buys time in which a person can still choose.</q><span class="cite">The argument of this plate</span></div>
+
+  <article class="essay">
+<p class="lede"><span class="dropcap">T</span>he first service of a reserve may be the day on which its owner does nothing. He need not take the first offer, sell into the first panic, or abandon a plan at the first interruption of income. The stock buys an interval in which judgment can operate. This is why equal earnings can coexist with unequal freedom: the same monthly payment means something different to a household with resources behind it and one that must immediately pass it on. Yet the interval depends on what the wealth consists of, what obligations stand against it, and what support is available outside the household. The buffer is a use of wealth, and the balance-sheet total measures that use imperfectly.</p>
+<p>The difference becomes clear when the flow stops. Imagine two households, each previously receiving $4,000 a month and each needing $3,000 a month to maintain a stipulated floor of essential spending. One holds $18,000 in cash reserves; the other holds $1,500. With income now zero, no borrowing, no assistance and no interest, their reserves cover six months and half a month respectively. These are invented households, and the spending floor is an assumption rather than a universal measure of need. Within the example, the arithmetic identifies what equal pre-interruption income concealed. One household has time to search, rearrange and recover. The other must find an answer almost at once.</p>
+<p>The amount recorded as net worth does not tell us whether that answer can be financed.<sup class="snref"></sup> A home can supply shelter while its equity remains costly to turn into cash. A retirement account can secure a later life while access today is restricted or penalized. The household may be able to sell, borrow or withdraw, but each route has terms, and some depend on employment or market conditions that deteriorate in the very emergency for which the reserve is needed. Debt must also be placed beside assets: a valuable house accompanied by a large mortgage is a different resource from an unencumbered one. Solvency over a lifetime and the ability to meet next month's obligations can diverge sharply.</p>
+<aside class="sn">Kaplan, Violante and Weidner, <a href="https://www.brookings.edu/wp-content/uploads/2016/07/2014a_Kaplan.pdf">“The Wealthy Hand-to-Mouth” (2014)</a>, distinguish liquid and illiquid holdings in sections I–II, pp. 82–91. Their category identifies households with illiquid assets but little accessible wealth; it does not equate them with households possessing no assets at all.</aside>
+<p>Illiquidity can be the result of a considered choice as well as a predicament imposed by circumstance. The same asset that is inconvenient during an interruption may yield a higher return, provide housing services, or keep resources available for retirement. In Kaplan, Violante and Weidner's stylized model, a household can willingly hold an illiquid asset despite knowing that it will face a tight liquid budget before the asset pays. The later benefit compensates it for the earlier restriction under the model's assumptions. This matters for the meaning of the buffer: possession can improve lifetime prospects without smoothing every short interval. A policy or comparison concerned with present resilience must examine access, rather than assuming that all wealth is interchangeable at the moment of need.<sup class="snref"></sup></p>
+<aside class="sn">The <a href="https://www.brookings.edu/wp-content/uploads/2016/07/2014a_Kaplan.pdf">three-period model in section I</a> starts with known income, no uncertainty and a higher-return asset unavailable at the intermediate date. Section I.C discusses credit, transaction costs, housing services and uncertainty as extensions. The example establishes a possible mechanism under specified conditions; it supplies no claim that every liquidity shortage is chosen or optimal.</aside>
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg></div>
+<p>The reserve can change the set of opportunities a person is able to consider. Suppose a course of training costs $6,000 and requires two months without earnings. At the invented $3,000 monthly spending floor, it requires $12,000 before any new income arrives. The household with $18,000 could undertake it and retain $6,000; the household with $1,500 could not finance it on those terms without outside help. Nothing in this calculation proves that the course is worthwhile or that its promised earnings will materialize. It establishes a prior inequality: one household can choose whether to bear that risk, while the other lacks the resources to reach the choice. The buffer matters before success is known.</p>
+<p>The power to wait also changes the terms on which a person must deal with others. A worker able to sustain a search can decline an offer that a household at the edge must consider immediately. An owner able to postpone a sale can resist a price that a debtor facing a due date cannot. The strength of either position depends on the alternatives actually available: reserves buy no suitable job into existence and cannot force a buyer to return. They can nevertheless change the cost of continuing to look. That conditional power is easy to miss in an annual income comparison, because the important event may be a bargain refused rather than a payment received. Wealth can matter through conduct it makes possible without ever being spent.</p>
+<p>Security can also be supplied outside the private balance sheet.<sup class="snref"></sup> Return to the two households and suppose each now has a reliable replacement payment of $2,000 a month during the interruption. The gap between income and the $3,000 spending floor falls to $1,000. Their cash reserves then cover eighteen months and one and a half months while that payment continues, under the same simple assumptions. If essential needs are met in kind, the required cash can fall further. Insurance, public provision and dependable support from others can therefore reduce the private stock needed to endure a shock. The reliability, duration and eligibility conditions of those arrangements are part of the comparison. A promised resource that disappears when needed does not supply the same freedom as a dependable one.</p>
+<aside class="sn">Both reserve examples and the training budget are invented. The first assumes no replacement income; the second assumes the stated payment continues throughout the measured interval. The <a href="../essays/numeraire-ix-v-the-lifetime.html">original Utility Lifetime</a> develops the use of accumulated resources to bridge periods of uneven income. Here the question is access during an interruption rather than the shape of a whole working life.</aside>
+<p>The asset itself may fail alongside the flow it is meant to replace. A household whose income and concentrated shareholding depend on the same business can lose both together. A property may be difficult to sell just when local employment contracts. Spreading exposure can reduce a particular dependence, but cannot promise that every asset will retain its value through every shock. The buffer must therefore be examined under the circumstances in which it would be used. A valuation on a prosperous date, a feasible sale in distress and a dependable stream of benefits answer different questions. The larger figure may offer greater protection, yet its composition can matter more than its size at the urgent margin.</p>
+<p>A wealth gap is consequently deeper than an earnings gap in some dimensions, without supplying a universal ranking of hardship.<sup class="snref"></sup> Earnings measure a continuing source of command; wealth can measure the duration for which that command survives its interruption. A chronically inadequate income can exhaust a substantial reserve, while a stable adequate income combined with reliable services can protect a household with little marketable wealth. Age, disability, dependents and unavoidable expenses alter what any given amount can do. Comparing the two gaps therefore requires a purpose: current consumption, resilience, lifetime provision or freedom to refuse. The stock is indispensable to several of those purposes. No single stock figure completes all of them.</p>
+<aside class="sn">The <a href="https://unstats.un.org/unsd/nationalaccount/docs/SNA2008.pdf"><em>System of National Accounts 2008</em>, §§13.4–13.7</a>, treats household balance sheets as information for assessing both economic status and liquidity. The distinction here is evaluative: a larger marketable reserve enlarges a budget set under otherwise equal conditions, but households rarely differ in that one respect alone.</aside>
+<p class="pull">A reserve buys time in which a person can still choose.</p>
+<p>The enduring insight of the stock is that a life includes the intervals between receipts, and an equal flow does not give everyone equal room to live through them. That room can be inherited, accumulated, insured or collectively provided; its source matters to the judgment of fairness, and its availability matters to the person who needs it. The <a href="the-claim.html">Claim</a> asked when ownership becomes a position. The buffer identifies one such position at a scale far below the great estate: the ability to face a setback without surrendering every choice to it. A society concerned with equality has reason to ask who possesses that interval, how dependable it is, and what would extend it to those who have none. The argument remains open.</p>
+</article>
+
+  <nav class="apparatus" aria-label="Related reading"><h2 class="app-h">Related</h2><ul class="app-list"><li><a href="the-stock-concentration.html"><span class="app-rel">The preceding distribution</span><span class="app-t">The Concentration</span><span class="app-g">A pattern of ownership becomes a question of lived inequality when its holdings are examined for the opportunities they make available.</span></a></li><li><a href="../essays/numeraire-ix-v-the-lifetime.html"><span class="app-rel">Original Utility edition</span><span class="app-t">The Lifetime</span><span class="app-g">The complete earlier essay uses accumulated resources to bridge uneven income across a life, providing the starting account of the reserve.</span></a></li><li><a href="the-claim.html"><span class="app-rel">The native flagship</span><span class="app-t">The Claim</span><span class="app-g">The volume’s original inquiry asks when wealth becomes a position; the buffer identifies one source of that position in the capacity to wait.</span></a></li><li><a href="the-stock-saving.html"><span class="app-rel">Next in this volume</span><span class="app-t">The Saving</span><span class="app-g">How the reserve was accumulated leads to the distinct contributions of saving, revaluation and transfer—and to the judgment of thrift.</span></a></li></ul></nav>
+
+  <footer>
+    <nav class="crumbs foot" aria-label="Return">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-stock.html">The Stock &middot; Vol IX</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate x &middot; The Buffer</span>
+    </nav>
+    <p class="colophon">Developed for the original Margin Buffer question from the wealth-as-bridge account in the complete <a href="../essays/numeraire-ix-v-the-lifetime.html">original Utility Lifetime</a> and the ownership inquiry in the native <a href="the-claim.html">Claim</a>. The present treatment extends those related accounts to liquid access, interruptions and the power to wait. The earlier editions remain intact. The epigraph is original to this plate. Return to <a href="the-stock.html">the volume</a>, or to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-stock-concentration.html">← The Concentration</a><a rel="next" href="the-stock-saving.html">The Saving →</a></nav>
+</body>
+</html>
