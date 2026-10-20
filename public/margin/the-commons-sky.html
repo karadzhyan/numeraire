@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Sky — Numéraire, The Commons, Plate x</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:66rem; --measure:35rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(2.8rem,7vh,5rem) 0 clamp(1.4rem,3.5vh,2.2rem);text-align:center;}
+
+  .crumbs{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 400;
+    font-size:.8rem;letter-spacing:.04em;color:var(--faint);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:center;gap:.55rem;}
+  .crumbs a{text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .2s ease,color .2s ease;}
+  .crumbs a:hover{border-color:var(--num);color:var(--ink);}
+  .crumbs .sep{color:var(--faintest);}
+  .crumbs .here{color:var(--ink);}
+
+  .plate-mark{width:116px;height:116px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:.18rem;line-height:1;}
+  .plate-mark.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pm-vol{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.84rem;letter-spacing:.06em;color:rgba(240,235,225,.62);}
+  .pm-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;
+    font-size:2.5rem;letter-spacing:.02em;text-transform:uppercase;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.1rem,6vw,4rem);line-height:1.03;letter-spacing:-.025em;margin:1rem 0 0;text-wrap:balance;}
+  .status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:42rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .epi{max-width:38rem;margin:clamp(2.2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .epi q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.46;color:var(--ink);quotes:none;display:block;text-wrap:pretty;}
+  .epi .cite{display:block;margin-top:.95rem;font-size:.78rem;color:var(--faintest);letter-spacing:.05em;font-style:normal;}
+  .epi .cite em{font-style:italic;}
+
+  .essay{max-width:52rem;margin:clamp(3rem,7vh,5rem) auto 0;counter-reset:sn;}
+  .essay::after{content:"";display:block;clear:both;}
+  .essay > p,.essay > .pull{max-width:var(--measure);}
+  .essay p{font-size:1.075rem;line-height:1.8;color:var(--ink);margin:0 0 1.4rem;text-wrap:pretty;}
+  .essay em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.72;padding:.08em .14em 0 0;color:var(--ink);}
+
+  .divider{display:flex;justify-content:center;margin:2.4rem 0;}
+  .divider svg{width:96px;height:12px;overflow:visible;}
+  .divider line{stroke:var(--num);stroke-width:1;} .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.5vw,1.74rem);line-height:1.34;color:var(--ink);text-align:center;
+    margin:2.4rem auto;max-width:33rem;text-wrap:balance;}
+
+  .snref{font-family:"Fraunces",serif;font-size:.64em;line-height:0;vertical-align:super;
+    color:var(--soft);counter-increment:sn;margin-left:1px;font-style:normal;}
+  .snref::after{content:counter(sn);}
+  .sn{display:block;max-width:var(--measure);margin:.1rem 0 1.4rem;padding:.15rem 0 .15rem 1.05rem;
+    border-left:1px solid var(--hair);font-size:.84rem;line-height:1.52;color:var(--faint);}
+  .sn::before{content:counter(sn);font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--faintest);margin-right:.5em;font-size:.92em;}
+  .sn em{font-style:italic;}
+
+  @media (min-width:64rem){
+    .sn{float:right;clear:right;width:15rem;margin:.35rem 0 1.3rem;padding:0;border-left:none;}
+    .divider,.pull,.apparatus{clear:both;}
+  }
+
+  .apparatus{max-width:52rem;margin:clamp(3.2rem,7vh,5rem) auto 0;padding-top:2rem;border-top:1px solid var(--hair);clear:both;}
+  .app-h{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;}
+  .app-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.4rem;}
+  .app-list li{border-top:1px solid var(--hair);}
+  .app-list li:first-child,.app-list li:nth-child(2){border-top:none;}
+  .app-list a{display:block;text-decoration:none;padding:.95rem 0;}
+  .app-list a:hover .app-t{color:var(--soft);}
+  .app-rel{display:block;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faintest);margin-bottom:.3rem;}
+  .app-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.12rem;color:var(--ink);transition:color .2s ease;}
+  .app-g{display:block;font-size:.84rem;color:var(--faint);font-style:italic;line-height:1.4;margin-top:.22rem;}
+
+  footer{margin-top:clamp(3.5rem,8vh,6rem);padding:2.2rem 0 4rem;border-top:1px solid var(--hair);}
+  .crumbs.foot{justify-content:flex-start;margin-bottom:1.3rem;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .plate-mark{width:96px;height:96px;}
+    .pm-num{font-size:2.1rem;}
+    .essay p{font-size:1.04rem;line-height:1.74;}
+    .dropcap{font-size:3rem;}
+    .app-list{grid-template-columns:1fr;}
+    .app-list li:nth-child(2){border-top:1px solid var(--hair);}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="crumbs rise d1" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-commons.html">The Commons &middot; Vol XIII</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate x</span>
+    </nav>
+    <div class="plate-mark lit rise d2" aria-hidden="true">
+      <span class="pm-vol">Cm</span>
+      <span class="pm-num">x</span>
+    </div>
+    <h1 class="rise d3">The Sky</h1>
+    <div class="status rise d3">in print &middot; The Commons &middot; plate x</div>
+    <p class="standfirst rise d4">The atmosphere connects a shared physical constraint to governments with separate jurisdictions and unequal capacities. Distinguishing the benefit of restraint from the allocation of permission reveals why an emissions account must be joined to a political bargain. Cumulative use, treaty obligations, finance and coordination show what such a bargain must accomplish while preserving the claims of people who will inherit its consequences.</p>
+  </header>
+
+  <div class="epi rise d5"><q>A shared limit needs a common account.</q><span class="cite">The argument of this plate</span></div>
+
+  <article class="essay">
+<p class="lede"><span class="dropcap">T</span>he pasture has an edge. Beyond the last fence another village’s rules begin, and a person who has taken too much can be asked to leave. The sky offers no such exit. Carbon dioxide released in one country contributes to a change whose consequences extend across borders and generations; the benefits of restraint cannot be reserved for the people who paid for it. Yet the power to govern a furnace, a forest or a road remains largely in institutions with bounded jurisdictions. The atmospheric commons therefore joins a shared physical constraint to divided political authority. The question is how the users of one system can make their separate decisions answer to what those decisions do together.</p>
+<p>The scarce thing is more precise than a quantity of air.<sup class="snref"></sup> For a chosen temperature limit, cumulative carbon dioxide emissions are constrained, with the size of the remaining budget depending on the probability of meeting the limit, the treatment of other warming influences and the response of the climate system. The IPCC’s 2023 synthesis connects limiting human-caused warming to limiting cumulative carbon dioxide emissions and reaching net zero carbon dioxide, alongside reductions in other greenhouse gases. A budget expressed in this way is a conditional account of the physical problem. It does not arrive with a distribution of claims among the people who must live within it. Science can clarify the consequence of an emissions path while leaving the terms on which that path is divided to political judgment.</p>
+<aside class="sn">IPCC, <a href="https://www.ipcc.ch/report/ar6/syr/downloads/report/IPCC_AR6_SYR_SPM.pdf">AR6 Synthesis Report, Summary for Policymakers</a> (2023), §§B.3–B.5, pp. 18–20, especially B.5. The assessment’s dated budget estimates are not a current allowance. The argument here uses the cumulative-emissions relationship and its stated conditions.</aside>
+<p>Two accounts of the commons meet in that constraint. Avoided warming has benefits that a contributor cannot confine to its own territory. A claim to emit within a finite collective budget, however, uses room that cannot also be assigned to someone else. The first feature creates the temptation to leave the work to others; the second makes the allocation of permission contentious even among people willing to cooperate. A promise that everyone will do a fair share cannot settle either problem until the meaning of fair has acquired terms. Equal present allocations, responsibility for past use, capacity to pay and the needs of people who still lack basic energy services can point toward different burdens. The dispute is part of governing the resource, rather than a distraction from a merely technical task.</p>
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg></div>
+<p>A cumulative limit also makes today’s allocation a claim on tomorrow.<sup class="snref"></sup> Imagine a wholly abstract allowance of sixty units for three periods, with no replenishment or removal. Taking thirty in the first period and twenty in the second leaves ten for the third. Taking fifteen and twenty leaves twenty-five. Both histories respect the same cumulative limit at the moment the third period begins, but they leave very different room for the people who arrive then. An annual promise is therefore incomplete unless its place in the cumulative account can be seen. The illustration supplies no climate estimate and no rule for assigning generations their shares. It makes visible the transfer accomplished when an earlier user spends more of a fixed allowance.</p>
+<aside class="sn">Constructed bookkeeping: 60 − 30 − 20 = 10; 60 − 15 − 20 = 25. The allowance has arbitrary units, a stipulated total and no replenishment. It is not a calculation of the Earth’s remaining carbon budget. The intergenerational structure develops the earlier <a href="../volumes/the-externality.html#plate-xi">Collected Climate</a>.</aside>
+<p>The incentive to wait is real, but it need not exhaust a government’s reasons to act. A change in energy use may also improve local air, reduce exposure to a volatile fuel supply or create a service that citizens want. These accompanying benefits can make some measures worthwhile within a jurisdiction even before all the global benefits are counted. Other measures remain costly to the acting country while benefiting others substantially. A workable agreement must recognize the difference. It can build on action that already has a local constituency while arranging contributions, finance or reciprocal commitments for action whose benefits travel farther than its political rewards.</p>
+<p>The Paris Agreement gives this cooperation an institutional form without creating a world sovereign.<sup class="snref"></sup> Parties must prepare, communicate and maintain successive nationally determined contributions, and pursue domestic mitigation measures with the aim of achieving their objectives. Common reporting and review make their efforts more visible, while a recurring global stocktake asks what the collective effort amounts to. These provisions create obligations and occasions for scrutiny. They do not make every announced outcome an unconditional guarantee, or place national energy systems under a single international administrator. Their force depends partly on the domestic institutions that turn a contribution into measures and partly on what parties and their publics do with the information the agreement brings into view.</p>
+<aside class="sn">Paris Agreement (2015), <a href="https://treaties.un.org/doc/Treaties/2016/02/20160215%2006-03%20PM/Ch_XXVII-7-d.pdf">arts. 4, 13–15</a>. Article 4.2 distinguishes the duties concerning contributions from the aim of domestic mitigation measures; article 15 establishes a facilitative, non-adversarial and non-punitive compliance mechanism.</aside>
+<p>The account needs rules about what may be counted. A city’s reduction may already be included in its country’s inventory; adding the two reported quantities could then count one change twice. A project’s claimed saving depends on the path against which it is compared. A shift in production may reduce emissions recorded in one place while increasing them elsewhere. Each difficulty concerns the relation between a reported achievement and the shared physical outcome. Transparent boundaries, methods and treatment of overlaps give others a way to examine that relation. An impressive collection of certificates cannot substitute for a defensible account of what happened.</p>
+<p>Capacity changes what a promise can accomplish.<sup class="snref"></sup> A country may be willing to replace an emitting technology while lacking affordable finance, reliable equipment or the institutions needed to operate its replacement. Assistance can alter the feasible bargain as well as its distribution. The Paris Agreement accordingly gives developed-country parties a financial obligation to assist developing-country parties and encourages support from other parties. The amount, timing and use of that assistance remain consequential: a promise too uncertain to finance a project cannot serve as the project’s machinery. Cooperation requires terms that the recipient can use and that contributors and affected communities can examine.</p>
+<aside class="sn">Paris Agreement, <a href="https://treaties.un.org/doc/Treaties/2016/02/20160215%2006-03%20PM/Ch_XXVII-7-d.pdf">art. 9</a>, especially paragraphs 1–3 and 7, supplies the finance distinction and reporting provisions. The project’s feasibility depends on the use to which the promised resources can actually be put.</aside>
+<p>A uniform rule for the final account can coexist with different means of reducing its total. Electricity, buildings, transport and land use involve different decision makers, assets and opportunities. Some choices belong to households, some to cities, some to national institutions, and some to agreements among states. Their work can reinforce one another: infrastructure can make a cleaner private choice possible, and a common standard can make local results comparable. Their work can also conflict, as one policy rewards an activity another is trying to reduce. The need for coordination arises from these connections. It does not require that every decision be made in the same room.</p>
+<p>The atmospheric commons is especially unforgiving of a rule that mistakes delay for neutrality.<sup class="snref"></sup> Long-lived effects and the risk of irreversible change mean that waiting can alter the situation in which a later agreement must operate. That is a reason to build institutions capable of learning while acting: measures that can be assessed, accounts that can be corrected and commitments that can be strengthened as understanding changes. It is also a reason to keep the burdens visible. A durable agreement must answer people asked to surrender livelihoods or opportunities, and people who bear harm despite having little power over its causes. The unity of the atmosphere does not erase the inequality of those living beneath it.</p>
+<aside class="sn">IPCC, <a href="https://www.ipcc.ch/report/ar6/syr/downloads/report/IPCC_AR6_SYR_SPM.pdf">§§B.3–B.4</a>, addresses unavoidable or irreversible changes and adaptation limits. Elinor Ostrom, <a href="https://documents1.worldbank.org/curated/en/480171468315567893/pdf/WPS5095.pdf">“A Polycentric Approach for Coping with Climate Change”</a> (2009), pp. 29–39, examines coordination, leakage, monitoring and learning across multiple levels. The institutional conclusion here draws these distinct physical and governance arguments together.</aside>
+<p class="pull">The sky is shared; the work of restraint must be assigned.</p>
+<p>The absence of a planetary warden leaves an institutional task of unusual scale. The users must make the common limit legible, divide its demands, equip one another to meet them and maintain an account against which promises can be judged. None of those acts alone supplies the others. A budget without a bargain can be ignored; a bargain without an account can conceal its failure; an account without the power to revise conduct can become an elaborate record of loss. The atmosphere asks whether divided authorities can govern a shared consequence. The people who will inherit that consequence must somehow enter the terms of their answer. The argument remains open.</p>
+</article>
+
+  <nav class="apparatus" aria-label="Related reading"><h2 class="app-h">Related</h2><ul class="app-list"><li><a href="the-externality-atmosphere.html"><span class="app-rel">The preceding climate inquiry</span><span class="app-t">The Atmosphere</span><span class="app-g">The externality treatment examines the stock of harm, bargaining and the cost of restraint; the commons treatment asks how users can govern a shared constraint.</span></a></li><li><a href="../volumes/the-externality.html#plate-xi"><span class="app-rel">Collected edition</span><span class="app-t">The Climate</span><span class="app-g">The earlier complete essay joins the global, intergenerational and uncertain dimensions of climate policy, supplying the foundation for this distinct Margin question.</span></a></li><li><a href="the-commons-bequest.html"><span class="app-rel">The absent users</span><span class="app-t">The Bequest</span><span class="app-g">Spending a cumulative allowance changes the room left to later people; representing their interests requires institutions in the present.</span></a></li><li><a href="the-commons-reach.html"><span class="app-rel">The scale of governance</span><span class="app-t">The Reach</span><span class="app-g">Separate authorities can contribute to one account, but their responsibilities and capacities need connections that reach the shared consequence.</span></a></li></ul></nav>
+
+  <footer>
+    <nav class="crumbs foot" aria-label="Return">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-commons.html">The Commons &middot; Vol XIII</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate x &middot; The Sky</span>
+    </nav>
+    <p class="colophon">Adapted for the original Margin Sky question from the complete <a href="../volumes/the-externality.html#plate-xi">Collected Climate</a> and the global-cooperation inquiry in <a href="../volumes/the-commons.html#plate-ix">The Stranger</a>, with the later <a href="the-externality-atmosphere.html">Margin Atmosphere</a> retained as a distinct treatment. The argument develops the atmospheric commons through cumulative allocation, accounting and the institutions of cooperation. The earlier editions remain intact. The epigraph is original to this plate. Return to <a href="the-commons.html">the volume</a>, or to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-commons-torch.html">← The Torch</a><a rel="next" href="the-commons-bequest.html">The Bequest →</a></nav>
+</body>
+</html>
