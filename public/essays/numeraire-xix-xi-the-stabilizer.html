@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Stabilizer — The Cycle, Plate xi · Numéraire</title>
+<meta name="description" content="stabilization policy; the state spending against the tide to fill the gap in demand, and the debate of activism against rules.">
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:70rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- reading-progress hairline ---- */
+  .progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--ink);z-index:10000;}
+
+  /* ---- masthead ---- */
+  .masthead{padding:clamp(2.8rem,8vh,5.6rem) 0 clamp(1.6rem,4vh,2.6rem);text-align:center;}
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+  .imprint{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1.15rem;letter-spacing:.02em;}
+  .edition{font-size:.86rem;color:var(--faint);letter-spacing:.06em;margin-top:.5rem;}
+  .edition b{font-family:"Fraunces",serif;font-weight:500;font-style:normal;color:var(--soft);letter-spacing:.04em;}
+
+  .symbox{width:84px;height:84px;border:1px solid var(--ink);border-radius:2px;background:var(--ink);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;margin:clamp(1.4rem,3.4vh,2.2rem) auto 0;}
+  .symbox .sb-sym{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 500;font-size:2rem;line-height:1;color:var(--paper);letter-spacing:-.01em;}
+  .symbox .sb-num{font-family:"Fraunces",serif;font-size:.66rem;color:rgba(240,235,225,.58);margin-top:.28rem;letter-spacing:.04em;}
+
+  .d-family{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-top:1.15rem;}
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.5rem,7vw,5rem);line-height:1.0;letter-spacing:-.028em;margin:.55rem 0 0;text-wrap:balance;}
+  .subtitle{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.05rem,1.7vw,1.32rem);color:var(--faint);margin:.5rem 0 0;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.64;color:var(--soft);
+    max-width:43rem;margin:clamp(1.3rem,3vh,1.9rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+  .status{font-size:.84rem;color:var(--soft);margin:clamp(1.2rem,2.6vh,1.7rem) auto 0;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.5rem;vertical-align:.04em;}
+  .backrow{margin-top:clamp(1.3rem,3vh,1.9rem);padding-top:1.5rem;border-top:1px solid var(--hair);max-width:50rem;margin-left:auto;margin-right:auto;}
+  .backlink{display:inline-block;font-size:.82rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .backlink:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- generic block furniture ---- */
+  main{padding:0;}
+  .eyebrow{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.2rem;}
+
+  .block-argument{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .argument{max-width:40rem;margin:0 auto;}
+  .argument p{font-size:1.08rem;line-height:1.74;color:var(--ink);margin:0 0 1.2rem;text-wrap:pretty;}
+  .argument p:last-child{margin-bottom:0;}
+  .argument .closer{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 400;font-style:italic;color:var(--soft);font-size:1.06rem;}
+
+  /* ---- table of plates ---- */
+  .block-toc{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.6rem,5.5vh,3.6rem);}
+  .toc ol{list-style:none;margin:0;padding:0;max-width:44rem;}
+  .toc li{display:grid;grid-template-columns:2.5rem 1fr;column-gap:1rem;align-items:baseline;
+    padding:.85rem 0;border-top:1px solid var(--hair);}
+  .toc li:first-child{border-top:none;}
+  .t-num{font-family:"Fraunces",serif;font-size:.92rem;color:var(--faintest);text-align:right;}
+  .t-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.08rem;color:var(--ink);line-height:1.15;text-decoration:none;}
+  a.t-title{border-bottom:1px solid var(--num);padding-bottom:1px;}
+  a.t-title:hover{border-bottom-color:var(--ink);}
+  .t-gloss{grid-column:2;font-size:.85rem;color:var(--faint);font-style:italic;margin-top:.22rem;line-height:1.4;}
+  .t-q{grid-column:2;font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:.95rem;color:var(--soft);margin-top:.42rem;line-height:1.36;}
+  .t-q .lead{font-family:"Fraunces",serif;font-style:normal;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faintest);margin-right:.5rem;}
+  .t-tag{display:inline-block;margin-left:.6rem;font-family:"Newsreader",serif;font-size:.64rem;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--paper);background:var(--ink);border-radius:2px;padding:.12em .5em;vertical-align:.14em;}
+  .t-read{grid-column:2;margin-top:.42rem;}
+  .t-read a{font-size:.8rem;color:var(--faint);text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .t-read a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+  /* ---- the plates (essays) ---- */
+  .plates-open{border-top:1px solid var(--hair);padding-top:clamp(2.2rem,4.5vh,3rem);margin-top:clamp(2.8rem,6vh,4rem);}
+  .plates-open .eyebrow{text-align:center;}
+  .plate{max-width:54rem;margin:clamp(2.8rem,6.5vh,4.4rem) auto 0;padding-top:clamp(2.2rem,4.6vh,3rem);
+    border-top:1px solid var(--hair);position:relative;scroll-margin-top:1.4rem;}
+  .plate:first-of-type{border-top:none;margin-top:clamp(1.6rem,3.5vh,2.4rem);padding-top:0;}
+  .plate-head{margin:0 0 1.7rem;}
+  .plate-kicker{font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .plate-kicker .pk-tag{margin-left:.6rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .plate-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 110,"wght" 400;font-weight:400;
+    font-size:clamp(1.8rem,4.2vw,2.7rem);line-height:1.03;letter-spacing:-.02em;margin:.32rem 0 .42rem;}
+  .plate-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.02rem;color:var(--faint);max-width:36rem;line-height:1.45;}
+
+  .epigraph{max-width:34rem;margin:1.4rem 0 1.9rem;padding-left:1.1rem;border-left:1px solid var(--num);}
+  .epigraph p{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 400;font-style:italic;
+    font-size:1.04rem;line-height:1.42;color:var(--soft);margin:0;}
+  .epigraph cite{display:block;font-style:normal;font-family:"Newsreader",serif;font-size:.78rem;
+    letter-spacing:.03em;color:var(--faintest);margin-top:.55rem;}
+
+  .plate-body{max-width:37rem;}
+  .plate-body p{font-size:1.05rem;line-height:1.75;color:var(--ink);margin:0 0 1.18rem;text-wrap:pretty;}
+  .plate-body p:last-child{margin-bottom:0;}
+  .plate-body em{font-style:italic;}
+  .plate-body .lead-para::first-letter{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 500;
+    float:left;font-size:3.5rem;line-height:.78;padding:.08em .14em 0 0;color:var(--ink);}
+  .plate-body h4{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;
+    font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);margin:1.9rem 0 .9rem;}
+
+  .break{display:flex;justify-content:center;margin:1.9rem 0;}
+  .break span{font-family:"Fraunces",serif;font-size:1.05rem;letter-spacing:.4em;color:var(--faintest);padding-left:.4em;}
+
+  /* sidenotes — inline by default, true margin notes on wide screens */
+  .sn-ref{font-family:"Fraunces",serif;font-size:.64rem;vertical-align:super;line-height:0;color:var(--soft);margin-left:.06em;}
+  .sidenote{font-family:"Newsreader",serif;font-size:.82rem;line-height:1.52;color:var(--faint);
+    border-left:2px solid var(--hair);padding-left:.9rem;margin:.7rem 0 1.05rem;}
+  .sidenote .sn-num{font-family:"Fraunces",serif;color:var(--faintest);font-size:.7rem;margin-right:.38rem;}
+  .sidenote em{font-style:italic;}
+  @media (min-width:1040px){
+    .sidenote{float:right;clear:right;width:14.5rem;margin:.25rem -17.5rem 1.15rem 0;
+      border-left:none;border-top:1px solid var(--hair);padding:.42rem 0 0;}
+  }
+
+  /* ---- coda ---- */
+  .coda{max-width:40rem;margin:clamp(2.8rem,6vh,4rem) auto 0;border-top:1px solid var(--hair);
+    padding-top:clamp(2.2rem,4.5vh,3rem);}
+  .coda p{font-size:1.06rem;line-height:1.74;color:var(--ink);margin:0 0 1.15rem;text-wrap:pretty;}
+  .coda p:last-child{margin-bottom:0;}
+  .coda .q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 72,"wght" 400;font-style:italic;
+    font-size:1.2rem;line-height:1.36;color:var(--soft);}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(4rem,9vh,7rem);padding:2.4rem 0 4rem;border-top:1px solid var(--hair);}
+  .f-bar{display:flex;justify-content:space-between;align-items:baseline;gap:1.4rem;margin-bottom:1.5rem;}
+  .f-mark{font-family:"Fraunces",serif;font-variation-settings:"opsz" 36,"wght" 500;font-size:1.05rem;}
+  .f-ref{font-size:.8rem;color:var(--faintest);letter-spacing:.16em;}
+  .f-ref a{text-decoration:none;border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .f-ref a:hover{border-bottom-color:var(--soft);}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .progress{transition:width .08s linear;}
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}.rise.d4{animation-delay:.4s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    h1{font-size:clamp(2.2rem,11vw,3rem);}
+    .symbox{width:72px;height:72px;}
+    .symbox .sb-sym{font-size:1.7rem;}
+    .plate-body .lead-para::first-letter{font-size:3rem;}
+    .f-bar{flex-direction:column;gap:.6rem;}
+  }
+
+  /* ---- standalone plate (leaf) ---- */
+  .leaf-head{max-width:54rem;margin:0 auto;padding:clamp(2.2rem,6.5vh,4.4rem) 0 0;text-align:center;}
+  .leaf-loc{font-family:"Fraunces",serif;font-size:.76rem;letter-spacing:.08em;color:var(--faintest);margin-bottom:1.7rem;}
+  .leaf-loc a{text-decoration:none;color:var(--faint);border-bottom:1px solid var(--num);padding-bottom:1px;}
+  .leaf-loc a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+  .leaf-loc .sep{margin:0 .5rem;color:var(--num);}
+  .leaf-kicker{font-family:"Fraunces",serif;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:var(--faintest);}
+  .leaf-kicker .pk-tag{margin-left:.55rem;color:var(--paper);background:var(--ink);border-radius:2px;
+    font-family:"Newsreader",serif;font-size:.6rem;letter-spacing:.08em;padding:.14em .5em;vertical-align:.12em;text-transform:uppercase;}
+  .leaf-title{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.2rem,5.6vw,3.7rem);line-height:1.02;letter-spacing:-.024em;margin:.42rem 0 0;text-wrap:balance;}
+  .leaf-gloss{font-family:"Newsreader",serif;font-style:italic;font-size:1.06rem;color:var(--faint);
+    max-width:34rem;margin:.72rem auto 0;line-height:1.5;text-wrap:pretty;}
+  .epigraph.leaf-epigraph{margin:1.95rem auto 1.4rem;text-align:left;}
+  .leaf-body-wrap{max-width:54rem;margin:clamp(1.8rem,4vh,2.8rem) auto 0;}
+
+  .leaf-nav{max-width:54rem;margin:clamp(3rem,7vh,5.2rem) auto 0;padding-top:clamp(1.8rem,4vh,2.6rem);
+    border-top:1px solid var(--hair);display:grid;grid-template-columns:1fr auto 1fr;gap:1.3rem;align-items:start;}
+  .ln-cell{text-decoration:none;display:block;}
+  .ln-cell .lab{display:block;font-family:"Fraunces",serif;font-size:.64rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--faintest);margin-bottom:.36rem;}
+  .ln-cell .ttl{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-size:1rem;
+    color:var(--soft);line-height:1.22;}
+  a.ln-cell:hover .ttl{color:var(--ink);}
+  .ln-prev{text-align:left;} .ln-home{text-align:center;} .ln-next{text-align:right;}
+
+  @media (max-width:600px){
+    .leaf-nav{grid-template-columns:1fr;gap:1.4rem;}
+    .ln-prev,.ln-home,.ln-next{text-align:center;}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#ne-contents">Complete contents</a><a href="../editions.html#volume-cycle">The Cycle · both editions</a><a href="../volumes/the-cycle.html">Collected volume</a></div></nav>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="frame">
+
+  <header class="leaf-head">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="leaf-loc rise d1" aria-label="Location in the series"><a href="numeraire-atlas-updated.html">Numéraire</a><span class="sep">·</span><a href="numeraire-xix-the-cycle.html">Volume XIX · The Cycle</a></nav>
+    <div class="leaf-kicker rise d2">Plate xi <span class="pk-tag">in print</span></div>
+    <h1 class="leaf-title rise d2">The Stabilizer</h1>
+    <div class="leaf-gloss rise d3">stabilization policy; the state spending against the tide to fill the gap in demand, and the debate of activism against rules.</div>
+    <div class="epigraph leaf-epigraph rise d3">
+      <p>A response must reach the economy while there is still work for it to do.</p>
+      <cite>— the argument of this plate, after the earlier Cure and Lag, after Friedman (1968)</cite>
+    </div>
+  </header>
+
+  <main class="leaf-body-wrap">
+    <article class="plate">
+<div class="plate-body">
+<p class="lead-para">Stabilization begins with the possibility that a slump leaves useful work undone. A builder has equipment, a worker has time, and a town has things worth repairing, yet the orders that would bring them together have disappeared. If the obstacle is deficient spending, public action can help to restore the missing demand. The question is how to make that action arrive while the resources are still idle, in a form that uses them well, and on terms the public can sustain. The state has instruments the individual household lacks: a tax system reaching across incomes, transfers that support people whose earnings have failed, purchases of its own, and a monetary authority able to influence financial conditions. Each instrument acts through a different channel. Their common purpose is to prevent a private retreat from feeding upon the incomes it destroys; their common difficulty is that the economy keeps moving while policy tries to meet it.</p>
+<p>Some of that response is already written into the fiscal system before the downturn begins. When taxable earnings fall, the revenue collected under an unchanged income-tax schedule falls with them. When eligible workers lose their jobs, unemployment benefits replace part of the lost income under rules already in force. These are the automatic stabilizers: provisions whose payments change with economic circumstances without requiring a fresh decision to alter the law. The household consequently bears less of the immediate loss of disposable income, and its purchases may fall less sharply. In an expansion, the same arrangements can work in reverse. The machinery is a thermostat, in the earlier plate's useful image, although its sensitivity depends on the rules and its operation on administration. A delayed benefit payment cannot support a purchase already abandoned. Automatic response saves the time required to choose a new intervention; it does not abolish every delay between lost earnings and money in a person's hands.<sup class="sn-ref">1</sup></p>
+<div class="sidenote"><span class="sn-num">1.</span> Darrel Cohen and Glenn Follette, <a href="https://www.newyorkfed.org/medialibrary/media/research/epr/00v06n1/0004cohe.pdf"><em>The Automatic Fiscal Stabilizers: Quietly Doing Their Thing</em></a>, <em>FRBNY Economic Policy Review</em> (April 2000), pp. 35–38, introduction and §II.A, with notes 1–5 at p. 64. The mechanism depends on consumption behavior and on which income changes the fiscal system absorbs. No historical estimated multiplier is carried into the example below.</div>
+<p>A small spending model makes the cushioning visible. Suppose consumption is twenty plus four-fifths of disposable income, investment is ten, government purchases are ten, and taxes take one-quarter of income. With firms meeting demand at unchanged prices and sufficient spare capacity, output settles at one hundred: consumption is eighty and the other purchases supply twenty. Now let investment fall from ten to two. Output falls to eighty, and tax receipts fall from twenty-five to twenty. The tax rule has left five more in private hands than a fixed bill of twenty-five would have left at that income. Under that fixed bill, with the same starting output, the investment shock would instead bring output down to sixty. The automatic response has halved this model's decline. It has also reduced the budget surplus without a new spending measure. A worsening budget balance can therefore be part of the economy's response to recession, and its size alone cannot tell us how much discretionary stimulus a government chose.<sup class="sn-ref">2</sup></p>
+<div class="sidenote"><span class="sn-num">2.</span> All quantities are hypothetical. With <em>C = 20 + 0.8(Y − T)</em>, <em>T = 0.25Y</em> and <em>Y = C + I + G</em>, output is <em>(20 + I + G)/0.4</em>. With the fixed tax bill <em>T = 25</em>, it is <em>(I + G)/0.2</em>. Both start at 100; reducing <em>I</em> by 8 yields 80 and 60 respectively. If consumption does not respond to disposable income, this particular feedback channel disappears. Prices, interest rates, trade and future-tax responses are held outside the example.</div>
+<div class="break"><span>⁂</span></div>
+<p>Discretionary action can add what the automatic response leaves missing, but it must cross a moving interval between diagnosis and effect. In the example, raising government purchases by eight while investment remains depressed restores output to one hundred. That calculation assumes the purchases occur during the shortfall. A project may require design, authorization, procurement and construction; the first visible expenditure can arrive after private activity has revived. Monetary action has its own interval, as financing terms affect decisions and decisions become spending. Milton Friedman's warning concerned precisely this distance between the conditions policymakers observe and the conditions their actions eventually influence. An authority can begin in the right direction and still go too far by treating an effect that has not yet arrived as evidence that its first action was insufficient. The relevant comparison is therefore between the economy with the policy when it takes effect and the economy that would then have existed without it. Today's unemployment supplies a reason to investigate that future, rather than a complete forecast of it.<sup class="sn-ref">3</sup></p>
+<div class="sidenote"><span class="sn-num">3.</span> Milton Friedman, <a href="https://www.aeaweb.org/aer/top20/58.1.1-17.pdf"><em>The Role of Monetary Policy</em></a>, <em>American Economic Review</em> 58 (1968), §III, pp. 14–17, including note 6. His argument about delayed effects and excessive reversal concerns monetary policy. The fiscal project sequence and the eight-unit replacement above are separate illustrations; the latter restores demand only while the specified investment shortfall persists.</div>
+<p>A rule can make a response dependable while still allowing it to vary with circumstances. The income-tax schedule in the example is fixed, yet its receipts move with income. A conditional commitment to provide support when a specified condition is met likewise differs from promising the same expenditure whatever happens. Friedman's own prescription in 1968 was a publicly announced, steady growth rate for a chosen monetary total, intended to restrain the damaging reversals he attributed to discretionary management. That historical proposal answers the problem in one particular way. More generally, a rule must specify what changes its response, what information it uses, and what happens when circumstances fall outside its design. Discretion offers room to meet an unfamiliar emergency; it also gives officials room to delay, overreact, or favor the politically convenient measure. The comparison turns on the errors each arrangement is likely to make and on whether its commitments can survive the moment they become uncomfortable.<sup class="sn-ref">4</sup></p>
+<div class="sidenote"><span class="sn-num">4.</span> Friedman (1968), §III, especially pp. 15–17. The stated monetary-growth prescription is his historical recommendation. The distinction between an unchanging instrument and a rule that responds to conditions follows directly from the fiscal example; it is not a claim that every announced rule is credible or well designed.</div>
+<p>The effect of support also depends on what has stopped the economy from producing. Our arithmetic gives firms idle resources and lets them satisfy additional orders without raising prices or borrowing costs. An economy whose available energy, labor or materials have sharply contracted presents a different problem: additional expenditure cannot by itself replace the missing productive resource. Household behavior matters as well. A current tax reduction can finance spending by someone short of cash, while a household that saves it against future obligations may add little to present demand. Public borrowing moves commitments across time and raises questions about future revenue, interest costs and the uses of the purchased resources. These conditions belong inside the assessment of stabilization. They determine how much activity an intervention can recover, how its costs are distributed, and whether a useful response to one disturbance would amplify another. A large multiplier in an illustrative model establishes the consequence of its assumptions; deciding whether those assumptions fit is part of the policy task.<sup class="sn-ref">5</sup></p>
+<div class="sidenote"><span class="sn-num">5.</span> Cohen and Follette (2000), §II.A, pp. 36–38, with notes 4–5 at p. 64, contrasts current-income and forward-looking consumption mechanisms and qualifies the elementary multiplier. The authors' introduction also distinguishes demand from supply disturbances. The discussion here assigns no universal size or sign to a fiscal intervention. The public balance-sheet question is developed separately in <a href="numeraire-ix-ix-the-debt.html">The Debt</a>.</div>
+<p>The stabilizer is ultimately an institution for acting before a disruption has finished spreading. Its achievement may be quieter than a rescue announced at the bottom of a crisis: income preserved, an order maintained, a business able to keep workers whose skills it would otherwise lose. Its success also depends on knowing when to withdraw an exceptional response and when the apparent recovery still rests on damaged foundations. The earlier Cure and Lag belong together because a remedy and the conditions of its delivery form one practical question. Delay can waste the opportunity; action without diagnosis can waste the resources. And the cost of waiting may extend beyond this year's missing production. If a prolonged slump changes who remains employable, which firms survive, or what investment is ever undertaken, the economy that eventually recovers will have been changed by the interval. That possibility is the subject of the final plate, <a href="numeraire-xix-xii-the-scar.html">The Scar</a>.</p>
+</div>
+    </article>
+  </main>
+
+  <nav class="leaf-nav" aria-label="Plate navigation">
+    <a class="ln-cell ln-prev" href="numeraire-xix-x-the-shock.html"><span class="lab">← Previous plate</span><span class="ttl">Plate x · The Shock</span></a>
+    <a class="ln-cell ln-home" href="numeraire-xix-the-cycle.html"><span class="lab">The volume</span><span class="ttl">The Cycle · contents</span></a>
+    <a class="ln-cell ln-next" href="numeraire-xix-xii-the-scar.html"><span class="lab">Next plate →</span><span class="ttl">Plate xii · The Scar</span></a>
+  </nav>
+
+  <footer>
+    <div class="f-bar">
+      <span class="f-mark">Numéraire</span>
+      <span class="f-ref"><a href="numeraire-xix-the-cycle.html">The Cycle</a> · <a href="numeraire-atlas-updated.html">the table</a></span>
+    </div>
+    <p class="colophon">Plate xi of <em>The Cycle</em>, Volume the Nineteenth of <em>Numéraire</em> — a periodic table of economic life. A new adaptation of <a href="../volumes/the-cycle.html#plate-ix">The Cure</a> and <a href="../volumes/the-cycle.html#plate-x">The Lag</a>, joining automatic fiscal response to the conditions and timing of discretionary action. The earlier edition remains intact. This leaf may be read on its own or as part of the volume. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<script>
+(function(){
+  var bar=document.getElementById('progress');
+  function onScroll(){
+    var h=document.documentElement;
+    var max=(h.scrollHeight-h.clientHeight);
+    var p=max>0?(h.scrollTop||document.body.scrollTop)/max:0;
+    bar.style.width=(p*100).toFixed(2)+'%';
+  }
+  document.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+})();
+</script>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="numeraire-xix-x-the-shock.html">← The Shock</a><a rel="next" href="numeraire-xix-xii-the-scar.html">The Scar →</a></nav>
+</body>
+</html>
