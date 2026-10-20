@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Zero — Numéraire, The Rate, Plate x</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:66rem; --measure:35rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(2.8rem,7vh,5rem) 0 clamp(1.4rem,3.5vh,2.2rem);text-align:center;}
+
+  .crumbs{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 400;
+    font-size:.8rem;letter-spacing:.04em;color:var(--faint);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:center;gap:.55rem;}
+  .crumbs a{text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .2s ease,color .2s ease;}
+  .crumbs a:hover{border-color:var(--num);color:var(--ink);}
+  .crumbs .sep{color:var(--faintest);}
+  .crumbs .here{color:var(--ink);}
+
+  .plate-mark{width:116px;height:116px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:.18rem;line-height:1;}
+  .plate-mark.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pm-vol{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.84rem;letter-spacing:.06em;color:rgba(240,235,225,.62);}
+  .pm-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;
+    font-size:2.5rem;letter-spacing:.02em;text-transform:uppercase;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.1rem,6vw,4rem);line-height:1.03;letter-spacing:-.025em;margin:1rem 0 0;text-wrap:balance;}
+  .status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:42rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .epi{max-width:38rem;margin:clamp(2.2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .epi q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.46;color:var(--ink);quotes:none;display:block;text-wrap:pretty;}
+  .epi .cite{display:block;margin-top:.95rem;font-size:.78rem;color:var(--faintest);letter-spacing:.05em;font-style:normal;}
+  .epi .cite em{font-style:italic;}
+
+  .essay{max-width:52rem;margin:clamp(3rem,7vh,5rem) auto 0;counter-reset:sn;}
+  .essay::after{content:"";display:block;clear:both;}
+  .essay > p,.essay > .pull{max-width:var(--measure);}
+  .essay p{font-size:1.075rem;line-height:1.8;color:var(--ink);margin:0 0 1.4rem;text-wrap:pretty;}
+  .essay em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.72;padding:.08em .14em 0 0;color:var(--ink);}
+
+  .divider{display:flex;justify-content:center;margin:2.4rem 0;}
+  .divider svg{width:96px;height:12px;overflow:visible;}
+  .divider line{stroke:var(--num);stroke-width:1;} .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.5vw,1.74rem);line-height:1.34;color:var(--ink);text-align:center;
+    margin:2.4rem auto;max-width:33rem;text-wrap:balance;}
+
+  .snref{font-family:"Fraunces",serif;font-size:.64em;line-height:0;vertical-align:super;
+    color:var(--soft);counter-increment:sn;margin-left:1px;font-style:normal;}
+  .snref::after{content:counter(sn);}
+  .sn{display:block;max-width:var(--measure);margin:.1rem 0 1.4rem;padding:.15rem 0 .15rem 1.05rem;
+    border-left:1px solid var(--hair);font-size:.84rem;line-height:1.52;color:var(--faint);}
+  .sn::before{content:counter(sn);font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--faintest);margin-right:.5em;font-size:.92em;}
+  .sn em{font-style:italic;}
+
+  @media (min-width:64rem){
+    .sn{float:right;clear:right;width:15rem;margin:.35rem 0 1.3rem;padding:0;border-left:none;}
+    .divider,.pull,.apparatus{clear:both;}
+  }
+
+  .apparatus{max-width:52rem;margin:clamp(3.2rem,7vh,5rem) auto 0;padding-top:2rem;border-top:1px solid var(--hair);clear:both;}
+  .app-h{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;}
+  .app-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.4rem;}
+  .app-list li{border-top:1px solid var(--hair);}
+  .app-list li:first-child,.app-list li:nth-child(2){border-top:none;}
+  .app-list a{display:block;text-decoration:none;padding:.95rem 0;}
+  .app-list a:hover .app-t{color:var(--soft);}
+  .app-rel{display:block;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faintest);margin-bottom:.3rem;}
+  .app-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.12rem;color:var(--ink);transition:color .2s ease;}
+  .app-g{display:block;font-size:.84rem;color:var(--faint);font-style:italic;line-height:1.4;margin-top:.22rem;}
+
+  footer{margin-top:clamp(3.5rem,8vh,6rem);padding:2.2rem 0 4rem;border-top:1px solid var(--hair);}
+  .crumbs.foot{justify-content:flex-start;margin-bottom:1.3rem;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .plate-mark{width:96px;height:96px;}
+    .pm-num{font-size:2.1rem;}
+    .essay p{font-size:1.04rem;line-height:1.74;}
+    .dropcap{font-size:3rem;}
+    .app-list{grid-template-columns:1fr;}
+    .app-list li:nth-child(2){border-top:1px solid var(--hair);}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="crumbs rise d1" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-rate.html">The Rate &middot; Vol III</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate x</span>
+    </nav>
+    <div class="plate-mark lit rise d2" aria-hidden="true">
+      <span class="pm-vol">Rt</span>
+      <span class="pm-num">x</span>
+    </div>
+    <h1 class="rise d3">The Zero</h1>
+    <div class="status rise d3">in print &middot; The Rate &middot; plate x</div>
+    <p class="standfirst rise d4">A negative rate reverses the familiar reward of waiting, but it does not abolish the alternatives that give a financial claim its value. This plate moves from cash in a drawer to the effective lower bound, from nominal losses to real returns, and from the liquidity trap to the balance sheet of a bank. The argument asks why a rate can cross zero, where further cuts may meet resistance, and why the sign of the number cannot by itself settle the distributional or moral question.</p>
+  </header>
+
+  <div class="epi rise d5"><q>Waiting has alternatives even when it has no positive reward.</q><span class="cite">The argument of this plate</span></div>
+
+  <article class="essay">
+<p class="lede"><span class="dropcap">T</span>he lender advances a hundred and receives ninety-nine. The calendar has moved forward, the promise has been kept, and waiting has reduced the number of dollars in the account. A theory that treats interest as the necessary reward of patience must explain this bargain before calling it impossible. The bargain need not be foolish. The lender may be buying safety, convenience or an asset that will become especially useful in a bad state of the world. What has disappeared is the assurance that merely moving money into the future must command a positive payment.</p>
+<p>Zero first appears as a boundary because the lender has another way to wait. A banknote kept in a drawer remains a banknote. If it can be held safely and without cost, a promise to return less of the same money must offer some other advantage to attract a holder. This is the elementary lower-bound argument: cash competes with a negative-yielding claim. Its force comes from the alternative, not from a prohibition contained in the mathematics of discounting. Once the alternative is costly or inconvenient, the boundary moves.<sup class="snref"></sup></p>
+<aside class="sn"><a href="https://www.ecb.europa.eu/press/key/date/2016/html/sp160728.ga.html">Cœuré, “Assessing the Implications of Negative Interest Rates,” July 28, 2016, “The specialness of negative nominal interest rates,” including notes 7–8</a>, explains the cash alternative and the costs of storing, securing and using it. The discussion concerns an effective lower bound, not a universal legal floor.</aside>
+<p>For an imagined holder of a hundred, suppose secure storage costs one dollar a year and provides no payment services. A deposit returning ninety-nine dollars and fifty cents leaves that holder better off than cash returning a hundred less the storage bill. If storage is free and the two holdings otherwise serve exactly the same purposes, the comparison reverses. Neither calculation establishes a lower bound for everyone. Households, firms and institutions hold different quantities, need different payment services and face different costs. The ability to escape a charge is itself unevenly distributed. A boundary formed by alternatives can be below zero without being infinitely far below it.</p>
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg></div>
+<p>The crossing is a historical fact, though its object must be named carefully. On June 5, 2014, the European Central Bank announced that the rate on its deposit facility would become minus 0.10 percent on June 11, with the negative rate also applying to specified other balances. This was a rate paid on particular claims held within the monetary system. It was not a declaration that every household mortgage, business loan or bank deposit had acquired the same rate. A central-bank instrument and the terms available to a particular borrower belong to a chain of transactions. The first can influence the rest without becoming identical to them.<sup class="snref"></sup></p>
+<aside class="sn"><a href="https://www.ecb.europa.eu/press/pr/date/2014/html/pr140605_3.en.html">ECB, “ECB Introduces a Negative Deposit Facility Interest Rate,” June 5, 2014</a>. The release specifies the effective date and the covered reserve and deposit balances. This is a dated instance, not a statement of the rate in force now.</aside>
+<p>Nor is nominal zero the point at which waiting first becomes unrewarded. Purchasing power can fall while the number in the account rises. A hypothetical two-percent nominal return with four-percent inflation leaves the holder about 1.92 percent worse off in goods. Conversely, a minus-one-percent nominal return with two-percent deflation produces a real gain of about 1.02 percent. The first ratio is 1.02 divided by 1.04; the second is .99 divided by .98. A saver cares about what the final money will buy. A borrower whose nominal debt is fixed cares about that conversion as well, from the other side of the promise.<sup class="snref"></sup></p>
+<aside class="sn"><a href="https://www.ecb.europa.eu/press/key/date/2016/html/sp160728.ga.html">Cœuré (2016), “The specialness of negative nominal interest rates,” including notes 9–11</a>, distinguishes negative nominal from negative real rates. The exact ratios here are illustrative one-period realized returns, before taxes or fees; expected inflation would instead enter an ex-ante comparison.</aside>
+<p>These distinctions matter most when a low rate is still too high for the economy around it. In Krugman’s liquidity-trap model, expected future conditions can make the real rate consistent with full employment negative. If prices are sticky and the nominal rate cannot fall far enough, desired spending need not absorb the available output. Zero is then an obstacle, not a gift of free resources. Machinery, labor and ideas can remain available while the monetary terms fail to induce enough current use of them. The existence of productive opportunities does not guarantee that every safe financial claim must offer a positive real return.<sup class="snref"></sup></p>
+<aside class="sn"><a href="https://www.brookings.edu/wp-content/uploads/2016/07/1998b_bpea_krugman_dominquez_rogoff.pdf">Krugman, “It’s Baaack: Japan’s Slump and the Return of the Liquidity Trap,” <i>Brookings Papers on Economic Activity</i> 2:1998, pp. 146–151</a>, presents the flexible-price and sticky-price cases and then considers productive capital. These are conditional mechanisms, not a diagnosis of every episode of low rates.</aside>
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg></div>
+<p>The trap also explains why creating more money is not always the same as creating more spending. If money and a short safe bond have become equivalent at the margin, exchanging one for the other can change the portfolio’s labels without changing its owner’s incentives. In Krugman’s example, an expansion expected to be reversed leaves the future monetary arrangement fixed; once the current rate has reached its floor, more of that operation does not restore full employment. The qualification is essential. An operation that changes expectations of future policy, purchases a different risk or alters fiscal resources is not the same experiment. The limit of one instrument under specified expectations is not a proof that every public action has become powerless.<sup class="snref"></sup></p>
+<aside class="sn"><a href="https://www.brookings.edu/wp-content/uploads/2016/07/1998b_bpea_krugman_dominquez_rogoff.pdf">Krugman (1998), “The Liquidity Trap in a Flexible Price Economy” and “The Hicksian Liquidity Trap,” pp. 146–150, including note 5</a>. The future price level or monetary commitment is held fixed in the experiment. <a href="https://www.ecb.europa.eu/press/key/date/2016/html/sp160728.ga.html">Cœuré (2016), introduction and conclusion</a>, discusses negative rates alongside forward guidance and asset purchases.</aside>
+<p>The bank introduces a second boundary. Suppose, purely for illustration, that a bank holds one hundred in interest-earning loans financed by ninety in deposits and ten in equity. At a three-percent loan yield and a one-percent deposit rate, annual net interest income is 2.10. If the loan yield falls to two percent and the deposit rate reaches zero, it becomes two. If the loan yield falls another point while the deposit rate remains zero, it becomes one. This calculation holds every balance fixed and excludes fees, operating costs and credit losses. It shows how a deposit floor can squeeze a margin. It does not show that the first policy-rate cut always reduces bank profits, or that less interest income necessarily means less lending.</p>
+<p>Cœuré’s 2016 account keeps the other effects in view. Falling rates can raise the market value of existing fixed-income assets; cheaper borrowing and stronger demand can improve repayment; wholesale funding may reprice differently from retail deposits. The adverse margin effect and the beneficial balance-sheet effects need not arrive at the same time or be equally large at every bank. An economic boundary at which another cut becomes counterproductive is consequently different from the physical convenience of holding cash. Its location depends on funding, assets, capital and the wider response. A policy cannot be judged by looking at the line for interest income and leaving the rest of the account blank.<sup class="snref"></sup></p>
+<aside class="sn"><a href="https://www.ecb.europa.eu/press/key/date/2016/html/sp160728.ga.html">Cœuré (2016), “How low and for how long?” and conclusion, including notes 16–24</a>, sets out these opposing channels and their institutional differences. The hypothetical balance sheet above isolates one channel; it is not a calibrated estimate of the net effect.</aside>
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg></div>
+<p>For the household, too, the word saver is an incomplete account. A person can own a deposit, owe on a mortgage and depend on wages from a business whose customers borrow. Lower rates may reduce one income, one expense and the likelihood of losing another income altogether. A fixed-rate creditor may gain from the rising price of an existing bond while receiving less on a new purchase. These differences do not cancel the hardship of losing an expected income. They explain why the social judgment cannot be read directly from the sign of one rate. The relevant comparison includes what would have happened without the change.</p>
+<p>What remains of the reward of waiting is therefore a claim requiring circumstances. Waiting can involve sacrifice, but patience alone does not tell us how scarce safe future purchasing power is, what services a claim provides or which alternative a holder can obtain. A negative rate does not prove that every positive rate is unearned. It does defeat the shortcut by which the passage of time itself guarantees the creditor a positive due. The rate is a relation among present resources, future promises and the institutions that connect them.</p>
+<p class="pull">Zero is where a familiar reward disappears; it is not where the costs of waiting, lending and refusing to spend disappear.</p>
+<p>The lender who receives ninety-nine has paid something for the arrangement that carried the hundred forward. The borrower has acquired that arrangement on the other side. Whether the bargain supports useful activity, protects a balance sheet or shifts a burden depends on its terms and alternatives. The number is a beginning for that inquiry. Treating its sign as a complete moral or economic verdict would make the rate conceal the very relations it was supposed to measure. The argument remains open.</p>
+</article>
+
+  <nav class="apparatus" aria-label="Related reading"><h2 class="app-h">Related</h2><ul class="app-list"><li><a href="the-rate-abstinence.html"><span class="app-rel">The reward under examination</span><span class="app-t">The Abstinence</span><span class="app-g">The claim that postponement earns interest, confronted here by a price below zero.</span></a></li><li><a href="the-rate-hoard.html"><span class="app-rel">The alternative to a claim</span><span class="app-t">The Hoard</span><span class="app-g">Why retaining money can compete with lending it, and where that refuge has costs.</span></a></li><li><a href="the-rate-bond.html"><span class="app-rel">The promise priced</span><span class="app-t">The Bond</span><span class="app-g">The difference between a negative yield, a loss on sale and the final payment.</span></a></li><li><a href="the-rate-lever.html"><span class="app-rel">The instrument and its limits</span><span class="app-t">The Lever</span><span class="app-g">How changes in policy rates travel through a system whose institutions can resist them.</span></a></li></ul></nav>
+
+  <footer>
+    <nav class="crumbs foot" aria-label="Return">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-rate.html">The Rate &middot; Vol III</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate x &middot; The Zero</span>
+    </nav>
+    <p class="colophon">The tenth plate of Volume III, <em>The Rate</em>, adapted for the Margin edition from <a href="../quantities/numeraire-plate-the-zero-bound.html">The Zero Bound in Quantities</a> and the later <a href="../essays/numeraire-iii-ix-the-zero.html">Utility Zero</a>. The related <a href="../volumes/the-rate.html#plate-ix">Ebb in the Collected Rate</a> supplies a distinct historical inquiry into declining rates. The original Margin question is preserved; the earlier editions remain intact. The epigraph states the argument of this plate. Return to <a href="the-rate.html">the volume</a>, or to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-rate-bond.html">← The Bond</a><a rel="next" href="the-rate-compound.html">The Compound →</a></nav>
+</body>
+</html>

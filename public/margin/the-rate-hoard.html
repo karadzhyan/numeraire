@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Hoard — Numéraire, The Rate, Plate vi</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:66rem; --measure:35rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(2.8rem,7vh,5rem) 0 clamp(1.4rem,3.5vh,2.2rem);text-align:center;}
+
+  .crumbs{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 400;
+    font-size:.8rem;letter-spacing:.04em;color:var(--faint);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:center;gap:.55rem;}
+  .crumbs a{text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .2s ease,color .2s ease;}
+  .crumbs a:hover{border-color:var(--num);color:var(--ink);}
+  .crumbs .sep{color:var(--faintest);}
+  .crumbs .here{color:var(--ink);}
+
+  .plate-mark{width:116px;height:116px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:.18rem;line-height:1;}
+  .plate-mark.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pm-vol{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.84rem;letter-spacing:.06em;color:rgba(240,235,225,.62);}
+  .pm-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;
+    font-size:2.5rem;letter-spacing:.02em;text-transform:uppercase;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.1rem,6vw,4rem);line-height:1.03;letter-spacing:-.025em;margin:1rem 0 0;text-wrap:balance;}
+  .status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:42rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .epi{max-width:38rem;margin:clamp(2.2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .epi q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.46;color:var(--ink);quotes:none;display:block;text-wrap:pretty;}
+  .epi .cite{display:block;margin-top:.95rem;font-size:.78rem;color:var(--faintest);letter-spacing:.05em;font-style:normal;}
+  .epi .cite em{font-style:italic;}
+
+  .essay{max-width:52rem;margin:clamp(3rem,7vh,5rem) auto 0;counter-reset:sn;}
+  .essay::after{content:"";display:block;clear:both;}
+  .essay > p,.essay > .pull{max-width:var(--measure);}
+  .essay p{font-size:1.075rem;line-height:1.8;color:var(--ink);margin:0 0 1.4rem;text-wrap:pretty;}
+  .essay em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.72;padding:.08em .14em 0 0;color:var(--ink);}
+
+  .divider{display:flex;justify-content:center;margin:2.4rem 0;}
+  .divider svg{width:96px;height:12px;overflow:visible;}
+  .divider line{stroke:var(--num);stroke-width:1;} .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.5vw,1.74rem);line-height:1.34;color:var(--ink);text-align:center;
+    margin:2.4rem auto;max-width:33rem;text-wrap:balance;}
+
+  .snref{font-family:"Fraunces",serif;font-size:.64em;line-height:0;vertical-align:super;
+    color:var(--soft);counter-increment:sn;margin-left:1px;font-style:normal;}
+  .snref::after{content:counter(sn);}
+  .sn{display:block;max-width:var(--measure);margin:.1rem 0 1.4rem;padding:.15rem 0 .15rem 1.05rem;
+    border-left:1px solid var(--hair);font-size:.84rem;line-height:1.52;color:var(--faint);}
+  .sn::before{content:counter(sn);font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--faintest);margin-right:.5em;font-size:.92em;}
+  .sn em{font-style:italic;}
+
+  @media (min-width:64rem){
+    .sn{float:right;clear:right;width:15rem;margin:.35rem 0 1.3rem;padding:0;border-left:none;}
+    .divider,.pull,.apparatus{clear:both;}
+  }
+
+  .apparatus{max-width:52rem;margin:clamp(3.2rem,7vh,5rem) auto 0;padding-top:2rem;border-top:1px solid var(--hair);clear:both;}
+  .app-h{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;}
+  .app-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.4rem;}
+  .app-list li{border-top:1px solid var(--hair);}
+  .app-list li:first-child,.app-list li:nth-child(2){border-top:none;}
+  .app-list a{display:block;text-decoration:none;padding:.95rem 0;}
+  .app-list a:hover .app-t{color:var(--soft);}
+  .app-rel{display:block;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faintest);margin-bottom:.3rem;}
+  .app-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.12rem;color:var(--ink);transition:color .2s ease;}
+  .app-g{display:block;font-size:.84rem;color:var(--faint);font-style:italic;line-height:1.4;margin-top:.22rem;}
+
+  footer{margin-top:clamp(3.5rem,8vh,6rem);padding:2.2rem 0 4rem;border-top:1px solid var(--hair);}
+  .crumbs.foot{justify-content:flex-start;margin-bottom:1.3rem;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .plate-mark{width:96px;height:96px;}
+    .pm-num{font-size:2.1rem;}
+    .essay p{font-size:1.04rem;line-height:1.74;}
+    .dropcap{font-size:3rem;}
+    .app-list{grid-template-columns:1fr;}
+    .app-list li:nth-child(2){border-top:1px solid var(--hair);}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="crumbs rise d1" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-rate.html">The Rate &middot; Vol III</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate vi</span>
+    </nav>
+    <div class="plate-mark lit rise d2" aria-hidden="true">
+      <span class="pm-vol">Rt</span>
+      <span class="pm-num">vi</span>
+    </div>
+    <h1 class="rise d3">The Hoard</h1>
+    <div class="status rise d3">in print &middot; The Rate &middot; plate vi</div>
+    <p class="standfirst rise d4">The saver can postpone consumption and still prefer to keep her wealth ready to hand. This plate follows Keynes’s distinction between saving and liquidity through the needs of business, the risk of selling a bond, and the conventions that sustain a rate. It asks how a wish for safety can hold investment back, where monetary intervention encounters its limits, and why the value of remaining uncommitted gives the price of time a political as well as a financial life.</p>
+  </header>
+
+  <div class="epi rise d5"><q>The holder of money can wait without promising the use of that waiting to anyone else.</q><span class="cite">The argument of this plate</span></div>
+
+  <article class="essay">
+<p class="lede"><span class="dropcap">T</span>he saver can wait without lending. She can leave this year's income unspent and keep the proceeds ready to hand, postponing her consumption while declining to finance anyone else's venture. That possibility opens a seam in the theories the volume has followed. Abstinence explains a decision to forgo something now; productive opportunity explains why another person would pay to obtain resources. Between them lies a further choice: the form in which the waiting wealth will be held. Keynes made that choice central to his theory of interest. Money offers command over an uncertain future, and the holder may demand a return before exchanging that command for a promise. The rate acquires a monetary life, sustained by confidence, apprehension, and the institutions that make a promise easy or difficult to turn back into money.</p>
+<p>The distinction begins with two decisions that can belong to the same person without becoming the same act.<sup class="snref"></sup> One concerns how much income to consume. The other concerns the composition of the wealth that remains, including wealth accumulated long before this year's income arrived. A person can become more patient about consumption and more anxious about holding bonds at the same time. She may want to save more while requiring a higher inducement to leave her savings in a form exposed to a change in market prices. Keynes's objection to a theory of interest built from thrift alone was therefore precise: knowing the willingness to postpone consumption leaves a question about the terms on which wealth will be held. A rate must be found at which people are willing to hold the assets that exist, including the money.</p>
+<aside class="sn">Keynes, <a href="https://www.marxists.org/reference/subject/economics/keynes/general-theory/ch13.htm"><em>The General Theory</em> (1936), ch. 13, §§ II and V</a>. The saving decision and the liquidity decision concern different margins. His notes 1–2 also make the money/debt boundary depend on the problem and distinguish rates for different maturities.</aside>
+<p>The service of money is the ability to meet a need without first accepting the price someone else offers for an asset.<sup class="snref"></sup> The household bridges the interval between wages and bills; the business bridges the interval between paying its workers and collecting from its customers. Both may keep a reserve for a repair, an interruption, or an opportunity that cannot wait. These are Keynes's transactions and precautionary motives. Their strength depends on arrangements outside the holder's temperament: how regularly income arrives, how reliably a bank will extend temporary credit, what a deposit pays, and what it costs to convert another asset into spendable funds. Money held against a dollar obligation offers a different assurance from money held against next year's groceries. The nominal amount can remain ready while its purchasing power changes. Liquidity answers a question about access, and does not answer every question about safety.</p>
+<aside class="sn"><a href="https://www.hetwebsite.net/het/texts/keynes/gt/chap15.htm">Keynes, ch. 15, § I, pp. 194–197</a>, treats income, business, precautionary and speculative motives as overlapping uses of one pool. He expressly includes reliable temporary borrowing and interest paid on deposits among the influences on money demand.</aside>
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg></div>
+<p>A bond can promise every payment in full and still expose its holder to a loss when money is needed before the payments arrive.<sup class="snref"></sup> Consider an invented, default-free perpetuity paying $4 at the end of every year. At a constant required yield of four percent, its price is $100. If that yield immediately rises to five percent, the same stream is worth $80. No payment has been repudiated; the market now offers more income per dollar committed, so the old promise sells for less. The holder who must turn it into cash bears the $20 fall. A decline in the required yield to three percent would instead raise its price to about $133.33. The comparison explains why an expectation about future rates can change the willingness to hold money today. A person expecting bond prices to fall can value an apparently idle balance for the purchase it will permit later.</p>
+<aside class="sn">Invented illustration: with annual payments beginning one year ahead, no default, and a constant positive yield <em>r</em>, the perpetuity price is <em>4/r</em>. Repricing is immediate, before any coupon is received. The example isolates interest-rate exposure; it supplies no forecast. Keynes develops the speculative motive in ch. 13, § II, and <a href="https://www.hetwebsite.net/het/texts/keynes/gt/chap15.htm">ch. 15, § II</a>.</aside>
+<p>The attempt to acquire money can move prices even when the community cannot acquire more money in the aggregate.<sup class="snref"></sup> A person sells a bond for cash; the buyer gives up the cash and receives the bond. With the stock of money fixed for the experiment, the transaction changes its owner. It does not allow every owner of wealth simultaneously to become more liquid at unchanged asset prices. If the desire for money intensifies across the market, bond prices can fall until their returns make holding them acceptable again. Some holders will then be willing to keep less cash, others to keep more, and the available balances remain held by someone. This is why the image of a hoard must be handled carefully. A stronger wish to hold money is a change in demand, whose consequences can appear in the price of debts without an increase in the quantity of currency concealed in drawers.</p>
+<aside class="sn"><a href="https://www.marxists.org/reference/subject/economics/keynes/general-theory/ch13.htm">Keynes, ch. 13, § V</a>, explicitly distinguishes a propensity to hoard from an actual increase in aggregate cash holdings. Ch. 15, § I, adds that shared news can reprice debts without requiring a large volume of transactions.</aside>
+<p>The money market also remains connected to the income from which saving is drawn. At a given income and state of expectation, a larger supply of money can lower the inducement needed to hold the outstanding bonds. If investment and income respond, however, the demand for balances used in ordinary business changes too. A busy economy has more payments to make; a frightened one may want larger reserves against interruption. The rate and the level of activity therefore cannot be understood by freezing one side of the economy forever while explaining the other. Keynes's own account follows these reactions. An increase in money can be offset by a stronger desire for liquidity; a lower borrowing cost can be overtaken by a collapse in the expected proceeds of investment. The monetary explanation gives the price of time another determinant, and the connection to production gives that determinant its consequences.</p>
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg></div>
+<p>The rate can acquire a conventional resting place because a belief about tomorrow changes the attractiveness of holding a bond today.<sup class="snref"></sup> If investors regard a low yield as temporary, the prospect of a later rise makes its corresponding high bond price look precarious. They may demand more income to bear that prospect, helping to keep the yield above the level at which investment would be stronger. A monetary authority that convinces them the lower rate can endure changes the calculation itself. Convention here has economic force: people act on the terms at which they expect to be able to sell. Yet its durability depends on the surrounding conditions. Income, the supply of money, expected policy and the prospects of production can all change. Fear and confidence help determine the rate; their influence operates through a market whose opportunities and constraints continue to matter.</p>
+<aside class="sn">The account of convention is in <a href="https://www.hetwebsite.net/het/texts/keynes/gt/chap15.htm">Keynes, ch. 15, § II, pp. 201–205</a>. The links between money, rates, investment, consumption and employment are qualified in <a href="https://www.marxists.org/reference/subject/economics/keynes/general-theory/ch13.htm">ch. 13, § III</a>. Neither discussion grants policy an unconditional command over every rate or over investment.</aside>
+<p>The liquidity trap is the limiting case in which additional money offers too little inducement to leave liquidity behind. If the relevant debt yields scarcely anything and its price seems vulnerable, holders may willingly absorb more cash without accepting a meaningfully lower yield. Keynes treated virtually absolute liquidity preference as a possibility and said that he knew of no example of that limiting case when he wrote. Its importance lies in the failure of a particular chain: supplying more money no longer produces the hoped-for decline in the relevant rate. The conclusion must be kept at that scale. It does not establish that every public action is exhausted, that buying a different maturity has the same effect as buying a short bill, or that a change in expected future policy can accomplish nothing. The lower bound on a nominal rate and the public's willingness to exchange money for a longer promise are related problems with different foundations.</p>
+<p>The borrower may remain far from cheap credit even when the safest quoted rate is low.<sup class="snref"></sup> A lender still incurs the cost of examining a customer, servicing a loan, and bearing a loss if repayment fails. Those charges can persist as the underlying rate declines. In a crisis they can rise, leaving the household or small firm facing expensive finance while a government can borrow on terms that look almost free. The contrast follows from the instruments and borrowers being compared. A central bank's success in lowering one rate is not a completed account of the credit available to everyone else. The same observation guards the opposite inference: a low return on one safe asset does not establish that money has ceased to matter. The distance between that return and the customer's quotation can become the most consequential part of the price.</p>
+<aside class="sn"><a href="https://www.hetwebsite.net/het/texts/keynes/gt/chap15.htm">Keynes, ch. 15, § III, pp. 205–208</a>, separately discusses the authority's dealing practices, absolute liquidity preference, crises, and the expenses and risks separating the borrower's rate from the pure rate. His limit-case observation appears in item (2); the lending-cost qualification is item (4).</aside>
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg></div>
+<p>The liquidity people need is partly made by the institutions through which they expect to obtain it. A dependable overdraft can spare a business from keeping every possible payment in cash. An unreliable promise of credit gives it a reason to accumulate a larger buffer. A market in bonds can make a long commitment easier to sell, while exposing its owner to changing resale prices. These arrangements alter the terms on which a person can safely wait. They also distribute the ability to wait: a household with no assured access to emergency funds has a different reason for holding a balance from a wealthy trader waiting for a better bond price. The same observed holding can therefore serve necessity, precaution, or speculation. Its size alone cannot identify the motive or settle what compensation for giving it up would be just.</p>
+<p>The monetary theory consequently sharpens the argument about interest without disposing of it. Immediate command over resources is useful, and surrendering that command can deserve compensation. The level of compensation still depends on the alternatives available, on the reliability of financial arrangements, and on the public authority's terms. A return that induces a holder to exchange money for a debt tells us what secured consent under those conditions. It does not measure the holder's virtue, or establish that the conditions themselves serve everyone well. The hoard brings into view a power the language of patient saving can obscure: the power to remain uncommitted while others need expenditure, employment, or finance. What that power costs the rest of the economy depends on how the desire for safety is accommodated and what happens to activity when it is not.</p>
+<p class="pull">The holder of money can wait without promising the use of that waiting to anyone else.</p>
+<p>The plate's question therefore admits an answer with consequences on both sides. Interest has a monetary and expectational dimension; fear can sustain a rate at which investment remains weak, and confidence can make a different rate durable. But the price cannot be left wherever a mood happens to place it without consequences for expenditure and production, nor can an authority remove those consequences merely by naming a lower number. The wish to remain liquid meets the terms on which liquidity is supplied and the uses to which finance can be put. The next plate asks what would make the resulting rate easy or tight in the economy that must live with it. The hoard has shown why money can pull the price of time away from the claims made for it; the natural rate asks against what standard that departure can be judged. The argument remains open.</p>
+</article>
+
+  <nav class="apparatus" aria-label="Related reading"><h2 class="app-h">Related</h2><ul class="app-list"><li><a href="the-rate-abstinence.html"><span class="app-rel">The decision to wait</span><span class="app-t">The Abstinence</span><span class="app-g">The postponed consumption that leaves a further choice about how wealth will be held.</span></a></li><li><a href="the-rate-detour.html"><span class="app-rel">The productive commitment</span><span class="app-t">The Detour</span><span class="app-g">The passage from present resources to a future output, whose proceeds must justify the commitment.</span></a></li><li><a href="the-rate-natural.html"><span class="app-rel">The rate and its consequences</span><span class="app-t">The Natural</span><span class="app-g">The unobserved benchmark against which the money rate can be judged easy or tight.</span></a></li><li><a href="the-rate-lever.html"><span class="app-rel">The public terms of liquidity</span><span class="app-t">The Lever</span><span class="app-g">The institution that moves the price of money and answers for the effects of doing so.</span></a></li></ul></nav>
+
+  <footer>
+    <nav class="crumbs foot" aria-label="Return">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-rate.html">The Rate &middot; Vol III</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate vi &middot; The Hoard</span>
+    </nav>
+    <p class="colophon">The sixth plate of Volume III, <em>The Rate</em>, adapted for the Margin edition from <a href="../quantities/numeraire-plate-the-liquidity-preference.html">The Liquidity Preference in Quantities</a>, <a href="../volumes/the-rate.html#plate-v">The Liquidity in the Collected Rate</a>, and <a href="../essays/numeraire-iii-v-the-liquidity.html">The Liquidity in Utility</a>. The original Margin question governs this treatment; the earlier writing remains available in its distinct editions. The epigraph states the argument of this plate. Return to <a href="the-rate.html">the volume</a>, or to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-rate-detour.html">← The Detour</a><a rel="next" href="the-rate-natural.html">The Natural →</a></nav>
+</body>
+</html>

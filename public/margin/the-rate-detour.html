@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Detour — Numéraire, The Rate, Plate v</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:66rem; --measure:35rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(2.8rem,7vh,5rem) 0 clamp(1.4rem,3.5vh,2.2rem);text-align:center;}
+
+  .crumbs{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 400;
+    font-size:.8rem;letter-spacing:.04em;color:var(--faint);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:center;gap:.55rem;}
+  .crumbs a{text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .2s ease,color .2s ease;}
+  .crumbs a:hover{border-color:var(--num);color:var(--ink);}
+  .crumbs .sep{color:var(--faintest);}
+  .crumbs .here{color:var(--ink);}
+
+  .plate-mark{width:116px;height:116px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:.18rem;line-height:1;}
+  .plate-mark.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pm-vol{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.84rem;letter-spacing:.06em;color:rgba(240,235,225,.62);}
+  .pm-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;
+    font-size:2.5rem;letter-spacing:.02em;text-transform:uppercase;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.1rem,6vw,4rem);line-height:1.03;letter-spacing:-.025em;margin:1rem 0 0;text-wrap:balance;}
+  .status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:42rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .epi{max-width:38rem;margin:clamp(2.2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .epi q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.46;color:var(--ink);quotes:none;display:block;text-wrap:pretty;}
+  .epi .cite{display:block;margin-top:.95rem;font-size:.78rem;color:var(--faintest);letter-spacing:.05em;font-style:normal;}
+  .epi .cite em{font-style:italic;}
+
+  .essay{max-width:52rem;margin:clamp(3rem,7vh,5rem) auto 0;counter-reset:sn;}
+  .essay::after{content:"";display:block;clear:both;}
+  .essay > p,.essay > .pull{max-width:var(--measure);}
+  .essay p{font-size:1.075rem;line-height:1.8;color:var(--ink);margin:0 0 1.4rem;text-wrap:pretty;}
+  .essay em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.72;padding:.08em .14em 0 0;color:var(--ink);}
+
+  .divider{display:flex;justify-content:center;margin:2.4rem 0;}
+  .divider svg{width:96px;height:12px;overflow:visible;}
+  .divider line{stroke:var(--num);stroke-width:1;} .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.5vw,1.74rem);line-height:1.34;color:var(--ink);text-align:center;
+    margin:2.4rem auto;max-width:33rem;text-wrap:balance;}
+
+  .snref{font-family:"Fraunces",serif;font-size:.64em;line-height:0;vertical-align:super;
+    color:var(--soft);counter-increment:sn;margin-left:1px;font-style:normal;}
+  .snref::after{content:counter(sn);}
+  .sn{display:block;max-width:var(--measure);margin:.1rem 0 1.4rem;padding:.15rem 0 .15rem 1.05rem;
+    border-left:1px solid var(--hair);font-size:.84rem;line-height:1.52;color:var(--faint);}
+  .sn::before{content:counter(sn);font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--faintest);margin-right:.5em;font-size:.92em;}
+  .sn em{font-style:italic;}
+
+  @media (min-width:64rem){
+    .sn{float:right;clear:right;width:15rem;margin:.35rem 0 1.3rem;padding:0;border-left:none;}
+    .divider,.pull,.apparatus{clear:both;}
+  }
+
+  .apparatus{max-width:52rem;margin:clamp(3.2rem,7vh,5rem) auto 0;padding-top:2rem;border-top:1px solid var(--hair);clear:both;}
+  .app-h{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;}
+  .app-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.4rem;}
+  .app-list li{border-top:1px solid var(--hair);}
+  .app-list li:first-child,.app-list li:nth-child(2){border-top:none;}
+  .app-list a{display:block;text-decoration:none;padding:.95rem 0;}
+  .app-list a:hover .app-t{color:var(--soft);}
+  .app-rel{display:block;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faintest);margin-bottom:.3rem;}
+  .app-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.12rem;color:var(--ink);transition:color .2s ease;}
+  .app-g{display:block;font-size:.84rem;color:var(--faint);font-style:italic;line-height:1.4;margin-top:.22rem;}
+
+  footer{margin-top:clamp(3.5rem,8vh,6rem);padding:2.2rem 0 4rem;border-top:1px solid var(--hair);}
+  .crumbs.foot{justify-content:flex-start;margin-bottom:1.3rem;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .plate-mark{width:96px;height:96px;}
+    .pm-num{font-size:2.1rem;}
+    .essay p{font-size:1.04rem;line-height:1.74;}
+    .dropcap{font-size:3rem;}
+    .app-list{grid-template-columns:1fr;}
+    .app-list li:nth-child(2){border-top:1px solid var(--hair);}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="crumbs rise d1" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-rate.html">The Rate &middot; Vol III</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate v</span>
+    </nav>
+    <div class="plate-mark lit rise d2" aria-hidden="true">
+      <span class="pm-vol">Rt</span>
+      <span class="pm-num">v</span>
+    </div>
+    <h1 class="rise d3">The Detour</h1>
+    <div class="status rise d3">in print &middot; The Rate &middot; plate v</div>
+    <p class="standfirst rise d4">The indirect road can bring more water to the house and more fish to the shore, yet its fruit does not arrive bearing an interest rate. This plate follows Böhm-Bawerk’s productive detour through the interval that must be financed, Fisher’s criticism of a purely technical premium, and the dependence of a capital value on the rate used to calculate it. The productive instrument remains real; its valuation and the division of its yield require further reasons.</p>
+  </header>
+
+  <div class="epi rise d5"><q>The detour can enlarge the harvest; it cannot by itself price the claim upon it.</q><span class="cite">The argument of this plate</span></div>
+
+  <article class="essay">
+<p class="lede"><span class="dropcap">B</span>efore the water reaches the house, someone must make the channel. The labor spent cutting and hollowing wood produces no drink at the moment it is performed; it changes what later labor will have to do. Böhm-Bawerk begins his account of capital with such departures from the direct road to enjoyment. A bucket replaces repeated journeys to the spring, a channel replaces the bucket, and a sequence of earlier efforts makes a later abundance possible. The detour has a physical achievement which no argument about distribution can wish away. Yet the water arriving at the door does not announce the rate of interest. Between the useful work of an instrument and the percentage earned on its value stand the cost of making it, the timing and value of its services, and the price at which a claim to those services changes hands.</p>
+
+<p>The capital in this account consists of intermediate products along the road to consumption.<sup class="snref"></sup> The axe helps make the channel; the channel delivers the water. In some cases an indirect method obtains more with the same labor; in others it makes possible a result that bare hands could never achieve at all. Böhm-Bawerk treats these gains as facts of technique, established by experience rather than deduced from the definition of capital. The detour recruits powers and arrangements which a direct effort cannot command. Its value lies in what that arrangement accomplishes. Spending twice as long on a useless apparatus does not double its contribution, and a method which saves time can be an advance over one which consumes more. Length alone is no warrant of fruitfulness.</p>
+<aside class="sn">Böhm-Bawerk, <a href="https://www.econlib.org/library/BohmBawerk/bbPTC.html?chapter_num=5"><em>The Positive Theory of Capital</em></a>, William Smart translation (1891), Book I, ch. II, “The Nature of Capital.” The water examples and the distinction between direct and indirect production are his. Fisher's <a href="https://www.econlib.org/library/YPDBooks/Fisher/fshToI.html?chapter_num=24">ch. XX, § 6</a> discusses the qualification that selected longer methods, rather than every imaginable delay, are the productive ones.</aside>
+
+<p>The interval must nevertheless be provided for. Böhm-Bawerk's fisherman cannot spend a month making a boat and net if he must spend every day obtaining the food which keeps him alive.<sup class="snref"></sup> A supply of present food releases him to undertake a process whose product arrives later. In that sense, command over present consumption goods can enlarge the production methods available. A future promise which leaves the intervening hunger unanswered cannot perform the same service. This is the material strength of the argument: the time pattern of resources constrains the time pattern of production. It also shows why the advance may matter especially to someone without reserves. His exclusion from the better method can reflect the absence of a bridge across the interval, even when he knows perfectly well how to build the net.</p>
+<aside class="sn">Böhm-Bawerk, <a href="https://www.econlib.org/library/BohmBawerk/bbPTC.html?chapter_num=36"><em>Positive Theory</em>, V.IV</a>, closing discussion of present consumption goods and the fisherman, with note 26. Böhm-Bawerk distinguishes the food that supports the worker from the produced means of production; he does not call the food productive merely because the worker needs it.</aside>
+
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"></line><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"></rect><line x1="60" y1="6" x2="96" y2="6"></line></svg></div>
+
+<p>The amount ultimately produced and the rate of return are different comparisons.<sup class="snref"></sup> Consider two invented, mutually exclusive projects, each using 100 units of a consumption good now. One yields 120 units after one year; the other yields 150 after three years, with no intervening receipts, further costs or residual value. The longer project yields more in total. Its annual compound return is about 14.47 per cent, against twenty per cent for the shorter one. At a five-per-cent discount rate their present values are 114.29 and 129.58 respectively, so the longer project has the larger net present value after the common initial cost. At twenty per cent the values are 100 and 86.81, and the shorter project ranks higher. More product at a later date does not settle which undertaking is worth making on the terms available.</p>
+<aside class="sn">Original illustration: annual return for the three-year project is (150/100)<sup>1/3</sup> − 1; present values are 120/(1+r) and 150/(1+r)<sup>3</sup>. These are one-off alternatives, valued at a common present date, with the same certain consumption good as input and output. The calculation assumes neither that the short project can be repeated nor that every real project has a single meaningful internal rate of return.</aside>
+
+<p>Böhm-Bawerk himself placed the detour inside an account with three grounds for valuing the present.<sup class="snref"></sup> The first concerned differing provision for present and future wants; the second concerned the diminished force with which future wants could enter present judgment; the third concerned the productive opportunities opened by earlier command of resources. His theory therefore did not discard psychology in favor of machines. It attempted to show how technique gave present goods an advantage alongside the other grounds. He also resisted simply adding the three together: a resource consumed to meet an urgent present want cannot at the same time be employed in a distant productive process. The alternatives compete for it. Their relation has to be worked out before any premium can be assigned.</p>
+<aside class="sn">Böhm-Bawerk, <a href="https://www.econlib.org/library/BohmBawerk/bbPTC.html?chapter_num=37"><em>Positive Theory</em>, V.V</a>, “Co-operation of the Three Factors,” including notes 27–30. He makes the first two grounds cumulative and the productive ground alternative in the specified sense; the chapter also explains how market exchange affects individual valuations.</aside>
+
+<p>Fisher's objection concerned the step from productive possibility to an independently established premium.<sup class="snref"></sup> Starting a process earlier can bring its fruit earlier. How much more that earlier fruit is worth still depends on the value assigned to goods at the different dates. Fisher argued that Böhm-Bawerk's tables retained differences in future provision or valuation while claiming to establish a separate technical superiority in value. He did not conclude that production was irrelevant to interest. He recast its contribution as a choice among alternative income streams, comparing what must be given up at one date with what becomes available at another. That formulation allows technique to matter without pretending that the physical abundance of a later harvest already tells us its present worth.</p>
+<aside class="sn">Fisher, <a href="https://www.econlib.org/library/YPDBooks/Fisher/fshToI.html?chapter_num=24"><em>The Theory of Interest</em></a> (1930), ch. XX, §§ 5–6 and notes 98–112, read against Böhm-Bawerk's complete V.IV–V. Fisher's criticism of the independence of the third ground is presented as his argument; his productive-opportunity account retains a technical role.</aside>
+
+<p class="pull">A machine can produce more without telling us what the claim to its product should cost.</p>
+
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"></line><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"></rect><line x1="60" y1="6" x2="96" y2="6"></line></svg></div>
+
+<p>The valuation problem becomes plain when the productive object stays fixed and the rate changes.<sup class="snref"></sup> Imagine an asset yielding a certain net 100 units at the end of every year forever. The receipts already allow for every expense required to sustain them. At five per cent its capitalized value is 2,000; at ten per cent, 1,000. No additional machine has appeared in the first case, and no half of the machine has vanished in the second. Only the price of the stream has changed. Dividing the annual 100 by each of those values gives five or ten per cent, but it merely returns the rate used in the valuation. It cannot independently explain that rate. To call the resulting ratio the productivity of capital is to conceal the price inside what sounds like a physical measurement.</p>
+<aside class="sn">Original perpetuity illustration, V = 100/r, with positive constant rates and certain end-of-year net receipts. Fisher makes the underlying distinction between capital wealth and capital value in <a href="https://www.econlib.org/library/YPDBooks/Fisher/fshToI.html?chapter_num=8">ch. IV, § 11</a>. The perpetuity is a valuation example, not a claim about the engineering life of an unreplaced machine.</aside>
+
+<p>Adding unlike instruments by their prices carries that dependence into the total. A loom, a building and an inventory can each be described physically; their sum in money requires valuations. Changes in the rate can change those valuations while leaving the physical collection intact. A theory that takes the money total as an independently given quantity of productive stuff, then uses the return on that quantity to explain the rate, has asked its conclusion to help construct its starting point. This criticism leaves room for precise models with specified physical inputs, outputs and dates. It asks that their assumptions be stated, and that a value aggregate not silently be granted the independence of a quantity of grain.</p>
+
+<p>Replacement costs give the productive object another connection to the world.<sup class="snref"></sup> If an equivalent instrument can be made more cheaply, a buyer has an alternative to paying the capitalized price demanded by its owner. Additional production can change the supply and value of its services, while wages, materials and time enter the cost of replacing it. Fisher considers this objection directly: the discount relation and the cost relation must be reconciled. A past expense does not ensure that an obsolete machine remains valuable, but a currently available substitute can constrain what a purchaser will pay. The useful inquiry therefore includes both the feasible processes and the prices at which their inputs and outputs are available. The dependence of value on the rate is a reason for more complete determination, rather than a license to ignore technique or cost.</p>
+<aside class="sn">Fisher, <a href="https://www.econlib.org/library/YPDBooks/Fisher/fshToI.html?chapter_num=24"><em>Theory of Interest</em>, ch. XX</a>, §§ 2–3, including his response to the cheaper replacement-boat example. His account distinguishes past expenditures, prospective costs, alternatives and the equilibrium between cost and capitalization.</aside>
+
+<p>A system can determine these quantities together without explaining any one of them by its own restatement.<sup class="snref"></sup> Fisher's productive opportunities, preferences over dated consumption, initial resources and market-clearing conditions supply distinct restrictions. Their joint solution can yield a rate and asset values, even though both enter the choices people make. The defect in the perpetuity explanation was narrower: the same discount relation was used once to produce the asset price and again, in reverse, to claim that the price explained the discount. Independent technological and behavioral restrictions add information; reversing an equation adds none. The challenge to a simple capital-productivity story is to show where that independent information enters, and how the institutional terms of finance allow the opportunities to be taken.</p>
+<aside class="sn">Fisher, <a href="https://www.econlib.org/library/YPDBooks/Fisher/fshToI.html?chapter_num=10"><em>Theory of Interest</em>, ch. VI</a>, §§ 5–6 and note 57. Simultaneous determination is distinct from the circular use of a capitalized value. This observation does not certify every aggregate production model or every claim of a unique, stable market outcome.</aside>
+
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"></line><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"></rect><line x1="60" y1="6" x2="96" y2="6"></line></svg></div>
+
+<p>The productivity of the instrument leaves the division of its fruit to a further argument.<sup class="snref"></sup> The tool's maker, the worker who uses it, the person who advances provisions, and the owner of the claim may be different people. Each may contribute to the possibility of the final output; the yield does not print their shares upon itself. Böhm-Bawerk explicitly distinguishes production aided by capital goods from production conducted under the control of private capitalists. The technical detour is compatible with more than one arrangement of ownership. Recognizing that distinction preserves the real achievement of capital while refusing to let the machine itself adjudicate the rights of its holder. A useful instrument can justify efforts to provide it; the contractual reward still requires its own grounds.</p>
+<aside class="sn">Böhm-Bawerk, <a href="https://www.econlib.org/library/BohmBawerk/bbPTC.html?chapter_num=5"><em>Positive Theory</em>, I.II</a>, note 7, distinguishes the technical use of capital from private capitalist control and adopts the former meaning for his expression “Capitalist Production.” The allocation of claims among contributors here is the plate's further question.</aside>
+
+<p>The detour has therefore carried us to a distinction which the price of time needs. Production explains what an arrangement of resources can accomplish, with what costs and on what dates. Valuation explains the price of a claim upon those results under given terms of exchange. A theory of interest must connect them without treating the value it has calculated as an independent physical cause. The channel brings water; the net catches fish; the borrower may have good reason to obtain the means of making either. How much he must promise in return depends on more than their usefulness. The next plate, <a href="the-rate-hoard.html">The Hoard</a>, turns to the person who can keep command of money instead. Productive possibilities press upon the rate. The willingness to release the means of pursuing them remains part of the question.</p>
+</article>
+
+  <nav class="apparatus" aria-label="Related reading"><h2 class="app-h">Related</h2><ul class="app-list"><li><a href="the-rate-abstinence.html"><span class="app-rel">The provision for the interval</span><span class="app-t">The Abstinence</span><span class="app-g">What must be released from present uses while a productive process matures.</span></a></li><li><a href="the-rate-impatience.html"><span class="app-rel">The joint determination</span><span class="app-t">The Impatience</span><span class="app-g">The preferences, resources and opportunities that must be reconciled together.</span></a></li><li><a href="the-rate-hoard.html"><span class="app-rel">The alternative to the advance</span><span class="app-t">The Hoard</span><span class="app-g">The holder of money who can withhold the finance a productive opportunity requires.</span></a></li><li><a href="../quantities/numeraire-plate-the-roundabout.html"><span class="app-rel">The earlier Quantities treatment</span><span class="app-t">The Roundabout</span><span class="app-g">The productive detour and the question of who receives its fruit in the preceding edition.</span></a></li></ul></nav>
+
+  <footer>
+    <nav class="crumbs foot" aria-label="Return">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-rate.html">The Rate &middot; Vol III</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate v &middot; The Detour</span>
+    </nav>
+    <p class="colophon">The fifth plate of Volume III, <em>The Rate</em>, adapted for the Margin edition from <a href="../quantities/numeraire-plate-the-roundabout.html">The Roundabout in Quantities</a>, <a href="../essays/numeraire-iii-iv-the-productivity.html">The Productivity in the Utility edition</a>, and <a href="../volumes/the-rate.html#plate-iv">The Reward in the Collected Rate</a>. The original Margin question is preserved, and the earlier treatments remain available in their own editions. The epigraph states the argument of this plate. Return to <a href="the-rate.html">the volume</a>, or to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-rate-impatience.html">← The Impatience</a><a rel="next" href="the-rate-hoard.html">The Hoard →</a></nav>
+</body>
+</html>
