@@ -6,9 +6,9 @@ Canonical source repository: [karadzhyan/numeraire](https://github.com/karadzhya
 
 This repository contains the complete static website, including its distinct editions, essays, instruments, original figures, fonts, PDFs, and reading interfaces. The files in `public/` are the exact website files served in production; the initial import preserves the existing writing, design, and interactive pieces.
 
-The current edition completes Volume XXI, **The Level**, at twelve of twelve expanded essays. The expanded Utility edition contains **282 completed essays and 30 preparation slots**; its first twenty-one volumes are complete. The separate Collected edition retains all 26 volumes and 312 plates. Earlier editions remain available alongside the expanded essays.
+The current edition completes Volume XXII, **The Share**, at twelve of twelve expanded essays. The expanded Utility edition contains **288 completed essays and 24 preparation slots**; its first twenty-two volumes are complete. The separate Collected edition retains all 26 volumes and 312 plates. Earlier editions remain available alongside the expanded essays.
 
-The six completed Level leaves are The Neutral, The Erosion, The Descent, The Specie, The Transmission, and The Mandate. All six are adaptations; their colophons identify the earlier treatments, which remain available.
+The six completed Share leaves are The Residual, The Decoupling, The Superstar, The Collective, The Wealth, and The Tide. Five adapt earlier treatments; The Tide develops the original plan and related passages. Their colophons identify this lineage, and earlier writing remains available.
 
 ## Read Locally
 
@@ -18,7 +18,7 @@ No build step or package installation is required. From the repository root, run
 python3 -m http.server 8000 --bind 127.0.0.1 --directory public
 ```
 
-Open [the volume atlas](http://127.0.0.1:8000/), [all editions](http://127.0.0.1:8000/editions.html), or [The Level](http://127.0.0.1:8000/essays/numeraire-xxi-the-level.html).
+Open [the volume atlas](http://127.0.0.1:8000/), [all editions](http://127.0.0.1:8000/editions.html), or [The Share](http://127.0.0.1:8000/essays/numeraire-xxii-the-share.html).
 
 ## Check Local References
 
