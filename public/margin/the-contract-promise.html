@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Promise — Numéraire, The Contract, Plate xii</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:66rem; --measure:35rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(2.8rem,7vh,5rem) 0 clamp(1.4rem,3.5vh,2.2rem);text-align:center;}
+
+  .crumbs{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 400;
+    font-size:.8rem;letter-spacing:.04em;color:var(--faint);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:center;gap:.55rem;}
+  .crumbs a{text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .2s ease,color .2s ease;}
+  .crumbs a:hover{border-color:var(--num);color:var(--ink);}
+  .crumbs .sep{color:var(--faintest);}
+  .crumbs .here{color:var(--ink);}
+
+  .plate-mark{width:116px;height:116px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:.18rem;line-height:1;}
+  .plate-mark.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pm-vol{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.84rem;letter-spacing:.06em;color:rgba(240,235,225,.62);}
+  .pm-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;
+    font-size:2.5rem;letter-spacing:.02em;text-transform:uppercase;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.1rem,6vw,4rem);line-height:1.03;letter-spacing:-.025em;margin:1rem 0 0;text-wrap:balance;}
+  .status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:42rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .epi{max-width:38rem;margin:clamp(2.2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .epi q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.46;color:var(--ink);quotes:none;display:block;text-wrap:pretty;}
+  .epi .cite{display:block;margin-top:.95rem;font-size:.78rem;color:var(--faintest);letter-spacing:.05em;font-style:normal;}
+  .epi .cite em{font-style:italic;}
+
+  .essay{max-width:52rem;margin:clamp(3rem,7vh,5rem) auto 0;counter-reset:sn;}
+  .essay::after{content:"";display:block;clear:both;}
+  .essay > p,.essay > .pull{max-width:var(--measure);}
+  .essay p{font-size:1.075rem;line-height:1.8;color:var(--ink);margin:0 0 1.4rem;text-wrap:pretty;}
+  .essay em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.72;padding:.08em .14em 0 0;color:var(--ink);}
+
+  .divider{display:flex;justify-content:center;margin:2.4rem 0;}
+  .divider svg{width:96px;height:12px;overflow:visible;}
+  .divider line{stroke:var(--num);stroke-width:1;} .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.5vw,1.74rem);line-height:1.34;color:var(--ink);text-align:center;
+    margin:2.4rem auto;max-width:33rem;text-wrap:balance;}
+
+  .snref{font-family:"Fraunces",serif;font-size:.64em;line-height:0;vertical-align:super;
+    color:var(--soft);counter-increment:sn;margin-left:1px;font-style:normal;}
+  .snref::after{content:counter(sn);}
+  .sn{display:block;max-width:var(--measure);margin:.1rem 0 1.4rem;padding:.15rem 0 .15rem 1.05rem;
+    border-left:1px solid var(--hair);font-size:.84rem;line-height:1.52;color:var(--faint);}
+  .sn::before{content:counter(sn);font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--faintest);margin-right:.5em;font-size:.92em;}
+  .sn em{font-style:italic;}
+
+  @media (min-width:64rem){
+    .sn{float:right;clear:right;width:15rem;margin:.35rem 0 1.3rem;padding:0;border-left:none;}
+    .divider,.pull,.apparatus{clear:both;}
+  }
+
+  .apparatus{max-width:52rem;margin:clamp(3.2rem,7vh,5rem) auto 0;padding-top:2rem;border-top:1px solid var(--hair);clear:both;}
+  .app-h{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;}
+  .app-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.4rem;}
+  .app-list li{border-top:1px solid var(--hair);}
+  .app-list li:first-child,.app-list li:nth-child(2){border-top:none;}
+  .app-list a{display:block;text-decoration:none;padding:.95rem 0;}
+  .app-list a:hover .app-t{color:var(--soft);}
+  .app-rel{display:block;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faintest);margin-bottom:.3rem;}
+  .app-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.12rem;color:var(--ink);transition:color .2s ease;}
+  .app-g{display:block;font-size:.84rem;color:var(--faint);font-style:italic;line-height:1.4;margin-top:.22rem;}
+
+  footer{margin-top:clamp(3.5rem,8vh,6rem);padding:2.2rem 0 4rem;border-top:1px solid var(--hair);}
+  .crumbs.foot{justify-content:flex-start;margin-bottom:1.3rem;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .plate-mark{width:96px;height:96px;}
+    .pm-num{font-size:2.1rem;}
+    .essay p{font-size:1.04rem;line-height:1.74;}
+    .dropcap{font-size:3rem;}
+    .app-list{grid-template-columns:1fr;}
+    .app-list li:nth-child(2){border-top:1px solid var(--hair);}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="crumbs rise d1" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-contract.html">The Contract &middot; Vol XV</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate xii</span>
+    </nav>
+    <div class="plate-mark lit rise d2" aria-hidden="true">
+      <span class="pm-vol">Ct</span>
+      <span class="pm-num">xii</span>
+    </div>
+    <h1 class="rise d3">The Promise</h1>
+    <div class="status rise d3">in print &middot; The Contract &middot; plate xii</div>
+    <p class="standfirst rise d4">A promise cannot make its future performance certain, but it can change what another person is entitled to rely upon now. Hume’s account of convention and Fried’s account of voluntary obligation illuminate different parts of that achievement. Following the incentives, the legal claim and the agreement’s unfinished terms then separates the supports that make performance likely from the reasons that can make it owed, and asks how a changing world can still be met in common.</p>
+  </header>
+
+  <div class="epi rise d5"><q>The future can change while the undertaking still matters.</q><span class="cite">The argument of this plate</span></div>
+
+  <article class="essay">
+<p class="lede"><span class="dropcap">T</span>he promise concerns an act that has not happened and may never happen. The maker can change his mind, the thing can become impossible, and the circumstances can alter beyond anything either party imagined when the words were spoken. Yet the words can change the present. Someone orders materials, declines another offer, leaves a field for tomorrow or puts a machine to work today because another person has undertaken to act. This is the contract’s achievement and its danger: it lets one person build a plan upon a future act of someone else. To say that the promise binds cannot mean that it makes the future certain. It means that the future is no longer a matter for the promisor to consider as though no undertaking had been given.</p>
+<p>A promise does more than announce an intention, because it gives the other party a reason to count upon the act.<sup class="snref"></sup> Charles Fried locates its moral force in that deliberate undertaking: people can place themselves under obligations and thereby enlist one another’s cooperation. On this account, the freedom to bind oneself enlarges what one can do with others, even as it closes some later choices. The claim is stronger than a prediction that performance will probably occur. A forecast may disappoint without being a wrong; a promise can be broken even when its failure was foreseeable. The person to whom it was made can ask for an account because the undertaking was addressed to him, not merely because he guessed badly about the future.</p>
+<aside class="sn">Charles Fried, <a href="https://cpb-us-e1.wpmucdn.com/sites.suffolk.edu/dist/3/1172/files/2012/12/C-Fried_Lead_PDF.pdf">“Contract as Promise Thirty Years On”</a>, <i>Suffolk University Law Review</i> 45 (2012), pp. 961–965, develops the moral institution through autonomy, trust and respect. His later qualifications about legal enforcement are addressed below. The distinction between a forecast and an undertaking expresses the plate’s argument about what is given to the promisee.</aside>
+<p>The institution that makes such an undertaking intelligible is itself a human construction.<sup class="snref"></sup> David Hume begins with the puzzle of how a present act of will could create an obligation extending into the future. His answer turns to convention and the advantages of reciprocal service. Two people whose harvests need attention on different days can help each other, but the one who goes first must have reason to expect a return. A practice of promising gives their words a recognized use. Hume also describes moral sentiment joining interest, so that an account of the institution’s usefulness does not leave every particular promise dependent on the promisor’s latest calculation. The bond can have a social origin and still become something people regard as a duty.</p>
+<aside class="sn">David Hume, <a href="https://davidhume.org/texts/t/3/2/5"><i>A Treatise of Human Nature</i>, Book III, Part II, § V</a> (1740), especially paragraphs 8–12, SBN pp. 519–523. Hume’s account distinguishes a convention from a prior natural obligation and then describes a moral sentiment reinforcing interest; “artificial” does not mean that the resulting practice has no moral force.</aside>
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg></div>
+<p>An incentive can support the undertaking without becoming the whole of what the undertaking means. In a deliberately small example, suppose breaking a promise would add six units to a supplier’s present profit but certainly destroy future business worth ten, already expressed as a present value. Keep every other consequence fixed. The breach costs four on balance, and a supplier attending only to profit has reason to perform. If the future business is worth only two, breach instead adds four. This is a comparison of incentives under stated conditions, not a finding about how often people keep their word. Its significance is the separation it reveals. The economic support for performance can weaken without any corresponding release from the undertaking. Explaining why a promise is kept and deciding whether it ought to be kept require different work.</p>
+<p>The law can add support where the continuing relationship is too weak to carry the bargain. A person dealing once with a stranger may have little future business to lose, yet a remedy can make nonperformance costly and give the other party a claim that survives the end of the relationship. This possibility enlarges the range of people with whom cooperation is practicable. Its practical reach still depends on the institutions that enforce it. Courts must learn what was undertaken, decide what counts as failure and obtain compliance with their judgments. Each task has a cost. Legal and relational supports may reinforce one another, and either can sometimes do work the other would do poorly. Their relative importance has to be established in the arrangement at hand.</p>
+<p>The contract’s silence can be governed without first being translated into a complete list of future events.<sup class="snref"></sup> Parties can assign a decision, allocate a category of risk, specify a procedure for adjustment or authorize someone to interpret a disputed term. The preceding plates have followed these devices through the deputy, the pledge, the continuing relationship, the default and the standard form. They are ways of making an agreement serviceable with less than exhaustive foresight. Sometimes they leave a genuine uncertainty about what either party owes. Sometimes the event is unforeseen but falls within a risk already allocated in general terms. An unfamiliar event therefore does not, merely by being unfamiliar, release either party from the bargain. One must still ask what their undertaking meant for that event.</p>
+<aside class="sn">The earlier <a href="../volumes/the-contract.html#plate-xii">Collected Bond</a> and <a href="../essays/numeraire-xv-viii-the-promise.html">original Utility Promise</a> develop the contract’s dependence on institutions beyond its express words. This adaptation retains that inquiry while distinguishing missing contingent detail from the absence of any rule: risk allocations, defaults and decision procedures can govern events that were never separately enumerated.</aside>
+<p>A sensible adjustment can honor the undertaking more closely than an insistence on its first literal formulation. If a promised method becomes wasteful while another can supply what the parties sought, they may preserve their cooperation by agreeing to change it. Steven Shavell’s economic account asks what fully informed parties would have chosen beforehand for the contingency that later arose. The question is illuminating: it directs attention to the purpose of the arrangement and to avoidable loss. But the imagined agreement remains a reconstruction. The parties may have valued assurance differently, allocated risk deliberately or disagreed about the very change now said to benefit them. An analyst’s preferred completion of their contract cannot simply be substituted for evidence of the obligation they accepted.</p>
+<p>Nor does the fact that compensation is available make every unilateral adjustment faithful to the promise.<sup class="snref"></sup> The Breach showed how full compensation can preserve a buyer’s interest while allowing an object to move to a higher-valued use. It also showed how an understated loss can make a destructive diversion profitable. The same warning applies to a contract’s gaps. Someone who controls the adjustment can define the other party’s interest too narrowly, call the remainder a saving, and mistake a transfer for a gain. A process that lets the affected party state the loss, challenge the proposed change or agree to a release can therefore matter even when the final performance could have been chosen by an order. The question includes who has standing to answer.</p>
+<aside class="sn">Steven Shavell, <a href="https://laweconcenter.law.harvard.edu/wp-content/uploads/2024/11/Shavell_532.pdf">“Specific Performance versus Damages for Breach of Contract”</a>, Discussion Paper 532 (November 2005), § 4.1, pp. 28–31, argues from a notional complete agreement and expressly considers undercompensatory breach. The distinction between that hypothetical agreement and an established allocation of risk is the present plate’s analytical qualification. The related numerical comparisons are developed in <a href="the-contract-breach.html">The Breach</a>.</aside>
+<p>The power behind an agreement must itself be justified, because promising does not remove the public character of enforcement.<sup class="snref"></sup> A disappointed party who asks a court to act is asking strangers to use an institution with coercive force. They need grounds for identifying the obligation and for imposing the remedy, and they cannot protect every moral interest with unlimited resources or perfect knowledge. Fried’s later reconsideration makes this distinction explicit: the moral institution of promising and the legal institution of contract cannot correspond at every point. That qualification strengthens the inquiry. It prevents the language of a freely given word from doing all the work of justifying a particular judgment, while preserving the possibility that the undertaking supplies an important reason for the judgment.</p>
+<aside class="sn">Fried, <a href="https://cpb-us-e1.wpmucdn.com/sites.suffolk.edu/dist/3/1172/files/2012/12/C-Fried_Lead_PDF.pdf">pp. 973–978</a>, discusses objective interpretation, the public use of force, imperfect proof, judicial costs and the difference between moral and legal obligations. His retrospective expressly qualifies the earlier theory’s reach. His account preserves the moral reasons for an undertaking while examining the separate institutional reasons governing enforcement.</aside>
+<p>The freedom to make a promise also leaves a question about the conditions under which it was made. An agreement may give each party something worth having while granting one a much greater power over how the relationship develops. The earlier Discretion traced that possibility within employment. Neither a useful bargain nor an eventual profit proves that every term was fair; neither inequality nor a later regret, by itself, tells us what ought to replace the agreement. The institution has to preserve a meaningful ability to undertake obligations while also examining force, deception, prohibited demands and the claims of people who never joined the bargain. Those questions cannot all be answered by asking whether a signature appears on the page.</p>
+<p class="pull">The promise binds a person to an undertaking, not the future to a prediction.</p>
+<p>What the contract accomplishes is consequently more durable than a forecast and less absolute than a command over time. It makes an undertaking available for another person’s reliance, gives disagreements a form in which they can be answered, and places consequences around decisions that remain to be made. Its force can include conscience, reputation, reciprocal interest and law, without any one of them having to explain the whole. To understand those supports is to see how the institution works; to ask whether they are just is to decide how it should work. The promise does not stop the future from changing. It gives the parties reasons, claims and procedures with which to meet that change together. The next volume follows the measure in which so many of these obligations are reckoned: money, whose own promises must also be made credible. The argument remains open.</p>
+</article>
+
+  <nav class="apparatus" aria-label="Related reading"><h2 class="app-h">Related</h2><ul class="app-list"><li><a href="../volumes/the-contract.html#plate-xii"><span class="app-rel">Collected edition</span><span class="app-t">The Bond</span><span class="app-g">The earlier capstone follows the institutions that support an agreement beyond its express terms, providing the foundation for the present account of an undertaking through change.</span></a></li><li><a href="../essays/numeraire-xv-viii-the-promise.html"><span class="app-rel">Original Utility edition</span><span class="app-t">The Promise</span><span class="app-g">The earlier essay asks how law, trust and reciprocal interest sustain cooperation; this adaptation distinguishes their contribution from the moral claim a promise can create.</span></a></li><li><a href="the-contract-breach.html"><span class="app-rel">The promise tested by nonperformance</span><span class="app-t">The Breach</span><span class="app-g">A calculation can reveal the gain from changing an arrangement, while the measure of compensation and the promisee’s claim still require an answer.</span></a></li><li><a href="the-money.html"><span class="app-rel">The next volume</span><span class="app-t">The Money</span><span class="app-g">The next volume follows the common measure in which many obligations are reckoned, and the institutions that make its own promises credible.</span></a></li></ul></nav>
+
+  <footer>
+    <nav class="crumbs foot" aria-label="Return">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-contract.html">The Contract &middot; Vol XV</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate xii &middot; The Promise</span>
+    </nav>
+    <p class="colophon">Adapted for the original Margin Promise question from the complete <a href="../volumes/the-contract.html#plate-xii">Collected Bond</a> and <a href="../essays/numeraire-xv-viii-the-promise.html">original Utility Promise</a>, with the <a href="../volumes/the-contract.html#plate-i">Collected Word</a> supplying the earlier enforceable-promise inquiry. Their capstone argument is developed through Hume’s account of convention, Fried’s account and later qualifications, Shavell’s hypothetical-agreement reasoning and a new constructed incentive comparison. The earlier editions remain intact. The epigraph is original to this plate. Return to <a href="the-contract.html">the volume</a>, or to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-contract-discretion.html">← The Discretion</a><a rel="next" href="the-money.html">The Money →</a></nav>
+</body>
+</html>
