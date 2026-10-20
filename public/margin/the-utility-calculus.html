@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Calculus — Numéraire, The Utility, Plate iii</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:66rem; --measure:35rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(2.8rem,7vh,5rem) 0 clamp(1.4rem,3.5vh,2.2rem);text-align:center;}
+
+  .crumbs{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 400;
+    font-size:.8rem;letter-spacing:.04em;color:var(--faint);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:center;gap:.55rem;}
+  .crumbs a{text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .2s ease,color .2s ease;}
+  .crumbs a:hover{border-color:var(--num);color:var(--ink);}
+  .crumbs .sep{color:var(--faintest);}
+  .crumbs .here{color:var(--ink);}
+
+  .plate-mark{width:116px;height:116px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:.18rem;line-height:1;}
+  .plate-mark.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pm-vol{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.84rem;letter-spacing:.06em;color:rgba(240,235,225,.62);}
+  .pm-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;
+    font-size:2.5rem;letter-spacing:.02em;text-transform:uppercase;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.1rem,6vw,4rem);line-height:1.03;letter-spacing:-.025em;margin:1rem 0 0;text-wrap:balance;}
+  .status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:42rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .epi{max-width:38rem;margin:clamp(2.2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .epi q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.46;color:var(--ink);quotes:none;display:block;text-wrap:pretty;}
+  .epi .cite{display:block;margin-top:.95rem;font-size:.78rem;color:var(--faintest);letter-spacing:.05em;font-style:normal;}
+  .epi .cite em{font-style:italic;}
+
+  .essay{max-width:52rem;margin:clamp(3rem,7vh,5rem) auto 0;counter-reset:sn;}
+  .essay::after{content:"";display:block;clear:both;}
+  .essay > p,.essay > .pull{max-width:var(--measure);}
+  .essay p{font-size:1.075rem;line-height:1.8;color:var(--ink);margin:0 0 1.4rem;text-wrap:pretty;}
+  .essay em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.72;padding:.08em .14em 0 0;color:var(--ink);}
+
+  .divider{display:flex;justify-content:center;margin:2.4rem 0;}
+  .divider svg{width:96px;height:12px;overflow:visible;}
+  .divider line{stroke:var(--num);stroke-width:1;} .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.5vw,1.74rem);line-height:1.34;color:var(--ink);text-align:center;
+    margin:2.4rem auto;max-width:33rem;text-wrap:balance;}
+
+  .snref{font-family:"Fraunces",serif;font-size:.64em;line-height:0;vertical-align:super;
+    color:var(--soft);counter-increment:sn;margin-left:1px;font-style:normal;}
+  .snref::after{content:counter(sn);}
+  .sn{display:block;max-width:var(--measure);margin:.1rem 0 1.4rem;padding:.15rem 0 .15rem 1.05rem;
+    border-left:1px solid var(--hair);font-size:.84rem;line-height:1.52;color:var(--faint);}
+  .sn::before{content:counter(sn);font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--faintest);margin-right:.5em;font-size:.92em;}
+  .sn em{font-style:italic;}
+
+  @media (min-width:64rem){
+    .sn{float:right;clear:right;width:15rem;margin:.35rem 0 1.3rem;padding:0;border-left:none;}
+    .divider,.pull,.apparatus{clear:both;}
+  }
+
+  .apparatus{max-width:52rem;margin:clamp(3.2rem,7vh,5rem) auto 0;padding-top:2rem;border-top:1px solid var(--hair);clear:both;}
+  .app-h{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;}
+  .app-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.4rem;}
+  .app-list li{border-top:1px solid var(--hair);}
+  .app-list li:first-child,.app-list li:nth-child(2){border-top:none;}
+  .app-list a{display:block;text-decoration:none;padding:.95rem 0;}
+  .app-list a:hover .app-t{color:var(--soft);}
+  .app-rel{display:block;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faintest);margin-bottom:.3rem;}
+  .app-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.12rem;color:var(--ink);transition:color .2s ease;}
+  .app-g{display:block;font-size:.84rem;color:var(--faint);font-style:italic;line-height:1.4;margin-top:.22rem;}
+
+  footer{margin-top:clamp(3.5rem,8vh,6rem);padding:2.2rem 0 4rem;border-top:1px solid var(--hair);}
+  .crumbs.foot{justify-content:flex-start;margin-bottom:1.3rem;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .plate-mark{width:96px;height:96px;}
+    .pm-num{font-size:2.1rem;}
+    .essay p{font-size:1.04rem;line-height:1.74;}
+    .dropcap{font-size:3rem;}
+    .app-list{grid-template-columns:1fr;}
+    .app-list li:nth-child(2){border-top:1px solid var(--hair);}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="crumbs rise d1" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-utility.html">The Utility &middot; Vol VIII</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate iii</span>
+    </nav>
+    <div class="plate-mark lit rise d2" aria-hidden="true">
+      <span class="pm-vol">Ut</span>
+      <span class="pm-num">iii</span>
+    </div>
+    <h1 class="rise d3">The Calculus</h1>
+    <div class="status rise d3">in print &middot; The Utility &middot; plate iii</div>
+    <p class="standfirst rise d4">Bentham asked legislation to account for the pleasures and pains it produces. This plate follows the dimensions of his calculus, Jevons’s effort to give feeling a mathematical shape, and the additional evidence that an arithmetic of happiness would require. Two original examples separate the ranking of experiences from their intervals and expose what is missing when independently scaled lives are added together.</p>
+  </header>
+
+  <div class="epi rise d5"><q>The sum can be exact while its unit remains in question.</q><span class="cite">The argument of this plate</span></div>
+
+  <article class="essay">
+<p class="lede"><span class="dropcap">T</span>he legislator has a list of injuries and a table of costs. He knows how many doors a road will pass, how many fields it will cross, how much money the treasury must find. What he wants to know is whether the road is worth building. The arithmetic grows difficult at the moment it begins to matter: an hour saved by one traveller must somehow be set beside a garden lost by another. Bentham proposed that pleasure and pain should govern the account. The proposal gives the calculation an object, but it does not yet give it a unit.</p>
+<p>Bentham’s principle was a judgment about what should count before it was a method for counting it. In the opening chapter of his <em>Introduction to the Principles of Morals and Legislation</em>, actions are approved according to their tendency to increase happiness or diminish suffering. The community enters through the people who compose it: its interest is the sum of their interests. A government cannot make its conduct good merely by announcing a purpose of its own. The consequences must reach someone’s life.<sup class="snref"></sup> That demand is powerful even before any sum can be performed. It requires the author of a policy to identify its beneficiaries and its casualties, and to explain why the latter may be made to bear the cost.</p>
+<aside class="sn"><a href="https://www.koeblergerhard.de/Fontes/BenthamJeremyMoralsandLegislation1789.pdf">Bentham, <em>An Introduction to the Principles of Morals and Legislation</em></a> (1789), ch. I, §§ II–VII. The original scan uses Roman pagination for the Introduction; chapter and section references identify the passages. The opening chapter also treats the principle’s justificatory status, §§ XI–XIV.</aside>
+<p>The calculus gives that inquiry several dimensions. A pleasure can be more intense or last longer, be more certain or more remote. An act may also produce further pleasures or bring pains after it; the consequences spread across a greater or smaller number of people. Bentham separates these questions rather carefully. Fecundity and purity concern the consequences of the act or event, rather than strictly the isolated sensation; extent brings other people into the account. His procedure follows the immediate and subsequent pleasures and pains, balances them for each person, then combines the balances across those affected.<sup class="snref"></sup> The seven considerations are not seven interchangeable scores whose multiplication automatically supplies the answer.</p>
+<aside class="sn">Bentham, <a href="https://www.koeblergerhard.de/Fontes/BenthamJeremyMoralsandLegislation1789.pdf">ch. IV, §§ I–V</a>. Intensity, duration, certainty and proximity are distinguished from fecundity, purity and extent. Section V’s instruction to count later consequences matters: a sequel already included in the account must not be added again merely because it also belongs under a heading.</aside>
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" x2="36" y1="6" y2="6"></line><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"></rect><line x1="60" x2="96" y1="6" y2="6"></line></svg></div>
+<p>The circumstances do not present the same difficulties of measurement. Duration can be recorded by a clock. The number of people affected can, with enough inquiry, be counted. Neither operation measures the intensity of the experience. An hour of boredom and an hour of agony occupy the same interval, while two people enduring the same event may have very different hours. Jevons made the mathematical ambition unusually clear: if intensity remained constant, the quantity of feeling would be intensity multiplied by duration; if it varied, the quantity would be the area beneath its path through time. The construction says exactly what a measurement would require.<sup class="snref"></sup> Drawing the second axis does not graduate it.</p>
+<aside class="sn"><a href="https://competitionandappropriation.econ.ucla.edu/wp-content/uploads/sites/95/2020/12/JevonsTheoryOfPoliticalEconomy.pdf">Jevons, <em>The Theory of Political Economy</em></a>, third edition (1888), ch. II, “Pleasure and Pain as Quantities.” The linked Liberty Fund text reproduces the edition in a later electronic layout. Its intensity–duration construction is a proposed representation of feeling, not an observed calibration.</aside>
+<p>Even the word <em>more</em> does less work than the sum demands. Imagine three experiences which one person ranks from worst to best. Number them zero, one and three; number them instead zero, one and nine. Both lists preserve every comparison among the three experiences. In the first, the final improvement is twice the preceding improvement; in the second, it is eight times as large. The ranking alone cannot decide which numerical difference means anything. To add satisfactions requires evidence or assumptions about the intervals between them, beyond the fact that the chooser puts one before another. A neatly numbered order remains an order.</p>
+<p>Choice can nevertheless disclose comparisons that introspection leaves obscure. Jevons looked to the point at which an individual would just exchange an additional quantity of one thing for another, treating the balance of motives as evidence about their relative force. He was much less confident about exact multiples of pleasure, and expressly declined to compare feeling in one mind with feeling in another.<sup class="snref"></sup> The distinction keeps a useful inquiry from becoming an unwarranted one. Knowing that a person will give up a particular purchase to recover an hour helps us understand his alternatives. It does not establish how many units of happiness the hour contains, still less how its contents compare with someone else’s.</p>
+<aside class="sn">Jevons, <a href="https://competitionandappropriation.econ.ucla.edu/wp-content/uploads/sites/95/2020/12/JevonsTheoryOfPoliticalEconomy.pdf">ch. I, “Capability of Exact Measurement” and “Measurement of Feeling and Motives.”</a> Both complete sections distinguish indirect comparison from a direct unit, and the latter distinguishes one person’s balancing of motives from an interpersonal comparison. The argument here does not adopt Jevons’s further conjectures about aggregate demand.</aside>
+<p>The interpersonal difficulty survives even if every person acquires a well-disciplined scale of his own. Consider two invented policy accounts. On the first person’s scale, policy A gives five and policy B four; on the second’s, A gives one and B three. Adding the entries gives six for A and seven for B. Now measure the first person’s utility in units one-tenth as large, replacing five and four with fifty and forty. All of his preferences remain unchanged. So do all of the second person’s. The totals become fifty-one and forty-three, and A wins. The alleged social verdict has changed because one ruler was relabelled.<sup class="snref"></sup> Before the sums can decide between the policies, the two rulers must be brought into a common relation.</p>
+<aside class="sn">An original illustrative calculation, not observations of happiness. A positive rescaling of one person’s index preserves even that person’s expected-utility comparisons. The reversal shows why separately normalized individual scales cannot alone determine an interpersonal sum. It does not prove that a common calibration or an explicit social weighting is impossible.</aside>
+<p class="pull">The hardest part of adding happiness is deciding what the numbers are numbers of.</p>
+<p>A common unit, if supplied, would still leave a judgment about its use. Giving equal weight to equal measured gains is itself a rule for combining lives; it is not a discovery made by the addition sign. One might defend that rule, or defend a rule that gives particular importance to severe suffering, or refuse to let certain injuries be traded for benefits elsewhere. The numerical representation cannot settle that dispute on its own. Its proper contribution is to make the commitments visible: what is being valued, whose condition is changing, which comparisons the evidence supports, and what principle converts those comparisons into a public decision.</p>
+<p>Bentham did not require his entire procedure to be performed literally before every moral, legislative or judicial judgment. He said it should be kept in view, with actual inquiry approaching it as closely as it could.<sup class="snref"></sup> That qualification gives the calculus a practical life without pretending that a universal ledger has been completed. An uncertain estimate may expose a neglected injury. A range may show that a decision survives every plausible valuation, or that the decision turns entirely on a disputed comparison. The useful precision is then the precision of the question and of the reasons offered for answering it.</p>
+<aside class="sn">Bentham, <a href="https://www.koeblergerhard.de/Fontes/BenthamJeremyMoralsandLegislation1789.pdf">ch. IV, § VI</a>. The original distinguishes keeping the procedure in view from strictly performing it before every judgment. The discussion of ranges and robustness develops that distinction; it is not a claim that Bentham supplied a modern estimation method.</aside>
+<p>Nor does the absence of a unit in a particular theory prove that experience is forever beyond disciplined measurement. A proposed scale must be assessed by the observations and comparisons that give it meaning. It may answer a useful question without answering every question concealed inside the word happiness. The error is to let a measure of one relation travel unnoticed into another: from a person’s ordering to the distances between his experiences, or from those distances to the sum of everyone’s lives. Each passage has to earn the additional structure it uses.</p>
+<p>The wager offers one way to earn part of it. Chances can be mixed in known proportions, and a person can choose between a certain consequence and a prospect of something better or worse. Those comparisons can constrain the intervals on a numerical scale far more tightly than choices among certain consequences alone. What returns is a kind of cardinality, though its object must still be understood. The next plate follows that construction from Bernoulli’s gamble to the arithmetic of expected utility. The missing unit has not simply been found; a different operation has become possible.</p>
+</article>
+
+  <nav class="apparatus" aria-label="Related reading"><h2 class="app-h">Related</h2><ul class="app-list"><li><a href="the-ghost.html"><span class="app-rel">The preceding plate</span><span class="app-t">The Ghost</span><span class="app-g">The native thesis asks what a price can reveal about the want it is supposed to measure.</span></a></li><li><a href="the-utility-wager.html"><span class="app-rel">The next plate</span><span class="app-t">The Wager</span><span class="app-g">Choices among known chances can constrain a numerical scale without measuring the intensity of pleasure.</span></a></li><li><a href="the-utility-gulf.html"><span class="app-rel">Between persons</span><span class="app-t">The Gulf</span><span class="app-g">A disciplined scale for one person leaves the comparison with another person’s satisfaction to be justified.</span></a></li><li><a href="the-utility-axiom.html"><span class="app-rel">The conditions of the scale</span><span class="app-t">The Axiom</span><span class="app-g">The consistency that permits a representation must be distinguished from the reason to endorse it.</span></a></li></ul></nav>
+
+  <footer>
+    <nav class="crumbs foot" aria-label="Return">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-utility.html">The Utility &middot; Vol VIII</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate iii &middot; The Calculus</span>
+    </nav>
+    <p class="colophon">The third plate of the Margin edition’s <em>The Utility</em>, adapted and developed from the Collected edition’s <a href="../volumes/the-utility.html#plate-i">The Want</a> and <a href="../volumes/the-utility.html#plate-ii">The Scale</a>. Their treatment of felicific arithmetic and cardinal measurement is developed through Bentham’s original calculus and Jevons’s account of measurement, with original examples distinguishing rank, interval and interpersonal aggregation. The original Margin question and the distinct earlier editions are preserved. The epigraph is original to this plate. Return to <a href="the-utility.html">the volume</a>, or to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-ghost.html">← The Ghost</a><a rel="next" href="the-utility-wager.html">The Wager →</a></nav>
+</body>
+</html>
