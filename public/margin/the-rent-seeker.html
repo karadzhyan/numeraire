@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Seeker — Numéraire, The Rent, Plate v</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:66rem; --measure:35rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(2.8rem,7vh,5rem) 0 clamp(1.4rem,3.5vh,2.2rem);text-align:center;}
+
+  .crumbs{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 400;
+    font-size:.8rem;letter-spacing:.04em;color:var(--faint);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:center;gap:.55rem;}
+  .crumbs a{text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .2s ease,color .2s ease;}
+  .crumbs a:hover{border-color:var(--num);color:var(--ink);}
+  .crumbs .sep{color:var(--faintest);}
+  .crumbs .here{color:var(--ink);}
+
+  .plate-mark{width:116px;height:116px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:.18rem;line-height:1;}
+  .plate-mark.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pm-vol{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.84rem;letter-spacing:.06em;color:rgba(240,235,225,.62);}
+  .pm-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;
+    font-size:2.5rem;letter-spacing:.02em;text-transform:uppercase;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.1rem,6vw,4rem);line-height:1.03;letter-spacing:-.025em;margin:1rem 0 0;text-wrap:balance;}
+  .status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:42rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .epi{max-width:38rem;margin:clamp(2.2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .epi q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.46;color:var(--ink);quotes:none;display:block;text-wrap:pretty;}
+  .epi .cite{display:block;margin-top:.95rem;font-size:.78rem;color:var(--faintest);letter-spacing:.05em;font-style:normal;}
+  .epi .cite em{font-style:italic;}
+
+  .essay{max-width:52rem;margin:clamp(3rem,7vh,5rem) auto 0;counter-reset:sn;}
+  .essay::after{content:"";display:block;clear:both;}
+  .essay > p,.essay > .pull{max-width:var(--measure);}
+  .essay p{font-size:1.075rem;line-height:1.8;color:var(--ink);margin:0 0 1.4rem;text-wrap:pretty;}
+  .essay em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.72;padding:.08em .14em 0 0;color:var(--ink);}
+
+  .divider{display:flex;justify-content:center;margin:2.4rem 0;}
+  .divider svg{width:96px;height:12px;overflow:visible;}
+  .divider line{stroke:var(--num);stroke-width:1;} .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.5vw,1.74rem);line-height:1.34;color:var(--ink);text-align:center;
+    margin:2.4rem auto;max-width:33rem;text-wrap:balance;}
+
+  .snref{font-family:"Fraunces",serif;font-size:.64em;line-height:0;vertical-align:super;
+    color:var(--soft);counter-increment:sn;margin-left:1px;font-style:normal;}
+  .snref::after{content:counter(sn);}
+  .sn{display:block;max-width:var(--measure);margin:.1rem 0 1.4rem;padding:.15rem 0 .15rem 1.05rem;
+    border-left:1px solid var(--hair);font-size:.84rem;line-height:1.52;color:var(--faint);}
+  .sn::before{content:counter(sn);font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--faintest);margin-right:.5em;font-size:.92em;}
+  .sn em{font-style:italic;}
+
+  @media (min-width:64rem){
+    .sn{float:right;clear:right;width:15rem;margin:.35rem 0 1.3rem;padding:0;border-left:none;}
+    .divider,.pull,.apparatus{clear:both;}
+  }
+
+  .apparatus{max-width:52rem;margin:clamp(3.2rem,7vh,5rem) auto 0;padding-top:2rem;border-top:1px solid var(--hair);clear:both;}
+  .app-h{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;}
+  .app-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.4rem;}
+  .app-list li{border-top:1px solid var(--hair);}
+  .app-list li:first-child,.app-list li:nth-child(2){border-top:none;}
+  .app-list a{display:block;text-decoration:none;padding:.95rem 0;}
+  .app-list a:hover .app-t{color:var(--soft);}
+  .app-rel{display:block;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faintest);margin-bottom:.3rem;}
+  .app-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.12rem;color:var(--ink);transition:color .2s ease;}
+  .app-g{display:block;font-size:.84rem;color:var(--faint);font-style:italic;line-height:1.4;margin-top:.22rem;}
+
+  footer{margin-top:clamp(3.5rem,8vh,6rem);padding:2.2rem 0 4rem;border-top:1px solid var(--hair);}
+  .crumbs.foot{justify-content:flex-start;margin-bottom:1.3rem;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .plate-mark{width:96px;height:96px;}
+    .pm-num{font-size:2.1rem;}
+    .essay p{font-size:1.04rem;line-height:1.74;}
+    .dropcap{font-size:3rem;}
+    .app-list{grid-template-columns:1fr;}
+    .app-list li:nth-child(2){border-top:1px solid var(--hair);}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="crumbs rise d1" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-rent.html">The Rent &middot; Vol II</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate v</span>
+    </nav>
+    <div class="plate-mark lit rise d2" aria-hidden="true">
+      <span class="pm-vol">Rn</span>
+      <span class="pm-num">v</span>
+    </div>
+    <h1 class="rise d3">The Seeker</h1>
+    <div class="status rise d3">in print &middot; The Rent &middot; plate v</div>
+    <p class="standfirst rise d4">A rent can set resources moving before it is paid. This plate follows the contest for a privilege from the transfer that changes hands to the effort spent obtaining it, and from that effort to the careers and investments the prospect of a prize encourages. Tullock's missing cost, Krueger's competing claimants, and Baumol's allocation of enterprise lead to a question about the rules: when does the work of winning leave the world with more, and when does it merely decide who will collect?</p>
+  </header>
+
+  <div class="epi rise d5"><q>The contest may reward the skill of its winner while charging everyone for what that skill was taught to win.</q><span class="cite">The argument of this plate</span></div>
+
+  <article class="essay">
+<p class="lede"><span class="dropcap">A</span> rent looks, at first, like a payment that has already been settled: the landlord receives it, the tenant pays it, and the argument concerns whose claim is better. But before the payment there may be a contest for the place from which it can be collected. The license must be won, the tariff obtained, the exception secured, the rival kept outside the gate; and these things can absorb as much ingenuity as making something worth buying. The seeker works, sometimes very hard. His private reward may be thoroughly explained by that work. The question is what the work leaves behind for everyone else — and whether an economy can employ its most capable people at great expense, pay them handsomely, and emerge poorer from what they have done.</p>
+<p>The first distinction is between the transfer and the resources used to arrange it.<sup class="snref"></sup> If a protected seller receives an extra hundred dollars from buyers, the hundred has changed hands. That redistribution may matter intensely to the parties, and to any judgment about fairness, but it is not itself a hundred dollars of goods destroyed. If the higher price also prevents worthwhile purchases, there is a further loss: exchanges that would have benefited both sides never occur. The familiar monopoly diagram keeps these accounts separate, drawing the payment as a rectangle and the forgone trades as a triangle. Gordon Tullock's intervention in 1967 was to ask what this picture leaves outside its border. A valuable transfer can attract costly attempts to bring it about, resist it, capture it, and preserve it. The rectangle is a prize whose existence can set real resources moving long before the money passes.</p>
+<aside class="sn">Tullock, <a href="https://microf20.classes.ryansafner.com/readings/Tullock-1967.pdf">“The Welfare Costs of Tariffs, Monopolies, and Theft”</a> (1967), especially pp. 228–232, distinguishes transfers from the resources devoted to securing and resisting them. His discussion includes unsuccessful seekers and expressly acknowledges the difficulty of measuring their costs.</aside>
+<p>The cost of the seeking is the other work those resources might have done. An advocate's fee is income to the advocate; following the money until someone receives it cannot tell us whether the service added to the common stock. The relevant comparison asks what the advocate's time, the engineer's attention, the office, and the journeys would have produced in their next-best employment. If they serve only to move a fixed privilege from one claimant to another, that alternative production has been sacrificed to the contest. Yet the sacrifice must be counted once. The fee and the value of the time it purchases are two views of the same use of resources, not two losses to be added. Nor does a payment to an official become a destroyed resource merely because it is corrupt: the payment is a transfer, while the effort spent arranging, concealing, competing for, and defending the opportunity can impose additional costs. The distinction is exacting because the moral ugliness of an act does not supply its economic arithmetic.</p>
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg></div>
+<p>A rule for awarding a privilege can turn apparently productive investment into a way of pursuing it.<sup class="snref"></sup> Anne Krueger gave rent-seeking its enduring name in 1974, examining, among other arrangements, import licenses allocated in proportion to a firm's installed capacity. Suppose the total quantity permitted into the country remains fixed. A firm can nevertheless improve its share by adding a plant it has no productive use for, because the official allocation rewards capacity. Each firm has a reason to enlarge; all may enlarge; the permitted imports remain the same. What looks in the accounts like investment can therefore be an expenditure on getting ahead in the queue. Krueger's insight reaches beyond the conspicuous lobbyist. Seeking can be embedded inside production, hiring, location, and education, with no separate department to announce it and no invoice that tells the historian how much was spent upon it.</p>
+<aside class="sn">Krueger, <a href="https://cameroneconomics.com/kreuger%201974.pdf">“The Political Economy of the Rent-Seeking Society”</a> (1974), § I.A, pp. 291–293. The capacity example holds the import allocation fixed while firms compete for shares. Her account distinguishes investment that raises production from investment undertaken to improve the expected license award.</aside>
+<p>The size of the prize is an inducement to expenditure, not an automatic measure of it.<sup class="snref"></sup> Consider an invented contest for a privilege worth $100, with two equally capable, risk-neutral claimants. Each chooses an outlay; its chance of winning is its own outlay divided by the total. Both pay their costs whether they win or lose, and the outlays produce nothing beyond the chance of receiving the prize. When each spends $25, each has a half chance of the $100 and an expected net return of $25. Neither can improve that expected return by changing its expenditure alone. Together they have spent $50, half the prize. With four identical claimants under the same rules, each spends $18.75: the aggregate is $75. Additional competition drives more of the reward into the race, but the two-person contest has plainly not consumed the entire rent. The result belongs to the rules, entry conditions, and technology of the contest; those must be known before the rectangle can be turned into a bill.</p>
+<aside class="sn">The figures are an invented illustration. With prize <em>V</em>, <em>n</em> symmetric claimants, linear expenditure costs, and winning probability <em>xᵢ/Σx</em>, the positive symmetric equilibrium spends <em>V(n − 1)/n²</em> per claimant. Aggregate expenditure is <em>V(n − 1)/n</em>. The model isolates costly pursuit of a fixed prize; it supplies no estimate of actual lobbying expenditure.</aside>
+<p>Even a carefully estimated rent is only the beginning of an empirical reckoning.<sup class="snref"></sup> Krueger's historical estimates for India and Turkey showed that the prizes created by restrictions could be large. Interpreting those prizes as resources dissipated required the competitive conditions of her model. Its labor could move from productive work into seeking until returns were equalized; a person unable to secure a license still belonged in the cost of the contest. A protected incumbent who faces little rivalry can retain much more of the prize. A public auction can collect a payment for the license without burning that payment in the act of allocation, though running and entering the auction still use resources. An observer who sees a large rent and a small visible lobbying budget has found a question, not a contradiction: the rent may be securely held, the competition may occur elsewhere, or the relevant effort may be hidden inside activities that also produce something useful.</p>
+<aside class="sn"><a href="https://cameroneconomics.com/kreuger%201974.pdf">Krueger’s § II</a>, pp. 295–301, specifies the productive and seeking activities and derives the welfare comparison. At pp. 300–301 she distinguishes valuation at current factor prices from the output recoverable after resources are reallocated. The rent estimates do not independently establish the degree of dissipation.</aside>
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg></div>
+<p>The deeper question is where the prospect of such rewards sends a person's abilities.<sup class="snref"></sup> William Baumol placed that allocation at the center of his account of entrepreneurship. The enterprising person seeks a return; the surrounding rules help determine which uses of enterprise pay. A mind capable of finding a cheaper way to make something may be equally capable of discovering how to prevent a competitor from making it. The difference need not be a difference in energy, intelligence, or appetite for risk. It may lie in the relative rewards offered to the two discoveries. This is a claim about incentives and allocation, not a claim that every society possesses the same fixed stock of entrepreneurs, or that institutions explain every difference in growth. Its force is more practical: a society can change the uses to which ambition is put by changing what ambition is paid to accomplish.</p>
+<aside class="sn">Baumol, <a href="https://diomavro.wordpress.com/wp-content/uploads/2012/05/baumol_1990_2.pdf">“Entrepreneurship: Productive, Unproductive, and Destructive”</a> (1990), introduction and § I, pp. 893–896; conclusion, pp. 918–919. He expressly allows entrepreneurial supply and composition to change, and presents the historical illustrations as suggestive rather than a rigorous test of a single explanation of growth.</aside>
+<p>This diversion can shape a career before it appears in any annual account. The young person chooses training, acquaintances, and a field in which to become expert; the firm chooses whether to improve its product or its access to a decision-maker. A reliable reward for obtaining exclusion can make the second course privately prudent. Once specialized in that work, people acquire reasons to keep the arrangements that make their expertise valuable. The resulting loss reaches beyond this year's paperwork to the abilities developed and the alternatives left unexplored. It must still be understood as a counterfactual. The engineer who became a lobbyist cannot simply be credited with an invention he would certainly have made, and his forgone contribution cannot be added again to an estimate that already values the opportunity cost of his time. The argument concerns the direction of effort and the future it makes possible; its seriousness does not require an imaginary ledger of guaranteed discoveries.</p>
+<p>The boundary runs through activities rather than cleanly between occupations.<sup class="snref"></sup> A lawsuit can enforce a promise that makes exchange possible, or use the cost of defense to deter a rival. An explanation to a regulator can reveal a danger that deserves attention, or persuade the regulator to preserve an advantage whose costs others bear. A patent race can consume duplicative effort and also produce knowledge that would otherwise have arrived later. In each case the question is what the expenditure changes, including the information, protection, and invention it supplies. Calling the entire occupation unproductive would erase the service along with the seeking. Calling every paid service productive would erase the distinction the plate has worked to establish. The difficult work is to identify the additional benefit and compare it with the resources consumed, against a credible alternative arrangement.</p>
+<aside class="sn">The <a href="../founding/the-rent-seekers.html">Founding edition's The Seekers</a>, § VI, and the <a href="../quantities/numeraire-plate-the-rent-seeking.html">Quantities treatment</a> already press this boundary: information, enforcement, and innovation can accompany the pursuit of advantage. The distinction here is between the consequences of particular expenditures, not a ranking of professions by their names.</aside>
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg></div>
+<p>A society also needs a way to award scarce opportunities, and choosing it can reduce one cost while leaving another intact. An auction for a genuinely scarce site may replace an expensive contest of influence with an explicit price; the payment changes hands, and the site can pass to someone with a valuable use for it. An auction for a monopoly manufactured by exclusion may likewise economize on the award while leaving customers exposed to the restriction. A lottery can cheapen the application process without ensuring that the winner makes the best use of the resource. A rule that grants the privilege permanently to its present holder may suppress the scramble and entrench the unequal distribution. Economizing on the contest, removing an unnecessary barrier, and deciding who should receive a surplus are related tasks, but success at one does not complete the other two.</p>
+<p>The existence of effort therefore cannot settle whether the return was earned in the sense this volume is pursuing.<sup class="snref"></sup> The seeker may have sacrificed leisure, borne uncertainty, mastered a demanding craft, and beaten accomplished rivals. Those facts explain why receiving the prize can feel deserved. They also show why private cost is an incomplete defense of the institution that offered it. A race can be fair among its entrants and wasteful for the people whose resources support it; it can reward genuine skill at winning without rewarding a contribution to what is available. The relevant appeal is addressed to the design of the race. Was the privilege necessary? Did the contest select a better provider, discover useful information, or merely decide who would collect? And what activities would have attracted the same ability had the reward been attached to a different achievement?</p>
+<aside class="sn"><a href="https://cameroneconomics.com/kreuger%201974.pdf">Krueger’s conclusion</a>, pp. 301–303, recognizes the political dilemma between competition for a rent and favoritism in its allocation. A low-cost award can leave a distributional objection untouched. Tullock's transfer accounting likewise does not pronounce a transfer just.</aside>
+<p class="pull">The contest may reward the skill of its winner while charging everyone for what that skill was taught to win.</p>
+<p>The question with which the plate began has no universal fraction for an answer. How much talent goes into winning rather than making depends on which prizes can be captured, how the contests work, and what useful work accompanies the chase. But it has a definite object of inquiry. The economy's rewards train attention: they tell a person what is worth learning, a firm what is worth attempting, and a generation where to seek its fortunes. Every costly privilege offers employment in the business of obtaining it. A society that would keep the fruits of its ingenuity must attend to that offer as carefully as to the payment eventually received — for the rent begins doing its distributive work while it is still a prospect, before anyone has won it, in the lives already being organized around the gate. The argument remains open.</p>
+</article>
+
+  <nav class="apparatus" aria-label="Related reading"><h2 class="app-h">Related</h2><ul class="app-list"><li><a href="the-rent-monopoly.html"><span class="app-rel">The prize of exclusion</span><span class="app-t">The Monopoly</span><span class="app-g">The protected margin that makes obtaining and defending a barrier worthwhile.</span></a></li><li><a href="the-rent-transfer.html"><span class="app-rel">The relevant alternative</span><span class="app-t">The Transfer</span><span class="app-g">The opportunity cost against which a surplus, and its pursuit, must be measured.</span></a></li><li><a href="the-rent-talent.html"><span class="app-rel">The direction of ability</span><span class="app-t">The Talent</span><span class="app-g">The scarce gift whose reward can draw effort into creation or into a contest for position.</span></a></li><li><a href="the-rent-tax.html"><span class="app-rel">The treatment of the surplus</span><span class="app-t">The Tax</span><span class="app-g">What reclaiming a rent changes about the incentive to make, hold, and seek it.</span></a></li></ul></nav>
+
+  <footer>
+    <nav class="crumbs foot" aria-label="Return">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-rent.html">The Rent &middot; Vol II</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate v</span>
+    </nav>
+    <p class="colophon">The fifth plate of Volume II, <em>The Rent</em>, adapted for the Margin edition from <a href="../founding/the-rent-seekers.html">The Seekers in the Founding edition</a>, <a href="../quantities/numeraire-plate-the-rent-seeking.html">The Rent-Seeking in Quantities</a>, and <a href="../volumes/the-rent.html#plate-vi">The Seeking in the Collected Rent</a>. The original Margin question is preserved, and the earlier treatments remain available in their own editions. The epigraph states the argument of this plate. Return to <a href="the-rent.html">the volume</a>, or to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-rent-transfer.html">← The Transfer</a><a rel="next" href="the-rent-monopoly.html">The Monopoly →</a></nav>
+</body>
+</html>

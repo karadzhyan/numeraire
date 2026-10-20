@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Monopoly — Numéraire, The Rent, Plate vi</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:66rem; --measure:35rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(2.8rem,7vh,5rem) 0 clamp(1.4rem,3.5vh,2.2rem);text-align:center;}
+
+  .crumbs{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 400;
+    font-size:.8rem;letter-spacing:.04em;color:var(--faint);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:center;gap:.55rem;}
+  .crumbs a{text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .2s ease,color .2s ease;}
+  .crumbs a:hover{border-color:var(--num);color:var(--ink);}
+  .crumbs .sep{color:var(--faintest);}
+  .crumbs .here{color:var(--ink);}
+
+  .plate-mark{width:116px;height:116px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:.18rem;line-height:1;}
+  .plate-mark.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pm-vol{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.84rem;letter-spacing:.06em;color:rgba(240,235,225,.62);}
+  .pm-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;
+    font-size:2.5rem;letter-spacing:.02em;text-transform:uppercase;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.1rem,6vw,4rem);line-height:1.03;letter-spacing:-.025em;margin:1rem 0 0;text-wrap:balance;}
+  .status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:42rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .epi{max-width:38rem;margin:clamp(2.2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .epi q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.46;color:var(--ink);quotes:none;display:block;text-wrap:pretty;}
+  .epi .cite{display:block;margin-top:.95rem;font-size:.78rem;color:var(--faintest);letter-spacing:.05em;font-style:normal;}
+  .epi .cite em{font-style:italic;}
+
+  .essay{max-width:52rem;margin:clamp(3rem,7vh,5rem) auto 0;counter-reset:sn;}
+  .essay::after{content:"";display:block;clear:both;}
+  .essay > p,.essay > .pull{max-width:var(--measure);}
+  .essay p{font-size:1.075rem;line-height:1.8;color:var(--ink);margin:0 0 1.4rem;text-wrap:pretty;}
+  .essay em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.72;padding:.08em .14em 0 0;color:var(--ink);}
+
+  .divider{display:flex;justify-content:center;margin:2.4rem 0;}
+  .divider svg{width:96px;height:12px;overflow:visible;}
+  .divider line{stroke:var(--num);stroke-width:1;} .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.5vw,1.74rem);line-height:1.34;color:var(--ink);text-align:center;
+    margin:2.4rem auto;max-width:33rem;text-wrap:balance;}
+
+  .snref{font-family:"Fraunces",serif;font-size:.64em;line-height:0;vertical-align:super;
+    color:var(--soft);counter-increment:sn;margin-left:1px;font-style:normal;}
+  .snref::after{content:counter(sn);}
+  .sn{display:block;max-width:var(--measure);margin:.1rem 0 1.4rem;padding:.15rem 0 .15rem 1.05rem;
+    border-left:1px solid var(--hair);font-size:.84rem;line-height:1.52;color:var(--faint);}
+  .sn::before{content:counter(sn);font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--faintest);margin-right:.5em;font-size:.92em;}
+  .sn em{font-style:italic;}
+
+  @media (min-width:64rem){
+    .sn{float:right;clear:right;width:15rem;margin:.35rem 0 1.3rem;padding:0;border-left:none;}
+    .divider,.pull,.apparatus{clear:both;}
+  }
+
+  .apparatus{max-width:52rem;margin:clamp(3.2rem,7vh,5rem) auto 0;padding-top:2rem;border-top:1px solid var(--hair);clear:both;}
+  .app-h{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;}
+  .app-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.4rem;}
+  .app-list li{border-top:1px solid var(--hair);}
+  .app-list li:first-child,.app-list li:nth-child(2){border-top:none;}
+  .app-list a{display:block;text-decoration:none;padding:.95rem 0;}
+  .app-list a:hover .app-t{color:var(--soft);}
+  .app-rel{display:block;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faintest);margin-bottom:.3rem;}
+  .app-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.12rem;color:var(--ink);transition:color .2s ease;}
+  .app-g{display:block;font-size:.84rem;color:var(--faint);font-style:italic;line-height:1.4;margin-top:.22rem;}
+
+  footer{margin-top:clamp(3.5rem,8vh,6rem);padding:2.2rem 0 4rem;border-top:1px solid var(--hair);}
+  .crumbs.foot{justify-content:flex-start;margin-bottom:1.3rem;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .plate-mark{width:96px;height:96px;}
+    .pm-num{font-size:2.1rem;}
+    .essay p{font-size:1.04rem;line-height:1.74;}
+    .dropcap{font-size:3rem;}
+    .app-list{grid-template-columns:1fr;}
+    .app-list li:nth-child(2){border-top:1px solid var(--hair);}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="crumbs rise d1" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-rent.html">The Rent &middot; Vol II</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate vi</span>
+    </nav>
+    <div class="plate-mark lit rise d2" aria-hidden="true">
+      <span class="pm-vol">Rn</span>
+      <span class="pm-num">vi</span>
+    </div>
+    <h1 class="rise d3">The Monopoly</h1>
+    <div class="status rise d3">in print &middot; The Rent &middot; plate vi</div>
+    <p class="standfirst rise d4">A scarce position can be made by keeping an alternative out, and the income it yields joins the theory of rent to the theory of power. This plate follows a simple monopoly’s receipts into the part transferred from buyers and the gains lost through restricted output, then restores the costs that the simple example leaves aside. A network must be paid for; an invention may need an inducement; a purchased privilege may yield an ordinary return on its price. Each complicates the account without answering the central question: what service does the protected payment call forth, and what use does the restriction prevent?</p>
+  </header>
+
+  <div class="epi rise d5"><q>The service can be useful, the investment real, and the power to withhold still worth a fortune.</q><span class="cite">The argument of this plate, after Marshall and Arrow</span></div>
+
+  <article class="essay">
+<p class="lede"><span class="dropcap">A</span> scarce position can be made. A seller who controls an essential passage may restrict what reaches the other side and collect a payment from those still admitted. Here the inquiry into rent meets the inquiry into power: the surplus belongs to whoever can keep an alternative from appearing. The earlier plates asked how the owner of a scarce thing receives more than is needed to keep it in use. This plate asks how an owner can help produce the scarcity itself. The distinction matters because restricting a service can destroy gains that its provision would have created. Yet a protected position can also accompany an invention, or a costly network that is economical to build only once. To decide whether the excess is reward or toll, one must open the accounts of the position, the service, and the barrier that connects them.</p>
+
+<p>A monopoly’s rent begins after the costs of supplying its service have been counted.<sup class="snref"></sup> Marshall insisted on this before drawing his monopoly revenue curve. Management must be paid for, capital must receive the ordinary return required to commit it, and the calculation must allow for the risk of loss. What remains above those allowances is the monopoly revenue his analysis seeks. A price above the cost of producing one more unit therefore does not by itself measure rent. That margin may also pay for the plant, the organization, or an earlier investment needed to provide any units at all. The question in this volume is the surplus beyond the relevant costs, not simply the difference between the selling price and the next invoice for materials.</p>
+<aside class="sn">Marshall, <a href="https://www.econlib.org/library/Marshall/marP.html?chapter_num=42"><em>Principles of Economics</em>, eighth edition (1920), V.XIV, §§2–3</a>, includes normal interest, risk allowances and management in the costs deducted before identifying monopoly revenue. His accounting distinguishes the exceptional gain from ordinary remuneration for supplying the service.</aside>
+
+<p>An invented market shows what the surplus looks like when those complications are deliberately removed.<sup class="snref"></sup> Suppose the price at which <em>q</em> units can be sold is £100 minus <em>q</em>, each unit costs £20 to produce, and there are no fixed costs, capacity limits, external effects, or further costs of capital and organization. A seller charging one price to all buyers maximizes its profit by selling 40 units at £60. Its receipts are £2,400, its production cost £800, and its profit £1,600. With the same demand and costs under competition, price would be £20 and 80 units would be sold. The monopoly’s £1,600 is the additional payment collected on the units it still sells. There is a further £800 of lost surplus from the units it leaves unmade: gains to buyers and sellers together that disappear when output falls from 80 to 40.</p>
+<aside class="sn">Invented linear example, holding technology and demand identical across the comparison. Profit is (100 − <em>q</em> − 20)<em>q</em>, maximized at <em>q</em> = 40. The lost surplus is ½ × (80 − 40) × (£60 − £20) = £800. Marshall’s <a href="https://www.econlib.org/library/Marshall/marP.html?chapter_num=42">V.XIV, §§2–3 and 7</a> distinguishes private monopoly revenue from the combined benefits to producer and consumers.</aside>
+
+<p>The missing forty-first unit reveals why the seller can gain by leaving an opportunity unused. At 41 units the one-price seller must reduce the price on every unit to £59. Profit becomes 41 × (£59 − £20), or £1,599: one pound less than at 40 units. Society would gain from the additional output, because the next unit is valued above the £20 required to make it; the seller nevertheless loses when the lower price reaches all its existing sales. The restriction follows from that divergence. Its return is earned through the control of terms under which a useful exchange can occur. The model says exactly why the private decision leaves a surplus unrealized. It does not require the seller to dislike its customers, neglect its plant, or cease doing useful work.</p>
+
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg></div>
+
+<p>The barrier explains why somebody else cannot collect a gain by supplying what the monopolist withholds. In the invented market, another seller able to produce the identical good at £20 could attract customers by charging less than £60. A lasting margin therefore requires some obstacle to that response. The obstacle may be control of a necessary input, a prohibition on entry, or the expense of reproducing an organization whose advantages are already established. Its identity matters. A grant that merely forbids an otherwise feasible competitor raises a different question from a production process that becomes much more expensive when divided between suppliers. To find a monopoly rent is to look for the absent alternative and then ask what prevents its arrival.</p>
+
+<p>A legal right or a large firm is a clue to that inquiry, not its answer.<sup class="snref"></sup> A right to exclude the use of one invention may leave buyers with other ways of accomplishing the same task. A single provider may confront substitutes whose makers stand ready to take its customers. Conversely, several firms can all be constrained by the same indispensable passage, so that counting their names understates the control exercised at the passage. What matters is the choice actually available to the buyer and the cost of making another choice available. The return to the protected position must be traced through those relations. A label on the firm cannot tell us how much freedom its customers have, or how much of its income comes from narrowing that freedom.</p>
+<aside class="sn">Marshall, <a href="https://www.econlib.org/library/Marshall/marP.html?chapter_num=42">V.XIV, §§6 and 9</a>, considers rivalry from alternative technologies and competition capable of weakening complementary monopolies. The examples here are analytical possibilities, not conclusions about the legal status or market power of a particular firm or patent.</aside>
+
+<p>Economies in providing a service can make one organization cheaper while leaving its pricing power costly.<sup class="snref"></sup> Add an annual fixed cost of £1,000 to the invented market, with that sum covering the necessary fixed resources and their ordinary return. The margin of £1,600 above variable cost now leaves £600 of economic profit. Calling the whole £1,600 rent would count the necessary fixed expenditure as surplus. And if dividing production required building the same facility twice, two providers would incur £2,000 of fixed costs where one incurs £1,000. These savings give a reason to consider a single facility; they do not establish that its profit-maximizing price is the best way to let people use it. A price equal to the £20 marginal cost would fail to recover the fixed bill. Provision and access must be considered together, including how the bill is paid.</p>
+<aside class="sn">Marshall, <a href="https://www.econlib.org/library/Marshall/marP.html?chapter_num=42">V.XIV, §5</a>, expressly qualifies comparisons that hold a monopoly’s costs equal to those of many smaller producers. The £1,000 fixed-cost variation is invented. It leaves the operating profit maximum at 40 units but reduces net economic profit to £600; it assumes identical duplication of the fixed facility in the two-provider case.</aside>
+
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg></div>
+
+<p>Collecting the rent and removing the restriction solve different parts of the problem.<sup class="snref"></sup> Return to the original example with no fixed costs. A tax taking half of the seller’s profit leaves 40 units as its preferred output: half of £1,600 still exceeds half of the profit from any other quantity. The owner keeps less and the public receives more, while the forty forgone units remain forgone. A policy that changes access or the terms of sale can instead alter the output decision. That distinction separates the fiscal appeal of a surplus from the competition question posed by its creation. Even a perfectly identified tax on monopoly profit need not make the market supply the exchanges its existing price suppresses.</p>
+<aside class="sn">Marshall, <a href="https://www.econlib.org/library/Marshall/marP.html?chapter_num=42">V.XIV, §4 and note 131</a>, distinguishes a fixed levy or a proportional tax on monopoly revenue from a tax varying with output. His note also warns that a sufficiently large fixed burden can stop operation. The example here applies a 50% proportional profit tax, with entry, investment and all other conditions held fixed.</aside>
+
+<p>Invention creates a harder connection between the reward and the restriction.<sup class="snref"></sup> An idea may be expensive to discover and cheap to transmit. Arrow shows how charging for knowledge can encourage its production while curtailing its use, including further research. The argument calls attention to both decisions. It supplies no automatic measure of the protection required to obtain the discovery.</p>
+<aside class="sn">Arrow, <a href="https://www.nber.org/system/files/chapters/c2144/c2144.pdf">“Economic Welfare and the Allocation of Resources for Invention” (1962), pp. 614–619</a>: information as an output and an input.</aside>
+
+<p>A reward for a successful improvement can coexist with the cost of excluding its users. Suppose an entrepreneur must commit resources before knowing whether a project will work. The prospect of a large receipt in the successful case may help induce that commitment; the successful receipt alone does not disclose how much expected return was necessary at the outset. Once the improvement exists, restricting access to it can still leave beneficial uses unrealized. The two statements concern different decisions. One asks what makes undertaking the project worthwhile; the other asks what use should be made of its result. A payment can bear on both without every pound of the resulting fortune being required for either.</p>
+
+<p>The incumbent’s existing rent can itself change the inducement to improve.<sup class="snref"></sup> In Arrow’s cost-reduction model, the protected incumbent gains the increase over its existing profit, while an independent inventor can collect royalties in a competitive product market. The latter incentive is larger under his assumptions. A return on invention and an established monopoly thus raise different questions about the provision of an improvement.</p>
+<aside class="sn">Arrow, <a href="https://www.nber.org/system/files/chapters/c2144/c2144.pdf">pp. 619–622</a>: constant unit costs, decreasing demand and marginal revenue, appropriable royalties, and protected incumbency.</aside>
+
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg></div>
+
+<p>A purchased monopoly can disguise the surplus by folding it into the price paid for ownership.<sup class="snref"></sup> Whoever buys the position may then report an ordinary return on a large investment. The observation is relevant to the buyer’s finances, but it leaves the source of the earnings unsettled. The claim was valuable because its future receipts were expected; paying for the claim does not show that those receipts correspond to a social cost of providing the service. Marshall warned about this circular defense of a protected return. The question is what resources the service requires and what alternatives the restriction prevents, as well as what the present owner paid the previous one. A change of title can distribute the value of a toll without changing the passage across which it is charged.</p>
+<aside class="sn">Marshall, <a href="https://www.econlib.org/library/Marshall/marP.html?chapter_num=37">V.IX, §2 and note 84</a>, examines capitalized earnings and the use of an ordinary return on an inflated purchase value to defend monopoly privileges. Purchase price, reproducible cost and economic rent are different quantities.</aside>
+
+<p class="pull">The service can be useful, the investment real, and the power to withhold still worth a fortune.</p>
+
+<p>The choice between reward and toll is therefore a question to put to the components of an income, over the decisions and periods that gave rise to it. Pay for a facility that must be built, for work that must be done, and for a commitment whose expected return must justify its risk: these are costs to identify and examine. Then ask what further payment is sustained by preventing an alternative from serving the same need. That excess is the concern of this plate. Its existence does not erase the service, and the service’s existence does not justify every restriction imposed around it. The rent of monopoly is most clearly seen at the place where a useful provision and a profitable refusal part company. What keeps that refusal in force, and what the public receives in exchange for tolerating it, remain questions that the size of the profit cannot answer alone. The argument remains open.</p>
+</article>
+
+  <nav class="apparatus" aria-label="Related reading"><h2 class="app-h">Related</h2><ul class="app-list"><li><a href="the-rent-seeker.html"><span class="app-rel">In this volume</span><span class="app-t">The Seeker</span><span class="app-g">plate v — what is spent competing to acquire the protected return</span></a></li><li><a href="the-power.html"><span class="app-rel">A neighboring volume</span><span class="app-t">The Power</span><span class="app-g">the seller’s control of alternatives and the price it can sustain</span></a></li><li><a href="the-rent-tax.html"><span class="app-rel">Later in this volume</span><span class="app-t">The Tax</span><span class="app-g">plate xi — why collecting a surplus and removing a restriction are different tasks</span></a></li><li><a href="../quantities/numeraire-plate-the-monopoly-rent.html"><span class="app-rel">An earlier treatment</span><span class="app-t">The Monopoly Rent</span><span class="app-g">the Quantities essay on manufactured scarcity and the purpose of the barrier</span></a></li></ul></nav>
+
+  <footer>
+    <nav class="crumbs foot" aria-label="Return">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-rent.html">The Rent &middot; Vol II</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate vi</span>
+    </nav>
+    <p class="colophon">This Margin plate develops its surviving plan through the earlier <a href="../quantities/numeraire-plate-the-monopoly-rent.html">Quantities Monopoly Rent</a> and <a href="../volumes/the-rent.html#plate-v">Collected Privilege</a>, with the <a href="../founding/the-rent-bottleneck.html">Founding Bottleneck</a> informing the distinction between current surplus and the cost of investment. It is a new adaptation with a new numerical illustration; the earlier editions remain intact. Return to <a href="the-rent.html">the volume</a>, or to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-rent-seeker.html">← The Seeker</a><a rel="next" href="the-rent-land.html">The Land →</a></nav>
+</body>
+</html>
