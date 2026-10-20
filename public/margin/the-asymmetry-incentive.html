@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Incentive — Numéraire, The Asymmetry, Plate v</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:66rem; --measure:35rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(2.8rem,7vh,5rem) 0 clamp(1.4rem,3.5vh,2.2rem);text-align:center;}
+
+  .crumbs{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 400;
+    font-size:.8rem;letter-spacing:.04em;color:var(--faint);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:center;gap:.55rem;}
+  .crumbs a{text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .2s ease,color .2s ease;}
+  .crumbs a:hover{border-color:var(--num);color:var(--ink);}
+  .crumbs .sep{color:var(--faintest);}
+  .crumbs .here{color:var(--ink);}
+
+  .plate-mark{width:116px;height:116px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:.18rem;line-height:1;}
+  .plate-mark.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pm-vol{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.84rem;letter-spacing:.06em;color:rgba(240,235,225,.62);}
+  .pm-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;
+    font-size:2.5rem;letter-spacing:.02em;text-transform:uppercase;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.1rem,6vw,4rem);line-height:1.03;letter-spacing:-.025em;margin:1rem 0 0;text-wrap:balance;}
+  .status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:42rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .epi{max-width:38rem;margin:clamp(2.2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .epi q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.46;color:var(--ink);quotes:none;display:block;text-wrap:pretty;}
+  .epi .cite{display:block;margin-top:.95rem;font-size:.78rem;color:var(--faintest);letter-spacing:.05em;font-style:normal;}
+  .epi .cite em{font-style:italic;}
+
+  .essay{max-width:52rem;margin:clamp(3rem,7vh,5rem) auto 0;counter-reset:sn;}
+  .essay::after{content:"";display:block;clear:both;}
+  .essay > p,.essay > .pull{max-width:var(--measure);}
+  .essay p{font-size:1.075rem;line-height:1.8;color:var(--ink);margin:0 0 1.4rem;text-wrap:pretty;}
+  .essay em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.72;padding:.08em .14em 0 0;color:var(--ink);}
+
+  .divider{display:flex;justify-content:center;margin:2.4rem 0;}
+  .divider svg{width:96px;height:12px;overflow:visible;}
+  .divider line{stroke:var(--num);stroke-width:1;} .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.5vw,1.74rem);line-height:1.34;color:var(--ink);text-align:center;
+    margin:2.4rem auto;max-width:33rem;text-wrap:balance;}
+
+  .snref{font-family:"Fraunces",serif;font-size:.64em;line-height:0;vertical-align:super;
+    color:var(--soft);counter-increment:sn;margin-left:1px;font-style:normal;}
+  .snref::after{content:counter(sn);}
+  .sn{display:block;max-width:var(--measure);margin:.1rem 0 1.4rem;padding:.15rem 0 .15rem 1.05rem;
+    border-left:1px solid var(--hair);font-size:.84rem;line-height:1.52;color:var(--faint);}
+  .sn::before{content:counter(sn);font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--faintest);margin-right:.5em;font-size:.92em;}
+  .sn em{font-style:italic;}
+
+  @media (min-width:64rem){
+    .sn{float:right;clear:right;width:15rem;margin:.35rem 0 1.3rem;padding:0;border-left:none;}
+    .divider,.pull,.apparatus{clear:both;}
+  }
+
+  .apparatus{max-width:52rem;margin:clamp(3.2rem,7vh,5rem) auto 0;padding-top:2rem;border-top:1px solid var(--hair);clear:both;}
+  .app-h{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;}
+  .app-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.4rem;}
+  .app-list li{border-top:1px solid var(--hair);}
+  .app-list li:first-child,.app-list li:nth-child(2){border-top:none;}
+  .app-list a{display:block;text-decoration:none;padding:.95rem 0;}
+  .app-list a:hover .app-t{color:var(--soft);}
+  .app-rel{display:block;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faintest);margin-bottom:.3rem;}
+  .app-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.12rem;color:var(--ink);transition:color .2s ease;}
+  .app-g{display:block;font-size:.84rem;color:var(--faint);font-style:italic;line-height:1.4;margin-top:.22rem;}
+
+  footer{margin-top:clamp(3.5rem,8vh,6rem);padding:2.2rem 0 4rem;border-top:1px solid var(--hair);}
+  .crumbs.foot{justify-content:flex-start;margin-bottom:1.3rem;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .plate-mark{width:96px;height:96px;}
+    .pm-num{font-size:2.1rem;}
+    .essay p{font-size:1.04rem;line-height:1.74;}
+    .dropcap{font-size:3rem;}
+    .app-list{grid-template-columns:1fr;}
+    .app-list li:nth-child(2){border-top:1px solid var(--hair);}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="crumbs rise d1" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-asymmetry.html">The Asymmetry &middot; Vol XII</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate v</span>
+    </nav>
+    <div class="plate-mark lit rise d2" aria-hidden="true">
+      <span class="pm-vol">As</span>
+      <span class="pm-num">v</span>
+    </div>
+    <h1 class="rise d3">The Incentive</h1>
+    <div class="status rise d3">in print &middot; The Asymmetry &middot; plate v</div>
+    <p class="standfirst rise d4">The result carries evidence of the agent’s work and the luck that accompanied it. The incentive contract must make effort worthwhile without paying too dearly for the risk it places on the worker. A worked commission, a better measure and a job with competing tasks show why the strongest reward need not purchase the best performance.</p>
+  </header>
+
+  <div class="epi rise d5"><q>The reward must distinguish the work from the weather.</q><span class="cite">The argument of this plate</span></div>
+
+  <article class="essay">
+<p class="lede"><span class="dropcap">T</span>he harvest arrives with no label saying how much belongs to the tenant’s labor and how much to the rain. The owner can count the grain. He cannot reconstruct every hour of work from its weight. To pay only for a good harvest gives the tenant a reason to work, but it also makes his income depend on weather he did not choose. To pay the same wage through every season insures him against that weather, but leaves the wage unchanged by an extra hour in the field. The difficulty is not simply to make the agent want what the principal wants. It is to give effect to that purpose through evidence in which effort and circumstance arrive together.</p>
+<p><em>A contract must win two decisions.</em> The agent must prefer the intended action to the alternatives available once he has accepted the job; he must also prefer the job to what he could do elsewhere. A large expected payment can satisfy the second requirement while failing the first. If it is paid regardless of action, extra effort brings only its cost. Conversely, a steep reward for success may make effort preferable within an engagement that still offers too little to be accepted. Holmström’s formulation keeps the two comparisons separate. The principal does not choose the agent’s conduct by writing it beside a payment schedule. He must offer a schedule under which that conduct is worth choosing.<sup class="snref"></sup></p>
+<aside class="sn">Bengt Holmström, <a href="https://gwern.net/doc/economics/1979-holmstrom.pdf">“Moral Hazard and Observability”</a> (1979), §2, pp. 75–79. Equations (2) and (3) distinguish participation from the agent’s choice of action. The full maximization requirement matters; a local first-order condition alone need not establish that the intended action is optimal.</aside>
+<p>The inherited argument called the outcome a treacherous proxy, because it contains both what the contract wants to reward and what it would prefer to insure. Giving the worker a larger share of the result strengthens his financial return to an action that improves that result. If he dislikes risk, it also increases the compensation needed to make an uncertain income acceptable. The employer can shift the uncertainty onto him, but cannot make its cost vanish simply by choosing a lower fixed wage. His willingness to take the job carries that cost back into the bargain. The familiar share of the harvest is one possible settlement, dividing both the incremental return and the variation in income. Its attraction depends on the technology, the parties’ preferences, and the terms they can enforce; no timeless fraction follows from the story of the field.<sup class="snref"></sup></p>
+<aside class="sn">Holmström, §§1–2, pp. 74–79. Risk aversion and an action costly to the agent drive the insurance–incentive tension in the model. The sharecropping comparison is an interpretation of a possible contractual arrangement, not a claim that this mechanism alone explains actual tenancies or determines a universal share.</aside>
+<p>A small model shows the price of sharpening the reward. Let output equal effort plus mean-zero noise, and pay consist of a fixed sum plus a fraction of output. Effort costs half its square in money-equivalent terms. Suppose noise has variance three, the agent’s risk charge is one-half of the variance of his pay, and the principal is risk-neutral. The agent then chooses effort equal to his output share. Among these linear contracts, a share of one-quarter gives the greatest combined certainty-equivalent return: effort of one-quarter, less its cost of one thirty-second, less a risk charge of three thirty-seconds, leaving one-eighth. Giving the agent the whole outcome would induce effort of one, but its cost of one-half and risk charge of one and one-half would leave a combined return of minus one. The stronger incentive buys more effort and buys it too dearly.<sup class="snref"></sup></p>
+<aside class="sn">The parameters are invented. With pay <em>a + bx</em>, output <em>x = e + ε</em>, and certainty equivalent <em>a + be − e²/2 − b²σ²/2</em>, the agent chooses <em>e = b</em>. Combined surplus is <em>b − (1 + σ²)b²/2</em>, maximized at <em>b = 1/(1 + σ²)</em>. This stipulated mean–variance calculation follows the linear-model reasoning in Holmström, <a href="https://www.nobelprize.org/uploads/2018/06/holmstrom-lecture.pdf">“Pay for Performance and Beyond”</a>, Nobel lecture (2016), §III.C, pp. 425–427. It is an optimum within the specified contract class, with transfers available to meet participation.</aside>
+<p><em>The trade-off is real within the conditions that produce it.</em> If action itself can be verified and made contractual, pay can reward that action while insuring against an unrelated bad outcome. If the agent is risk-neutral and can bear the required transfers, giving him the residual does not impose the risk cost just calculated. In the numerical model, setting that cost to zero makes the full output share optimal. Even when the agent dislikes risk, a special outcome structure may reveal a deviation with certainty and permit a different arrangement. Hidden action therefore does not prove that every possible contract must leave the same gap from a fully informed bargain. The force of the theory comes from identifying the obstruction in a given case, rather than declaring the obstruction universal.<sup class="snref"></sup></p>
+<aside class="sn">Holmström (1979), p. 76 and notes 7, 11 and 13, pp. 76–78, states important exceptions and technical qualifications. The 2016 lecture, §I.B, pp. 417–418, expressly discusses first-best cases involving no uncertainty, risk neutrality, and moving support. The numerical zero-risk-charge case here yields <em>b = 1</em> and surplus one-half.</aside>
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg></div>
+<p>Better evidence can reduce the cost before either party changes its appetite for risk. Suppose the noise in the example consists of a common market disturbance of variance two and an independent local disturbance of variance one. An observable index that records the common disturbance exactly lets the employer base the reward on output minus that index. An additional unit of effort still adds the same amount to the measured result. At the old one-quarter share, however, the noise variance in pay falls from three-sixteenths to one-sixteenth. If the parties then choose the best share afresh within the same model, it rises from one-quarter to one-half. The contract can reward effort more strongly because it no longer needs to make the agent carry this particular piece of luck.<sup class="snref"></sup></p>
+<aside class="sn">The filtering calculation assumes independent disturbances, a verifiable index equal to the common disturbance, and no effect of effort on that index. Raw noise variance is 2 + 1 = 3; filtered variance is 1. At share ¼, pay variances are 3/16 and 1/16; reoptimization gives share ½ and surplus ¼. These are invented parameters, not estimates of any employer’s optimal compensation.</aside>
+<p>This is the point of Holmström’s informativeness principle. The question is whether a new signal adds information about action beyond what the contracted outcome already supplies. A market index may contain no direct news of the agent’s effort and still improve the interpretation of his sales. A second count of the same sales may look reassuring while adding nothing. Under the paper’s conditions, with usable information and a sufficiently flexible contract, an informative signal permits an improvement. It need not be a perfect observation. Yet the criterion is conditional, and its benefit is calculated before the costs of obtaining the signal and administering its use. The result gives no instruction to purchase every monitor or to pay against every available number.<sup class="snref"></sup></p>
+<aside class="sn">Holmström (1979), §§4–5, pp. 81–88, especially Proposition 3, pp. 84–86. The stated result assumes a unique interior action under the original optimal contract. The paper expressly qualifies restricted contract classes and costly information. The lecture’s §II, pp. 419–422, and note 7, p. 441, explain conditional informativeness and further qualifications.</aside>
+<p>Nor does removing visible luck exhaust the problem. The agent may do several things, and a measure can count one of them perfectly while overlooking the rest. A seller who devotes the afternoon to closing today’s order may have less time to preserve tomorrow’s relationship. If those activities compete for attention, increasing the commission can draw effort toward the counted sale and away from a valuable service the commission cannot see. Weakening that reward can improve the whole job. But the connection must be real: where task costs are independent, the same argument for diverting effort does not arise merely because one person performs both. The design must follow the structure of the work, not a general suspicion of incentives.<sup class="snref"></sup></p>
+<aside class="sn">Holmström’s 2016 lecture, §IV.A–B, pp. 427–429, distinguishes separable task costs from substitute tasks and distinguishes noisy measurement from a measure misaligned with the principal’s objective. The sales comparison is illustrative. No empirical claim about a particular firm’s behavior is made.</aside>
+<p class="pull">The best reward need not follow the largest result. It follows the evidence that makes the intended work worth doing.</p>
+<p>The distinction changes what a salary can mean. A low-powered payment may reflect a failure to reward useful work; it may also protect work that a narrow bonus would displace. Supervision, a division of responsibilities, a longer assessment period, and a broader set of observations can supplement the number without pretending to make the whole job visible. Each proposal has to be judged by the actions it makes attractive, including efforts to improve the measure without improving the service. A clean figure is not a complete account of value. A contract that perfectly rewards the figure can still buy the wrong performance.</p>
+<p>The principal’s problem is therefore to compose a reason for action out of the evidence the parties can use. Effort must be worth supplying, the engagement worth accepting, and the reward worth its cost in risk and distorted attention. The resulting commission or share is a price for acting under a particular distribution of knowledge; it is not a natural measure of what a person contributed to every realized result. The same problem appears when a seller asks to be believed about a product whose workings remain hidden. There, too, a later outcome can be made to carry a payment. The warranty places the seller’s assurance inside a promise whose failure can come back upon him.</p>
+</article>
+
+  <nav class="apparatus" aria-label="Related reading"><h2 class="app-h">Related</h2><ul class="app-list"><li><a href="the-asymmetry-hazard.html"><span class="app-rel">The action left unwatched</span><span class="app-t">The Hazard</span><span class="app-g">Sharing a consequence can change the private return to the conduct that determines it.</span></a></li><li><a href="the-asymmetry-warranty.html"><span class="app-rel">Payment after a failure</span><span class="app-t">The Warranty</span><span class="app-g">The seller can place a financial consequence behind an assurance the buyer cannot verify in advance.</span></a></li><li><a href="the-asymmetry-credence.html"><span class="app-rel">When the result is difficult to judge</span><span class="app-t">The Credence</span><span class="app-g">An expert may supply both the diagnosis and the service, leaving the buyer unable to evaluate even the completed work.</span></a></li><li><a href="the-asymmetry-screen.html"><span class="app-rel">Winning the intended choice</span><span class="app-t">The Screen</span><span class="app-g">A contract must make the desired option preferable to the alternatives it leaves available.</span></a></li></ul></nav>
+
+  <footer>
+    <nav class="crumbs foot" aria-label="Return">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-asymmetry.html">The Asymmetry &middot; Vol XII</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate v &middot; The Incentive</span>
+    </nav>
+    <p class="colophon">This adaptation develops the Collected <a href="../volumes/the-asymmetry.html#plate-v">Incentive</a>, the original <a href="../essays/numeraire-xii-v-the-hazard.html">Utility Hazard</a> and the later <a href="../essays/numeraire-xii-vi-the-agent.html">Utility Agent</a>. It retains the effort-and-luck inquiry and conditional-information argument, developing a new numerical commission model and a changed common-shock illustration. The separate editions remain available. The epigraph is original to this plate. Return to <a href="the-asymmetry.html">the volume</a>, or to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-asymmetry-hazard.html">← The Hazard</a><a rel="next" href="the-asymmetry-warranty.html">The Warranty →</a></nav>
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Credence — Numéraire, The Asymmetry, Plate x</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:66rem; --measure:35rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .masthead{padding:clamp(2.8rem,7vh,5rem) 0 clamp(1.4rem,3.5vh,2.2rem);text-align:center;}
+
+  .crumbs{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 400;
+    font-size:.8rem;letter-spacing:.04em;color:var(--faint);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:center;gap:.55rem;}
+  .crumbs a{text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .2s ease,color .2s ease;}
+  .crumbs a:hover{border-color:var(--num);color:var(--ink);}
+  .crumbs .sep{color:var(--faintest);}
+  .crumbs .here{color:var(--ink);}
+
+  .plate-mark{width:116px;height:116px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:.18rem;line-height:1;}
+  .plate-mark.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pm-vol{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.84rem;letter-spacing:.06em;color:rgba(240,235,225,.62);}
+  .pm-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;
+    font-size:2.5rem;letter-spacing:.02em;text-transform:uppercase;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.1rem,6vw,4rem);line-height:1.03;letter-spacing:-.025em;margin:1rem 0 0;text-wrap:balance;}
+  .status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:42rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  .epi{max-width:38rem;margin:clamp(2.2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .epi q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.46;color:var(--ink);quotes:none;display:block;text-wrap:pretty;}
+  .epi .cite{display:block;margin-top:.95rem;font-size:.78rem;color:var(--faintest);letter-spacing:.05em;font-style:normal;}
+  .epi .cite em{font-style:italic;}
+
+  .essay{max-width:52rem;margin:clamp(3rem,7vh,5rem) auto 0;counter-reset:sn;}
+  .essay::after{content:"";display:block;clear:both;}
+  .essay > p,.essay > .pull{max-width:var(--measure);}
+  .essay p{font-size:1.075rem;line-height:1.8;color:var(--ink);margin:0 0 1.4rem;text-wrap:pretty;}
+  .essay em{font-style:italic;}
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.72;padding:.08em .14em 0 0;color:var(--ink);}
+
+  .divider{display:flex;justify-content:center;margin:2.4rem 0;}
+  .divider svg{width:96px;height:12px;overflow:visible;}
+  .divider line{stroke:var(--num);stroke-width:1;} .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.5vw,1.74rem);line-height:1.34;color:var(--ink);text-align:center;
+    margin:2.4rem auto;max-width:33rem;text-wrap:balance;}
+
+  .snref{font-family:"Fraunces",serif;font-size:.64em;line-height:0;vertical-align:super;
+    color:var(--soft);counter-increment:sn;margin-left:1px;font-style:normal;}
+  .snref::after{content:counter(sn);}
+  .sn{display:block;max-width:var(--measure);margin:.1rem 0 1.4rem;padding:.15rem 0 .15rem 1.05rem;
+    border-left:1px solid var(--hair);font-size:.84rem;line-height:1.52;color:var(--faint);}
+  .sn::before{content:counter(sn);font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--faintest);margin-right:.5em;font-size:.92em;}
+  .sn em{font-style:italic;}
+
+  @media (min-width:64rem){
+    .sn{float:right;clear:right;width:15rem;margin:.35rem 0 1.3rem;padding:0;border-left:none;}
+    .divider,.pull,.apparatus{clear:both;}
+  }
+
+  .apparatus{max-width:52rem;margin:clamp(3.2rem,7vh,5rem) auto 0;padding-top:2rem;border-top:1px solid var(--hair);clear:both;}
+  .app-h{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;}
+  .app-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.4rem;}
+  .app-list li{border-top:1px solid var(--hair);}
+  .app-list li:first-child,.app-list li:nth-child(2){border-top:none;}
+  .app-list a{display:block;text-decoration:none;padding:.95rem 0;}
+  .app-list a:hover .app-t{color:var(--soft);}
+  .app-rel{display:block;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faintest);margin-bottom:.3rem;}
+  .app-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.12rem;color:var(--ink);transition:color .2s ease;}
+  .app-g{display:block;font-size:.84rem;color:var(--faint);font-style:italic;line-height:1.4;margin-top:.22rem;}
+
+  footer{margin-top:clamp(3.5rem,8vh,6rem);padding:2.2rem 0 4rem;border-top:1px solid var(--hair);}
+  .crumbs.foot{justify-content:flex-start;margin-bottom:1.3rem;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .plate-mark{width:96px;height:96px;}
+    .pm-num{font-size:2.1rem;}
+    .essay p{font-size:1.04rem;line-height:1.74;}
+    .dropcap{font-size:3rem;}
+    .app-list{grid-template-columns:1fr;}
+    .app-list li:nth-child(2){border-top:1px solid var(--hair);}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="crumbs rise d1" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-asymmetry.html">The Asymmetry &middot; Vol XII</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate x</span>
+    </nav>
+    <div class="plate-mark lit rise d2" aria-hidden="true">
+      <span class="pm-vol">As</span>
+      <span class="pm-num">x</span>
+    </div>
+    <h1 class="rise d3">The Credence</h1>
+    <div class="status rise d3">in print &middot; The Asymmetry &middot; plate x</div>
+    <p class="standfirst rise d4">The customer can see that the engine runs while remaining unable to judge whether a replacement was needed. Separating necessity, delivery and outcome reveals distinct temptations to overtreat, undertreat and overcharge. A constructed workshop makes the payment incentives visible; uncertain outcomes and costly second opinions then show why accountable expertise needs more than a promise, a favorable review or a detailed bill.</p>
+  </header>
+
+  <div class="epi rise d5"><q>Trust needs a way to question the expert judgment.</q><span class="cite">The argument of this plate</span></div>
+
+  <article class="essay">
+<p class="lede"><span class="dropcap">T</span>he motor runs again, and the owner pays. He can observe that much. Whether the new part was necessary, whether an adjustment would have sufficed, and whether the discarded part came from his own car may remain beyond his knowledge. The mechanic has supplied both an account of the problem and the work that account recommends. This combination can be valuable: the person who understands the fault can repair it without a second visit or another diagnosis. It also places the customer's adviser on the other side of the sale. When experience cannot readily settle whether the advice was sound, the bargain must find a way to make expertise answerable without requiring the buyer to acquire it for himself.</p>
+<p>The word <em>credence</em> describes this difficulty of evaluation, which can survive consumption.<sup class="snref"></sup> It need not mean that no one could ever discover the truth. Another expert, an inspection or a sufficiently extensive investigation might establish it, at a cost the ordinary purchase cannot bear. Nor does the difficulty attach equally to every feature of a service. The customer can compare a quoted price, experience the courtesy of the staff and discover whether the car starts, while remaining unable to judge the necessity of a particular repair. Treating these observations as interchangeable would give an attentive customer confidence about a fact he has not actually learned.</p>
+<aside class="sn">Dulleck and Kerschbamer, <a href="https://www.researchgate.net/publication/4902011_On_Doctors_Mechanics_and_Computer_Specialists_The_Economics_of_Credence_Goods">“On Doctors, Mechanics, and Computer Specialists: The Economics of Credence Goods”</a>, <em>Journal of Economic Literature</em> 44 (2006), pp. 5–8. The definition concerns difficulty assessing the appropriate service, including after purchase; it permits costly verification and differing degrees of consumer knowledge. The linked copy is the published article uploaded by its author.</aside>
+<p>Three failures can follow from that ignorance. A repair can exceed what the fault requires, leaving the customer with unnecessary work to pay for. It can fall short, leaving the fault untreated. Or the bill can describe work that was never done, even though the work actually performed was adequate. These failures call for different evidence. A record of the replacement establishes something about what was supplied; it may say little about whether replacement was needed. Proof that the engine now runs may rule out one kind of inadequate repair while leaving an unnecessary replacement undetected. The evidence must answer the allegation, rather than allow one reassuring observation to stand for the whole transaction.</p>
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg></div>
+<p>Consider an invented workshop with two perfectly diagnosed faults.<sup class="snref"></sup> A minor fault costs twenty dollars to repair; a major fault requires work costing eighty. The larger repair also solves the minor fault, but brings that owner no additional benefit. Suppose the posted charges are fifty for the small repair and one hundred and forty for the large, and the customer has agreed to accept the recommendation. An honest small repair earns thirty. Supplying the large repair instead earns sixty, using sixty more dollars of resources to produce the same useful result. If the customer can verify which repair was performed, that protects him against being billed for an unperformed replacement. It does not remove the workshop's extra profit from recommending and actually performing the unnecessary replacement.</p>
+<aside class="sn">All workshop figures are constructed for this plate. Diagnosis is perfect; the stated costs include the resources used; the larger repair cures either fault; the smaller cures only the minor one. Prices are posted, acceptance is assumed, and the benefit of an adequate repair exceeds its cost. The calculations isolate incentives within an accepted transaction, rather than establish a market equilibrium or estimate actual misconduct.</aside>
+<p>When the work performed cannot be checked, a different temptation appears. Charging one hundred and forty while doing only the twenty-dollar repair earns one hundred and twenty, twice the margin on genuinely supplying the large repair. If the fault was minor, the engine can run perfectly after this false bill. A warranty against failure alone would not reveal what happened. A reliable record of the work can close that route, provided the record belongs to this vehicle and describes the actual intervention. The old part placed on the counter is evidence only if its connection to the customer's car can itself be trusted. The witness problem returns inside the repair.</p>
+<p>The tariff can also change the incentive.<sup class="snref"></sup> Keep the small repair's price at fifty and reduce the large repair's price to one hundred and ten. Each now earns thirty. With the work verifiable, an unnecessary large repair no longer brings a larger margin; a professional preference for providing the appropriate repair can decide a monetary tie. Equal margins alone do not make an indifferent provider strictly prefer honesty, and the result depends on knowing the relevant costs. A common percentage markup would not do the same work: fifty percent on costs of twenty and eighty yields margins of ten and forty. The form of the payment matters as much as its apparent generosity.</p>
+<aside class="sn">The constructed equal-margin example follows the incentive distinction in <a href="https://www.researchgate.net/publication/4902011_On_Doctors_Mechanics_and_Computer_Specialists_The_Economics_of_Credence_Goods">Dulleck and Kerschbamer, §§3–4, pp. 11–18</a>. Their baseline makes strong assumptions about knowledge, diagnosis, commitment and verifiability, and assumes honest conduct when the expert is indifferent. Removing that last assumption can change the result. The dollar examples here are independently calculated.</aside>
+<p>A fixed payment changes the temptation again. At a fee of one hundred for resolving either fault, the small repair leaves eighty while the large leaves twenty. If the workshop must actually cure the diagnosed fault, it can earn more by using the cheapest adequate method; unnecessary replacement wastes its own margin. If it can take the payment while leaving a major fault inadequately treated, the same saving rewards neglect. Making the provider bear responsibility for a deficient service can therefore complement a fixed fee, but the responsibility has to reach the deficiency. A name on a guarantee does little if the relevant failure cannot be proved or the promised remedy cannot be obtained.</p>
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg></div>
+<p>The difficulty becomes sharper when a good service cannot guarantee a good result.<sup class="snref"></sup> A patient may fail to recover after appropriate care; a recovery may occur despite a mistaken intervention. The outcome still matters, but an adverse outcome is not by itself proof that the expert supplied too little. An inquiry may have to examine the information available when the decision was made, the procedure used and the alternatives that were feasible then. The simple workshop assumed away this problem by making diagnosis and cure certain. Real accountability needs evidence suited to uncertainty, so that it can discourage avoidable failures without teaching providers to avoid every difficult case.</p>
+<aside class="sn"><a href="https://www.researchgate.net/publication/4902011_On_Doctors_Mechanics_and_Computer_Specialists_The_Economics_of_Credence_Goods">Dulleck and Kerschbamer, §6, pp. 31–33</a>, distinguishes strong model assumptions from repair and medical settings, including difficulty verifying services and attributing uncertain outcomes. The passage makes an institutional comparison; it does not treat the model's perfect liability condition as a description of any jurisdiction's legal test.</aside>
+<p>Separating the diagnosis from the sale can give the buyer another point of judgment. An adviser paid for the assessment has less direct reason to prescribe work merely to earn the margin on doing it. The separation has costs: another visit, duplicated investigation, a diagnosis that cannot easily be transferred, or an urgent problem for which delay is itself harmful. The adviser may also receive referrals or depend on the provider for future business. Independence therefore requires more than two names on two invoices. A second opinion is useful when it supplies another basis for deciding, and when the buyer can obtain it without losing the practical ability to act.</p>
+<p>Reputation, certification and disclosure can support that arrangement, but each must reach the hidden dimension.<sup class="snref"></sup> A glowing account of courtesy may be entirely accurate while saying nothing about the necessity of treatment. A qualification can establish training without certifying every subsequent judgment. A detailed bill can identify a procedure without showing why it was chosen. Records that permit later review, standards explaining the reasons for an intervention, and an independent route to challenge can make these signals more informative. Their cost should be judged against the scale and consequence of the service: a small routine purchase and an irreversible intervention do not warrant identical machinery. The purpose is to give expertise a credible obligation to explain itself.</p>
+<aside class="sn">The earlier <a href="../volumes/the-asymmetry.html#plate-ix">Collected Witness</a> and <a href="../volumes/the-asymmetry.html#plate-x">Disclosure</a> supply the related inquiries into reputation, a certifier's incentives and usable information. Dranove and Jin, <a href="https://www.nber.org/system/files/working_papers/w15644/w15644.pdf">“Quality Disclosure and Certification”</a>, §I.1 and §II, distinguishes quality-assurance mechanisms and the conditions under which information and certification can discipline conduct. Their effectiveness here is an institutional inference, not a claim that a certificate or a review proves appropriate treatment.</aside>
+<p class="pull">The buyer needs a way to question the judgment he must rely on.</p>
+<p>Protection cannot consist in telling the patient to become a physician before consenting, or the motorist to become a mechanic before paying. Specialization would lose much of its point. The more workable aim is a dependence that remains open to challenge: incentives that reward appropriate service, evidence of what was done and why, and another competent judgment when the first is contested. None removes the need for trust. Together they can make trust less lonely, placing a practice and an institution behind the individual expert. The buyer can then rely on knowledge he does not possess without surrendering every means of asking whether it was used on his behalf. The argument remains open.</p>
+</article>
+
+  <nav class="apparatus" aria-label="Related reading"><h2 class="app-h">Related</h2><ul class="app-list"><li><a href="the-asymmetry-mandate.html"><span class="app-rel">The preceding disclosure</span><span class="app-t">The Mandate</span><span class="app-g">An intelligible account can improve a decision, but a buyer who cannot judge the advice may still need another source of protection.</span></a></li><li><a href="the-asymmetry-seal.html"><span class="app-rel">The trusted third party</span><span class="app-t">The Seal</span><span class="app-g">Certification lends authority to an expert judgment while reopening the question of who can test the institution that supplies it.</span></a></li><li><a href="the-asymmetry-incentive.html"><span class="app-rel">The payment and the outcome</span><span class="app-t">The Incentive</span><span class="app-g">A reward tied to results must distinguish the provider’s choices from uncertainty; the expert-service problem adds hidden need and delivery.</span></a></li><li><a href="the-asymmetry-herd.html"><span class="app-rel">Next in this volume</span><span class="app-t">The Herd</span><span class="app-g">The next plate follows another way of borrowing knowledge: reading the actions of others, and asking how much information their agreement contains.</span></a></li></ul></nav>
+
+  <footer>
+    <nav class="crumbs foot" aria-label="Return">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-asymmetry.html">The Asymmetry &middot; Vol XII</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate x &middot; The Credence</span>
+    </nav>
+    <p class="colophon">A developed continuation of the original Margin Credence plan, drawing on the complete <a href="../volumes/the-asymmetry.html#plate-ix">Collected Witness</a> and <a href="../volumes/the-asymmetry.html#plate-x">Disclosure</a>, and the native <a href="the-lemon.html">Lemon</a> and <a href="the-signal.html">Signal</a>. Their inquiries into hidden quality and credible assurance are carried into expert diagnosis, treatment and verification. The earlier editions remain intact. The epigraph is original to this plate. Return to <a href="the-asymmetry.html">the volume</a>, or to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-asymmetry-mandate.html">← The Mandate</a><a rel="next" href="the-asymmetry-herd.html">The Herd →</a></nav>
+</body>
+</html>
