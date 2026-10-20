@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Order — Numéraire, The Margin, Plate vii</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:66rem; --measure:35rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- ornament ---- */
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* ---- masthead ---- */
+  .masthead{padding:clamp(2.8rem,7vh,5rem) 0 clamp(1.4rem,3.5vh,2.2rem);text-align:center;}
+
+  /* breadcrumb */
+  .crumbs{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 400;
+    font-size:.8rem;letter-spacing:.04em;color:var(--faint);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:center;gap:.55rem;}
+  .crumbs a{text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .2s ease,color .2s ease;}
+  .crumbs a:hover{border-color:var(--num);color:var(--ink);}
+  .crumbs .sep{color:var(--faintest);}
+  .crumbs .here{color:var(--ink);}
+
+  /* plate cartouche: Mg over the plate numeral */
+  .plate-mark{width:116px;height:116px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:.18rem;line-height:1;}
+  .plate-mark.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pm-vol{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.84rem;letter-spacing:.06em;color:rgba(240,235,225,.62);}
+  .pm-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;
+    font-size:2.5rem;letter-spacing:.02em;text-transform:uppercase;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.3rem,6.5vw,4.4rem);line-height:1.02;letter-spacing:-.025em;margin:1rem 0 0;text-wrap:balance;}
+  .status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:42rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  /* ---- epigraph ---- */
+  .epi{max-width:38rem;margin:clamp(2.2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .epi q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.46;color:var(--ink);quotes:none;display:block;text-wrap:pretty;}
+  .epi .cite{display:block;margin-top:.95rem;font-size:.78rem;color:var(--faintest);letter-spacing:.05em;font-style:normal;}
+  .epi .cite em{font-style:italic;}
+
+  /* ---- the essay (with margin apparatus) ---- */
+  .essay{max-width:52rem;margin:clamp(3rem,7vh,5rem) auto 0;counter-reset:sn;}
+  .essay::after{content:"";display:block;clear:both;}
+  .essay > p,.essay > .pull{max-width:var(--measure);}
+  .essay p{font-size:1.075rem;line-height:1.8;color:var(--ink);margin:0 0 1.4rem;text-wrap:pretty;}
+  .essay em{font-style:italic;}
+  .essay .lede::first-letter{ }
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.72;padding:.08em .14em 0 0;color:var(--ink);}
+
+  /* movement divider */
+  .divider{display:flex;justify-content:center;margin:2.4rem 0;}
+  .divider svg{width:96px;height:12px;overflow:visible;}
+  .divider line{stroke:var(--num);stroke-width:1;} .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* pull quote */
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.5vw,1.74rem);line-height:1.34;color:var(--ink);text-align:center;
+    margin:2.4rem auto;max-width:33rem;text-wrap:balance;}
+
+  /* margin notes — inline by default, gutter on wide screens */
+  .snref{font-family:"Fraunces",serif;font-size:.64em;line-height:0;vertical-align:super;
+    color:var(--soft);counter-increment:sn;margin-left:1px;font-style:normal;}
+  .snref::after{content:counter(sn);}
+  .sn{display:block;max-width:var(--measure);margin:.1rem 0 1.4rem;padding:.15rem 0 .15rem 1.05rem;
+    border-left:1px solid var(--hair);font-size:.84rem;line-height:1.52;color:var(--faint);}
+  .sn::before{content:counter(sn);font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--faintest);margin-right:.5em;font-size:.92em;}
+  .sn em{font-style:italic;}
+
+  @media (min-width:64rem){
+    .sn{float:right;clear:right;width:15rem;margin:.35rem 0 1.3rem;padding:0;border-left:none;}
+    .divider,.pull,.apparatus{clear:both;}
+  }
+
+  /* ---- apparatus (related reading) ---- */
+  .apparatus{max-width:52rem;margin:clamp(3.2rem,7vh,5rem) auto 0;padding-top:2rem;border-top:1px solid var(--hair);clear:both;}
+  .app-h{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;}
+  .app-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.4rem;}
+  .app-list li{border-top:1px solid var(--hair);}
+  .app-list li:first-child,.app-list li:nth-child(2){border-top:none;}
+  .app-list a{display:block;text-decoration:none;padding:.95rem 0;}
+  .app-list a:hover .app-t{color:var(--soft);}
+  .app-rel{display:block;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faintest);margin-bottom:.3rem;}
+  .app-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.12rem;color:var(--ink);transition:color .2s ease;}
+  .app-g{display:block;font-size:.84rem;color:var(--faint);font-style:italic;line-height:1.4;margin-top:.22rem;}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(3.5rem,8vh,6rem);padding:2.2rem 0 4rem;border-top:1px solid var(--hair);}
+  .crumbs.foot{justify-content:flex-start;margin-bottom:1.3rem;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .plate-mark{width:96px;height:96px;}
+    .pm-num{font-size:2.1rem;}
+    .essay p{font-size:1.04rem;line-height:1.74;}
+    .dropcap{font-size:3rem;}
+    .app-list{grid-template-columns:1fr;}
+    .app-list li:nth-child(2){border-top:1px solid var(--hair);}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="crumbs rise d1" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-margin.html">The Margin &middot; Vol VI</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate vii</span>
+    </nav>
+    <div class="plate-mark lit rise d2" aria-hidden="true">
+      <span class="pm-vol">Mg</span>
+      <span class="pm-num">vii</span>
+    </div>
+    <h1 class="rise d3">The Order</h1>
+    <div class="status rise d3">in print &middot; The Margin &middot; plate vii</div>
+    <p class="standfirst rise d4">A preference ordering can select the best affordable bundle without measuring the pleasure between its ranks. The ordinal reconstruction preserves trade-offs while changing what the utility numbers mean; revealed preference then asks what actual choices and budgets disclose about that ordering. This plate follows both moves, distinguishing an ordering that would predict a choice from the more limited ordering recoverable from finite observations, and asking what remains to be supplied before those choices become judgments of welfare.</p>
+  </header>
+
+  <div class="epi rise d5"><q>An order can select a destination without measuring the distance between lives.</q><span class="cite">The argument of this plate</span></div>
+
+  <article class="essay">
+<p class="lede"><span class="dropcap">A</span> ranking can tell you where to go without telling you how far apart the destinations lie. Put three possible dinners in order, and the first can be chosen from any menu that contains all three; remove it, and the second becomes the choice. Nothing in that operation requires the pleasure of the first to be twice the pleasure of the second. The distance between them has done no work. This was the opening through which the measurable util could leave the theory of ordinary consumer choice without taking the choice itself away. The early margin had spoken as though satisfaction came in quantities. The ordinal reconstruction asked which conclusions required those quantities, and which needed only the order they happened to describe.</p>
+<p>The earlier <em>Substitution</em> and <em>Order</em> followed this retreat from the cardinal magnitude. A scale that labels three bundles one, two and three selects the same best bundle as a scale that labels them one, four and nine. The spacing has changed; the ordering has not. A strictly increasing transformation can repeat the operation throughout a represented preference system. Hicks and Allen placed this indeterminacy at the beginning of their 1934 reconstruction, crediting Pareto’s distinction between a scale of preferences and a particular utility function. An indifference map records the bundles ranked alike and the ordering between those sets. It does not, by itself, measure the intervals of feeling between them.<sup class="snref"></sup></p>
+<aside class="sn">Hicks and Allen, <a href="https://benjaminmoll.com/Hicks_Allen_part1/">“A Reconsideration of the Theory of Value,” Part I</a>, <em>Economica</em> 1 (1934), pp. 52–55. The historical attribution to Pareto here follows their explicit account; their argument distinguishes observable ordering from the indeterminate numerical index used to represent it.</aside>
+<p>Much still has to be specified before this becomes a usable account of a person choosing. The alternatives must be described, the feasible set known, and the preference relation sufficiently coherent for the comparisons being made. A finite menu with a complete and transitive ranking has a best-ranked option, though there may be ties. A smooth indifference map over continuous quantities asks for further regularity. Its downward slope assumes that both goods are locally desired; its customary inward bow is a restriction on the pattern of trade-offs, not a gift bestowed by the word <em>ordinal</em>. The theory has shed the need to measure the spacing between ranks. It has not shed the need to state the properties of the ranking.</p>
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg></div>
+<p>Consider the bread and wine of <em>The Balance</em> once more. On positive quantities, let one index be <em>U</em> = log <em>b</em> + log <em>w</em>, and another be <em>V</em> = <em>b</em>²<em>w</em>². The second is exp(2<em>U</em>), a strictly increasing transformation, so it orders every pair of these bundles in exactly the same way. Yet the marginal utility of bread in the first index, 1/<em>b</em>, falls as bread increases with wine held fixed; in the second, 2<em>bw</em>², it rises. If these slopes were read as measurements of sensation, the same person would appear to have acquired the opposite psychology without changing a single choice. What survives is the relative trade-off: in either representation the ratio of the bread margin to the wine margin is <em>w</em>/<em>b</em>. The price-taking choice depends on that ratio at an interior optimum, not on which arbitrary numerical garment we give the ranking.<sup class="snref"></sup></p>
+<aside class="sn">The two indices and their comparison are an invented mathematical illustration. Their bread second derivatives are −1/<em>b</em>² and 2<em>w</em>²; their marginal-utility ratios both equal <em>w</em>/<em>b</em>. With 2<em>b</em> + <em>w</em> = 12, both select (3, 6). Hicks and Allen, §I.1–2, pp. 55–58, develop the substitution-based reconstruction; the transformation example shows why curvature of an individual index is not itself an ordinal fact.</aside>
+<p>The map therefore retains a great deal. Given an adequately specified ordering and a feasible budget, it can identify the best affordable set; with prices changed, it can identify the best set under the new constraint. It can compare what the person chooses with another available bundle without attaching a number of pleasures to the difference. But knowing that a representation would suffice is not knowing the representation. A theorist who draws a family of curves has supplied an object that the evidence must still support. Observing a purchase is not the same thing as observing the slope of every curve across every possible budget. The ordinal turn made the informational requirement smaller. It did not make the missing information appear.</p>
+<p>Samuelson pushed the question back toward the transaction itself. His 1938 note proposed beginning with demands at given prices and expenditure, then imposing consistency restrictions on that behaviour, rather than beginning with an introspected magnitude of satisfaction. This changed the direction of inquiry. If a buyer chose one basket when another was available, the choice could supply evidence about their relative standing. But the restriction was doing substantive work: the account did not become a theory merely by renaming whatever happened a preference. Samuelson supplied postulates, including a consistency condition; an observed pattern might fail the proposed requirements. Later finite-data analysis would make the distinction between rationalizing choices and merely relabelling them especially sharp.<sup class="snref"></sup></p>
+<aside class="sn">Samuelson, <a href="https://doi.org/10.2307/2548836">“A Note on the Pure Theory of Consumer’s Behaviour”</a>, <em>Economica</em> 5 (1938), pp. 61–65: the programme, price-taking setup and three postulates. His original formulation uses single-valued demands. The finite-observation result discussed below is the later Afriat theorem as developed and proved by Varian, not a theorem attributed to the 1938 note.</aside>
+<p class="pull">A purchase can restrict the rankings consistent with a life. It does not disclose the whole life’s ranking at once.</p>
+<p>A small invented inconsistency is more instructive than an assurance that choices are consistent. Let basket A contain two units of bread and one of wine, and basket B one of bread and two of wine. At bread and wine prices of two and one, A costs five and B four. Suppose the buyer, with five to spend, chooses A. Now reverse the two prices: B costs five and A four, and the buyer chooses B. At each observation the rejected basket lay strictly inside the available budget. Under a stable preference ordering and local nonsatiation—the availability of something better arbitrarily near any bundle—each choice requires its selected basket to rank strictly above the other. The two strict rankings cannot coexist. Changing prices can certainly change purchases; the defect here is the particular pattern of mutual affordability and selection, not the fact that the baskets differ.<sup class="snref"></sup></p>
+<aside class="sn">The example is invented. Costs are <em>p</em><sup>1</sup>A = 5, <em>p</em><sup>1</sup>B = 4, <em>p</em><sup>2</sup>A = 4 and <em>p</em><sup>2</sup>B = 5. For the role of strict affordability, local nonsatiation and cycles, see Varian, <a href="https://bpb-us-e1.wpmucdn.com/sites.psu.edu/dist/c/13885/files/2014/07/Varian1982_Nonparametric-Approach-to-Demand-Analysis.pdf">“The Nonparametric Approach to Demand Analysis”</a>, <em>Econometrica</em> 50 (1982), §1, pp. 945–949, and Appendix I, pp. 968–970. If two bundles instead share a budget boundary and are tied in the ranking, alternating between them need not violate the generalized axiom.</aside>
+<p>This distinction prevents a careless reading of the simplest revealed-preference sentence. Choosing A when B is affordable establishes, within a maximizing representation, that A is at least as good as B; it need not establish that A is strictly better. Indifference can permit either choice. Strict affordability, combined with local nonsatiation, provides the stronger conclusion used in the example: if the cheaper B were equally good, an affordable improvement close to B would contradict A’s optimality. The evidence is thus choices together with the alternatives and assumptions that make those choices informative. Misrecord a price, overlook a constraint, or combine observations across a change in the person’s preferences, and the apparent contradiction may concern the maintained description rather than some timeless irrationality of the chooser.</p>
+<p>The positive result is equally exact. For a finite set of observations at positive prices, the generalized axiom of revealed preference rules out a revealed-preference chain that returns through a strict affordability reversal. Afriat’s theorem establishes that passing the condition is equivalent to admitting a locally nonsatiated utility representation that rationalizes the observations; one can, in fact, construct a continuous, monotone, concave representation. That is an existence result, not the discovery of a uniquely true psychological function. Several rankings can agree on everything the observed budgets reveal and disagree elsewhere. Additional observations may narrow the possibilities; some comparisons can be inferred, while others remain open. The model becomes testable because it forbids certain patterns, not because a finite shopping history dictates every possible future purchase.<sup class="snref"></sup></p>
+<aside class="sn">Varian, §1 and Appendix I, for the equivalence and constructive proof; §2, pp. 949–954, for the limits and bounds of ordinal recovery. “Concave” describes an available rationalizing representation, not proof that an independently measured sensation has that curvature. The result requires the relevant budget-choice framework; it does not identify a unique preference ordering outside the comparisons the data support.</aside>
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg></div>
+<p>The loss of a common ruler matters most when the inquiry leaves the single chooser. Suppose an allocation helps one person and harms another. Their separate rankings can identify that disagreement, but the numerical gain assigned by one index cannot simply be subtracted from the numerical loss assigned by the other. Rescale one person’s index and the proposed sum may reverse its verdict while both people’s choices remain unchanged. A social comparison requires something further: a principle of aggregation, an account of rights or needs, evidence about experienced welfare, or another declared basis for judging between persons. The ordinal account does not forbid such judgments. It prevents an arbitrary choice of labels from making them on our behalf. Even for one person, the claim that observed choice is the right measure of welfare needs a reason beyond the fact that a choice occurred.</p>
+<p>The plate’s question can now be answered without making desire vanish. If we possess a ranking adequate to the situation, a measure of the intensity between its positions may be unnecessary for predicting the selected bundle. That shows a redundancy in this representation of choice. It does not establish that wanting has no causes, that experience carries no intensity, or that all purposes of explanation can be served by the same economical description. And the opening “if” remains substantial: an order assumed by a model is not an order completely recovered from a handful of acts. What the ordinal turn carries away is the obligation to pretend we have measured what the choice argument never needed to measure. What it leaves is a cleaner margin—an opportunity to substitute, a constraint, and a comparison—and a clearer boundary around what those things allow us to know.</p>
+</article>
+
+  <nav class="apparatus" aria-label="Related reading"><h2 class="app-h">Related</h2><ul class="app-list"><li><a href="the-margin-derivative.html"><span class="app-rel">The preceding plate</span><span class="app-t">The Derivative</span><span class="app-g">The mathematical form of the margin and the conditions that turn a stationary point into an optimum.</span></a></li><li><a href="the-margin-return.html"><span class="app-rel">The next plate</span><span class="app-t">The Return</span><span class="app-g">The increment moves from the chooser’s ranking into production, where additional inputs encounter a changing return.</span></a></li><li><a href="the-margin-balance.html"><span class="app-rel">The condition that survives</span><span class="app-t">The Balance</span><span class="app-g">Equal marginal returns per pound can describe the same choice under different numerical utility scales.</span></a></li><li><a href="../essays/numeraire-xxiii-ii-the-revelation.html"><span class="app-rel">The evidence of choices</span><span class="app-t">The Revelation</span><span class="app-g">The Utility edition examines how far choices reconstruct a ranking, and which comparisons the observed record leaves open.</span></a></li></ul></nav>
+
+  <footer>
+    <nav class="crumbs foot" aria-label="Return">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-margin.html">The Margin &middot; Vol VI</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate vii</span>
+    </nav>
+    <p class="colophon">The seventh plate of the Margin edition’s <em>The Margin</em>, adapted and developed from the Quantities edition’s <a href="../quantities/numeraire-plate-the-substitution.html">The Substitution</a>, the Collected edition’s <a href="../volumes/the-margin.html#plate-xi">The Substitution</a>, <a href="../volumes/the-utility.html#plate-iii">The Ranking</a> and <a href="../volumes/the-utility.html#plate-v">The Revealed</a>, and the Utility edition’s <a href="../essays/numeraire-viii-iii-the-order.html">The Order</a>. The original Margin question is retained. The new argument separates ordinal representation, finite-data rationalization and welfare inference, with original transformation and affordability examples. The earlier editions remain in place. The epigraph is original to this plate. Return to <a href="the-margin.html">the volume</a>, or to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-margin-derivative.html">← The Derivative</a><a rel="next" href="the-margin-return.html">The Return →</a></nav>
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Sunk — Numéraire, The Margin, Plate xi</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:66rem; --measure:35rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- ornament ---- */
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* ---- masthead ---- */
+  .masthead{padding:clamp(2.8rem,7vh,5rem) 0 clamp(1.4rem,3.5vh,2.2rem);text-align:center;}
+
+  /* breadcrumb */
+  .crumbs{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 400;
+    font-size:.8rem;letter-spacing:.04em;color:var(--faint);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:center;gap:.55rem;}
+  .crumbs a{text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .2s ease,color .2s ease;}
+  .crumbs a:hover{border-color:var(--num);color:var(--ink);}
+  .crumbs .sep{color:var(--faintest);}
+  .crumbs .here{color:var(--ink);}
+
+  /* plate cartouche: Mg over the plate numeral */
+  .plate-mark{width:116px;height:116px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:.18rem;line-height:1;}
+  .plate-mark.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pm-vol{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.84rem;letter-spacing:.06em;color:rgba(240,235,225,.62);}
+  .pm-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;
+    font-size:2.5rem;letter-spacing:.02em;text-transform:uppercase;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.3rem,6.5vw,4.4rem);line-height:1.02;letter-spacing:-.025em;margin:1rem 0 0;text-wrap:balance;}
+  .status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:42rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  /* ---- epigraph ---- */
+  .epi{max-width:38rem;margin:clamp(2.2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .epi q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.46;color:var(--ink);quotes:none;display:block;text-wrap:pretty;}
+  .epi .cite{display:block;margin-top:.95rem;font-size:.78rem;color:var(--faintest);letter-spacing:.05em;font-style:normal;}
+  .epi .cite em{font-style:italic;}
+
+  /* ---- the essay (with margin apparatus) ---- */
+  .essay{max-width:52rem;margin:clamp(3rem,7vh,5rem) auto 0;counter-reset:sn;}
+  .essay::after{content:"";display:block;clear:both;}
+  .essay > p,.essay > .pull{max-width:var(--measure);}
+  .essay p{font-size:1.075rem;line-height:1.8;color:var(--ink);margin:0 0 1.4rem;text-wrap:pretty;}
+  .essay em{font-style:italic;}
+  .essay .lede::first-letter{ }
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.72;padding:.08em .14em 0 0;color:var(--ink);}
+
+  /* movement divider */
+  .divider{display:flex;justify-content:center;margin:2.4rem 0;}
+  .divider svg{width:96px;height:12px;overflow:visible;}
+  .divider line{stroke:var(--num);stroke-width:1;} .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* pull quote */
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.5vw,1.74rem);line-height:1.34;color:var(--ink);text-align:center;
+    margin:2.4rem auto;max-width:33rem;text-wrap:balance;}
+
+  /* margin notes — inline by default, gutter on wide screens */
+  .snref{font-family:"Fraunces",serif;font-size:.64em;line-height:0;vertical-align:super;
+    color:var(--soft);counter-increment:sn;margin-left:1px;font-style:normal;}
+  .snref::after{content:counter(sn);}
+  .sn{display:block;max-width:var(--measure);margin:.1rem 0 1.4rem;padding:.15rem 0 .15rem 1.05rem;
+    border-left:1px solid var(--hair);font-size:.84rem;line-height:1.52;color:var(--faint);}
+  .sn::before{content:counter(sn);font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--faintest);margin-right:.5em;font-size:.92em;}
+  .sn em{font-style:italic;}
+
+  @media (min-width:64rem){
+    .sn{float:right;clear:right;width:15rem;margin:.35rem 0 1.3rem;padding:0;border-left:none;}
+    .divider,.pull,.apparatus{clear:both;}
+  }
+
+  /* ---- apparatus (related reading) ---- */
+  .apparatus{max-width:52rem;margin:clamp(3.2rem,7vh,5rem) auto 0;padding-top:2rem;border-top:1px solid var(--hair);clear:both;}
+  .app-h{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;}
+  .app-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.4rem;}
+  .app-list li{border-top:1px solid var(--hair);}
+  .app-list li:first-child,.app-list li:nth-child(2){border-top:none;}
+  .app-list a{display:block;text-decoration:none;padding:.95rem 0;}
+  .app-list a:hover .app-t{color:var(--soft);}
+  .app-rel{display:block;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faintest);margin-bottom:.3rem;}
+  .app-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.12rem;color:var(--ink);transition:color .2s ease;}
+  .app-g{display:block;font-size:.84rem;color:var(--faint);font-style:italic;line-height:1.4;margin-top:.22rem;}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(3.5rem,8vh,6rem);padding:2.2rem 0 4rem;border-top:1px solid var(--hair);}
+  .crumbs.foot{justify-content:flex-start;margin-bottom:1.3rem;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .plate-mark{width:96px;height:96px;}
+    .pm-num{font-size:2.1rem;}
+    .essay p{font-size:1.04rem;line-height:1.74;}
+    .dropcap{font-size:3rem;}
+    .app-list{grid-template-columns:1fr;}
+    .app-list li:nth-child(2){border-top:1px solid var(--hair);}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="crumbs rise d1" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-margin.html">The Margin &middot; Vol VI</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate xi</span>
+    </nav>
+    <div class="plate-mark lit rise d2" aria-hidden="true">
+      <span class="pm-vol">Mg</span>
+      <span class="pm-num">xi</span>
+    </div>
+    <h1 class="rise d3">The Sunk</h1>
+    <div class="status rise d3">in print &middot; The Margin &middot; plate xi</div>
+    <p class="standfirst rise d4">An irrecoverable payment can make a sound continuation look hopeless, or make a damaging one feel obligatory. This plate follows the distinction through salvage, experimental choices and mental accounts, then asks how past expenditure can still inform a forecast or alter a future relationship. The arithmetic excludes a common lost cost; the harder judgment separates the lessons and obligations of the past from paying for it twice.</p>
+  </header>
+
+  <div class="epi rise d5"><q>The past can teach without presenting the same bill again.</q><span class="cite">The argument of this plate</span></div>
+
+  <article class="essay">
+<p class="lede"><span class="dropcap">T</span>he money has gone, but it remains at the table. It speaks when the project is reconsidered, when the expensive ticket meets an unappealing evening, when another year is offered to an undertaking that has already taken several. We have put too much into it to stop. The marginal principle gives its sharpest reply here: the decision can change what happens next, and cannot retrieve a payment that every available alternative has already lost. Yet the payment feels like a reason, sometimes like an obligation. The original question asks why almost no one can bear to ignore the past. The difficulty is real; its reach, and the circumstances in which persistence is mistaken, need to be examined rather than assumed.</p>
+
+<p>A sunk cost is an expenditure that cannot now be recovered and does not vary across the alternatives under consideration. It can have been grave, avoidable and badly chosen. None of that gives it a further power to distinguish alternatives that bear it equally. Suppose an invented project has consumed ninety. Finishing it will require twenty more and produce a certain receipt of thirty; stopping yields no receipt and no salvage. Continuing improves the position by ten from today, although the whole project will still have lost eighty. Stopping would leave the full ninety lost. The fact that the undertaking was a bad idea at the beginning does not make abandoning it the best idea now.</p>
+
+<p>Change only the remaining cost to forty and the decision reverses. Completion now adds a loss of ten, turning the historical loss of ninety into a hundred. No size assigned to the vanished payment can improve that future bargain. It is tempting to treat the loss already incurred as an argument for a more strenuous rescue, but the rescue must be judged by what it can still rescue. The proper comparison is neither a rule to finish nor a rule to abandon. It can require finishing a project whose lifetime account will remain disastrous, and abandoning another that once looked excellent. The difference lies in the consequences still open to choice.<sup class="snref"></sup></p>
+<aside class="sn">The ninety already spent, thirty receipt and alternative completion costs are invented examples. They develop the irrecoverability argument in <a href="../quantities/numeraire-plate-the-cost.html">The Cost in Quantities</a> and <a href="../volumes/the-margin.html#plate-viii">The Bygone in the Collected Margin</a>. The comparison assumes certain cash amounts, no discounting, no salvage and no additional consequences.</aside>
+
+<p>Something bought in the past may nevertheless retain a present alternative use. Restore the completion cost of twenty, but suppose the unfinished asset could instead be sold for fifteen. Completion leaves ten from today; sale leaves fifteen. Selling is better by five. Calling the asset already paid for would conceal the opportunity being sacrificed by using it. The original payment is sunk, but the asset is not valueless merely because its invoice is old. Recoverable deposits, resale proceeds and alternative uses belong in the current comparison. So do costs of cancellation that have not yet become unavoidable. The discipline is to remove the common irrecoverable amount while retaining every consequence that still differs.</p>
+
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg></div>
+
+<p>The difficulty is not confined to managers facing complicated forecasts. In Arkes and Blumer's 1985 questionnaire, students were asked to imagine having bought two nonrefundable, nonresalable ski trips for the same weekend. One cost a hundred dollars, the other fifty, and the cheaper trip was explicitly expected to be more enjoyable. Thirty-three of sixty-one chose the more expensive trip. The larger payment could not be recovered through that choice, and the scenario had already specified which experience was preferred. This is a compact demonstration of the past entering where the prospective comparison gives it no place. It is also a bounded observation: a hypothetical choice by this group of respondents, not a finding that everyone makes the error or that every costly commitment should be broken.<sup class="snref"></sup></p>
+<aside class="sn"><a href="https://cognition.aau.at/bg/BA/Arkes%20%26%20Blumer%201985.pdf">Hal R. Arkes and Catherine Blumer, “The Psychology of Sunk Cost” (1985)</a>, pp. 126–128, gives the complete first two experiments. Experiment 1 reports thirty-three choices of the $100 trip and twenty-eight of the $50 trip. The inability to return or sell either ticket and the stated preference for the cheaper trip are essential to the comparison.</aside>
+
+<p>The same paper moved beyond the questionnaire by varying what theater subscribers paid. The first sixty intending purchasers were assigned tickets at full price or one of two discounts; six purchasers buying as couples were excluded to avoid treating their joint decisions as independent. In the planned comparisons for the first half of the season, full-price buyers used more tickets than either discounted group. The differences did not recur in the second half. The experiment thus gives the earlier expenditure a possible afterlife in actual attendance, while also showing that the afterlife need not last. Its small sample and the distinction between the planned comparisons and the overall analysis matter. The result does not support turning a demonstrated tendency into an immutable feature of every chooser.<sup class="snref"></sup></p>
+<aside class="sn">Arkes and Blumer, pp. 127–128. The final groups numbered eighteen, nineteen and seventeen. The first-half planned comparisons used one-tailed tests; the overall analysis found only the half-of-season factor significant. The authors report no significant attendance differences among groups in the second half and discuss the small income differences created by the discounts.</aside>
+
+<p>Richard Thaler's account of mental accounting offers a way to understand the hold of the payment. An advance purchase can open an account that remains unfinished until the experience is consumed. Attending lets the purchaser place the expenditure in the ordinary category of things bought and used; staying home can force recognition of a loss. The distinction is psychologically consequential even when the money has gone in both cases. In this account, making use of the purchase can protect the earlier decision from a painful evaluation. A new burden — the unpleasant journey, the lost evening — may be recorded separately or receive less attention than the old payment it is supposed to redeem. The accounts have become part of the decision, rather than a neutral record of it.<sup class="snref"></sup></p>
+<aside class="sn"><a href="https://www.anderson.ucla.edu/faculty_pages/keith.chen/negot.%20papers/Thaler_MentalAccounting99.pdf">Richard H. Thaler, “Mental Accounting Matters” (1999)</a>, pp. 183–185 and the complete “Mental Accounting Decision Making” section, pp. 188–193. The opening-and-closing-account and advance-purchase discussions, especially pp. 189–191, supply this interpretation. It is a proposed psychological mechanism, distinct from the observed ticket choices.</aside>
+
+<p>The felt obligation to avoid waste has an intelligible source. Before a purchase, thrift compares what the money could obtain elsewhere. After an irrecoverable purchase, repeating the same concern can misidentify the waste: an unused ticket becomes more visible than the good evening sacrificed to use it. The rule that protected resources before the transaction can spend additional resources after it. This is the peculiar loyalty in the sunk-cost error. The chooser tries to vindicate an earlier self, as though consuming something unwanted could turn the original expenditure into a better decision. A candid account of the loss can feel like causing it, even though the next decision is only where its recognition occurs.</p>
+
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg></div>
+
+<p>Yet knowing the past can be indispensable to judging the future. McAfee, Mialon and Mialon examine projects whose total cost of completion is uncertain. Expenditure without success changes the information available about how much more will be needed. In their model, whether greater past expenditure raises or lowers the chance of success from a further investment depends on the distribution of the unknown completion cost. Both directions are possible. The sunk payment still cancels from the direct comparison of future gains and losses, while the history it records changes those future gains and losses. Ignoring the payment as an additional debit is consistent with using the experience as evidence.<sup class="snref"></sup></p>
+<aside class="sn"><a href="https://www.suemialon.net/research/RevisedSunkCostsMatterApril2007.pdf">R. Preston McAfee, Hugo M. Mialon and Sue H. Mialon, “Do Sunk Costs Matter?,” April 7, 2007 draft</a>, §III.A, pp. 7–10. Their two-period model conditions completion probabilities on previous failure and permits increasing or decreasing hazards. The following two-point example illustrates information updating with invented numbers; it is not their continuous-distribution model.</aside>
+
+<p>For a small illustration, suppose the total cost needed to complete a project is either sixty or a hundred, each initially equally likely. Completion pays ninety. The decision maker is risk neutral, knows this distribution and can make only one further payment of ten. After fifty has been spent without success, another ten has a one-half chance of completing the project. Its expected receipt is forty-five and its new cost ten, so it is worth making. After sixty has been spent without success, however, the low-cost possibility has been ruled out. Another ten cannot complete the project, and no later payment is available. The same proposed expenditure is now unattractive. More has been sunk, but the sensible response is less persistence because failure has taught the chooser something adverse.</p>
+
+<p>The past can also change what others will do next. A manager who abandons a project may reveal information about an earlier judgment and suffer a future career cost. Continuing can then serve the manager while harming the organization whose resources pay for it. Alternatively, a credible commitment to remain in a joint undertaking can encourage a partner to invest, changing the gains available to both. McAfee and his coauthors distinguish these reputational mechanisms. They explain why an observed association between prior investment and persistence cannot, by itself, diagnose a mistake. A private incentive, a cooperative commitment and an irrecoverable cost mistakenly counted again may produce similar outward behavior while answering different questions about benefit and loss.<sup class="snref"></sup></p>
+<aside class="sn">McAfee, Mialon and Mialon, §IV, pp. 13–20, separates reputation for commitment from reputation for ability. The difference between an agent's future payoff and the principal's payoff is essential to the second mechanism.</aside>
+
+<p>This leaves room for loyalty without making every lost expense sacred. A relationship can contain present affection, future obligations and another person's reliance, all of which a narrow cash account could omit. A damaged undertaking can still be worth repairing because the repair creates something valuable. The sunk-cost principle does not decide what should count as value or release anyone from an obligation merely because it began earlier. It asks whether the stated reason distinguishes the futures now available. The pain of acknowledging an error may itself be real, but allowing that pain to purchase indefinite further sacrifice gives the original error a continuing claim on the life that remains. Recognition and repetition are different ways of carrying a past.</p>
+
+<p class="pull">The past can teach the next decision without charging it the same cost again.</p>
+
+<p>The last unit thus draws a difficult boundary through memory. An irrecoverable payment supplies no additional gain from continuing; what it has taught, what it has built and what stopping will now change can matter greatly. The arithmetic is exact once the alternatives are faithfully described. Faithfully describing them is the human work. The chooser must separate a reason to persist from a wish that persistence would vindicate what has already happened. This is why the rule can be understood long before it becomes easy to obey. The next plate reaches the boundary of the marginal country itself, where choices arrive in lumps and the available measure can place a well-funded whim above an urgent need. The argument remains open.</p>
+</article>
+
+  <nav class="apparatus" aria-label="Related reading"><h2 class="app-h">Related</h2><ul class="app-list"><li><a href="the-margin-derivative.html"><span class="app-rel">The decision to begin or continue</span><span class="app-t">The Derivative</span><span class="app-g">The entry cost that a local operating condition cannot settle, and the alternatives that make it relevant.</span></a></li><li><a href="the-margin-edge.html"><span class="app-rel">The boundary of the comparison</span><span class="app-t">The Edge</span><span class="app-g">Indivisible choices, increasing returns and the limits of what a monetary margin can decide.</span></a></li><li><a href="../volumes/the-margin.html#plate-viii"><span class="app-rel">The recovered argument</span><span class="app-t">The Bygone — Collected</span><span class="app-g">The earlier distinction between a lost expenditure and the further resources a rescue would consume.</span></a></li><li><a href="../essays/numeraire-xxiv-vii-the-sunk.html"><span class="app-rel">The later behavioral treatment</span><span class="app-t">The Sunk — Utility</span><span class="app-g">The completed analysis of irreversible cost, account closure and information that changes the next forecast.</span></a></li></ul></nav>
+
+  <footer>
+    <nav class="crumbs foot" aria-label="Return">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-margin.html">The Margin &middot; Vol VI</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate xi</span>
+    </nav>
+    <p class="colophon">The eleventh plate of Volume VI, <em>The Margin</em>, adapted for the original Margin Sunk question from <a href="../quantities/numeraire-plate-the-cost.html">The Cost in Quantities</a>, <a href="../volumes/the-margin.html#plate-viii">The Bygone in the Collected Margin</a>, and the later <a href="../essays/numeraire-xxiv-vii-the-sunk.html">Utility Sunk</a>. The recovered irrecoverability argument is developed through prospective alternatives, mental accounting and the information conveyed by a failed investment. The earlier texts retain their own writing; the epigraph states this plate’s argument. Return to <a href="the-margin.html">the volume</a>, or to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-margin-reswitching.html">← The Reswitching</a><a rel="next" href="the-margin-edge.html">The Edge →</a></nav>
+</body>
+</html>

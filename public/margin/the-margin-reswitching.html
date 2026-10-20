@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Reswitching — Numéraire, The Margin, Plate x</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:66rem; --measure:35rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- ornament ---- */
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* ---- masthead ---- */
+  .masthead{padding:clamp(2.8rem,7vh,5rem) 0 clamp(1.4rem,3.5vh,2.2rem);text-align:center;}
+
+  /* breadcrumb */
+  .crumbs{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 400;
+    font-size:.8rem;letter-spacing:.04em;color:var(--faint);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:center;gap:.55rem;}
+  .crumbs a{text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .2s ease,color .2s ease;}
+  .crumbs a:hover{border-color:var(--num);color:var(--ink);}
+  .crumbs .sep{color:var(--faintest);}
+  .crumbs .here{color:var(--ink);}
+
+  /* plate cartouche: Mg over the plate numeral */
+  .plate-mark{width:116px;height:116px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:.18rem;line-height:1;}
+  .plate-mark.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pm-vol{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.84rem;letter-spacing:.06em;color:rgba(240,235,225,.62);}
+  .pm-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;
+    font-size:2.5rem;letter-spacing:.02em;text-transform:uppercase;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.3rem,6.5vw,4.4rem);line-height:1.02;letter-spacing:-.025em;margin:1rem 0 0;text-wrap:balance;}
+  .status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:42rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  /* ---- epigraph ---- */
+  .epi{max-width:38rem;margin:clamp(2.2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .epi q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.46;color:var(--ink);quotes:none;display:block;text-wrap:pretty;}
+  .epi .cite{display:block;margin-top:.95rem;font-size:.78rem;color:var(--faintest);letter-spacing:.05em;font-style:normal;}
+  .epi .cite em{font-style:italic;}
+
+  /* ---- the essay (with margin apparatus) ---- */
+  .essay{max-width:52rem;margin:clamp(3rem,7vh,5rem) auto 0;counter-reset:sn;}
+  .essay::after{content:"";display:block;clear:both;}
+  .essay > p,.essay > .pull{max-width:var(--measure);}
+  .essay p{font-size:1.075rem;line-height:1.8;color:var(--ink);margin:0 0 1.4rem;text-wrap:pretty;}
+  .essay em{font-style:italic;}
+  .essay .lede::first-letter{ }
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.72;padding:.08em .14em 0 0;color:var(--ink);}
+
+  /* movement divider */
+  .divider{display:flex;justify-content:center;margin:2.4rem 0;}
+  .divider svg{width:96px;height:12px;overflow:visible;}
+  .divider line{stroke:var(--num);stroke-width:1;} .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* pull quote */
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.5vw,1.74rem);line-height:1.34;color:var(--ink);text-align:center;
+    margin:2.4rem auto;max-width:33rem;text-wrap:balance;}
+
+  /* margin notes — inline by default, gutter on wide screens */
+  .snref{font-family:"Fraunces",serif;font-size:.64em;line-height:0;vertical-align:super;
+    color:var(--soft);counter-increment:sn;margin-left:1px;font-style:normal;}
+  .snref::after{content:counter(sn);}
+  .sn{display:block;max-width:var(--measure);margin:.1rem 0 1.4rem;padding:.15rem 0 .15rem 1.05rem;
+    border-left:1px solid var(--hair);font-size:.84rem;line-height:1.52;color:var(--faint);}
+  .sn::before{content:counter(sn);font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--faintest);margin-right:.5em;font-size:.92em;}
+  .sn em{font-style:italic;}
+
+  @media (min-width:64rem){
+    .sn{float:right;clear:right;width:15rem;margin:.35rem 0 1.3rem;padding:0;border-left:none;}
+    .divider,.pull,.apparatus{clear:both;}
+  }
+
+  /* ---- apparatus (related reading) ---- */
+  .apparatus{max-width:52rem;margin:clamp(3.2rem,7vh,5rem) auto 0;padding-top:2rem;border-top:1px solid var(--hair);clear:both;}
+  .app-h{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;}
+  .app-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.4rem;}
+  .app-list li{border-top:1px solid var(--hair);}
+  .app-list li:first-child,.app-list li:nth-child(2){border-top:none;}
+  .app-list a{display:block;text-decoration:none;padding:.95rem 0;}
+  .app-list a:hover .app-t{color:var(--soft);}
+  .app-rel{display:block;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faintest);margin-bottom:.3rem;}
+  .app-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.12rem;color:var(--ink);transition:color .2s ease;}
+  .app-g{display:block;font-size:.84rem;color:var(--faint);font-style:italic;line-height:1.4;margin-top:.22rem;}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(3.5rem,8vh,6rem);padding:2.2rem 0 4rem;border-top:1px solid var(--hair);}
+  .crumbs.foot{justify-content:flex-start;margin-bottom:1.3rem;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .plate-mark{width:96px;height:96px;}
+    .pm-num{font-size:2.1rem;}
+    .essay p{font-size:1.04rem;line-height:1.74;}
+    .dropcap{font-size:3rem;}
+    .app-list{grid-template-columns:1fr;}
+    .app-list li:nth-child(2){border-top:1px solid var(--hair);}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="crumbs rise d1" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-margin.html">The Margin &middot; Vol VI</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate x</span>
+    </nav>
+    <div class="plate-mark lit rise d2" aria-hidden="true">
+      <span class="pm-vol">Mg</span>
+      <span class="pm-num">x</span>
+    </div>
+    <h1 class="rise d3">The Reswitching</h1>
+    <div class="status rise d3">in print &middot; The Margin &middot; plate x</div>
+    <p class="standfirst rise d4">Capital can be counted in particular machines, but adding those machines by value introduces the return into the measure. Robinson exposes the difficulty; Sraffa shows why techniques need not fall into one stable ranking. A dated-labor illustration makes a method cheaper, then dearer, then cheaper again, while preserving the useful comparisons that the failure of a universal ordering leaves behind.</p>
+  </header>
+
+  <div class="epi rise d5"><q>A technique can return without a machine changing shape.</q><span class="cite">The argument of this plate, after Robinson and Sraffa</span></div>
+
+  <article class="essay">
+<p class="lede"><span class="dropcap">A</span> loom and a furnace can both belong to capital without becoming units of the same physical substance. One can count the looms, measure the furnace's capacity and describe the labor each requires. Adding them together means choosing a common measure, usually their value. The difficulty begins when that value depends on the return the combined quantity is supposed to explain. The earlier plate's workshop kept its machine services in a specified physical unit. Once its capital becomes the equipment of an entire economy, the apparently small convenience of writing a single letter for it carries a large theoretical commitment.</p>
+<p>Joan Robinson made the unit of that letter the opening question of her criticism of the aggregate production function. If capital is valued by the earnings it is expected to yield, its value depends on the rate at which those earnings are discounted. If it is valued by reproduction cost, the timing of the labor and other inputs used to make it matters, including the cost of waiting before the product is ready. An inventory of physical objects remains perfectly possible. What requires justification is the conversion of that heterogeneous inventory into a quantity independent of distribution, which can then determine distribution by its marginal product. Robinson's objection was directed at the reasoning embodied in the aggregate, rather than at the ability to count an actual machine.<sup class="snref"></sup></p>
+<aside class="sn"><a href="https://www.wu.ac.at/fileadmin/wu/d/economics/VW_Zentrum/Veranstaltungsunterlagen/Lesekreis/Reader_dt.pdf">Robinson, “The Production Function and the Theory of Capital” (1953–54), abridged reprint in <i>Contributions to Modern Economics</i> (1978), Introduction, pp. 76–79</a>. The reprint identifies its excisions and altered connecting words. The complete introduction distinguishes short-period physical stocks, discounted earnings and reproduction costs, while acknowledging the substantive problem of comparing different production methods.</aside>
+<p>A comparison between methods seems to promise a way through. As the rate of return rises, surely an undertaking will economize on waiting; as it falls, surely it will use a more capital-intensive technique. The intuition supplies an orderly staircase: each change in the price of capital moves production in one direction along the same ranking of methods. The capital controversy asked whether the ranking could be sustained when production was described in enough detail to include heterogeneous inputs and different dates. A method could be cheapest at a low rate, lose to another at an intermediate rate, and become cheapest again at a higher one. This return to a previously abandoned method is reswitching. It is a difficulty for the staircase, even though every individual choice remains a comparison of costs.</p>
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"></line><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"></rect><line x1="60" y1="6" x2="96" y2="6"></line></svg></div>
+<p>Sraffa's final chapter in <i>Production of Commodities by Means of Commodities</i> examines alternative methods of making the same commodity. As the general rate of profit changes, their prices of production can intersect more than once. For a product that does not enter the production of other goods, the comparison is relatively direct. When the product is an input into the rest of the system, changing its method changes the associated system of relative prices and wages. Sraffa therefore treats the comparison across systems explicitly. His result permits repeated changes in which method is cheaper. It removes a general ordering that one might have hoped to obtain from the techniques alone.<sup class="snref"></sup></p>
+<aside class="sn"><a href="https://www.nuevatribuna.es/media/nuevatribuna/files/2013/04/15/production_of_commodities_by_means_of_commodities.pdf">Sraffa, <i>Production of Commodities by Means of Commodities</i> (1960; Indian edition, 1963), chapter XII, §§92–94, pp. 97–102</a>. Section 92 introduces alternative methods for a non-basic product; §§93–94 address the comparison when a method changes the system producing a basic commodity. Multiple intersections are explicitly allowed.</aside>
+<p>A small illustration makes the return visible without requiring a whole industrial economy. Two techniques deliver one identical finished unit at the same date. Labor is their only original input, its wage is the same at every date, and every advance carries the same stipulated rate of interest. Technique A needs seventy units of labor two periods before delivery. Technique B needs forty-eight units one period before delivery and twenty-five units three periods before delivery. The labor is paid when it is used. All inputs and the finished product are certain; the example excludes taxes, depreciation and additional intermediate costs so that only the timing of the wage advances distinguishes their accounting.</p>
+<p>Let one plus the interest rate be <i>x</i>, and let the wage per unit of labor be <i>w</i>. Carried forward to the delivery date, A costs 70<i>w x</i><sup>2</sup>; B costs <i>w</i>(48<i>x</i> + 25<i>x</i><sup>3</sup>). At zero interest, their costs are seventy and seventy-three times the wage, so A is cheaper. At forty percent, A costs 137.2 times the wage and B costs 135.8: B is cheaper. At eighty percent, A costs 226.8 and B costs 232.2: A is cheaper again. These deliberately large hypothetical rates make the crossings easy to see. They are neither historical estimates nor a claim about how commonly firms experience this pattern.</p>
+<p>The equality points are twenty and sixty percent. Subtract B's cost from A's and the result is −25<i>w x</i>(<i>x</i> − 1.2)(<i>x</i> − 1.6). For a positive wage and nonnegative interest, A is cheaper below the first crossing and above the second; B is cheaper between them. Nothing physical has changed when A returns. The same seventy units are still supplied two periods before the product. The prices have changed the relative cost of the advances. Each method's cost rises with interest throughout the comparison, yet the difference between those rising costs changes sign twice. Confusing the behavior of each cost with the behavior of their difference would hide the result.<sup class="snref"></sup></p>
+<aside class="sn"><a href="https://www.nuevatribuna.es/media/nuevatribuna/files/2013/04/15/production_of_commodities_by_means_of_commodities.pdf">Sraffa, chapter XII, §§92 and 94, pp. 97–98, 100–102</a>, supplies the multiple-switching question. The dated-labor schedules, rates and factorization are this plate's own illustration. If B instead required seventy-three units at the same date as A's seventy, the cost difference would retain its sign: timing does not make every pair reswitch.</aside>
+<p>The illustration also explains why adding up the labor hours does not settle the comparison. A uses seventy units and B seventy-three, but B combines a later expenditure with an earlier one. A single total omits that distribution through time. Nor does choosing a final output price resolve the ranking in advance. If the finished unit sells for one and competition leaves no excess profit after the stipulated financing return, the wage each technique can support is the reciprocal of its cost coefficient. At the intermediate rate B supports the higher wage; at the lower and higher rates A does. The reciprocal comparison preserves both switches. Prices, the wage and the chosen technique have to be made consistent together.</p>
+<p>This is the force of the objection to using an aggregate capital value as though it were a physical quantity that could be measured first and priced afterward. The valuation can move when distribution changes, and a return to the same technique defeats the proposed one-direction ranking of techniques across the whole range. The claim that a lower return always selects a method unambiguously further along a scale of capital intensity requires assumptions that rule out such cases. The example establishes a possibility that a general theorem must accommodate. It supplies no estimate of the frequency of reswitching, and it does not identify every reversal in a measured capital-output ratio with the particular return of a technique shown here.<sup class="snref"></sup></p>
+<aside class="sn"><a href="https://www.wu.ac.at/fileadmin/wu/d/economics/VW_Zentrum/Veranstaltungsunterlagen/Lesekreis/Reader_dt.pdf">Robinson, Introduction, pp. 77–79</a>, identifies the dependence of capital valuation on interest, wages and timing. <a href="https://www.nuevatribuna.es/media/nuevatribuna/files/2013/04/15/production_of_commodities_by_means_of_commodities.pdf">Sraffa, §94, pp. 100–102</a>, states the limitation on a general ordering of alternative methods. The numerical example demonstrates reswitching, without pretending to measure its empirical prevalence.</aside>
+<p>What survives is substantial. A firm can compare specified technologies at the prices it faces. An engineer can describe how an additional hour changes output with particular machines held fixed. A detailed account can keep distinct capital goods distinct and solve for their prices together with the other variables. Robinson herself insisted that the real problem of comparing methods should be rescued from the defective aggregate. The criticism therefore calls for a more explicit account of the objects, timing and equilibrium conditions. A local marginal product remains an intelligible derivative where the model defines one; the step from that derivative to a universal story about the quantity and reward of capital needs a further argument.</p>
+<p>Sraffa's own treatment preserves conditional results rather than making every relation indeterminate. In the single-product systems considered in §95, a rise in the rate of profits is accompanied by a fall in the wage measured in any commodity, even as the selected methods change. The switches occur at intersections where the competing systems share the relevant wage and profit rate. His next section separately addresses joint production and states an additional qualification. These distinctions matter because an objection to one sweeping inference is not permission to replace it with another. The question is which result follows from which description of production.<sup class="snref"></sup></p>
+<aside class="sn"><a href="https://www.nuevatribuna.es/media/nuevatribuna/files/2013/04/15/production_of_commodities_by_means_of_commodities.pdf">Sraffa, chapter XII, §§95–96, pp. 103–104</a>. The wage-profit statement is made for systems of single-product industries; the joint-production extension carries an express condition in the final footnote. The Preface, pp. v–vii, also distinguishes the book's given-output comparison from an inquiry into marginal changes in scale.</aside>
+<p class="pull">The return of a technique breaks the staircase, not the comparison of costs.</p>
+<p>Paying a specified service according to what another unit adds remains a question one can ask. Calling that payment the reward of an independently measured aggregate called capital is a larger claim. The controversy exposes the distance between them and asks the theory to carry its units, its dates and its assumptions across that distance openly. The next plate, <a href="the-margin-sunk.html">The Sunk</a>, turns from the valuation of methods to a cost already incurred: another place where an account of the past can be mistaken for a reason governing the next act. The margin remains useful when it tells us exactly what is being varied. The argument remains open.</p>
+</article>
+
+  <nav class="apparatus" aria-label="Related reading"><h2 class="app-h">Related</h2><ul class="app-list"><li><a href="the-margin-product.html"><span class="app-rel">The preceding question</span><span class="app-t">The Product</span><span class="app-g">Marginal payments can exhaust a specified constant-returns product while leaving ownership and the measurement of aggregate capital unresolved.</span></a></li><li><a href="../volumes/the-share.html#plate-v"><span class="app-rel">Collected edition</span><span class="app-t">The Two Cambridges</span><span class="app-g">The complete earlier treatment supplies the controversy over heterogeneous capital, valuation and a technique that returns.</span></a></li><li><a href="the-rate-detour.html"><span class="app-rel">Production through time</span><span class="app-t">The Detour</span><span class="app-g">The time taken by a productive method introduces waiting and the financing of advances into its apparent advantage.</span></a></li><li><a href="the-margin-sunk.html"><span class="app-rel">Next in this volume</span><span class="app-t">The Sunk</span><span class="app-g">A cost already incurred must be separated from the future alternatives that can still be changed.</span></a></li></ul></nav>
+
+  <footer>
+    <nav class="crumbs foot" aria-label="Return">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-margin.html">The Margin &middot; Vol VI</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate x</span>
+    </nav>
+    <p class="colophon">Adapted from the complete <a href="../volumes/the-share.html#plate-v">Collected Two Cambridges</a> for the original Margin Reswitching plan. The earlier treatment remains intact. The present plate distinguishes valuation, the possibility of repeated switches and their limits, with a new dated-labor illustration. Return to <a href="the-margin.html">the volume</a>, or to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-margin-product.html">← The Product</a><a rel="next" href="the-margin-sunk.html">The Sunk →</a></nav>
+</body>
+</html>

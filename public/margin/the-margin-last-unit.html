@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Last Unit — Numéraire, The Margin, Plate iii</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:66rem; --measure:35rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- ornament ---- */
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* ---- masthead ---- */
+  .masthead{padding:clamp(2.8rem,7vh,5rem) 0 clamp(1.4rem,3.5vh,2.2rem);text-align:center;}
+
+  /* breadcrumb */
+  .crumbs{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 400;
+    font-size:.8rem;letter-spacing:.04em;color:var(--faint);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:center;gap:.55rem;}
+  .crumbs a{text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .2s ease,color .2s ease;}
+  .crumbs a:hover{border-color:var(--num);color:var(--ink);}
+  .crumbs .sep{color:var(--faintest);}
+  .crumbs .here{color:var(--ink);}
+
+  /* plate cartouche: Mg over the plate numeral */
+  .plate-mark{width:116px;height:116px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:.18rem;line-height:1;}
+  .plate-mark.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pm-vol{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.84rem;letter-spacing:.06em;color:rgba(240,235,225,.62);}
+  .pm-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;
+    font-size:2.5rem;letter-spacing:.02em;text-transform:uppercase;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.3rem,6.5vw,4.4rem);line-height:1.02;letter-spacing:-.025em;margin:1rem 0 0;text-wrap:balance;}
+  .status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:42rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  /* ---- epigraph ---- */
+  .epi{max-width:38rem;margin:clamp(2.2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .epi q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.46;color:var(--ink);quotes:none;display:block;text-wrap:pretty;}
+  .epi .cite{display:block;margin-top:.95rem;font-size:.78rem;color:var(--faintest);letter-spacing:.05em;font-style:normal;}
+  .epi .cite em{font-style:italic;}
+
+  /* ---- the essay (with margin apparatus) ---- */
+  .essay{max-width:52rem;margin:clamp(3rem,7vh,5rem) auto 0;counter-reset:sn;}
+  .essay::after{content:"";display:block;clear:both;}
+  .essay > p,.essay > .pull{max-width:var(--measure);}
+  .essay p{font-size:1.075rem;line-height:1.8;color:var(--ink);margin:0 0 1.4rem;text-wrap:pretty;}
+  .essay em{font-style:italic;}
+  .essay .lede::first-letter{ }
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.72;padding:.08em .14em 0 0;color:var(--ink);}
+
+  /* movement divider */
+  .divider{display:flex;justify-content:center;margin:2.4rem 0;}
+  .divider svg{width:96px;height:12px;overflow:visible;}
+  .divider line{stroke:var(--num);stroke-width:1;} .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* pull quote */
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.5vw,1.74rem);line-height:1.34;color:var(--ink);text-align:center;
+    margin:2.4rem auto;max-width:33rem;text-wrap:balance;}
+
+  /* margin notes — inline by default, gutter on wide screens */
+  .snref{font-family:"Fraunces",serif;font-size:.64em;line-height:0;vertical-align:super;
+    color:var(--soft);counter-increment:sn;margin-left:1px;font-style:normal;}
+  .snref::after{content:counter(sn);}
+  .sn{display:block;max-width:var(--measure);margin:.1rem 0 1.4rem;padding:.15rem 0 .15rem 1.05rem;
+    border-left:1px solid var(--hair);font-size:.84rem;line-height:1.52;color:var(--faint);}
+  .sn::before{content:counter(sn);font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--faintest);margin-right:.5em;font-size:.92em;}
+  .sn em{font-style:italic;}
+
+  @media (min-width:64rem){
+    .sn{float:right;clear:right;width:15rem;margin:.35rem 0 1.3rem;padding:0;border-left:none;}
+    .divider,.pull,.apparatus{clear:both;}
+  }
+
+  /* ---- apparatus (related reading) ---- */
+  .apparatus{max-width:52rem;margin:clamp(3.2rem,7vh,5rem) auto 0;padding-top:2rem;border-top:1px solid var(--hair);clear:both;}
+  .app-h{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;}
+  .app-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.4rem;}
+  .app-list li{border-top:1px solid var(--hair);}
+  .app-list li:first-child,.app-list li:nth-child(2){border-top:none;}
+  .app-list a{display:block;text-decoration:none;padding:.95rem 0;}
+  .app-list a:hover .app-t{color:var(--soft);}
+  .app-rel{display:block;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faintest);margin-bottom:.3rem;}
+  .app-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.12rem;color:var(--ink);transition:color .2s ease;}
+  .app-g{display:block;font-size:.84rem;color:var(--faint);font-style:italic;line-height:1.4;margin-top:.22rem;}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(3.5rem,8vh,6rem);padding:2.2rem 0 4rem;border-top:1px solid var(--hair);}
+  .crumbs.foot{justify-content:flex-start;margin-bottom:1.3rem;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .plate-mark{width:96px;height:96px;}
+    .pm-num{font-size:2.1rem;}
+    .essay p{font-size:1.04rem;line-height:1.74;}
+    .dropcap{font-size:3rem;}
+    .app-list{grid-template-columns:1fr;}
+    .app-list li:nth-child(2){border-top:1px solid var(--hair);}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="crumbs rise d1" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-margin.html">The Margin &middot; Vol VI</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate iii</span>
+    </nav>
+    <div class="plate-mark lit rise d2" aria-hidden="true">
+      <span class="pm-vol">Mg</span>
+      <span class="pm-num">iii</span>
+    </div>
+    <h1 class="rise d3">The Last Unit</h1>
+    <div class="status rise d3">in print &middot; The Margin &middot; plate iii</div>
+    <p class="standfirst rise d4">The importance of having a supply and the importance of one more unit are different questions. The falling margin explains how abundance can leave an indispensable good with little value at the edge, while Menger’s reallocation argument shows why identical units share the same marginal importance. This plate follows that distinction into willingness to pay, asking what the price of an increment can tell us—and what it cannot tell us about the whole supply or another person’s need.</p>
+  </header>
+
+  <div class="epi rise d5"><q>The whole supply protects the first necessity; the last unit protects the last use.</q><span class="cite">The argument of this plate</span></div>
+
+  <article class="essay">
+<p class="lede"><span class="dropcap">T</span>he last glass does not contain a different water. It is drawn from the same well, held in the same kind of vessel, and capable of the same service as the first. Yet a person who would surrender almost anything for the first may leave the last untouched. The change is in what remains to be done. Thirst has been relieved; the meal is cooked; the plants have been watered. One further glass now stands before a want much less pressing than the wants its predecessors have already answered. The whole supply may still sustain a life. Its next addition may have no use. The marginal argument begins by refusing to make these two statements contradict one another.</p>
+<p>The earlier <em>Gradient</em> gave this thought its natural image: a total can continue climbing while the slope of its ascent grows gentler. Jevons separated the utility attributed to an entire quantity from the utility of a small increment, which he called its final degree. A total is an accumulation; a margin is the change occasioned by another portion. When the increments remain positive but diminish, each contributes less without undoing what the earlier increments contributed. Only when further consumption becomes burdensome does the addition turn negative and the total fall. It is an elementary distinction, but it changes the question addressed to a useful thing. The buyer is seldom being asked whether to have food at all. He is deciding what to sacrifice for more food, given the food he can already count upon.<sup class="snref"></sup></p>
+<aside class="sn">Jevons, <a href="https://www.econlib.org/library/YPDBooks/Jevons/jvnPE.html?chapter_num=7"><em>The Theory of Political Economy</em></a>, ch. III, “Total Utility and Degree of Utility,” “Variation of the Final Degree of Utility,” and “Disutility and Discommodity.” The linked third edition is dated 1888; the work first appeared in 1871. The distinction is between a total and its increment, not between a useful object and an altogether useless one.</aside>
+<p>This is the intuition associated with Gossen’s first law. Its force is easiest to see when the comparison is kept still: the same person, a specified interval, the same kind of good, the other circumstances of use understood. Tomorrow’s first meal is not today’s fifth. A second boot that completes a pair is not simply another repetition of the service supplied by a solitary first boot. Nor does a growing collection necessarily resemble a stomach approaching fullness. Jevons himself formulated an ultimate decline and discussed wants that were less readily satiated. The proposition asks us to examine what an increment adds under particular conditions; it gives no licence to count objects while letting their purpose change unnoticed. The word <em>more</em> is precise only after we have said more of what, for whom, and when.<sup class="snref"></sup></p>
+<aside class="sn">Jevons, ch. III, “Utility is not an Intrinsic Quality” and “Variation of the Final Degree of Utility.” His <a href="https://www.econlib.org/library/YPDBooks/Jevons/jvnPE.html?chapter_num=2">1879 preface to the second edition</a> credits Gossen’s earlier treatment, explicitly reporting it through Robert Adamson. The boot and changing-interval examples here delimit the comparison; they are illustrations, not reported experiments.</aside>
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg></div>
+<p>There is a second, subtler question. If all the glasses are interchangeable, which one is the precious first and which the dispensable last? Label a jug “drinking” and another “flowers,” then break the drinking jug. A sensible owner will not let the flowers flourish while he dies of thirst. He will pour their water into a drinking vessel. What disappears is the least important use the stock had made possible, wherever the physical loss occurred. Menger made this reallocation central to his account of a farmer’s grain. The bushel devoted to survival has no special economic substance that distinguishes it from an identical bushel devoted to a lesser purpose. Losing either leaves the farmer free to protect the more important purposes with the stock remaining. The value of a removable unit follows the use relinquished after that rearrangement.<sup class="snref"></sup></p>
+<aside class="sn">Menger, <a href="https://competitionandappropriation.econ.ucla.edu/wp-content/uploads/sites/95/2020/12/Mengerprinciples.pdf"><em>Principles of Economics</em></a>, ch. III, §2B, pp. 128–141, especially pp. 129–133. The linked electronic edition reproduces the Dingwall–Hoselitz English translation. Homogeneous units and the ability to reallocate the remaining supply are essential to the argument.</aside>
+<p>Think of an invented household holding four identical measures of water, each sufficient for one of four separate uses. Its ordering is drinking, cooking, washing, then flowers. Losing any one measure need cost it only the flowers; losing two reaches the washing as well. Losing all four reaches drinking. No one has changed his mind about the importance of staying alive. What changed was the extent of the loss. The claim that each measure is worth the least urgent protected use concerns the removal of <em>one</em> measure from a stock of four. It cannot be multiplied by four to value the removal of the entire stock, because after the first removal we are no longer considering the same margin. The danger grows as the reserve disappears. An argument about a small surrender becomes false when silently turned into an argument about surrendering everything.</p>
+<p class="pull">The last unit is the use you would have to abandon, not a particular object marked for abandonment.</p>
+<p>This also explains why abundance need not imply contempt. A household can care enormously about clean water and bid very little for an extra measure once its purposes are secure. Its low valuation of the increment may be the consequence of provision having succeeded. Conversely, a drought can make an unchanged quantity of water newly precious because the next loss now reaches a use that matters more. The paradox of value arose from asking a price for a portion to report the importance of the entire class of goods. Distinguish the portion from the whole, and the contradiction dissolves. What remains is a more demanding inquiry into the supply actually available, the uses competing for it, and the alternatives available to the person making the choice.</p>
+<p>To turn that inquiry into money demand requires another step. The purchaser who gives up a coin also gives up what the coin would have bought elsewhere. A utility increment and a price do not become comparable merely by placing them on the same page. Consider a deliberately simple example in which a buyer has twenty pounds, a divisible good called <em>x</em>, and money <em>m</em> retained for other purchases. Represent his ranking by <em>U</em> = 10<em>x</em> − <em>x</em>² + <em>m</em>. At a price of four pounds, three units are best: they contribute twenty-one to the index, while the eight pounds remaining contribute eight, for a total of twenty-nine. At two pounds, four units are best, leaving twelve pounds and a total index of thirty-six. The next unit has a falling contribution, and the lower price brings a larger purchase. This example works so cleanly because an extra pound retained always adds one to the chosen index, and the buyer retains some money at both solutions.<sup class="snref"></sup></p>
+<aside class="sn">The numerical example is invented: <em>px + m</em> = 20, <em>x,m</em> ≥ 0. Substitution gives <em>U</em> = 20 + (10 − <em>p</em>)<em>x</em> − <em>x</em>², uniquely maximized at <em>x</em> = (10 − <em>p</em>)/2 when feasible. At prices 4 and 2 the bundles are (3, 8) and (4, 12). The numbers describe a ranking under these assumptions, not measured pleasure. The budget-to-margin conversion develops the later Utility edition’s <a href="../essays/numeraire-viii-ii-the-margin.html">The Margin</a>.</aside>
+<p>It would be a mistake to promote this convenient example into a universal translation rule. Change the value of the expenditure left for other things, allow other goods to alter the usefulness of this one, or bring the buyer against a binding limit, and the falling curve of a particular utility index ceases to be the whole story of demand. Even its curvature is not sacred. A strictly increasing relabelling of the index preserves which affordable bundle is best while potentially changing whether its marginal utility rises or falls. The trade-off with other goods survives; the numerical slope considered alone need not. The ordinal reconstruction, taken up in <em>The Order</em>, will preserve the decision at the margin while asking less of the invisible magnitude once used to explain it.<sup class="snref"></sup></p>
+<aside class="sn">Hicks and Allen, <a href="https://benjaminmoll.com/Hicks_Allen_part1/">“A Reconsideration of the Theory of Value,” Part I</a> (1934), pp. 52–60, distinguish an ordinal index from measurable utility and reconstruct the marginal condition through substitution. In particular, diminishing marginal utility and the shape of the indifference map cannot simply be treated as interchangeable assertions.</aside>
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg></div>
+<p>Nor can a buyer’s last-unit valuation, however carefully expressed, settle a market price by itself. Someone must supply the unit on terms he is willing to accept; other buyers may want it; the quantity offered may change. And the money with which buyers express their wants is unequally distributed. An urgent need can make a small monetary bid when its bearer has little to surrender. The margin explains the choice conditional on those means. It does not turn the resulting bid into a common measure of everyone’s need, still less an answer to whose need should prevail. The water may be allocated according to bids without the bids measuring the importance of thirst.</p>
+<p>The gain is nevertheless immense. We can now understand why the whole of a thing is precious while another unit is worth nothing, without pretending that either observation is a mistake. A unit matters through the difference its presence makes; what is already secure is not at stake in every small purchase. But the difference can be understood only beside the other differences the same resources might have made. Once another measure of water matters less than a little bread, keeping expenditure fixed in its old channels becomes an avoidable sacrifice. The falling margin thus opens directly into the next question: how to distribute a purse among competing uses so that no affordable rearrangement can make it serve us better. That is the balance to which the next plate turns.</p>
+</article>
+
+  <nav class="apparatus" aria-label="Related reading"><h2 class="app-h">Related</h2><ul class="app-list"><li><a href="the-revolution.html"><span class="app-rel">The preceding plate</span><span class="app-t">The Revolution</span><span class="app-g">The turn toward the final increment that gave the theory of value a new starting point.</span></a></li><li><a href="the-margin-balance.html"><span class="app-rel">The next plate</span><span class="app-t">The Balance</span><span class="app-g">How a fixed purse moves between competing uses, and when the last coin can be made to count the same.</span></a></li><li><a href="the-margin-scissors.html"><span class="app-rel">The other side of price</span><span class="app-t">The Scissors</span><span class="app-g">A buyer’s marginal valuation meets the supply conditions that determine what can be offered.</span></a></li><li><a href="the-margin-order.html"><span class="app-rel">The surviving trade-off</span><span class="app-t">The Order</span><span class="app-g">How marginal choice survives a change in the utility numbers—and why an index’s curvature need not survive with it.</span></a></li></ul></nav>
+
+  <footer>
+    <nav class="crumbs foot" aria-label="Return">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-margin.html">The Margin &middot; Vol VI</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate iii</span>
+    </nav>
+    <p class="colophon">The third plate of the Margin edition’s <em>The Margin</em>, adapted and developed from the Quantities edition’s <a href="../quantities/numeraire-plate-the-gradient.html">The Gradient</a> and the Collected edition’s <a href="../volumes/the-margin.html#plate-iii">The Diminishing</a>, with the later Utility edition’s <a href="../essays/numeraire-viii-ii-the-margin.html">The Margin</a> carrying the distinction into monetary demand. The original Margin question is retained; the argument is developed through Jevons, Menger and the ordinal reconstruction, with an original worked example. The distinct earlier editions remain in place. The epigraph is original to this plate. Return to <a href="the-margin.html">the volume</a>, or to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-revolution.html">← The Revolution</a><a rel="next" href="the-margin-balance.html">The Balance →</a></nav>
+</body>
+</html>

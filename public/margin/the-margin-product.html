@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Product — Numéraire, The Margin, Plate ix</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:66rem; --measure:35rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- ornament ---- */
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* ---- masthead ---- */
+  .masthead{padding:clamp(2.8rem,7vh,5rem) 0 clamp(1.4rem,3.5vh,2.2rem);text-align:center;}
+
+  /* breadcrumb */
+  .crumbs{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 400;
+    font-size:.8rem;letter-spacing:.04em;color:var(--faint);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:center;gap:.55rem;}
+  .crumbs a{text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .2s ease,color .2s ease;}
+  .crumbs a:hover{border-color:var(--num);color:var(--ink);}
+  .crumbs .sep{color:var(--faintest);}
+  .crumbs .here{color:var(--ink);}
+
+  /* plate cartouche: Mg over the plate numeral */
+  .plate-mark{width:116px;height:116px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:.18rem;line-height:1;}
+  .plate-mark.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pm-vol{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.84rem;letter-spacing:.06em;color:rgba(240,235,225,.62);}
+  .pm-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;
+    font-size:2.5rem;letter-spacing:.02em;text-transform:uppercase;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.3rem,6.5vw,4.4rem);line-height:1.02;letter-spacing:-.025em;margin:1rem 0 0;text-wrap:balance;}
+  .status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:42rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  /* ---- epigraph ---- */
+  .epi{max-width:38rem;margin:clamp(2.2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .epi q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.46;color:var(--ink);quotes:none;display:block;text-wrap:pretty;}
+  .epi .cite{display:block;margin-top:.95rem;font-size:.78rem;color:var(--faintest);letter-spacing:.05em;font-style:normal;}
+  .epi .cite em{font-style:italic;}
+
+  /* ---- the essay (with margin apparatus) ---- */
+  .essay{max-width:52rem;margin:clamp(3rem,7vh,5rem) auto 0;counter-reset:sn;}
+  .essay::after{content:"";display:block;clear:both;}
+  .essay > p,.essay > .pull{max-width:var(--measure);}
+  .essay p{font-size:1.075rem;line-height:1.8;color:var(--ink);margin:0 0 1.4rem;text-wrap:pretty;}
+  .essay em{font-style:italic;}
+  .essay .lede::first-letter{ }
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.72;padding:.08em .14em 0 0;color:var(--ink);}
+
+  /* movement divider */
+  .divider{display:flex;justify-content:center;margin:2.4rem 0;}
+  .divider svg{width:96px;height:12px;overflow:visible;}
+  .divider line{stroke:var(--num);stroke-width:1;} .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* pull quote */
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.5vw,1.74rem);line-height:1.34;color:var(--ink);text-align:center;
+    margin:2.4rem auto;max-width:33rem;text-wrap:balance;}
+
+  /* margin notes — inline by default, gutter on wide screens */
+  .snref{font-family:"Fraunces",serif;font-size:.64em;line-height:0;vertical-align:super;
+    color:var(--soft);counter-increment:sn;margin-left:1px;font-style:normal;}
+  .snref::after{content:counter(sn);}
+  .sn{display:block;max-width:var(--measure);margin:.1rem 0 1.4rem;padding:.15rem 0 .15rem 1.05rem;
+    border-left:1px solid var(--hair);font-size:.84rem;line-height:1.52;color:var(--faint);}
+  .sn::before{content:counter(sn);font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--faintest);margin-right:.5em;font-size:.92em;}
+  .sn em{font-style:italic;}
+
+  @media (min-width:64rem){
+    .sn{float:right;clear:right;width:15rem;margin:.35rem 0 1.3rem;padding:0;border-left:none;}
+    .divider,.pull,.apparatus{clear:both;}
+  }
+
+  /* ---- apparatus (related reading) ---- */
+  .apparatus{max-width:52rem;margin:clamp(3.2rem,7vh,5rem) auto 0;padding-top:2rem;border-top:1px solid var(--hair);clear:both;}
+  .app-h{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;}
+  .app-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.4rem;}
+  .app-list li{border-top:1px solid var(--hair);}
+  .app-list li:first-child,.app-list li:nth-child(2){border-top:none;}
+  .app-list a{display:block;text-decoration:none;padding:.95rem 0;}
+  .app-list a:hover .app-t{color:var(--soft);}
+  .app-rel{display:block;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faintest);margin-bottom:.3rem;}
+  .app-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.12rem;color:var(--ink);transition:color .2s ease;}
+  .app-g{display:block;font-size:.84rem;color:var(--faint);font-style:italic;line-height:1.4;margin-top:.22rem;}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(3.5rem,8vh,6rem);padding:2.2rem 0 4rem;border-top:1px solid var(--hair);}
+  .crumbs.foot{justify-content:flex-start;margin-bottom:1.3rem;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .plate-mark{width:96px;height:96px;}
+    .pm-num{font-size:2.1rem;}
+    .essay p{font-size:1.04rem;line-height:1.74;}
+    .dropcap{font-size:3rem;}
+    .app-list{grid-template-columns:1fr;}
+    .app-list li:nth-child(2){border-top:1px solid var(--hair);}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="crumbs rise d1" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-margin.html">The Margin &middot; Vol VI</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate ix</span>
+    </nav>
+    <div class="plate-mark lit rise d2" aria-hidden="true">
+      <span class="pm-vol">Mg</span>
+      <span class="pm-num">ix</span>
+    </div>
+    <h1 class="rise d3">The Product</h1>
+    <div class="status rise d3">in print &middot; The Margin &middot; plate ix</div>
+    <p class="standfirst rise d4">A common product can be divided exactly without the division explaining its own justice. Clark asks what each factor creates; Wicksteed asks whether marginal payments exhaust the whole. The answer depends on the technology, the market and the ownership of the productive claims, and a change in any one can leave the arithmetic intact while altering who receives the income.</p>
+  </header>
+
+  <div class="epi rise d5"><q>An exact division still leaves a question of ownership.</q><span class="cite">The argument of this plate, after Clark, Wicksteed and Arrow</span></div>
+
+  <article class="essay">
+<p class="lede"><span class="dropcap">T</span>he worker leaves the mill with less than the value of everything made there that day. The owner keeps a return; the building and the machines have claims upon the receipts; other hands must be paid. To call the difference a theft, or to call it a just reward, requires an account of how a common product can belong in parts to those who made it together. The marginal theory offers such an account. It asks what one more unit of each productive service would add, pays that unit accordingly, and then asks whether the several payments exhaust the whole. The result can be exact. The question is how much justice an exact division contains.</p>
+<p>John Bates Clark made this question the opening concern of his <i>Distribution of Wealth</i>. His proposed natural law would give each productive agent what it creates when competition operates without obstruction. He wanted to identify the part attributable to labor separately from the parts attributable to capital and coordination, and thereby answer the charge that workers regularly leave their own product in another person's hands. Yet his opening chapter also distinguishes this inquiry from the further ethical question whether payment according to product is the highest standard of justice. Need might support another rule. Clark's confidence about the foundation of property was considerable; his stated inquiry nevertheless contained a boundary that a summary of his argument can too easily erase.<sup class="snref"></sup></p>
+<aside class="sn"><a href="https://oll-resources.s3.us-east-2.amazonaws.com/oll3/store/titles/329/Clark_0190_EBk_v6.0.pdf">Clark, <i>The Distribution of Wealth</i> (1899; 1908 edition), Preface and chapter I</a>. The opening chapter distinguishes functional from personal distribution and expressly leaves the ultimate ethical rule to a further inquiry. The linked Liberty Fund transcription preserves that qualification as well as Clark's argument that competition identifies products and payments.</aside>
+<p>The firm's hiring decision supplies the first part of the reasoning. Hold its other inputs fixed and let an extra hour of work produce an additional quantity of goods. If the firm can sell every additional unit at an unchanged price, multiplying that price by the physical increment gives the hour's marginal revenue product. A firm taking the wage as given gains from another hour when this additional receipt exceeds the wage. In a smooth, interior optimum, with diminishing returns sufficient to make the stopping point a maximum, the two are equal. An output seller whose extra sales lower its selling price must instead count the change in total revenue. A buyer whose additional hiring raises the wages it must pay faces a different marginal cost of labor. The familiar equality belongs to a particular competitive setting; its assumptions determine which equality is relevant.</p>
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"></line><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"></rect><line x1="60" y1="6" x2="96" y2="6"></line></svg></div>
+<p>The marginal product describes a change in the joint undertaking, rather than a little parcel that one person has made alone. Consider an illustrative workshop whose output is the square root of the product of its machine services and labor hours: <i>Q</i> = √(<i>K L</i>). The services are homogeneous, divisible quantities, and the output price is one. With one hundred units of each input, output is one hundred. At that point a small addition to either input yields approximately half a unit of output per extra input unit. Paying each input its marginal product therefore assigns fifty to labor and fifty to machine services. The account balances. Removing all the workers would remove the entire product; removing all the machine services would do the same. Those two statements about necessity are compatible with the two marginal payments. They answer different questions about the same cooperative process.</p>
+<p>The balancing of the account follows from a property of the production function. Double both inputs in this workshop and output doubles: the technology has constant returns to scale. For a differentiable function with that property, Euler's theorem says that each input multiplied by its partial derivative, summed over all inputs, equals total output. At competitive marginal-product prices, with a common output price and all productive inputs included, the payments consequently exhaust revenue. Wicksteed's 1894 essay placed this exhaustion problem at the center of distribution. Its discussion connects the result to proportional increases in all factors and acknowledges the complications of market power and indivisibility. The mathematical identity remains precise when its homogeneity assumption is stated; treating that assumption as an automatic property of every business would give the calculation more reach than it possesses.<sup class="snref"></sup></p>
+<aside class="sn"><a href="https://www.byterfly.eu/islandora/object/librib%3A605475/datastream/PDF/content/librib_605475.pdf">Wicksteed, <i>An Essay on the Co-ordination of the Laws of Distribution</i> (1894), §6, pp. 32–43</a>. The exhaustion formula appears on p. 38. The square-root workshop is this plate's illustration: <i>K F</i><sub>K</sub> + <i>L F</i><sub>L</sub> = <i>F</i>. Its machine-service payment is a rental payment for a specified input, not an identified economy-wide interest rate.</aside>
+<p>The assumption can be tested by changing it. Suppose instead that output were <i>K L</i>. Doubling both inputs would quadruple the product, and paying both their derivatives would distribute twice the output: each input's quantity multiplied by its derivative already equals the whole. The proposed payments could not both be met from the receipts. That counterexample leaves Euler's theorem intact. For a differentiable production function homogeneous of degree two, the same sum is twice the product. It shows why a calculation about exhaustion cannot silently migrate from constant to increasing returns, or from a complete list of inputs to a list that omits a scarce site, a design or an organizing capacity. A residual is a reason to examine the specification and the market conditions before pronouncing upon anyone's entitlement.</p>
+<p>Wicksteed himself returned to the limits of his first solution. In <i>The Common Sense of Political Economy</i> he expressly withdrew §6 of the 1894 essay and offered a revised account centered on substitution, market alternatives and the expectations under which productive services are bought. Payments are often promised before the finished product is sold. Success and failure can leave the undertaking with more or less than it anticipated. His correction matters here because the elegance of a theorem can tempt its admirers to suppress the qualifications of its own authors. The exhaustion identity is a conditional mathematical result; the determination of actual payments also requires an account of prices, bargaining, expectations and the alternatives available to the parties.<sup class="snref"></sup></p>
+<aside class="sn"><a href="https://www.econlib.org/library/Wicksteed/wkCS.html?chapter_num=11">Wicksteed, <i>The Common Sense of Political Economy</i> (1910), book I, chapter IX, distribution discussion and note 41</a>. The note withdraws the earlier §6 solution; the surrounding discussion examines marginal substitution, commitments, anticipated proceeds and their possible disappointment. The narrower constant-returns identity used here is proved directly by the stated example and homogeneity condition.</aside>
+<p>Even inside that competitive model, a rise in one person's measured product can come from the equipment placed beside him. Return to the square-root workshop and keep labor at one hundred while raising machine services to four hundred. Output becomes two hundred. Labor's marginal product rises from one-half to one, so its marginal-product wage bill rises from fifty to one hundred without any change in the stipulated labor hours or their quality. Machine services receive the other hundred. The worker's contribution in this comparison is real, but it is conditional on the resources with which he works. The derivative measures the consequence of changing his input while holding those resources fixed. It cannot, by itself, separate his moral achievement from every advantage supplied by the surrounding world.</p>
+<p>Ownership then carries the functional payments into personal incomes. In the first workshop, where labor receives fifty and machine services fifty, imagine that the workers own the machines collectively. They receive both streams. Imagine instead that one outside owner holds the same machines and rents exactly the same services on exactly the same terms. Production, the two marginal products and the division between labor and machine-service payments are unchanged, while the distribution among people has changed sharply. This comparison assumes that the transfer of ownership changes neither behavior nor technology, precisely to isolate the point. In practice those consequences may matter too. The equality of factor prices with marginal products contains no answer to who should own the factors whose prices it explains.<sup class="snref"></sup></p>
+<aside class="sn"><a href="https://oll-resources.s3.us-east-2.amazonaws.com/oll3/store/titles/329/Clark_0190_EBk_v6.0.pdf">Clark, chapter I, discussion of personal and functional distribution</a>. Clark explicitly observes that a single person's receipts may combine wages, interest and entrepreneurial gains. The ownership comparison here holds the physical allocation and competitive payments fixed; it is an illustration of that distinction, not a claim that ownership never changes production.</aside>
+<p>The same boundary appears in the claim that competitive allocation is efficient. Under the relevant assumptions, an allocation may leave no feasible way to make someone better off without making someone else worse off. That result does not select the initial distribution of wealth, and it does not rank two efficient allocations by their fairness. Arrow's account of the welfare theorems makes the dependence on initial resources and ownership explicit. One can therefore take marginal-product pricing seriously as part of a model of allocation and still ask whether the resources, opportunities and rights entering that model should be distributed differently. The ethical question survives the exactness of the economic calculation.<sup class="snref"></sup></p>
+<aside class="sn"><a href="https://www.nobelprize.org/uploads/2018/06/arrow-lecture.pdf">Arrow, “General Economic Equilibrium: Purpose, Analytic Techniques, Collective Choice” (1972), §5, pp. 120–123, and §8, pp. 128–130</a>. The first unit distinguishes efficiency and supporting prices, including corners; the second explains why market coordination leaves a collective distributive question. Neither identifies Pareto efficiency with equality or with a complete theory of justice.</aside>
+<p>The distinction becomes harder still when the machine services of a particular workshop are replaced by the capital of an entire economy. Looms and furnaces, buildings and unfinished goods can each enter a detailed production account. Adding them into a single quantity raises a question about the prices used to value them, and those prices may themselves depend on the return that the aggregate is supposed to explain. <a href="the-margin-reswitching.html">The Reswitching</a> takes up that difficulty next. It concerns the extension of the simple model across heterogeneous production and time. The present workshop has deliberately kept its machine services in a specified physical unit so that its arithmetic can be seen before the larger claim is made.</p>
+<p class="pull">An exact division of the product leaves the ownership of its claims to be justified.</p>
+<p>The margin gives the employer a disciplined question about another hour of work and gives the economist a conditional account of how productive services are priced. Constant returns can make the resulting shares add up to the last unit. What follows for justice depends on further judgments: about the ownership of the services, the opportunities behind their productivity and the standard by which a person's claim is assessed. The equation can expose an inconsistency in an account of production. It can clarify what must change if a proposed payment changes. The fairness of the division still asks who stands behind each input, how that position was acquired and what the people involved owe to one another. The argument remains open.</p>
+</article>
+
+  <nav class="apparatus" aria-label="Related reading"><h2 class="app-h">Related</h2><ul class="app-list"><li><a href="the-wage-margin.html"><span class="app-rel">The labor case</span><span class="app-t">The Margin</span><span class="app-g">The wage inquiry isolates the extra worker, whose contribution depends on the equipment and alternatives around the job.</span></a></li><li><a href="the-margin-reswitching.html"><span class="app-rel">Next in this volume</span><span class="app-t">The Reswitching</span><span class="app-g">The specified machine service becomes a heterogeneous capital stock, and its measure begins to depend on the return it is meant to explain.</span></a></li><li><a href="../volumes/the-share.html#plate-iv"><span class="app-rel">Collected edition</span><span class="app-t">The Marginal Product</span><span class="app-g">The earlier account places the productive increment beside the distributive question that its equality cannot settle.</span></a></li><li><a href="the-wage-share.html"><span class="app-rel">From factors to incomes</span><span class="app-t">The Share</span><span class="app-g">The division between labor and capital must be distinguished from the ownership of both streams by particular people.</span></a></li></ul></nav>
+
+  <footer>
+    <nav class="crumbs foot" aria-label="Return">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-margin.html">The Margin &middot; Vol VI</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate ix</span>
+    </nav>
+    <p class="colophon">Adapted for the Margin edition from the complete <a href="../quantities/numeraire-plate-the-product.html">Quantities Product</a>, the <a href="../volumes/the-margin.html#plate-vii">Collected Product</a> and the <a href="../volumes/the-share.html#plate-iv">Collected Marginal Product</a>. The earlier editions remain in place; the present treatment develops their contribution-and-justice inquiry with explicit conditions and new illustrations. Return to <a href="the-margin.html">the volume</a>, or to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-margin-return.html">← The Return</a><a rel="next" href="the-margin-reswitching.html">The Reswitching →</a></nav>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Return — Numéraire, The Margin, Plate viii</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:66rem; --measure:35rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- ornament ---- */
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* ---- masthead ---- */
+  .masthead{padding:clamp(2.8rem,7vh,5rem) 0 clamp(1.4rem,3.5vh,2.2rem);text-align:center;}
+
+  /* breadcrumb */
+  .crumbs{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 400;
+    font-size:.8rem;letter-spacing:.04em;color:var(--faint);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:center;gap:.55rem;}
+  .crumbs a{text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .2s ease,color .2s ease;}
+  .crumbs a:hover{border-color:var(--num);color:var(--ink);}
+  .crumbs .sep{color:var(--faintest);}
+  .crumbs .here{color:var(--ink);}
+
+  /* plate cartouche: Mg over the plate numeral */
+  .plate-mark{width:116px;height:116px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:.18rem;line-height:1;}
+  .plate-mark.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pm-vol{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.84rem;letter-spacing:.06em;color:rgba(240,235,225,.62);}
+  .pm-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;
+    font-size:2.5rem;letter-spacing:.02em;text-transform:uppercase;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.3rem,6.5vw,4.4rem);line-height:1.02;letter-spacing:-.025em;margin:1rem 0 0;text-wrap:balance;}
+  .status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:42rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  /* ---- epigraph ---- */
+  .epi{max-width:38rem;margin:clamp(2.2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .epi q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.46;color:var(--ink);quotes:none;display:block;text-wrap:pretty;}
+  .epi .cite{display:block;margin-top:.95rem;font-size:.78rem;color:var(--faintest);letter-spacing:.05em;font-style:normal;}
+  .epi .cite em{font-style:italic;}
+
+  /* ---- the essay (with margin apparatus) ---- */
+  .essay{max-width:52rem;margin:clamp(3rem,7vh,5rem) auto 0;counter-reset:sn;}
+  .essay::after{content:"";display:block;clear:both;}
+  .essay > p,.essay > .pull{max-width:var(--measure);}
+  .essay p{font-size:1.075rem;line-height:1.8;color:var(--ink);margin:0 0 1.4rem;text-wrap:pretty;}
+  .essay em{font-style:italic;}
+  .essay .lede::first-letter{ }
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.72;padding:.08em .14em 0 0;color:var(--ink);}
+
+  /* movement divider */
+  .divider{display:flex;justify-content:center;margin:2.4rem 0;}
+  .divider svg{width:96px;height:12px;overflow:visible;}
+  .divider line{stroke:var(--num);stroke-width:1;} .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* pull quote */
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.5vw,1.74rem);line-height:1.34;color:var(--ink);text-align:center;
+    margin:2.4rem auto;max-width:33rem;text-wrap:balance;}
+
+  /* margin notes — inline by default, gutter on wide screens */
+  .snref{font-family:"Fraunces",serif;font-size:.64em;line-height:0;vertical-align:super;
+    color:var(--soft);counter-increment:sn;margin-left:1px;font-style:normal;}
+  .snref::after{content:counter(sn);}
+  .sn{display:block;max-width:var(--measure);margin:.1rem 0 1.4rem;padding:.15rem 0 .15rem 1.05rem;
+    border-left:1px solid var(--hair);font-size:.84rem;line-height:1.52;color:var(--faint);}
+  .sn::before{content:counter(sn);font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--faintest);margin-right:.5em;font-size:.92em;}
+  .sn em{font-style:italic;}
+
+  @media (min-width:64rem){
+    .sn{float:right;clear:right;width:15rem;margin:.35rem 0 1.3rem;padding:0;border-left:none;}
+    .divider,.pull,.apparatus{clear:both;}
+  }
+
+  /* ---- apparatus (related reading) ---- */
+  .apparatus{max-width:52rem;margin:clamp(3.2rem,7vh,5rem) auto 0;padding-top:2rem;border-top:1px solid var(--hair);clear:both;}
+  .app-h{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;}
+  .app-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.4rem;}
+  .app-list li{border-top:1px solid var(--hair);}
+  .app-list li:first-child,.app-list li:nth-child(2){border-top:none;}
+  .app-list a{display:block;text-decoration:none;padding:.95rem 0;}
+  .app-list a:hover .app-t{color:var(--soft);}
+  .app-rel{display:block;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faintest);margin-bottom:.3rem;}
+  .app-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.12rem;color:var(--ink);transition:color .2s ease;}
+  .app-g{display:block;font-size:.84rem;color:var(--faint);font-style:italic;line-height:1.4;margin-top:.22rem;}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(3.5rem,8vh,6rem);padding:2.2rem 0 4rem;border-top:1px solid var(--hair);}
+  .crumbs.foot{justify-content:flex-start;margin-bottom:1.3rem;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .plate-mark{width:96px;height:96px;}
+    .pm-num{font-size:2.1rem;}
+    .essay p{font-size:1.04rem;line-height:1.74;}
+    .dropcap{font-size:3rem;}
+    .app-list{grid-template-columns:1fr;}
+    .app-list li:nth-child(2){border-top:1px solid var(--hair);}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="crumbs rise d1" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-margin.html">The Margin &middot; Vol VI</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate viii</span>
+    </nav>
+    <div class="plate-mark lit rise d2" aria-hidden="true">
+      <span class="pm-vol">Mg</span>
+      <span class="pm-num">viii</span>
+    </div>
+    <h1 class="rise d3">The Return</h1>
+    <div class="status rise d3">in print &middot; The Margin &middot; plate viii</div>
+    <p class="standfirst rise d4">The next acre can leave less because of its soil, its distance from the market or the other inputs held fixed. This plate separates those comparisons, then follows an invented production function from diminishing marginal product to rising marginal cost. Returns to scale and the choice to enter remain separate questions, as does the move from explaining an addition to justifying its reward.</p>
+  </header>
+
+  <div class="epi rise d5"><q>The next acre is judged from the means that reach it.</q><span class="cite">The argument of this plate</span></div>
+
+  <article class="essay">
+<p class="lede"><span class="dropcap">T</span>he first acre yields easily; the second asks for more. That is the familiar image behind diminishing returns, and it gives the rising blade of supply an almost physical inevitability. Good land is used first, easy seams are worked first, the least costly means are exhausted before the harder ones are called upon. Yet the original question contains a word the argument must earn: why is the second acre <em>always</em> worse than the first — and what does that decide? An acre can be worse because it is farther away, because it is poorer soil, or because another input has failed to keep pace. Those are different comparisons. The margin of production becomes intelligible when we learn to hold the right things still.</p>
+
+<p>Johann Heinrich von Thünen begins his isolated state with an especially instructive refusal of the obvious answer. The plain surrounding his central town is equally fertile. A farmer's distance from the market can nevertheless change what it is worthwhile to produce, because getting the produce there uses resources. In the reproduced opening assumptions, the absence of navigable rivers and canals removes alternative cheap routes; the town and its surrounding agriculture give location its organizing role. The farther acre need not grow less. Its output can leave less after the journey is paid for. The apparent inferiority belongs to delivered economic opportunity, even when the soil has been deliberately made the same.<sup class="snref"></sup></p>
+<aside class="sn"><a href="https://www.williamcronon.net/courses/460/handouts/460_handout_09_von_thunens_rings.pdf">Johann Heinrich von Thünen, <em>The Isolated State</em>, “Hypotheses”</a>, reproduced from Carla M. Wartenberg's translation edited by Peter Hall (1966), supplies the equal-fertility plain, central town and transport assumptions. The following parcel example is invented; its numbers are not Thünen's estimates.</aside>
+
+<p>Suppose, for illustration, that each of two parcels yields two units of the same crop at a cultivation cost of six. The market pays five per unit. One parcel is a unit of distance away, the other three, and carriage costs one per unit of crop per unit of distance. Before any land payment, the nearer parcel leaves two: ten of revenue, less six of cultivation and two of carriage. The farther leaves a loss of two. If the market price rises to seven, both can be cultivated on these terms; the nearer leaves six and the farther two. The extension of cultivation has brought in an economically less favorable parcel without finding a single difference in fertility. Its place at the margin depends on prices, transport and the use under consideration.</p>
+
+<p>Moving outward across parcels is the extensive comparison. Working the same parcel more intensively is another. Add labor to a fixed area, with the method and other equipment held constant, and eventually another worker or another hour may add less crop than the previous addition. The claim concerns the change in total output when one input changes while the specified others do not. It does not say that total output falls whenever labor is increased; output can continue to rise while each increment becomes smaller. Nor does it say that the earliest increments must diminish. A field too lightly worked to be weeded, drained or harvested effectively can yield more to an early addition than to the one before it. The tendency has conditions and a range.<sup class="snref"></sup></p>
+<aside class="sn"><a href="https://www.econlib.org/library/Marshall/marP.html?chapter_num=18">Alfred Marshall, <em>Principles of Economics</em>, eighth edition (1920), IV.III, §§1–4 and 8</a>, distinguishes successive applications to land from extension to other land, allows early increasing returns and makes the result conditional on knowledge and other productive circumstances. Section 2 also explains why the marginal application is an economic comparison rather than necessarily the last operation in time.</aside>
+
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg></div>
+
+<p>An invented production function makes the distinction exact. Let output be the square root of K times L, where K measures a fixed productive facility and L measures labor. With K equal to sixteen, output is 4√L. One unit of labor produces four units of output; four units of labor produce eight. The average output per unit of labor has fallen from four to two, while the derivative — the marginal product — has fallen from two to one. Total output has doubled. Nothing here identifies one worker as the author of a separate heap of goods. The marginal product is the change in joint production associated with varying labor around the specified combination. Its size depends on the facility available to work with.</p>
+
+<p>Now enlarge both inputs in the same proportion. Doubling K and L doubles output in this invented technology. It therefore has constant returns to scale even though the marginal product of labor declines when K is fixed. The two statements coexist because they ask different questions. One adds labor to a given facility; the other reproduces the whole combination at a larger scale. To infer that an entire enterprise must become less productive because one crowded room does so is to carry the fixed wall into a comparison in which the room could have been enlarged. Conversely, enlarging a room does not guarantee that its new occupants will be better organized. Returns to scale, an input's marginal return and the gains from learning or organization require their own accounts.<sup class="snref"></sup></p>
+<aside class="sn">The function Q = √(KL) develops the invented comparison in <a href="../essays/numeraire-vi-xii-the-return.html">The Return in Utility</a>. At K = 16, average product is 4/√L and marginal product is 2/√L. For any positive t, Q(tK, tL) = tQ(K, L). Marshall IV.III, §8, treats the importance of input proportions; <a href="https://www.econlib.org/library/Marshall/marP.html?chapter_num=28">IV.XIII, §§1–2</a>, separately discusses internal and external economies and representative production.</aside>
+
+<p>The connection to cost follows once the changed input has a price. Suppose labor in this example costs six per unit and is the only variable expense, while the existing facility remains fixed. At one unit of labor, the marginal product is two, so the marginal cost of output is three. At four units of labor, the marginal product is one, so the marginal cost has risen to six. More generally, marginal cost is the price of labor divided by its marginal product: 3√L here. A smaller physical addition per unit of paid effort makes each additional unit of output more expensive. This is one route by which the supply blade rises. It is a route through a specified technology and factor price, rather than an independent law that every seller's cost must rise everywhere.</p>
+
+<p>At an output price of six, a small price-taking producer with this existing facility chooses four units of labor, producing eight units of output. Revenue is forty-eight and variable labor cost twenty-four, leaving twenty-four before the fixed facility's costs. Beyond this point the added output is worth less than the added labor costs. That operating decision does not tell us whether the facility was worth building. If entry required an avoidable outlay larger than twenty-four, the best operating surplus in this one-period illustration would not justify entry. An outlay already paid and wholly irrecoverable instead leaves the present operating comparison unchanged. The margin answers a well-defined decision only after the alternatives and the time at which it is made have been specified.<sup class="snref"></sup></p>
+<aside class="sn">The labor-price and output-price example is invented. With Q = 4√L, variable profit is 24√L − 6L; its maximum is twenty-four at L = 4. Marginal cost is 6 ÷ (2/√L) = 3√L. These comparisons develop <a href="../volumes/the-margin.html#plate-v">The Climb in the Collected Margin</a> and <a href="../quantities/numeraire-plate-the-cost.html">The Cost in Quantities</a>, keeping the operating decision distinct from the whole investment.</aside>
+
+<p>The next increment need not be a chronologically last task. A farmer may decide whether another hoeing, performed well before harvest, is worth its cost. Its marginal product is the difference between the eventual crop with that operation and the crop without it, other circumstances held appropriately constant. The comparison is counterfactual, and the additional crop need not be visibly separable from everything else harvested. Marshall insists on this point because the language of the last dose can suggest a physical order that the economics does not require. The relevant margin is the operation that could be added or omitted, not the final hand to touch the grain.</p>
+
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg></div>
+
+<p>Even the ranking of acres is conditional. Land that responds well to a modest application of labor may be surpassed by land that requires drainage, equipment or heavier cultivation before its possibilities emerge. A different crop can reverse the comparison again; a new route to market can alter the advantage of location. Marshall's discussion makes these qualifications part of the law's meaning. The diminishing return does not identify a permanent order of nature running from the best acre to the worst. It describes how additional resources fare in a given situation, including the opportunities for changing that situation. A cost curve can shift because a method changes, even while its rising portion remains a useful description of expansion within either method.</p>
+
+<p>This is also why a low marginal product cannot be read as an intrinsic property of the person whose labor is being varied. In the invented technology, the same labor works differently when the facility changes. Actual production can depend on tools, access, organization and complementary skills, as well as on effort. The measurement attributes a change under specified conditions; it does not allocate moral credit for the whole arrangement. Moving from the statement that another unit adds a certain amount to the statement that its owner deserves exactly that amount requires an additional argument. The next plate will examine that move. Here it is enough to keep a production comparison from silently becoming a judgment of worth.</p>
+
+<p>The economic boundary itself remains important. If successive feasible additions yield less while their resource costs do not fall, there can be a point beyond which the next addition fails the relevant test. A higher output price, a lower input price or an improved method can move that point. A scarce parcel may earn a surplus because other available parcels leave less; a scarce facility may make another worker unusually productive. Such results help explain where production stops and which existing advantages command payments. They do not make the existing distribution of those advantages inevitable. The law describes the consequences of a scarcity or complementarity. It does not establish who should hold it.</p>
+
+<p class="pull">The next unit earns its place against the alternatives available to it. Those alternatives can change.</p>
+
+<p>The second acre is therefore not always worse. It can be identical soil farther from the buyer, a different soil better suited to another crop, or merely a convenient image for adding labor while land remains fixed. What the return decides depends on which of these comparisons is actually being made. Carefully stated, it explains why the easy expansion can give way to a costly one and why a producer stops even while more output remains physically possible. Carried beyond its conditions, it lends the permanence of nature to arrangements that can be altered. The next plate turns this marginal product into a proposed rule of payment, and asks whether the division that follows is justice or arithmetic. The argument remains open.</p>
+</article>
+
+  <nav class="apparatus" aria-label="Related reading"><h2 class="app-h">Related</h2><ul class="app-list"><li><a href="the-margin-scissors.html"><span class="app-rel">The supply price at the meeting</span><span class="app-t">The Scissors</span><span class="app-g">The period and industry conditions that shape the producer’s side of the market.</span></a></li><li><a href="the-margin-product.html"><span class="app-rel">The proposed rule of payment</span><span class="app-t">The Product</span><span class="app-g">The further argument that would turn marginal contribution into a division of the product.</span></a></li><li><a href="the-margin-reswitching.html"><span class="app-rel">Capital whose value is unsettled</span><span class="app-t">The Reswitching</span><span class="app-g">The controversy over treating heterogeneous capital as a quantity with a straightforward marginal return.</span></a></li><li><a href="../quantities/numeraire-plate-the-cost.html"><span class="app-rel">The earlier incremental account</span><span class="app-t">The Cost — Quantities</span><span class="app-g">The distinction between the expense of the whole undertaking and the cost of the next available change.</span></a></li></ul></nav>
+
+  <footer>
+    <nav class="crumbs foot" aria-label="Return">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-margin.html">The Margin &middot; Vol VI</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate viii</span>
+    </nav>
+    <p class="colophon">The eighth plate of Volume VI, <em>The Margin</em>, adapted for the Margin edition from <a href="../volumes/the-margin.html#plate-v">The Climb in the Collected Margin</a>, <a href="../quantities/numeraire-plate-the-cost.html">The Cost in Quantities</a>, and the later <a href="../essays/numeraire-vi-xii-the-return.html">Utility Return</a>. The original question about the second acre brings the earlier fixed-input and cost arguments together with Thünen’s location assumptions and Marshall’s distinctions between margins and productive circumstances. Each earlier edition remains intact; the epigraph states this plate’s argument. Return to <a href="the-margin.html">the volume</a>, or to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-margin-order.html">← The Order</a><a rel="next" href="the-margin-product.html">The Product →</a></nav>
+</body>
+</html>

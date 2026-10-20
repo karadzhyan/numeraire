@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Scissors — Numéraire, The Margin, Plate v</title>
+
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{
+    --paper:#f0ebe1; --ink:#1c1a16; --soft:#534e45; --faint:#6e685d;
+    --faintest:#9a9384; --num:#c4bcab; --hair:#ddd6c7;
+    --sel:rgba(120,94,52,.16); --frame:66rem; --measure:35rem;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  ::selection{background:var(--sel);}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:19px;line-height:1.6;font-weight:400;
+    font-feature-settings:"liga" 1,"calt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:160px 160px;
+  }
+  .fr{font-family:"Fraunces",Georgia,serif;}
+  .frame{max-width:var(--frame);margin:0 auto;padding:0 clamp(1.4rem,4vw,3.4rem);}
+  :focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:1px;}
+  a{color:inherit;}
+
+  /* ---- ornament ---- */
+  .orn{display:flex;justify-content:center;margin:0 auto 1.7rem;}
+  .orn svg{display:block;width:130px;height:14px;overflow:visible;}
+  .orn line{stroke:var(--num);stroke-width:1;} .orn rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* ---- masthead ---- */
+  .masthead{padding:clamp(2.8rem,7vh,5rem) 0 clamp(1.4rem,3.5vh,2.2rem);text-align:center;}
+
+  /* breadcrumb */
+  .crumbs{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 400;
+    font-size:.8rem;letter-spacing:.04em;color:var(--faint);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:center;gap:.55rem;}
+  .crumbs a{text-decoration:none;color:var(--soft);border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .2s ease,color .2s ease;}
+  .crumbs a:hover{border-color:var(--num);color:var(--ink);}
+  .crumbs .sep{color:var(--faintest);}
+  .crumbs .here{color:var(--ink);}
+
+  /* plate cartouche: Mg over the plate numeral */
+  .plate-mark{width:116px;height:116px;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+    border:1px solid var(--ink);border-radius:2px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:.18rem;line-height:1;}
+  .plate-mark.lit{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .pm-vol{font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    font-size:.84rem;letter-spacing:.06em;color:rgba(240,235,225,.62);}
+  .pm-num{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;
+    font-size:2.5rem;letter-spacing:.02em;text-transform:uppercase;}
+
+  h1{font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;font-weight:400;
+    font-size:clamp(2.3rem,6.5vw,4.4rem);line-height:1.02;letter-spacing:-.025em;margin:1rem 0 0;text-wrap:balance;}
+  .status{margin-top:1rem;font-size:.9rem;color:var(--soft);letter-spacing:.02em;}
+  .status::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ink);border-radius:50%;margin-right:.55rem;vertical-align:.06em;}
+  .standfirst{font-size:clamp(1.04rem,1.4vw,1.18rem);line-height:1.62;color:var(--soft);
+    max-width:42rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-wrap:pretty;}
+  .standfirst em{font-style:italic;}
+
+  /* ---- epigraph ---- */
+  .epi{max-width:38rem;margin:clamp(2.2rem,4.5vh,3rem) auto 0;padding-top:1.9rem;
+    border-top:1px solid var(--hair);text-align:center;}
+  .epi q{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 400;font-style:italic;
+    font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.46;color:var(--ink);quotes:none;display:block;text-wrap:pretty;}
+  .epi .cite{display:block;margin-top:.95rem;font-size:.78rem;color:var(--faintest);letter-spacing:.05em;font-style:normal;}
+  .epi .cite em{font-style:italic;}
+
+  /* ---- the essay (with margin apparatus) ---- */
+  .essay{max-width:52rem;margin:clamp(3rem,7vh,5rem) auto 0;counter-reset:sn;}
+  .essay::after{content:"";display:block;clear:both;}
+  .essay > p,.essay > .pull{max-width:var(--measure);}
+  .essay p{font-size:1.075rem;line-height:1.8;color:var(--ink);margin:0 0 1.4rem;text-wrap:pretty;}
+  .essay em{font-style:italic;}
+  .essay .lede::first-letter{ }
+  .dropcap{float:left;font-family:"Fraunces",serif;font-variation-settings:"opsz" 144,"wght" 400;
+    font-size:3.5rem;line-height:.72;padding:.08em .14em 0 0;color:var(--ink);}
+
+  /* movement divider */
+  .divider{display:flex;justify-content:center;margin:2.4rem 0;}
+  .divider svg{width:96px;height:12px;overflow:visible;}
+  .divider line{stroke:var(--num);stroke-width:1;} .divider rect{fill:none;stroke:var(--num);stroke-width:1;}
+
+  /* pull quote */
+  .pull{font-family:"Fraunces",serif;font-variation-settings:"opsz" 90,"wght" 400;font-style:italic;
+    font-size:clamp(1.32rem,2.5vw,1.74rem);line-height:1.34;color:var(--ink);text-align:center;
+    margin:2.4rem auto;max-width:33rem;text-wrap:balance;}
+
+  /* margin notes — inline by default, gutter on wide screens */
+  .snref{font-family:"Fraunces",serif;font-size:.64em;line-height:0;vertical-align:super;
+    color:var(--soft);counter-increment:sn;margin-left:1px;font-style:normal;}
+  .snref::after{content:counter(sn);}
+  .sn{display:block;max-width:var(--measure);margin:.1rem 0 1.4rem;padding:.15rem 0 .15rem 1.05rem;
+    border-left:1px solid var(--hair);font-size:.84rem;line-height:1.52;color:var(--faint);}
+  .sn::before{content:counter(sn);font-family:"Fraunces",serif;font-variation-settings:"opsz" 30,"wght" 500;
+    color:var(--faintest);margin-right:.5em;font-size:.92em;}
+  .sn em{font-style:italic;}
+
+  @media (min-width:64rem){
+    .sn{float:right;clear:right;width:15rem;margin:.35rem 0 1.3rem;padding:0;border-left:none;}
+    .divider,.pull,.apparatus{clear:both;}
+  }
+
+  /* ---- apparatus (related reading) ---- */
+  .apparatus{max-width:52rem;margin:clamp(3.2rem,7vh,5rem) auto 0;padding-top:2rem;border-top:1px solid var(--hair);clear:both;}
+  .app-h{font-family:"Fraunces",serif;font-variation-settings:"opsz" 40,"wght" 500;font-weight:500;
+    font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 1.4rem;}
+  .app-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0 2.4rem;}
+  .app-list li{border-top:1px solid var(--hair);}
+  .app-list li:first-child,.app-list li:nth-child(2){border-top:none;}
+  .app-list a{display:block;text-decoration:none;padding:.95rem 0;}
+  .app-list a:hover .app-t{color:var(--soft);}
+  .app-rel{display:block;font-family:"Newsreader",serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faintest);margin-bottom:.3rem;}
+  .app-t{font-family:"Fraunces",serif;font-variation-settings:"opsz" 48,"wght" 500;font-size:1.12rem;color:var(--ink);transition:color .2s ease;}
+  .app-g{display:block;font-size:.84rem;color:var(--faint);font-style:italic;line-height:1.4;margin-top:.22rem;}
+
+  /* ---- footer ---- */
+  footer{margin-top:clamp(3.5rem,8vh,6rem);padding:2.2rem 0 4rem;border-top:1px solid var(--hair);}
+  .crumbs.foot{justify-content:flex-start;margin-bottom:1.3rem;}
+  .colophon{font-size:.84rem;line-height:1.66;color:var(--faint);max-width:64ch;}
+  .colophon a{color:var(--soft);text-underline-offset:2px;text-decoration-color:var(--hair);}
+  .colophon a:hover{text-decoration-color:var(--soft);}
+  .colophon em{font-style:italic;}
+
+  /* ---- motion ---- */
+  @media (prefers-reduced-motion: no-preference){
+    .rise{opacity:0;transform:translateY(12px);animation:rise 1s cubic-bezier(.2,.6,.2,1) both;}
+    .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.28s}
+    .rise.d4{animation-delay:.40s}.rise.d5{animation-delay:.52s}
+  }
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (max-width:600px){
+    body{font-size:18px;}
+    .plate-mark{width:96px;height:96px;}
+    .pm-num{font-size:2.1rem;}
+    .essay p{font-size:1.04rem;line-height:1.74;}
+    .dropcap{font-size:3rem;}
+    .app-list{grid-template-columns:1fr;}
+    .app-list li:nth-child(2){border-top:1px solid var(--hair);}
+  }
+</style>
+<link rel="stylesheet" href="../edition.css">
+</head>
+<body>
+<nav id="ne-nav" aria-label="Edition navigation"><a class="ne-brand" href="../index.html">Numéraire</a><div class="ne-links"><!-- connected-nav:start --><a href="https://karadzhyan-complete.arthur-karadzhyan.chatgpt.site/firm-home.html">Karadzhyan</a><a href="https://quodlibet.press/">Quodlibet</a><!-- connected-nav:end --><a href="../editions.html#source-margin">The Margin edition · contents</a><a href="numeraire-atlas.html">Edition opening</a><a href="../editions.html#ne-source-editions">All editions</a><a href="../editions.html#ne-contents">Collected volumes &amp; essays</a></div></nav>
+<div class="frame">
+
+  <header class="masthead">
+    <div class="orn rise d1" aria-hidden="true">
+      <svg viewBox="0 0 130 14"><line x1="0" y1="7" x2="52" y2="7"/><rect x="62" y="2" width="7" height="7" transform="rotate(45 65.5 5.5)"/><line x1="79" y1="7" x2="130" y2="7"/></svg>
+    </div>
+    <nav class="crumbs rise d1" aria-label="Location in the work">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-margin.html">The Margin &middot; Vol VI</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate v</span>
+    </nav>
+    <div class="plate-mark lit rise d2" aria-hidden="true">
+      <span class="pm-vol">Mg</span>
+      <span class="pm-num">v</span>
+    </div>
+    <h1 class="rise d3">The Scissors</h1>
+    <div class="status rise d3">in print &middot; The Margin &middot; plate v</div>
+    <p class="standfirst rise d4">Marshall joins the buyer’s last wanted unit to the producer’s next offered one. This plate follows that meeting through an invented demand shift, a fixed stock and a constant-cost industry, then asks what the diagram leaves to the institutions around it. The two blades explain how conditions of exchange fit together; the period, purchasing power and control over production determine which conditions have been drawn.</p>
+  </header>
+
+  <div class="epi rise d5"><q>The blades meet under conditions someone must explain.</q><span class="cite">The argument of this plate</span></div>
+
+  <article class="essay">
+<p class="lede"><span class="dropcap">T</span>he two blades meet, and the price appears where they cross. The picture is so familiar that it can seem to have abolished the question it was drawn to answer. Does a thing command its price because people want it, or because making it costs something? The earlier plates have followed the last unit into the buyer's judgment; the producer has been waiting on the other side. Alfred Marshall brings them together. Desire alone cannot say how much will be offered, and expense alone cannot say whether anyone will buy. Yet the reconciliation leaves another question inside the instrument. If both blades cut, which one moves — and whose hand is on the scissors?</p>
+
+<p>Marshall's image resists the attempt to give one side permanent custody of value. A purchaser may want another loaf at a lower price than the last; supplying another loaf may require a higher price than the one before. The quantity at which their terms meet depends on both schedules. To call the demand blade the real cause because the supply blade has been held still is to mistake the arrangement of an experiment for the constitution of a market. The same error can be made in reverse. Marshall allows circumstances in which one blade seems to do nearly all the visible work. His point is that the relative stillness needs explaining. It does not make the other blade dispensable.<sup class="snref"></sup></p>
+<aside class="sn"><a href="https://www.econlib.org/library/Marshall/marP.html?chapter_num=31">Alfred Marshall, <em>Principles of Economics</em>, eighth edition (1920), V.III, §§6–7</a>, gives the scissors comparison and the qualifications concerning fixed stocks, constant returns and the period of adjustment. The demand and supply schedules describe conditions of exchange; their intersection alone does not identify a historical cause.</aside>
+
+<p>Consider an invented market whose demand price is 100 − q and whose supply price is 20 + q. At forty units both are sixty. At a smaller quantity the buyers' marginal offer exceeds the amount required to call forth another unit; at a larger quantity the supply price exceeds what buyers will pay for the last. Now increase the demand price at every quantity by twenty, leaving the supply schedule unchanged. The new crossing is fifty units at a price of seventy. Demand has shifted, supply has responded, and the observed price has risen by ten. Neither the twenty-unit movement of one schedule nor the ten-unit movement of the transaction price is the contribution of desire to the old price of sixty. The change answers a conditional question about this disturbance. It does not divide the original price into two separately manufactured pieces.</p>
+
+<p>The diagram acquires a causal interpretation only when the conditions held still are credible. In this illustration tastes, purchasing power, the prices of related goods, productive methods and input prices have been compressed into two schedules. A change in an income distribution could alter demand; a change in the cost of flour could alter supply. If both move, price alone will generally not tell the observer which has moved by how much. Even the response to a single disturbance depends on the other schedule's shape. The same increase in demand can chiefly raise price when additional output is difficult, or chiefly enlarge output when it is readily supplied. The blades are joined by the market, but the investigator must still establish what disturbed them.<sup class="snref"></sup></p>
+<aside class="sn">The 100 − q and 20 + q schedules are invented illustrations, carried forward from <a href="../essays/numeraire-vi-vi-the-scissors.html">The Scissors in Utility</a>. Their crossings are (q, p) = (40, 60) and, after the demand shift, (50, 70). Marshall V.III, §§3–5, expressly holds other conditions provisionally fixed and treats the supply price as a schedule for a specified period.</aside>
+
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg></div>
+
+<p>Time changes what can be held still. A catch of fish already brought to market cannot be enlarged by building another boat that afternoon. If the entire forty-unit stock must be sold, the first invented demand schedule yields a price of sixty and the second a price of eighty. Quantity cannot absorb any of the disturbance. This is the fixed-stock limit, not a general account of everything that happens within a day: a seller who can store the fish, divert it elsewhere or withhold it has alternatives that change the terms. Marshall himself makes expectations of later prices relevant to present dealings. The period is an economic description of what can adjust, rather than a name printed on a calendar.</p>
+
+<p>Give the industry time to change its plant, attract entrants and reorganize production, and another limit becomes possible. Suppose additional units can be supplied indefinitely at a normal cost of twenty, including the returns needed to keep resources in this employment. Demand of 100 − q then meets supply at eighty units; demand of 120 − q meets it at a hundred. Price remains twenty. Here cost seems to govern price and demand to govern quantity because constant-cost expansion has been assumed. Remove that assumption and the tidy division need not survive. Expanding an industry may bid up a scarce input, or make a specialized supplier worth establishing. Long adjustment gives costs a different opportunity to act; it does not decree that every industry's supply price becomes horizontal.<sup class="snref"></sup></p>
+<aside class="sn">Marshall V.III, §§4–7, distinguishes market values from normal supply conditions and limits the constant-cost illustration. His representative firm's supply expenses include management, depreciation, interest, insurance and wages. The fixed forty-unit stock and constant price of twenty are separate invented limiting cases; neither is asserted as a description of an actual industry.</aside>
+
+<p>This is why the supply blade needs more care than the compact picture invites. Marshall's normal supply price refers to the conditions under which a representative undertaking can continue production at a given industry scale. It is not automatically the next-unit expense of whichever firm happens to stand nearest the observer. A plant already built may cover its avoidable costs at a price that would never justify constructing another. An industry may expand while an individual producer has reached the limit of an existing machine. The supply schedule carries a theory of adjustment inside it: what is fixed, what can be replaced, what can enter and how costs change as others do the same. A smooth line is an economical way of stating those assumptions. It is also an economical way of forgetting them.</p>
+
+<p>The division between the old cost theorists and the new utility theorists is less absolute than a classroom succession can make it sound. Jevons, in the same work that places final utility at the center of exchange, recognizes that production costs affect the quantities available, while exchange affects what it is worthwhile to produce. His theory of labor compares the utility of additional output with the burden of obtaining it. Marshall's synthesis therefore need not be read as the discovery that production exists after an age in which only desire had been noticed. It makes the mutual dependence explicit, gives the period of adjustment a central place, and resists the temptation to convert one useful emphasis into an exclusive explanation.<sup class="snref"></sup></p>
+<aside class="sn"><a href="https://www.econlib.org/library/YPDBooks/Jevons/jvnPE.html?chapter_num=9">W. Stanley Jevons, <em>The Theory of Political Economy</em>, third edition (1888), chapter V</a>, especially “Relation of the Theories of Labour and Exchange” and “Relations of Economic Quantities,” expressly connects cost, quantity, utility and exchange. The comparison concerns the arguments in these texts, rather than a claim that either writer first discovered their interdependence.</aside>
+
+<p>The point at which two curves meet is also quieter than a market. It describes terms that fit together; it does not itself supply the route by which people discover them. In Marshall's stated adjustment, a demand price above the supply price encourages expansion, and the reverse encourages contraction. That direction brings quantity back to a crossing only if the schedules have the appropriate local relation. An increase in output can instead change organization, expectations or future costs in ways that move the crossing as the market approaches it. Marshall's own account acknowledges disturbances and movements in the conditions behind equilibrium. The diagram can isolate a tendency without guaranteeing that actual exchange will arrive neatly, or remain there once it has arrived.</p>
+
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 96 12"><line x1="0" y1="6" x2="36" y2="6"/><rect x="44" y="2" width="6" height="6" transform="rotate(45 47 5)"/><line x1="60" y1="6" x2="96" y2="6"/></svg></div>
+
+<p>Whose hand, then, moves the scissors? Under the competitive assumptions no single participant need command the crossing. Buyers alter their purchases, producers alter their offers, and the resulting adjustment can exceed anyone's intention. But the absence of a conductor does not make the conditions ownerless. The capacity to buy is distributed before the demand curve is drawn. Access to land, equipment, credit and knowledge helps determine which supply is possible. Marshall's provisional account assumes freedom from combinations that suppress competition and sufficient knowledge of market conditions; those are arrangements to examine, not properties bestowed by the ink. A firm able to restrict output or an authority able to change entry conditions occupies a different position from a small price taker. The diagram's title must not be allowed to conceal the institution being described.</p>
+
+<p>There is a further question the crossing cannot settle by itself. Demand price records willingness and ability to pay. A rich person's slight preference can therefore support a higher offer than a poor person's urgent need. Supply price records the costs borne under the arrangements of production; damage imposed on someone outside the transaction may be absent from it. Even where the curves accurately predict exchange, their crossing does not certify that every relevant interest has been heard. These are different omissions. Unequal purchasing power concerns whose wishes receive effective weight; an unpriced injury concerns whose consequences enter the account at all. Both require an inquiry beyond finding the point at which the two private schedules coincide.<sup class="snref"></sup></p>
+<aside class="sn">The distinction between predicting a competitive outcome and endorsing its distribution develops the question posed in <a href="../quantities/numeraire-plate-the-scissors.html">The Scissors in Quantities</a>. Marshall V.III, §7, also warns that correspondence between money costs and real costs must not be assumed lightly. The purchasing-power and omitted-injury examples are the present argument's conditional comparisons, not empirical estimates or a general welfare theorem.</aside>
+
+<p>What the scissors preserve is nevertheless considerable. They make a price answerable to changes on both sides, require an account of the alternatives and expose the weakness of explanations that merely rename one determinant. A shortage cannot be understood without asking what would enlarge supply; a cost cannot explain a sale without someone willing to meet it. The resulting framework is strongest when it keeps its conditions visible. The analyst chooses the good, market and period, distinguishes a shift from movement along a schedule, and tests whether the institutions permit the response assumed. Precision consists in making those choices inspectable, not in making the final crossing look inevitable.</p>
+
+<p class="pull">The crossing joins two conditions of exchange. It does not settle who had the means to enter it.</p>
+
+<p>Marshall's reconciliation leaves the deeper question alive by giving it a more exact address. Both blades belong in an explanation of price; either can move when the circumstances behind it change. The hand may be dispersed among many choices, concentrated in control over a scarce input, or visible in the rules under which exchange occurs. Its presence must be established in the particular market. The next plate asks what happens when the meeting of these conditions becomes an equation, and the choice becomes a slope set to zero. Economics gains a remarkable instrument of comparison. What that instrument can decide will depend, once again, on what has been placed inside it. The argument remains open.</p>
+</article>
+
+  <nav class="apparatus" aria-label="Related reading"><h2 class="app-h">Related</h2><ul class="app-list"><li><a href="the-margin-balance.html"><span class="app-rel">The buyer’s alternatives</span><span class="app-t">The Balance</span><span class="app-g">The allocation of a limited means across competing uses, before the resulting demand meets supply.</span></a></li><li><a href="the-margin-derivative.html"><span class="app-rel">The meeting becomes a condition</span><span class="app-t">The Derivative</span><span class="app-g">What marginal equality establishes once the comparison is written as a mathematical problem.</span></a></li><li><a href="the-margin-return.html"><span class="app-rel">The shape of the supply blade</span><span class="app-t">The Return</span><span class="app-g">Why the cost of another unit depends on fixed inputs, scale and the opportunity to change the method.</span></a></li><li><a href="../quantities/numeraire-plate-the-scissors.html"><span class="app-rel">The earlier reconciliation</span><span class="app-t">The Scissors — Quantities</span><span class="app-g">The original extended account of Marshall’s two blades and the questions that survive their meeting.</span></a></li></ul></nav>
+
+  <footer>
+    <nav class="crumbs foot" aria-label="Return">
+      <a href="numeraire-atlas.html">Numéraire</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="the-margin.html">The Margin &middot; Vol VI</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="here">Plate v</span>
+    </nav>
+    <p class="colophon">The fifth plate of Volume VI, <em>The Margin</em>, adapted for the Margin edition from <a href="../quantities/numeraire-plate-the-scissors.html">The Scissors in Quantities</a>, the meeting of production and demand in <a href="../volumes/the-margin.html#plate-vi">The Meeting in the Collected Margin</a>, and the later <a href="../essays/numeraire-vi-vi-the-scissors.html">Utility Scissors</a>. The original Margin question directs the comparison of adjustment periods, causal explanation and the institutions behind the schedules. The earlier editions retain their distinct texts; the epigraph states this plate’s argument. Return to <a href="the-margin.html">the volume</a>, or to <a href="numeraire-atlas.html">the complete table of volumes</a>. Set in Fraunces and Newsreader. The argument remains open.</p>
+  </footer>
+
+</div>
+<nav id="ne-next" aria-label="Reading sequence"><a rel="prev" href="the-margin-balance.html">← The Balance</a><a rel="next" href="the-margin-derivative.html">The Derivative →</a></nav>
+</body>
+</html>
